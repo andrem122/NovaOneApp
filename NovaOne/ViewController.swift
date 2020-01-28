@@ -11,7 +11,6 @@ import UIKit
 class ViewController: UIViewController, UIScrollViewDelegate {
     
     // MARK: Properties
-    // test
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var featurePageControl: UIPageControl!
