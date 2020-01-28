@@ -1,0 +1,611 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		657AC33F23DCFCA700DA6096 /* Feature.xib in Resources */ = {isa = PBXBuildFile; fileRef = 657AC33E23DCFCA700DA6096 /* Feature.xib */; };
+		657AC34123DCFCB400DA6096 /* FeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657AC34023DCFCB400DA6096 /* FeatureView.swift */; };
+		6591C39A23DA78F900535C46 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6591C39923DA78F900535C46 /* AppDelegate.swift */; };
+		6591C39C23DA78F900535C46 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6591C39B23DA78F900535C46 /* SceneDelegate.swift */; };
+		6591C39E23DA78F900535C46 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6591C39D23DA78F900535C46 /* ViewController.swift */; };
+		6591C3A123DA78F900535C46 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6591C39F23DA78F900535C46 /* Main.storyboard */; };
+		6591C3A323DA78FB00535C46 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6591C3A223DA78FB00535C46 /* Assets.xcassets */; };
+		6591C3A623DA78FB00535C46 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6591C3A423DA78FB00535C46 /* LaunchScreen.storyboard */; };
+		6591C3B123DA78FB00535C46 /* NovaOneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6591C3B023DA78FB00535C46 /* NovaOneTests.swift */; };
+		6591C3BC23DA78FB00535C46 /* NovaOneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6591C3BB23DA78FB00535C46 /* NovaOneUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6591C3AD23DA78FB00535C46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6591C38E23DA78F900535C46 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6591C39523DA78F900535C46;
+			remoteInfo = NovaOne;
+		};
+		6591C3B823DA78FB00535C46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6591C38E23DA78F900535C46 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6591C39523DA78F900535C46;
+			remoteInfo = NovaOne;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		657AC33E23DCFCA700DA6096 /* Feature.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Feature.xib; path = ../../../../.Trash/Feature.xib; sourceTree = "<group>"; };
+		657AC34023DCFCB400DA6096 /* FeatureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeatureView.swift; path = ../../../../.Trash/FeatureView.swift; sourceTree = "<group>"; };
+		6591C39623DA78F900535C46 /* NovaOne.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NovaOne.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6591C39923DA78F900535C46 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		6591C39B23DA78F900535C46 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		6591C39D23DA78F900535C46 /* ViewController.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		6591C3A023DA78F900535C46 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6591C3A223DA78FB00535C46 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6591C3A523DA78FB00535C46 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		6591C3A723DA78FB00535C46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6591C3AC23DA78FB00535C46 /* NovaOneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NovaOneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6591C3B023DA78FB00535C46 /* NovaOneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovaOneTests.swift; sourceTree = "<group>"; };
+		6591C3B223DA78FB00535C46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6591C3B723DA78FB00535C46 /* NovaOneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NovaOneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6591C3BB23DA78FB00535C46 /* NovaOneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovaOneUITests.swift; sourceTree = "<group>"; };
+		6591C3BD23DA78FB00535C46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6591C39323DA78F900535C46 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6591C3A923DA78FB00535C46 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6591C3B423DA78FB00535C46 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		657AC33D23DCFC8E00DA6096 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				657AC34023DCFCB400DA6096 /* FeatureView.swift */,
+				657AC33E23DCFCA700DA6096 /* Feature.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		6591C38D23DA78F900535C46 = {
+			isa = PBXGroup;
+			children = (
+				6591C39823DA78F900535C46 /* NovaOne */,
+				6591C3AF23DA78FB00535C46 /* NovaOneTests */,
+				6591C3BA23DA78FB00535C46 /* NovaOneUITests */,
+				6591C39723DA78F900535C46 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6591C39723DA78F900535C46 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6591C39623DA78F900535C46 /* NovaOne.app */,
+				6591C3AC23DA78FB00535C46 /* NovaOneTests.xctest */,
+				6591C3B723DA78FB00535C46 /* NovaOneUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6591C39823DA78F900535C46 /* NovaOne */ = {
+			isa = PBXGroup;
+			children = (
+				657AC33D23DCFC8E00DA6096 /* Views */,
+				6591C39923DA78F900535C46 /* AppDelegate.swift */,
+				6591C39B23DA78F900535C46 /* SceneDelegate.swift */,
+				6591C39D23DA78F900535C46 /* ViewController.swift */,
+				6591C39F23DA78F900535C46 /* Main.storyboard */,
+				6591C3A223DA78FB00535C46 /* Assets.xcassets */,
+				6591C3A423DA78FB00535C46 /* LaunchScreen.storyboard */,
+				6591C3A723DA78FB00535C46 /* Info.plist */,
+			);
+			path = NovaOne;
+			sourceTree = "<group>";
+		};
+		6591C3AF23DA78FB00535C46 /* NovaOneTests */ = {
+			isa = PBXGroup;
+			children = (
+				6591C3B023DA78FB00535C46 /* NovaOneTests.swift */,
+				6591C3B223DA78FB00535C46 /* Info.plist */,
+			);
+			path = NovaOneTests;
+			sourceTree = "<group>";
+		};
+		6591C3BA23DA78FB00535C46 /* NovaOneUITests */ = {
+			isa = PBXGroup;
+			children = (
+				6591C3BB23DA78FB00535C46 /* NovaOneUITests.swift */,
+				6591C3BD23DA78FB00535C46 /* Info.plist */,
+			);
+			path = NovaOneUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6591C39523DA78F900535C46 /* NovaOne */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6591C3C023DA78FB00535C46 /* Build configuration list for PBXNativeTarget "NovaOne" */;
+			buildPhases = (
+				6591C39223DA78F900535C46 /* Sources */,
+				6591C39323DA78F900535C46 /* Frameworks */,
+				6591C39423DA78F900535C46 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NovaOne;
+			productName = NovaOne;
+			productReference = 6591C39623DA78F900535C46 /* NovaOne.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6591C3AB23DA78FB00535C46 /* NovaOneTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6591C3C323DA78FB00535C46 /* Build configuration list for PBXNativeTarget "NovaOneTests" */;
+			buildPhases = (
+				6591C3A823DA78FB00535C46 /* Sources */,
+				6591C3A923DA78FB00535C46 /* Frameworks */,
+				6591C3AA23DA78FB00535C46 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6591C3AE23DA78FB00535C46 /* PBXTargetDependency */,
+			);
+			name = NovaOneTests;
+			productName = NovaOneTests;
+			productReference = 6591C3AC23DA78FB00535C46 /* NovaOneTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		6591C3B623DA78FB00535C46 /* NovaOneUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6591C3C623DA78FB00535C46 /* Build configuration list for PBXNativeTarget "NovaOneUITests" */;
+			buildPhases = (
+				6591C3B323DA78FB00535C46 /* Sources */,
+				6591C3B423DA78FB00535C46 /* Frameworks */,
+				6591C3B523DA78FB00535C46 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6591C3B923DA78FB00535C46 /* PBXTargetDependency */,
+			);
+			name = NovaOneUITests;
+			productName = NovaOneUITests;
+			productReference = 6591C3B723DA78FB00535C46 /* NovaOneUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6591C38E23DA78F900535C46 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = "Andre Mashraghi";
+				TargetAttributes = {
+					6591C39523DA78F900535C46 = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+					6591C3AB23DA78FB00535C46 = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = 6591C39523DA78F900535C46;
+					};
+					6591C3B623DA78FB00535C46 = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = 6591C39523DA78F900535C46;
+					};
+				};
+			};
+			buildConfigurationList = 6591C39123DA78F900535C46 /* Build configuration list for PBXProject "NovaOne" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6591C38D23DA78F900535C46;
+			productRefGroup = 6591C39723DA78F900535C46 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6591C39523DA78F900535C46 /* NovaOne */,
+				6591C3AB23DA78FB00535C46 /* NovaOneTests */,
+				6591C3B623DA78FB00535C46 /* NovaOneUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6591C39423DA78F900535C46 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				657AC33F23DCFCA700DA6096 /* Feature.xib in Resources */,
+				6591C3A623DA78FB00535C46 /* LaunchScreen.storyboard in Resources */,
+				6591C3A323DA78FB00535C46 /* Assets.xcassets in Resources */,
+				6591C3A123DA78F900535C46 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6591C3AA23DA78FB00535C46 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6591C3B523DA78FB00535C46 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6591C39223DA78F900535C46 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6591C39E23DA78F900535C46 /* ViewController.swift in Sources */,
+				6591C39A23DA78F900535C46 /* AppDelegate.swift in Sources */,
+				6591C39C23DA78F900535C46 /* SceneDelegate.swift in Sources */,
+				657AC34123DCFCB400DA6096 /* FeatureView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6591C3A823DA78FB00535C46 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6591C3B123DA78FB00535C46 /* NovaOneTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6591C3B323DA78FB00535C46 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6591C3BC23DA78FB00535C46 /* NovaOneUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6591C3AE23DA78FB00535C46 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6591C39523DA78F900535C46 /* NovaOne */;
+			targetProxy = 6591C3AD23DA78FB00535C46 /* PBXContainerItemProxy */;
+		};
+		6591C3B923DA78FB00535C46 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6591C39523DA78F900535C46 /* NovaOne */;
+			targetProxy = 6591C3B823DA78FB00535C46 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6591C39F23DA78F900535C46 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6591C3A023DA78F900535C46 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		6591C3A423DA78FB00535C46 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6591C3A523DA78FB00535C46 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6591C3BE23DA78FB00535C46 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		6591C3BF23DA78FB00535C46 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6591C3C123DA78FB00535C46 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3CDSLHGVXH;
+				INFOPLIST_FILE = NovaOne/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.novaonesoftware.NovaOne;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6591C3C223DA78FB00535C46 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3CDSLHGVXH;
+				INFOPLIST_FILE = NovaOne/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.novaonesoftware.NovaOne;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		6591C3C423DA78FB00535C46 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3CDSLHGVXH;
+				INFOPLIST_FILE = NovaOneTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.novaonesoftware.NovaOneTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NovaOne.app/NovaOne";
+			};
+			name = Debug;
+		};
+		6591C3C523DA78FB00535C46 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3CDSLHGVXH;
+				INFOPLIST_FILE = NovaOneTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.novaonesoftware.NovaOneTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NovaOne.app/NovaOne";
+			};
+			name = Release;
+		};
+		6591C3C723DA78FB00535C46 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3CDSLHGVXH;
+				INFOPLIST_FILE = NovaOneUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.novaonesoftware.NovaOneUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = NovaOne;
+			};
+			name = Debug;
+		};
+		6591C3C823DA78FB00535C46 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3CDSLHGVXH;
+				INFOPLIST_FILE = NovaOneUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.novaonesoftware.NovaOneUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = NovaOne;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6591C39123DA78F900535C46 /* Build configuration list for PBXProject "NovaOne" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6591C3BE23DA78FB00535C46 /* Debug */,
+				6591C3BF23DA78FB00535C46 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6591C3C023DA78FB00535C46 /* Build configuration list for PBXNativeTarget "NovaOne" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6591C3C123DA78FB00535C46 /* Debug */,
+				6591C3C223DA78FB00535C46 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6591C3C323DA78FB00535C46 /* Build configuration list for PBXNativeTarget "NovaOneTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6591C3C423DA78FB00535C46 /* Debug */,
+				6591C3C523DA78FB00535C46 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6591C3C623DA78FB00535C46 /* Build configuration list for PBXNativeTarget "NovaOneUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6591C3C723DA78FB00535C46 /* Debug */,
+				6591C3C823DA78FB00535C46 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6591C38E23DA78F900535C46 /* Project object */;
+}
