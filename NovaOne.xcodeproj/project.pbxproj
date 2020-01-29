@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		65446CEC23E0F4370052DEBE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65446CEB23E0F4370052DEBE /* LoginViewController.swift */; };
 		65446CEF23E0F7DF0052DEBE /* NovaOneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65446CEE23E0F7DF0052DEBE /* NovaOneButton.swift */; };
-		657AC33F23DCFCA700DA6096 /* Feature.xib in Resources */ = {isa = PBXBuildFile; fileRef = 657AC33E23DCFCA700DA6096 /* Feature.xib */; };
-		657AC34123DCFCB400DA6096 /* FeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657AC34023DCFCB400DA6096 /* FeatureView.swift */; };
 		6591C39A23DA78F900535C46 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6591C39923DA78F900535C46 /* AppDelegate.swift */; };
 		6591C39C23DA78F900535C46 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6591C39B23DA78F900535C46 /* SceneDelegate.swift */; };
 		6591C39E23DA78F900535C46 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6591C39D23DA78F900535C46 /* LaunchViewController.swift */; };
@@ -19,6 +17,8 @@
 		6591C3A623DA78FB00535C46 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6591C3A423DA78FB00535C46 /* LaunchScreen.storyboard */; };
 		6591C3B123DA78FB00535C46 /* NovaOneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6591C3B023DA78FB00535C46 /* NovaOneTests.swift */; };
 		6591C3BC23DA78FB00535C46 /* NovaOneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6591C3BB23DA78FB00535C46 /* NovaOneUITests.swift */; };
+		65ADE2DF23E1C814003D3215 /* FeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ADE2DE23E1C814003D3215 /* FeatureView.swift */; };
+		65ADE2E123E1C84E003D3215 /* Feature.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65ADE2E023E1C84E003D3215 /* Feature.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,8 +41,6 @@
 /* Begin PBXFileReference section */
 		65446CEB23E0F4370052DEBE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		65446CEE23E0F7DF0052DEBE /* NovaOneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovaOneButton.swift; sourceTree = "<group>"; };
-		657AC33E23DCFCA700DA6096 /* Feature.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Feature.xib; path = ../../../../.Trash/Feature.xib; sourceTree = "<group>"; };
-		657AC34023DCFCB400DA6096 /* FeatureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeatureView.swift; path = ../../../../.Trash/FeatureView.swift; sourceTree = "<group>"; };
 		6591C39623DA78F900535C46 /* NovaOne.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NovaOne.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6591C39923DA78F900535C46 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6591C39B23DA78F900535C46 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -57,6 +55,8 @@
 		6591C3B723DA78FB00535C46 /* NovaOneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NovaOneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6591C3BB23DA78FB00535C46 /* NovaOneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovaOneUITests.swift; sourceTree = "<group>"; };
 		6591C3BD23DA78FB00535C46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		65ADE2DE23E1C814003D3215 /* FeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureView.swift; sourceTree = "<group>"; };
+		65ADE2E023E1C84E003D3215 /* Feature.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Feature.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,8 +95,8 @@
 		657AC33D23DCFC8E00DA6096 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				657AC34023DCFCB400DA6096 /* FeatureView.swift */,
-				657AC33E23DCFCA700DA6096 /* Feature.xib */,
+				65ADE2E023E1C84E003D3215 /* Feature.xib */,
+				65ADE2DE23E1C814003D3215 /* FeatureView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -260,7 +260,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				657AC33F23DCFCA700DA6096 /* Feature.xib in Resources */,
+				65ADE2E123E1C84E003D3215 /* Feature.xib in Resources */,
 				6591C3A623DA78FB00535C46 /* LaunchScreen.storyboard in Resources */,
 				6591C3A323DA78FB00535C46 /* Assets.xcassets in Resources */,
 				6591C3A123DA78F900535C46 /* Main.storyboard in Resources */,
@@ -288,12 +288,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65ADE2DF23E1C814003D3215 /* FeatureView.swift in Sources */,
 				6591C39E23DA78F900535C46 /* LaunchViewController.swift in Sources */,
 				6591C39A23DA78F900535C46 /* AppDelegate.swift in Sources */,
 				65446CEF23E0F7DF0052DEBE /* NovaOneButton.swift in Sources */,
 				6591C39C23DA78F900535C46 /* SceneDelegate.swift in Sources */,
 				65446CEC23E0F4370052DEBE /* LoginViewController.swift in Sources */,
-				657AC34123DCFCB400DA6096 /* FeatureView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,11 +9,25 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-
+    
+    
+    
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    // MARK: Actions
+    
+    @IBAction func cancelButtonTouch(_ sender: UIButton) {
+        
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
+        
     }
     
 

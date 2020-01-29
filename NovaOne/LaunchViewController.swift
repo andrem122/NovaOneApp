@@ -54,7 +54,7 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
                 
                 featureView.featureImage.image = UIImage(named: feature["image"]!)
                 featureView.featureTitle.text = feature["title"]
-                featureView.featureSubText.text = feature["subText"]
+                featureView.featureSubtext.text = feature["subText"]
                 
                 self.featureScrollView.addSubview(featureView)
                 
