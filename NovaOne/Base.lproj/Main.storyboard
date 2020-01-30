@@ -16,16 +16,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="RkN-5s-BE6" userLabel="Button Stack">
-                                <rect key="frame" x="57" y="627" width="300" height="205"/>
+                                <rect key="frame" x="87" y="627" width="240" height="205"/>
                                 <subviews>
                                     <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Nuy-EC-WEE">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="37"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="37"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="pageIndicatorTintColor" red="0.32108205560000003" green="0.41871821879999999" blue="0.84972596170000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="currentPageIndicatorTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </pageControl>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rpx-e3-csF" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="57" width="300" height="64"/>
+                                        <rect key="frame" x="0.0" y="57" width="240" height="64"/>
                                         <color key="backgroundColor" red="0.32108205560000003" green="0.41871821879999999" blue="0.84972596170000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <inset key="contentEdgeInsets" minX="20" minY="20" maxX="20" maxY="20"/>
@@ -39,7 +39,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="loA-uI-ehb" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="141" width="300" height="64"/>
+                                        <rect key="frame" x="0.0" y="141" width="240" height="64"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <inset key="contentEdgeInsets" minX="20" minY="20" maxX="20" maxY="20"/>
@@ -57,7 +57,7 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="KAo-ph-ave"/>
+                                    <constraint firstAttribute="width" constant="240" id="KAo-ph-ave"/>
                                 </constraints>
                             </stackView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dS4-WB-wNb">
@@ -95,7 +95,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="novaOneLogoBlack" translatesAutoresizingMaskIntoConstraints="NO" id="CRB-RR-SnY">
-                                <rect key="frame" x="142" y="235" width="130" height="130"/>
+                                <rect key="frame" x="142" y="233" width="130" height="130"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="130" id="fqc-ok-DI9">
                                         <variation key="heightClass=compact-widthClass=compact" constant="90"/>
@@ -108,26 +108,26 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="yIN-x8-C0R" userLabel="Text Fields Stack">
-                                <rect key="frame" x="137.33333333333331" y="415" width="139.33333333333331" height="66"/>
+                                <rect key="frame" x="129.33333333333331" y="413" width="155.33333333333331" height="70"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Username Or Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rhf-3F-wrz">
-                                        <rect key="frame" x="0.0" y="0.0" width="139.33333333333334" height="20"/>
-                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="16"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="155.33333333333334" height="22"/>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MTb-F9-esE">
-                                        <rect key="frame" x="0.0" y="46" width="139.33333333333334" height="20"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <rect key="frame" x="0.0" y="48" width="155.33333333333334" height="22"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="go" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
                                 </subviews>
                                 <variation key="heightClass=compact-widthClass=compact" spacing="20"/>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="tZM-g8-gnt" userLabel="Button Stack">
-                                <rect key="frame" x="57" y="700" width="300" height="132"/>
+                                <rect key="frame" x="87" y="704" width="240" height="128"/>
                                 <subviews>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VAc-rS-W89" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="64"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="64"/>
                                         <color key="backgroundColor" red="0.32108205560000003" green="0.41871821879999999" blue="0.84972596170000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <inset key="contentEdgeInsets" minX="20" minY="20" maxX="20" maxY="20"/>
@@ -141,8 +141,8 @@
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x98-Ve-FIe" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="74" width="300" height="58"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <rect key="frame" x="0.0" y="74" width="240" height="54"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                         <inset key="contentEdgeInsets" minX="20" minY="20" maxX="20" maxY="20"/>
                                         <state key="normal" title="Forgot your username or password?">
                                             <color key="titleColor" red="0.32108205560000003" green="0.41871821879999999" blue="0.84972596170000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -155,13 +155,11 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="Z48-BH-AoD">
-                                        <variation key="heightClass=compact-widthClass=compact" constant="240"/>
-                                    </constraint>
+                                    <constraint firstAttribute="width" constant="240" id="Z48-BH-AoD"/>
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5O7-UW-25n" userLabel="Cancel Button">
-                                <rect key="frame" x="20.000000000000004" y="64" width="33.333333333333343" height="33.333333333333343"/>
+                                <rect key="frame" x="20" y="64" width="33.333333333333343" height="33.333333333333343"/>
                                 <state key="normal" image="cancelButton"/>
                                 <connections>
                                     <action selector="cancelButtonTouch:" destination="00c-Xy-omL" eventType="touchUpInside" id="I9r-bb-DbA"/>
@@ -195,6 +193,33 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GWu-vs-TOM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="134.78260869565219" y="889.95535714285711"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="WID-Hf-FvW">
+            <objects>
+                <viewController id="IkL-Lu-9O6" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dcc-mZ-THk">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You Logged In!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MhG-vY-c5r">
+                                <rect key="frame" x="150" y="437.66666666666669" width="114" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="MhG-vY-c5r" firstAttribute="centerY" secondItem="dcc-mZ-THk" secondAttribute="centerY" id="WzS-cd-JZX"/>
+                            <constraint firstItem="MhG-vY-c5r" firstAttribute="centerX" secondItem="dcc-mZ-THk" secondAttribute="centerX" id="mtg-JE-Rwp"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="PzM-XK-3g0"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KTJ-ue-lSq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="983" y="890"/>
         </scene>
     </scenes>
     <resources>

@@ -10,12 +10,6 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
-    
-    
-    
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,8 +18,10 @@ class LoginViewController: UIViewController {
     
     // MARK: Actions
     
+    // On touch of cancel button
     @IBAction func cancelButtonTouch(_ sender: UIButton) {
         
+        // Remove the modal popup view on touch of the cancel 'x' button
         self.presentingViewController?.dismiss(animated: true, completion: nil)
         
     }
