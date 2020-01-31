@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		650250C123E4991700B427D0 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650250C023E4991700B427D0 /* Alert.swift */; };
+		650250C323E4A78E00B427D0 /* UserLoggedInStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650250C223E4A78E00B427D0 /* UserLoggedInStartViewController.swift */; };
 		65446CEC23E0F4370052DEBE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65446CEB23E0F4370052DEBE /* LoginViewController.swift */; };
 		65446CEF23E0F7DF0052DEBE /* NovaOneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65446CEE23E0F7DF0052DEBE /* NovaOneButton.swift */; };
 		6591C39A23DA78F900535C46 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6591C39923DA78F900535C46 /* AppDelegate.swift */; };
@@ -43,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		650250C023E4991700B427D0 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		650250C223E4A78E00B427D0 /* UserLoggedInStartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoggedInStartViewController.swift; sourceTree = "<group>"; };
 		65446CEB23E0F4370052DEBE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		65446CEE23E0F7DF0052DEBE /* NovaOneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovaOneButton.swift; sourceTree = "<group>"; };
 		6591C39623DA78F900535C46 /* NovaOne.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NovaOne.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,10 +147,12 @@
 				6591C3A423DA78FB00535C46 /* LaunchScreen.storyboard */,
 				6591C3A723DA78FB00535C46 /* Info.plist */,
 				65446CEB23E0F4370052DEBE /* LoginViewController.swift */,
+				650250C023E4991700B427D0 /* Alert.swift */,
 				65ADE2E423E22E1E003D3215 /* HomeModel.swift */,
 				65ADE2E623E24B3E003D3215 /* CustomerModel.swift */,
 				65ADE2F523E3AF27003D3215 /* HTTPRequests.swift */,
 				65A1FC4C23E48A6800D5CBCF /* Defaults.swift */,
+				650250C223E4A78E00B427D0 /* UserLoggedInStartViewController.swift */,
 			);
 			path = NovaOne;
 			sourceTree = "<group>";
@@ -313,9 +319,11 @@
 				6591C39A23DA78F900535C46 /* AppDelegate.swift in Sources */,
 				65ADE2E523E22E1E003D3215 /* HomeModel.swift in Sources */,
 				65446CEF23E0F7DF0052DEBE /* NovaOneButton.swift in Sources */,
+				650250C323E4A78E00B427D0 /* UserLoggedInStartViewController.swift in Sources */,
 				6591C39C23DA78F900535C46 /* SceneDelegate.swift in Sources */,
 				65ADE2F623E3AF27003D3215 /* HTTPRequests.swift in Sources */,
 				65A1FC4D23E48A6800D5CBCF /* Defaults.swift in Sources */,
+				650250C123E4991700B427D0 /* Alert.swift in Sources */,
 				65ADE2E723E24B3E003D3215 /* CustomerModel.swift in Sources */,
 				65446CEC23E0F4370052DEBE /* LoginViewController.swift in Sources */,
 			);

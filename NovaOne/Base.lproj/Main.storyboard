@@ -110,12 +110,12 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="yIN-x8-C0R" userLabel="Text Fields Stack">
                                 <rect key="frame" x="129.33333333333331" y="413" width="155.33333333333331" height="70"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Username Or Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rhf-3F-wrz">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Username Or Email" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Rhf-3F-wrz">
                                         <rect key="frame" x="0.0" y="0.0" width="155.33333333333334" height="22"/>
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MTb-F9-esE">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="MTb-F9-esE">
                                         <rect key="frame" x="0.0" y="48" width="155.33333333333334" height="22"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="go" secureTextEntry="YES" textContentType="password"/>
@@ -139,6 +139,9 @@
                                                 <real key="value" value="30"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="loginButtonTouch:" destination="00c-Xy-omL" eventType="touchUpInside" id="WTP-kM-XMl"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x98-Ve-FIe" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="74" width="240" height="54"/>
@@ -159,7 +162,7 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5O7-UW-25n" userLabel="Cancel Button">
-                                <rect key="frame" x="20" y="64" width="33.333333333333343" height="33.333333333333343"/>
+                                <rect key="frame" x="20.000000000000004" y="64" width="33.333333333333343" height="33.333333333333343"/>
                                 <state key="normal" image="cancelButton"/>
                                 <connections>
                                     <action selector="cancelButtonTouch:" destination="00c-Xy-omL" eventType="touchUpInside" id="I9r-bb-DbA"/>
@@ -189,15 +192,20 @@
                         <viewLayoutGuide key="safeArea" id="z7N-hR-0tN"/>
                     </view>
                     <navigationItem key="navigationItem" id="ire-fU-APq"/>
+                    <connections>
+                        <outlet property="loginButton" destination="VAc-rS-W89" id="vvP-VT-UUh"/>
+                        <outlet property="passwordTextField" destination="MTb-F9-esE" id="FVh-RJ-MyP"/>
+                        <outlet property="userNameTextField" destination="Rhf-3F-wrz" id="xZC-FG-Yly"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GWu-vs-TOM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="134.78260869565219" y="889.95535714285711"/>
         </scene>
-        <!--View Controller-->
+        <!--User Logged In Start View Controller-->
         <scene sceneID="WID-Hf-FvW">
             <objects>
-                <viewController id="IkL-Lu-9O6" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="userLoggedInStart" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IkL-Lu-9O6" customClass="UserLoggedInStartViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dcc-mZ-THk">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
