@@ -16,8 +16,15 @@ class LoginViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    // MARK: Actions
+    // MARK: Methods
+    func logIn {
+        let url: String = "https://graystonerealtyfl.com/NovaOne/login.php"
+        let httpRequest = HTTPRequests(url: url)
+        let parameters: [String: Any] = ["PHPAuthenticationUsername": ]
+        httpRequest.post(parameters: <#T##[String : Any]#>)
+    }
     
+    // MARK: Actions
     // On touch of cancel button
     @IBAction func cancelButtonTouch(_ sender: UIButton) {
         

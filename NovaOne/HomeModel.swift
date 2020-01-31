@@ -45,6 +45,7 @@ class HomeModel: NSObject, URLSessionDataDelegate {
                 let dateJoinedString = jsonElement["dateJoinedString"] as? String,
                 let primaryPhone = jsonElement["primaryPhone"] as? String {
                 
+                // Set customer properties
                 customer.id = Int(id)
                 customer.email = email
                 customer.address = address

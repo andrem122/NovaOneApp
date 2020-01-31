@@ -26,6 +26,8 @@
 		65ADE2F023E3909D003D3215 /* credentials.php in Resources */ = {isa = PBXBuildFile; fileRef = 65ADE2EB23E3909D003D3215 /* credentials.php */; };
 		65ADE2F123E3909D003D3215 /* login.php in Resources */ = {isa = PBXBuildFile; fileRef = 65ADE2EC23E3909D003D3215 /* login.php */; };
 		65ADE2F223E3909D003D3215 /* django_password.php in Resources */ = {isa = PBXBuildFile; fileRef = 65ADE2ED23E3909D003D3215 /* django_password.php */; };
+		65ADE2F623E3AF27003D3215 /* HTTPRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ADE2F523E3AF27003D3215 /* HTTPRequests.swift */; };
+		65ADE2F823E3BC87003D3215 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ADE2F723E3BC87003D3215 /* Defaults.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +73,8 @@
 		65ADE2EB23E3909D003D3215 /* credentials.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; name = credentials.php; path = ../../../../Downloads/credentials.php; sourceTree = "<group>"; };
 		65ADE2EC23E3909D003D3215 /* login.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; name = login.php; path = ../../../../Downloads/login.php; sourceTree = "<group>"; };
 		65ADE2ED23E3909D003D3215 /* django_password.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; name = django_password.php; path = ../../../../Downloads/django_password.php; sourceTree = "<group>"; };
+		65ADE2F523E3AF27003D3215 /* HTTPRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequests.swift; sourceTree = "<group>"; };
+		65ADE2F723E3BC87003D3215 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +155,8 @@
 				65446CEB23E0F4370052DEBE /* LoginViewController.swift */,
 				65ADE2E423E22E1E003D3215 /* HomeModel.swift */,
 				65ADE2E623E24B3E003D3215 /* CustomerModel.swift */,
+				65ADE2F523E3AF27003D3215 /* HTTPRequests.swift */,
+				65ADE2F723E3BC87003D3215 /* Defaults.swift */,
 			);
 			path = NovaOne;
 			sourceTree = "<group>";
@@ -328,6 +334,8 @@
 				65ADE2E523E22E1E003D3215 /* HomeModel.swift in Sources */,
 				65446CEF23E0F7DF0052DEBE /* NovaOneButton.swift in Sources */,
 				6591C39C23DA78F900535C46 /* SceneDelegate.swift in Sources */,
+				65ADE2F623E3AF27003D3215 /* HTTPRequests.swift in Sources */,
+				65ADE2F823E3BC87003D3215 /* Defaults.swift in Sources */,
 				65ADE2E723E24B3E003D3215 /* CustomerModel.swift in Sources */,
 				65446CEC23E0F4370052DEBE /* LoginViewController.swift in Sources */,
 			);
