@@ -21,7 +21,7 @@ class HTTPRequests {
     }
     
     // Send POST requests
-    func post(parameters: [String: Any]) {
+    func post(parameters: [String: Any], completion: @escaping (String) -> Void) {
         
         if let url = URL(string: self.url) {
             
@@ -31,7 +31,10 @@ class HTTPRequests {
             request.httpBody = parameters.percentEncoded() // Percent encode url string. Example: Jack & Jill becomes Jack%20%26%20Jill
             
             let task = URLSession.shared.dataTask(with: request) {
-                data, response, error in
+                (data, response, error) in
+                
+                // Initialize response string
+                var responseString: String
                 
                 // Check for fundamental networking error
                 guard let data = data, let response = response as? HTTPURLResponse, error == nil else {
@@ -42,15 +45,18 @@ class HTTPRequests {
                 // Check for HTTP errors
                 guard (200...299) ~= response.statusCode else {
                     print("statusCode should be 2xx, but is \(response.statusCode)")
-                    print("response = \(response)")
+                    responseString = String(data: data, encoding: String.Encoding.utf8)!
+                    completion(responseString)
                     return
+                    // Put responseString in a callback function 'completion' that you can call by:
+                    // class.method() {
+                    //   (responseString) in
+                    //   // rest of function login here...
+                    // }
                 }
                 
-                let responseString: String? = String(data: data, encoding: .utf8)
-                
-                if let responseString = responseString {
-                    print("responseString = \(responseString)")
-                }
+                responseString = String(data: data, encoding: String.Encoding.utf8)!
+                completion(responseString)
                 
             }
             

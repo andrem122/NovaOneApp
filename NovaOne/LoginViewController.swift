@@ -19,8 +19,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.setUp()
     }
     
     func setUp() {
@@ -37,11 +36,26 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let url: String = "https://graystonerealtyfl.com/NovaOne/login.php"
         let httpRequest = HTTPRequests(url: url)
         let parameters: [String: Any] = ["PHPAuthenticationUsername": Defaults().PHPAuthenticationUsername, "PHPAuthenticationPassword": Defaults().PHPAuthenticationPassword, "email": userName, "password": password]
-        httpRequest.post(parameters: parameters)
-        
-        // Go to the userLoggedInStart view
-        if let userLoggedInStartViewController = storyboard?.instantiateViewController(identifier: "userLoggedInStart") {
-            self.present(userLoggedInStartViewController, animated: true, completion: nil)
+        httpRequest.post(parameters: parameters) {
+            (responseString) in
+            
+            // Go to the userLoggedInStart view if POST request returns valid JSON object
+            // (means login attempt was successful) else pop up an alert with the error message
+            // from the PHP script
+            if JSONSerialization.isValidJSONObject(responseString) {
+    
+                if let userLoggedInStartViewController = self.storyboard?.instantiateViewController(identifier: "userLoggedInStart") {
+                    self.present(userLoggedInStartViewController, animated: true, completion: nil)
+                }
+                
+            } else {
+                
+                DispatchQueue.main.async {
+                    self.alert.alertMessage(title: "Login Error", message: responseString)
+                }
+                
+            }
+            
         }
         
     }
@@ -97,7 +111,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 extension LoginViewController {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
+    
         // Send touch event to the login button so that our data validation logic can be used
         self.loginButton.sendActions(for: .touchUpInside)
         return true
