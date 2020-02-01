@@ -24,21 +24,21 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
           $query = "
           SELECT
               c.id,
-              a.first_name,
-              a.last_name,
+              a.first_name AS firstName,
+              a.last_name AS lastName,
               a.email,
               a.password,
-              c.phone_number AS customer_phone,
-              a.date_joined,
-              c.is_paying,
-              c.wants_sms,
-              p.id as property_id,
-              p.name AS property_name,
-              p.address AS property_address,
-              p.phone_number AS property_phone,
-              p.email AS property_email,
-              p.days_of_the_week_enabled,
-              p.hours_of_the_day_enabled
+              c.phone_number AS customerPhone,
+              a.date_joined AS dateJoined,
+              c.is_paying AS isPaying,
+              c.wants_sms AS wantsSms,
+              p.id AS propertyId,
+              p.name AS propertyName,
+              p.address AS propertyAddress,
+              p.phone_number AS propertyPhone,
+              p.email AS propertyEmail,
+              p.days_of_the_week_enabled AS daysOfTheWeekEnabled,
+              p.hours_of_the_day_enabled AS hoursOfTheDayEnabled
           FROM
               auth_user a
           INNER JOIN customer_register_customer_user c
@@ -65,10 +65,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 		              if(django_verify_password($result['password'], $_POST['password'])) {
 		                  
 		                  http_response_code(200);
-		                  $user_info = array('id' => $result['id'], 'firstName' => $result['first_name'], 'lastName' => $result['last_name'], 'email' => $result['email'], 'customerPhone' => $result['customer_phone'], 'dateJoined' => $result['date_joined'],
-                              'dateJoined' => $result['date_joined'], 'isPaying' => $result['is_paying'], 'wantsSms' => $result['wants_sms'],
-                              'propertyId' => $result['property_id'], 'propertyName' => $result['property_name'], 'propertyAddress' => $result['property_address'],
-                              'propertyPhone' => $result['property_phone'], 'propertyEmail' => $result['property_email'], 'daysOfTheWeekEnabled' => $result['days_of_the_week_enabled'], 'hoursOfTheDayEnabled' => $result['hours_of_the_day_enabled'],
+                          echo "RESULT";
+                          echo $result;
+		                  $user_info = array('id' => $result['id'], 'firstName' => $result['firstName'], 'lastName' => $result['lastName'], 'email' => $result['email'], 'customerPhone' => $result['customerPhone'], 'dateJoined' => $result['dateJoined'],
+                              'isPaying' => $result['isPaying'], 'wantsSms' => $result['wantsSms'],
+                              'propertyId' => $result['propertyId'], 'propertyName' => $result['propertyName'], 'propertyAddress' => $result['propertyAddress'],
+                              'propertyPhone' => $result['propertyPhone'], 'propertyEmail' => $result['propertyEmail'], 'daysOfTheWeekEnabled' => $result['daysOfTheWeekEnabled'], 'hoursOfTheDayEnabled' => $result['hoursOfTheDayEnabled'],
                            );
 		                  
 		              

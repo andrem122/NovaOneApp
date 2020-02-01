@@ -26,7 +26,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         // Pop up keyboard for username field as soon as view loads
         self.userNameTextField.becomeFirstResponder()
+        
+        // Set delegates for each text field so we can use the delegate methods for each text field
         self.passwordTextField.delegate = self
+        self.userNameTextField.delegate = self
         
     }
     
@@ -37,21 +40,28 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let httpRequest = HTTPRequests(url: url)
         let parameters: [String: Any] = ["PHPAuthenticationUsername": Defaults().PHPAuthenticationUsername, "PHPAuthenticationPassword": Defaults().PHPAuthenticationPassword, "email": userName, "password": password]
         httpRequest.post(parameters: parameters) {
-            (responseString) in
+            (responseString, data) in
             
-            // Go to the userLoggedInStart view if POST request returns valid JSON object
+            // Go to the userLoggedInStart view if POST request returns a json data object
             // (means login attempt was successful) else pop up an alert with the error message
             // from the PHP script
-            if JSONSerialization.isValidJSONObject(responseString) {
-    
-                if let userLoggedInStartViewController = self.storyboard?.instantiateViewController(identifier: "userLoggedInStart") {
-                    self.present(userLoggedInStartViewController, animated: true, completion: nil)
+            if let jsonData = data {
+                
+                let decoder = JSONDecoder()
+                let customer = try! decoder.decode(CustomerModel.self, from: jsonData) // convert json data to customer object
+                print(customer.firstName!)
+                
+                DispatchQueue.main.async {
+                    if let userLoggedInStartViewController = self.storyboard?.instantiateViewController(identifier: "userLoggedInStart") {
+                        self.present(userLoggedInStartViewController, animated: true, completion: nil)
+                    }
                 }
                 
             } else {
                 
                 DispatchQueue.main.async {
                     self.alert.alertMessage(title: "Login Error", message: responseString)
+                    print(responseString)
                 }
                 
             }
@@ -110,10 +120,22 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
 extension LoginViewController {
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     
-        // Send touch event to the login button so that our data validation logic can be used
-        self.loginButton.sendActions(for: .touchUpInside)
+    // This function is called every time the return key is pressed on the keyboard if delegates are set for each UITextField
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if textField == self.passwordTextField {
+            
+            // Send touch event to the login button so that our data validation logic can be used
+            self.loginButton.sendActions(for: .touchUpInside)
+            
+        } else {
+            
+            // Set keyboard for password text field when the return key ('go' key in our case) is pressed
+            self.passwordTextField.becomeFirstResponder()
+            
+        }
+        
         return true
         
     }

@@ -21,7 +21,7 @@ class HTTPRequests {
     }
     
     // Send POST requests
-    func post(parameters: [String: Any], completion: @escaping (String) -> Void) {
+    func post(parameters: [String: Any], completion: @escaping (String, Data?) -> Void) {
         
         if let url = URL(string: self.url) {
             
@@ -33,9 +33,6 @@ class HTTPRequests {
             let task = URLSession.shared.dataTask(with: request) {
                 (data, response, error) in
                 
-                // Initialize response string
-                var responseString: String
-                
                 // Check for fundamental networking error
                 guard let data = data, let response = response as? HTTPURLResponse, error == nil else {
                     print(error ?? "Unknown error occurred")
@@ -43,20 +40,26 @@ class HTTPRequests {
                 }
                 
                 // Check for HTTP errors
+                // Password incorrect or username not found or some other error occured
                 guard (200...299) ~= response.statusCode else {
+                    
                     print("statusCode should be 2xx, but is \(response.statusCode)")
-                    responseString = String(data: data, encoding: String.Encoding.utf8)!
-                    completion(responseString)
+                    let responseString = String(data: data, encoding: String.Encoding.utf8)!
+                    completion(responseString, nil)
                     return
                     // Put responseString in a callback function 'completion' that you can call by:
                     // class.method() {
                     //   (responseString) in
                     //   // rest of function login here...
                     // }
+                    
                 }
                 
-                responseString = String(data: data, encoding: String.Encoding.utf8)!
-                completion(responseString)
+                // Login successful convert JSON string type to JSON data object type
+                if let jsonString = String(data: data, encoding: String.Encoding.utf8) {
+                    let jsonData: Data = jsonString.data(using: .utf8)!
+                    completion(jsonString, jsonData)
+                }
                 
             }
             

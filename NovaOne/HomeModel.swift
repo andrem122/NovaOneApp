@@ -48,10 +48,10 @@ class HomeModel: NSObject, URLSessionDataDelegate {
                 // Set customer properties
                 customer.id = Int(id)
                 customer.email = email
-                customer.address = address
+                customer.propertyAddress = address
                 customer.firstName = firstName
                 customer.lastName = lastName
-                customer.primaryPhone = primaryPhone
+                customer.customerPhone = primaryPhone
                 customer.dateJoinedString = dateJoinedString
                 
             }
