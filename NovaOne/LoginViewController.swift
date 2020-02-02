@@ -16,6 +16,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var loginButton: NovaOneButton!
     
     lazy var alert: Alert = Alert(currentViewController: self)
+    var customer: CustomerModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,10 +50,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 
                 let decoder = JSONDecoder()
                 let customer = try! decoder.decode(CustomerModel.self, from: jsonData) // convert json data to customer object
-                print(customer.firstName!)
+                self.customer = customer
                 
                 DispatchQueue.main.async {
-                    if let userLoggedInStartViewController = self.storyboard?.instantiateViewController(identifier: "userLoggedInStart") {
+                    if let userLoggedInStartViewController = self.storyboard?.instantiateViewController(identifier: "userLoggedInStart") as? UserLoggedInStartViewController {
+                        userLoggedInStartViewController.customer = self.customer
                         self.present(userLoggedInStartViewController, animated: true, completion: nil)
                     }
                 }
@@ -106,15 +108,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
 
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+   /* // MARK: - Navigation
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-    }
-    */
+        let userLoggedInStartVC = segue.destination as? UserLoggedInStartViewController
+        userLoggedInStartVC?.customer = self.customer
+    }*/
 
 }
 

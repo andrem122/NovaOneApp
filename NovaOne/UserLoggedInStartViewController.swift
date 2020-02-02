@@ -10,11 +10,14 @@ import UIKit
 
 class UserLoggedInStartViewController: UIViewController {
 
+    // MARK: Properties
+    var customer: CustomerModel?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
+    
+    // MARK: Set Up
     
 
     /*

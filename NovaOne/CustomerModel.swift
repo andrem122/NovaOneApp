@@ -26,6 +26,8 @@ class CustomerModel: NSObject, Codable {
     var propertyEmail: String?
     var daysOfTheWeekEnabled: String?
     var hoursOfTheDayEnabled: String?
+    
+    // Computed properties
     var dateJoined: Date {
         
         get {
@@ -46,6 +48,14 @@ class CustomerModel: NSObject, Codable {
             return finalDate
         }
     
+    }
+    
+    var fullName: String {
+        
+        get {
+            return "\(self.firstName!) \(self.lastName!)"
+        }
+        
     }
     
     
@@ -98,7 +108,9 @@ class CustomerModel: NSObject, Codable {
     
     // Print object's current state
     override var description: String {
-        return "Id: \(self.id as Int?), Name: \(self.firstName as String?) \(self.lastName as String?), Email: \(self.email as String?)"
+        
+        return "Id: \(self.id! as Int), Name: \(self.firstName! as String) \(self.lastName! as String), Email: \(self.email! as String)"
+        
     }
     
 }
