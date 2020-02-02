@@ -11,14 +11,21 @@ import UIKit
 class UserLoggedInStartViewController: UIViewController {
 
     // MARK: Properties
+    @IBOutlet weak var greetingLabel: UILabel!
     var customer: CustomerModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setUp()
     }
     
     // MARK: Set Up
-    
+    func setUp() {
+        if let firstName = customer?.firstName {
+            let greetingString = "Hello \(firstName)!"
+            self.greetingLabel.text = greetingString
+        }
+    }
 
     /*
     // MARK: - Navigation
