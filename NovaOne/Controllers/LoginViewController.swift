@@ -53,9 +53,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 self.customer = customer
                 
                 DispatchQueue.main.async {
-                    if let userLoggedInStartViewController = self.storyboard?.instantiateViewController(identifier: "userLoggedInStart") as? UserLoggedInStartViewController {
-                        userLoggedInStartViewController.customer = self.customer
-                        self.present(userLoggedInStartViewController, animated: true, completion: nil)
+                    if let menuViewController = self.storyboard?.instantiateViewController(identifier: "homeNavigationView") as? MenuViewController {
+                        menuViewController.customer = self.customer
+                        self.present(menuViewController, animated: true, completion: nil)
                     }
                 }
                 
