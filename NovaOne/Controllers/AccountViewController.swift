@@ -1,34 +1,22 @@
 //
-//  UserLoggedInStartViewController.swift
+//  AccountViewController.swift
 //  NovaOne
 //
-//  Created by Andre Mashraghi on 1/31/20.
+//  Created by Andre Mashraghi on 2/3/20.
 //  Copyright © 2020 Andre Mashraghi. All rights reserved.
 //
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class AccountViewController: UIViewController {
 
-    // MARK: Properties
-    @IBOutlet weak var greetingLabel: UILabel!
-    var customer: CustomerModel?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setUp()
+
+        // Do any additional setup after loading the view.
     }
     
-    // MARK: Set Up
-    func setUp() {
-        if let firstName = customer?.firstName {
-            let greetingString = "Hello \(firstName)!"
-            self.greetingLabel.text = greetingString
-        }
-    }
-    
-    // MARK: Actions
-    
+
     /*
     // MARK: - Navigation
 
