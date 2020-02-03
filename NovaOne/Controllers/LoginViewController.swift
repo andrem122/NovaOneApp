@@ -53,9 +53,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 self.customer = customer
                 
                 DispatchQueue.main.async {
-                    if let menuViewController = self.storyboard?.instantiateViewController(identifier: "homeNavigationView") as? MenuViewController {
-                        menuViewController.customer = self.customer
-                        self.present(menuViewController, animated: true, completion: nil)
+                    
+                    // When you get a view controller by its storyboard ID, it forget that
+                    // the view controller is embedded in anything. So swift will forget
+                    // that we embedded the home view controller in a navigation controller
+                    // The fix for this is below.
+                    if let homeViewController = self.storyboard?.instantiateViewController(identifier: "homeView") as? HomeViewController  {
+                        
+                        let menuNavigationController = UINavigationController(rootViewController: homeViewController)
+                        homeViewController.customer = self.customer
+                        menuNavigationController.modalPresentationStyle = .fullScreen // Set presentaion style of view to full screen
+                        self.present(menuNavigationController, animated: true, completion: nil)
+                        
                     }
                 }
                 
@@ -109,13 +118,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
 
 
-   /* // MARK: - Navigation
+    // MARK: - Navigation
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-        let userLoggedInStartVC = segue.destination as? UserLoggedInStartViewController
-        userLoggedInStartVC?.customer = self.customer
+    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
     }*/
 
 }

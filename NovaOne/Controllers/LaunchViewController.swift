@@ -116,6 +116,22 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
         self.setUpScrollView()
         self.setUpFeatures()
         self.setUpPageControl()
+        
+    }
+    
+     // MARK: - Navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Turn off timer after navigation to another view
+        self.timer?.invalidate()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        // Set up timer again every time the view will appear
+        // For example, if we navigate to the login view
+        // and navigate back to the launch view, we want
+        // to start the timer again to start the slider
         self.setUpTimer()
         
     }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserLoggedInStartViewController: UIViewController {
+class HomeViewController: UIViewController {
 
     // MARK: Properties
     @IBOutlet weak var greetingLabel: UILabel!

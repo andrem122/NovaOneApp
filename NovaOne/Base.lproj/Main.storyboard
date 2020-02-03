@@ -202,10 +202,10 @@
             </objects>
             <point key="canvasLocation" x="134.78260869565219" y="889.95535714285711"/>
         </scene>
-        <!--User Logged In Start View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="WID-Hf-FvW">
             <objects>
-                <viewController storyboardIdentifier="userLoggedInStart" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IkL-Lu-9O6" customClass="UserLoggedInStartViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="homeView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IkL-Lu-9O6" customClass="HomeViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dcc-mZ-THk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
