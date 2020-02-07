@@ -16,10 +16,10 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var featurePageControl: UIPageControl!
     @IBOutlet weak var featureScrollView: UIScrollView!
     
-    
-    let featureOne: Dictionary = ["image": "novaOneLogoWhite", "title": "Welcome To NovaOne", "subText": "Automate your lead process today"]
-    let featureTwo: Dictionary = ["image": "novaOneLogoWhite", "title": "24/7 Contact", "subText": "Find out how NovaOne works 24/7 to contact leads"]
-    let featureThree: Dictionary = ["image": "novaOneLogoWhite", "title": "Mako's Adventures", "subText": "Eating dog biscuts and playing in dirt!"]
+    // Set Up slider content
+    let featureOne: Dictionary = ["image": "novaOneLogo", "title": "Welcome To NovaOne", "subText": "Automate your lead process today"]
+    let featureTwo: Dictionary = ["image": "novaOneLogo", "title": "24/7 Contact", "subText": "Find out how NovaOne works 24/7 to contact leads"]
+    let featureThree: Dictionary = ["image": "novaOneLogo", "title": "Mako's Adventures", "subText": "Eating dog biscuts and playing in dirt!"]
     var featureArray = [Dictionary <String,String>]()
     var timer: Timer?
     var featureViewIndex: Int = 0 // Start at 1 so slider can start sliding
@@ -122,11 +122,14 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
      // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
         // Turn off timer after navigation to another view
         self.timer?.invalidate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         // Set up timer again every time the view will appear
         // For example, if we navigate to the login view

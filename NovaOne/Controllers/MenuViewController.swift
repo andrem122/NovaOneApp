@@ -12,12 +12,18 @@ class MenuViewController: UITableViewController {
     
     // MARK: Properties
     var customer: CustomerModel?
+    @IBOutlet weak var menuTableView: UITableView!
+    
     
     override func viewDidLoad() {
+        self.menuTableView.delegate = self
+        self.menuTableView.dataSource = self
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
+    
+    // MARK: Methods
     
 
     /*
