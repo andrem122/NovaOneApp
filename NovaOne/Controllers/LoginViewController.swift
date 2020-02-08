@@ -83,8 +83,26 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let url: String = "https://graystonerealtyfl.com/NovaOne"
         let httpRequest = HTTPRequests(url: url)
         let parameters: [String: Any] = ["PHPAuthenticationUsername": Defaults().PHPAuthenticationUsername, "PHPAuthenticationPassword": Defaults().PHPAuthenticationPassword, "email": userName, "password": password]
-        httpRequest.request(endpoint: "/login.php", parameters: parameters) { (result) in
-            print(result)
+        httpRequest.request(endpoint: "/login.php", parameters: parameters) { [weak self] (result) in
+            
+            switch result {
+                
+                // If the result is successful, we will get the customer object we passed into the
+                // result enum and move on to the next view
+                case .success(let customer):
+                    if let homeViewController = self?.storyboard?.instantiateViewController(identifier: "homeViewController") as? HomeViewController  {
+                        
+                        let menuNavigationController = UINavigationController(rootViewController: homeViewController)
+                        homeViewController.customer = customer
+                        menuNavigationController.modalPresentationStyle = .fullScreen // Set presentaion style of view to full screen
+                        self?.present(menuNavigationController, animated: true, completion: nil)
+                        
+                    }
+                case .failure(let error):
+                    self?.alert.alertMessage(title: "Error", message: error.localizedDescription)
+                
+            }
+            
         }
 //        httpRequest.post(parameters: parameters) {
 //            (responseString, data) in

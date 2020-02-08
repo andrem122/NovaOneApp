@@ -123,14 +123,36 @@ class HTTPRequests {
                 // Try to decode JSON data into a swift data object and catch any errors if
                 // it can not be done
                 if let unwrappedData = data {
+                    
                     do {
-                        let json = try JSONSerialization.jsonObject(with: unwrappedData, options: [])
-                        print(json)
+                        
+                        // Convert to JSON swift objectmto see if the data response from the server is valid JSON
+                        // catch the error in thr catch block if the data can not e converted to a JSON object
+                        // in swift
+                        _ = try JSONSerialization.jsonObject(with: unwrappedData, options: [])
+                        
+                        // Try to convert to customer object from JSON data
+                        if let customer = try? JSONDecoder().decode(CustomerModel.self, from: unwrappedData) {
+                            
+                            completion(.success(customer)) // Pass customer object to result
+                            
+                        } else {
+                            
+                            // Since our try has a question mark (try?), it will run this code in the 'else'
+                            // block and make our error become nil if something in the 'do' block fails
+                            
+                            // If we can not convert the data response to a customer object, convert it
+                            // to an error object. If we can not convert to an error object, the catch block
+                            // will run and show us the error
+                            let errorResponse = try JSONDecoder().decode(ErrorResponse.self, from: unwrappedData)
+                            completion(.failure(errorResponse.errorValue))
+                            
+                        }
                     } catch {
-                        print(String(data: unwrappedData, encoding: .utf8) ?? "No Data")
                         completion(.failure(error)) // error variable is given to us by default
                                                     // in the catch block
                     }
+                    
                 }
                 
                 switch unwrappedResponse.statusCode {
