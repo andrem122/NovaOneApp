@@ -20,55 +20,6 @@ class HTTPRequests {
         self.url = url
     }
     
-    // Send POST requests
-    func post(parameters: [String: Any], completion: @escaping (String, Data?) -> Void) {
-        
-        if let url = URL(string: self.url) {
-            
-            var request = URLRequest(url: url)
-            request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-            request.httpMethod = "POST"
-            request.httpBody = parameters.percentEncoded() // Percent encode url string. Example: Jack & Jill becomes Jack%20%26%20Jill
-            
-            let task = URLSession.shared.dataTask(with: request) {
-                (data, response, error) in
-                
-                // Check for fundamental networking error
-                guard let data = data, let response = response as? HTTPURLResponse, error == nil else {
-                    print(error ?? "Unknown error occurred")
-                    return
-                }
-                
-                // Check for HTTP errors
-                // Password incorrect or username not found or some other error occured
-                guard (200...299) ~= response.statusCode else {
-                    
-                    print("statusCode should be 2xx, but is \(response.statusCode)")
-                    let responseString = String(data: data, encoding: String.Encoding.utf8)!
-                    completion(responseString, nil)
-                    return
-                    // Put responseString in a callback function 'completion' that you can call by:
-                    // class.method() {
-                    //   (responseString) in
-                    //   // rest of function login here...
-                    // }
-                    
-                }
-                
-                // Login successful convert JSON string type to JSON data object type
-                if let jsonString = String(data: data, encoding: String.Encoding.utf8) {
-                    let jsonData: Data = jsonString.data(using: .utf8)!
-                    completion(jsonString, jsonData)
-                }
-                
-            }
-            
-            task.resume()
-            
-        }
-        
-    }
-    
     // Make HTTP request
     func request(endpoint: String,
                  parameters: [String: Any],
@@ -129,12 +80,14 @@ class HTTPRequests {
                         // Convert to JSON swift objectmto see if the data response from the server is valid JSON
                         // catch the error in thr catch block if the data can not e converted to a JSON object
                         // in swift
-                        _ = try JSONSerialization.jsonObject(with: unwrappedData, options: [])
+                        let json = try JSONSerialization.jsonObject(with: unwrappedData, options: [])
+                        print(json)
                         
                         // Try to convert to customer object from JSON data
                         if let customer = try? JSONDecoder().decode(CustomerModel.self, from: unwrappedData) {
                             
-                            completion(.success(customer)) // Pass customer object to result
+                            print(type(of: customer))
+                            completion(.success(customer)) // Pass customer object to result enumeration as an associated value
                             
                         } else {
                             
@@ -145,9 +98,10 @@ class HTTPRequests {
                             // to an error object. If we can not convert to an error object, the catch block
                             // will run and show us the error
                             let errorResponse = try JSONDecoder().decode(ErrorResponse.self, from: unwrappedData)
-                            completion(.failure(errorResponse.errorValue))
+                            completion(.failure(errorResponse))
                             
                         }
+                        
                     } catch {
                         completion(.failure(error)) // error variable is given to us by default
                                                     // in the catch block

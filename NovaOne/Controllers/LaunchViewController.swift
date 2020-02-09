@@ -39,7 +39,6 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
         self.featureScrollView.isPagingEnabled = true
         self.featureScrollViewContentSizeWidth = self.view.bounds.width * CGFloat(self.featureArray.count)
         self.featureScrollView.contentSize = CGSize(width: self.featureScrollViewContentSizeWidth, height: 318) // height of scroll view must be equal to height of feature.xib file object to prevent vertical scrolling
-        print("Scroll View Content Size: \(self.featureScrollViewContentSizeWidth)")
         self.featureScrollView.showsHorizontalScrollIndicator = false
         self.featureScrollView.delegate = self
         

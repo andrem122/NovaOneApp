@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomerModel: NSObject, Codable {
+class CustomerModel: NSObject, Decodable {
 
     // MARK: Properties
     var id: Int?
@@ -50,10 +50,17 @@ class CustomerModel: NSObject, Codable {
     
     }
     
-    var fullName: String {
+    var fullName: String? {
         
         get {
-            return "\(self.firstName!) \(self.lastName!)"
+            
+            guard
+                let firstName = self.firstName,
+                let lastName = self.lastName
+            else { return nil }
+            
+            return "\(firstName) \(lastName)"
+            
         }
         
     }
@@ -107,9 +114,15 @@ class CustomerModel: NSObject, Codable {
     
     
     // Print object's current state
-    override var description: String {
+    var customerDescription: String? {
+        guard
+            let id = self.id,
+            let firstName = self.firstName,
+            let lastName = self.lastName,
+            let email = self.email
+        else { return nil }
         
-        return "Id: \(self.id! as Int), Name: \(self.firstName! as String) \(self.lastName! as String), Email: \(self.email! as String)"
+        return "Id: \(id), Name: \(firstName) \(lastName), Email: \(email)"
         
     }
     

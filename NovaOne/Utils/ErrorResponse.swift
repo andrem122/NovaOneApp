@@ -11,15 +11,6 @@ import Foundation
 // Handles the errors from our custom PHP api script
 struct ErrorResponse: Decodable, LocalizedError {
     
-    let error: Int
     let reason: String
-    
-}
-
-extension ErrorResponse {
-    
-    var errorValue: NSError {
-        NSError(domain: reason, code: error, userInfo: nil)
-    }
-    
+    var errorDescription: String? { return reason }
 }

@@ -14,7 +14,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 	
 	    //set a 400 (bad request) response code and exit.
 	    http_response_code(400);
-        $response_array = array('error_number' => 6, 'reason' => 'Oops! Please complete all fields and try again.');
+        $response_array = array('error' => 6, 'reason' => 'Oops! Please complete all fields and try again.');
         echo json_encode($response_array);
 	    exit();
 	
@@ -79,7 +79,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 		              } else {
 		                  
 		                  http_response_code(400);
-                          $response_array = array('error_number' => 1, 'reason' => 'Incorrect password. Please try again.');
+                          $response_array = array('error' => 1, 'reason' => 'Incorrect password. Please try again.');
 		                  echo json_encode($response_array);
 		                  exit();
 		                  
@@ -91,7 +91,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 	              
                   // No result from database
 	              http_response_code(400);
-                  $response_array = array('error_number' => 2, 'reason' => 'Email was not found. Would you like to register?');
+                  $response_array = array('error' => 2, 'reason' => 'Email was not found. Would you like to register?');
                   echo json_encode($response_array);
 	              exit();
 	              
@@ -100,7 +100,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 	      } else {
 	          
 	          http_response_code(500);
-              $response_array = array('error_number' => 3, 'reason' => 'SQL Statement could not be executed.');
+              $response_array = array('error' => 3, 'reason' => 'SQL Statement could not be executed.');
               echo json_encode($response_array);
 	          exit();
 	          
@@ -111,7 +111,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
       
   	//not a POST request from the NovaOne app. Set a 403 (forbidden) response code.
 	http_response_code(403);
-    $response_array = array('error_number' => 4, 'reason' => 'Forbidden POST request');
+    $response_array = array('error' => 4, 'reason' => 'Forbidden POST request');
     echo json_encode($response_array);
 	exit();
       
@@ -121,7 +121,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     //not a POST request. set a 403 (forbidden) response code.
     http_response_code(403);
-    $response_array = array('error_number' => 5, 'reason' => 'Forbidden: Only POST requests allowed.');
+    $response_array = array('error' => 5, 'reason' => 'Forbidden: Only POST requests allowed.');
     echo json_encode($response_array);
 
 }

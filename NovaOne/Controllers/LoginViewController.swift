@@ -90,6 +90,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 // If the result is successful, we will get the customer object we passed into the
                 // result enum and move on to the next view
                 case .success(let customer):
+                
                     if let homeViewController = self?.storyboard?.instantiateViewController(identifier: "homeViewController") as? HomeViewController  {
                         
                         let menuNavigationController = UINavigationController(rootViewController: homeViewController)
@@ -98,7 +99,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         self?.present(menuNavigationController, animated: true, completion: nil)
                         
                     }
+                
                 case .failure(let error):
+                    
                     self?.alert.alertMessage(title: "Error", message: error.localizedDescription)
                 
             }
