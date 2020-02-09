@@ -16,7 +16,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var loginButton: NovaOneButton!
     
     lazy var alert: Alert = Alert(currentViewController: self)
-    let disabledButtonColor: UIColor = UIColor(red: 82/255, green: 107/255, blue: 217/255, alpha: 0.3)
+    let disabledButtonColor: UIColor = UIColor(red: 82/255, green: 107/255, blue: 217/255, alpha: 0.3) // Must divide by 255 because swift rgba arguments take a number between 0 and 1
     let enabledButtonColor: UIColor = UIColor(red: 82/255, green: 107/255, blue: 217/255, alpha: 1)
     var customer: CustomerModel?
     
@@ -51,7 +51,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         // Disable continue button and only enable it when the user starts typing into one of the text fields
         self.loginButton.isEnabled = false
-        self.loginButton.backgroundColor = self.disabledButtonColor // Must divide by 255 because swift rgba arguments take a number between 0 and 1
+        self.loginButton.backgroundColor = self.disabledButtonColor
         
     }
     
@@ -101,50 +101,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     }
                 
                 case .failure(let error):
-                    
                     self?.alert.alertMessage(title: "Error", message: error.localizedDescription)
                 
             }
             
         }
-//        httpRequest.post(parameters: parameters) {
-//            (responseString, data) in
-//
-//            // Go to the userLoggedInStart view if POST request returns a json data object
-//            // (means login attempt was successful) else pop up an alert with the error message
-//            // from the PHP script
-//            if let jsonData = data {
-//
-//                let decoder = JSONDecoder()
-//                let customer = try! decoder.decode(CustomerModel.self, from: jsonData) // convert json data to customer object
-//                self.customer = customer
-//
-//                DispatchQueue.main.async {
-//
-//                    // When you get a view controller by its storyboard ID, it forget that
-//                    // the view controller is embedded in anything. So swift will forget
-//                    // that we embedded the home view controller in a navigation controller
-//                    // The fix for this is below.
-//                    if let homeViewController = self.storyboard?.instantiateViewController(identifier: "homeViewController") as? HomeViewController  {
-//
-//                        let menuNavigationController = UINavigationController(rootViewController: homeViewController)
-//                        homeViewController.customer = self.customer
-//                        menuNavigationController.modalPresentationStyle = .fullScreen // Set presentaion style of view to full screen
-//                        self.present(menuNavigationController, animated: true, completion: nil)
-//
-//                    }
-//                }
-//
-//            } else {
-//
-//                DispatchQueue.main.async {
-//                    self.alert.alertMessage(title: "Login Error", message: responseString)
-//                    print(responseString)
-//                }
-//
-//            }
-//
-//        }
         
     }
     
