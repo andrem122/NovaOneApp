@@ -86,11 +86,12 @@ class HTTPRequests {
                         // Try to convert to customer object from JSON data
                         if let customer = try? JSONDecoder().decode(CustomerModel.self, from: unwrappedData) {
                             
-                            print(type(of: customer))
+                            print("Customer block")
                             completion(.success(customer)) // Pass customer object to result enumeration as an associated value
                             
                         } else {
                             
+                            print("Error block")
                             // Since our try has a question mark (try?), it will run this code in the 'else'
                             // block and make our error become nil if something in the 'do' block fails
                             
@@ -103,6 +104,7 @@ class HTTPRequests {
                         }
                         
                     } catch {
+                        
                         completion(.failure(error)) // error variable is given to us by default
                                                     // in the catch block
                     }
