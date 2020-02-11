@@ -20,36 +20,8 @@ class HTTPRequests {
         self.url = url
     }
     
-    // Make HTTP request
-    func request(endpoint: String,
-                 parameters: [String: Any],
-                 completion: @escaping (Result<CustomerModel, Error>) -> Void) {
-        
-        // Convert url string to URL type
-        guard let url: URL = URL(string: self.url + endpoint) else {
-            completion(.failure(NetworkingError.badUrl))
-            return
-        }
-        
-        var request: URLRequest = URLRequest(url: url)
-        var components: URLComponents = URLComponents()
-        var queryItems: [URLQueryItem] = []
-        
-        // Create URL query items from paramters dictionary
-        for (key, value) in parameters {
-            let queryItem: URLQueryItem = URLQueryItem(name: key, value: String(describing: value))
-            queryItems.append(queryItem)
-        }
-        
-        components.queryItems = queryItems
-        
-        // Convert query property string (a string that looks like name=Tom&password=266631Asd&height=fiveseven) to Data type
-        let queryItemData: Data? = components.query?.data(using: .utf8)
-        
-        // Set request properties
-        request.httpBody = queryItemData
-        request.httpMethod = "POST"
-        request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+    func handleResponse(for request: URLRequest,
+                        completion: @escaping (Result<CustomerModel, Error>) -> Void) {
         
         // Create datatask to retrieve information from the internet
         let session = URLSession.shared
@@ -74,7 +46,7 @@ class HTTPRequests {
                 // Try to decode JSON data into a swift data object and catch any errors if
                 // it can not be done
                 if let unwrappedData = data {
-                    
+                    print(String(data: unwrappedData, encoding: .utf8)!)
                     do {
                         
                         // Convert to JSON swift objectmto see if the data response from the server is valid JSON
@@ -126,6 +98,41 @@ class HTTPRequests {
         
         task.resume() // Set out task to the internet by calling method resume otherwise no request will be made
         
+    }
+    
+    // Make HTTP request
+    func request(endpoint: String,
+                 parameters: [String: Any],
+                 completion: @escaping (Result<CustomerModel, Error>) -> Void) {
+        
+        // Convert url string to URL type
+        guard let url: URL = URL(string: self.url + endpoint) else {
+            completion(.failure(NetworkingError.badUrl))
+            return
+        }
+        
+        var request: URLRequest = URLRequest(url: url)
+        var components: URLComponents = URLComponents()
+        var queryItems: [URLQueryItem] = []
+        
+        // Create URL query items from paramters dictionary
+        for (key, value) in parameters {
+            let queryItem: URLQueryItem = URLQueryItem(name: key, value: String(describing: value))
+            queryItems.append(queryItem)
+        }
+        
+        components.queryItems = queryItems
+        
+        // Convert query property string (a string that looks like name=Tom&password=266631Asd&height=fiveseven) to Data type
+        let queryItemData: Data? = components.query?.data(using: .utf8)
+        
+        // Set request properties
+        request.httpBody = queryItemData
+        request.httpMethod = "POST"
+        request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        
+        self.handleResponse(for: request, completion: completion)
+        
         
     }
     
@@ -134,4 +141,5 @@ class HTTPRequests {
 enum NetworkingError: Error {
     case badUrl
     case badResponse
+    case badEncoding
 }

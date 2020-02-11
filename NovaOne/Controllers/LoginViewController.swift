@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import LocalAuthentication
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
@@ -16,13 +17,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var loginButton: NovaOneButton!
     
     lazy var alert: Alert = Alert(currentViewController: self)
+    let loginUrl: String = "https://graystonerealtyfl.com/NovaOne"
     let disabledButtonColor: UIColor = UIColor(red: 82/255, green: 107/255, blue: 217/255, alpha: 0.3) // Must divide by 255 because swift rgba arguments take a number between 0 and 1
     let enabledButtonColor: UIColor = UIColor(red: 82/255, green: 107/255, blue: 217/255, alpha: 1)
     var customer: CustomerModel?
     
+    // MARK: Methods
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         self.setUpGeneric()
+        self.authenticateUsingBiometrics()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -77,20 +83,86 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    // MARK: Methods
-    func logIn(userName: String, password: String) {
+    
+    func authenticateUsingBiometrics() {
         
-        let url: String = "https://graystonerealtyfl.com/NovaOne"
-        let httpRequest = HTTPRequests(url: url)
-        let parameters: [String: Any] = ["PHPAuthenticationUsername": Defaults().PHPAuthenticationUsername, "PHPAuthenticationPassword": Defaults().PHPAuthenticationPassword, "email": userName, "password": password]
+        // Check if user has username and password in keychain already
+        // If they have a keychain credentials, then login to server using keychain credentials
+        // on successful biometric authentication
+        if let keychainUsername = KeychainWrapper.standard.string(forKey: "username"),
+            let keychainPassword = KeychainWrapper.standard.string(forKey: "password") {
+            
+            let authContext = LAContext()
+            let authReason = "Authenticate to access your NovaOne account."
+            var authError: NSError? // Handle errors for touch id
+            
+            // Check if user has biometric authentication enabled
+            if authContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &authError) {
+                
+                authContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: authReason) { (success, error) in
+                    
+                    if success {
+                        
+                        DispatchQueue.main.async { // Go back to the main thread to deal with UI code
+                            self.tabBarController?.selectedIndex = 2
+                            
+                            // Set text fields to have credentials on successful authentication
+                            self.userNameTextField.text = keychainUsername
+                            self.passwordTextField.text = keychainPassword
+                            
+                            self.formDataLogin(username: keychainUsername, password: keychainPassword)
+                        }
+                        
+                    } else {
+                        // Handle errors
+                        if let unwrappedError = error {
+                            
+                            DispatchQueue.main.async {
+                                print(unwrappedError.localizedDescription)
+                            }
+                            
+                        }
+                        
+                    }
+                    
+                }
+                
+            } else {
+                // Error with touch ID (not set up, user does not have touch ID, etc.)
+                if let unwrappedAuthError = authError {
+                    print(unwrappedAuthError.localizedDescription)
+                }
+                
+                // Show the sign up screen for people without touch ID
+            }
+            
+        }
+        
+    }
+    
+    func formDataLogin(username: String, password: String) {
+        
+        let httpRequest = HTTPRequests(url: self.loginUrl)
+        let parameters: [String: Any] = ["PHPAuthenticationUsername": Defaults().PHPAuthenticationUsername, "PHPAuthenticationPassword": Defaults().PHPAuthenticationPassword, "email": username, "password": password]
         httpRequest.request(endpoint: "/login.php", parameters: parameters) { [weak self] (result) in
             
+            // Use a switch statement to go through the cases of the Result eumeration
+            // and to access the associated values for each enumeration case
             switch result {
                 
                 // If the result is successful, we will get the customer object we passed into the
                 // result enum and move on to the next view
                 case .success(let customer):
-                
+                    // Add username and password to keychain
+                    let usernameSaved: Bool = KeychainWrapper.standard.set(username, forKey: "username")
+                    let passwordSaved: Bool = KeychainWrapper.standard.set(password, forKey: "password")
+                    
+                    if usernameSaved && passwordSaved {
+                        if let username = KeychainWrapper.standard.string(forKey: "username") {
+                           print(username)
+                        }
+                    }
+                    
                     if let homeViewController = self?.storyboard?.instantiateViewController(identifier: "homeViewController") as? HomeViewController  {
                         
                         let menuNavigationController = UINavigationController(rootViewController: homeViewController)
@@ -124,12 +196,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         // Check if fields are empty before proceeding to log in user
         // Input field text
         guard // unwrap optionals safely
-            let userName = self.userNameTextField.text,
+            let username = self.userNameTextField.text,
             let password = self.passwordTextField.text
         else { return }
         
         // If user name or password field is empty, alert the user with a message and exit the function
-        if userName.isEmpty {
+        if username.isEmpty {
             
             alert.alertMessage(title: "Email Required", message: "Email: This field is required.")
             return
@@ -138,13 +210,25 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             
             alert.alertMessage(title: "Password Required", message: "Password: This field is required.")
             return
-            
+
+        }
+        
+        // Save user login credentials in keychain if not already in keychain
+        let saveUsername: Bool = KeychainWrapper.standard.set(username, forKey: "username")
+        let savePassword: Bool = KeychainWrapper.standard.set(password, forKey: "password")
+        
+        if saveUsername && savePassword {
+            print("User credentials successfully saved in keychain")
+        } else {
+            print("User credentials not saved in keychain")
         }
         
         // Proceed with logging the user in if text fields are not empty
-        self.logIn(userName: userName, password: password)
+        self.formDataLogin(username: username, password: password)
         
     }
+    
+    
     
     
     
