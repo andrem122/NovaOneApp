@@ -48,9 +48,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     func setUpGeneric() {
         
-        // Pop up keyboard for username field as soon as view loads
-        self.userNameTextField.becomeFirstResponder()
-        
         // Set delegates for each text field so we can use the delegate methods for each text field
         self.passwordTextField.delegate = self
         self.userNameTextField.delegate = self
@@ -62,7 +59,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     // Toggles the login button from between disabled and enabled states
-    // based on text field values
+    // based on email text field value
     func toggleLoginButton() {
         
         guard
@@ -111,14 +108,22 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             self.passwordTextField.text = keychainPassword
                             
                             self.formDataLogin(username: keychainUsername, password: keychainPassword)
+                            
                         }
                         
                     } else {
-                        // Handle errors
+                        
+                        // User has biometric authentication but could not be autheticated due to some error
                         if let unwrappedError = error {
                             
                             DispatchQueue.main.async {
+                                
+                                // Print the error on why biometric authentication failed
                                 print(unwrappedError.localizedDescription)
+                                
+                                // Pop up keyboard for username field if biometrics fails
+                                self.userNameTextField.becomeFirstResponder()
+                                
                             }
                             
                         }
@@ -128,13 +133,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 }
                 
             } else {
-                // Error with touch ID (not set up, user does not have touch ID, etc.)
+                
+                // Error with biometrics (not set up, user does not have biometric authentication, etc.)
+                // Pop up keyboard for username field since they can not login via biometric authentication
                 if let unwrappedAuthError = authError {
                     print(unwrappedAuthError.localizedDescription)
+                    self.userNameTextField.becomeFirstResponder()
                 }
                 
-                // Show the sign up screen for people without touch ID
             }
+            
+        } else {
+            
+            // Pop up keyboard for username field if no keychain credentials exist
+            print("No keychain credentials found")
+            self.userNameTextField.becomeFirstResponder()
             
         }
         
@@ -153,16 +166,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 // If the result is successful, we will get the customer object we passed into the
                 // result enum and move on to the next view
                 case .success(let customer):
-                    // Add username and password to keychain
-                    let usernameSaved: Bool = KeychainWrapper.standard.set(username, forKey: "username")
-                    let passwordSaved: Bool = KeychainWrapper.standard.set(password, forKey: "password")
+                    // Add username and password to keychain if the username and password is correct
+                    KeychainWrapper.standard.set(username, forKey: "username")
+                    KeychainWrapper.standard.set(password, forKey: "password")
                     
-                    if usernameSaved && passwordSaved {
-                        if let username = KeychainWrapper.standard.string(forKey: "username") {
-                           print(username)
-                        }
-                    }
-                    
+                    // Go to the home view controller
                     if let homeViewController = self?.storyboard?.instantiateViewController(identifier: "homeViewController") as? HomeViewController  {
                         
                         let menuNavigationController = UINavigationController(rootViewController: homeViewController)
@@ -173,7 +181,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     }
                 
                 case .failure(let error):
+                    // Show error message with an alert and enable continue button
                     self?.alert.alertMessage(title: "Error", message: error.localizedDescription)
+                    self?.loginButton.isEnabled = true
+                    self?.loginButton.backgroundColor = self?.enabledButtonColor
                 
             }
             
@@ -213,15 +224,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
         }
         
-        // Save user login credentials in keychain if not already in keychain
-        let saveUsername: Bool = KeychainWrapper.standard.set(username, forKey: "username")
-        let savePassword: Bool = KeychainWrapper.standard.set(password, forKey: "password")
-        
-        if saveUsername && savePassword {
-            print("User credentials successfully saved in keychain")
-        } else {
-            print("User credentials not saved in keychain")
-        }
+        // Disable button to prevent multiple requests
+        self.loginButton.isEnabled = false
+        self.loginButton.backgroundColor = self.disabledButtonColor
         
         // Proceed with logging the user in if text fields are not empty
         self.formDataLogin(username: username, password: password)

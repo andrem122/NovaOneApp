@@ -95,7 +95,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5O7-UW-25n" userLabel="Cancel Button">
-                                <rect key="frame" x="20" y="20" width="66" height="66"/>
+                                <rect key="frame" x="20.000000000000004" y="20.000000000000004" width="33.333333333333343" height="33.333333333333343"/>
                                 <state key="normal" image="cancelButtonBlue"/>
                                 <connections>
                                     <action selector="cancelButtonTouch:" destination="00c-Xy-omL" eventType="touchUpInside" id="I9r-bb-DbA"/>
@@ -562,25 +562,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Appointments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Of-7z-Nvn">
-                                <rect key="frame" x="153.66666666666666" y="357.66666666666669" width="106.99999999999997" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3uR-f3-MUZ">
+                                <rect key="frame" x="0.0" y="44" width="414" height="692"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="7qS-on-qoA" id="acb-HC-Vou"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="1Of-7z-Nvn" firstAttribute="centerX" secondItem="6dD-dw-mWj" secondAttribute="centerX" id="DTQ-Tz-Czn"/>
-                            <constraint firstItem="1Of-7z-Nvn" firstAttribute="centerY" secondItem="6dD-dw-mWj" secondAttribute="centerY" id="JBc-4k-j9y"/>
+                            <constraint firstItem="3uR-f3-MUZ" firstAttribute="top" secondItem="gvk-yk-ErY" secondAttribute="top" id="18X-dD-ycD"/>
+                            <constraint firstItem="3uR-f3-MUZ" firstAttribute="trailing" secondItem="gvk-yk-ErY" secondAttribute="trailing" id="8eo-IF-88S"/>
+                            <constraint firstItem="3uR-f3-MUZ" firstAttribute="bottom" secondItem="gvk-yk-ErY" secondAttribute="bottom" id="WqT-6x-CRN"/>
+                            <constraint firstItem="3uR-f3-MUZ" firstAttribute="leading" secondItem="gvk-yk-ErY" secondAttribute="leading" id="ceH-CX-3DA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gvk-yk-ErY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="GXb-ex-oRM"/>
+                    <navigationItem key="navigationItem" id="GXb-ex-oRM">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="xeU-vb-DSg">
+                            <connections>
+                                <action selector="plusButtonTouched:" destination="7qS-on-qoA" id="Lx4-FL-vyt"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="appointmentsTableView" destination="3uR-f3-MUZ" id="zXX-xX-wD1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lAr-yv-9Hl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3058" y="2124"/>
+            <point key="canvasLocation" x="3057.971014492754" y="2123.6413043478265"/>
         </scene>
         <!--Leads View Controller-->
         <scene sceneID="SlF-Dh-8h5">
@@ -944,7 +956,7 @@
         <image name="question" width="42.666667938232422" height="42.666667938232422"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="kDe-Zj-zW5"/>
+        <segue reference="lM1-Z5-SRz"/>
         <segue reference="ENA-7W-sv4"/>
         <segue reference="KEG-sN-SIQ"/>
         <segue reference="DEO-YY-SgO"/>

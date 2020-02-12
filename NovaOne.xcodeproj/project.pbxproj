@@ -45,6 +45,10 @@
 		659CCD3623EE46260066C9CB /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659CCD3523EE46260066C9CB /* ErrorResponse.swift */; };
 		659CCD3723EE46260066C9CB /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659CCD3523EE46260066C9CB /* ErrorResponse.swift */; };
 		659CCD3823EE46260066C9CB /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659CCD3523EE46260066C9CB /* ErrorResponse.swift */; };
+		659D487823F375F0007AC005 /* leads.php in Resources */ = {isa = PBXBuildFile; fileRef = 659D487623F375EF007AC005 /* leads.php */; };
+		659D487923F375F0007AC005 /* appointments.php in Resources */ = {isa = PBXBuildFile; fileRef = 659D487723F375F0007AC005 /* appointments.php */; };
+		659D487B23F37772007AC005 /* verify_user.php in Resources */ = {isa = PBXBuildFile; fileRef = 659D487A23F37771007AC005 /* verify_user.php */; };
+		659D487E23F38C01007AC005 /* NovaOne.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 659D487C23F38C01007AC005 /* NovaOne.xcdatamodeld */; };
 		65A1FC4D23E48A6800D5CBCF /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A1FC4C23E48A6800D5CBCF /* Defaults.swift */; };
 		65ADE2DF23E1C814003D3215 /* FeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ADE2DE23E1C814003D3215 /* FeatureView.swift */; };
 		65ADE2E123E1C84E003D3215 /* Feature.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65ADE2E023E1C84E003D3215 /* Feature.xib */; };
@@ -133,6 +137,10 @@
 		6591C3BB23DA78FB00535C46 /* NovaOneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovaOneUITests.swift; sourceTree = "<group>"; };
 		6591C3BD23DA78FB00535C46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		659CCD3523EE46260066C9CB /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
+		659D487623F375EF007AC005 /* leads.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = leads.php; sourceTree = "<group>"; };
+		659D487723F375F0007AC005 /* appointments.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = appointments.php; sourceTree = "<group>"; };
+		659D487A23F37771007AC005 /* verify_user.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = verify_user.php; sourceTree = "<group>"; };
+		659D487D23F38C01007AC005 /* NovaOne.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NovaOne.xcdatamodel; sourceTree = "<group>"; };
 		65A1FC4C23E48A6800D5CBCF /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Defaults.swift; path = ../Defaults.swift; sourceTree = "<group>"; };
 		65ADE2DE23E1C814003D3215 /* FeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureView.swift; sourceTree = "<group>"; };
 		65ADE2E023E1C84E003D3215 /* Feature.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Feature.xib; sourceTree = "<group>"; };
@@ -220,6 +228,7 @@
 		658B906623E7990000015C4F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				659D487C23F38C01007AC005 /* NovaOne.xcdatamodeld */,
 				6528135523E79C15005A1B1F /* CustomerModel.swift */,
 			);
 			path = Models;
@@ -295,6 +304,9 @@
 		65ADE2E823E39067003D3215 /* PHP */ = {
 			isa = PBXGroup;
 			children = (
+				659D487A23F37771007AC005 /* verify_user.php */,
+				659D487723F375F0007AC005 /* appointments.php */,
+				659D487623F375EF007AC005 /* leads.php */,
 				6583194F23F2209C001D378D /* credentials.php */,
 				6583194D23F2209C001D378D /* db_connect.php */,
 				6583195123F2209C001D378D /* django_password.php */,
@@ -414,9 +426,12 @@
 				6583195223F2209C001D378D /* db_connect.php in Resources */,
 				6583195423F2209C001D378D /* credentials.php in Resources */,
 				6591C3A623DA78FB00535C46 /* LaunchScreen.storyboard in Resources */,
+				659D487923F375F0007AC005 /* appointments.php in Resources */,
 				6583195323F2209C001D378D /* settings.php in Resources */,
 				6583195623F2209C001D378D /* django_password.php in Resources */,
+				659D487B23F37772007AC005 /* verify_user.php in Resources */,
 				6591C3A323DA78FB00535C46 /* Assets.xcassets in Resources */,
+				659D487823F375F0007AC005 /* leads.php in Resources */,
 				6591C3A123DA78F900535C46 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -464,6 +479,7 @@
 				6528135623E79C15005A1B1F /* CustomerModel.swift in Sources */,
 				650250C123E4991700B427D0 /* Alert.swift in Sources */,
 				65446CEC23E0F4370052DEBE /* LoginViewController.swift in Sources */,
+				659D487E23F38C01007AC005 /* NovaOne.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -666,7 +682,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3CDSLHGVXH;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/Frameworks/";
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)";
 				INFOPLIST_FILE = NovaOne/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -685,7 +701,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3CDSLHGVXH;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/Frameworks/";
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)";
 				INFOPLIST_FILE = NovaOne/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -822,6 +838,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		659D487C23F38C01007AC005 /* NovaOne.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				659D487D23F38C01007AC005 /* NovaOne.xcdatamodel */,
+			);
+			currentVersion = 659D487D23F38C01007AC005 /* NovaOne.xcdatamodel */;
+			path = NovaOne.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 6591C38E23DA78F900535C46 /* Project object */;
 }
