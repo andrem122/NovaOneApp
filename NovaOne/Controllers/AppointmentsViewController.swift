@@ -12,7 +12,9 @@ class AppointmentsViewController: UIViewController {
     
     // MARK: Properties
     @IBOutlet weak var appointmentsTableView: UITableView!
-    var customer = [String]()
+    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var customerNameLabel: UILabel!
+    var appointments: [Appointment] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,15 +42,11 @@ class AppointmentsViewController: UIViewController {
 
 extension AppointmentsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return customer.count
+        <#code#>
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
+        <#code#>
     }
     
     
