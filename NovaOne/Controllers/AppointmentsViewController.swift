@@ -11,15 +11,12 @@ import UIKit
 class AppointmentsViewController: UIViewController {
     
     // MARK: Properties
-    @IBOutlet weak var appointmentsTableView: UITableView!
-    @IBOutlet weak var addressLabel: UILabel!
-    @IBOutlet weak var customerNameLabel: UILabel!
     var appointments: [Appointment] = []
     
+    
+    // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
     // MARK: Actions
@@ -40,14 +37,14 @@ class AppointmentsViewController: UIViewController {
 
 }
 
-extension AppointmentsViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
-    }
-    
-    
-}
+//extension AppointmentsViewController: UITableViewDataSource {
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        <#code#>
+//    }
+//    
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        <#code#>
+//    }
+//    
+//    
+//}

@@ -9,10 +9,13 @@
 import UIKit
 
 class AppointmentTableViewCell: UITableViewCell {
-
+    
+    // MARK: Properties
+    @IBOutlet weak var leftView: UIView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        self.leftView.addLeftBorderWithColor(color: .red, width: 10)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

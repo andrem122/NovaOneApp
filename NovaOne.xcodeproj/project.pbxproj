@@ -36,6 +36,8 @@
 		658C079623F0F21C00DFD471 /* (null) in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		658EC6C323F484D30042827E /* AppointmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658EC6C223F484D30042827E /* AppointmentTableViewCell.swift */; };
 		658EC6C623F4870D0042827E /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658EC6C523F4870D0042827E /* Appointment.swift */; };
+		658EC6C823F4B1310042827E /* NovaOneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658EC6C723F4B1310042827E /* NovaOneView.swift */; };
+		658EC6CA23F4CD120042827E /* UIViewBorders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658EC6C923F4CD120042827E /* UIViewBorders.swift */; };
 		6591C39A23DA78F900535C46 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6591C39923DA78F900535C46 /* AppDelegate.swift */; };
 		6591C39C23DA78F900535C46 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6591C39B23DA78F900535C46 /* SceneDelegate.swift */; };
 		6591C39E23DA78F900535C46 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6591C39D23DA78F900535C46 /* LaunchViewController.swift */; };
@@ -126,6 +128,8 @@
 		6583195123F2209C001D378D /* django_password.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = django_password.php; sourceTree = "<group>"; };
 		658EC6C223F484D30042827E /* AppointmentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentTableViewCell.swift; sourceTree = "<group>"; };
 		658EC6C523F4870D0042827E /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
+		658EC6C723F4B1310042827E /* NovaOneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovaOneView.swift; sourceTree = "<group>"; };
+		658EC6C923F4CD120042827E /* UIViewBorders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewBorders.swift; sourceTree = "<group>"; };
 		6591C39623DA78F900535C46 /* NovaOne.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NovaOne.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6591C39923DA78F900535C46 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6591C39B23DA78F900535C46 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -187,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				65446CEE23E0F7DF0052DEBE /* NovaOneButton.swift */,
+				658EC6C723F4B1310042827E /* NovaOneView.swift */,
 			);
 			path = IBDesignables;
 			sourceTree = "<group>";
@@ -208,6 +213,7 @@
 				65A1FC4C23E48A6800D5CBCF /* Defaults.swift */,
 				65C5467823ECAB2300A198F3 /* AppUtility.swift */,
 				659CCD3523EE46260066C9CB /* ErrorResponse.swift */,
+				658EC6C923F4CD120042827E /* UIViewBorders.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -482,6 +488,7 @@
 				65AF664423E87F2C001B394F /* AppointmentsViewController.swift in Sources */,
 				659CCD3623EE46260066C9CB /* ErrorResponse.swift in Sources */,
 				65AF665423E88216001B394F /* FaqViewController.swift in Sources */,
+				658EC6C823F4B1310042827E /* NovaOneView.swift in Sources */,
 				6591C39A23DA78F900535C46 /* AppDelegate.swift in Sources */,
 				658EC6C323F484D30042827E /* AppointmentTableViewCell.swift in Sources */,
 				65446CEF23E0F7DF0052DEBE /* NovaOneButton.swift in Sources */,
@@ -493,6 +500,7 @@
 				65ADE2F623E3AF27003D3215 /* HTTPRequests.swift in Sources */,
 				65A1FC4D23E48A6800D5CBCF /* Defaults.swift in Sources */,
 				6528135623E79C15005A1B1F /* Customer.swift in Sources */,
+				658EC6CA23F4CD120042827E /* UIViewBorders.swift in Sources */,
 				650250C123E4991700B427D0 /* Alert.swift in Sources */,
 				65446CEC23E0F4370052DEBE /* LoginViewController.swift in Sources */,
 				659D487E23F38C01007AC005 /* NovaOne.xcdatamodeld in Sources */,

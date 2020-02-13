@@ -1,15 +1,15 @@
 //
-//  NovaOneButton.swift
+//  NovaOneView.swift
 //  NovaOne
 //
-//  Created by Andre Mashraghi on 1/28/20.
+//  Created by Andre Mashraghi on 2/12/20.
 //  Copyright © 2020 Andre Mashraghi. All rights reserved.
 //
 
 import UIKit
 
 // Allows us to design custom buttons for our app
-@IBDesignable class NovaOneButton: UIButton {
+@IBDesignable class NovaOneView: UIView {
     
     @IBInspectable var cornerRadius: CGFloat = 0 {
         didSet {
@@ -23,23 +23,10 @@ import UIKit
         }
     }
     
-    @IBInspectable
-    var borderColor: UIColor? {
-        get {
-            if let color = layer.borderColor {
-                return UIColor(cgColor: color)
-            }
-            return nil
+    @IBInspectable var borderColor: UIColor? {
+        didSet {
+            self.layer.borderColor = borderColor?.cgColor
         }
-        
-        set {
-            if let color = newValue {
-                layer.borderColor = color.cgColor
-            } else {
-                layer.borderColor = nil
-            }
-        }
-        
     }
     
     @IBInspectable
