@@ -52,7 +52,7 @@ class HTTPRequests {
                         // Convert to JSON swift objectmto see if the data response from the server is valid JSON
                         // catch the error in thr catch block if the data can not e converted to a JSON object
                         // in swift
-                        let json = try JSONSerialization.jsonObject(with: unwrappedData, options: [])
+                        try JSONSerialization.jsonObject(with: unwrappedData, options: [])
                         
                         // Try to convert to customer object from JSON data
                         if let customer = try? JSONDecoder().decode(CustomerModel.self, from: unwrappedData) {

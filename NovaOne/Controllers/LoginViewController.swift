@@ -15,11 +15,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: NovaOneButton!
-    
+    let defaults: Defaults = Defaults()
     lazy var alert: Alert = Alert(currentViewController: self)
     let loginUrl: String = "https://graystonerealtyfl.com/NovaOne"
-    let disabledButtonColor: UIColor = UIColor(red: 82/255, green: 107/255, blue: 217/255, alpha: 0.3) // Must divide by 255 because swift rgba arguments take a number between 0 and 1
-    let enabledButtonColor: UIColor = UIColor(red: 82/255, green: 107/255, blue: 217/255, alpha: 1)
     var customer: CustomerModel?
     
     // MARK: Methods
@@ -54,7 +52,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         // Disable continue button and only enable it when the user starts typing into one of the text fields
         self.loginButton.isEnabled = false
-        self.loginButton.backgroundColor = self.disabledButtonColor
+        self.loginButton.backgroundColor = defaults.novaOneColorDisabledColor
         
     }
     
@@ -69,12 +67,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         if email.isEmpty {
             
             self.loginButton.isEnabled = false
-            self.loginButton.backgroundColor = self.disabledButtonColor
+            self.loginButton.backgroundColor = self.defaults.novaOneColorDisabledColor
             
         } else {
             
             self.loginButton.isEnabled = true
-            self.loginButton.backgroundColor = self.enabledButtonColor
+            self.loginButton.backgroundColor = self.defaults.novaOneColor
             
         }
         
@@ -156,7 +154,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     func formDataLogin(username: String, password: String) {
         
         let httpRequest = HTTPRequests(url: self.loginUrl)
-        let parameters: [String: Any] = ["PHPAuthenticationUsername": Defaults().PHPAuthenticationUsername, "PHPAuthenticationPassword": Defaults().PHPAuthenticationPassword, "email": username, "password": password]
+        let parameters: [String: Any] = ["PHPAuthenticationUsername": self.defaults.PHPAuthenticationUsername, "PHPAuthenticationPassword": self.defaults.PHPAuthenticationPassword, "email": username, "password": password]
         httpRequest.request(endpoint: "/login.php", parameters: parameters) { [weak self] (result) in
             
             // Use a switch statement to go through the cases of the Result eumeration
@@ -184,7 +182,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     // Show error message with an alert and enable continue button
                     self?.alert.alertMessage(title: "Error", message: error.localizedDescription)
                     self?.loginButton.isEnabled = true
-                    self?.loginButton.backgroundColor = self?.enabledButtonColor
+                    self?.loginButton.backgroundColor = self?.defaults.novaOneColor
                 
             }
             
@@ -226,7 +224,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         // Disable button to prevent multiple requests
         self.loginButton.isEnabled = false
-        self.loginButton.backgroundColor = self.disabledButtonColor
+        self.loginButton.backgroundColor = self.defaults.novaOneColorDisabledColor
         
         // Proceed with logging the user in if text fields are not empty
         self.formDataLogin(username: username, password: password)

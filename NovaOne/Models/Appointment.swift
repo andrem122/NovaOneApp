@@ -43,6 +43,15 @@ struct Appointment: Decodable {
     
     }
     
+    var customerInitials: String {
+        
+        get {
+            let startIndex = name.startIndex
+            return String(name[startIndex])
+        }
+        
+    }
+    
     // Print object's current state
     var description: String {
         
