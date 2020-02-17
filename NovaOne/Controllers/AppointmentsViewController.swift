@@ -12,87 +12,48 @@ class AppointmentsViewController: UIViewController {
     
     // MARK: Properties
     @IBOutlet weak var appointmentTableView: UITableView!
-    
-    
+    var customer: CustomerModel?
     var appointments: [Appointment] = []
-    let appointmentInfoOne: [String: Any] = [
-        "id": 1,
-        "name": "Bob Diller",
-        "phoneNumber": "+15613465571",
-        "time": "2012-09-23 09:31:22",
-        "created": "2012-09-23 09:31:22",
-        "timeZone": "America/New_York",
-        "confirmed": false,
-        "address": "157 Gregory Place",
-        "unitType": "3",
-        "customerUserId": 3,
-    ]
-    
-    let appointmentInfoTwo: [String: Any] = [
-        "id": 2,
-        "name": "Gabriel Mashraghi",
-        "phoneNumber": "+77213729284",
-        "time": "2016-04-10 05:23:89",
-        "created": "2012-09-23 09:31:22",
-        "timeZone": "America/New_York",
-        "confirmed": true,
-        "address": "1800 Nebraska Avenue",
-        "unitType": "2",
-        "customerUserId": 3,
-    ]
-    
-    let appointmentInfoThree: [String: Any] = [
-        "id": 3,
-        "name": "Richard Yeets",
-        "phoneNumber": "+19549372662",
-        "time": "2012-09-23 09:31:22",
-        "created": "2012-09-23 09:31:22",
-        "timeZone": "America/New_York",
-        "confirmed": false,
-        "address": "1800 Nebraska Avenue",
-        "unitType": "1",
-        "customerUserId": 3,
-    ]
     
     let appointmentsInfo: [[String: Any]] = []
     
     // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.appointments = self.createAppointmentArray()
+        self.getAppointments()
         self.appointmentTableView.delegate = self
         self.appointmentTableView.dataSource = self
     }
     
-    // Create an array of Appointment objects
-    func createAppointmentArray() -> [Appointment] {
-        let appointmentsInfo: [[String: Any]] = [self.appointmentInfoOne, self.appointmentInfoTwo, self.appointmentInfoThree]
+    // Get's appointments from the database
+    func getAppointments() {
         
-        var tempAppointments: [Appointment]  = []
+        let httpRequest = HTTPRequests()
+        guard
+            let customer = self.customer,
+            let customerUserId = customer.id,
+            let email = customer.email,
+            let password = KeychainWrapper.standard.string(forKey: "password")
+        else { return }
         
-        for appointmentInfo in appointmentsInfo  {
-            
-            if let id = appointmentInfo["id"] as? Int,
-            let name = appointmentInfo["name"] as? String,
-            let phoneNumber = appointmentInfo["phoneNumber"] as? String,
-            let time = appointmentInfo["time"] as? String,
-            let created = appointmentInfo["created"] as? String,
-            let timeZone = appointmentInfo["timeZone"] as? String,
-            let confirmed = appointmentInfo["confirmed"] as? Bool,
-            let address = appointmentInfo["address"] as? String,
-            let unitType = appointmentInfo["unitType"] as? String,
-            let customerUserId = appointmentInfo["customerUserId"] as? Int {
-                
-                let appointment: Appointment = Appointment(id: id, name: name, phoneNumber: phoneNumber, time: time, created: created, timeZone: timeZone, confirmed: confirmed, address: address, unitType: unitType, customerUserId: customerUserId)
-                
-                tempAppointments.append(appointment)
-                
-            }
-            
+        let parameters: [String: Any] = ["customerUserId": customerUserId as Any,
+                                         "email": email as Any,
+                                         "password": password as Any]
+        
+        httpRequest.request(endpoint: "/appointments.php",
+                            dataModel: Appointment(),
+                            parameters: parameters) { (result) in
+                                
+                                switch result {
+                                    case .success(let appointment):
+                                        guard let address = appointment.address else { return }
+                                        print(address)
+                                    case .failure(let error):
+                                        print(error.localizedDescription)
+                                }
+                                
         }
         
-        return tempAppointments
     }
     
     // MARK: Actions
@@ -126,7 +87,7 @@ extension AppointmentsViewController: UITableViewDataSource, UITableViewDelegate
     // Paramater 'indexPath' represents the row number that each table view cell is contained in (Example: first appointment object has indexPath of zero)
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let appointment: Appointment = appointments[indexPath.row] // Get the appointment object based on the row number each cell is in
+        let appointment: Appointment = self.appointments[indexPath.row] // Get the appointment object based on the row number each cell is in
         let cell = tableView.dequeueReusableCell(withIdentifier: "appointmentTableCell") as! AppointmentTableViewCell // Get cell with identifier so we can use the custom cell we made
         
         // Pass in appointment object to set up cell properties (address, name, etc.)

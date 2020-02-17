@@ -29,14 +29,17 @@ class HomeViewController: UIViewController {
     
     // MARK: Actions
     
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let viewController: UIViewController = segue.destination
+        
+        if let appointmentsViewController = viewController as? AppointmentsViewController {
+            appointmentsViewController.customer = self.customer
+        }
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }
-    */
 
 }

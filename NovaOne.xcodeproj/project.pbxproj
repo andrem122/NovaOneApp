@@ -28,7 +28,7 @@
 		655D6B3B23E7A017000461DB /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655D6B3823E7A017000461DB /* MenuViewController.swift */; };
 		6583194B23F2206E001D378D /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6583194923F2206E001D378D /* KeychainItemAccessibility.swift */; };
 		6583194C23F2206E001D378D /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6583194A23F2206E001D378D /* KeychainWrapper.swift */; };
-		6583195223F2209C001D378D /* db_connect.php in Resources */ = {isa = PBXBuildFile; fileRef = 6583194D23F2209C001D378D /* db_connect.php */; };
+		6583195223F2209C001D378D /* database.php in Resources */ = {isa = PBXBuildFile; fileRef = 6583194D23F2209C001D378D /* database.php */; };
 		6583195323F2209C001D378D /* settings.php in Resources */ = {isa = PBXBuildFile; fileRef = 6583194E23F2209C001D378D /* settings.php */; };
 		6583195423F2209C001D378D /* credentials.php in Resources */ = {isa = PBXBuildFile; fileRef = 6583194F23F2209C001D378D /* credentials.php */; };
 		6583195523F2209C001D378D /* login.php in Resources */ = {isa = PBXBuildFile; fileRef = 6583195023F2209C001D378D /* login.php */; };
@@ -121,7 +121,7 @@
 		655D6B3823E7A017000461DB /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		6583194923F2206E001D378D /* KeychainItemAccessibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItemAccessibility.swift; sourceTree = "<group>"; };
 		6583194A23F2206E001D378D /* KeychainWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
-		6583194D23F2209C001D378D /* db_connect.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = db_connect.php; sourceTree = "<group>"; };
+		6583194D23F2209C001D378D /* database.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = database.php; sourceTree = "<group>"; };
 		6583194E23F2209C001D378D /* settings.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = settings.php; sourceTree = "<group>"; };
 		6583194F23F2209C001D378D /* credentials.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = credentials.php; sourceTree = "<group>"; };
 		6583195023F2209C001D378D /* login.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = login.php; sourceTree = "<group>"; };
@@ -328,7 +328,7 @@
 				659D487723F375F0007AC005 /* appointments.php */,
 				659D487623F375EF007AC005 /* leads.php */,
 				6583194F23F2209C001D378D /* credentials.php */,
-				6583194D23F2209C001D378D /* db_connect.php */,
+				6583194D23F2209C001D378D /* database.php */,
 				6583195123F2209C001D378D /* django_password.php */,
 				6583195023F2209C001D378D /* login.php */,
 				6583194E23F2209C001D378D /* settings.php */,
@@ -443,7 +443,7 @@
 			files = (
 				6583195523F2209C001D378D /* login.php in Resources */,
 				65ADE2E123E1C84E003D3215 /* Feature.xib in Resources */,
-				6583195223F2209C001D378D /* db_connect.php in Resources */,
+				6583195223F2209C001D378D /* database.php in Resources */,
 				6583195423F2209C001D378D /* credentials.php in Resources */,
 				6591C3A623DA78FB00535C46 /* LaunchScreen.storyboard in Resources */,
 				659D487923F375F0007AC005 /* appointments.php in Resources */,

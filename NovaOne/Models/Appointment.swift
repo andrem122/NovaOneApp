@@ -11,16 +11,15 @@ import UIKit
 struct Appointment: Decodable {
 
     // MARK: Properties
-    var id: Int
-    var name: String
-    var phoneNumber: String
-    var time: String
-    var created: String
-    var timeZone: String
-    var confirmed: Bool
-    var address: String
-    var unitType: String
-    var customerUserId: Int
+    var id: Int?
+    var name: String?
+    var phoneNumber: String?
+    var time: String?
+    var created: String?
+    var timeZone: String?
+    var confirmed: Bool?
+    var address: String?
+    var unitType: String?
     
     // Computed properties
     var timeDate: Date {
@@ -31,7 +30,8 @@ struct Appointment: Decodable {
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
             dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
             
-            guard let date = dateFormatter.date(from: self.time) else { return Date() }
+            guard let time = self.time else { return Date() }
+            guard let date = dateFormatter.date(from: time) else { return Date() }
             
             let calendar = Calendar.current
             let components = calendar.dateComponents([.year, .month, .day, .hour], from: date)
@@ -46,6 +46,7 @@ struct Appointment: Decodable {
     var customerInitials: String {
         
         get {
+            guard let name = self.name else { return "" }
             let startIndex = name.startIndex
             return String(name[startIndex])
         }
@@ -56,7 +57,13 @@ struct Appointment: Decodable {
     var description: String {
         
         get {
-           return "Id: \(self.id), Name: \(self.name) \(self.phoneNumber), Email: \(self.address)"
+            guard
+                let id = self.id,
+                let name = self.name,
+                let phoneNumber = self.phoneNumber,
+                let address = self.address
+            else { return "" }
+           return "Id: \(id), Name: \(name) \(phoneNumber), Email: \(address)"
         }
         
     }

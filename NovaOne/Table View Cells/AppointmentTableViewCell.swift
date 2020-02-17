@@ -26,22 +26,16 @@ class AppointmentTableViewCell: UITableViewCell {
     // cellForRowAt IndexPath function
     func setUpAppointment(appointment: Appointment) {
         
-        self.leftView.addLeftBorderWithColor(color: Defaults().novaOneColor, width: CGFloat(7))
-        self.addressLabel.text = appointment.address
-        self.customerNameLabel.text = appointment.name
-        self.numberOfBedsLabel.text = appointment.unitType
-        self.numberOfBathsLabel.text = "2"
-        self.customerIDLabel.text = String(appointment.id)
-        self.customerInitialsLabel.text = appointment.customerInitials
-        self.monthDayLabel.text = "Feb, 15 2020"
-        self.timeLabel.text = "3:30 PM"
+//        self.leftView.addLeftBorderWithColor(color: Defaults().novaOneColor, width: CGFloat(7))
+//        self.addressLabel.text = appointment.address
+//        self.customerNameLabel.text = appointment.name
+//        self.numberOfBedsLabel.text = appointment.unitType
+//        self.numberOfBathsLabel.text = "2"
+//        self.customerIDLabel.text = String(appointment.id)
+//        self.customerInitialsLabel.text = appointment.customerInitials
+//        self.monthDayLabel.text = "Feb, 15 2020"
+//        self.timeLabel.text = "3:30 PM"
         
     }
-    
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//
-//        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
-//    }
 
 }

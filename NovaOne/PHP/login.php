@@ -1,13 +1,13 @@
 <?php
 
-require 'db_connect.php';
+require 'database.php';
 require 'django_password.php';
 
 //new users
 if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   //check if POST request is from the app
-  if(($_POST['PHPAuthenticationUsername'] === $php_authentication_username && $_POST['PHPAuthenticationPassword'] === $php_authentication_password) && (!empty($_POST['PHPAuthenticationUsername']) && !empty($_POST['PHPAuthenticationPassword']))) {
+  if(($_POST['PHPAuthenticationUsername'] === $GLOBALS['php_authentication_username'] && $_POST['PHPAuthenticationPassword'] === $GLOBALS['php_authentication_password']) && (!empty($_POST['PHPAuthenticationUsername']) && !empty($_POST['PHPAuthenticationPassword']))) {
   
 	  //input check
 	  if(empty($_POST['email']) || empty($_POST['password'])) {
@@ -48,6 +48,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
               ON c.property_id = p.id
           WHERE a.email = :email";
           
+          
+          $db_object = new Database();
+          $db = $db_object->connect();
           $stmt = $db->prepare($query);
 	      $stmt->bindParam(':email', $email);
 	      
@@ -66,14 +69,16 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 		              if(django_verify_password($result['password'], $_POST['password'])) {
 		                  
 		                  http_response_code(200);
-		                  $response_array = array('id' => $result['id'], 'firstName' => $result['first_name'], 'lastName' => $result['last_name'], 'email' => $result['email'], 'customerPhone' => $result['phone_number'], 'dateJoined' => $result['date_joined'],
-                              'isPaying' => $result['is_paying'], 'wantsSms' => $result['wants_sms'],
-                              'propertyId' => $result['property_id'], 'propertyName' => $result['property_name'], 'propertyAddress' => $result['property_address'],
-                              'propertyPhone' => $result['property_phone'], 'propertyEmail' => $result['property_email'], 'daysOfTheWeekEnabled' => $result['days_of_the_week_enabled'], 'hoursOfTheDayEnabled' => $result['hours_of_the_day_enabled'],
+		                  $response_array = array('id' => $result['id'], 'firstName' => $result['first_name'],
+                                                  'lastName' => $result['last_name'], 'email' => $result['email'], 'customerPhone' => $result['phone_number'],
+                                                  'dateJoined' => $result['date_joined'], 'isPaying' => $result['is_paying'],
+                                                  'wantsSms' => $result['wants_sms'], 'propertyId' => $result['property_id'],
+                                                  'propertyName' => $result['property_name'], 'propertyAddress' => $result['property_address'],
+                                                  'propertyPhone' => $result['property_phone'], 'propertyEmail' => $result['property_email'],
+                                                  'daysOfTheWeekEnabled' => $result['days_of_the_week_enabled'], 'hoursOfTheDayEnabled' => $result['hours_of_the_day_enabled'],
                           );
     
                           echo json_encode($response_array);
-                          $db=null;
 		                  exit();
 		                  
 		              } else {

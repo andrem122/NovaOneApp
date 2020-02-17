@@ -1,5 +1,5 @@
 <?php
-require 'db_connect.php';
+require 'database.php';
 require 'django_password.php';
 
     function verify_user($email,
@@ -12,7 +12,7 @@ require 'django_password.php';
     if($request_method === 'POST') {
 
       //check if POST request is from the app and authenticate the user before giving data
-      if(($php_authentication_username_f === $php_authentication_username && $php_authentication_password_f === $php_authentication_password) && (!empty($php_authentication_username_f) && !empty($php_authentication_username_f))) {
+      if(($php_authentication_username_f === $GLOBALS['php_authentication_username'] && $php_authentication_password_f === $GLOBALS['php_authentication_password']) && (!empty($php_authentication_username_f) && !empty($php_authentication_password_f))) {
       
           // input check
           if(empty($email) || empty($password)) {
@@ -27,6 +27,8 @@ require 'django_password.php';
               //check if user exists in database
               $query = 'SELECT * FROM auth_user WHERE email = :email';
               
+              $db_object = new Database();
+              $db = $db_object->connect();
               $stmt = $db->prepare($query);
               $stmt->bindParam(':email', $email);
               
@@ -46,7 +48,6 @@ require 'django_password.php';
                               
                               http_response_code(200);
                               return true;
-                              $db=null;
                               exit();
                               
                           } else {

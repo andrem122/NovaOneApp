@@ -14,14 +14,11 @@ class HTTPRequests {
     
     
     // MARK: Properties
-    let url: String
+    let url: String = "https://graystonerealtyfl.com/NovaOne"
     
-    init(url: String) {
-        self.url = url
-    }
-    
-    func handleResponse(for request: URLRequest,
-                        completion: @escaping (Result<CustomerModel, Error>) -> Void) {
+    func handleResponse<DataModel: Decodable>(for request: URLRequest,
+                                   dataModel: DataModel,
+                                   completion: @escaping (Result<DataModel, Error>) -> Void) {
         
         // Create datatask to retrieve information from the internet
         let session = URLSession.shared
@@ -52,13 +49,14 @@ class HTTPRequests {
                         // Convert to JSON swift objectmto see if the data response from the server is valid JSON
                         // catch the error in thr catch block if the data can not e converted to a JSON object
                         // in swift
-                        try JSONSerialization.jsonObject(with: unwrappedData, options: [])
+                        let json = try JSONSerialization.jsonObject(with: unwrappedData, options: [])
+                        print(json)
                         
                         // Try to convert to customer object from JSON data
-                        if let customer = try? JSONDecoder().decode(CustomerModel.self, from: unwrappedData) {
+                        if let object = try? JSONDecoder().decode(DataModel.self, from: unwrappedData) {
                             
-                            print("Customer block")
-                            completion(.success(customer)) // Pass customer object to result enumeration as an associated value
+                            print("Decodable block")
+                            completion(.success(object)) // Pass object to result enumeration as an associated value
                             
                         } else {
                             
@@ -100,9 +98,17 @@ class HTTPRequests {
     }
     
     // Make HTTP request
-    func request(endpoint: String,
-                 parameters: [String: Any],
-                 completion: @escaping (Result<CustomerModel, Error>) -> Void) {
+    // DataModel could be and data model that confroms to the Decodable protocol
+    func request<DataModel: Decodable>(endpoint: String,
+                            dataModel: DataModel,
+                            parameters: [String: Any],
+                            completion: @escaping (Result<DataModel, Error>) -> Void) {
+        
+        // Add PHP credentials to parmaters array
+        let defaults: Defaults = Defaults()
+        var mutatedParamaters: [String: Any] = parameters // any argument into a swift function is immutable (can not be changed), so set it to a variable (can be changed or mutable)
+        mutatedParamaters["PHPAuthenticationUsername"] = defaults.PHPAuthenticationUsername
+        mutatedParamaters["PHPAuthenticationPassword"] = defaults.PHPAuthenticationPassword
         
         // Convert url string to URL type
         guard let url: URL = URL(string: self.url + endpoint) else {
@@ -115,7 +121,7 @@ class HTTPRequests {
         var queryItems: [URLQueryItem] = []
         
         // Create URL query items from paramters dictionary
-        for (key, value) in parameters {
+        for (key, value) in mutatedParamaters {
             let queryItem: URLQueryItem = URLQueryItem(name: key, value: String(describing: value))
             queryItems.append(queryItem)
         }
@@ -130,8 +136,7 @@ class HTTPRequests {
         request.httpMethod = "POST"
         request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         
-        self.handleResponse(for: request, completion: completion)
-        
+        self.handleResponse(for: request, dataModel: dataModel, completion: completion)
         
     }
     

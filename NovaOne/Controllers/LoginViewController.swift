@@ -17,7 +17,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var loginButton: NovaOneButton!
     let defaults: Defaults = Defaults()
     lazy var alert: Alert = Alert(currentViewController: self)
-    let loginUrl: String = "https://graystonerealtyfl.com/NovaOne"
     var customer: CustomerModel?
     
     // MARK: Methods
@@ -151,11 +150,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    // Sends a post request using url encoded string
     func formDataLogin(username: String, password: String) {
         
-        let httpRequest = HTTPRequests(url: self.loginUrl)
-        let parameters: [String: Any] = ["PHPAuthenticationUsername": self.defaults.PHPAuthenticationUsername, "PHPAuthenticationPassword": self.defaults.PHPAuthenticationPassword, "email": username, "password": password]
-        httpRequest.request(endpoint: "/login.php", parameters: parameters) { [weak self] (result) in
+        let httpRequest = HTTPRequests()
+        let parameters: [String: Any] = ["email": username, "password": password]
+        httpRequest.request(endpoint: "/login.php", dataModel: CustomerModel(), parameters: parameters) { [weak self] (result) in
             
             // Use a switch statement to go through the cases of the Result eumeration
             // and to access the associated values for each enumeration case
