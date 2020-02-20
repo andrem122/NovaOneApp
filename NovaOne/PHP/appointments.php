@@ -20,13 +20,13 @@ if ($user_is_verified) {
     SELECT
         a.id,
         a.name,
-        a.phone_number,
+        a.phone_number as \"phoneNumber\",
         p.address,
         a.time,
         a.created,
-        a.time_zone,
+        a.time_zone as \"timeZone\",
         a.confirmed,
-        a.unit_type
+        a.unit_type as \"unitType\"
     FROM
         appointments_appointment a
     INNER JOIN customer_register_customer_user c
@@ -34,6 +34,7 @@ if ($user_is_verified) {
     INNER JOIN property_property p
         ON c.property_id = p.id
     WHERE customer_user_id = :customer_user_id
+    ORDER BY time DESC;
     ";
     
     $db_object = new Database();
@@ -45,21 +46,10 @@ if ($user_is_verified) {
         
         // If we get a result from the database
         if($stmt->rowCount() > 0) {
-            while($result = $stmt->fetch()) {
-                
-                http_response_code(200);
-                $response_array = array('id' => $result['id'], 'name' => $result['name'],
-                                        'phoneNumber' => $result['phone_number'], 'time' => $result['time'],
-                                        'created' => $result['created'], 'timeZone' => $result['time_zone'],
-                                        'confirmed' => $result['confirmed'], 'address' => $result['address'],
-                                        'unitType' => $result['unit_type'],);
-
-                echo json_encode($response_array);
-                $db=null;
-                exit();
-                
-            }
             
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            echo json_encode($result);
+            exit();
             
         } else {
             

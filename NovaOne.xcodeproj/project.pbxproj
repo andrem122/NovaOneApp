@@ -78,6 +78,7 @@
 		65C5467923ECAB2300A198F3 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C5467823ECAB2300A198F3 /* AppUtility.swift */; };
 		65C5467A23ECAB2300A198F3 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C5467823ECAB2300A198F3 /* AppUtility.swift */; };
 		65C5467B23ECAB2400A198F3 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C5467823ECAB2300A198F3 /* AppUtility.swift */; };
+		65D75F7423FB495900C7988E /* utils.php in Resources */ = {isa = PBXBuildFile; fileRef = 65D75F7323FB495900C7988E /* utils.php */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,6 +161,7 @@
 		65AF665323E88216001B394F /* FaqViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaqViewController.swift; sourceTree = "<group>"; };
 		65AF665723E88229001B394F /* CreateAppointmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAppointmentViewController.swift; sourceTree = "<group>"; };
 		65C5467823ECAB2300A198F3 /* AppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
+		65D75F7323FB495900C7988E /* utils.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = utils.php; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -326,6 +328,7 @@
 			children = (
 				659D487A23F37771007AC005 /* verify_user.php */,
 				659D487723F375F0007AC005 /* appointments.php */,
+				65D75F7323FB495900C7988E /* utils.php */,
 				659D487623F375EF007AC005 /* leads.php */,
 				6583194F23F2209C001D378D /* credentials.php */,
 				6583194D23F2209C001D378D /* database.php */,
@@ -442,6 +445,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6583195523F2209C001D378D /* login.php in Resources */,
+				65D75F7423FB495900C7988E /* utils.php in Resources */,
 				65ADE2E123E1C84E003D3215 /* Feature.xib in Resources */,
 				6583195223F2209C001D378D /* database.php in Resources */,
 				6583195423F2209C001D378D /* credentials.php in Resources */,

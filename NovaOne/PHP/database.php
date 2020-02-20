@@ -27,7 +27,7 @@ class Database {
         
         try {
             
-            $connection_string = "pgsql:host=" . $this->db_host . ";dbname=" . $this->db_name . ";password=" . $this->db_password . ";user=" . $this->db_username . ";port=" . $this->db_port;
+            $connection_string = "pgsql:host=" . $this->db_host . ";dbname=" . $this->db_name . ";password=" . $this->db_password . ";user=" . $this->db_username . ";port=" . $this->db_port . ";charset=UTF8;";
             $this->db = new PDO($connection_string);
             $this->db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             return $this->db;

@@ -25,9 +25,9 @@ struct Appointment: Decodable {
     var timeDate: Date {
         
         get {
-            // Date string must be in the form of "yyyy-MM-dd HH:mm:ss"
+            // Date string must be in the form of "yyyy-MM-dd HH:mm:ssZ"
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ssZ"
             dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
             
             guard let time = self.time else { return Date() }
@@ -43,12 +43,40 @@ struct Appointment: Decodable {
     
     }
     
-    var customerInitials: String {
+    var shortenedAddress: String {
+        get {
+            guard let address = self.address else { return "" }
+            let addressComponentsArray = address.components(separatedBy: ",")
+            return addressComponentsArray[0]
+        }
+    }
+    
+    // Returns the initials of the first and last name of the person making the appointment
+    // or the first two letters of the first name if there is no last name
+    var initials: String {
         
         get {
             guard let name = self.name else { return "" }
-            let startIndex = name.startIndex
-            return String(name[startIndex])
+            
+            // Split the name string into an array if it has spaces
+            let nameComponentsArray = name.components(separatedBy: " ")
+            // If our array has a count greater than one, we have multiple names
+            // get the first character of the first and second element
+            // in the array
+            if nameComponentsArray.count > 1 && nameComponentsArray[1] != "" {
+                let firstName = nameComponentsArray[0]
+                let secondName = nameComponentsArray[1]
+                
+                let firstNameInitial = firstName[firstName.startIndex]
+                let secondNameInitial = secondName[secondName.startIndex]
+                
+                return "\(firstNameInitial)\(secondNameInitial)".uppercased()
+            }
+            
+            // Return the first two characters of the string if only one name is given
+            let index = name.index(name.startIndex, offsetBy: 2)
+            let initials = String(name[..<index])
+            return initials.uppercased()
         }
         
     }

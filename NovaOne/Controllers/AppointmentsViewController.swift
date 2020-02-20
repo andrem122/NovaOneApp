@@ -15,14 +15,16 @@ class AppointmentsViewController: UIViewController {
     var customer: CustomerModel?
     var appointments: [Appointment] = []
     
-    let appointmentsInfo: [[String: Any]] = []
-    
     // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.getAppointments()
         self.appointmentTableView.delegate = self
         self.appointmentTableView.dataSource = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.getAppointments()
     }
     
     // Get's appointments from the database
@@ -41,13 +43,13 @@ class AppointmentsViewController: UIViewController {
                                          "password": password as Any]
         
         httpRequest.request(endpoint: "/appointments.php",
-                            dataModel: Appointment(),
+                            dataModel: [Appointment()],
                             parameters: parameters) { (result) in
                                 
                                 switch result {
-                                    case .success(let appointment):
-                                        guard let address = appointment.address else { return }
-                                        print(address)
+                                    case .success(let appointments):
+                                        self.appointments = appointments
+                                        self.appointmentTableView.reloadData()
                                     case .failure(let error):
                                         print(error.localizedDescription)
                                 }
@@ -80,7 +82,7 @@ extension AppointmentsViewController: UITableViewDataSource, UITableViewDelegate
     
     // Shows how many rows our table view should show
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return appointments.count
+        return self.appointments.count
     }
     
     // This is where we configure each cell in our table view

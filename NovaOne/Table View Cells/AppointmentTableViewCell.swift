@@ -26,15 +26,26 @@ class AppointmentTableViewCell: UITableViewCell {
     // cellForRowAt IndexPath function
     func setUpAppointment(appointment: Appointment) {
         
-//        self.leftView.addLeftBorderWithColor(color: Defaults().novaOneColor, width: CGFloat(7))
-//        self.addressLabel.text = appointment.address
-//        self.customerNameLabel.text = appointment.name
-//        self.numberOfBedsLabel.text = appointment.unitType
-//        self.numberOfBathsLabel.text = "2"
-//        self.customerIDLabel.text = String(appointment.id)
-//        self.customerInitialsLabel.text = appointment.customerInitials
-//        self.monthDayLabel.text = "Feb, 15 2020"
-//        self.timeLabel.text = "3:30 PM"
+        guard let id = appointment.id else { return }
+        
+        // Get date of appointment as a string
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM d, yy"
+        let appointmentDate: String = dateFormatter.string(from: appointment.timeDate)
+        
+        // Get time of appointment as a string
+        dateFormatter.dateFormat = "h:mm a"
+        let appointmentTime: String = dateFormatter.string(from: appointment.timeDate)
+        
+        self.leftView.addLeftBorderWithColor(color: Defaults().novaOneColor, width: CGFloat(7))
+        self.addressLabel.text = appointment.shortenedAddress
+        self.customerNameLabel.text = appointment.name
+        self.numberOfBedsLabel.text = appointment.unitType
+        self.numberOfBathsLabel.text = "2"
+        self.customerIDLabel.text = String(id)
+        self.customerInitialsLabel.text = appointment.initials
+        self.monthDayLabel.text = appointmentDate
+        self.timeLabel.text = appointmentTime
         
     }
 

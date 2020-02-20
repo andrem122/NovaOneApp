@@ -25,21 +25,21 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
           $query = "
           SELECT
               c.id,
-              a.first_name,
-              a.last_name,
+              a.first_name as \"firstName\",
+              a.last_name as \"lastName\",
               a.email,
               a.password,
-              c.phone_number,
-              a.date_joined,
-              c.is_paying,
-              c.wants_sms,
-              p.id property_id,
-              p.name property_name,
-              p.address property_address,
-              p.phone_number property_phone,
-              p.email property_email,
-              p.days_of_the_week_enabled,
-              p.hours_of_the_day_enabled
+              c.phone_number as \"phoneNumber\",
+              a.date_joined as \"dateJoined\",
+              c.is_paying as \"isPaying\",
+              c.wants_sms as \"wantsSms\",
+              p.id as \"propertyId\",
+              p.name as \"propertyName\",
+              p.address as \"propertyAddress\",
+              p.phone_number as \"propertyPhone\",
+              p.email as \"propertyEmail\",
+              p.days_of_the_week_enabled as \"daysOfTheWeekEnabled\",
+              p.hours_of_the_day_enabled as \"hoursOfTheDayEnabled\"
           FROM
               auth_user a
           INNER JOIN customer_register_customer_user c
@@ -61,36 +61,24 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 	          if($stmt->rowCount() > 0) {
                   
                   // Make our result in a dictionary format
-	              $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                  $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                  $result = $stmt->fetch();
                   
-	              while($result = $stmt->fetch()) {
-	              	      
-		              // Get results of query and put them into JSON string for use by Swift if password is correct for given email
-		              if(django_verify_password($result['password'], $_POST['password'])) {
-		                  
-		                  http_response_code(200);
-		                  $response_array = array('id' => $result['id'], 'firstName' => $result['first_name'],
-                                                  'lastName' => $result['last_name'], 'email' => $result['email'], 'customerPhone' => $result['phone_number'],
-                                                  'dateJoined' => $result['date_joined'], 'isPaying' => $result['is_paying'],
-                                                  'wantsSms' => $result['wants_sms'], 'propertyId' => $result['property_id'],
-                                                  'propertyName' => $result['property_name'], 'propertyAddress' => $result['property_address'],
-                                                  'propertyPhone' => $result['property_phone'], 'propertyEmail' => $result['property_email'],
-                                                  'daysOfTheWeekEnabled' => $result['days_of_the_week_enabled'], 'hoursOfTheDayEnabled' => $result['hours_of_the_day_enabled'],
-                          );
-    
-                          echo json_encode($response_array);
-		                  exit();
-		                  
-		              } else {
-		                  
-		                  http_response_code(400);
-                          $response_array = array('error' => 1, 'reason' => 'Incorrect password. Please try again.');
-		                  echo json_encode($response_array);
-		                  exit();
-		                  
-		              }
-	              
-	              }
+                // Get results of query and put them into JSON string for use by Swift if password is correct for given email
+                if(django_verify_password($result['password'], $_POST['password'])) {
+                    
+                    echo json_encode($result);
+                    http_response_code(200);
+                    exit();
+                    
+                } else {
+                    
+                    http_response_code(400);
+                    $response_array = array('error' => 1, 'reason' => 'Incorrect password. Please try again.');
+                    echo json_encode($response_array);
+                    exit();
+                    
+                }
 	              
 	          } else {
 	              

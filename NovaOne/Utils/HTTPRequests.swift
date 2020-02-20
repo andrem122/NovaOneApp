@@ -18,7 +18,7 @@ class HTTPRequests {
     
     func handleResponse<DataModel: Decodable>(for request: URLRequest,
                                    dataModel: DataModel,
-                                   completion: @escaping (Result<DataModel, Error>) -> Void) {
+                                   completion: @escaping (Result<DataModel, Error>) -> Void) -> Void {
         
         // Create datatask to retrieve information from the internet
         let session = URLSession.shared
@@ -51,6 +51,7 @@ class HTTPRequests {
                         // in swift
                         let json = try JSONSerialization.jsonObject(with: unwrappedData, options: [])
                         print(json)
+                        
                         
                         // Try to convert to customer object from JSON data
                         if let object = try? JSONDecoder().decode(DataModel.self, from: unwrappedData) {

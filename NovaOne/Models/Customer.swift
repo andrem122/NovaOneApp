@@ -15,7 +15,7 @@ struct CustomerModel: Decodable {
     var firstName: String?
     var lastName: String?
     var email: String?
-    var customerPhone: String?
+    var phoneNumber: String?
     var dateJoined: String?
     var isPaying: Bool?
     var wantsSms: Bool?
