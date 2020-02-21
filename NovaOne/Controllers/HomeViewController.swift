@@ -21,10 +21,18 @@ class HomeViewController: UIViewController {
     
     // MARK: Set Up
     func setUp() {
+        
+        // Set greeting label text
         if let firstName = customer?.firstName {
             let greetingString = "Hello \(firstName)!"
             self.greetingLabel.text = greetingString
         }
+        
+        // Set up navigation bar styles
+        let backButtonImage: UIImage = UIImage(named: "left-arrow")!
+        self.navigationController?.navigationBar.backIndicatorImage = backButtonImage
+        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = backButtonImage
+        self.navigationController?.navigationBar.backItem?.title = ""
     }
     
     // MARK: Actions

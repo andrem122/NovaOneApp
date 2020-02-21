@@ -18,6 +18,8 @@ class AppointmentsViewController: UIViewController {
     // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setUpTableView()
+        self.setUpView()
         self.appointmentTableView.delegate = self
         self.appointmentTableView.dataSource = self
     }
@@ -25,6 +27,15 @@ class AppointmentsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.getAppointments()
+    }
+    
+    func setUpView() {
+        self.title = "Appointments"
+    }
+    
+    func setUpTableView() {
+        // Set seperator color
+        self.appointmentTableView.separatorColor = UIColor(white: 0.95, alpha: 1)
     }
     
     // Get's appointments from the database

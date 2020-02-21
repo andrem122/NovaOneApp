@@ -60,6 +60,12 @@ import UIKit
     }
     
     @IBInspectable
+    var shadowOffsetWidth: Int = 0
+    
+    @IBInspectable
+    var shadowOffsetHeight: Int = 0
+    
+    @IBInspectable
     var shadowColor: UIColor? {
         get {
             if let color = layer.shadowColor {
@@ -74,6 +80,14 @@ import UIKit
                 layer.shadowColor = nil
             }
         }
+    }
+    
+    override func layoutSubviews() {
+        self.layer.shadowOffset = CGSize(width: self.shadowOffsetWidth, height: self.shadowOffsetHeight)
+        
+        let shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: self.cornerRadius)
+        self.layer.shadowPath = shadowPath.cgPath
+        self.layer.shadowOpacity = self.shadowOpacity
     }
 
 }
