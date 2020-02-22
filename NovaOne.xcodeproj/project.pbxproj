@@ -26,6 +26,8 @@
 		655D6B3923E7A017000461DB /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655D6B3823E7A017000461DB /* MenuViewController.swift */; };
 		655D6B3A23E7A017000461DB /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655D6B3823E7A017000461DB /* MenuViewController.swift */; };
 		655D6B3B23E7A017000461DB /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655D6B3823E7A017000461DB /* MenuViewController.swift */; };
+		657FECEF2401D11900437945 /* NovaOneTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657FECEE2401D11900437945 /* NovaOneTextField.swift */; };
+		657FECF12401D2A800437945 /* ForgotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657FECF02401D2A800437945 /* ForgotViewController.swift */; };
 		6583194B23F2206E001D378D /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6583194923F2206E001D378D /* KeychainItemAccessibility.swift */; };
 		6583194C23F2206E001D378D /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6583194A23F2206E001D378D /* KeychainWrapper.swift */; };
 		6583195223F2209C001D378D /* database.php in Resources */ = {isa = PBXBuildFile; fileRef = 6583194D23F2209C001D378D /* database.php */; };
@@ -120,6 +122,8 @@
 		65446CEB23E0F4370052DEBE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		65446CEE23E0F7DF0052DEBE /* NovaOneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovaOneButton.swift; sourceTree = "<group>"; };
 		655D6B3823E7A017000461DB /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		657FECEE2401D11900437945 /* NovaOneTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovaOneTextField.swift; sourceTree = "<group>"; };
+		657FECF02401D2A800437945 /* ForgotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotViewController.swift; sourceTree = "<group>"; };
 		6583194923F2206E001D378D /* KeychainItemAccessibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItemAccessibility.swift; sourceTree = "<group>"; };
 		6583194A23F2206E001D378D /* KeychainWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
 		6583194D23F2209C001D378D /* database.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = database.php; sourceTree = "<group>"; };
@@ -193,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				65446CEE23E0F7DF0052DEBE /* NovaOneButton.swift */,
+				657FECEE2401D11900437945 /* NovaOneTextField.swift */,
 				658EC6C723F4B1310042827E /* NovaOneView.swift */,
 			);
 			path = IBDesignables;
@@ -233,6 +238,7 @@
 				65AF664F23E881FE001B394F /* SupportViewController.swift */,
 				65AF665323E88216001B394F /* FaqViewController.swift */,
 				65AF665723E88229001B394F /* CreateAppointmentViewController.swift */,
+				657FECF02401D2A800437945 /* ForgotViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -485,6 +491,8 @@
 				65AF665823E88229001B394F /* CreateAppointmentViewController.swift in Sources */,
 				65ADE2DF23E1C814003D3215 /* FeatureView.swift in Sources */,
 				6591C39E23DA78F900535C46 /* LaunchViewController.swift in Sources */,
+				657FECEF2401D11900437945 /* NovaOneTextField.swift in Sources */,
+				657FECF12401D2A800437945 /* ForgotViewController.swift in Sources */,
 				6583194C23F2206E001D378D /* KeychainWrapper.swift in Sources */,
 				65AF665023E881FE001B394F /* SupportViewController.swift in Sources */,
 				65AF664C23E881EB001B394F /* AccountViewController.swift in Sources */,

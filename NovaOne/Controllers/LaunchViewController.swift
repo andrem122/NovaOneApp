@@ -15,6 +15,7 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var featurePageControl: UIPageControl!
     @IBOutlet weak var featureScrollView: UIScrollView!
+    @IBOutlet weak var scrollContentView: UIView!
     
     // Set Up slider content
     let featureOne: Dictionary = ["image": "novaOneLogo", "title": "Welcome To NovaOne", "subText": "Automate your lead process today"]
@@ -29,24 +30,24 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
     // MARK: Setup
     
     // Set up visual graphics
-    func setupGraphics() {
-
-    }
-    
-    // Setup scroll view attributes and size
-    func setUpScrollView() {
+    func setup() {
+        // Setup scroll view attributes and size
         self.featureArray = [self.featureOne, self.featureTwo, self.featureThree] // Set values to 'featureArray' here so we cant use the count property
         self.featureScrollView.isPagingEnabled = true
+        
         self.featureScrollViewContentSizeWidth = self.view.bounds.width * CGFloat(self.featureArray.count)
         self.featureScrollView.contentSize = CGSize(width: self.featureScrollViewContentSizeWidth, height: 318) // height of scroll view must be equal to height of feature.xib file object to prevent vertical scrolling
+        
+        // Set width of scroll content view that is inside scroll view
+        let scrollContentViewFrame: CGRect = self.scrollContentView.frame
+        self.scrollContentView.frame = CGRect(x: scrollContentViewFrame.origin.x, y: scrollContentViewFrame.origin.y, width: self.featureScrollViewContentSizeWidth, height: scrollContentViewFrame.height)
+        print("Scroll Content View: \(self.scrollContentView.frame.width)")
+        print("Scroll View Content Size Width: \(self.featureScrollView.contentSize.width)")
+        
         self.featureScrollView.showsHorizontalScrollIndicator = false
         self.featureScrollView.delegate = self
         
-    }
-    
-    // Setup feature slides in scroll view
-    func setUpFeatures() {
-        
+        // Setup feature slides in scroll view
         for (index, feature) in self.featureArray.enumerated() {
             
             if let featureView = Bundle.main.loadNibNamed("Feature", owner: self, options: nil)?.first as? FeatureView {
@@ -55,7 +56,7 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
                 featureView.featureTitle.text = feature["title"]
                 featureView.featureSubtext.text = feature["subText"]
                 
-                self.featureScrollView.addSubview(featureView)
+                self.scrollContentView.addSubview(featureView)
                 
                 // Set featureView frame
                 self.featureViewWidth = self.view.bounds.size.width
@@ -67,14 +68,11 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
             
         }
         
-    }
-    
-    // Set up page control
-    func setUpPageControl() {
+        print("Slide Width: \(self.featureViewWidth)")
         
+        // Set up page control
         self.featurePageControl.numberOfPages = self.featureArray.count
         self.featurePageControl.currentPage = 0
-        
     }
     
     
@@ -87,7 +85,7 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
     @objc func changeSlides() {
         
         // Scroll the scroll view by one slide each time
-        print("Feature View Index: \(self.featureViewIndex)")
+        //print("Feature View Index: \(self.featureViewIndex)")
         
         if self.featureViewIndex < self.featureArray.count - 1 {
            
@@ -105,16 +103,11 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
         
     }
 
-    
-    // MARK: View Did Load
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Run set up functions after view loads
-        self.setupGraphics()
-        self.setUpScrollView()
-        self.setUpFeatures()
-        self.setUpPageControl()
+        self.setup()
         
     }
     
@@ -130,12 +123,24 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        
+        // Rotate the orientation of the screen to potrait and lock it
+        AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
+        
         // Set up timer again every time the view will appear
         // For example, if we navigate to the login view
         // and navigate back to the launch view, we want
         // to start the timer again to start the slider
         self.setUpTimer()
         
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // Reset lock orientation to all so that if naviagting to another view,
+        // you can rotate the orientation again
+        AppUtility.lockOrientation(.all)
     }
     
 

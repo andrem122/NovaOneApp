@@ -18,8 +18,7 @@ class AppointmentsViewController: UIViewController {
     // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setUpTableView()
-        self.setUpView()
+        self.setUp()
         self.appointmentTableView.delegate = self
         self.appointmentTableView.dataSource = self
     }
@@ -29,13 +28,11 @@ class AppointmentsViewController: UIViewController {
         self.getAppointments()
     }
     
-    func setUpView() {
-        self.title = "Appointments"
-    }
-    
-    func setUpTableView() {
-        // Set seperator color
+    func setUp() {
+        
+        // Set seperator color for table view
         self.appointmentTableView.separatorColor = UIColor(white: 0.95, alpha: 1)
+        
     }
     
     // Get's appointments from the database
@@ -60,7 +57,7 @@ class AppointmentsViewController: UIViewController {
                                 switch result {
                                     case .success(let appointments):
                                         self.appointments = appointments
-                                        self.appointmentTableView.reloadData()
+                                        self.appointmentTableView.reloadData() // Reload table to show data pulled from the database
                                     case .failure(let error):
                                         print(error.localizedDescription)
                                 }

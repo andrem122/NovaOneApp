@@ -14,7 +14,7 @@ class AppointmentTableViewCell: UITableViewCell {
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var appointmentTimeLabel: UILabel!
-    
+    @IBOutlet weak var rightBorderView: UIView!
     
     // Set up the properties above for each cell by passing in an appointment object from
     // cellForRowAt IndexPath function
@@ -37,6 +37,7 @@ class AppointmentTableViewCell: UITableViewCell {
         self.nameLabel.text = name
         self.appointmentTimeLabel.text = timeString
         self.contentView.backgroundColor = UIColor(white: 0.95, alpha: 1)
+        self.rightBorderView.addBorders(edges: [.right], color: UIColor(white: 0.95, alpha: 1), width: 2)
         
     }
 
