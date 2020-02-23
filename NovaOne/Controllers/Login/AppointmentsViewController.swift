@@ -40,9 +40,8 @@ class AppointmentsViewController: UIViewController {
         
         let httpRequest = HTTPRequests()
         guard
-            let customer = self.customer,
-            let customerUserId = customer.id,
-            let email = customer.email,
+            let customerUserId = self.customer?.id,
+            let email = self.customer?.email,
             let password = KeychainWrapper.standard.string(forKey: "password")
         else { return }
         
@@ -51,7 +50,7 @@ class AppointmentsViewController: UIViewController {
                                          "password": password as Any]
         
         httpRequest.request(endpoint: "/appointments.php",
-                            dataModel: [Appointment()],
+                            dataModel: [Appointment(id: 1)], // Must have one non optional value in our object otherwise JSONDecoder will be able to decode the ANY json response into an appointment object because all fields are optional
                             parameters: parameters) { (result) in
                                 
                                 switch result {

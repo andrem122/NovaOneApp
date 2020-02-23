@@ -15,7 +15,6 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var featurePageControl: UIPageControl!
     @IBOutlet weak var featureScrollView: UIScrollView!
-    @IBOutlet weak var scrollContentView: UIView!
     
     // Set Up slider content
     let featureOne: Dictionary = ["image": "novaOneLogo", "title": "Welcome To NovaOne", "subText": "Automate your lead process today"]
@@ -36,13 +35,8 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
         self.featureScrollView.isPagingEnabled = true
         
         self.featureScrollViewContentSizeWidth = self.view.bounds.width * CGFloat(self.featureArray.count)
-        self.featureScrollView.contentSize = CGSize(width: self.featureScrollViewContentSizeWidth, height: 318) // height of scroll view must be equal to height of feature.xib file object to prevent vertical scrolling
-        
-        // Set width of scroll content view that is inside scroll view
-        let scrollContentViewFrame: CGRect = self.scrollContentView.frame
-        self.scrollContentView.frame = CGRect(x: scrollContentViewFrame.origin.x, y: scrollContentViewFrame.origin.y, width: self.featureScrollViewContentSizeWidth, height: scrollContentViewFrame.height)
-        print("Scroll Content View: \(self.scrollContentView.frame.width)")
-        print("Scroll View Content Size Width: \(self.featureScrollView.contentSize.width)")
+        self.featureScrollView.contentSize = CGSize(width: self.featureScrollViewContentSizeWidth, height: 335) // height of scroll view must be equal to height of feature.xib file object to prevent vertical scrolling
+        print("Scroll View Content Size Height: \(self.featureScrollView.contentSize.height)")
         
         self.featureScrollView.showsHorizontalScrollIndicator = false
         self.featureScrollView.delegate = self
@@ -56,19 +50,18 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
                 featureView.featureTitle.text = feature["title"]
                 featureView.featureSubtext.text = feature["subText"]
                 
-                self.scrollContentView.addSubview(featureView)
+                self.featureScrollView.addSubview(featureView)
                 
                 // Set featureView frame
                 self.featureViewWidth = self.view.bounds.size.width
                 featureView.frame.size.width = self.featureViewWidth
                 featureView.frame.origin.x = CGFloat(index) * self.featureViewWidth // Set x position in the scroll view for each feature view in feature array
-                featureView.frame.origin.y = CGFloat(150)
+                featureView.frame.origin.y = self.view.bounds.origin.y + CGFloat(50)
+                print("Feature View Height: \(featureView.frame.height)")
                 
             }
             
         }
-        
-        print("Slide Width: \(self.featureViewWidth)")
         
         // Set up page control
         self.featurePageControl.numberOfPages = self.featureArray.count

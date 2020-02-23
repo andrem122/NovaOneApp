@@ -155,7 +155,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         let httpRequest = HTTPRequests()
         let parameters: [String: Any] = ["email": username, "password": password]
-        httpRequest.request(endpoint: "/login.php", dataModel: CustomerModel(), parameters: parameters) { [weak self] (result) in
+        httpRequest.request(endpoint: "/login.php", dataModel: CustomerModel(id: 1), parameters: parameters) { [weak self] (result) in
             
             // Use a switch statement to go through the cases of the Result eumeration
             // and to access the associated values for each enumeration case

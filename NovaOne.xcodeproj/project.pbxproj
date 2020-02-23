@@ -228,16 +228,10 @@
 		658B906523E798FB00015C4F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				65A5E6062402F44800D4ED84 /* Login */,
+				65A5E6052402F43C00D4ED84 /* Sign Up */,
 				6591C39D23DA78F900535C46 /* LaunchViewController.swift */,
 				65446CEB23E0F4370052DEBE /* LoginViewController.swift */,
-				650250C223E4A78E00B427D0 /* HomeViewController.swift */,
-				655D6B3823E7A017000461DB /* MenuViewController.swift */,
-				65AF664323E87F2C001B394F /* AppointmentsViewController.swift */,
-				65AF664723E881D9001B394F /* LeadsViewController.swift */,
-				65AF664B23E881EB001B394F /* AccountViewController.swift */,
-				65AF664F23E881FE001B394F /* SupportViewController.swift */,
-				65AF665323E88216001B394F /* FaqViewController.swift */,
-				65AF665723E88229001B394F /* CreateAppointmentViewController.swift */,
 				657FECF02401D2A800437945 /* ForgotViewController.swift */,
 			);
 			path = Controllers;
@@ -318,6 +312,28 @@
 				6591C3BD23DA78FB00535C46 /* Info.plist */,
 			);
 			path = NovaOneUITests;
+			sourceTree = "<group>";
+		};
+		65A5E6052402F43C00D4ED84 /* Sign Up */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Sign Up";
+			sourceTree = "<group>";
+		};
+		65A5E6062402F44800D4ED84 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				650250C223E4A78E00B427D0 /* HomeViewController.swift */,
+				65AF664723E881D9001B394F /* LeadsViewController.swift */,
+				65AF664323E87F2C001B394F /* AppointmentsViewController.swift */,
+				65AF664B23E881EB001B394F /* AccountViewController.swift */,
+				65AF664F23E881FE001B394F /* SupportViewController.swift */,
+				65AF665323E88216001B394F /* FaqViewController.swift */,
+				65AF665723E88229001B394F /* CreateAppointmentViewController.swift */,
+				655D6B3823E7A017000461DB /* MenuViewController.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		65AB289C23F21CC800075889 /* Frameworks */ = {

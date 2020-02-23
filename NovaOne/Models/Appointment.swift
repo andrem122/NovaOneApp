@@ -11,7 +11,7 @@ import UIKit
 struct Appointment: Decodable {
 
     // MARK: Properties
-    var id: Int?
+    var id: Int
     var name: String?
     var phoneNumber: String?
     var time: String?
@@ -85,8 +85,8 @@ struct Appointment: Decodable {
     var description: String {
         
         get {
+            let id = self.id
             guard
-                let id = self.id,
                 let name = self.name,
                 let phoneNumber = self.phoneNumber,
                 let address = self.address
