@@ -12,6 +12,7 @@ class HomeViewController: UIViewController {
 
     // MARK: Properties
     var customer: CustomerModel?
+    @IBOutlet weak var graphView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,9 @@ class HomeViewController: UIViewController {
         self.navigationController?.navigationBar.backIndicatorImage = backButtonImage
         self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = backButtonImage
         self.navigationController?.navigationBar.backItem?.title = ""
+        
+        // Set border for graph view
+        self.graphView.addBorders(edges: [.top], color: UIColor(white: 0.95, alpha: 1), width: 2)
     }
     
     // MARK: Actions
