@@ -169,12 +169,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     KeychainWrapper.standard.set(password, forKey: "password")
                     
                     // Go to the home view controller
-                    if let homeViewController = self?.storyboard?.instantiateViewController(identifier: "homeViewController") as? HomeViewController  {
+                    if let tabBarViewController = self?.storyboard?.instantiateViewController(identifier: "tabBarViewController") as? NovaOneTabBar  {
                         
-                        let menuNavigationController = UINavigationController(rootViewController: homeViewController)
-                        homeViewController.customer = customer
-                        menuNavigationController.modalPresentationStyle = .fullScreen // Set presentaion style of view to full screen
-                        self?.present(menuNavigationController, animated: true, completion: nil)
+                        //homeViewController.customer = customer
+                        tabBarViewController.modalPresentationStyle = .fullScreen // Set presentaion style of view to full screen
+                        self?.present(tabBarViewController, animated: true, completion: nil)
                         
                     }
                 

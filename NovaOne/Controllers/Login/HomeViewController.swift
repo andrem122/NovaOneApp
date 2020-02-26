@@ -11,7 +11,6 @@ import UIKit
 class HomeViewController: UIViewController {
 
     // MARK: Properties
-    @IBOutlet weak var greetingLabel: UILabel!
     var customer: CustomerModel?
     
     override func viewDidLoad() {
@@ -23,10 +22,9 @@ class HomeViewController: UIViewController {
     func setUp() {
         
         // Set greeting label text
-        if let firstName = customer?.firstName {
-            let greetingString = "Hello \(firstName)!"
-            self.greetingLabel.text = greetingString
-        }
+//        if let firstName = customer?.firstName {
+//            let greetingString = "Hello \(firstName)!"
+//        }
         
         // Set up navigation bar styles
         let backButtonImage: UIImage = UIImage(named: "left-arrow")!

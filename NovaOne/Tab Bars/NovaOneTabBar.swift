@@ -1,29 +1,20 @@
 //
-//  MenuViewController.swift
+//  NovaOneTabBar.swift
 //  NovaOne
 //
-//  Created by Andre Mashraghi on 2/2/20.
+//  Created by Andre Mashraghi on 2/25/20.
 //  Copyright © 2020 Andre Mashraghi. All rights reserved.
 //
 
 import UIKit
 
-class MenuViewController: UITableViewController {
-    
-    // MARK: Properties
-    var customer: CustomerModel?
-    @IBOutlet weak var menuTableView: UITableView!
-    
-    
+class NovaOneTabBar: UITabBarController {
+
     override func viewDidLoad() {
-        self.menuTableView.delegate = self
-        self.menuTableView.dataSource = self
         super.viewDidLoad()
-        
+
         // Do any additional setup after loading the view.
     }
-    
-    // MARK: Methods
     
 
     /*
