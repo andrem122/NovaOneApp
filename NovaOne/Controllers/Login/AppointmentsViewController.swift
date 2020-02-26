@@ -17,6 +17,7 @@ class AppointmentsViewController: UIViewController {
     
     // MARK: Methods
     override func viewDidLoad() {
+        print("Appointment view loaded")
         super.viewDidLoad()
         self.setUp()
         self.appointmentTableView.delegate = self
@@ -24,6 +25,7 @@ class AppointmentsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        print("Appointment view will appear soon")
         super.viewWillAppear(animated)
         self.getAppointments()
     }

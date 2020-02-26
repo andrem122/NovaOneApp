@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NovaOneTabBar: UITabBarController {
+class NovaOneTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
