@@ -168,10 +168,22 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     KeychainWrapper.standard.set(username, forKey: "username")
                     KeychainWrapper.standard.set(password, forKey: "password")
                     
-                    // Go to the home view controller
+                    // Go to tab bar view controller
                     if let tabBarViewController = self?.storyboard?.instantiateViewController(identifier: "tabBarViewController") as? NovaOneTabBarController  {
                         
-                        //homeViewController.customer = customer
+                        // Pass customer object to each view controller contained in the tab bar controller
+                        guard
+                            let homeViewController = tabBarViewController.viewControllers?[0] as? HomeViewController,
+                            let appointmentsViewController = tabBarViewController.viewControllers?[1] as? AppointmentsViewController,
+                            let leadsViewController = tabBarViewController.viewControllers?[2] as? LeadsViewController,
+                            let settingsViewController = tabBarViewController.viewControllers?[3] as? SettingsViewController
+                        else { return }
+                        
+                        homeViewController.customer = customer
+                        appointmentsViewController.customer = customer
+                        leadsViewController.customer = customer
+                        settingsViewController.customer = customer
+                        
                         tabBarViewController.modalPresentationStyle = .fullScreen // Set presentaion style of view to full screen
                         self?.present(tabBarViewController, animated: true, completion: nil)
                         

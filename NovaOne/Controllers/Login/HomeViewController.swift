@@ -13,6 +13,7 @@ class HomeViewController: UIViewController {
     // MARK: Properties
     var customer: CustomerModel?
     @IBOutlet weak var graphView: UIView!
+    @IBOutlet weak var greetingLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,10 +23,17 @@ class HomeViewController: UIViewController {
     // MARK: Set Up
     func setUp() {
         
+        // Get current day of the week
+        let currentDate = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE"
+        let weekDay = dateFormatter.string(from: currentDate)
+        
         // Set greeting label text
-//        if let firstName = customer?.firstName {
-//            let greetingString = "Hello \(firstName)!"
-//        }
+        if let firstName = customer?.firstName {
+            let greetingString = "Hello \(firstName), it's \(weekDay),\nand you have 4 calls."
+            self.greetingLabel.text = greetingString
+        }
         
         // Set up navigation bar styles
         let backButtonImage: UIImage = UIImage(named: "left-arrow")!
@@ -33,23 +41,9 @@ class HomeViewController: UIViewController {
         self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = backButtonImage
         self.navigationController?.navigationBar.backItem?.title = ""
         
-        // Set border for graph view
-        self.graphView.addBorders(edges: [.top], color: UIColor(white: 0.95, alpha: 1), width: 2)
-    }
-    
-    // MARK: Actions
-    
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let viewController: UIViewController = segue.destination
+        // Set label greeting label text
         
-        if let appointmentsViewController = viewController as? AppointmentsViewController {
-            appointmentsViewController.customer = self.customer
-        }
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        
     }
 
 }

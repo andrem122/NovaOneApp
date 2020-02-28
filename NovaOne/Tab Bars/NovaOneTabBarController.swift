@@ -9,6 +9,8 @@
 import UIKit
 
 class NovaOneTabBarController: UITabBarController {
+    
+    var customer: CustomerModel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,15 +18,16 @@ class NovaOneTabBarController: UITabBarController {
         // Do any additional setup after loading the view.
     }
     
-
     /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+        
+        if let homeViewController = segue.destination as? HomeViewController {
+            homeViewController.customer = self.customer
+        }
+        
+    }*/
 
 }

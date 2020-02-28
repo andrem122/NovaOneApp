@@ -9,11 +9,22 @@
 import UIKit
 
 class LeadsViewController: UIViewController {
+    
+    // MARK: Properties
+    var customer: CustomerModel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    // MARK: Actions
+    
+    @IBAction func callButtonTapped(_ sender: Any) {
+        if let url = URL(string: "tel://7722423154") {
+            UIApplication.shared.open(url)
+        }
     }
     
 

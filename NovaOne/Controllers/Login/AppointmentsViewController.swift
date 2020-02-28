@@ -17,16 +17,10 @@ class AppointmentsViewController: UIViewController {
     
     // MARK: Methods
     override func viewDidLoad() {
-        print("Appointment view loaded")
         super.viewDidLoad()
         self.setUp()
         self.appointmentTableView.delegate = self
         self.appointmentTableView.dataSource = self
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        print("Appointment view will appear soon")
-        super.viewWillAppear(animated)
         self.getAppointments()
     }
     
@@ -45,7 +39,10 @@ class AppointmentsViewController: UIViewController {
             let customerUserId = self.customer?.id,
             let email = self.customer?.email,
             let password = KeychainWrapper.standard.string(forKey: "password")
-        else { return }
+        else {
+            print("Failed to obtain variables for POST request")
+            return
+        }
         
         let parameters: [String: Any] = ["customerUserId": customerUserId as Any,
                                          "email": email as Any,
@@ -56,11 +53,13 @@ class AppointmentsViewController: UIViewController {
                             parameters: parameters) { (result) in
                                 
                                 switch result {
+                                    
                                     case .success(let appointments):
                                         self.appointments = appointments
                                         self.appointmentTableView.reloadData() // Reload table to show data pulled from the database
                                     case .failure(let error):
                                         print(error.localizedDescription)
+                                    
                                 }
                                 
         }

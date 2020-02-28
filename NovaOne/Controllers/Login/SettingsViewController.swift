@@ -8,8 +8,11 @@
 
 import UIKit
 
-class AccountViewController: UIViewController {
+class SettingsViewController: UIViewController {
 
+    // MARK: Properties
+    var customer: CustomerModel?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
