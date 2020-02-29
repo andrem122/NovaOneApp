@@ -176,7 +176,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             let homeViewController = tabBarViewController.viewControllers?[0] as? HomeViewController,
                             let appointmentsViewController = tabBarViewController.viewControllers?[1] as? AppointmentsViewController,
                             let leadsViewController = tabBarViewController.viewControllers?[2] as? LeadsViewController,
-                            let settingsViewController = tabBarViewController.viewControllers?[3] as? SettingsViewController
+                            let settingsViewController = tabBarViewController.viewControllers?[3] as? AccountViewController
                         else { return }
                         
                         homeViewController.customer = customer

@@ -49,8 +49,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
           WHERE a.email = :email";
           
           
-          $db_object = new Database();
-          $db = $db_object->connect();
+          $db_object = new Database('pgsql');
+          $db = $db_object->connect('pgsql');
           $stmt = $db->prepare($query);
 	      $stmt->bindParam(':email', $email);
 	      

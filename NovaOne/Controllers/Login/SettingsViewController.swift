@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController {
+class AccountViewController: UIViewController {
 
     // MARK: Properties
     var customer: CustomerModel?

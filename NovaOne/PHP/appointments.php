@@ -55,7 +55,7 @@ if ($user_is_verified) {
             
             // No result from database
             http_response_code(400);
-            $response_array = array('error' => 2, 'reason' => 'No appointments found.');
+            $response_array = array('error' => 2, 'reason' => 'No rows matching the query were found.');
             echo json_encode($response_array);
             exit();
             

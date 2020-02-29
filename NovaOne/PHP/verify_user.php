@@ -27,8 +27,8 @@ require 'django_password.php';
               //check if user exists in database
               $query = 'SELECT * FROM auth_user WHERE email = :email';
               
-              $db_object = new Database();
-              $db = $db_object->connect();
+              $db_object = new Database('pgsql');
+              $db = $db_object->connect('pgsql');
               $stmt = $db->prepare($query);
               $stmt->bindParam(':email', $email);
               
