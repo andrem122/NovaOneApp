@@ -175,14 +175,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         guard
                             let homeViewController = tabBarViewController.viewControllers?[0] as? HomeViewController,
                             let appointmentsViewController = tabBarViewController.viewControllers?[1] as? AppointmentsViewController,
-                            let leadsViewController = tabBarViewController.viewControllers?[2] as? LeadsViewController,
-                            let settingsViewController = tabBarViewController.viewControllers?[3] as? AccountViewController
+                            let leadsViewController = tabBarViewController.viewControllers?[2] as? LeadsViewController
                         else { return }
                         
                         homeViewController.customer = customer
                         appointmentsViewController.customer = customer
                         leadsViewController.customer = customer
-                        settingsViewController.customer = customer
                         
                         tabBarViewController.modalPresentationStyle = .fullScreen // Set presentaion style of view to full screen
                         self?.present(tabBarViewController, animated: true, completion: nil)
