@@ -8,12 +8,22 @@
 
 import UIKit
 
-class SignUpNameViewController: UIViewController {
-
+class SignUpNameViewController: UIViewController, UITextFieldDelegate {
+    
+    // MARK: Properties
+    
+    @IBOutlet weak var firstNameTextField: NovaOneTextField!
+    @IBOutlet weak var lastNameTextField: NovaOneTextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.setup()
+    }
+    
+    func setup() {
+        self.firstNameTextField.delegate = self
+        self.lastNameTextField.delegate = self
+        self.firstNameTextField.becomeFirstResponder()
     }
     
 
@@ -27,4 +37,15 @@ class SignUpNameViewController: UIViewController {
         
     }
 
+}
+
+extension SignUpNameViewController {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == firstNameTextField {
+            self.lastNameTextField.becomeFirstResponder()
+        }
+        
+        return true
+    }
 }

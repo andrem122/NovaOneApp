@@ -9,10 +9,17 @@
 import UIKit
 
 class SignUpPasswordViewController: UIViewController {
-
+    
+    // MARK: Properties
+    @IBOutlet weak var passwordTextField: NovaOneTextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        self.setup()
+    }
+    
+    func setup() {
+        self.passwordTextField.becomeFirstResponder()
     }
     
     // MARK: Navigation

@@ -11,11 +11,16 @@ import UIKit
 class SignUpEmailViewController: UIViewController {
     
     // MARK: Properties
+    @IBOutlet weak var emailAddressTextField: NovaOneTextField!
     
-
+    // MARK: Methods
+    func setup() {
+        self.emailAddressTextField.becomeFirstResponder()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        self.setup()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
