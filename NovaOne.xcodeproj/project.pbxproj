@@ -31,6 +31,9 @@
 		657EAE702409AF080074D44A /* NovaOneTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657EAE6F2409AF080074D44A /* NovaOneTableViewCell.swift */; };
 		657FECEF2401D11900437945 /* NovaOneTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657FECEE2401D11900437945 /* NovaOneTextField.swift */; };
 		657FECF12401D2A800437945 /* ForgotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657FECF02401D2A800437945 /* ForgotViewController.swift */; };
+		6580258E240F2F8A00A74DCD /* SignUpPropertyNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6580258D240F2F8A00A74DCD /* SignUpPropertyNameViewController.swift */; };
+		65802590240F4A7600A74DCD /* SignUpPropertyPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6580258F240F4A7600A74DCD /* SignUpPropertyPhoneViewController.swift */; };
+		65802592240F4A8B00A74DCD /* SignUpPropertyEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65802591240F4A8B00A74DCD /* SignUpPropertyEmailViewController.swift */; };
 		6583194B23F2206E001D378D /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6583194923F2206E001D378D /* KeychainItemAccessibility.swift */; };
 		6583194C23F2206E001D378D /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6583194A23F2206E001D378D /* KeychainWrapper.swift */; };
 		6583195223F2209C001D378D /* database.php in Resources */ = {isa = PBXBuildFile; fileRef = 6583194D23F2209C001D378D /* database.php */; };
@@ -40,9 +43,7 @@
 		6583195623F2209C001D378D /* django_password.php in Resources */ = {isa = PBXBuildFile; fileRef = 6583195123F2209C001D378D /* django_password.php */; };
 		6584FAC324089BA900A06125 /* Lead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6584FAC224089BA900A06125 /* Lead.swift */; };
 		658AF5FC240DA66800577446 /* SignUpAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658AF5FB240DA66800577446 /* SignUpAddressViewController.swift */; };
-		658AF5FE240DAC7000577446 /* AddAddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658AF5FD240DAC7000577446 /* AddAddressTableViewCell.swift */; };
 		658C079623F0F21C00DFD471 /* (null) in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		658EC6C323F484D30042827E /* AppointmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658EC6C223F484D30042827E /* AppointmentTableViewCell.swift */; };
 		658EC6C623F4870D0042827E /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658EC6C523F4870D0042827E /* Appointment.swift */; };
 		658EC6C823F4B1310042827E /* NovaOneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658EC6C723F4B1310042827E /* NovaOneView.swift */; };
 		658EC6CA23F4CD120042827E /* UIViewBorders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658EC6C923F4CD120042827E /* UIViewBorders.swift */; };
@@ -66,6 +67,7 @@
 		659D487923F375F0007AC005 /* appointments.php in Resources */ = {isa = PBXBuildFile; fileRef = 659D487723F375F0007AC005 /* appointments.php */; };
 		659D487B23F37772007AC005 /* verify_user.php in Resources */ = {isa = PBXBuildFile; fileRef = 659D487A23F37771007AC005 /* verify_user.php */; };
 		659D487E23F38C01007AC005 /* NovaOne.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 659D487C23F38C01007AC005 /* NovaOne.xcdatamodeld */; };
+		65A18DCE2410454A00F16565 /* NovaOneTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A18DCD2410454A00F16565 /* NovaOneTextView.swift */; };
 		65A1FC4D23E48A6800D5CBCF /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A1FC4C23E48A6800D5CBCF /* Defaults.swift */; };
 		65ADE2DF23E1C814003D3215 /* FeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ADE2DE23E1C814003D3215 /* FeatureView.swift */; };
 		65ADE2E123E1C84E003D3215 /* Feature.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65ADE2E023E1C84E003D3215 /* Feature.xib */; };
@@ -140,6 +142,9 @@
 		657EAE6F2409AF080074D44A /* NovaOneTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovaOneTableViewCell.swift; sourceTree = "<group>"; };
 		657FECEE2401D11900437945 /* NovaOneTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovaOneTextField.swift; sourceTree = "<group>"; };
 		657FECF02401D2A800437945 /* ForgotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotViewController.swift; sourceTree = "<group>"; };
+		6580258D240F2F8A00A74DCD /* SignUpPropertyNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPropertyNameViewController.swift; sourceTree = "<group>"; };
+		6580258F240F4A7600A74DCD /* SignUpPropertyPhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPropertyPhoneViewController.swift; sourceTree = "<group>"; };
+		65802591240F4A8B00A74DCD /* SignUpPropertyEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPropertyEmailViewController.swift; sourceTree = "<group>"; };
 		6583194923F2206E001D378D /* KeychainItemAccessibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItemAccessibility.swift; sourceTree = "<group>"; };
 		6583194A23F2206E001D378D /* KeychainWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
 		6583194D23F2209C001D378D /* database.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = database.php; sourceTree = "<group>"; };
@@ -149,8 +154,6 @@
 		6583195123F2209C001D378D /* django_password.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = django_password.php; sourceTree = "<group>"; };
 		6584FAC224089BA900A06125 /* Lead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lead.swift; sourceTree = "<group>"; };
 		658AF5FB240DA66800577446 /* SignUpAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpAddressViewController.swift; sourceTree = "<group>"; };
-		658AF5FD240DAC7000577446 /* AddAddressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressTableViewCell.swift; sourceTree = "<group>"; };
-		658EC6C223F484D30042827E /* AppointmentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentTableViewCell.swift; sourceTree = "<group>"; };
 		658EC6C523F4870D0042827E /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
 		658EC6C723F4B1310042827E /* NovaOneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovaOneView.swift; sourceTree = "<group>"; };
 		658EC6C923F4CD120042827E /* UIViewBorders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewBorders.swift; sourceTree = "<group>"; };
@@ -178,6 +181,7 @@
 		659D487723F375F0007AC005 /* appointments.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = appointments.php; sourceTree = "<group>"; };
 		659D487A23F37771007AC005 /* verify_user.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = verify_user.php; sourceTree = "<group>"; };
 		659D487D23F38C01007AC005 /* NovaOne.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NovaOne.xcdatamodel; sourceTree = "<group>"; };
+		65A18DCD2410454A00F16565 /* NovaOneTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovaOneTextView.swift; sourceTree = "<group>"; };
 		65A1FC4C23E48A6800D5CBCF /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Defaults.swift; path = ../Defaults.swift; sourceTree = "<group>"; };
 		65ADE2DE23E1C814003D3215 /* FeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureView.swift; sourceTree = "<group>"; };
 		65ADE2E023E1C84E003D3215 /* Feature.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Feature.xib; sourceTree = "<group>"; };
@@ -223,6 +227,7 @@
 				65446CEE23E0F7DF0052DEBE /* NovaOneButton.swift */,
 				657FECEE2401D11900437945 /* NovaOneTextField.swift */,
 				658EC6C723F4B1310042827E /* NovaOneView.swift */,
+				65A18DCD2410454A00F16565 /* NovaOneTextView.swift */,
 			);
 			path = IBDesignables;
 			sourceTree = "<group>";
@@ -283,9 +288,7 @@
 		658EC6C423F484F50042827E /* Table View Cells */ = {
 			isa = PBXGroup;
 			children = (
-				658EC6C223F484D30042827E /* AppointmentTableViewCell.swift */,
 				657EAE6F2409AF080074D44A /* NovaOneTableViewCell.swift */,
-				658AF5FD240DAC7000577446 /* AddAddressTableViewCell.swift */,
 			);
 			path = "Table View Cells";
 			sourceTree = "<group>";
@@ -375,6 +378,9 @@
 				6592E3D224042AA9009E4D8D /* SignUpPhoneViewController.swift */,
 				6592E3D0240429CA009E4D8D /* SignUpNameViewController.swift */,
 				658AF5FB240DA66800577446 /* SignUpAddressViewController.swift */,
+				6580258D240F2F8A00A74DCD /* SignUpPropertyNameViewController.swift */,
+				6580258F240F4A7600A74DCD /* SignUpPropertyPhoneViewController.swift */,
+				65802591240F4A8B00A74DCD /* SignUpPropertyEmailViewController.swift */,
 			);
 			path = "Sign Up";
 			sourceTree = "<group>";
@@ -568,6 +574,7 @@
 				658AF5FC240DA66800577446 /* SignUpAddressViewController.swift in Sources */,
 				658EC6C623F4870D0042827E /* Appointment.swift in Sources */,
 				655D0B27240B443700D0E329 /* UpdatePasswordViewController.swift in Sources */,
+				65802592240F4A8B00A74DCD /* SignUpPropertyEmailViewController.swift in Sources */,
 				65AF665823E88229001B394F /* CreateAppointmentViewController.swift in Sources */,
 				65ADE2DF23E1C814003D3215 /* FeatureView.swift in Sources */,
 				6591C39E23DA78F900535C46 /* LaunchViewController.swift in Sources */,
@@ -578,14 +585,13 @@
 				65AF665023E881FE001B394F /* SupportViewController.swift in Sources */,
 				65AF664C23E881EB001B394F /* SettingsViewController.swift in Sources */,
 				6583194B23F2206E001D378D /* KeychainItemAccessibility.swift in Sources */,
+				65802590240F4A7600A74DCD /* SignUpPropertyPhoneViewController.swift in Sources */,
 				65AF664423E87F2C001B394F /* AppointmentsViewController.swift in Sources */,
 				659CCD3623EE46260066C9CB /* ErrorResponse.swift in Sources */,
 				65AF665423E88216001B394F /* FaqViewController.swift in Sources */,
 				658EC6C823F4B1310042827E /* NovaOneView.swift in Sources */,
 				6591C39A23DA78F900535C46 /* AppDelegate.swift in Sources */,
 				6592E3D1240429CA009E4D8D /* SignUpNameViewController.swift in Sources */,
-				658AF5FE240DAC7000577446 /* AddAddressTableViewCell.swift in Sources */,
-				658EC6C323F484D30042827E /* AppointmentTableViewCell.swift in Sources */,
 				655D0B21240B43D200D0E329 /* UpdateAddressViewController.swift in Sources */,
 				655D0B25240B440200D0E329 /* UpdateEmailViewController.swift in Sources */,
 				65446CEF23E0F7DF0052DEBE /* NovaOneButton.swift in Sources */,
@@ -600,7 +606,9 @@
 				65ADE2F623E3AF27003D3215 /* HTTPRequests.swift in Sources */,
 				65A1FC4D23E48A6800D5CBCF /* Defaults.swift in Sources */,
 				6528135623E79C15005A1B1F /* Customer.swift in Sources */,
+				65A18DCE2410454A00F16565 /* NovaOneTextView.swift in Sources */,
 				6592E3D62405D8BA009E4D8D /* NovaOneTabBarController.swift in Sources */,
+				6580258E240F2F8A00A74DCD /* SignUpPropertyNameViewController.swift in Sources */,
 				658EC6CA23F4CD120042827E /* UIViewBorders.swift in Sources */,
 				650250C123E4991700B427D0 /* Alert.swift in Sources */,
 				6584FAC324089BA900A06125 /* Lead.swift in Sources */,

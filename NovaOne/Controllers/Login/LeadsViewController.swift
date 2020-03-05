@@ -115,7 +115,7 @@ extension LeadsViewController: UITableViewDataSource, UITableViewDelegate {
         let dateContacted: String = dateFormatter.string(from: dateOfInquiryDate)
         
         
-        cell.setUpCell(title: leadName, subTitleOne: address, subTitleTwo: leadBrand, subTitleThree: dateContacted)
+        cell.setup(title: leadName, subTitleOne: address, subTitleTwo: leadBrand, subTitleThree: dateContacted)
         
         return cell
     }

@@ -9,22 +9,20 @@
 import UIKit
 
 class SupportViewController: UIViewController {
-
+    
+    // MARK: Properties
+    @IBOutlet weak var supportTextView: NovaOneTextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.setup()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func setup() {
+        self.supportTextView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 0)
     }
-    */
-
+    
+    // MARK: Actions
+    @IBAction func submitButtonTapped(_ sender: Any) {
+    }
 }

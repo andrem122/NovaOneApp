@@ -14,13 +14,8 @@ class SignUpEmailViewController: UIViewController {
     @IBOutlet weak var emailAddressTextField: NovaOneTextField!
     
     // MARK: Methods
-    func setup() {
-        self.emailAddressTextField.becomeFirstResponder()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setup()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -36,6 +31,9 @@ class SignUpEmailViewController: UIViewController {
         
         // Hide navigation bar for this view
         self.navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        // Make text field become first responder
+        self.emailAddressTextField.becomeFirstResponder()
     }
     
      // MARK: Navigation

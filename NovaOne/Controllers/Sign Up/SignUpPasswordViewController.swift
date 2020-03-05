@@ -22,6 +22,13 @@ class SignUpPasswordViewController: UIViewController {
         self.passwordTextField.becomeFirstResponder()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Make text field become first responder
+        self.passwordTextField.becomeFirstResponder()
+    }
+    
     // MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         

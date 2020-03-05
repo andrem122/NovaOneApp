@@ -9,11 +9,20 @@
 import UIKit
 
 class SignUpPhoneViewController: UIViewController {
-
+    
+    // MARK: Properties
+    @IBOutlet weak var phoneTextField: NovaOneTextField!
+    
+    // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Make text field become first responder
+        self.phoneTextField.becomeFirstResponder()
     }
     
 

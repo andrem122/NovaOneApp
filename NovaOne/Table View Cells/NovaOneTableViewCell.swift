@@ -22,7 +22,7 @@ class NovaOneTableViewCell: UITableViewCell, MFMailComposeViewControllerDelegate
     
     // Set up the properties above for each cell by passing in an appointment object from
     // cellForRowAt IndexPath function
-    func setUpCell(title: String,
+    func setup(title: String,
                    subTitleOne: String,
                    subTitleTwo: String,
                    subTitleThree: String) {

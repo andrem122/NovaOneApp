@@ -68,9 +68,6 @@ class AppointmentsViewController: UIViewController {
     
     // MARK: Actions
     
-    @IBAction func plusButtonTouched(_ sender: Any) {
-    }
-    
 
     /*
     // MARK: - Navigation
@@ -98,10 +95,23 @@ extension AppointmentsViewController: UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let appointment: Appointment = self.appointments[indexPath.row] // Get the appointment object based on the row number each cell is in
-        let cell = tableView.dequeueReusableCell(withIdentifier: "appointmentTableCell") as! AppointmentTableViewCell // Get cell with identifier so we can use the custom cell we made
+        let cellIdentifier: String = "novaOneTableCell"
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! NovaOneTableViewCell // Get cell with identifier so we can use the custom cell we made
         
         // Pass in appointment object to set up cell properties (address, name, etc.)
-        cell.setUpAppointment(appointment: appointment)
+        guard
+            let name = appointment.name,
+            let unitType = appointment.unitType
+        else { return cell }
+        let address = appointment.shortenedAddress
+        
+        // Get date of appointment as a string
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM d, yyyy | h:mm a"
+        let appointmentTimeDate: Date = appointment.timeDate
+        let appointmentTime: String = dateFormatter.string(from: appointmentTimeDate)
+        
+        cell.setup(title: name, subTitleOne: address, subTitleTwo: unitType, subTitleThree: appointmentTime)
         
         return cell
     }
