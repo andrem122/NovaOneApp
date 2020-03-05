@@ -106,10 +106,9 @@ class HTTPRequests {
                             completion: @escaping (Result<DataModel, Error>) -> Void) {
         
         // Add PHP credentials to parmaters array
-        let defaults: Defaults = Defaults()
         var mutatedParamaters: [String: Any] = parameters // any argument into a swift function is immutable (can not be changed), so set it to a variable (can be changed or mutable)
-        mutatedParamaters["PHPAuthenticationUsername"] = defaults.PHPAuthenticationUsername
-        mutatedParamaters["PHPAuthenticationPassword"] = defaults.PHPAuthenticationPassword
+        mutatedParamaters["PHPAuthenticationUsername"] = Defaults.PHPAuthenticationUsername
+        mutatedParamaters["PHPAuthenticationPassword"] = Defaults.PHPAuthenticationPassword
         
         // Convert url string to URL type
         guard let url: URL = URL(string: self.url + endpoint) else {

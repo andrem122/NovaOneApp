@@ -12,10 +12,16 @@ class SignUpPhoneViewController: UIViewController {
     
     // MARK: Properties
     @IBOutlet weak var phoneTextField: NovaOneTextField!
+    @IBOutlet weak var continueButton: NovaOneButton!
     
     // MARK: Methods
+    func setup() {
+        UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -23,6 +29,12 @@ class SignUpPhoneViewController: UIViewController {
         
         // Make text field become first responder
         self.phoneTextField.becomeFirstResponder()
+    }
+    
+    // MARK: Actions
+    
+    @IBAction func phoneTextFieldChanged(_ sender: Any) {
+        UIHelper.toggle(button: self.continueButton, textField: self.phoneTextField, enabledColor: Defaults.novaOneColor, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil)
     }
     
 

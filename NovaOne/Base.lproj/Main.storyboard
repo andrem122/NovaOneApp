@@ -162,6 +162,9 @@
                                                 <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="emailFieldChanged:" destination="3nd-WK-PNW" eventType="editingChanged" id="M5V-iW-IJ7"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E3h-y3-Cen" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="65" width="354" height="45"/>
@@ -198,7 +201,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p5x-OD-s8g" userLabel="Cancel Button">
-                                <rect key="frame" x="20" y="76" width="67" height="67"/>
+                                <rect key="frame" x="20" y="76" width="33.5" height="33.5"/>
                                 <state key="normal" image="cancelButtonBlue"/>
                                 <connections>
                                     <action selector="cancelButtonTapped:" destination="3nd-WK-PNW" eventType="touchUpInside" id="AQ2-0X-vAi"/>
@@ -222,6 +225,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="S2a-9Y-pwn"/>
                     <connections>
+                        <outlet property="continueButton" destination="E3h-y3-Cen" id="mtU-gI-yv2"/>
                         <outlet property="emailAddressTextField" destination="Hsk-NF-gQI" id="91a-aU-lOy"/>
                     </connections>
                 </viewController>
@@ -238,7 +242,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5O7-UW-25n" userLabel="Cancel Button">
-                                <rect key="frame" x="20" y="64" width="67" height="67"/>
+                                <rect key="frame" x="20" y="64" width="33.5" height="33.5"/>
                                 <state key="normal" image="cancelButtonBlue"/>
                                 <connections>
                                     <action selector="cancelButtonTouch:" destination="00c-Xy-omL" eventType="touchUpInside" id="I9r-bb-DbA"/>
@@ -897,7 +901,7 @@ on how to reset your password.</string>
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kEj-0U-bzz">
-                                <rect key="frame" x="20" y="64" width="67" height="67"/>
+                                <rect key="frame" x="20" y="64" width="33.5" height="33.5"/>
                                 <state key="normal" image="cancelButtonBlue"/>
                                 <connections>
                                     <action selector="cancelButtonTapped:" destination="T1A-G4-xJU" eventType="touchUpInside" id="kgs-AH-JO8"/>
@@ -953,6 +957,9 @@ on how to reset your password.</string>
                                                 <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="passwordTextFieldChanged:" destination="qrD-b3-aqT" eventType="editingChanged" id="6gy-J3-thW"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xuT-Na-5BV" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="65" width="354" height="45"/>
@@ -1004,6 +1011,7 @@ on how to reset your password.</string>
                     </view>
                     <navigationItem key="navigationItem" id="yEY-zm-hJN"/>
                     <connections>
+                        <outlet property="continueButton" destination="xuT-Na-5BV" id="Off-CC-u8h"/>
                         <outlet property="passwordTextField" destination="ALD-Jn-EPe" id="wEQ-eh-iUb"/>
                     </connections>
                 </viewController>
@@ -1171,6 +1179,9 @@ on how to reset your password.</string>
                                                 <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="phoneTextFieldChanged:" destination="EBv-if-n2Q" eventType="editingChanged" id="gdI-sK-DbO"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mpw-vS-7oU" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="65" width="354" height="45"/>
@@ -1224,6 +1235,7 @@ number?</string>
                     </view>
                     <navigationItem key="navigationItem" id="yqe-zE-HNx"/>
                     <connections>
+                        <outlet property="continueButton" destination="Mpw-vS-7oU" id="93e-8b-NMP"/>
                         <outlet property="phoneTextField" destination="e8U-gu-xut" id="6ct-CY-NSV"/>
                     </connections>
                 </viewController>

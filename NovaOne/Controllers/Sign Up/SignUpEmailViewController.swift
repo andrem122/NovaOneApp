@@ -12,10 +12,16 @@ class SignUpEmailViewController: UIViewController {
     
     // MARK: Properties
     @IBOutlet weak var emailAddressTextField: NovaOneTextField!
+    @IBOutlet weak var continueButton: NovaOneButton!
     
     // MARK: Methods
+    func setup() {
+        UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setup()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -53,5 +59,10 @@ class SignUpEmailViewController: UIViewController {
         self.presentingViewController?.dismiss(animated: true, completion: nil)
         
     }
-
+    
+    
+    @IBAction func emailFieldChanged(_ sender: Any) {
+        UIHelper.toggle(button: self.continueButton, textField: self.emailAddressTextField, enabledColor: Defaults.novaOneColor, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil)
+    }
+    
 }

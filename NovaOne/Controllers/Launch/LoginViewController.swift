@@ -15,7 +15,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: NovaOneButton!
-    let defaults: Defaults = Defaults()
     lazy var alert: Alert = Alert(currentViewController: self)
     var customer: CustomerModel?
     
@@ -51,7 +50,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         // Disable continue button and only enable it when the user starts typing into one of the text fields
         self.loginButton.isEnabled = false
-        self.loginButton.backgroundColor = defaults.novaOneColorDisabledColor
+        self.loginButton.backgroundColor = Defaults.novaOneColorDisabledColor
         
     }
     
@@ -66,12 +65,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         if email.isEmpty {
             
             self.loginButton.isEnabled = false
-            self.loginButton.backgroundColor = self.defaults.novaOneColorDisabledColor
+            self.loginButton.backgroundColor = Defaults.novaOneColorDisabledColor
             
         } else {
             
             self.loginButton.isEnabled = true
-            self.loginButton.backgroundColor = self.defaults.novaOneColor
+            self.loginButton.backgroundColor = Defaults.novaOneColor
             
         }
         
@@ -191,7 +190,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     // Show error message with an alert and enable continue button
                     self?.alert.alertMessage(title: "Error", message: error.localizedDescription)
                     self?.loginButton.isEnabled = true
-                    self?.loginButton.backgroundColor = self?.defaults.novaOneColor
+                    self?.loginButton.backgroundColor = Defaults.novaOneColor
                 
             }
             
@@ -233,7 +232,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         // Disable button to prevent multiple requests
         self.loginButton.isEnabled = false
-        self.loginButton.backgroundColor = self.defaults.novaOneColorDisabledColor
+        self.loginButton.backgroundColor = Defaults.novaOneColorDisabledColor
         
         // Proceed with logging the user in if text fields are not empty
         self.formDataLogin(username: username, password: password)

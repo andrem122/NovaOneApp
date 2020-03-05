@@ -12,14 +12,16 @@ class SignUpPasswordViewController: UIViewController {
     
     // MARK: Properties
     @IBOutlet weak var passwordTextField: NovaOneTextField!
+    @IBOutlet weak var continueButton: NovaOneButton!
+    
+    // MARK: Methods
+    func setup() {
+        UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
-    }
-    
-    func setup() {
-        self.passwordTextField.becomeFirstResponder()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -27,6 +29,12 @@ class SignUpPasswordViewController: UIViewController {
         
         // Make text field become first responder
         self.passwordTextField.becomeFirstResponder()
+    }
+    
+    // MARK: Actions
+    
+    @IBAction func passwordTextFieldChanged(_ sender: Any) {
+        UIHelper.toggle(button: self.continueButton, textField: self.passwordTextField, enabledColor: Defaults.novaOneColor, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil)
     }
     
     // MARK: Navigation
