@@ -56,7 +56,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="fL1-cZ-A92"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                                 <state key="normal" title="Sign Up">
                                                     <color key="titleColor" red="0.90391571500000001" green="0.90391571500000001" blue="0.90391571500000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -76,7 +76,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="7aV-CR-fUz"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                                 <state key="normal" title="Log In">
                                                     <color key="titleColor" red="0.32108205560000003" green="0.41871821879999999" blue="0.84972596170000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -242,20 +242,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5O7-UW-25n" userLabel="Cancel Button">
-                                <rect key="frame" x="20" y="64" width="67" height="67"/>
+                                <rect key="frame" x="20" y="64" width="33.5" height="33.5"/>
                                 <state key="normal" image="cancelButtonBlue"/>
                                 <connections>
                                     <action selector="cancelButtonTouch:" destination="00c-Xy-omL" eventType="touchUpInside" id="I9r-bb-DbA"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="rdg-Pm-mb1" userLabel="Login Stack View">
-                                <rect key="frame" x="57" y="145.5" width="300" height="445.5"/>
+                                <rect key="frame" x="30" y="138" width="354" height="460.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="yIN-x8-C0R" userLabel="Text Fields Stack">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="381.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="354" height="396.5"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="novaOneLogo" translatesAutoresizingMaskIntoConstraints="NO" id="CRB-RR-SnY">
-                                                <rect key="frame" x="0.0" y="0.0" width="300" height="130"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="354" height="130"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="130" id="zXf-GU-skf">
                                                         <variation key="heightClass=compact-widthClass=compact" constant="90"/>
@@ -264,15 +264,15 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome Back" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gug-gn-02g">
-                                                <rect key="frame" x="0.0" y="156" width="300" height="27.5"/>
+                                                <rect key="frame" x="0.0" y="156" width="354" height="27.5"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="23"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Username Or Email" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Rhf-3F-wrz" customClass="NovaOneTextField" customModule="NovaOne" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="209.5" width="300" height="40"/>
+                                                <rect key="frame" x="0.0" y="209.5" width="354" height="45"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="5VV-hV-TsE"/>
+                                                    <constraint firstAttribute="height" constant="45" id="5VV-hV-TsE"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
@@ -292,9 +292,9 @@
                                                 </connections>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="MTb-F9-esE" customClass="NovaOneTextField" customModule="NovaOne" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="275.5" width="300" height="40"/>
+                                                <rect key="frame" x="0.0" y="280.5" width="354" height="45"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="rv4-Ef-2mQ"/>
+                                                    <constraint firstAttribute="height" constant="45" id="rv4-Ef-2mQ"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="go" secureTextEntry="YES" textContentType="password"/>
@@ -314,9 +314,12 @@
                                                 </connections>
                                             </textField>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VAc-rS-W89" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="341.5" width="300" height="40"/>
+                                                <rect key="frame" x="0.0" y="351.5" width="354" height="45"/>
                                                 <color key="backgroundColor" red="0.32108205560000003" green="0.41871821879999999" blue="0.84972596170000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="45" id="Oyw-Xu-RSO"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                                 <state key="normal" title="Continue">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -331,13 +334,10 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="300" id="UZm-nI-WFl"/>
-                                        </constraints>
                                         <variation key="heightClass=compact-widthClass=compact" spacing="20"/>
                                     </stackView>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x98-Ve-FIe" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
-                                        <rect key="frame" x="35.5" y="391.5" width="229" height="54"/>
+                                        <rect key="frame" x="62.5" y="406.5" width="229" height="54"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                         <inset key="contentEdgeInsets" minX="20" minY="20" maxX="20" maxY="20"/>
                                         <state key="normal" title="Forgot your username or password?">
@@ -360,15 +360,17 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="yeT-zv-ED5"/>
+                                    <constraint firstItem="yIN-x8-C0R" firstAttribute="leading" secondItem="rdg-Pm-mb1" secondAttribute="leading" id="hCI-UD-tz5"/>
+                                    <constraint firstAttribute="trailing" secondItem="yIN-x8-C0R" secondAttribute="trailing" id="x8x-yu-S6u"/>
                                 </constraints>
                                 <variation key="heightClass=compact-widthClass=regular" spacing="33"/>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="rdg-Pm-mb1" firstAttribute="leading" secondItem="z7N-hR-0tN" secondAttribute="leading" constant="30" id="YVz-B6-rBL"/>
+                            <constraint firstItem="z7N-hR-0tN" firstAttribute="trailing" secondItem="rdg-Pm-mb1" secondAttribute="trailing" constant="30" id="ZPA-Ub-Ucv"/>
                             <constraint firstItem="5O7-UW-25n" firstAttribute="top" secondItem="z7N-hR-0tN" secondAttribute="top" constant="20" id="bpv-PR-61o"/>
-                            <constraint firstItem="rdg-Pm-mb1" firstAttribute="centerX" secondItem="QhT-5v-v8y" secondAttribute="centerX" id="gkn-n4-Ubm"/>
                             <constraint firstItem="5O7-UW-25n" firstAttribute="leading" secondItem="z7N-hR-0tN" secondAttribute="leading" constant="20" id="vx7-1z-rSj"/>
                             <constraint firstItem="rdg-Pm-mb1" firstAttribute="centerY" secondItem="QhT-5v-v8y" secondAttribute="centerY" constant="-80" id="wyI-Ed-kmv">
                                 <variation key="heightClass=compact-widthClass=regular" constant="0.0"/>
@@ -655,7 +657,7 @@ and you have 4 calls.</string>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j7F-yk-LVA" userLabel="Email Button">
-                                                            <rect key="frame" x="269" y="-8.5" width="54" height="54"/>
+                                                            <rect key="frame" x="296" y="5" width="27" height="27"/>
                                                             <state key="normal" image="envelope"/>
                                                             <connections>
                                                                 <action selector="emailButtonTapped:" destination="mks-rP-h9s" eventType="touchUpInside" id="Jgo-34-ZTf"/>
@@ -684,8 +686,8 @@ and you have 4 calls.</string>
                                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 Beds 1 Bath" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mEO-vX-pGi" userLabel="Sub title label 2">
-                                                                    <rect key="frame" x="0.0" y="20" width="83.5" height="16"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 Beds" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mEO-vX-pGi" userLabel="Sub title label 2">
+                                                                    <rect key="frame" x="0.0" y="20" width="42.5" height="16"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
