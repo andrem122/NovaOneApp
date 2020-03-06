@@ -34,7 +34,7 @@ class SignUpPasswordViewController: UIViewController {
     // MARK: Actions
     
     @IBAction func passwordTextFieldChanged(_ sender: Any) {
-        UIHelper.toggle(button: self.continueButton, textField: self.passwordTextField, enabledColor: Defaults.novaOneColor, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil)
+        UIHelper.toggle(button: self.continueButton, textFields: [self.passwordTextField], enabledColor: Defaults.novaOneColor, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil, closure: nil)
     }
     
     // MARK: Navigation

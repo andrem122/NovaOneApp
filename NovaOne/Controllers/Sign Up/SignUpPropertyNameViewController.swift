@@ -11,10 +11,17 @@ import UIKit
 class SignUpPropertyNameViewController: UIViewController {
     
     // MARK: Properties
+    @IBOutlet weak var continueButton: NovaOneButton!
     @IBOutlet weak var propertyNameTextField: NovaOneTextField!
+    
+    // MARK: Methods
+    func setup() {
+        UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -23,5 +30,10 @@ class SignUpPropertyNameViewController: UIViewController {
         // Make text field become first responder
         self.propertyNameTextField.becomeFirstResponder()
     }
-
+    
+    // MARK: Actions
+    
+    @IBAction func propertyNameTextFieldChanged(_ sender: Any) {
+        UIHelper.toggle(button: self.continueButton, textFields: [self.propertyNameTextField], enabledColor: Defaults.novaOneColor, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil, closure: nil)
+    }
 }

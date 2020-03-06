@@ -29,15 +29,12 @@ class SignUpAddressViewController: UIViewController {
     }
     
     func setup() {
-        
         UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil)
-        
     }
     
     // MARK: Actions
     @IBAction func addressTextFieldChanged(_ sender: Any) {
-        
-        UIHelper.toggle(button: self.continueButton, textField: self.addressTextField, enabledColor: Defaults.novaOneColor, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil)
+        UIHelper.toggle(button: self.continueButton, textFields: [self.addressTextField], enabledColor: Defaults.novaOneColor, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil, closure: nil)
     }
     
 }

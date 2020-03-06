@@ -11,36 +11,67 @@ import UIKit
 class UIHelper {
     
     // Toggles a button between enabled and disabled states based on text field values
-    static func toggle(button: UIButton, textField: UITextField, enabledColor: UIColor, disabledColor: UIColor, borderedButton: Bool?) {
+    static func toggle(button: UIButton, textFields: [UITextField], enabledColor: UIColor, disabledColor: UIColor, borderedButton: Bool?, closure: (([UITextField]) -> Bool)?) {
         
-        guard
-            let text = textField.text
-        else { return }
-        
-        if text.isEmpty {
+        // If we decide to use the closure (more than one text field we want to check the value of before disabling the button)
+        if let unwrappedClosure = closure {
             
-            button.isEnabled = false
-            
-            if borderedButton == true {
-                button.layer.borderColor = disabledColor.cgColor
+            if unwrappedClosure(textFields) {
+                
+                button.isEnabled = false
+                
+                if borderedButton == true {
+                    button.layer.borderColor = disabledColor.cgColor
+                } else {
+                    button.backgroundColor = disabledColor
+                    button.layer.borderColor = disabledColor.cgColor
+                }
+                
             } else {
-                button.backgroundColor = disabledColor
-                button.layer.borderColor = disabledColor.cgColor
+                
+                button.isEnabled = true
+                
+                if borderedButton == true {
+                    button.layer.borderColor = enabledColor.cgColor
+                } else {
+                    button.backgroundColor = enabledColor
+                    button.layer.borderColor = enabledColor.cgColor
+                }
+                
             }
             
-        } else {
+        } else { // One text field we are checking the value of to disable the button
             
-            button.isEnabled = true
+            guard
+                let text = textFields[0].text
+            else { return }
             
-            if borderedButton == true {
-                button.layer.borderColor = enabledColor.cgColor
+            if text.isEmpty {
+                
+                button.isEnabled = false
+                
+                if borderedButton == true {
+                    button.layer.borderColor = disabledColor.cgColor
+                } else {
+                    button.backgroundColor = disabledColor
+                    button.layer.borderColor = disabledColor.cgColor
+                }
+                
             } else {
-                button.backgroundColor = enabledColor
-                button.layer.borderColor = enabledColor.cgColor
+                
+                button.isEnabled = true
+                
+                if borderedButton == true {
+                    button.layer.borderColor = enabledColor.cgColor
+                } else {
+                    button.backgroundColor = enabledColor
+                    button.layer.borderColor = enabledColor.cgColor
+                }
+                
             }
             
         }
-        
+
     }
     
     // Disables a button
