@@ -31,29 +31,25 @@ struct CustomerModel: Decodable {
     var dateJoinedDate: Date {
         
         get {
-            // Date string must be in the form of "yyyy-MM-dd HH:mm:ss"
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-            dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
-            
             guard let dateJoined = self.dateJoined else { return Date() }
-            guard let date = dateFormatter.date(from: dateJoined) else { return Date() }
-            
-            let calendar = Calendar.current
-            let components = calendar.dateComponents([.year, .month, .day, .hour], from: date)
-            
-            guard let finalDate = calendar.date(from: components) else { return Date() }
-            
-            return finalDate
+            return DateHelper.createDate(from: dateJoined, format: "yyyy-MM-dd HH:mm:ss")
         }
     
     }
     
-//    var fullName: String? {
-//
-//        get { return "\(self.firstName) \(self.lastName)" }
-//
-//    }
+    var fullName: String {
+
+        get {
+            
+            guard
+                let firstName = self.firstName,
+                let lastName = self.lastName
+            else { return "" }
+            return "\(firstName) \(lastName)"
+
+        }
+
+    }
 //    
 //    // Print object's current state
 //    var description: String {

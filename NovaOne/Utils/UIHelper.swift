@@ -8,6 +8,7 @@
 
 import UIKit
 
+// A class of commonly used functions for manipulating the user interface
 class UIHelper {
     
     // Toggles a button between enabled and disabled states based on text field values

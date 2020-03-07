@@ -23,7 +23,7 @@ if ($user_is_verified) {
         a.phone_number as \"phoneNumber\",
         p.address,
         a.time,
-        a.created,
+        TO_CHAR(a.created, 'YYYY-MM-DD HH24:MI:SS TZ') as \"created\",
         a.time_zone as \"timeZone\",
         a.confirmed,
         a.unit_type as \"unitType\"

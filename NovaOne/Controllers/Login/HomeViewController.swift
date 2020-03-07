@@ -41,8 +41,6 @@ class HomeViewController: UIViewController {
         self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = backButtonImage
         self.navigationController?.navigationBar.backItem?.title = ""
         
-        // Set label greeting label text
-        
         
     }
 

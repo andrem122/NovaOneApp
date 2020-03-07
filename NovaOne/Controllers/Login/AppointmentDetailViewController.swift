@@ -31,6 +31,9 @@ class AppointmentDetailViewController: UIViewController {
             // Get data from appointment object
             let appointmentTimeDate = appointment.timeDate
             let appointmentCreatedDate = appointment.createdDate
+            let calendar = Calendar.current
+            let minutes = calendar.component(.minute, from: appointmentCreatedDate)
+            print("Minutes: \(minutes)")
             
             // Get dates as strings
             let dateFormatter = DateFormatter()
@@ -45,13 +48,15 @@ class AppointmentDetailViewController: UIViewController {
                 let confirmed = appointment.confirmed
             else { return }
             
+            let confirmedString = confirmed ? "Yes" : "No"
+            
             // Set values for labels
             self.nameLabel.text = name
             self.appointmentTimeLabel.text = appointmentTime
             self.addressLabel.text = appointment.shortenedAddress
             self.unitTypeLabel.text = unitType
             self.createdLabel.text = appointmentCreated
-            self.confirmedLabel.text = String(confirmed)
+            self.confirmedLabel.text = confirmedString
         }
     }
 
