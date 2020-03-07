@@ -116,5 +116,18 @@ extension AppointmentsViewController: UITableViewDataSource, UITableViewDelegate
         return cell
     }
     
+    // Function gets called every time a row in the table gets tapped on
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Get appointment object based on which row the user taps on
+        let appointment = self.appointments[indexPath.row]
+        
+        //Get detail view controller, pass object to it, and present it
+        let detailViewControlleridentifier = "appointmentDetailViewController"
+        if let appointmentDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: detailViewControlleridentifier) as? AppointmentDetailViewController {
+            appointmentDetailViewController.appointment = appointment
+            self.present(appointmentDetailViewController, animated: true, completion: nil)
+        }
+    }
+    
     
 }

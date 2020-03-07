@@ -21,26 +21,21 @@ struct Appointment: Decodable {
     var address: String?
     var unitType: String?
     
-    // Computed properties
+    // Computed Properties
     var timeDate: Date {
-        
         get {
-            // Date string must be in the form of "yyyy-MM-dd HH:mm:ssZ"
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ssZ"
-            dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
-            
             guard let time = self.time else { return Date() }
-            guard let date = dateFormatter.date(from: time) else { return Date() }
-            
-            let calendar = Calendar.current
-            let components = calendar.dateComponents([.year, .month, .day, .hour], from: date)
-            
-            guard let finalDate = calendar.date(from: components) else { return Date() }
-            
-            return finalDate
+            return self.createDate(from: time, format: "yyyy-MM-dd HH:mm:ssZ")
         }
+
+    }
     
+    var createdDate: Date {
+        get {
+            guard let time = self.created else { return Date() }
+            return self.createDate(from: time, format: "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX")
+        }
+
     }
     
     var shortenedAddress: String {
@@ -94,6 +89,24 @@ struct Appointment: Decodable {
            return "Id: \(id), Name: \(name) \(phoneNumber), Email: \(address)"
         }
         
+    }
+    
+    // MARK: Methods
+    // Gets the string from and converts to a Date object
+    func createDate(from dateString: String, format: String) -> Date {
+        // Date string must be in the form of "yyyy-MM-dd HH:mm:ssZ"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        
+        guard let date = dateFormatter.date(from: dateString) else { return Date() }
+        
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year, .month, .day, .hour], from: date)
+        
+        guard let finalDate = calendar.date(from: components) else { return Date() }
+        
+        return finalDate
     }
     
 }
