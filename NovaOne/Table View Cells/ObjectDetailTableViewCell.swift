@@ -14,6 +14,7 @@ class ObjectDetailTableViewCell: UITableViewCell {
     @IBOutlet weak var cellIcon: UIImageView!
     @IBOutlet weak var cellTitleLabel: UILabel!
     @IBOutlet weak var cellTitleValueLabel: UILabel!
+    @IBOutlet weak var detailButton: UIButton!
     
     // Assigns values for cell properties
     func setup(cellIcon: UIImage, cellTitle: String, cellTitleValue: String, canUpdateValue: Bool) {
@@ -27,9 +28,16 @@ class ObjectDetailTableViewCell: UITableViewCell {
         // constant of cellTitleValueLabel to 8 points from superview
         if !canUpdateValue {
             
-            self.cellIcon.removeFromSuperview()
-            guard let cellTitleValueLabel = self.cellTitleValueLabel else { return }
-            self.contentView.addConstraint(NSLayoutConstraint(item: cellTitleValueLabel, attribute: .trailing, relatedBy: .equal, toItem: self.contentView, attribute: .trailing, multiplier: 1, constant: 8))
+            self.detailButton.removeFromSuperview()
+            
+            // Trailing constraint
+            self.contentView.addConstraint(NSLayoutConstraint(item: self.cellTitleValueLabel!, attribute: .trailing, relatedBy: .equal, toItem: self.cellTitleLabel.superview, attribute: .trailing, multiplier: 1, constant: 16))
+            
+            // Leading constraint
+            self.contentView.addConstraint(NSLayoutConstraint(item: self.cellTitleValueLabel!, attribute: .leading, relatedBy: .greaterThanOrEqual, toItem: self.cellTitleLabel.superview, attribute: .leading, multiplier: 1, constant: 0))
+            
+            // Center vertically
+            self.contentView.addConstraint(NSLayoutConstraint(item: self.cellTitleValueLabel!, attribute: .centerY, relatedBy: .equal, toItem: self.contentView, attribute: .centerY, multiplier: 1, constant: 0))
             
             
         }

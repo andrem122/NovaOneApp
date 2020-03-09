@@ -22,6 +22,7 @@ if ($user_is_verified) {
         p.name,
         p.address,
         p.phone_number as \"phoneNumber\",
+        p.email,
         TO_CHAR(p.created, 'YYYY-MM-DD HH24:MI:SS TZ') as \"created\",
         p.days_of_the_week_enabled as \"daysOfTheWeekEnabled\",
         p.hours_of_the_day_enabled as \"hoursOfTheDayEnabled\"

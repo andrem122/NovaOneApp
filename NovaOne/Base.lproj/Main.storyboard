@@ -2663,25 +2663,25 @@ of your property?</string>
         <!--Update Address-->
         <scene sceneID="nVo-rM-LQG">
             <objects>
-                <viewController storyboardIdentifier="updateAddressViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="agb-NK-vq1" userLabel="Update Address" customClass="UpdateAddressViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="updateAddressViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="agb-NK-vq1" userLabel="Update Address" customClass="UpdateStreetAddressViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RDF-pB-Lod">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Address" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YDq-Jj-8ui">
-                                <rect key="frame" x="90.666666666666671" y="50" width="232.66666666666663" height="37"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Street Address" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YDq-Jj-8ui">
+                                <rect key="frame" x="43" y="70" width="328.33333333333331" height="37"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
                                 <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in your new property address below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Srw-iu-ySn">
-                                <rect key="frame" x="47.666666666666657" y="107" width="318.66666666666674" height="20.333333333333329"/>
+                                <rect key="frame" x="47.666666666666657" y="126.99999999999999" width="318.66666666666674" height="20.333333333333329"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="1lH-hv-Uem">
-                                <rect key="frame" x="30" y="157.33333333333334" width="354" height="110.00000000000003"/>
+                                <rect key="frame" x="30" y="177.33333333333334" width="354" height="110.00000000000003"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New Address" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="DKQ-3Z-l4M" customClass="NovaOneTextField" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="354" height="45"/>
@@ -2721,11 +2721,20 @@ of your property?</string>
                                     </button>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NVW-dB-PEL">
+                                <rect key="frame" x="20.000000000000004" y="20.000000000000004" width="33.333333333333343" height="33.333333333333343"/>
+                                <state key="normal" image="cancelButtonBlue"/>
+                                <connections>
+                                    <action selector="cancelButtonTapped:" destination="agb-NK-vq1" eventType="touchUpInside" id="f7k-35-mO8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="YDq-Jj-8ui" firstAttribute="top" secondItem="yR4-tD-iHS" secondAttribute="top" constant="50" id="5PV-5q-1jA"/>
+                            <constraint firstItem="YDq-Jj-8ui" firstAttribute="top" secondItem="yR4-tD-iHS" secondAttribute="top" constant="70" id="5PV-5q-1jA"/>
+                            <constraint firstItem="NVW-dB-PEL" firstAttribute="top" secondItem="yR4-tD-iHS" secondAttribute="top" constant="20" id="5cr-9e-S6p"/>
                             <constraint firstItem="1lH-hv-Uem" firstAttribute="top" secondItem="Srw-iu-ySn" secondAttribute="bottom" constant="30" id="AW5-W5-H9R"/>
+                            <constraint firstItem="NVW-dB-PEL" firstAttribute="leading" secondItem="yR4-tD-iHS" secondAttribute="leading" constant="20" id="CUH-BS-2jG"/>
                             <constraint firstItem="Srw-iu-ySn" firstAttribute="centerX" secondItem="RDF-pB-Lod" secondAttribute="centerX" id="tKS-aV-6E9"/>
                             <constraint firstItem="Srw-iu-ySn" firstAttribute="top" secondItem="YDq-Jj-8ui" secondAttribute="bottom" constant="20" id="tRC-pI-Ume"/>
                             <constraint firstItem="YDq-Jj-8ui" firstAttribute="centerX" secondItem="RDF-pB-Lod" secondAttribute="centerX" id="uc2-6G-BN7"/>
@@ -2814,19 +2823,19 @@ of your property?</string>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </button>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Meg-ak-998">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Meg-ak-998">
                                         <rect key="frame" x="0.0" y="57" width="374" height="386"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="objectDetailTableViewCell" id="Dhw-8J-At9" customClass="ObjectDetailTableViewCell" customModule="NovaOne" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="374" height="43.666667938232422"/>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="objectDetailTableViewCell" rowHeight="44" id="Dhw-8J-At9" customClass="ObjectDetailTableViewCell" customModule="NovaOne" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="374" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Dhw-8J-At9" id="vlF-e2-KKd">
-                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="43.666667938232422"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="0BI-ia-ssz">
-                                                            <rect key="frame" x="0.0" y="7" width="79.333333333333329" height="30"/>
+                                                            <rect key="frame" x="16" y="7" width="79.333333333333329" height="30"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="locationBlue" translatesAutoresizingMaskIntoConstraints="NO" id="7B9-z9-iyh">
                                                                     <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -2844,13 +2853,13 @@ of your property?</string>
                                                             </subviews>
                                                         </stackView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1800 Nebaska Avenue" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Jl-aC-2e8" userLabel="Cell Title Value">
-                                                            <rect key="frame" x="170.66666666666663" y="11.666666666666666" width="170.33333333333337" height="20.333333333333336"/>
+                                                            <rect key="frame" x="162.66666666666663" y="11.999999999999998" width="170.33333333333337" height="20.333333333333329"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kpm-1O-Qjr">
-                                                            <rect key="frame" x="346" y="12" width="20" height="20"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kpm-1O-Qjr" userLabel="Detail Button">
+                                                            <rect key="frame" x="338" y="12" width="20" height="20"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="Xwm-xn-efZ"/>
                                                                 <constraint firstAttribute="width" secondItem="kpm-1O-Qjr" secondAttribute="height" multiplier="1:1" id="udg-L5-JV8"/>
@@ -2859,13 +2868,13 @@ of your property?</string>
                                                         </button>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="trailing" secondItem="kpm-1O-Qjr" secondAttribute="trailing" constant="8" id="5C9-bd-nva"/>
+                                                        <constraint firstAttribute="trailing" secondItem="kpm-1O-Qjr" secondAttribute="trailing" constant="16" id="5C9-bd-nva"/>
                                                         <constraint firstItem="kpm-1O-Qjr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vlF-e2-KKd" secondAttribute="leading" id="GIF-vt-yST"/>
                                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="0BI-ia-ssz" secondAttribute="trailing" id="cEv-gg-0Kp"/>
                                                         <constraint firstItem="kpm-1O-Qjr" firstAttribute="centerY" secondItem="vlF-e2-KKd" secondAttribute="centerY" id="d3k-DN-mka"/>
                                                         <constraint firstItem="0Jl-aC-2e8" firstAttribute="centerY" secondItem="vlF-e2-KKd" secondAttribute="centerY" id="d4b-SS-G2i"/>
                                                         <constraint firstItem="0BI-ia-ssz" firstAttribute="centerY" secondItem="vlF-e2-KKd" secondAttribute="centerY" id="jrl-SB-qKl"/>
-                                                        <constraint firstItem="0BI-ia-ssz" firstAttribute="leading" secondItem="vlF-e2-KKd" secondAttribute="leading" id="nr9-KD-pLw"/>
+                                                        <constraint firstItem="0BI-ia-ssz" firstAttribute="leading" secondItem="vlF-e2-KKd" secondAttribute="leading" constant="16" id="nr9-KD-pLw"/>
                                                         <constraint firstItem="kpm-1O-Qjr" firstAttribute="leading" secondItem="0Jl-aC-2e8" secondAttribute="trailing" constant="5" id="olk-Hw-7YR"/>
                                                         <constraint firstItem="0Jl-aC-2e8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vlF-e2-KKd" secondAttribute="leading" id="rav-78-76a"/>
                                                     </constraints>
@@ -2874,6 +2883,7 @@ of your property?</string>
                                                     <outlet property="cellIcon" destination="7B9-z9-iyh" id="hol-43-Tag"/>
                                                     <outlet property="cellTitleLabel" destination="iAZ-xE-2AZ" id="zIr-aX-nNv"/>
                                                     <outlet property="cellTitleValueLabel" destination="0Jl-aC-2e8" id="2l3-uC-SVO"/>
+                                                    <outlet property="detailButton" destination="kpm-1O-Qjr" id="yAs-4s-VKC"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -2918,7 +2928,6 @@ of your property?</string>
                         <viewLayoutGuide key="safeArea" id="PZa-tV-K94"/>
                     </view>
                     <connections>
-                        <outlet property="nameLabel" destination="fxX-Yl-SA9" id="Bsk-co-qgW"/>
                         <outlet property="propertyDetailTableView" destination="Meg-ak-998" id="FTh-sS-nC9"/>
                     </connections>
                 </viewController>

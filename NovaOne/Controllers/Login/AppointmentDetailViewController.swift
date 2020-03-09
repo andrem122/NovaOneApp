@@ -31,9 +31,6 @@ class AppointmentDetailViewController: UIViewController {
             // Get data from appointment object
             let appointmentTimeDate = appointment.timeDate
             let appointmentCreatedDate = appointment.createdDate
-            let calendar = Calendar.current
-            let minutes = calendar.component(.minute, from: appointmentCreatedDate)
-            print("Minutes: \(minutes)")
             
             // Get dates as strings
             let dateFormatter = DateFormatter()

@@ -82,8 +82,16 @@ extension PropertiesViewController {
         return cell
     }
     
+    // Function gets called every time a row in the table gets tapped on
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        <#code#>
+        // Get appointment object based on which row the user taps on
+        let property = self.properties[indexPath.row]
+        
+        //Get detail view controller, pass object to it, and present it
+        if let propertyDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.propertyDetail.rawValue) as? PropertyDetailViewController {
+            propertyDetailViewController.property = property
+            self.present(propertyDetailViewController, animated: true, completion: nil)
+        }
     }
     
 }

@@ -29,7 +29,7 @@ class PropertyDetailViewController: UIViewController, UITableViewDelegate, UITab
         else { return }
         let address = property.shortenedAddress
         
-        let addressCell: [String: Any] = ["cellIcon": UIImage(named: Defaults.Images.locationBlue.rawValue) as Any, "cellTitle": "Address", "cellTitleValue": address, "canUpdateValue": false]
+        let addressCell: [String: Any] = ["cellIcon": UIImage(named: Defaults.Images.locationBlue.rawValue) as Any, "cellTitle": "Address", "cellTitleValue": address, "canUpdateValue": true]
         let phoneNumberCell: [String: Any] = ["cellIcon": UIImage(named: Defaults.Images.callBlue.rawValue) as Any, "cellTitle": "Phone", "cellTitleValue": phoneNumber, "canUpdateValue": true]
         let emailCell: [String: Any] = ["cellIcon": UIImage(named: Defaults.Images.emailBlue.rawValue) as Any, "cellTitle": "Email", "cellTitleValue": email, "canUpdateValue": true]
         let daysOfTheWeekCell: [String: Any] = ["cellIcon": UIImage(named: Defaults.Images.calendarBlue.rawValue) as Any, "cellTitle": "Showing Days", "cellTitleValue": daysOfTheWeekEnabled, "canUpdateValue": true]
@@ -38,6 +38,7 @@ class PropertyDetailViewController: UIViewController, UITableViewDelegate, UITab
         
     }
     
+    // Gets a view controller vy a string identifier
     func getViewController(by identifier: String) -> UIViewController {
         guard let viewController = self.storyboard?.instantiateViewController(identifier: identifier) else { return UIViewController() }
         return viewController
@@ -63,7 +64,7 @@ extension PropertyDetailViewController {
         
         let propertydetailCell = self.propertyDetailCells[indexPath.row]
         
-        cell.setup(cellIcon: propertydetailCell["cellIcon"] as! UIImage, cellTitle: propertydetailCell["cellTitle"] as! String, cellTitleValue: propertydetailCell["cellValue"] as! String, canUpdateValue: propertydetailCell["canUpdateValue"] as! Bool)
+        cell.setup(cellIcon: propertydetailCell["cellIcon"] as! UIImage, cellTitle: propertydetailCell["cellTitle"] as! String, cellTitleValue: propertydetailCell["cellTitleValue"] as! String, canUpdateValue: propertydetailCell["canUpdateValue"] as! Bool)
         
         return cell
     }
@@ -75,7 +76,7 @@ extension PropertyDetailViewController {
         //Get update view controller based on which cell the user clicked on
         switch cellTitle {
             case "Address":
-                if let updateAddressViewController = self.getViewController(by: Defaults.ViewControllerIdentifiers.updateAddress.rawValue) as? UpdateAddressViewController {
+                if let updateAddressViewController = self.getViewController(by: Defaults.ViewControllerIdentifiers.updateAddress.rawValue) as? UpdateStreetAddressViewController {
                     self.present(updateAddressViewController, animated: true, completion: nil)
             }
             case "Phone":

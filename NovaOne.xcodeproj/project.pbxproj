@@ -23,7 +23,7 @@
 		65446CEC23E0F4370052DEBE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65446CEB23E0F4370052DEBE /* LoginViewController.swift */; };
 		65446CEF23E0F7DF0052DEBE /* NovaOneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65446CEE23E0F7DF0052DEBE /* NovaOneButton.swift */; };
 		65496D0123F1D6F9008EB3FF /* (null) in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		655D0B21240B43D200D0E329 /* UpdateAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655D0B20240B43D200D0E329 /* UpdateAddressViewController.swift */; };
+		655D0B21240B43D200D0E329 /* UpdateStreetAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655D0B20240B43D200D0E329 /* UpdateStreetAddressViewController.swift */; };
 		655D0B23240B43E800D0E329 /* UpdatePhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655D0B22240B43E800D0E329 /* UpdatePhoneViewController.swift */; };
 		655D0B25240B440200D0E329 /* UpdateEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655D0B24240B440200D0E329 /* UpdateEmailViewController.swift */; };
 		655D0B27240B443700D0E329 /* UpdatePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655D0B26240B443700D0E329 /* UpdatePasswordViewController.swift */; };
@@ -136,7 +136,7 @@
 		6528135523E79C15005A1B1F /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Customer.swift; path = NovaOne/Models/Customer.swift; sourceTree = SOURCE_ROOT; };
 		65446CEB23E0F4370052DEBE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		65446CEE23E0F7DF0052DEBE /* NovaOneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovaOneButton.swift; sourceTree = "<group>"; };
-		655D0B20240B43D200D0E329 /* UpdateAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAddressViewController.swift; sourceTree = "<group>"; };
+		655D0B20240B43D200D0E329 /* UpdateStreetAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateStreetAddressViewController.swift; sourceTree = "<group>"; };
 		655D0B22240B43E800D0E329 /* UpdatePhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePhoneViewController.swift; sourceTree = "<group>"; };
 		655D0B24240B440200D0E329 /* UpdateEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateEmailViewController.swift; sourceTree = "<group>"; };
 		655D0B26240B443700D0E329 /* UpdatePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordViewController.swift; sourceTree = "<group>"; };
@@ -405,7 +405,7 @@
 				65AF664323E87F2C001B394F /* AppointmentsViewController.swift */,
 				65AF664F23E881FE001B394F /* SupportViewController.swift */,
 				65AF665723E88229001B394F /* CreateAppointmentViewController.swift */,
-				655D0B20240B43D200D0E329 /* UpdateAddressViewController.swift */,
+				655D0B20240B43D200D0E329 /* UpdateStreetAddressViewController.swift */,
 				655D0B22240B43E800D0E329 /* UpdatePhoneViewController.swift */,
 				655D0B24240B440200D0E329 /* UpdateEmailViewController.swift */,
 				655D0B26240B443700D0E329 /* UpdatePasswordViewController.swift */,
@@ -609,7 +609,7 @@
 				6591C39A23DA78F900535C46 /* AppDelegate.swift in Sources */,
 				6592E3D1240429CA009E4D8D /* SignUpNameViewController.swift in Sources */,
 				657C5F962413ECB200D52E27 /* DateHelper.swift in Sources */,
-				655D0B21240B43D200D0E329 /* UpdateAddressViewController.swift in Sources */,
+				655D0B21240B43D200D0E329 /* UpdateStreetAddressViewController.swift in Sources */,
 				6580FBE324113D0700695DB6 /* UIHelper.swift in Sources */,
 				657C5F9A241406EA00D52E27 /* PropertyDetailViewController.swift in Sources */,
 				655D0B25240B440200D0E329 /* UpdateEmailViewController.swift in Sources */,
