@@ -36,16 +36,5 @@ class SignUpPhoneViewController: UIViewController {
     @IBAction func phoneTextFieldChanged(_ sender: Any) {
         UIHelper.toggle(button: self.continueButton, textFields: [self.phoneTextField], enabledColor: Defaults.novaOneColor, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil, closure: nil)
     }
-    
-
-    // MARK: Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        // Set text for back button on next view controller
-        let backItem = UIBarButtonItem()
-        backItem.title = ""
-        navigationItem.backBarButtonItem = backItem // This will show in the next view controller being pushed
-        
-    }
 
 }

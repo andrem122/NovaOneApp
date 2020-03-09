@@ -73,18 +73,6 @@ class SignUpNameViewController: UIViewController, UITextFieldDelegate {
             return false
         }
     }
-    
-    
-
-    // MARK: Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        // Set text for back button on next view controller
-        let backItem = UIBarButtonItem()
-        backItem.title = ""
-        navigationItem.backBarButtonItem = backItem // This will show in the next view controller being pushed
-        
-    }
 
 }
 

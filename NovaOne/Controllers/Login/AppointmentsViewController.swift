@@ -65,21 +65,6 @@ class AppointmentsViewController: UIViewController {
         }
         
     }
-    
-    // MARK: Actions
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-    // MARK: Enumerations
 
 }
 
@@ -122,8 +107,7 @@ extension AppointmentsViewController: UITableViewDataSource, UITableViewDelegate
         let appointment = self.appointments[indexPath.row]
         
         //Get detail view controller, pass object to it, and present it
-        let detailViewControlleridentifier = "appointmentDetailViewController"
-        if let appointmentDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: detailViewControlleridentifier) as? AppointmentDetailViewController {
+        if let appointmentDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.appointmentDetail.rawValue) as? AppointmentDetailViewController {
             appointmentDetailViewController.appointment = appointment
             self.present(appointmentDetailViewController, animated: true, completion: nil)
         }

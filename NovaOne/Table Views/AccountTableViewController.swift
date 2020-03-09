@@ -25,6 +25,11 @@ class AccountTableViewController: UITableViewController {
     
     // MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let viewController = segue.destination
+        
+        if let propertiesViewController = viewController as? PropertiesViewController {
+            propertiesViewController.customer = customer
+        }
         
         // Set text for back button on next view controller
         let backItem = UIBarButtonItem()

@@ -17,9 +17,9 @@ class LaunchViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var featureScrollView: UIScrollView!
     
     // Set Up slider content
-    let featureOne: Dictionary = ["image": "novaOneLogo", "title": "Welcome To NovaOne", "subText": "Automate your lead process today"]
-    let featureTwo: Dictionary = ["image": "novaOneLogo", "title": "24/7 Contact", "subText": "Find out how NovaOne works 24/7 to contact leads"]
-    let featureThree: Dictionary = ["image": "novaOneLogo", "title": "Mako's Adventures", "subText": "Eating dog biscuts and playing in dirt!"]
+    let featureOne: Dictionary = ["image": Defaults.Images.logo.rawValue, "title": "Welcome To NovaOne", "subText": "Automate your lead process today"]
+    let featureTwo: Dictionary = ["image": Defaults.Images.logo.rawValue, "title": "24/7 Contact", "subText": "Find out how NovaOne works 24/7 to contact leads"]
+    let featureThree: Dictionary = ["image": Defaults.Images.logo.rawValue, "title": "Mako's Adventures", "subText": "Eating dog biscuts and playing in dirt!"]
     var featureArray = [Dictionary <String,String>]()
     var timer: Timer?
     var featureViewIndex: Int = 0 // Start at 1 so slider can start sliding
