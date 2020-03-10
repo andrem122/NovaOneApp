@@ -23,18 +23,22 @@ class PropertyDetailViewController: UIViewController, UITableViewDelegate, UITab
         // Set up cells
         guard let property = self.property else { return }
         guard
+            let name = property.name,
             let phoneNumber = property.phoneNumber,
             let email = property.email,
-            let daysOfTheWeekEnabled = property.daysOfTheWeekEnabled
+            let daysOfTheWeekEnabled = property.daysOfTheWeekEnabled,
+            let hoursOfTheDayEnabled = property.hoursOfTheDayEnabled
         else { return }
         let address = property.shortenedAddress
         
+        let nameCell: [String: Any] = ["cellIcon": UIImage(named: Defaults.Images.locationBlue.rawValue) as Any, "cellTitle": "Name", "cellTitleValue": name, "canUpdateValue": true]
         let addressCell: [String: Any] = ["cellIcon": UIImage(named: Defaults.Images.locationBlue.rawValue) as Any, "cellTitle": "Address", "cellTitleValue": address, "canUpdateValue": true]
         let phoneNumberCell: [String: Any] = ["cellIcon": UIImage(named: Defaults.Images.callBlue.rawValue) as Any, "cellTitle": "Phone", "cellTitleValue": phoneNumber, "canUpdateValue": true]
         let emailCell: [String: Any] = ["cellIcon": UIImage(named: Defaults.Images.emailBlue.rawValue) as Any, "cellTitle": "Email", "cellTitleValue": email, "canUpdateValue": true]
         let daysOfTheWeekCell: [String: Any] = ["cellIcon": UIImage(named: Defaults.Images.calendarBlue.rawValue) as Any, "cellTitle": "Showing Days", "cellTitleValue": daysOfTheWeekEnabled, "canUpdateValue": true]
+        let hoursOfTheDayCell: [String: Any] = ["cellIcon": UIImage(named: Defaults.Images.calendarBlue.rawValue) as Any, "cellTitle": "Showing Hours", "cellTitleValue": hoursOfTheDayEnabled, "canUpdateValue": true]
         
-        self.propertyDetailCells = [addressCell, phoneNumberCell, emailCell, daysOfTheWeekCell]
+        self.propertyDetailCells = [nameCell, addressCell, phoneNumberCell, emailCell, daysOfTheWeekCell, hoursOfTheDayCell]
         
     }
     
@@ -76,13 +80,25 @@ extension PropertyDetailViewController {
         //Get update view controller based on which cell the user clicked on
         switch cellTitle {
             case "Address":
-                if let updateAddressViewController = self.getViewController(by: Defaults.ViewControllerIdentifiers.updateAddress.rawValue) as? UpdateStreetAddressViewController {
-                    self.present(updateAddressViewController, animated: true, completion: nil)
+            if let updatePropertyAddressViewController = self.getViewController(by: Defaults.ViewControllerIdentifiers.updatePropertyAddress.rawValue) as? UpdatePropertyAddressViewController {
+                    self.present(updatePropertyAddressViewController, animated: true, completion: nil)
             }
             case "Phone":
-                if let updatePhoneViewController = self.getViewController(by: Defaults.ViewControllerIdentifiers.updatePhone.rawValue) as? UpdatePhoneViewController {
-                    self.present(updatePhoneViewController, animated: true, completion: nil)
+                if let updatePropertyPhoneViewController = self.getViewController(by: Defaults.ViewControllerIdentifiers.updatePropertyPhone.rawValue) as? UpdatePropertyPhoneViewController {
+                    self.present(updatePropertyPhoneViewController, animated: true, completion: nil)
                 }
+        case "Name":
+            if let updatePropertyNameViewController = self.getViewController(by: Defaults.ViewControllerIdentifiers.updatePropertyName.rawValue) as? UpdatePropertyNameViewController {
+                self.present(updatePropertyNameViewController, animated: true, completion: nil)
+            }
+        case "Email":
+            if let updatePropertyEmailViewController = self.getViewController(by: Defaults.ViewControllerIdentifiers.updatePropertyEmail.rawValue) as? UpdatePropertyEmailViewController {
+                self.present(updatePropertyEmailViewController, animated: true, completion: nil)
+            }
+        case "Showing Days":
+            print("Hello")
+        case "Showing Hours":
+            print("Hello1")
             default:
                 print("Hello!")
         }

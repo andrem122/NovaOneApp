@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NovaOneTabBarController: UITabBarController {
+class HomeTabBarController: UITabBarController {
     
     var customer: CustomerModel?
 

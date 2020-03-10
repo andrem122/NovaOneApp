@@ -168,7 +168,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     KeychainWrapper.standard.set(password, forKey: "password")
                     
                     // Go to tab bar view controller
-                    if let tabBarViewController = self?.storyboard?.instantiateViewController(identifier: "tabBarViewController") as? NovaOneTabBarController  {
+                    if let tabBarViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.TabControllerIdentifiers.home.rawValue) as? HomeTabBarController  {
                         
                         // Pass customer object to each view controller contained in the tab bar controller
                         guard
