@@ -12,5 +12,7 @@ import CoreData
 
 @objc(Customer)
 public class Customer: NSManagedObject {
-
+    public override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertInto: context)
+    }
 }

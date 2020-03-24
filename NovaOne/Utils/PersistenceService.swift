@@ -63,40 +63,32 @@ class PersistenceService {
         }
     }
     
-    static func fetchEntities<Object: NSManagedObject>(entity: Object) -> [Object] {
-        // Get an object stored in CoreData by an entity type and return it
+    static func fetchCustomerEntity() -> Customer? {
+        // Fetches customer data stored in CoreData
         
-        if let fetchRequest: NSFetchRequest<Object> = Object.fetchRequest() as? NSFetchRequest<Object> {
-            do {
-                let coreDataobjects = try PersistenceService.context.fetch(fetchRequest) // Returns CoreData objects in an array
-                return coreDataobjects
-            } catch {
-                fatalError("Failed to fetch CoreData objects: \(error)")
-            }
+        let fetchRequest: NSFetchRequest<Customer> = Customer.fetchRequest()
+        do {
+            let customer = try PersistenceService.context.fetch(fetchRequest).first // Returns CoreData objects in an array
+            return customer
+        } catch {
+            fatalError("Failed to fetch Customer CoreData object: \(error)")
         }
-        
-        // Return empty array of an Object instance if we cannot get the CoreData object
-        let coreDataobjects = [Object()]
-        return coreDataobjects
     }
     
-    static func fetchEntitiesByAttribute<Object: NSManagedObject>(entity: Object, attribute: String, attributeValue: String) -> [Object] {
-        // Get CoreData objects by a attribute (column name in a database table) and attributeValue (column value in a database table)
-        // (like querying a database)
+    static func entityExists(entityName: String) -> Int {
+        // Checks if a given entitiy has objects saved to CoreData
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+        fetchRequest.includesSubentities = false
         
-        if let fetchRequest: NSFetchRequest<Object> = Object.fetchRequest() as? NSFetchRequest<Object> {
-            fetchRequest.predicate = NSPredicate(format: "\(attribute) == %@", attributeValue)
-            do {
-                let coreDataobjects = try PersistenceService.context.fetch(fetchRequest) // Returns CoreData objects in an array
-                return coreDataobjects
-            } catch {
-                fatalError("Failed to fetch CoreData objects: \(error)")
-            }
+        var entitiesCount = 0
+        
+        do {
+            entitiesCount = try PersistenceService.context.count(for: fetchRequest)
+        } catch {
+            fatalError("Failed to fetch count for CoreData entity: \(error)")
         }
         
-        // Return empty array of an Object instance if we cannot get the CoreData object
-        let coreDataobjects = [Object()]
-        return coreDataobjects
+        return entitiesCount
     }
     
 }

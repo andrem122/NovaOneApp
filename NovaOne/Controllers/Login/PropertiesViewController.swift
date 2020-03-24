@@ -12,15 +12,14 @@ class PropertiesViewController: UIViewController, UITableViewDelegate, UITableVi
     
     // MARK: Properties
     @IBOutlet weak var propertiesTableView: UITableView!
-    var customer: CustomerModel?
-    var properties: [Property] = []
+    var companies: [Company] = []
     
     
     // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
-        self.getProperties()
+        self.getCompanies()
     }
     
     func setup() {
@@ -28,26 +27,26 @@ class PropertiesViewController: UIViewController, UITableViewDelegate, UITableVi
         self.propertiesTableView.dataSource = self
     }
     
-    func getProperties() {
+    func getCompanies() {
         let httpRequest = HTTPRequests()
         guard
-            let customerUserId = self.customer?.id,
-            let email = self.customer?.email,
+            let customer = PersistenceService.fetchCustomerEntity(),
+            let email = customer.email,
             let password = KeychainWrapper.standard.string(forKey: "password")
         else {
             print("Failed to obtain variables for POST request")
             return
         }
         
-        let parameters: [String: Any] = ["customerUserId": customerUserId as Any,
+        let parameters: [String: Any] = ["customerUserId": customer.id as Any,
                                          "email": email as Any,
                                          "password": password as Any]
         
-        httpRequest.request(endpoint: "/properties.php", dataModel: [Property(id: 1)], parameters: parameters) { (result) in
+        httpRequest.request(endpoint: "/properties.php", dataModel: [Company(id: 1)], parameters: parameters) { (result) in
                 switch result {
                     
-                    case .success(let properties):
-                        self.properties = properties
+                    case .success(let companies):
+                        self.companies = companies
                         self.propertiesTableView.reloadData() // Reload table to show data pulled from the database
                     case .failure(let error):
                         print(error.localizedDescription)
@@ -61,11 +60,11 @@ class PropertiesViewController: UIViewController, UITableViewDelegate, UITableVi
 extension PropertiesViewController {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.properties.count
+        return self.companies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let property: Property = self.properties[indexPath.row] // Get the property object based on the row number each cell is in
+        let property: Company = self.companies[indexPath.row] // Get the property object based on the row number each cell is in
         let cellIdentifier: String = Defaults.CellIdentifiers.novaOne.rawValue
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! NovaOneTableViewCell // Get cell with identifier so we can use the custom cell we made
         
@@ -85,7 +84,7 @@ extension PropertiesViewController {
     // Function gets called every time a row in the table gets tapped on
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Get appointment object based on which row the user taps on
-        let property = self.properties[indexPath.row]
+        let property = self.companies[indexPath.row]
         
         //Get detail view controller, pass object to it, and present it
         if let propertyDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.propertyDetail.rawValue) as? PropertyDetailViewController {

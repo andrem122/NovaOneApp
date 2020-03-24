@@ -17,7 +17,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: NovaOneButton!
     lazy var alert: Alert = Alert(currentViewController: self)
-    var customer: CustomerModel?
     
     // MARK: Methods
     override func viewDidLoad() {
@@ -193,44 +192,50 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         let dateJoinedDate = customer.dateJoinedDate
                         let id = customer.id
                         
-                        // Save customer object to CoreData IF they are NOT already saved to CoreData
-                        let coreDataCustomer = Customer(context: PersistenceService.context)
-                        coreDataCustomer.id = Int32(id)
-                        coreDataCustomer.companyAddress = companyAddress
-                        coreDataCustomer.companyEmail = companyEmail
-                        coreDataCustomer.companyId = Int32(companyId)
-                        coreDataCustomer.companyName = companyName
-                        coreDataCustomer.companyPhone = companyPhone
-                        coreDataCustomer.customerType = customerType
-                        coreDataCustomer.daysOfTheWeekEnabled = daysOfTheWeekEnabled
-                        coreDataCustomer.email = email
-                        coreDataCustomer.firstName = firstName
-                        coreDataCustomer.hoursOfTheDayEnabled = hoursOfTheDayEnabled
-                        coreDataCustomer.isPaying = isPaying
-                        coreDataCustomer.lastName = lastName
-                        coreDataCustomer.phoneNumber = phoneNumber
-                        coreDataCustomer.wantsSms = wantsSms
-                        coreDataCustomer.dateJoined = dateJoinedDate
-                        
-                        // Get customer object count 
-                        PersistenceService.saveContext()
-                        
-                        // Pass customer object to each view controller contained in the tab bar controller
-                        guard
-                            let appointmentsViewController = tabBarViewController.viewControllers?[1] as? AppointmentsViewController,
-                            let leadsViewController = tabBarViewController.viewControllers?[2] as? LeadsViewController,
-                            let accountnavigationController = tabBarViewController.viewControllers?[3] as? UINavigationController
-                        else {
-                            print("Could not convert view controllers to type")
-                            return
-                        }
-                        
-                        // Pass customer object
-                        appointmentsViewController.customer = customer
-                        leadsViewController.customer = customer
-                        
-                        if let accountTableViewController = accountnavigationController.viewControllers[0] as? AccountTableViewController {
-                            accountTableViewController.customer = customer
+                        // If there are no customer CoreData objects, save the new customer object
+                        // else get and update the existing customer object
+                        let customerCount = PersistenceService.entityExists(entityName: "Customer")
+                        if customerCount == 0 {
+                            // Save customer object to CoreData IF they are NOT already saved to CoreData
+                            let coreDataCustomer = Customer(context: PersistenceService.context)
+                            coreDataCustomer.id = Int32(id)
+                            coreDataCustomer.companyAddress = companyAddress
+                            coreDataCustomer.companyEmail = companyEmail
+                            coreDataCustomer.companyId = Int32(companyId)
+                            coreDataCustomer.companyName = companyName
+                            coreDataCustomer.companyPhone = companyPhone
+                            coreDataCustomer.customerType = customerType
+                            coreDataCustomer.daysOfTheWeekEnabled = daysOfTheWeekEnabled
+                            coreDataCustomer.email = email
+                            coreDataCustomer.firstName = firstName
+                            coreDataCustomer.hoursOfTheDayEnabled = hoursOfTheDayEnabled
+                            coreDataCustomer.isPaying = isPaying
+                            coreDataCustomer.lastName = lastName
+                            coreDataCustomer.phoneNumber = phoneNumber
+                            coreDataCustomer.wantsSms = wantsSms
+                            coreDataCustomer.dateJoined = dateJoinedDate
+                            
+                            PersistenceService.saveContext()
+                        } else {
+                            guard let coreDataCustomer = PersistenceService.fetchCustomerEntity() else { return }
+                            coreDataCustomer.id = Int32(id)
+                            coreDataCustomer.companyAddress = companyAddress
+                            coreDataCustomer.companyEmail = companyEmail
+                            coreDataCustomer.companyId = Int32(companyId)
+                            coreDataCustomer.companyName = companyName
+                            coreDataCustomer.companyPhone = companyPhone
+                            coreDataCustomer.customerType = customerType
+                            coreDataCustomer.daysOfTheWeekEnabled = daysOfTheWeekEnabled
+                            coreDataCustomer.email = email
+                            coreDataCustomer.firstName = firstName
+                            coreDataCustomer.hoursOfTheDayEnabled = hoursOfTheDayEnabled
+                            coreDataCustomer.isPaying = isPaying
+                            coreDataCustomer.lastName = lastName
+                            coreDataCustomer.phoneNumber = phoneNumber
+                            coreDataCustomer.wantsSms = wantsSms
+                            coreDataCustomer.dateJoined = dateJoinedDate
+                            
+                            PersistenceService.saveContext()
                         }
                         
                         tabBarViewController.modalPresentationStyle = .fullScreen // Set presentaion style of view to full screen

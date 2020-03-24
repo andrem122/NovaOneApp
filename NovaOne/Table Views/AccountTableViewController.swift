@@ -11,7 +11,7 @@ import UIKit
 class AccountTableViewController: UITableViewController {
     
     // MARK: Properties
-    var customer: CustomerModel?
+    var customer: Customer?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,15 +19,6 @@ class AccountTableViewController: UITableViewController {
     
     // MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let viewController = segue.destination
-        
-        print(viewController.description)
-        if let propertiesViewController = viewController as? PropertiesViewController {
-            propertiesViewController.customer = customer
-            print("Properties View Controller")
-        } else {
-            print("Not properties view controller")
-        }
         
         // Set text for back button on next view controller
         let backItem = UIBarButtonItem()

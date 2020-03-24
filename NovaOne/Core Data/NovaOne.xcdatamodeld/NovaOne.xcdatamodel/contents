@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="18G2022" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Company" representedClassName="Company" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String"/>
+        <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="daysOfTheWeekEnabled" optional="YES" attributeType="String"/>
+        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="hoursOfTheDayEnabled" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="phoneNumber" optional="YES" attributeType="String"/>
+        <attribute name="shortenedAddress" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="Customer" representedClassName="Customer" syncable="YES">
         <attribute name="companyAddress" optional="YES" attributeType="String"/>
         <attribute name="companyEmail" optional="YES" attributeType="String"/>
@@ -20,5 +31,6 @@
     </entity>
     <elements>
         <element name="Customer" positionX="-63" positionY="-18" width="128" height="283"/>
+        <element name="Company" positionX="-63" positionY="99" width="128" height="178"/>
     </elements>
 </model>
