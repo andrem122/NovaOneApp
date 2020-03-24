@@ -12,8 +12,11 @@ class PropertyDetailViewController: UIViewController, UITableViewDelegate, UITab
     
     // MARK: Properties
     @IBOutlet weak var propertyDetailTableView: UITableView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var topView: NovaOneView!
     var property: Property?
     var propertyDetailCells: [[String: Any]] = [[:]]
+    
     
     // MARK: Methods
     func setup() {
@@ -25,9 +28,7 @@ class PropertyDetailViewController: UIViewController, UITableViewDelegate, UITab
         guard
             let name = property.name,
             let phoneNumber = property.phoneNumber,
-            let email = property.email,
-            let daysOfTheWeekEnabled = property.daysOfTheWeekEnabled,
-            let hoursOfTheDayEnabled = property.hoursOfTheDayEnabled
+            let email = property.email
         else { return }
         let address = property.shortenedAddress
         
@@ -35,17 +36,16 @@ class PropertyDetailViewController: UIViewController, UITableViewDelegate, UITab
         let addressCell: [String: Any] = ["cellIcon": UIImage(named: Defaults.Images.locationBlue.rawValue) as Any, "cellTitle": "Address", "cellTitleValue": address, "canUpdateValue": true]
         let phoneNumberCell: [String: Any] = ["cellIcon": UIImage(named: Defaults.Images.callBlue.rawValue) as Any, "cellTitle": "Phone", "cellTitleValue": phoneNumber, "canUpdateValue": true]
         let emailCell: [String: Any] = ["cellIcon": UIImage(named: Defaults.Images.emailBlue.rawValue) as Any, "cellTitle": "Email", "cellTitleValue": email, "canUpdateValue": true]
-        let daysOfTheWeekCell: [String: Any] = ["cellIcon": UIImage(named: Defaults.Images.calendarBlue.rawValue) as Any, "cellTitle": "Showing Days", "cellTitleValue": daysOfTheWeekEnabled, "canUpdateValue": true]
-        let hoursOfTheDayCell: [String: Any] = ["cellIcon": UIImage(named: Defaults.Images.calendarBlue.rawValue) as Any, "cellTitle": "Showing Hours", "cellTitleValue": hoursOfTheDayEnabled, "canUpdateValue": true]
+        let daysOfTheWeekCell: [String: Any] = ["cellIcon": UIImage(named: Defaults.Images.calendarBlue.rawValue) as Any, "cellTitle": "Showing Days", "cellTitleValue": "", "canUpdateValue": true]
+        let hoursOfTheDayCell: [String: Any] = ["cellIcon": UIImage(named: Defaults.Images.calendarBlue.rawValue) as Any, "cellTitle": "Showing Hours", "cellTitleValue": "", "canUpdateValue": true]
         
         self.propertyDetailCells = [nameCell, addressCell, phoneNumberCell, emailCell, daysOfTheWeekCell, hoursOfTheDayCell]
         
-    }
-    
-    // Gets a view controller vy a string identifier
-    func getViewController(by identifier: String) -> UIViewController {
-        guard let viewController = self.storyboard?.instantiateViewController(identifier: identifier) else { return UIViewController() }
-        return viewController
+        // Set up top view style
+        self.topView.clipsToBounds = true
+        self.topView.layer.cornerRadius = 50
+        self.topView.layer.maskedCorners = [.layerMinXMaxYCorner]
+        
     }
     
     override func viewDidLoad() {
@@ -80,19 +80,19 @@ extension PropertyDetailViewController {
         //Get update view controller based on which cell the user clicked on
         switch cellTitle {
             case "Address":
-            if let updatePropertyAddressViewController = self.getViewController(by: Defaults.ViewControllerIdentifiers.updatePropertyAddress.rawValue) as? UpdatePropertyAddressViewController {
+                if let updatePropertyAddressViewController = UIHelper.getViewController(currentViewController: self, by: Defaults.ViewControllerIdentifiers.updatePropertyAddress.rawValue) as? UpdatePropertyAddressViewController {
                     self.present(updatePropertyAddressViewController, animated: true, completion: nil)
             }
             case "Phone":
-                if let updatePropertyPhoneViewController = self.getViewController(by: Defaults.ViewControllerIdentifiers.updatePropertyPhone.rawValue) as? UpdatePropertyPhoneViewController {
+                if let updatePropertyPhoneViewController = UIHelper.getViewController(currentViewController: self, by: Defaults.ViewControllerIdentifiers.updatePropertyPhone.rawValue) as? UpdatePropertyPhoneViewController {
                     self.present(updatePropertyPhoneViewController, animated: true, completion: nil)
                 }
         case "Name":
-            if let updatePropertyNameViewController = self.getViewController(by: Defaults.ViewControllerIdentifiers.updatePropertyName.rawValue) as? UpdatePropertyNameViewController {
+            if let updatePropertyNameViewController = UIHelper.getViewController(currentViewController: self, by: Defaults.ViewControllerIdentifiers.updatePropertyName.rawValue) as? UpdatePropertyNameViewController {
                 self.present(updatePropertyNameViewController, animated: true, completion: nil)
             }
         case "Email":
-            if let updatePropertyEmailViewController = self.getViewController(by: Defaults.ViewControllerIdentifiers.updatePropertyEmail.rawValue) as? UpdatePropertyEmailViewController {
+            if let updatePropertyEmailViewController = UIHelper.getViewController(currentViewController: self, by: Defaults.ViewControllerIdentifiers.updatePropertyEmail.rawValue) as? UpdatePropertyEmailViewController {
                 self.present(updatePropertyEmailViewController, animated: true, completion: nil)
             }
         case "Showing Days":

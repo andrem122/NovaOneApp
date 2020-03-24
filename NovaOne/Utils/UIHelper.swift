@@ -8,7 +8,7 @@
 
 import UIKit
 
-// A class of commonly used functions for manipulating the user interface
+// A class of commonly used functions used for interacting with the user interface
 class UIHelper {
     
     // Toggles a button between enabled and disabled states based on text field values
@@ -85,6 +85,12 @@ class UIHelper {
             button.backgroundColor = disabledColor
         }
         
+    }
+    
+    // Gets a view controller by a string identifier
+    static func getViewController(currentViewController: UIViewController, by identifier: String) -> UIViewController {
+        guard let viewController = currentViewController.storyboard?.instantiateViewController(identifier: identifier) else { return UIViewController() }
+        return viewController
     }
     
 }

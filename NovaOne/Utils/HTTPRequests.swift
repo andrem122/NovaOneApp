@@ -14,7 +14,7 @@ class HTTPRequests {
     
     
     // MARK: Properties
-    let url: String = "https://graystonerealtyfl.com/NovaOne"
+    let url: String = Defaults.apiUrl
     
     func handleResponse<DataModel: Decodable>(for request: URLRequest,
                                    dataModel: DataModel,

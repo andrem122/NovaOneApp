@@ -75,9 +75,9 @@
 		659D487823F375F0007AC005 /* leads.php in Resources */ = {isa = PBXBuildFile; fileRef = 659D487623F375EF007AC005 /* leads.php */; };
 		659D487923F375F0007AC005 /* appointments.php in Resources */ = {isa = PBXBuildFile; fileRef = 659D487723F375F0007AC005 /* appointments.php */; };
 		659D487B23F37772007AC005 /* verify_user.php in Resources */ = {isa = PBXBuildFile; fileRef = 659D487A23F37771007AC005 /* verify_user.php */; };
-		659D487E23F38C01007AC005 /* NovaOne.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 659D487C23F38C01007AC005 /* NovaOne.xcdatamodeld */; };
 		65A18DCE2410454A00F16565 /* NovaOneTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A18DCD2410454A00F16565 /* NovaOneTextView.swift */; };
 		65A1FC4D23E48A6800D5CBCF /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A1FC4C23E48A6800D5CBCF /* Defaults.swift */; };
+		65AB8E492427F5A800ED2ECF /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB8E482427F5A800ED2ECF /* PersistenceService.swift */; };
 		65ADE2DF23E1C814003D3215 /* FeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ADE2DE23E1C814003D3215 /* FeatureView.swift */; };
 		65ADE2E123E1C84E003D3215 /* Feature.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65ADE2E023E1C84E003D3215 /* Feature.xib */; };
 		65ADE2F623E3AF27003D3215 /* HTTPRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ADE2F523E3AF27003D3215 /* HTTPRequests.swift */; };
@@ -93,10 +93,13 @@
 		65AF665823E88229001B394F /* CreateAppointmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF665723E88229001B394F /* CreateAppointmentViewController.swift */; };
 		65AF665923E88229001B394F /* CreateAppointmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF665723E88229001B394F /* CreateAppointmentViewController.swift */; };
 		65AF665A23E88229001B394F /* CreateAppointmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF665723E88229001B394F /* CreateAppointmentViewController.swift */; };
+		65BCE1802429321200E5040E /* Customer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BCE17E2429321200E5040E /* Customer+CoreDataClass.swift */; };
+		65BCE1812429321200E5040E /* Customer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BCE17F2429321200E5040E /* Customer+CoreDataProperties.swift */; };
 		65C5467923ECAB2300A198F3 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C5467823ECAB2300A198F3 /* AppUtility.swift */; };
 		65C5467A23ECAB2300A198F3 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C5467823ECAB2300A198F3 /* AppUtility.swift */; };
 		65C5467B23ECAB2400A198F3 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C5467823ECAB2300A198F3 /* AppUtility.swift */; };
 		65D75F7423FB495900C7988E /* utils.php in Resources */ = {isa = PBXBuildFile; fileRef = 65D75F7323FB495900C7988E /* utils.php */; };
+		65DBED6C2429404F0090B39C /* NovaOne.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 659D487C23F38C01007AC005 /* NovaOne.xcdatamodeld */; };
 		65FA42C224181A430040C915 /* UpdatePropertyEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FA42C124181A430040C915 /* UpdatePropertyEmailViewController.swift */; };
 		65FA42C424181B6C0040C915 /* UpdatePropertyNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FA42C324181B6C0040C915 /* UpdatePropertyNameViewController.swift */; };
 /* End PBXBuildFile section */
@@ -197,6 +200,7 @@
 		659D487D23F38C01007AC005 /* NovaOne.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NovaOne.xcdatamodel; sourceTree = "<group>"; };
 		65A18DCD2410454A00F16565 /* NovaOneTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovaOneTextView.swift; sourceTree = "<group>"; };
 		65A1FC4C23E48A6800D5CBCF /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Defaults.swift; path = ../Defaults.swift; sourceTree = "<group>"; };
+		65AB8E482427F5A800ED2ECF /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		65ADE2DE23E1C814003D3215 /* FeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureView.swift; sourceTree = "<group>"; };
 		65ADE2E023E1C84E003D3215 /* Feature.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Feature.xib; sourceTree = "<group>"; };
 		65ADE2F523E3AF27003D3215 /* HTTPRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequests.swift; sourceTree = "<group>"; };
@@ -204,6 +208,8 @@
 		65AF664723E881D9001B394F /* LeadsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadsViewController.swift; sourceTree = "<group>"; };
 		65AF664F23E881FE001B394F /* SupportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
 		65AF665723E88229001B394F /* CreateAppointmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAppointmentViewController.swift; sourceTree = "<group>"; };
+		65BCE17E2429321200E5040E /* Customer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Customer+CoreDataClass.swift"; sourceTree = "<group>"; };
+		65BCE17F2429321200E5040E /* Customer+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Customer+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		65C5467823ECAB2300A198F3 /* AppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
 		65D75F7323FB495900C7988E /* utils.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = utils.php; sourceTree = "<group>"; };
 		65FA42C124181A430040C915 /* UpdatePropertyEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePropertyEmailViewController.swift; sourceTree = "<group>"; };
@@ -286,6 +292,7 @@
 				658EC6C923F4CD120042827E /* UIViewBorders.swift */,
 				6580FBE224113D0700695DB6 /* UIHelper.swift */,
 				657C5F952413ECB200D52E27 /* DateHelper.swift */,
+				65AB8E482427F5A800ED2ECF /* PersistenceService.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -304,7 +311,6 @@
 			isa = PBXGroup;
 			children = (
 				659CCD3523EE46260066C9CB /* ErrorResponse.swift */,
-				659D487C23F38C01007AC005 /* NovaOne.xcdatamodeld */,
 				6528135523E79C15005A1B1F /* Customer.swift */,
 				658EC6C523F4870D0042827E /* Appointment.swift */,
 				6584FAC224089BA900A06125 /* Lead.swift */,
@@ -345,6 +351,7 @@
 		6591C39823DA78F900535C46 /* NovaOne */ = {
 			isa = PBXGroup;
 			children = (
+				65BCE1822429327100E5040E /* Core Data */,
 				659C1A88240AB57F003C91C1 /* Table Views */,
 				6592E3D42405D86F009E4D8D /* Tab Bars */,
 				658EC6C423F484F50042827E /* Table View Cells */,
@@ -457,6 +464,16 @@
 				6583194E23F2209C001D378D /* settings.php */,
 			);
 			path = PHP;
+			sourceTree = "<group>";
+		};
+		65BCE1822429327100E5040E /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				659D487C23F38C01007AC005 /* NovaOne.xcdatamodeld */,
+				65BCE17E2429321200E5040E /* Customer+CoreDataClass.swift */,
+				65BCE17F2429321200E5040E /* Customer+CoreDataProperties.swift */,
+			);
+			path = "Core Data";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -602,8 +619,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65DBED6C2429404F0090B39C /* NovaOne.xcdatamodeld in Sources */,
+				65AB8E492427F5A800ED2ECF /* PersistenceService.swift in Sources */,
+				65BCE1812429321200E5040E /* Customer+CoreDataProperties.swift in Sources */,
 				655D0B23240B43E800D0E329 /* UpdatePhoneViewController.swift in Sources */,
 				658AF5FC240DA66800577446 /* SignUpAddressViewController.swift in Sources */,
+				65BCE1802429321200E5040E /* Customer+CoreDataClass.swift in Sources */,
 				658EC6C623F4870D0042827E /* Appointment.swift in Sources */,
 				6578D9EF24158E55002E94BF /* Property.swift in Sources */,
 				655D0B27240B443700D0E329 /* UpdatePasswordViewController.swift in Sources */,
@@ -653,7 +674,6 @@
 				650250C123E4991700B427D0 /* Alert.swift in Sources */,
 				6584FAC324089BA900A06125 /* Lead.swift in Sources */,
 				65446CEC23E0F4370052DEBE /* LoginViewController.swift in Sources */,
-				659D487E23F38C01007AC005 /* NovaOne.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -877,6 +897,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.novaonesoftware.NovaOne;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

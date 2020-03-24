@@ -14,12 +14,11 @@ class ObjectDetailTableViewCell: UITableViewCell {
     @IBOutlet weak var cellIcon: UIImageView!
     @IBOutlet weak var cellTitleLabel: UILabel!
     @IBOutlet weak var cellTitleValueLabel: UILabel!
-    @IBOutlet weak var detailButton: UIButton!
     
     // Assigns values for cell properties
     func setup(cellIcon: UIImage, cellTitle: String, cellTitleValue: String, canUpdateValue: Bool) {
         
-        self.cellIcon.image = cellIcon
+        //self.cellIcon.image = cellIcon
         self.cellTitleLabel.text = cellTitle
         self.cellTitleValueLabel.text = cellTitleValue
         
@@ -27,8 +26,6 @@ class ObjectDetailTableViewCell: UITableViewCell {
         // remove the right angle icon and set trailing
         // constant of cellTitleValueLabel to 8 points from superview
         if !canUpdateValue {
-            
-            self.detailButton.removeFromSuperview()
             
             // Trailing constraint
             self.contentView.addConstraint(NSLayoutConstraint(item: self.cellTitleValueLabel!, attribute: .trailing, relatedBy: .equal, toItem: self.cellTitleLabel.superview, attribute: .trailing, multiplier: 1, constant: 16))

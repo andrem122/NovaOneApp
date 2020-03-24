@@ -15,20 +15,18 @@ class AccountTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     // MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let viewController = segue.destination
         
+        print(viewController.description)
         if let propertiesViewController = viewController as? PropertiesViewController {
             propertiesViewController.customer = customer
+            print("Properties View Controller")
+        } else {
+            print("Not properties view controller")
         }
         
         // Set text for back button on next view controller
@@ -36,5 +34,11 @@ class AccountTableViewController: UITableViewController {
         backItem.title = ""
         navigationItem.backBarButtonItem = backItem // This will show in the next view controller being pushed
         
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // If properties cell is tapped on, navigate to navigation controller that
+        // properties view controller is embedded in
+
     }
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 import LocalAuthentication
+import CoreData
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
@@ -170,9 +171,52 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     // Go to tab bar view controller
                     if let tabBarViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.TabControllerIdentifiers.home.rawValue) as? HomeTabBarController  {
                         
+                        // Unwrap optionals from CustomerModel instance
+                        guard
+                            let companyAddress = customer.companyAddress,
+                            let companyEmail = customer.companyEmail,
+                            let companyId = customer.companyId,
+                            let companyName = customer.companyName,
+                            let companyPhone = customer.companyPhone,
+                            let customerType = customer.customerType,
+                            let daysOfTheWeekEnabled = customer.daysOfTheWeekEnabled,
+                            let email = customer.email,
+                            let firstName = customer.firstName,
+                            let hoursOfTheDayEnabled = customer.hoursOfTheDayEnabled,
+                            let isPaying = customer.isPaying,
+                            let lastName = customer.lastName,
+                            let phoneNumber = customer.phoneNumber,
+                            let wantsSms = customer.wantsSms
+                        else { return }
+                        
+                        // Get non optionals from CustomerModel instance
+                        let dateJoinedDate = customer.dateJoinedDate
+                        let id = customer.id
+                        
+                        // Save customer object to CoreData IF they are NOT already saved to CoreData
+                        let coreDataCustomer = Customer(context: PersistenceService.context)
+                        coreDataCustomer.id = Int32(id)
+                        coreDataCustomer.companyAddress = companyAddress
+                        coreDataCustomer.companyEmail = companyEmail
+                        coreDataCustomer.companyId = Int32(companyId)
+                        coreDataCustomer.companyName = companyName
+                        coreDataCustomer.companyPhone = companyPhone
+                        coreDataCustomer.customerType = customerType
+                        coreDataCustomer.daysOfTheWeekEnabled = daysOfTheWeekEnabled
+                        coreDataCustomer.email = email
+                        coreDataCustomer.firstName = firstName
+                        coreDataCustomer.hoursOfTheDayEnabled = hoursOfTheDayEnabled
+                        coreDataCustomer.isPaying = isPaying
+                        coreDataCustomer.lastName = lastName
+                        coreDataCustomer.phoneNumber = phoneNumber
+                        coreDataCustomer.wantsSms = wantsSms
+                        coreDataCustomer.dateJoined = dateJoinedDate
+                        
+                        // Get customer object count 
+                        PersistenceService.saveContext()
+                        
                         // Pass customer object to each view controller contained in the tab bar controller
                         guard
-                            let homeViewController = tabBarViewController.viewControllers?[0] as? HomeViewController,
                             let appointmentsViewController = tabBarViewController.viewControllers?[1] as? AppointmentsViewController,
                             let leadsViewController = tabBarViewController.viewControllers?[2] as? LeadsViewController,
                             let accountnavigationController = tabBarViewController.viewControllers?[3] as? UINavigationController
@@ -182,7 +226,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         }
                         
                         // Pass customer object
-                        homeViewController.customer = customer
                         appointmentsViewController.customer = customer
                         leadsViewController.customer = customer
                         

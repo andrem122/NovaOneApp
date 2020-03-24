@@ -19,11 +19,12 @@ struct CustomerModel: Decodable {
     var dateJoined: String?
     var isPaying: Bool?
     var wantsSms: Bool?
-    var propertyId: Int?
-    var propertyName: String?
-    var propertyAddress: String?
-    var propertyPhone: String?
-    var propertyEmail: String?
+    var customerType: String?
+    var companyId: Int?
+    var companyName: String?
+    var companyAddress: String?
+    var companyPhone: String?
+    var companyEmail: String?
     var daysOfTheWeekEnabled: String?
     var hoursOfTheDayEnabled: String?
     

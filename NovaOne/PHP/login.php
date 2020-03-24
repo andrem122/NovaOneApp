@@ -33,19 +33,20 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
               a.date_joined as \"dateJoined\",
               c.is_paying as \"isPaying\",
               c.wants_sms as \"wantsSms\",
-              p.id as \"propertyId\",
-              p.name as \"propertyName\",
-              p.address as \"propertyAddress\",
-              p.phone_number as \"propertyPhone\",
-              p.email as \"propertyEmail\",
-              p.days_of_the_week_enabled as \"daysOfTheWeekEnabled\",
-              p.hours_of_the_day_enabled as \"hoursOfTheDayEnabled\"
+              c.customer_type as \"customerType\",
+              co.id as \"companyId\",
+              co.name as \"companyName\",
+              co.address as \"companyAddress\",
+              co.phone_number as \"companyPhone\",
+              co.email as \"companyEmail\",
+              co.days_of_the_week_enabled as \"daysOfTheWeekEnabled\",
+              co.hours_of_the_day_enabled as \"hoursOfTheDayEnabled\"
           FROM
               auth_user a
           INNER JOIN customer_register_customer_user c
               ON a.id = c.user_id
-          INNER JOIN property_property p
-              ON c.property_id = p.id
+          INNER JOIN property_company co
+              ON c.company_id = co.id
           WHERE a.email = :email";
           
           

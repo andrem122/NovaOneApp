@@ -85,8 +85,7 @@ extension AppointmentsViewController: UITableViewDataSource, UITableViewDelegate
         
         // Pass in appointment object to set up cell properties (address, name, etc.)
         guard
-            let name = appointment.name,
-            let unitType = appointment.unitType
+            let name = appointment.name
         else { return cell }
         let address = appointment.shortenedAddress
         
@@ -96,7 +95,7 @@ extension AppointmentsViewController: UITableViewDataSource, UITableViewDelegate
         let appointmentTimeDate: Date = appointment.timeDate
         let appointmentTime: String = dateFormatter.string(from: appointmentTimeDate)
         
-        cell.setup(title: name, subTitleOne: address, subTitleTwo: unitType, subTitleThree: appointmentTime)
+        cell.setup(title: name, subTitleOne: address, subTitleTwo: "2 Bedrooms", subTitleThree: appointmentTime)
         
         return cell
     }

@@ -18,18 +18,18 @@ if ($user_is_verified) {
     // check if user exists in database
     $query = "
     SELECT
-        p.id,
-        p.name,
-        p.address,
-        p.phone_number as \"phoneNumber\",
-        p.email,
-        TO_CHAR(p.created, 'YYYY-MM-DD HH24:MI:SS TZ') as \"created\",
-        p.days_of_the_week_enabled as \"daysOfTheWeekEnabled\",
-        p.hours_of_the_day_enabled as \"hoursOfTheDayEnabled\"
+        co.id,
+        co.name,
+        co.address,
+        co.phone_number as \"phoneNumber\",
+        co.email,
+        TO_CHAR(co.created, 'YYYY-MM-DD HH24:MI:SS TZ') as \"created\",
+        co.days_of_the_week_enabled as \"daysOfTheWeekEnabled\",
+        co.hours_of_the_day_enabled as \"hoursOfTheDayEnabled\"
     FROM
-        property_property p
+        property_company co
     INNER JOIN customer_register_customer_user c
-        ON c.property_id = p.id
+        ON c.company_id = co.id
     WHERE c.id = :customer_user_id
     ORDER BY created DESC;
     ";

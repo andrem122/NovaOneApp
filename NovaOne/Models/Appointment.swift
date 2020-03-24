@@ -14,12 +14,11 @@ struct Appointment: Decodable {
     var id: Int
     var name: String?
     var phoneNumber: String?
+    var address: String?
     var time: String?
     var created: String?
     var timeZone: String?
     var confirmed: Bool?
-    var address: String?
-    var unitType: String?
     
     // Computed Properties
     var timeDate: Date {

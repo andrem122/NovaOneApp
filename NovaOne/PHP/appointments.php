@@ -21,18 +21,17 @@ if ($user_is_verified) {
         a.id,
         a.name,
         a.phone_number as \"phoneNumber\",
-        p.address,
+        co.address,
         a.time,
         TO_CHAR(a.created, 'YYYY-MM-DD HH24:MI:SS TZ') as \"created\",
         a.time_zone as \"timeZone\",
-        a.confirmed,
-        a.unit_type as \"unitType\"
+        a.confirmed
     FROM
-        appointments_appointment a
+        appointments_appointment_base a
     INNER JOIN customer_register_customer_user c
         ON a.customer_user_id = c.id
-    INNER JOIN property_property p
-        ON c.property_id = p.id
+    INNER JOIN property_company co
+        ON c.company_id = co.id
     WHERE customer_user_id = :customer_user_id
     ORDER BY time DESC;
     ";

@@ -41,7 +41,6 @@ class AppointmentDetailViewController: UIViewController {
             
             guard
                 let name = appointment.name,
-                let unitType = appointment.unitType,
                 let confirmed = appointment.confirmed
             else { return }
             
@@ -51,7 +50,7 @@ class AppointmentDetailViewController: UIViewController {
             self.nameLabel.text = name
             self.appointmentTimeLabel.text = appointmentTime
             self.addressLabel.text = appointment.shortenedAddress
-            self.unitTypeLabel.text = unitType
+            self.unitTypeLabel.text = "2 Bedrooms"
             self.createdLabel.text = appointmentCreated
             self.confirmedLabel.text = confirmedString
         }
