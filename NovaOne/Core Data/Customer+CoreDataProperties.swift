@@ -34,6 +34,45 @@ extension Customer {
     @NSManaged public var phoneNumber: String?
     @NSManaged public var wantsSms: Bool
     @NSManaged public var companies: NSSet?
+    
+    // MARK: Methods
+    func addCustomer(companyAddress: String,
+                     companyEmail: String,
+                     companyId: Int32,
+                     companyName: String,
+                     companyPhone: String,
+                     customerType: String,
+                     dateJoined: Date,
+                     daysOfTheWeekEnabled: String,
+                     email: String,
+                     firstName: String,
+                     hoursOfTheDayEnabled: String,
+                     id: Int32,
+                     isPaying: Bool,
+                     lastName: String,
+                     phoneNumber: String,
+                     wantsSms: Bool,
+                     companies: NSSet?) {
+        // Adds customer obeject to CoreData
+        self.companyAddress = companyAddress
+        self.companyEmail = companyEmail
+        self.companyId = companyId
+        self.companyName = companyName
+        self.companyPhone = companyPhone
+        self.customerType = customerType
+        self.dateJoined = dateJoined
+        self.daysOfTheWeekEnabled = daysOfTheWeekEnabled
+        self.email = email
+        self.firstName = firstName
+        self.hoursOfTheDayEnabled = hoursOfTheDayEnabled
+        self.id = id
+        self.isPaying = isPaying
+        self.lastName = lastName
+        self.phoneNumber = phoneNumber
+        self.wantsSms = wantsSms
+        self.companies = companies
+        
+    }
 
 }
 

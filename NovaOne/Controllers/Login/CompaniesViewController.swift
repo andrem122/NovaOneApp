@@ -34,7 +34,6 @@ class CompaniesViewController: UIViewController, UITableViewDelegate, UITableVie
         // Get companies for customer from Coredata IF they exist else get them from the database
         
         if self.customerHasCompanies {
-            print("Customer has companies")
             guard let coreDataCompanies: [Any] = PersistenceService.fetchCustomerCompanies() else { return }
             self.coreDataCompanies = coreDataCompanies
             
@@ -50,7 +49,7 @@ class CompaniesViewController: UIViewController, UITableViewDelegate, UITableVie
         
         let httpRequest = HTTPRequests()
         guard
-            let customer = PersistenceService.fetchCustomerEntity(),
+            let customer = PersistenceService.fetchEntity(Customer.self).first,
             let email = customer.email,
             let password = KeychainWrapper.standard.string(forKey: "password")
         else {

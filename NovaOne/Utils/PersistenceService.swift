@@ -60,7 +60,24 @@ class PersistenceService {
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
+            context.reset() // Reset the context to clean up the cache and low the memory footprint.
         }
+    }
+    
+    // MARK: - Core Data Fetching
+    static func fetchEntity<T: NSManagedObject>(_ objectType: T.Type) -> [T] {
+        // Gets all objects from an entity type in CoreData
+        let entityName = String(describing: objectType)
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+        
+        do {
+            let objects = try self.context.fetch(fetchRequest) as? [T]
+            return objects ?? [T]()
+        } catch {
+            print("Error fetching objects: \(error)")
+        }
+        
+        return [T]()
     }
     
     static func fetchCustomerEntity() -> Customer? {
@@ -68,7 +85,7 @@ class PersistenceService {
         
         let fetchRequest: NSFetchRequest<Customer> = Customer.fetchRequest()
         do {
-            let customer = try PersistenceService.context.fetch(fetchRequest).first // Returns CoreData objects in an array, so get the first one
+            let customer = try self.context.fetch(fetchRequest).first // Returns CoreData objects in an array, so get the first one
             return customer
         } catch {
             fatalError("Failed to fetch Customer CoreData object: \(error)")
@@ -80,7 +97,7 @@ class PersistenceService {
         
         let fetchRequest: NSFetchRequest<Customer> = Customer.fetchRequest()
         do {
-            let customer = try PersistenceService.context.fetch(fetchRequest).first // Returns customer object
+            let customer = try self.context.fetch(fetchRequest).first // Returns customer object
             return customer?.companies?.allObjects // return as an Array type instead of NSSet
         } catch {
             fatalError("Failed to fetch CoreData company objects: \(error)")
@@ -92,7 +109,7 @@ class PersistenceService {
         let fetchRequest: NSFetchRequest<Customer> = Customer.fetchRequest()
         do {
             guard
-                let customer = try PersistenceService.context.fetch(fetchRequest).first,
+                let customer = try self.context.fetch(fetchRequest).first,
                 let companiesSet = customer.companies
             else { return false }
             
@@ -111,7 +128,7 @@ class PersistenceService {
         let fetchRequest: NSFetchRequest<Customer> = Customer.fetchRequest()
         do {
             guard
-                let customer = try PersistenceService.context.fetch(fetchRequest).first,
+                let customer = try self.context.fetch(fetchRequest).first,
                 let companiesSet = customer.companies
             else { return 0 }
             
@@ -129,12 +146,24 @@ class PersistenceService {
         var entitiesCount = 0
         
         do {
-            entitiesCount = try PersistenceService.context.count(for: fetchRequest)
+            entitiesCount = try self.context.count(for: fetchRequest)
         } catch {
             fatalError("Failed to fetch count for CoreData entity: \(error)")
         }
         
         return entitiesCount
+    }
+    
+    static func deleteAllData(for entityName: String) {
+        // Deletes ALL data in CoreData for a given entity
+        let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+        let request = NSBatchDeleteRequest(fetchRequest: fetch)
+        do {
+            try self.context.execute(request)
+            self.saveContext()
+        } catch {
+            print("Detele all data in \(entityName) error :", error)
+        }
     }
     
 }

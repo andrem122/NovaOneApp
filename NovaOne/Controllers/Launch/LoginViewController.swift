@@ -16,6 +16,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: NovaOneButton!
+    let coreDataCustomerEmail: String? = PersistenceService.fetchEntity(Customer.self).first?.email
     lazy var alert: Alert = Alert(currentViewController: self)
     
     // MARK: Methods
@@ -193,49 +194,38 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         let id = customer.id
                         
                         // If there are no customer CoreData objects, save the new customer object
-                        // else get and update the existing customer object
-                        let customerCount = PersistenceService.entityExists(entityName: "Customer")
-                        if customerCount == 0 {
-                            // Save customer object to CoreData IF they are NOT already saved to CoreData
-                            let coreDataCustomer = Customer(context: PersistenceService.context)
-                            coreDataCustomer.id = Int32(id)
-                            coreDataCustomer.companyAddress = companyAddress
-                            coreDataCustomer.companyEmail = companyEmail
-                            coreDataCustomer.companyId = Int32(companyId)
-                            coreDataCustomer.companyName = companyName
-                            coreDataCustomer.companyPhone = companyPhone
-                            coreDataCustomer.customerType = customerType
-                            coreDataCustomer.daysOfTheWeekEnabled = daysOfTheWeekEnabled
-                            coreDataCustomer.email = email
-                            coreDataCustomer.firstName = firstName
-                            coreDataCustomer.hoursOfTheDayEnabled = hoursOfTheDayEnabled
-                            coreDataCustomer.isPaying = isPaying
-                            coreDataCustomer.lastName = lastName
-                            coreDataCustomer.phoneNumber = phoneNumber
-                            coreDataCustomer.wantsSms = wantsSms
-                            coreDataCustomer.dateJoined = dateJoinedDate
+                        let customerCount = PersistenceService.entityExists(entityName: Defaults.CoreDataEntities.customer.rawValue)
+                        if customerCount == 0 { // New users to the app logging in for first time
+                            print("New user to the app!")
+                            guard let coreDataCustomerObject = NSEntityDescription.insertNewObject(forEntityName: Defaults.CoreDataEntities.customer.rawValue, into: PersistenceService.context) as? Customer else {
+                                print("Failed to create new Customer object!")
+                                return
+                            }
+                            
+                            coreDataCustomerObject.addCustomer(companyAddress: companyAddress, companyEmail: companyEmail, companyId: Int32(companyId), companyName: companyName, companyPhone: companyPhone, customerType: customerType, dateJoined: dateJoinedDate, daysOfTheWeekEnabled: daysOfTheWeekEnabled, email: email, firstName: firstName, hoursOfTheDayEnabled: hoursOfTheDayEnabled, id: Int32(id), isPaying: isPaying, lastName: lastName, phoneNumber: phoneNumber, wantsSms: wantsSms, companies: nil)
                             
                             PersistenceService.saveContext()
-                        } else {
-                            guard let coreDataCustomer = PersistenceService.fetchCustomerEntity() else { return }
-                            coreDataCustomer.id = Int32(id)
-                            coreDataCustomer.companyAddress = companyAddress
-                            coreDataCustomer.companyEmail = companyEmail
-                            coreDataCustomer.companyId = Int32(companyId)
-                            coreDataCustomer.companyName = companyName
-                            coreDataCustomer.companyPhone = companyPhone
-                            coreDataCustomer.customerType = customerType
-                            coreDataCustomer.daysOfTheWeekEnabled = daysOfTheWeekEnabled
-                            coreDataCustomer.email = email
-                            coreDataCustomer.firstName = firstName
-                            coreDataCustomer.hoursOfTheDayEnabled = hoursOfTheDayEnabled
-                            coreDataCustomer.isPaying = isPaying
-                            coreDataCustomer.lastName = lastName
-                            coreDataCustomer.phoneNumber = phoneNumber
-                            coreDataCustomer.wantsSms = wantsSms
-                            coreDataCustomer.dateJoined = dateJoinedDate
+                            
+                        } else if (customerCount > 0) && (username != self?.coreDataCustomerEmail) {
+                            // If the email that was typed into the email text field matches the email attribute value
+                            // of the customer object we have stored in CoreData, do nothing. Otherwise,
+                            // delete ALL data from CoreData and update the customer object
+                            
+                            print("Existing user with new login information!")
+                            // Delete all CoreData data from previous logins
+                            PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.customer.rawValue)
+                            PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.company.rawValue)
+                            
+                            // Create new customer object in CoreData for new login information
+                            guard let coreDataCustomerObject = NSEntityDescription.insertNewObject(forEntityName: Defaults.CoreDataEntities.customer.rawValue, into: PersistenceService.context) as? Customer else {
+                                print("Failed to create new Customer object!")
+                                return
+                            }
+                            
+                            coreDataCustomerObject.addCustomer(companyAddress: companyAddress, companyEmail: companyEmail, companyId: Int32(companyId), companyName: companyName, companyPhone: companyPhone, customerType: customerType, dateJoined: dateJoinedDate, daysOfTheWeekEnabled: daysOfTheWeekEnabled, email: email, firstName: firstName, hoursOfTheDayEnabled: hoursOfTheDayEnabled, id: Int32(id), isPaying: isPaying, lastName: lastName, phoneNumber: phoneNumber, wantsSms: wantsSms, companies: nil)
                             
                             PersistenceService.saveContext()
+                            
                         }
                         
                         tabBarViewController.modalPresentationStyle = .fullScreen // Set presentaion style of view to full screen
