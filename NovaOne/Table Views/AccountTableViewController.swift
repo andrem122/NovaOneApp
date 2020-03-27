@@ -11,10 +11,28 @@ import UIKit
 class AccountTableViewController: UITableViewController {
     
     // MARK: Properties
-    var customer: Customer?
-
+    @IBOutlet weak var nameValueLabel: UILabel!
+    @IBOutlet weak var customerIdValueLabel: UILabel!
+    @IBOutlet weak var emailAddressValueLabel: UILabel!
+    @IBOutlet weak var phoneNumberValueLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setup()
+    }
+    
+    func setup() {
+        // Set values for each label
+        guard
+            let customer = PersistenceService.fetchEntity(Customer.self).first,
+            let emailAddress = customer.email,
+            let phoneNumber = customer.phoneNumber
+        else { return }
+        
+        self.nameValueLabel.text = customer.fullName
+        self.customerIdValueLabel.text = String(customer.id)
+        self.emailAddressValueLabel.text = emailAddress
+        self.phoneNumberValueLabel.text = phoneNumber
     }
     
     // MARK: Navigation

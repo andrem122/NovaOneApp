@@ -34,6 +34,14 @@ extension Customer {
     @NSManaged public var phoneNumber: String?
     @NSManaged public var wantsSms: Bool
     @NSManaged public var companies: NSSet?
+    var fullName: String {
+        // Returns customer's full name
+        guard
+            let firstName = self.firstName,
+            let lastName = self.lastName
+            else { return "" }
+        return "\(firstName) \(lastName)"
+    }
     
     // MARK: Methods
     func addCustomer(companyAddress: String,

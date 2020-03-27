@@ -118,7 +118,9 @@ extension CompanyDetailViewController {
                 self.present(updatePropertyEmailViewController, animated: true, completion: nil)
             }
         case "Showing Days":
-            print("Hello")
+            if let updateCompanyDaysEnabledViewController = UIHelper.getViewController(currentViewController: self, by: Defaults.ViewControllerIdentifiers.updateCompanyDaysEnabled.rawValue) as? UpdateCompanyDaysEnabledViewController {
+                self.present(updateCompanyDaysEnabledViewController, animated: true, completion: nil)
+            }
         case "Showing Hours":
             print("Hello1")
             default:
