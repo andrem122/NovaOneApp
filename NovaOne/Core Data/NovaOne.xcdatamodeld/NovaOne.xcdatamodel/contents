@@ -10,6 +10,7 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="phoneNumber" optional="YES" attributeType="String"/>
         <attribute name="shortenedAddress" optional="YES" attributeType="String"/>
+        <relationship name="customer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Customer" inverseName="companies" inverseEntity="Customer"/>
     </entity>
     <entity name="Customer" representedClassName="Customer" syncable="YES">
         <attribute name="companyAddress" optional="YES" attributeType="String"/>
@@ -28,9 +29,10 @@
         <attribute name="lastName" optional="YES" attributeType="String"/>
         <attribute name="phoneNumber" optional="YES" attributeType="String"/>
         <attribute name="wantsSms" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="companies" toMany="YES" deletionRule="Nullify" destinationEntity="Company" inverseName="customer" inverseEntity="Company"/>
     </entity>
     <elements>
-        <element name="Customer" positionX="-63" positionY="-18" width="128" height="283"/>
-        <element name="Company" positionX="-63" positionY="99" width="128" height="178"/>
+        <element name="Company" positionX="-63" positionY="99" width="128" height="193"/>
+        <element name="Customer" positionX="-63" positionY="-18" width="128" height="298"/>
     </elements>
 </model>

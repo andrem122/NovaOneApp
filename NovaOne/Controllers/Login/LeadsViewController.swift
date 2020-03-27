@@ -13,7 +13,7 @@ class LeadsViewController: UIViewController {
     // MARK: Properties
     @IBOutlet weak var leadsTableView: UITableView!
     var customer: CustomerModel?
-    var leads: [Lead] = []
+    var leads: [LeadModel] = []
         
     // MARK: Methods
     override func viewDidLoad() {
@@ -49,7 +49,7 @@ class LeadsViewController: UIViewController {
                                          "password": password as Any]
         
         httpRequest.request(endpoint: "/leads.php",
-                            dataModel: [Lead(id: 1)], // Must have one non optional value in our object otherwise JSONDecoder will be able to decode the ANY json response into an appointment object because all fields are optional
+                            dataModel: [LeadModel(id: 1)], // Must have one non optional value in our object otherwise JSONDecoder will be able to decode the ANY json response into an appointment object because all fields are optional
                             parameters: parameters) { (result) in
                                 
                                 switch result {
@@ -97,7 +97,7 @@ extension LeadsViewController: UITableViewDataSource, UITableViewDelegate {
     // Paramater 'indexPath' represents the row number that each table view cell is contained in (Example: first appointment object has indexPath of zero)
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let lead: Lead = self.leads[indexPath.row] // Get the appointment object based on the row number each cell is in
+        let lead: LeadModel = self.leads[indexPath.row] // Get the appointment object based on the row number each cell is in
         let cell = tableView.dequeueReusableCell(withIdentifier: "novaOneTableCell") as! NovaOneTableViewCell // Get cell with identifier so we can use the custom cell we made
         
         // Unwrap values from object and set up cell text

@@ -8,38 +8,19 @@
 
 import UIKit
 
-class PropertyDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // MARK: Properties
     @IBOutlet weak var propertyDetailTableView: UITableView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var topView: NovaOneView!
-    var property: Property?
-    var propertyDetailCells: [[String: Any]] = [[:]]
-    
+    var company: Any?
+    var companyDetailCells: [[String: Any]] = [[:]]
     
     // MARK: Methods
     func setup() {
         self.propertyDetailTableView.delegate = self
         self.propertyDetailTableView.dataSource = self
-        
-        // Set up cells
-        guard let property = self.property else { return }
-        guard
-            let name = property.name,
-            let phoneNumber = property.phoneNumber,
-            let email = property.email
-        else { return }
-        let address = property.shortenedAddress
-        
-        let nameCell: [String: Any] = ["cellIcon": UIImage(named: Defaults.Images.locationBlue.rawValue) as Any, "cellTitle": "Name", "cellTitleValue": name, "canUpdateValue": true]
-        let addressCell: [String: Any] = ["cellIcon": UIImage(named: Defaults.Images.locationBlue.rawValue) as Any, "cellTitle": "Address", "cellTitleValue": address, "canUpdateValue": true]
-        let phoneNumberCell: [String: Any] = ["cellIcon": UIImage(named: Defaults.Images.callBlue.rawValue) as Any, "cellTitle": "Phone", "cellTitleValue": phoneNumber, "canUpdateValue": true]
-        let emailCell: [String: Any] = ["cellIcon": UIImage(named: Defaults.Images.emailBlue.rawValue) as Any, "cellTitle": "Email", "cellTitleValue": email, "canUpdateValue": true]
-        let daysOfTheWeekCell: [String: Any] = ["cellIcon": UIImage(named: Defaults.Images.calendarBlue.rawValue) as Any, "cellTitle": "Showing Days", "cellTitleValue": "", "canUpdateValue": true]
-        let hoursOfTheDayCell: [String: Any] = ["cellIcon": UIImage(named: Defaults.Images.calendarBlue.rawValue) as Any, "cellTitle": "Showing Hours", "cellTitleValue": "", "canUpdateValue": true]
-        
-        self.propertyDetailCells = [nameCell, addressCell, phoneNumberCell, emailCell, daysOfTheWeekCell, hoursOfTheDayCell]
         
         // Set up top view style
         self.topView.clipsToBounds = true
@@ -48,34 +29,75 @@ class PropertyDetailViewController: UIViewController, UITableViewDelegate, UITab
         
     }
     
+    func setupCompanyCellsAndTitle(name: String, phoneNumber: String, email: String, address: String) {
+        // Sets up the cell properties for each company cell and title for the view
+        // Title
+        self.titleLabel.text = address
+        
+        // Cells
+        let nameCell: [String: Any] = ["cellIcon": UIImage(named: Defaults.Images.locationBlue.rawValue) as Any, "cellTitle": "Name", "cellTitleValue": name, "canUpdateValue": true]
+        let addressCell: [String: Any] = ["cellIcon": UIImage(named: Defaults.Images.locationBlue.rawValue) as Any, "cellTitle": "Address", "cellTitleValue": address, "canUpdateValue": true]
+        let phoneNumberCell: [String: Any] = ["cellIcon": UIImage(named: Defaults.Images.callBlue.rawValue) as Any, "cellTitle": "Phone", "cellTitleValue": phoneNumber, "canUpdateValue": true]
+        let emailCell: [String: Any] = ["cellIcon": UIImage(named: Defaults.Images.emailBlue.rawValue) as Any, "cellTitle": "Email", "cellTitleValue": email, "canUpdateValue": true]
+        let daysOfTheWeekCell: [String: Any] = ["cellIcon": UIImage(named: Defaults.Images.calendarBlue.rawValue) as Any, "cellTitle": "Showing Days", "cellTitleValue": "", "canUpdateValue": true]
+        let hoursOfTheDayCell: [String: Any] = ["cellIcon": UIImage(named: Defaults.Images.calendarBlue.rawValue) as Any, "cellTitle": "Showing Hours", "cellTitleValue": "", "canUpdateValue": true]
+        
+        self.companyDetailCells = [nameCell, addressCell, phoneNumberCell, emailCell, daysOfTheWeekCell, hoursOfTheDayCell]
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
+        
+        // Setup table cell based on which object was passed to self.company
+        if let company = self.company as? Company { // self.company is a CoreData object
+            guard
+                let name = company.name,
+                let phoneNumber = company.phoneNumber,
+                let email = company.email,
+                let address = company.shortenedAddress
+            else { return }
+            
+            // Plug into setupCompanyCells method
+            self.setupCompanyCellsAndTitle(name: name, phoneNumber: phoneNumber, email: email, address: address)
+            
+        } else if let company = self.company as? CompanyModel { // self.company is a CompanyModel object
+            guard
+                let name = company.name,
+                let phoneNumber = company.phoneNumber,
+                let email = company.email
+            else { return }
+            let address = company.shortenedAddress
+            
+            // Plug into setupCompanyCells method
+            self.setupCompanyCellsAndTitle(name: name, phoneNumber: phoneNumber, email: email, address: address)
+        }
+        
     }
     
     
 
 }
 
-extension PropertyDetailViewController {
+extension CompanyDetailViewController {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.propertyDetailCells.count
+        return self.companyDetailCells.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Defaults.CellIdentifiers.objectDetail.rawValue) as! ObjectDetailTableViewCell
         
-        let propertydetailCell = self.propertyDetailCells[indexPath.row]
+        let companydetailCell = self.companyDetailCells[indexPath.row]
         
-        cell.setup(cellIcon: propertydetailCell["cellIcon"] as! UIImage, cellTitle: propertydetailCell["cellTitle"] as! String, cellTitleValue: propertydetailCell["cellTitleValue"] as! String, canUpdateValue: propertydetailCell["canUpdateValue"] as! Bool)
+        cell.setup(cellIcon: companydetailCell["cellIcon"] as! UIImage, cellTitle: companydetailCell["cellTitle"] as! String, cellTitleValue: companydetailCell["cellTitleValue"] as! String, canUpdateValue: companydetailCell["canUpdateValue"] as! Bool)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Get propertyDetail object based on which row the user taps on
-        let cellTitle = self.propertyDetailCells[indexPath.row]["cellTitle"] as! String
+        guard let cellTitle = self.companyDetailCells[indexPath.row]["cellTitle"] as? String else { return }
         
         //Get update view controller based on which cell the user clicked on
         switch cellTitle {
@@ -100,7 +122,7 @@ extension PropertyDetailViewController {
         case "Showing Hours":
             print("Hello1")
             default:
-                print("Hello!")
+                print("No cases matched")
         }
         
     }

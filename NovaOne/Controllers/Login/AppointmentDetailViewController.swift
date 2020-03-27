@@ -17,7 +17,7 @@ class AppointmentDetailViewController: UIViewController {
     @IBOutlet weak var unitTypeLabel: UILabel!
     @IBOutlet weak var confirmedLabel: UILabel!
     @IBOutlet weak var createdLabel: UILabel!
-    var appointment: Appointment?
+    var appointment: AppointmentModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()

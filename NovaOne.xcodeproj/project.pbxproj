@@ -34,14 +34,18 @@
 		6578D9F12415AD06002E94BF /* properties.php in Resources */ = {isa = PBXBuildFile; fileRef = 6578D9F02415AD06002E94BF /* properties.php */; };
 		657C5F942412D79300D52E27 /* AppointmentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657C5F932412D79300D52E27 /* AppointmentDetailViewController.swift */; };
 		657C5F962413ECB200D52E27 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657C5F952413ECB200D52E27 /* DateHelper.swift */; };
-		657C5F982414016600D52E27 /* PropertiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657C5F972414016600D52E27 /* PropertiesViewController.swift */; };
-		657C5F9A241406EA00D52E27 /* PropertyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657C5F99241406EA00D52E27 /* PropertyDetailViewController.swift */; };
+		657C5F982414016600D52E27 /* CompaniesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657C5F972414016600D52E27 /* CompaniesViewController.swift */; };
+		657C5F9A241406EA00D52E27 /* CompanyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657C5F99241406EA00D52E27 /* CompanyDetailViewController.swift */; };
 		657EAE702409AF080074D44A /* NovaOneTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657EAE6F2409AF080074D44A /* NovaOneTableViewCell.swift */; };
 		657FECEF2401D11900437945 /* NovaOneTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657FECEE2401D11900437945 /* NovaOneTextField.swift */; };
 		657FECF12401D2A800437945 /* ForgotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657FECF02401D2A800437945 /* ForgotViewController.swift */; };
 		6580258E240F2F8A00A74DCD /* SignUpPropertyNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6580258D240F2F8A00A74DCD /* SignUpPropertyNameViewController.swift */; };
 		65802590240F4A7600A74DCD /* SignUpPropertyPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6580258F240F4A7600A74DCD /* SignUpPropertyPhoneViewController.swift */; };
 		65802592240F4A8B00A74DCD /* SignUpPropertyEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65802591240F4A8B00A74DCD /* SignUpPropertyEmailViewController.swift */; };
+		658046AD242D49D5007D7192 /* Company+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658046A9242D49D5007D7192 /* Company+CoreDataClass.swift */; };
+		658046AE242D49D5007D7192 /* Company+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658046AA242D49D5007D7192 /* Company+CoreDataProperties.swift */; };
+		658046AF242D49D5007D7192 /* Customer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658046AB242D49D5007D7192 /* Customer+CoreDataClass.swift */; };
+		658046B0242D49D5007D7192 /* Customer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658046AC242D49D5007D7192 /* Customer+CoreDataProperties.swift */; };
 		6580FBE324113D0700695DB6 /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6580FBE224113D0700695DB6 /* UIHelper.swift */; };
 		6583194B23F2206E001D378D /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6583194923F2206E001D378D /* KeychainItemAccessibility.swift */; };
 		6583194C23F2206E001D378D /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6583194A23F2206E001D378D /* KeychainWrapper.swift */; };
@@ -93,8 +97,6 @@
 		65AF665823E88229001B394F /* CreateAppointmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF665723E88229001B394F /* CreateAppointmentViewController.swift */; };
 		65AF665923E88229001B394F /* CreateAppointmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF665723E88229001B394F /* CreateAppointmentViewController.swift */; };
 		65AF665A23E88229001B394F /* CreateAppointmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF665723E88229001B394F /* CreateAppointmentViewController.swift */; };
-		65BCE1802429321200E5040E /* Customer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BCE17E2429321200E5040E /* Customer+CoreDataClass.swift */; };
-		65BCE1812429321200E5040E /* Customer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BCE17F2429321200E5040E /* Customer+CoreDataProperties.swift */; };
 		65C5467923ECAB2300A198F3 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C5467823ECAB2300A198F3 /* AppUtility.swift */; };
 		65C5467A23ECAB2300A198F3 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C5467823ECAB2300A198F3 /* AppUtility.swift */; };
 		65C5467B23ECAB2400A198F3 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C5467823ECAB2300A198F3 /* AppUtility.swift */; };
@@ -153,14 +155,18 @@
 		6578D9F02415AD06002E94BF /* properties.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = properties.php; sourceTree = "<group>"; };
 		657C5F932412D79300D52E27 /* AppointmentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailViewController.swift; sourceTree = "<group>"; };
 		657C5F952413ECB200D52E27 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
-		657C5F972414016600D52E27 /* PropertiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertiesViewController.swift; sourceTree = "<group>"; };
-		657C5F99241406EA00D52E27 /* PropertyDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyDetailViewController.swift; sourceTree = "<group>"; };
+		657C5F972414016600D52E27 /* CompaniesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompaniesViewController.swift; sourceTree = "<group>"; };
+		657C5F99241406EA00D52E27 /* CompanyDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyDetailViewController.swift; sourceTree = "<group>"; };
 		657EAE6F2409AF080074D44A /* NovaOneTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovaOneTableViewCell.swift; sourceTree = "<group>"; };
 		657FECEE2401D11900437945 /* NovaOneTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovaOneTextField.swift; sourceTree = "<group>"; };
 		657FECF02401D2A800437945 /* ForgotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotViewController.swift; sourceTree = "<group>"; };
 		6580258D240F2F8A00A74DCD /* SignUpPropertyNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPropertyNameViewController.swift; sourceTree = "<group>"; };
 		6580258F240F4A7600A74DCD /* SignUpPropertyPhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPropertyPhoneViewController.swift; sourceTree = "<group>"; };
 		65802591240F4A8B00A74DCD /* SignUpPropertyEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPropertyEmailViewController.swift; sourceTree = "<group>"; };
+		658046A9242D49D5007D7192 /* Company+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Company+CoreDataClass.swift"; sourceTree = "<group>"; };
+		658046AA242D49D5007D7192 /* Company+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Company+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		658046AB242D49D5007D7192 /* Customer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Customer+CoreDataClass.swift"; sourceTree = "<group>"; };
+		658046AC242D49D5007D7192 /* Customer+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Customer+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		6580FBE224113D0700695DB6 /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
 		6583194923F2206E001D378D /* KeychainItemAccessibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItemAccessibility.swift; sourceTree = "<group>"; };
 		6583194A23F2206E001D378D /* KeychainWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
@@ -208,8 +214,6 @@
 		65AF664723E881D9001B394F /* LeadsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadsViewController.swift; sourceTree = "<group>"; };
 		65AF664F23E881FE001B394F /* SupportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
 		65AF665723E88229001B394F /* CreateAppointmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAppointmentViewController.swift; sourceTree = "<group>"; };
-		65BCE17E2429321200E5040E /* Customer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Customer+CoreDataClass.swift"; sourceTree = "<group>"; };
-		65BCE17F2429321200E5040E /* Customer+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Customer+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		65C5467823ECAB2300A198F3 /* AppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
 		65D75F7323FB495900C7988E /* utils.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = utils.php; sourceTree = "<group>"; };
 		65FA42C124181A430040C915 /* UpdatePropertyEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePropertyEmailViewController.swift; sourceTree = "<group>"; };
@@ -434,8 +438,8 @@
 				655D0B24240B440200D0E329 /* UpdateEmailViewController.swift */,
 				655D0B26240B443700D0E329 /* UpdatePasswordViewController.swift */,
 				657C5F932412D79300D52E27 /* AppointmentDetailViewController.swift */,
-				657C5F972414016600D52E27 /* PropertiesViewController.swift */,
-				657C5F99241406EA00D52E27 /* PropertyDetailViewController.swift */,
+				657C5F972414016600D52E27 /* CompaniesViewController.swift */,
+				657C5F99241406EA00D52E27 /* CompanyDetailViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -469,9 +473,11 @@
 		65BCE1822429327100E5040E /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
+				658046A9242D49D5007D7192 /* Company+CoreDataClass.swift */,
+				658046AA242D49D5007D7192 /* Company+CoreDataProperties.swift */,
+				658046AB242D49D5007D7192 /* Customer+CoreDataClass.swift */,
+				658046AC242D49D5007D7192 /* Customer+CoreDataProperties.swift */,
 				659D487C23F38C01007AC005 /* NovaOne.xcdatamodeld */,
-				65BCE17E2429321200E5040E /* Customer+CoreDataClass.swift */,
-				65BCE17F2429321200E5040E /* Customer+CoreDataProperties.swift */,
 			);
 			path = "Core Data";
 			sourceTree = "<group>";
@@ -621,19 +627,18 @@
 			files = (
 				65DBED6C2429404F0090B39C /* NovaOne.xcdatamodeld in Sources */,
 				65AB8E492427F5A800ED2ECF /* PersistenceService.swift in Sources */,
-				65BCE1812429321200E5040E /* Customer+CoreDataProperties.swift in Sources */,
 				655D0B23240B43E800D0E329 /* UpdatePhoneViewController.swift in Sources */,
 				658AF5FC240DA66800577446 /* SignUpAddressViewController.swift in Sources */,
-				65BCE1802429321200E5040E /* Customer+CoreDataClass.swift in Sources */,
 				658EC6C623F4870D0042827E /* Appointment.swift in Sources */,
 				6578D9EF24158E55002E94BF /* Company.swift in Sources */,
 				655D0B27240B443700D0E329 /* UpdatePasswordViewController.swift in Sources */,
 				65668E79241814C900774548 /* UpdatePropertyPhoneViewController.swift in Sources */,
 				65802592240F4A8B00A74DCD /* SignUpPropertyEmailViewController.swift in Sources */,
-				657C5F982414016600D52E27 /* PropertiesViewController.swift in Sources */,
+				657C5F982414016600D52E27 /* CompaniesViewController.swift in Sources */,
 				65AF665823E88229001B394F /* CreateAppointmentViewController.swift in Sources */,
 				65ADE2DF23E1C814003D3215 /* FeatureView.swift in Sources */,
 				6591C39E23DA78F900535C46 /* LaunchViewController.swift in Sources */,
+				658046AF242D49D5007D7192 /* Customer+CoreDataClass.swift in Sources */,
 				657FECEF2401D11900437945 /* NovaOneTextField.swift in Sources */,
 				65FA42C224181A430040C915 /* UpdatePropertyEmailViewController.swift in Sources */,
 				65FA42C424181B6C0040C915 /* UpdatePropertyNameViewController.swift in Sources */,
@@ -652,7 +657,8 @@
 				657C5F962413ECB200D52E27 /* DateHelper.swift in Sources */,
 				655D0B21240B43D200D0E329 /* UpdatePropertyAddressViewController.swift in Sources */,
 				6580FBE324113D0700695DB6 /* UIHelper.swift in Sources */,
-				657C5F9A241406EA00D52E27 /* PropertyDetailViewController.swift in Sources */,
+				658046AD242D49D5007D7192 /* Company+CoreDataClass.swift in Sources */,
+				657C5F9A241406EA00D52E27 /* CompanyDetailViewController.swift in Sources */,
 				655D0B25240B440200D0E329 /* UpdateEmailViewController.swift in Sources */,
 				65446CEF23E0F7DF0052DEBE /* NovaOneButton.swift in Sources */,
 				657C5F942412D79300D52E27 /* AppointmentDetailViewController.swift in Sources */,
@@ -663,8 +669,10 @@
 				65C5467923ECAB2300A198F3 /* AppUtility.swift in Sources */,
 				6591C39C23DA78F900535C46 /* SceneDelegate.swift in Sources */,
 				657535EB24035B7E009E3580 /* SignUpEmailViewController.swift in Sources */,
+				658046AE242D49D5007D7192 /* Company+CoreDataProperties.swift in Sources */,
 				659C1A8A240AB5B3003C91C1 /* AccountTableViewController.swift in Sources */,
 				65ADE2F623E3AF27003D3215 /* HTTPRequests.swift in Sources */,
+				658046B0242D49D5007D7192 /* Customer+CoreDataProperties.swift in Sources */,
 				65A1FC4D23E48A6800D5CBCF /* Defaults.swift in Sources */,
 				6528135623E79C15005A1B1F /* Customer.swift in Sources */,
 				65A18DCE2410454A00F16565 /* NovaOneTextView.swift in Sources */,

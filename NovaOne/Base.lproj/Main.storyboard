@@ -2265,19 +2265,19 @@ of your property?</string>
             </objects>
             <point key="canvasLocation" x="5887.1999999999998" y="2120.6896551724139"/>
         </scene>
-        <!--Properties-->
+        <!--Companies-->
         <scene sceneID="mVp-E7-DUw">
             <objects>
-                <viewController storyboardIdentifier="propertiesViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WKZ-lS-7Px" userLabel="Properties" customClass="PropertiesViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="companiesViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WKZ-lS-7Px" userLabel="Companies" customClass="CompaniesViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="V88-Pq-Os6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="115" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eAH-Jn-ODU">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="115" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eAH-Jn-ODU" userLabel="Companies Table View">
                                 <rect key="frame" x="0.0" y="44" width="414" height="643"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="novaOneTableViewCell" rowHeight="115" id="boL-Km-JMu" userLabel="appointmentTableCell" customClass="NovaOneTableViewCell" customModule="NovaOne" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="novaOneTableViewCell" rowHeight="115" id="boL-Km-JMu" userLabel="companyTableCell" customClass="NovaOneTableViewCell" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="115"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="boL-Km-JMu" id="ByU-9f-FrF">
@@ -2392,7 +2392,7 @@ of your property?</string>
                     </view>
                     <navigationItem key="navigationItem" title="Properties" id="42M-wx-91w"/>
                     <connections>
-                        <outlet property="propertiesTableView" destination="eAH-Jn-ODU" id="2FA-6L-1Ru"/>
+                        <outlet property="companiesTableView" destination="eAH-Jn-ODU" id="rUg-BL-HMD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WcC-gb-1Nv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2856,10 +2856,10 @@ of your property?</string>
             </objects>
             <point key="canvasLocation" x="4948" y="2120.6896551724139"/>
         </scene>
-        <!--Property Detail-->
+        <!--Company Detail-->
         <scene sceneID="u4g-95-3Eo">
             <objects>
-                <viewController storyboardIdentifier="propertyDetailViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="S5z-YS-cG5" userLabel="Property Detail" customClass="PropertyDetailViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="companyDetailViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="S5z-YS-cG5" userLabel="Company Detail" customClass="CompanyDetailViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bSg-ak-zmH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2867,22 +2867,26 @@ of your property?</string>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="39E-LM-H8x" userLabel="Top View" customClass="NovaOneView" customModule="NovaOne" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="240.66666666666666"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="novaOneLogo" translatesAutoresizingMaskIntoConstraints="NO" id="w2M-Er-DKQ">
-                                        <rect key="frame" x="164.33333333333334" y="67.666666666666686" width="85.333333333333343" height="85.333333333333314"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gpsMap" translatesAutoresizingMaskIntoConstraints="NO" id="w2M-Er-DKQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="240.66666666666666"/>
+                                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Property Details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f58-GM-B3N">
-                                        <rect key="frame" x="136.66666666666666" y="188" width="140.99999999999997" height="25.333333333333343"/>
-                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="21"/>
-                                        <color key="textColor" red="0.99991267920000004" green="1" blue="0.99988144639999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company Details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f58-GM-B3N">
+                                        <rect key="frame" x="117.66666666666667" y="190.33333333333334" width="178.66666666666663" height="27.666666666666657"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="23"/>
+                                        <color key="textColor" red="0.054096423089504242" green="0.011432306841015816" blue="0.030369827523827553" alpha="0.78898223460000005" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.32493522759999999" green="0.46187436580000002" blue="0.83199411629999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="f58-GM-B3N" firstAttribute="top" secondItem="w2M-Er-DKQ" secondAttribute="bottom" constant="35" id="8mu-3k-Szr"/>
-                                    <constraint firstItem="w2M-Er-DKQ" firstAttribute="centerX" secondItem="39E-LM-H8x" secondAttribute="centerX" id="Du0-RH-tHF"/>
-                                    <constraint firstItem="f58-GM-B3N" firstAttribute="centerX" secondItem="39E-LM-H8x" secondAttribute="centerX" id="kzV-Yx-M29"/>
-                                    <constraint firstItem="w2M-Er-DKQ" firstAttribute="centerY" secondItem="39E-LM-H8x" secondAttribute="centerY" constant="-10" id="svp-Op-v6K"/>
+                                    <constraint firstItem="w2M-Er-DKQ" firstAttribute="leading" secondItem="39E-LM-H8x" secondAttribute="leading" id="KiL-HH-tJy"/>
+                                    <constraint firstItem="w2M-Er-DKQ" firstAttribute="top" secondItem="39E-LM-H8x" secondAttribute="top" id="Tjh-rp-nfM"/>
+                                    <constraint firstItem="f58-GM-B3N" firstAttribute="centerX" secondItem="39E-LM-H8x" secondAttribute="centerX" id="VGO-wz-20k"/>
+                                    <constraint firstAttribute="trailing" secondItem="w2M-Er-DKQ" secondAttribute="trailing" id="nWr-qr-agn"/>
+                                    <constraint firstAttribute="bottom" secondItem="w2M-Er-DKQ" secondAttribute="bottom" id="ryl-c4-e2v"/>
+                                    <constraint firstAttribute="bottom" secondItem="f58-GM-B3N" secondAttribute="bottom" constant="22.670000000000002" id="wsl-aD-0Mh"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Meg-ak-998">
@@ -2902,7 +2906,7 @@ of your property?</string>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Street" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iAZ-xE-2AZ" userLabel="Cell Title">
                                                             <rect key="frame" x="0.0" y="0.0" width="46.666666666666664" height="19.333333333333332"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                                            <color key="textColor" red="0.71254408359527588" green="0.66729766130447388" blue="0.78738874197006226" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -2940,14 +2944,13 @@ of your property?</string>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vfj-xo-sik" userLabel="Delete Button" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vfj-xo-sik" userLabel="Delete Button" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
                                 <rect key="frame" x="30" y="671" width="354" height="45"/>
                                 <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="Cbb-ok-x8K"/>
                                 </constraints>
                                 <color key="tintColor" red="0.97638529539999996" green="0.97652524709999999" blue="0.97635465860000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
                                 <state key="normal" title="Delete">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -2991,7 +2994,7 @@ of your property?</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GSK-UM-2HD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="10300" y="1342.663043478261"/>
+            <point key="canvasLocation" x="10298.550724637682" y="1342.663043478261"/>
         </scene>
         <!--Update Property Email-->
         <scene sceneID="q4k-9B-dhy">
@@ -3172,7 +3175,7 @@ of your property?</string>
         <!--Navigation Controller-->
         <scene sceneID="w9f-ZE-VDv">
             <objects>
-                <navigationController storyboardIdentifier="propertyNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dn7-6t-ckn" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="propertyNavigationController" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dn7-6t-ckn" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="4Nq-03-COR"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="V0e-Rp-E2d">
@@ -3202,6 +3205,7 @@ of your property?</string>
         <image name="clock" width="33.333332061767578" height="33.333332061767578"/>
         <image name="confirm" width="33.333332061767578" height="33.333332061767578"/>
         <image name="emailBlue" width="26.666666030883789" height="26.666666030883789"/>
+        <image name="gpsMap" width="400" height="370.33334350585938"/>
         <image name="homeBlack" width="26.666666030883789" height="26.666666030883789"/>
         <image name="homeBlue" width="26.666666030883789" height="26.666666030883789"/>
         <image name="leadsGraph" width="104" height="81"/>

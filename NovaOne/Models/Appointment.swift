@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct Appointment: Decodable {
+struct AppointmentModel: Decodable {
 
     // MARK: Properties
     var id: Int

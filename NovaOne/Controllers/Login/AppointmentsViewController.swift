@@ -13,7 +13,7 @@ class AppointmentsViewController: UIViewController {
     // MARK: Properties
     @IBOutlet weak var appointmentTableView: UITableView!
     var customer: CustomerModel?
-    var appointments: [Appointment] = []
+    var appointments: [AppointmentModel] = []
     
     // MARK: Methods
     override func viewDidLoad() {
@@ -49,7 +49,7 @@ class AppointmentsViewController: UIViewController {
                                          "password": password as Any]
         
         httpRequest.request(endpoint: "/appointments.php",
-                            dataModel: [Appointment(id: 1)], // Must have one non optional value in our object otherwise JSONDecoder will be able to decode the ANY json response into an appointment object because all fields are optional
+                            dataModel: [AppointmentModel(id: 1)], // Must have one non optional value in our object otherwise JSONDecoder will be able to decode the ANY json response into an appointment object because all fields are optional
                             parameters: parameters) { (result) in
                                 
                                 switch result {
@@ -79,7 +79,7 @@ extension AppointmentsViewController: UITableViewDataSource, UITableViewDelegate
     // Paramater 'indexPath' represents the row number that each table view cell is contained in (Example: first appointment object has indexPath of zero)
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let appointment: Appointment = self.appointments[indexPath.row] // Get the appointment object based on the row number each cell is in
+        let appointment: AppointmentModel = self.appointments[indexPath.row] // Get the appointment object based on the row number each cell is in
         let cellIdentifier: String = "novaOneTableCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! NovaOneTableViewCell // Get cell with identifier so we can use the custom cell we made
         

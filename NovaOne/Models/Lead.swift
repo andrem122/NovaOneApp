@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct Lead: Decodable {
+struct LeadModel: Decodable {
     
     /*
      l.id,

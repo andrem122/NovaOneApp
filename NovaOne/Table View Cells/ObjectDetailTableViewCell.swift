@@ -11,7 +11,6 @@ import UIKit
 class ObjectDetailTableViewCell: UITableViewCell {
     
     // MARK: Properties
-    @IBOutlet weak var cellIcon: UIImageView!
     @IBOutlet weak var cellTitleLabel: UILabel!
     @IBOutlet weak var cellTitleValueLabel: UILabel!
     

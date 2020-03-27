@@ -10,7 +10,7 @@ import Foundation
 
 import UIKit
 
-struct Company: Decodable {
+struct CompanyModel: Decodable {
 
     // MARK: Properties
     var id: Int

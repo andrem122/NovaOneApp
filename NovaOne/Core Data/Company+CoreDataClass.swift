@@ -1,5 +1,5 @@
 //
-//  Customer+CoreDataClass.swift
+//  Company+CoreDataClass.swift
 //  NovaOne
 //
 //  Created by Andre Mashraghi on 3/26/20.
@@ -10,7 +10,7 @@
 import Foundation
 import CoreData
 
-@objc(Customer)
-public class Customer: NSManagedObject {
+@objc(Company)
+public class Company: NSManagedObject {
 
 }

@@ -2,7 +2,7 @@
 //  Customer+CoreDataProperties.swift
 //  NovaOne
 //
-//  Created by Andre Mashraghi on 3/23/20.
+//  Created by Andre Mashraghi on 3/26/20.
 //  Copyright © 2020 Andre Mashraghi. All rights reserved.
 //
 //
@@ -33,5 +33,23 @@ extension Customer {
     @NSManaged public var lastName: String?
     @NSManaged public var phoneNumber: String?
     @NSManaged public var wantsSms: Bool
+    @NSManaged public var companies: NSSet?
+
+}
+
+// MARK: Generated accessors for companies
+extension Customer {
+
+    @objc(addCompaniesObject:)
+    @NSManaged public func addToCompanies(_ value: Company)
+
+    @objc(removeCompaniesObject:)
+    @NSManaged public func removeFromCompanies(_ value: Company)
+
+    @objc(addCompanies:)
+    @NSManaged public func addToCompanies(_ values: NSSet)
+
+    @objc(removeCompanies:)
+    @NSManaged public func removeFromCompanies(_ values: NSSet)
 
 }

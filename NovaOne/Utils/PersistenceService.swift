@@ -68,10 +68,56 @@ class PersistenceService {
         
         let fetchRequest: NSFetchRequest<Customer> = Customer.fetchRequest()
         do {
-            let customer = try PersistenceService.context.fetch(fetchRequest).first // Returns CoreData objects in an array
+            let customer = try PersistenceService.context.fetch(fetchRequest).first // Returns CoreData objects in an array, so get the first one
             return customer
         } catch {
             fatalError("Failed to fetch Customer CoreData object: \(error)")
+        }
+    }
+    
+    static func fetchCustomerCompanies() -> [Any]? {
+        // Fetches all company entities stored in CoreData filtered by customer
+        
+        let fetchRequest: NSFetchRequest<Customer> = Customer.fetchRequest()
+        do {
+            let customer = try PersistenceService.context.fetch(fetchRequest).first // Returns customer object
+            return customer?.companies?.allObjects // return as an Array type instead of NSSet
+        } catch {
+            fatalError("Failed to fetch CoreData company objects: \(error)")
+        }
+    }
+    
+    static func customerHasCompanies() -> Bool {
+        // Checks whether or not a customer has companies in the CoreData database
+        let fetchRequest: NSFetchRequest<Customer> = Customer.fetchRequest()
+        do {
+            guard
+                let customer = try PersistenceService.context.fetch(fetchRequest).first,
+                let companiesSet = customer.companies
+            else { return false }
+            
+            if let firstName = customer.firstName {
+                print("Customer Name: \(firstName)")
+            }
+            
+            return !companiesSet.allObjects.isEmpty
+        } catch {
+            fatalError("Failed to return a Boolean value for customer companies: \(error)")
+        }
+    }
+    
+    static func customerCompaniesCount() -> Int {
+        // Returns the count of customer companies from the CoreData database
+        let fetchRequest: NSFetchRequest<Customer> = Customer.fetchRequest()
+        do {
+            guard
+                let customer = try PersistenceService.context.fetch(fetchRequest).first,
+                let companiesSet = customer.companies
+            else { return 0 }
+            
+            return companiesSet.count
+        } catch {
+            fatalError("Failed to return a Boolean value for customer companies: \(error)")
         }
     }
     
