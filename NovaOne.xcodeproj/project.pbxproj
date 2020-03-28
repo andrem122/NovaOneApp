@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		650250C123E4991700B427D0 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650250C023E4991700B427D0 /* Alert.swift */; };
 		650250C323E4A78E00B427D0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650250C223E4A78E00B427D0 /* HomeViewController.swift */; };
+		65230463242FFD900025FE07 /* EnabledOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65230462242FFD900025FE07 /* EnabledOption.swift */; };
 		6528135623E79C15005A1B1F /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6528135523E79C15005A1B1F /* Customer.swift */; };
 		6528135723E79D35005A1B1F /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6528135523E79C15005A1B1F /* Customer.swift */; };
 		6528135823E79D36005A1B1F /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6528135523E79C15005A1B1F /* Customer.swift */; };
@@ -145,6 +146,7 @@
 /* Begin PBXFileReference section */
 		650250C023E4991700B427D0 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		650250C223E4A78E00B427D0 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		65230462242FFD900025FE07 /* EnabledOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnabledOption.swift; sourceTree = "<group>"; };
 		6528135523E79C15005A1B1F /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Customer.swift; path = NovaOne/Models/Customer.swift; sourceTree = SOURCE_ROOT; };
 		65446CEB23E0F4370052DEBE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		65446CEE23E0F7DF0052DEBE /* NovaOneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovaOneButton.swift; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 				658EC6C523F4870D0042827E /* Appointment.swift */,
 				6584FAC224089BA900A06125 /* Lead.swift */,
 				6578D9EE24158E55002E94BF /* Company.swift */,
+				65230462242FFD900025FE07 /* EnabledOption.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -639,6 +642,7 @@
 			files = (
 				65DBED6C2429404F0090B39C /* NovaOne.xcdatamodeld in Sources */,
 				65AB8E492427F5A800ED2ECF /* PersistenceService.swift in Sources */,
+				65230463242FFD900025FE07 /* EnabledOption.swift in Sources */,
 				655D0B23240B43E800D0E329 /* UpdatePhoneViewController.swift in Sources */,
 				658AF5FC240DA66800577446 /* SignUpAddressViewController.swift in Sources */,
 				658EC6C623F4870D0042827E /* Appointment.swift in Sources */,

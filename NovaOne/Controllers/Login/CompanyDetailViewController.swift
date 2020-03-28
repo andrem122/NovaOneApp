@@ -122,7 +122,9 @@ extension CompanyDetailViewController {
                 self.present(updateCompanyDaysEnabledViewController, animated: true, completion: nil)
             }
         case "Showing Hours":
-            print("Hello1")
+            if let updateCompanyHoursEnabledViewController = UIHelper.getViewController(currentViewController: self, by: Defaults.ViewControllerIdentifiers.updateCompanyHoursEnabled.rawValue) as? UpdateCompanyHoursEnabledViewController {
+                self.present(updateCompanyHoursEnabledViewController, animated: true, completion: nil)
+            }
             default:
                 print("No cases matched")
         }

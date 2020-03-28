@@ -14,16 +14,10 @@ class EnableOptionTableViewCell: UITableViewCell {
     
     @IBOutlet weak var optionLabel: UILabel!
     @IBOutlet weak var checkMarkImage: UIImageView!
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     
-    func setup(weekDay: String) {
+    func setup(option: String) {
         // Set up the cell properties with values
-        self.optionLabel.text = weekDay
+        self.optionLabel.text = option
     }
     
     func toggleCheckMark(cell: EnableOptionTableViewCell) {

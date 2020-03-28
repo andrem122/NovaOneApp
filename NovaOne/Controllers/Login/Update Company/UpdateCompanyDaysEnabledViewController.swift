@@ -46,7 +46,7 @@ extension UpdateCompanyDaysEnabledViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: Defaults.TableViewCellIdentifiers.enableOption.rawValue) as! EnableOptionTableViewCell
         
         let weekDay: String = self.daysOfTheWeek[indexPath.row] // Get the day of the week name
-        cell.setup(weekDay: weekDay)
+        cell.setup(option: weekDay)
         return cell
     }
     
