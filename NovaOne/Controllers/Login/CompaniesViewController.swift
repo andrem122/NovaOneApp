@@ -112,7 +112,7 @@ extension CompaniesViewController {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier: String = Defaults.CellIdentifiers.novaOne.rawValue
+        let cellIdentifier: String = Defaults.TableViewCellIdentifiers.novaOne.rawValue
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! NovaOneTableViewCell // Get cell with identifier so we can use the custom cell we made
         
         // If we have items in CoreData, show them first

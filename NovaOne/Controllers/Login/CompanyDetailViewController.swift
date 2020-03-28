@@ -86,7 +86,7 @@ extension CompanyDetailViewController {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Defaults.CellIdentifiers.objectDetail.rawValue) as! ObjectDetailTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Defaults.TableViewCellIdentifiers.objectDetail.rawValue) as! ObjectDetailTableViewCell
         
         let companydetailCell = self.companyDetailCells[indexPath.row]
         
@@ -126,6 +126,8 @@ extension CompanyDetailViewController {
             default:
                 print("No cases matched")
         }
+        
+        tableView.deselectRow(at: indexPath, animated: true) // Deselect the row after it is tapped on
         
     }
     

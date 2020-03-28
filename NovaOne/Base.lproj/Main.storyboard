@@ -2772,7 +2772,7 @@ of your property?</string>
         <!--Update Property Phone-->
         <scene sceneID="ZpQ-2X-ITh">
             <objects>
-                <viewController storyboardIdentifier="updatePropertyPhoneViewController" modalTransitionStyle="flipHorizontal" modalPresentationStyle="fullScreen" id="JsG-U3-vnl" userLabel="Update Property Phone" customClass="UpdatePropertyPhoneViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="updatePropertyPhoneViewController" modalPresentationStyle="fullScreen" id="JsG-U3-vnl" userLabel="Update Property Phone" customClass="UpdatePropertyPhoneViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Z4e-jE-28v">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3129,12 +3129,6 @@ of your property?</string>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7zL-bB-gkL">
-                                <rect key="frame" x="0.0" y="100" width="414" height="531"/>
-                                <connections>
-                                    <segue destination="Igt-bD-rqv" kind="embed" id="5OE-7V-2Rp"/>
-                                </connections>
-                            </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6t1-Tx-NEj">
                                 <rect key="frame" x="20.000000000000004" y="20.000000000000004" width="33.333333333333343" height="33.333333333333343"/>
                                 <state key="normal" image="cancelButtonBlue"/>
@@ -3142,238 +3136,70 @@ of your property?</string>
                                     <action selector="cancelButtonTapped:" destination="MZD-Dy-Oi0" eventType="touchUpInside" id="jgQ-CD-Yvx"/>
                                 </connections>
                             </button>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="IKl-yQ-Pjb" firstAttribute="bottom" secondItem="48q-N6-29n" secondAttribute="bottom" constant="20" id="5p1-Rc-2TY"/>
-                            <constraint firstItem="IKl-yQ-Pjb" firstAttribute="trailing" secondItem="48q-N6-29n" secondAttribute="trailing" constant="30" id="6ul-cS-oHV"/>
-                            <constraint firstItem="7zL-bB-gkL" firstAttribute="leading" secondItem="IKl-yQ-Pjb" secondAttribute="leading" id="AZm-Jd-mba"/>
-                            <constraint firstItem="48q-N6-29n" firstAttribute="top" secondItem="7zL-bB-gkL" secondAttribute="bottom" constant="40" id="Cyq-Dw-10H"/>
-                            <constraint firstItem="7zL-bB-gkL" firstAttribute="top" secondItem="IKl-yQ-Pjb" secondAttribute="top" constant="100" id="DGS-wL-blb"/>
-                            <constraint firstItem="6t1-Tx-NEj" firstAttribute="leading" secondItem="IKl-yQ-Pjb" secondAttribute="leading" constant="20" id="JKl-QG-oAe"/>
-                            <constraint firstItem="48q-N6-29n" firstAttribute="leading" secondItem="IKl-yQ-Pjb" secondAttribute="leading" constant="30" id="LCF-Nd-l91"/>
-                            <constraint firstItem="6t1-Tx-NEj" firstAttribute="top" secondItem="IKl-yQ-Pjb" secondAttribute="top" constant="20" id="R9R-2Z-hif"/>
-                            <constraint firstItem="7zL-bB-gkL" firstAttribute="trailing" secondItem="IKl-yQ-Pjb" secondAttribute="trailing" id="jos-lI-nEE"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="IKl-yQ-Pjb"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pMg-LG-VES" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="13340.579710144928" y="919.56521739130437"/>
-        </scene>
-        <!--Days Enabled Table View Controller-->
-        <scene sceneID="c1X-Qm-peB">
-            <objects>
-                <tableViewController storyboardIdentifier="daysEnabledTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Igt-bD-rqv" customClass="DaysEnabledTableViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="BNh-gH-rdh">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="531"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <sections>
-                            <tableViewSection id="Yyz-1p-aND">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="IVI-Qh-5Gn" customClass="DaysEnabledTableViewCell" customModule="NovaOne" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="43.666667938232422"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KpS-SE-Aed">
+                                <rect key="frame" x="0.0" y="80" width="414" height="556"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="enableOptionTableViewCell" id="NTm-tb-Dbt" customClass="EnableOptionTableViewCell" customModule="NovaOne" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IVI-Qh-5Gn" id="6Dn-c8-TKg">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NTm-tb-Dbt" id="iTj-KV-n8W">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sunday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KOH-hj-vMD">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sunday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p8q-31-mhI" userLabel="Option Label">
                                                     <rect key="frame" x="19.999999999999996" y="11.666666666666664" width="56.666666666666657" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tick" translatesAutoresizingMaskIntoConstraints="NO" id="S6k-bE-6Pq">
-                                                    <rect key="frame" x="367.33333333333331" y="8.6666666666666661" width="26.666666666666686" height="26.666666666666671"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tick" translatesAutoresizingMaskIntoConstraints="NO" id="BIb-xR-SWN">
+                                                    <rect key="frame" x="368" y="9" width="26" height="26"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="26" id="Qq3-cm-tHv"/>
+                                                        <constraint firstAttribute="height" constant="26" id="RvJ-ZU-KgR"/>
+                                                        <constraint firstAttribute="width" secondItem="BIb-xR-SWN" secondAttribute="height" multiplier="1:1" id="Xe8-pE-Ipv"/>
+                                                    </constraints>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="KOH-hj-vMD" firstAttribute="centerY" secondItem="6Dn-c8-TKg" secondAttribute="centerY" id="7bd-LH-Px3"/>
-                                                <constraint firstItem="S6k-bE-6Pq" firstAttribute="centerY" secondItem="6Dn-c8-TKg" secondAttribute="centerY" id="CkW-Ez-dfM"/>
-                                                <constraint firstAttribute="trailing" secondItem="S6k-bE-6Pq" secondAttribute="trailing" constant="20" id="Fwv-Pg-rgN"/>
-                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="KOH-hj-vMD" secondAttribute="trailing" id="IwX-xr-MD1"/>
-                                                <constraint firstItem="KOH-hj-vMD" firstAttribute="leading" secondItem="6Dn-c8-TKg" secondAttribute="leading" constant="20" id="w1G-4r-W96"/>
-                                                <constraint firstItem="S6k-bE-6Pq" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Dn-c8-TKg" secondAttribute="leading" id="yiI-sz-a0V"/>
+                                                <constraint firstItem="p8q-31-mhI" firstAttribute="leading" secondItem="iTj-KV-n8W" secondAttribute="leading" constant="20" id="M6M-rn-Nfh"/>
+                                                <constraint firstAttribute="trailing" secondItem="BIb-xR-SWN" secondAttribute="trailing" constant="20" id="aqf-Af-YCi"/>
+                                                <constraint firstItem="BIb-xR-SWN" firstAttribute="centerY" secondItem="iTj-KV-n8W" secondAttribute="centerY" id="daI-vj-o8K"/>
+                                                <constraint firstItem="p8q-31-mhI" firstAttribute="centerY" secondItem="iTj-KV-n8W" secondAttribute="centerY" id="j1z-TZ-3hx"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="p8q-31-mhI" secondAttribute="trailing" id="oAR-LQ-W8p"/>
+                                                <constraint firstItem="BIb-xR-SWN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iTj-KV-n8W" secondAttribute="leading" id="ueL-kT-4Kr"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="checkMarkImage" destination="BIb-xR-SWN" id="h6g-aw-UN7"/>
+                                            <outlet property="optionLabel" destination="p8q-31-mhI" id="Wlz-mH-xdm"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="JTU-fU-bom" customClass="DaysEnabledTableViewCell" customModule="NovaOne" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="71.666667938232422" width="414" height="43.666667938232422"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JTU-fU-bom" id="eLG-s4-x4e">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GND-MJ-70e">
-                                                    <rect key="frame" x="19.999999999999996" y="11.666666666666664" width="60.666666666666657" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tick" translatesAutoresizingMaskIntoConstraints="NO" id="YEN-bS-xgN">
-                                                    <rect key="frame" x="367.33333333333331" y="8.6666666666666661" width="26.666666666666686" height="26.666666666666671"/>
-                                                </imageView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="YEN-bS-xgN" secondAttribute="trailing" constant="20" id="4BZ-vc-htn"/>
-                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="GND-MJ-70e" secondAttribute="trailing" id="Kbb-xk-yjo"/>
-                                                <constraint firstItem="YEN-bS-xgN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="eLG-s4-x4e" secondAttribute="leading" id="UHM-yv-xwp"/>
-                                                <constraint firstItem="YEN-bS-xgN" firstAttribute="centerY" secondItem="eLG-s4-x4e" secondAttribute="centerY" id="lvt-GF-Vql"/>
-                                                <constraint firstItem="GND-MJ-70e" firstAttribute="centerY" secondItem="eLG-s4-x4e" secondAttribute="centerY" id="xU2-0E-jLg"/>
-                                                <constraint firstItem="GND-MJ-70e" firstAttribute="leading" secondItem="eLG-s4-x4e" secondAttribute="leading" constant="20" id="xkD-i6-pqg"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="UQI-aL-dr5" customClass="DaysEnabledTableViewCell" customModule="NovaOne" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="115.33333587646484" width="414" height="43.666667938232422"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UQI-aL-dr5" id="3PF-Ec-Ra6">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tuesday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T7K-GK-AxP">
-                                                    <rect key="frame" x="19.999999999999996" y="11.666666666666664" width="63.666666666666657" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tick" translatesAutoresizingMaskIntoConstraints="NO" id="iin-oN-HFI">
-                                                    <rect key="frame" x="367.33333333333331" y="8.6666666666666661" width="26.666666666666686" height="26.666666666666671"/>
-                                                </imageView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="iin-oN-HFI" firstAttribute="centerY" secondItem="3PF-Ec-Ra6" secondAttribute="centerY" id="GD6-bo-hiX"/>
-                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="T7K-GK-AxP" secondAttribute="trailing" id="Wlm-xp-CVQ"/>
-                                                <constraint firstAttribute="trailing" secondItem="iin-oN-HFI" secondAttribute="trailing" constant="20" id="YvA-4R-ak2"/>
-                                                <constraint firstItem="T7K-GK-AxP" firstAttribute="leading" secondItem="3PF-Ec-Ra6" secondAttribute="leading" constant="20" id="mBb-7G-5f3"/>
-                                                <constraint firstItem="iin-oN-HFI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3PF-Ec-Ra6" secondAttribute="leading" id="vka-dp-4XX"/>
-                                                <constraint firstItem="T7K-GK-AxP" firstAttribute="centerY" secondItem="3PF-Ec-Ra6" secondAttribute="centerY" id="yZT-fc-Sjl"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="JGW-Fw-7lJ" customClass="DaysEnabledTableViewCell" customModule="NovaOne" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="159.00000381469727" width="414" height="43.666667938232422"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JGW-Fw-7lJ" id="TtD-YF-PF9">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wednesday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4S-QV-UZl">
-                                                    <rect key="frame" x="20" y="11.666666666666664" width="89" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tick" translatesAutoresizingMaskIntoConstraints="NO" id="gqq-7r-pRt">
-                                                    <rect key="frame" x="367.33333333333331" y="8.6666666666666661" width="26.666666666666686" height="26.666666666666671"/>
-                                                </imageView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="w4S-QV-UZl" firstAttribute="centerY" secondItem="TtD-YF-PF9" secondAttribute="centerY" id="Aef-US-i56"/>
-                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="w4S-QV-UZl" secondAttribute="trailing" id="PmK-FZ-fDe"/>
-                                                <constraint firstItem="gqq-7r-pRt" firstAttribute="centerY" secondItem="TtD-YF-PF9" secondAttribute="centerY" id="Sak-3b-5GR"/>
-                                                <constraint firstAttribute="trailing" secondItem="gqq-7r-pRt" secondAttribute="trailing" constant="20" id="Tng-H6-RzY"/>
-                                                <constraint firstItem="w4S-QV-UZl" firstAttribute="leading" secondItem="TtD-YF-PF9" secondAttribute="leading" constant="20" id="f7V-iJ-kdN"/>
-                                                <constraint firstItem="gqq-7r-pRt" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="TtD-YF-PF9" secondAttribute="leading" id="pSt-hR-cpv"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="5pr-lJ-fPS" customClass="DaysEnabledTableViewCell" customModule="NovaOne" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="202.66667175292969" width="414" height="43.666667938232422"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5pr-lJ-fPS" id="I93-zB-61o">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thursday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pDg-QZ-c2V">
-                                                    <rect key="frame" x="20" y="11.666666666666664" width="71" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tick" translatesAutoresizingMaskIntoConstraints="NO" id="SW0-uc-mgd">
-                                                    <rect key="frame" x="367.33333333333331" y="8.6666666666666661" width="26.666666666666686" height="26.666666666666671"/>
-                                                </imageView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="SW0-uc-mgd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="I93-zB-61o" secondAttribute="leading" id="B1K-Tq-wGc"/>
-                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="pDg-QZ-c2V" secondAttribute="trailing" id="ani-Ak-YIH"/>
-                                                <constraint firstItem="pDg-QZ-c2V" firstAttribute="centerY" secondItem="I93-zB-61o" secondAttribute="centerY" id="cWW-wp-3sa"/>
-                                                <constraint firstItem="SW0-uc-mgd" firstAttribute="centerY" secondItem="I93-zB-61o" secondAttribute="centerY" id="h4d-bG-fEk"/>
-                                                <constraint firstItem="pDg-QZ-c2V" firstAttribute="leading" secondItem="I93-zB-61o" secondAttribute="leading" constant="20" id="m1h-I5-ddA"/>
-                                                <constraint firstAttribute="trailing" secondItem="SW0-uc-mgd" secondAttribute="trailing" constant="20" id="z90-QK-twp"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="TCE-YO-sjQ" customClass="DaysEnabledTableViewCell" customModule="NovaOne" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="246.33333969116211" width="414" height="43.666667938232422"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TCE-YO-sjQ" id="voA-3K-AAK">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hTx-Ea-niS">
-                                                    <rect key="frame" x="20.000000000000004" y="11.666666666666664" width="46.333333333333343" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tick" translatesAutoresizingMaskIntoConstraints="NO" id="SjQ-Af-M1C">
-                                                    <rect key="frame" x="367.33333333333331" y="8.6666666666666661" width="26.666666666666686" height="26.666666666666671"/>
-                                                </imageView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="hTx-Ea-niS" secondAttribute="trailing" id="7mD-E2-4tr"/>
-                                                <constraint firstItem="hTx-Ea-niS" firstAttribute="leading" secondItem="voA-3K-AAK" secondAttribute="leading" constant="20" id="AU8-TK-DPY"/>
-                                                <constraint firstItem="SjQ-Af-M1C" firstAttribute="centerY" secondItem="voA-3K-AAK" secondAttribute="centerY" id="Ank-Sl-gOy"/>
-                                                <constraint firstItem="hTx-Ea-niS" firstAttribute="centerY" secondItem="voA-3K-AAK" secondAttribute="centerY" id="NE6-fZ-4Zp"/>
-                                                <constraint firstItem="SjQ-Af-M1C" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="voA-3K-AAK" secondAttribute="leading" id="VgI-Bp-b7X"/>
-                                                <constraint firstAttribute="trailing" secondItem="SjQ-Af-M1C" secondAttribute="trailing" constant="20" id="pNR-z0-Vva"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Lgi-wD-BoT" customClass="DaysEnabledTableViewCell" customModule="NovaOne" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="290.00000762939453" width="414" height="43.666667938232422"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Lgi-wD-BoT" id="rXm-Z8-Qut">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saturday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8KI-VX-8K8">
-                                                    <rect key="frame" x="20" y="11.666666666666664" width="67.333333333333329" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tick" translatesAutoresizingMaskIntoConstraints="NO" id="UMS-LT-Aje">
-                                                    <rect key="frame" x="367.33333333333331" y="8.6666666666666661" width="26.666666666666686" height="26.666666666666671"/>
-                                                </imageView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="UMS-LT-Aje" firstAttribute="centerY" secondItem="rXm-Z8-Qut" secondAttribute="centerY" id="DLo-IJ-qR6"/>
-                                                <constraint firstAttribute="trailing" secondItem="UMS-LT-Aje" secondAttribute="trailing" constant="20" id="FeI-6V-WFW"/>
-                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="8KI-VX-8K8" secondAttribute="trailing" id="WZM-Fo-NYK"/>
-                                                <constraint firstItem="8KI-VX-8K8" firstAttribute="centerY" secondItem="rXm-Z8-Qut" secondAttribute="centerY" id="bNg-MY-6ta"/>
-                                                <constraint firstItem="8KI-VX-8K8" firstAttribute="leading" secondItem="rXm-Z8-Qut" secondAttribute="leading" constant="20" id="rsR-xH-aHX"/>
-                                                <constraint firstItem="UMS-LT-Aje" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rXm-Z8-Qut" secondAttribute="leading" id="z5f-Nl-cO4"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="Igt-bD-rqv" id="pTC-Lx-K1f"/>
-                            <outlet property="delegate" destination="Igt-bD-rqv" id="0Gn-tA-3At"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="atQ-DA-IPo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="IKl-yQ-Pjb" firstAttribute="bottom" secondItem="48q-N6-29n" secondAttribute="bottom" constant="20" id="5p1-Rc-2TY"/>
+                            <constraint firstItem="IKl-yQ-Pjb" firstAttribute="trailing" secondItem="48q-N6-29n" secondAttribute="trailing" constant="30" id="6ul-cS-oHV"/>
+                            <constraint firstItem="6t1-Tx-NEj" firstAttribute="leading" secondItem="IKl-yQ-Pjb" secondAttribute="leading" constant="20" id="JKl-QG-oAe"/>
+                            <constraint firstItem="48q-N6-29n" firstAttribute="leading" secondItem="IKl-yQ-Pjb" secondAttribute="leading" constant="30" id="LCF-Nd-l91"/>
+                            <constraint firstItem="6t1-Tx-NEj" firstAttribute="top" secondItem="IKl-yQ-Pjb" secondAttribute="top" constant="20" id="R9R-2Z-hif"/>
+                            <constraint firstItem="48q-N6-29n" firstAttribute="top" secondItem="KpS-SE-Aed" secondAttribute="bottom" constant="35" id="a8k-8d-73L"/>
+                            <constraint firstItem="KpS-SE-Aed" firstAttribute="leading" secondItem="IKl-yQ-Pjb" secondAttribute="leading" id="bns-wY-qQ0"/>
+                            <constraint firstItem="KpS-SE-Aed" firstAttribute="top" secondItem="IKl-yQ-Pjb" secondAttribute="top" constant="80" id="g9a-yN-tWW"/>
+                            <constraint firstItem="KpS-SE-Aed" firstAttribute="trailing" secondItem="IKl-yQ-Pjb" secondAttribute="trailing" id="sYL-i5-Nom"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="IKl-yQ-Pjb"/>
+                    </view>
+                    <connections>
+                        <outlet property="updateCompanyDaysEnabledTableView" destination="KpS-SE-Aed" id="eDd-Yv-iXq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pMg-LG-VES" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="14215.942028985508" y="875.95108695652186"/>
+            <point key="canvasLocation" x="13340.579710144928" y="919.56521739130437"/>
         </scene>
         <!--Update Property Email-->
         <scene sceneID="lyk-9H-hpI">

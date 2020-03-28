@@ -23,6 +23,7 @@
 		65446CEC23E0F4370052DEBE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65446CEB23E0F4370052DEBE /* LoginViewController.swift */; };
 		65446CEF23E0F7DF0052DEBE /* NovaOneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65446CEE23E0F7DF0052DEBE /* NovaOneButton.swift */; };
 		65496D0123F1D6F9008EB3FF /* (null) in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6556D57C242FC91200E6B778 /* UpdateCompanyHoursEnabledViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6556D57B242FC91200E6B778 /* UpdateCompanyHoursEnabledViewController.swift */; };
 		655D0B21240B43D200D0E329 /* UpdatePropertyAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655D0B20240B43D200D0E329 /* UpdatePropertyAddressViewController.swift */; };
 		655D0B23240B43E800D0E329 /* UpdatePhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655D0B22240B43E800D0E329 /* UpdatePhoneViewController.swift */; };
 		655D0B25240B440200D0E329 /* UpdateEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655D0B24240B440200D0E329 /* UpdateEmailViewController.swift */; };
@@ -30,10 +31,8 @@
 		65668E79241814C900774548 /* UpdatePropertyPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65668E78241814C900774548 /* UpdatePropertyPhoneViewController.swift */; };
 		657535EB24035B7E009E3580 /* SignUpEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657535EA24035B7E009E3580 /* SignUpEmailViewController.swift */; };
 		6575F626242EA21100332729 /* UpdateNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6575F625242EA21100332729 /* UpdateNameViewController.swift */; };
-		6575F628242EBAEF00332729 /* DaysEnabledTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6575F627242EBAEF00332729 /* DaysEnabledTableViewController.swift */; };
-		6575F62A242EBB8700332729 /* HoursEnabledTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6575F629242EBB8700332729 /* HoursEnabledTableViewController.swift */; };
 		6575F62C242EC3A400332729 /* UpdateCompanyDaysEnabledViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6575F62B242EC3A400332729 /* UpdateCompanyDaysEnabledViewController.swift */; };
-		6575F62E242EC7F500332729 /* DaysEnabledTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6575F62D242EC7F500332729 /* DaysEnabledTableViewCell.swift */; };
+		6575F62E242EC7F500332729 /* EnabledOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6575F62D242EC7F500332729 /* EnabledOptionTableViewCell.swift */; };
 		6578D9ED24158174002E94BF /* ObjectDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6578D9EC24158174002E94BF /* ObjectDetailTableViewCell.swift */; };
 		6578D9EF24158E55002E94BF /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6578D9EE24158E55002E94BF /* Company.swift */; };
 		6578D9F12415AD06002E94BF /* properties.php in Resources */ = {isa = PBXBuildFile; fileRef = 6578D9F02415AD06002E94BF /* properties.php */; };
@@ -149,6 +148,7 @@
 		6528135523E79C15005A1B1F /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Customer.swift; path = NovaOne/Models/Customer.swift; sourceTree = SOURCE_ROOT; };
 		65446CEB23E0F4370052DEBE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		65446CEE23E0F7DF0052DEBE /* NovaOneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovaOneButton.swift; sourceTree = "<group>"; };
+		6556D57B242FC91200E6B778 /* UpdateCompanyHoursEnabledViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCompanyHoursEnabledViewController.swift; sourceTree = "<group>"; };
 		655D0B20240B43D200D0E329 /* UpdatePropertyAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePropertyAddressViewController.swift; sourceTree = "<group>"; };
 		655D0B22240B43E800D0E329 /* UpdatePhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePhoneViewController.swift; sourceTree = "<group>"; };
 		655D0B24240B440200D0E329 /* UpdateEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateEmailViewController.swift; sourceTree = "<group>"; };
@@ -156,10 +156,8 @@
 		65668E78241814C900774548 /* UpdatePropertyPhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePropertyPhoneViewController.swift; sourceTree = "<group>"; };
 		657535EA24035B7E009E3580 /* SignUpEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEmailViewController.swift; sourceTree = "<group>"; };
 		6575F625242EA21100332729 /* UpdateNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateNameViewController.swift; sourceTree = "<group>"; };
-		6575F627242EBAEF00332729 /* DaysEnabledTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysEnabledTableViewController.swift; sourceTree = "<group>"; };
-		6575F629242EBB8700332729 /* HoursEnabledTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoursEnabledTableViewController.swift; sourceTree = "<group>"; };
 		6575F62B242EC3A400332729 /* UpdateCompanyDaysEnabledViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCompanyDaysEnabledViewController.swift; sourceTree = "<group>"; };
-		6575F62D242EC7F500332729 /* DaysEnabledTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysEnabledTableViewCell.swift; sourceTree = "<group>"; };
+		6575F62D242EC7F500332729 /* EnabledOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnabledOptionTableViewCell.swift; sourceTree = "<group>"; };
 		6578D9EC24158174002E94BF /* ObjectDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectDetailTableViewCell.swift; sourceTree = "<group>"; };
 		6578D9EE24158E55002E94BF /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
 		6578D9F02415AD06002E94BF /* properties.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = properties.php; sourceTree = "<group>"; };
@@ -274,6 +272,7 @@
 				65FA42C124181A430040C915 /* UpdatePropertyEmailViewController.swift */,
 				65FA42C324181B6C0040C915 /* UpdatePropertyNameViewController.swift */,
 				6575F62B242EC3A400332729 /* UpdateCompanyDaysEnabledViewController.swift */,
+				6556D57B242FC91200E6B778 /* UpdateCompanyHoursEnabledViewController.swift */,
 			);
 			path = "Update Company";
 			sourceTree = "<group>";
@@ -339,7 +338,7 @@
 			children = (
 				657EAE6F2409AF080074D44A /* NovaOneTableViewCell.swift */,
 				6578D9EC24158174002E94BF /* ObjectDetailTableViewCell.swift */,
-				6575F62D242EC7F500332729 /* DaysEnabledTableViewCell.swift */,
+				6575F62D242EC7F500332729 /* EnabledOptionTableViewCell.swift */,
 			);
 			path = "Table View Cells";
 			sourceTree = "<group>";
@@ -418,8 +417,6 @@
 			isa = PBXGroup;
 			children = (
 				659C1A89240AB5B3003C91C1 /* AccountTableViewController.swift */,
-				6575F627242EBAEF00332729 /* DaysEnabledTableViewController.swift */,
-				6575F629242EBB8700332729 /* HoursEnabledTableViewController.swift */,
 			);
 			path = "Table Views";
 			sourceTree = "<group>";
@@ -666,13 +663,12 @@
 				65802590240F4A7600A74DCD /* SignUpPropertyPhoneViewController.swift in Sources */,
 				65AF664423E87F2C001B394F /* AppointmentsViewController.swift in Sources */,
 				659CCD3623EE46260066C9CB /* ErrorResponse.swift in Sources */,
-				6575F62E242EC7F500332729 /* DaysEnabledTableViewCell.swift in Sources */,
+				6575F62E242EC7F500332729 /* EnabledOptionTableViewCell.swift in Sources */,
 				658EC6C823F4B1310042827E /* NovaOneView.swift in Sources */,
 				6591C39A23DA78F900535C46 /* AppDelegate.swift in Sources */,
 				6592E3D1240429CA009E4D8D /* SignUpNameViewController.swift in Sources */,
 				657C5F962413ECB200D52E27 /* DateHelper.swift in Sources */,
 				655D0B21240B43D200D0E329 /* UpdatePropertyAddressViewController.swift in Sources */,
-				6575F628242EBAEF00332729 /* DaysEnabledTableViewController.swift in Sources */,
 				6580FBE324113D0700695DB6 /* UIHelper.swift in Sources */,
 				658046AD242D49D5007D7192 /* Company+CoreDataClass.swift in Sources */,
 				657C5F9A241406EA00D52E27 /* CompanyDetailViewController.swift in Sources */,
@@ -681,12 +677,12 @@
 				65446CEF23E0F7DF0052DEBE /* NovaOneButton.swift in Sources */,
 				657C5F942412D79300D52E27 /* AppointmentDetailViewController.swift in Sources */,
 				6592E3CF240416FE009E4D8D /* SignUpPasswordViewController.swift in Sources */,
-				6575F62A242EBB8700332729 /* HoursEnabledTableViewController.swift in Sources */,
 				6592E3D324042AA9009E4D8D /* SignUpPhoneViewController.swift in Sources */,
 				65AF664823E881D9001B394F /* LeadsViewController.swift in Sources */,
 				650250C323E4A78E00B427D0 /* HomeViewController.swift in Sources */,
 				65C5467923ECAB2300A198F3 /* AppUtility.swift in Sources */,
 				6591C39C23DA78F900535C46 /* SceneDelegate.swift in Sources */,
+				6556D57C242FC91200E6B778 /* UpdateCompanyHoursEnabledViewController.swift in Sources */,
 				657535EB24035B7E009E3580 /* SignUpEmailViewController.swift in Sources */,
 				658046AE242D49D5007D7192 /* Company+CoreDataProperties.swift in Sources */,
 				659C1A8A240AB5B3003C91C1 /* AccountTableViewController.swift in Sources */,
