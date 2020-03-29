@@ -9,20 +9,6 @@
 import UIKit
 
 struct LeadModel: Decodable {
-    
-    /*
-     l.id,
-     l.name,
-     l.phone,
-     l.email,
-     l.date_of_inquiry as \"dateOfInquiry\",
-     l.renter_brand as \"renterBrand\",
-     l.sent_text_date as \"sentTextDate\",
-     l.sent_email_date as \"sentEmailDate\",
-     l.filled_out_form as \"filledOutForm\",
-     l.made_appointment as \"madeAppointment\",
-     p.address
-     */
 
     // MARK: Properties
     var id: Int
@@ -31,6 +17,7 @@ struct LeadModel: Decodable {
     var email: String?
     var dateOfInquiry: String?
     var renterBrand: String?
+    var companyId: Int?
     var sentTextDate: String?
     var sentEmailDate: String?
     var filledOutForm: Bool?
@@ -45,34 +32,25 @@ struct LeadModel: Decodable {
         }
     }
     
-    // Returns the initials of the first and last name of the person making the appointment
-    // or the first two letters of the first name if there is no last name
-    var initials: String {
-        
+    var dateOfInquiryDate: Date {
         get {
-            guard let name = self.name else { return "" }
-            
-            // Split the name string into an array if it has spaces
-            let nameComponentsArray = name.components(separatedBy: " ")
-            // If our array has a count greater than one, we have multiple names
-            // get the first character of the first and second element
-            // in the array
-            if nameComponentsArray.count > 1 && nameComponentsArray[1] != "" {
-                let firstName = nameComponentsArray[0]
-                let secondName = nameComponentsArray[1]
-                
-                let firstNameInitial = firstName[firstName.startIndex]
-                let secondNameInitial = secondName[secondName.startIndex]
-                
-                return "\(firstNameInitial)\(secondNameInitial)".uppercased()
-            }
-            
-            // Return the first two characters of the string if only one name is given
-            let index = name.index(name.startIndex, offsetBy: 2)
-            let initials = String(name[..<index])
-            return initials.uppercased()
+            guard let dateOfInquiry = self.dateOfInquiry else { return Date() }
+            return DateHelper.createDate(from: dateOfInquiry, format: "yyyy-MM-dd HH:mm:ssZ")
         }
-        
+    }
+    
+    var sentTextDateDate: Date {
+        get {
+            guard let sentTextDate = self.sentTextDate else { return Date() }
+            return DateHelper.createDate(from: sentTextDate, format: "yyyy-MM-dd HH:mm:ssZ")
+        }
+    }
+    
+    var sentEmailDateDate: Date {
+        get {
+            guard let sentEmailDate = self.sentEmailDate else { return Date() }
+            return DateHelper.createDate(from: sentEmailDate, format: "yyyy-MM-dd HH:mm:ssZ")
+        }
     }
     
     // Print object's current state
@@ -87,25 +65,6 @@ struct LeadModel: Decodable {
             else { return "" }
            return "Id: \(id), Name: \(name) \(phoneNumber), Email: \(address)"
         }
-        
-    }
-    
-    // MARK: Methods
-    func date(from string: String) -> Date {
-        
-        // Date string must be in the form of "yyyy-MM-dd HH:mm:ssZ"
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ssZ"
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
-        
-        guard let date = dateFormatter.date(from: string) else { return Date() }
-        
-        let calendar = Calendar.current
-        let components = calendar.dateComponents([.year, .month, .day, .hour], from: date)
-        
-        guard let finalDate = calendar.date(from: components) else { return Date() }
-        
-        return finalDate
         
     }
     

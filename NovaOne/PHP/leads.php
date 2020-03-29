@@ -20,26 +20,29 @@ if ($user_is_verified) {
     SELECT
         l.id,
         l.name,
-        l.phone,
+        l.phone_number as \"phoneNumber\",
         l.email,
         l.date_of_inquiry as \"dateOfInquiry\",
         l.renter_brand as \"renterBrand\",
+        l.company_id as \"companyId\",
         l.sent_text_date as \"sentTextDate\",
         l.sent_email_date as \"sentEmailDate\",
         l.filled_out_form as \"filledOutForm\",
         l.made_appointment as \"madeAppointment\",
-        p.address
+        co.address
     FROM
-        leads l
-    INNER JOIN property p
-        ON l.property_id = p.id
-    WHERE p.customer_user_id = :customer_user_id
-    ORDER BY time DESC
+        leads_lead l
+    INNER JOIN property_company co
+        ON l.company_id = co.id
+    INNER JOIN customer_register_customer_user c
+        ON co.id = c.company_id
+    WHERE c.id = :customer_user_id
+    ORDER BY date_of_inquiry DESC
     LIMIT 10;
     ";
     
-    $db_object = new Database('mysql');
-    $db = $db_object->connect('mysql');
+    $db_object = new Database();
+    $db = $db_object->connect();
     $stmt = $db->prepare($query);
     $stmt->bindParam(':customer_user_id', $customer_user_id);
     

@@ -23,52 +23,9 @@ class AppointmentsViewController: UIViewController {
     func setupTableView() {
         self.appointmentTableView.delegate = self
         self.appointmentTableView.dataSource = self
+        
         // Set seperator color for table view
         self.appointmentTableView.separatorColor = UIColor(white: 0.95, alpha: 1)
-    }
-    
-    // Gets appointments from the database
-    func getAppointments() {
-        
-        let httpRequest = HTTPRequests()
-        guard
-            let customer = PersistenceService.fetchCustomerEntity(),
-            let email = customer.email,
-            let password = KeychainWrapper.standard.string(forKey: "password")
-        else {
-            print("Failed to obtain variables for POST request")
-            return
-        }
-        let customerUserId = customer.id
-        
-        let parameters: [String: Any] = ["customerUserId": customerUserId as Any,
-                                         "email": email as Any,
-                                         "password": password as Any]
-        
-        httpRequest.request(endpoint: "/appointments.php",
-                            dataModel: [AppointmentModel(id: 1)], // Must have one non optional value in our object otherwise JSONDecoder will be able to decode the ANY json response into an appointment object because all fields are optional
-                            parameters: parameters) { [weak self] (result) in
-                                
-                                switch result {
-                                    
-                                    case .success(let appointments):
-                                        self?.appointments = appointments
-                                        self?.appointmentTableView.reloadData() // Reload table to show data pulled from the database
-                                    case .failure(let error):
-                                        print(error.localizedDescription)
-                                        
-                                        // No appointments were found or an error occurred so navigate to the empty
-                                        // view controller
-                                        if let emptyViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.empty.rawValue) as? EmptyViewController {
-                                            emptyViewController.title = "No Appointments"
-                                            emptyViewController.titleLabel.text = ""
-                                            self?.present(emptyViewController, animated: true, completion: nil)
-                                        }
-                                    
-                                }
-                                
-        }
-        
     }
 
 }

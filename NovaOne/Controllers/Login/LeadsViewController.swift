@@ -21,68 +21,12 @@ class LeadsViewController: UIViewController {
         self.setUp()
         self.leadsTableView.delegate = self
         self.leadsTableView.dataSource = self
-        self.getLeads()
     }
     
     func setUp() {
-        
         // Set seperator color for table view
         self.leadsTableView.separatorColor = UIColor(white: 0.95, alpha: 1)
-        
     }
-    
-    // Get's appointments from the database
-    func getLeads() {
-        
-        let httpRequest = HTTPRequests()
-        guard
-            let customerUserId = self.customer?.id,
-            let email = self.customer?.email,
-            let password = KeychainWrapper.standard.string(forKey: "password")
-        else {
-            print("Failed to obtain variables for POST request")
-            return
-        }
-        
-        let parameters: [String: Any] = ["customerUserId": customerUserId as Any,
-                                         "email": email as Any,
-                                         "password": password as Any]
-        
-        httpRequest.request(endpoint: "/leads.php",
-                            dataModel: [LeadModel(id: 1)], // Must have one non optional value in our object otherwise JSONDecoder will be able to decode the ANY json response into an appointment object because all fields are optional
-                            parameters: parameters) { (result) in
-                                
-                                switch result {
-                                    
-                                    case .success(let leads):
-                                        self.leads = leads
-                                        self.leadsTableView.reloadData() // Reload table to show data pulled from the database
-                                    case .failure(let error):
-                                        print(error.localizedDescription)
-                                    
-                                }
-                                
-        }
-        
-    }
-    
-    // MARK: Actions
-    
-    @IBAction func plusButtonTouched(_ sender: Any) {
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-    // MARK: Enumerations
 
 }
 
@@ -104,10 +48,9 @@ extension LeadsViewController: UITableViewDataSource, UITableViewDelegate {
         guard
             let leadName = lead.name,
             let address = lead.address,
-            let leadBrand = lead.renterBrand,
-            let dateOfInquiry = lead.dateOfInquiry
+            let leadBrand = lead.renterBrand
         else { return cell }
-        let dateOfInquiryDate = lead.date(from: dateOfInquiry)
+        let dateOfInquiryDate = lead.dateOfInquiryDate
         
         // Get date of appointment as a string
         let dateFormatter = DateFormatter()

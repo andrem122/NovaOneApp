@@ -1,5 +1,5 @@
 //
-//  AppointmentsContainerViewController.swift
+//  LeadsContainerViewController.swift
 //  NovaOne
 //
 //  Created by Andre Mashraghi on 3/29/20.
@@ -8,17 +8,17 @@
 
 import UIKit
 
-class AppointmentsContainerViewController: UIViewController {
+class LeadsContainerViewController: UIViewController {
     
     // MARK: Properties
     @IBOutlet weak var containerView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.getAppointments()
+        self.getLeads()
     }
     
-    func getAppointments() {
+    func getLeads() {
         // Gets appointments from the database via an HTTP request
         // and saves to CoreData
         
@@ -37,8 +37,8 @@ class AppointmentsContainerViewController: UIViewController {
                                          "email": email as Any,
                                          "password": password as Any]
         
-        httpRequest.request(endpoint: "/appointments.php",
-                            dataModel: [AppointmentModel(id: 1)], // Must have one non optional value in our object otherwise JSONDecoder will be able to decode the ANY json response into an appointment object because all fields are optional
+        httpRequest.request(endpoint: "/leads.php",
+                            dataModel: [LeadModel(id: 1)],
                             parameters: parameters) { [weak self] (result) in
                                 
                                 // Get anchor constraints from container view so that we can layout the views
@@ -52,30 +52,29 @@ class AppointmentsContainerViewController: UIViewController {
                                 
                                 switch result {
                                     
-                                    case .success(let appointments):
+                                    case .success(let leads):
                                         
-                                        if let appointmentsViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.appointments.rawValue) as? AppointmentsViewController {
-                                            
-                                            appointmentsViewController.appointments = appointments
+                                        if let leadsViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.leads.rawValue) as? LeadsViewController {
+                                            leadsViewController.leads = leads
                                             
                                             // Embed appointments view controller into container view so it will show
-                                            self?.addChild(appointmentsViewController)
-                                            appointmentsViewController.view.translatesAutoresizingMaskIntoConstraints = false
-                                            self?.containerView.addSubview(appointmentsViewController.view)
+                                            self?.addChild(leadsViewController)
+                                            leadsViewController.view.translatesAutoresizingMaskIntoConstraints = false
+                                            self?.containerView.addSubview(leadsViewController.view)
                                             
                                             // Set constraints for embedded view so it shows correctly
                                             NSLayoutConstraint.activate([
-                                                appointmentsViewController.view.leadingAnchor.constraint(equalTo: containerViewLeadingAnchor),
-                                                appointmentsViewController.view.trailingAnchor.constraint(equalTo: containerViewTrailingAnchor),
-                                                appointmentsViewController.view.topAnchor.constraint(equalTo: containerViewTopAnchor),
-                                                appointmentsViewController.view.bottomAnchor.constraint(equalTo: containerViewBottomAnchor)
+                                                leadsViewController.view.leadingAnchor.constraint(equalTo: containerViewLeadingAnchor),
+                                                leadsViewController.view.trailingAnchor.constraint(equalTo: containerViewTrailingAnchor),
+                                                leadsViewController.view.topAnchor.constraint(equalTo: containerViewTopAnchor),
+                                                leadsViewController.view.bottomAnchor.constraint(equalTo: containerViewBottomAnchor)
                                             ])
                                             
-                                            appointmentsViewController.didMove(toParent: self)
+                                            leadsViewController.didMove(toParent: self)
                                             
                                             // Save to CoreData for future display
-
                                         }
+                                        
                                     case .failure(let error):
                                         print(error.localizedDescription)
                                         
@@ -86,7 +85,7 @@ class AppointmentsContainerViewController: UIViewController {
                                             // Run on main thread to avoid a crash
                                             // UILabel will not be found if you try to change the label text with a background thread
                                             DispatchQueue.main.async {
-                                                emptyViewController.setupTitle(title: "No Appointments")
+                                                emptyViewController.setupTitle(title: "No Leads")
                                             }
                                             
                                             self?.addChild(emptyViewController)
@@ -104,7 +103,6 @@ class AppointmentsContainerViewController: UIViewController {
                                             emptyViewController.didMove(toParent: self)
                                             
                                         }
-                                    
                                 }
                                 
         }
