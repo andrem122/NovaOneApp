@@ -1,5 +1,5 @@
 //
-//  EnabledOption.swift
+//  EnableOption.swift
 //  NovaOne
 //
 //  Created by Andre Mashraghi on 3/28/20.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct EnabledOption {
+struct EnableOption {
     let option: String
     var selected: Bool
 }

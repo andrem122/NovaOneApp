@@ -12,34 +12,34 @@ class UpdateCompanyHoursEnabledViewController: UIViewController, UITableViewDele
     
     // MARK: Properties
     @IBOutlet weak var updateCompanyHoursEnabledTableView: UITableView!
-    var hoursOfTheDayAM: [EnabledOption] = [
-        EnabledOption(option: "12:00", selected: false),
-        EnabledOption(option: "1:00", selected: false),
-        EnabledOption(option: "2:00", selected: false),
-        EnabledOption(option: "3:00", selected: false),
-        EnabledOption(option: "4:00", selected: false),
-        EnabledOption(option: "5:00", selected: false),
-        EnabledOption(option: "6:00", selected: false),
-        EnabledOption(option: "7:00", selected: false),
-        EnabledOption(option: "8:00", selected: false),
-        EnabledOption(option: "9:00", selected: false),
-        EnabledOption(option: "10:00", selected: false),
-        EnabledOption(option: "11:00", selected: false),
+    var hoursOfTheDayAM: [EnableOption] = [
+        EnableOption(option: "12:00", selected: false),
+        EnableOption(option: "1:00", selected: false),
+        EnableOption(option: "2:00", selected: false),
+        EnableOption(option: "3:00", selected: false),
+        EnableOption(option: "4:00", selected: false),
+        EnableOption(option: "5:00", selected: false),
+        EnableOption(option: "6:00", selected: false),
+        EnableOption(option: "7:00", selected: false),
+        EnableOption(option: "8:00", selected: false),
+        EnableOption(option: "9:00", selected: false),
+        EnableOption(option: "10:00", selected: false),
+        EnableOption(option: "11:00", selected: false),
     ]
     
-    var hoursOfTheDayPM: [EnabledOption] = [
-        EnabledOption(option: "12:00", selected: false),
-        EnabledOption(option: "1:00", selected: false),
-        EnabledOption(option: "2:00", selected: false),
-        EnabledOption(option: "3:00", selected: false),
-        EnabledOption(option: "4:00", selected: false),
-        EnabledOption(option: "5:00", selected: false),
-        EnabledOption(option: "6:00", selected: false),
-        EnabledOption(option: "7:00", selected: false),
-        EnabledOption(option: "8:00", selected: false),
-        EnabledOption(option: "9:00", selected: false),
-        EnabledOption(option: "10:00", selected: false),
-        EnabledOption(option: "11:00", selected: false),
+    var hoursOfTheDayPM: [EnableOption] = [
+        EnableOption(option: "12:00", selected: false),
+        EnableOption(option: "1:00", selected: false),
+        EnableOption(option: "2:00", selected: false),
+        EnableOption(option: "3:00", selected: false),
+        EnableOption(option: "4:00", selected: false),
+        EnableOption(option: "5:00", selected: false),
+        EnableOption(option: "6:00", selected: false),
+        EnableOption(option: "7:00", selected: false),
+        EnableOption(option: "8:00", selected: false),
+        EnableOption(option: "9:00", selected: false),
+        EnableOption(option: "10:00", selected: false),
+        EnableOption(option: "11:00", selected: false),
     ]
     
     override func viewDidLoad() {
@@ -73,17 +73,17 @@ class UpdateCompanyHoursEnabledViewController: UIViewController, UITableViewDele
              let substring = "PM"
              guard let hourWithoutAMOrPM = hour.components(separatedBy: " ").first else { return } // 12:00
              
-             // If the substring is PM, get an EnabledOption item from the PM array
-             // else get an EnabledOption item from the AM array
+             // If the substring is PM, get an EnableOption item from the PM array
+             // else get an EnableOption item from the AM array
              if hour.contains(substring) {
-                 for (index, enabledOption) in self.hoursOfTheDayPM.enumerated() {
-                     if enabledOption.option == hourWithoutAMOrPM {
+                 for (index, enableOption) in self.hoursOfTheDayPM.enumerated() {
+                     if enableOption.option == hourWithoutAMOrPM {
                          self.hoursOfTheDayPM[index].selected = true
                      }
                  }
              } else {
-                 for (index, enabledOption) in self.hoursOfTheDayAM.enumerated() {
-                     if enabledOption.option == hourWithoutAMOrPM {
+                 for (index, enableOption) in self.hoursOfTheDayAM.enumerated() {
+                     if enableOption.option == hourWithoutAMOrPM {
                          self.hoursOfTheDayAM[index].selected = true
                      }
                  }
@@ -128,31 +128,17 @@ extension UpdateCompanyHoursEnabledViewController {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: Defaults.TableViewCellIdentifiers.enableOption.rawValue) as! EnableOptionTableViewCell
         
-        switch indexPath.section {
-            case 0:
-                let hour = self.hoursOfTheDayAM[indexPath.row] // Get the hour of the day
-                // If the option was selected, set the check mark image to be visible
-                // when the cell is pulled out of the quene and reused
-                if hour.selected {
-                    cell.checkMarkImage.isHidden = false
-                } else {
-                    cell.checkMarkImage.isHidden = true
-                }
-                
-                cell.setup(option: hour.option)
-            case 1:
-                let hour = self.hoursOfTheDayPM[indexPath.row] // Get the hour of the day
-                // If the option was selected, set the check mark image to be visible
-                // when the cell is pulled out of the quene and reused
-                if hour.selected {
-                    cell.checkMarkImage.isHidden = false
-                } else {
-                    cell.checkMarkImage.isHidden = true
-                }
-                
-                cell.setup(option: hour.option)
+        let section = indexPath.section
+        switch section {
+            case 0: // AM Hours Section
+                let enableOption = self.hoursOfTheDayAM[indexPath.row] // Get the EnableOption object
+                cell.prepareCellForReuse(cell: cell, enableOption: enableOption)
+            case 1: // PM Hours Section
+                let enableOption = self.hoursOfTheDayPM[indexPath.row] // Get the EnableOption object
+                cell.prepareCellForReuse(cell: cell, enableOption: enableOption)
             default:
                 return cell
         }

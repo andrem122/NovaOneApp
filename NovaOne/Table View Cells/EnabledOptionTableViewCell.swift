@@ -11,10 +11,11 @@ import UIKit
 class EnableOptionTableViewCell: UITableViewCell {
     
     // MARK: Properties
-    
     @IBOutlet weak var optionLabel: UILabel!
     @IBOutlet weak var checkMarkImage: UIImageView!
     
+    
+    // MARK: Methods
     func setup(option: String) {
         // Set up the cell properties with values
         self.optionLabel.text = option
@@ -33,5 +34,16 @@ class EnableOptionTableViewCell: UITableViewCell {
         }
         
     }
-
+    
+    func prepareCellForReuse(cell: EnableOptionTableViewCell, enableOption: EnableOption) {
+        // Sets up the reused cell based on attributes in the EnableOption item
+        if enableOption.selected {
+            cell.checkMarkImage.isHidden = false
+        } else {
+            cell.checkMarkImage.isHidden = true
+        }
+        
+        cell.setup(option: enableOption.option)
+    }
+    
 }
