@@ -20,14 +20,18 @@ class EnableOptionTableViewCell: UITableViewCell {
         self.optionLabel.text = option
     }
     
-    func toggleCheckMark(cell: EnableOptionTableViewCell) {
+    func toggleCheckMark(cell: EnableOptionTableViewCell) -> Bool {
         // Toggles the check mark image from hidden to visible
+        
         if cell.checkMarkImage.isHidden {
             cell.checkMarkImage.isHidden = false // Show the check mark image
+            return true // check mark image is now visible so return true
         } else {
             // Check mark is not hidden, so hide it
             cell.checkMarkImage.isHidden = true
+            return false // check mark image is not visible so return false
         }
+        
     }
 
 }
