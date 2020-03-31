@@ -19,8 +19,11 @@ class EmptyViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    func setupTitle(title: String) {
-        self.titleLabel.text = title
+    func setup(title: String) {
+        DispatchQueue.main.async {
+            // Sets the title text
+            self.titleLabel.text = title
+        }
     }
     
 }

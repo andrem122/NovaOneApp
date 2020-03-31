@@ -84,9 +84,7 @@ class LeadsContainerViewController: UIViewController {
                                             
                                             // Run on main thread to avoid a crash
                                             // UILabel will not be found if you try to change the label text with a background thread
-                                            DispatchQueue.main.async {
-                                                emptyViewController.setupTitle(title: "No Leads")
-                                            }
+                                            emptyViewController.setup(title: "No Leads")
                                             
                                             self?.addChild(emptyViewController)
                                             emptyViewController.view.translatesAutoresizingMaskIntoConstraints = false

@@ -85,9 +85,7 @@ class AppointmentsContainerViewController: UIViewController {
                                             
                                             // Run on main thread to avoid a crash
                                             // UILabel will not be found if you try to change the label text with a background thread
-                                            DispatchQueue.main.async {
-                                                emptyViewController.setupTitle(title: "No Appointments")
-                                            }
+                                            emptyViewController.setup(title: "No Appointments")
                                             
                                             self?.addChild(emptyViewController)
                                             emptyViewController.view.translatesAutoresizingMaskIntoConstraints = false

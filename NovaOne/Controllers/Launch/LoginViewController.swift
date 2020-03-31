@@ -169,7 +169,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     KeychainWrapper.standard.set(password, forKey: "password")
                     
                     // Go to tab bar view controller
-                    if let tabBarViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.TabControllerIdentifiers.home.rawValue) as? HomeTabBarController  {
+                    if let tabBarViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.TabBarControllerIdentifiers.home.rawValue) as? HomeTabBarController  {
                         
                         // Unwrap optionals from CustomerModel instance
                         guard

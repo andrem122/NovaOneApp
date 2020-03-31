@@ -64,6 +64,8 @@ extension AppointmentsViewController: UITableViewDataSource, UITableViewDelegate
     
     // Function gets called every time a row in the table gets tapped on
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true) // Deselect the row after it is tapped on
+        
         // Get appointment object based on which row the user taps on
         let appointment = self.appointments[indexPath.row]
         

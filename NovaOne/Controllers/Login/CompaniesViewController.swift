@@ -155,6 +155,8 @@ extension CompaniesViewController {
     // Function gets called every time a row in the table gets tapped on
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        tableView.deselectRow(at: indexPath, animated: true) // Deselect the row after it is tapped on
+        
         // If we have companies from CoreData for the customer, use the coreDataCompanies array
         if self.customerHasCompanies {
             guard let coreDatacompany = self.coreDataCompanies?[indexPath.row] as? Company else { return } // Get company object based on which row the user taps on
