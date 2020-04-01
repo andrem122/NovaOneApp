@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SignUpAddressViewController: UIViewController {
+class SignUpCompanyAddressViewController: UIViewController {
     
     // MARK: Properties
     @IBOutlet weak var addressTextField: NovaOneTextField!

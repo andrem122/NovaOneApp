@@ -17,6 +17,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: NovaOneButton!
     let coreDataCustomerEmail: String? = PersistenceService.fetchEntity(Customer.self).first?.email
+    let alertService = AlertService()
     
     // MARK: Methods
     override func viewDidLoad() {
@@ -233,10 +234,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     }
                 
                 case .failure(let error):
-                    // Show error message with an alert and enable continue button
-                    AlertService.alert(for: self, title: "Error", message: error.localizedDescription)
-                    self?.loginButton.isEnabled = true
-                    self?.loginButton.backgroundColor = Defaults.novaOneColor
+                    // Show error message with a pop up and enable continue button
+                    
+                    DispatchQueue.main.async {
+                        // Set text for pop up ok view controller
+                        let title = "Error"
+                        let body = error.localizedDescription
+                        
+                        guard let popUpOkViewController = self?.alertService.popUpOk(title: title, body: body) else { return }
+                        self?.present(popUpOkViewController, animated: true, completion: nil)
+                        
+                        self?.loginButton.isEnabled = true
+                        self?.loginButton.backgroundColor = Defaults.novaOneColor
+                    }
                 
             }
             
@@ -265,13 +275,22 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         // If user name or password field is empty, alert the user with a message and exit the function
         if username.isEmpty {
+            // Set text for pop up ok view controller
+            let title = "Email Required"
+            let body = "Email: This field is required."
             
-            AlertService.alert(for: self, title: "Email Required", message: "Email: This field is required.")
+            let popUpOkViewController = self.alertService.popUpOk(title: title, body: body)
+            self.present(popUpOkViewController, animated: true, completion: nil)
             return
             
         } else if password.isEmpty {
             
-            AlertService.alert(for: self, title: "Password Required", message: "Password: This field is required.")
+            // Set text for pop up ok view controller
+            let title = "Password Required"
+            let body = "Password: This field is required."
+            
+            let popUpOkViewController = self.alertService.popUpOk(title: title, body: body)
+            self.present(popUpOkViewController, animated: true, completion: nil)
             return
 
         }

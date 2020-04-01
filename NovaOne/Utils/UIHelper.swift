@@ -11,6 +11,15 @@ import UIKit
 // A class of commonly used functions used for interacting with the user interface
 class UIHelper {
     
+    static func setupNavigationBarStyle(for navigationController: UINavigationController?) {
+        // Sets the styles for the navigation bar
+        
+        // Set styles for navigation bar
+        guard let unwrappedNavigationController = navigationController else { return }
+        unwrappedNavigationController.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        unwrappedNavigationController.navigationBar.shadowImage = UIImage()
+    }
+    
     // Toggles a button between enabled and disabled states based on text field values
     static func toggle(button: UIButton, textFields: [UITextField], enabledColor: UIColor, disabledColor: UIColor, borderedButton: Bool?, closure: (([UITextField]) -> Bool)?) {
         

@@ -22,6 +22,7 @@ class SignUpPasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
+        UIHelper.setupNavigationBarStyle(for: self.navigationController)
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -12,20 +12,21 @@ import UIKit
 
 class AlertService {
     
-    static func alert(for currentViewController: UIViewController?, title: String, message: String, handler: ((UIAlertAction) -> Void)? = nil) {
-        // Displays an alert message with a custom title and message
+    func popUpOk(title: String, body: String) -> PopUpOkViewController {
+        // Returns a pop up with an 'OK' button
         
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-        let alertAction = UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: handler)
+        let storyboard = UIStoryboard(name: Defaults.storyboardName, bundle: .main)
+        guard let popUpOkViewController = storyboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.popUpOk.rawValue) as? PopUpOkViewController else { return PopUpOkViewController() }
         
-        // Add action button to alert
-        alert.addAction(alertAction)
+        // Set text values for the pop up view controller
+        popUpOkViewController.popUpTitle = title
+        popUpOkViewController.popUpBody = body
         
-        currentViewController?.present(alert, animated: true, completion: nil)
-        
+        return popUpOkViewController
     }
     
     func popUp(title: String, body: String, buttonTitle: String, completion: @escaping () -> Void) -> PopUpViewController {
+        // Returns a pop up with a cancel and action button
         
         let storyboard = UIStoryboard(name: Defaults.storyboardName, bundle: .main)
         guard let popUpViewController = storyboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.popUp.rawValue) as? PopUpViewController else { return PopUpViewController() }
