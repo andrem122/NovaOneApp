@@ -12,6 +12,9 @@ class AddCompanyHoursEnabledViewController: UIViewController, UITableViewDataSou
     
     // MARK: Properties
     @IBOutlet weak var addCompanyEnabledHoursTableView: UITableView!
+    @IBOutlet weak var appointmentHoursButton: NovaOneButton!
+    var userIsSigningUp: Bool = false // A Boolean that indicates whether or not the current user is new and signing up
+    
     var hoursOfTheDayAM: [EnableOption] = [
         EnableOption(option: "12:00", selected: false),
         EnableOption(option: "1:00", selected: false),
@@ -45,6 +48,7 @@ class AddCompanyHoursEnabledViewController: UIViewController, UITableViewDataSou
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupTableView()
+        self.setButtonTitle()
     }
     
     func setupTableView() {
@@ -53,16 +57,30 @@ class AddCompanyHoursEnabledViewController: UIViewController, UITableViewDataSou
         self.addCompanyEnabledHoursTableView.dataSource = self
     }
     
+    func setButtonTitle() {
+        // Set the title for the appointment hours button
+        if userIsSigningUp {
+            self.appointmentHoursButton.setTitle("Finish Sign Up", for: .normal)
+        }
+    }
+    
     // MARK: Actions
     @IBAction func addCompanyButtonTapped(_ sender: Any) {
-        // Navigate to success screen once the company has been sucessfully added
-        // to the NovaOne database
-        if let successViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.success.rawValue) as? SuccessViewController {
-            
-            successViewController.setup(title: "Company Added!", subtitle: "The company has been successfully added.")
-            self.present(successViewController, animated: true, completion: nil)
-            
+        if userIsSigningUp {
+            // Navigate to home screen if user is signing up
+            if let homeTabBarController = self.storyboard?.instantiateViewController(identifier: Defaults.TabBarControllerIdentifiers.home.rawValue) as? HomeTabBarController {
+                self.present(homeTabBarController, animated: true, completion: nil)
+            }
+        } else {
+            // Navigate to success screen once the company has been sucessfully added
+            if let successViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.success.rawValue) as? SuccessViewController {
+                
+                successViewController.setup(title: "Company Added!", subtitle: "The company has been successfully added.")
+                self.present(successViewController, animated: true, completion: nil)
+                
+            }
         }
+    
     }
     
 }

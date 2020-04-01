@@ -8,14 +8,10 @@
 
 import UIKit
 
-class UpdatePropertyEmailViewController: UIViewController {
+class UpdateCompanyEmailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    // MARK: Actions
-    @IBAction func cancelButtonTapped(_ sender: Any) {
-        self.presentingViewController?.dismiss(animated: true, completion: nil)
-    }
 }

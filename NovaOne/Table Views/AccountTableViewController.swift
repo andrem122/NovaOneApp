@@ -22,6 +22,7 @@ class AccountTableViewController: UITableViewController {
     }
     
     func setup() {
+        
         // Set values for each label
         guard
             let customer = PersistenceService.fetchEntity(Customer.self).first,
@@ -33,6 +34,10 @@ class AccountTableViewController: UITableViewController {
         self.customerIdValueLabel.text = String(customer.id)
         self.emailAddressValueLabel.text = emailAddress
         self.phoneNumberValueLabel.text = phoneNumber
+        
+        // Setup navigation bar style
+        UIHelper.setupNavigationBarStyle(for: self.navigationController)
+        
     }
     
     // MARK: Navigation
@@ -41,7 +46,7 @@ class AccountTableViewController: UITableViewController {
         // Set text for back button on next view controller
         let backItem = UIBarButtonItem()
         backItem.title = ""
-        navigationItem.backBarButtonItem = backItem // This will show in the next view controller being pushed
+        self.navigationItem.backBarButtonItem = backItem // This will show in the next view controller being pushed
         
     }
     

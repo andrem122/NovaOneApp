@@ -61,11 +61,6 @@ class UpdateCompanyDaysEnabledViewController: UIViewController, UITableViewDeleg
         
     }
     
-    // MARK: Actions
-    @IBAction func cancelButtonTapped(_ sender: Any) {
-        // Remove the modal popup view on touch of the cancel 'x' button
-        self.presentingViewController?.dismiss(animated: true, completion: nil)
-    }
 }
 
 extension UpdateCompanyDaysEnabledViewController {

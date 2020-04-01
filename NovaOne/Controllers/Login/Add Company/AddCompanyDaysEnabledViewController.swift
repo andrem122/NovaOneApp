@@ -12,6 +12,7 @@ class AddCompanyDaysEnabledViewController: UIViewController, UITableViewDelegate
     
     // MARK: Properties
     @IBOutlet weak var addCompanyDaysEnabledTableView: UITableView!
+    var userIsSigningUp: Bool = false // A Boolean that indicates whether or not the current user is new and signing up
     
     var daysOfTheWeek: [EnableOption] = [
         EnableOption(option: "Sunday", selected: false),
@@ -32,6 +33,14 @@ class AddCompanyDaysEnabledViewController: UIViewController, UITableViewDelegate
         // Set delegates and datasource for table view
         self.addCompanyDaysEnabledTableView.delegate = self
         self.addCompanyDaysEnabledTableView.dataSource = self
+    }
+    
+    // MARK: Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // If the user is signing up, pass the userIsSigningUp Boolean value to the
+        // hours enabled view controller
+        guard let addCompanyHoursEnabledViewController = segue.destination as? AddCompanyHoursEnabledViewController else { return }
+        addCompanyHoursEnabledViewController.userIsSigningUp = self.userIsSigningUp
     }
 
 }

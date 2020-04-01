@@ -8,15 +8,10 @@
 
 import UIKit
 
-class UpdatePropertyNameViewController: UIViewController {
+class UpdateCompanyNameViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    // MARK: Actions
-    @IBAction func cancelButtonTapped(_ sender: Any) {
-        self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
 }

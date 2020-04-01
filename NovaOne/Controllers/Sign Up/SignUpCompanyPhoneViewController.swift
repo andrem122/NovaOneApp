@@ -38,4 +38,14 @@ class SignUpCompanyPhoneViewController: UIViewController {
         
     }
     
+    @IBAction func continueButtonTapped(_ sender: Any) {
+        // Navigate to the add company hours enabled view controller
+        if let addCompanyDaysEnabledViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addCompanyDaysEnabled.rawValue) as? AddCompanyDaysEnabledViewController {
+            
+            addCompanyDaysEnabledViewController.userIsSigningUp = true // Indicates that the user is new and signing up and not an existing user adding a company
+            self.navigationController?.pushViewController(addCompanyDaysEnabledViewController, animated: true)
+            
+        }
+    }
+    
 }

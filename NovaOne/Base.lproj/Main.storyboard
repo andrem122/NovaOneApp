@@ -1261,7 +1261,7 @@ on how to reset your password.</string>
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kEj-0U-bzz">
-                                <rect key="frame" x="19.999999999999996" y="19.999999999999996" width="33.666666666666657" height="33.666666666666657"/>
+                                <rect key="frame" x="20.000000000000004" y="20.000000000000004" width="33.333333333333343" height="33.333333333333343"/>
                                 <state key="normal" image="cancelButtonBlue"/>
                                 <connections>
                                     <action selector="cancelButtonTapped:" destination="T1A-G4-xJU" eventType="touchUpInside" id="kgs-AH-JO8"/>
@@ -1760,6 +1760,9 @@ your company?</string>
                                                 <real key="value" value="20"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="continueButtonTapped:" destination="ynX-BF-3sf" eventType="touchUpInside" id="6X3-uk-fb6"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -2810,28 +2813,28 @@ of your company?</string>
             </objects>
             <point key="canvasLocation" x="8825" y="2634"/>
         </scene>
-        <!--Update Property Address-->
+        <!--Update Company Address-->
         <scene sceneID="nVo-rM-LQG">
             <objects>
-                <viewController storyboardIdentifier="updatePropertyAddressViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="agb-NK-vq1" userLabel="Update Property Address" customClass="UpdatePropertyAddressViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="updateCompanyAddressViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="agb-NK-vq1" userLabel="Update Company Address" customClass="UpdateCompanyAddressViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RDF-pB-Lod">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Property Address" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YDq-Jj-8ui">
-                                <rect key="frame" x="24.666666666666657" y="70" width="365" height="37"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Company Address" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YDq-Jj-8ui">
+                                <rect key="frame" x="18" y="30" width="378.33333333333331" height="37"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
                                 <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in your new property address below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Srw-iu-ySn">
-                                <rect key="frame" x="47.666666666666657" y="126.99999999999999" width="318.66666666666674" height="20.333333333333329"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in your new company address below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Srw-iu-ySn">
+                                <rect key="frame" x="45.666666666666657" y="87" width="323" height="20.333333333333329"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="1lH-hv-Uem">
-                                <rect key="frame" x="30" y="177.33333333333334" width="354" height="110.00000000000003"/>
+                                <rect key="frame" x="30" y="137.33333333333334" width="354" height="110"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New Address" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="DKQ-3Z-l4M" customClass="NovaOneTextField" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="354" height="45"/>
@@ -2871,20 +2874,11 @@ of your company?</string>
                                     </button>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NVW-dB-PEL">
-                                <rect key="frame" x="20.000000000000004" y="20.000000000000004" width="33.333333333333343" height="33.333333333333343"/>
-                                <state key="normal" image="cancelButtonBlue"/>
-                                <connections>
-                                    <action selector="cancelButtonTapped:" destination="agb-NK-vq1" eventType="touchUpInside" id="f7k-35-mO8"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="YDq-Jj-8ui" firstAttribute="top" secondItem="yR4-tD-iHS" secondAttribute="top" constant="70" id="5PV-5q-1jA"/>
-                            <constraint firstItem="NVW-dB-PEL" firstAttribute="top" secondItem="yR4-tD-iHS" secondAttribute="top" constant="20" id="5cr-9e-S6p"/>
+                            <constraint firstItem="YDq-Jj-8ui" firstAttribute="top" secondItem="yR4-tD-iHS" secondAttribute="top" constant="30" id="5PV-5q-1jA"/>
                             <constraint firstItem="1lH-hv-Uem" firstAttribute="top" secondItem="Srw-iu-ySn" secondAttribute="bottom" constant="30" id="AW5-W5-H9R"/>
-                            <constraint firstItem="NVW-dB-PEL" firstAttribute="leading" secondItem="yR4-tD-iHS" secondAttribute="leading" constant="20" id="CUH-BS-2jG"/>
                             <constraint firstItem="Srw-iu-ySn" firstAttribute="centerX" secondItem="RDF-pB-Lod" secondAttribute="centerX" id="tKS-aV-6E9"/>
                             <constraint firstItem="Srw-iu-ySn" firstAttribute="top" secondItem="YDq-Jj-8ui" secondAttribute="bottom" constant="20" id="tRC-pI-Ume"/>
                             <constraint firstItem="YDq-Jj-8ui" firstAttribute="centerX" secondItem="RDF-pB-Lod" secondAttribute="centerX" id="uc2-6G-BN7"/>
@@ -2950,35 +2944,28 @@ my friend :)</string>
             </objects>
             <point key="canvasLocation" x="6899" y="4432"/>
         </scene>
-        <!--Update Property Phone-->
+        <!--Update Company Phone-->
         <scene sceneID="ZpQ-2X-ITh">
             <objects>
-                <viewController storyboardIdentifier="updatePropertyPhoneViewController" modalPresentationStyle="fullScreen" id="JsG-U3-vnl" userLabel="Update Property Phone" customClass="UpdatePropertyPhoneViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="updateCompanyPhoneViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JsG-U3-vnl" userLabel="Update Company Phone" customClass="UpdateCompanyPhoneViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Z4e-jE-28v">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Property Phone" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yrj-Me-Zap" userLabel="Title">
-                                <rect key="frame" x="38.666666666666657" y="70" width="337" height="37"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Company Phone" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yrj-Me-Zap" userLabel="Title">
+                                <rect key="frame" x="32" y="30" width="350" height="37"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
                                 <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="79n-jN-ecq">
-                                <rect key="frame" x="20.000000000000004" y="20.000000000000004" width="33.333333333333343" height="33.333333333333343"/>
-                                <state key="normal" image="cancelButtonBlue"/>
-                                <connections>
-                                    <action selector="cancelButtonTapped:" destination="JsG-U3-vnl" eventType="touchUpInside" id="e18-m2-Ctg"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in your new property phone below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J3P-tU-FrN" userLabel="Subtitle">
-                                <rect key="frame" x="54.333333333333343" y="126.99999999999999" width="305.66666666666663" height="20.333333333333329"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in your new company phone below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J3P-tU-FrN" userLabel="Subtitle">
+                                <rect key="frame" x="52" y="87" width="310" height="20.333333333333329"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="8b6-y0-Ney">
-                                <rect key="frame" x="30" y="177.33333333333334" width="354" height="110.00000000000003"/>
+                                <rect key="frame" x="30" y="137.33333333333334" width="354" height="110"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New Phone Number" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="GYG-zV-nIq" customClass="NovaOneTextField" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="354" height="45"/>
@@ -3025,11 +3012,9 @@ my friend :)</string>
                             <constraint firstItem="J3P-tU-FrN" firstAttribute="centerX" secondItem="Z4e-jE-28v" secondAttribute="centerX" id="9nv-z9-AeY"/>
                             <constraint firstItem="8b6-y0-Ney" firstAttribute="top" secondItem="J3P-tU-FrN" secondAttribute="bottom" constant="30" id="BYg-Bp-VmN"/>
                             <constraint firstItem="yrj-Me-Zap" firstAttribute="centerX" secondItem="Z4e-jE-28v" secondAttribute="centerX" id="Qw4-t8-In4"/>
-                            <constraint firstItem="yrj-Me-Zap" firstAttribute="top" secondItem="gK7-mo-HFr" secondAttribute="top" constant="70" id="R9J-e9-aOT"/>
+                            <constraint firstItem="yrj-Me-Zap" firstAttribute="top" secondItem="gK7-mo-HFr" secondAttribute="top" constant="30" id="R9J-e9-aOT"/>
                             <constraint firstItem="8b6-y0-Ney" firstAttribute="leading" secondItem="gK7-mo-HFr" secondAttribute="leading" constant="30" id="oln-W4-HwN"/>
                             <constraint firstItem="J3P-tU-FrN" firstAttribute="top" secondItem="yrj-Me-Zap" secondAttribute="bottom" constant="20" id="sq7-5U-24K"/>
-                            <constraint firstItem="79n-jN-ecq" firstAttribute="leading" secondItem="gK7-mo-HFr" secondAttribute="leading" constant="20" id="v5U-Db-sfP"/>
-                            <constraint firstItem="79n-jN-ecq" firstAttribute="top" secondItem="gK7-mo-HFr" secondAttribute="top" constant="20" id="xE5-YR-VIK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gK7-mo-HFr"/>
                     </view>
@@ -3201,35 +3186,28 @@ my friend :)</string>
             </objects>
             <point key="canvasLocation" x="10128" y="1734"/>
         </scene>
-        <!--Update Property Email-->
+        <!--Update Company Email-->
         <scene sceneID="q4k-9B-dhy">
             <objects>
-                <viewController storyboardIdentifier="updatePropertyEmailViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Fdr-c1-kus" userLabel="Update Property Email" customClass="UpdatePropertyEmailViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="updateCompanyEmailViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Fdr-c1-kus" userLabel="Update Company Email" customClass="UpdateCompanyEmailViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6o7-nj-rfU">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Property Email" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4D-l9-41O" userLabel="Title">
-                                <rect key="frame" x="45.333333333333343" y="70" width="323.33333333333326" height="37"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Company Email" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4D-l9-41O" userLabel="Title">
+                                <rect key="frame" x="39" y="30" width="336.33333333333331" height="37"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
                                 <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PEd-yR-bVU">
-                                <rect key="frame" x="20.000000000000004" y="20.000000000000004" width="33.333333333333343" height="33.333333333333343"/>
-                                <state key="normal" image="cancelButtonBlue"/>
-                                <connections>
-                                    <action selector="cancelButtonTapped:" destination="Fdr-c1-kus" eventType="touchUpInside" id="112-Lr-IAC"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in your new property email below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yg3-do-Bex" userLabel="Subtitle">
-                                <rect key="frame" x="58" y="126.99999999999999" width="298" height="20.333333333333329"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in your new company email below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yg3-do-Bex" userLabel="Subtitle">
+                                <rect key="frame" x="56" y="87" width="302" height="20.333333333333329"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="DOB-0H-5a8">
-                                <rect key="frame" x="30" y="177.33333333333334" width="354" height="110.00000000000003"/>
+                                <rect key="frame" x="30" y="137.33333333333334" width="354" height="110"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New Email" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="TDn-vP-sgW" customClass="NovaOneTextField" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="354" height="45"/>
@@ -3274,12 +3252,10 @@ my friend :)</string>
                         <constraints>
                             <constraint firstItem="DOB-0H-5a8" firstAttribute="top" secondItem="yg3-do-Bex" secondAttribute="bottom" constant="30" id="30v-WR-Ygw"/>
                             <constraint firstItem="yg3-do-Bex" firstAttribute="centerX" secondItem="6o7-nj-rfU" secondAttribute="centerX" id="AKo-3y-RLL"/>
-                            <constraint firstItem="PEd-yR-bVU" firstAttribute="leading" secondItem="1eh-Wy-SCN" secondAttribute="leading" constant="20" id="CoB-8y-l8D"/>
                             <constraint firstItem="DOB-0H-5a8" firstAttribute="leading" secondItem="1eh-Wy-SCN" secondAttribute="leading" constant="30" id="MZA-ng-KYu"/>
                             <constraint firstItem="yg3-do-Bex" firstAttribute="top" secondItem="c4D-l9-41O" secondAttribute="bottom" constant="20" id="VVv-8d-Ft1"/>
                             <constraint firstItem="c4D-l9-41O" firstAttribute="centerX" secondItem="6o7-nj-rfU" secondAttribute="centerX" id="XJu-kN-OoH"/>
-                            <constraint firstItem="PEd-yR-bVU" firstAttribute="top" secondItem="1eh-Wy-SCN" secondAttribute="top" constant="20" id="h0E-jV-HKT"/>
-                            <constraint firstItem="c4D-l9-41O" firstAttribute="top" secondItem="1eh-Wy-SCN" secondAttribute="top" constant="70" id="o4E-2H-j4f"/>
+                            <constraint firstItem="c4D-l9-41O" firstAttribute="top" secondItem="1eh-Wy-SCN" secondAttribute="top" constant="30" id="o4E-2H-j4f"/>
                             <constraint firstItem="1eh-Wy-SCN" firstAttribute="trailing" secondItem="DOB-0H-5a8" secondAttribute="trailing" constant="30" id="ofp-80-kV8"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1eh-Wy-SCN"/>
@@ -3314,15 +3290,8 @@ my friend :)</string>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6t1-Tx-NEj">
-                                <rect key="frame" x="19.999999999999996" y="19.999999999999996" width="33.666666666666657" height="33.666666666666657"/>
-                                <state key="normal" image="cancelButtonBlue"/>
-                                <connections>
-                                    <action selector="cancelButtonTapped:" destination="MZD-Dy-Oi0" eventType="touchUpInside" id="jgQ-CD-Yvx"/>
-                                </connections>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KpS-SE-Aed">
-                                <rect key="frame" x="0.0" y="80" width="414" height="556"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="636"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="enableOptionTableViewCell" id="NTm-tb-Dbt" customClass="EnableOptionTableViewCell" customModule="NovaOne" customModuleProvider="target">
@@ -3368,12 +3337,10 @@ my friend :)</string>
                         <constraints>
                             <constraint firstItem="IKl-yQ-Pjb" firstAttribute="bottom" secondItem="48q-N6-29n" secondAttribute="bottom" constant="20" id="5p1-Rc-2TY"/>
                             <constraint firstItem="IKl-yQ-Pjb" firstAttribute="trailing" secondItem="48q-N6-29n" secondAttribute="trailing" constant="30" id="6ul-cS-oHV"/>
-                            <constraint firstItem="6t1-Tx-NEj" firstAttribute="leading" secondItem="IKl-yQ-Pjb" secondAttribute="leading" constant="20" id="JKl-QG-oAe"/>
                             <constraint firstItem="48q-N6-29n" firstAttribute="leading" secondItem="IKl-yQ-Pjb" secondAttribute="leading" constant="30" id="LCF-Nd-l91"/>
-                            <constraint firstItem="6t1-Tx-NEj" firstAttribute="top" secondItem="IKl-yQ-Pjb" secondAttribute="top" constant="20" id="R9R-2Z-hif"/>
                             <constraint firstItem="48q-N6-29n" firstAttribute="top" secondItem="KpS-SE-Aed" secondAttribute="bottom" constant="35" id="a8k-8d-73L"/>
                             <constraint firstItem="KpS-SE-Aed" firstAttribute="leading" secondItem="IKl-yQ-Pjb" secondAttribute="leading" id="bns-wY-qQ0"/>
-                            <constraint firstItem="KpS-SE-Aed" firstAttribute="top" secondItem="IKl-yQ-Pjb" secondAttribute="top" constant="80" id="g9a-yN-tWW"/>
+                            <constraint firstItem="KpS-SE-Aed" firstAttribute="top" secondItem="IKl-yQ-Pjb" secondAttribute="top" id="g9a-yN-tWW"/>
                             <constraint firstItem="KpS-SE-Aed" firstAttribute="trailing" secondItem="IKl-yQ-Pjb" secondAttribute="trailing" id="sYL-i5-Nom"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="IKl-yQ-Pjb"/>
@@ -3386,35 +3353,28 @@ my friend :)</string>
             </objects>
             <point key="canvasLocation" x="13248" y="1330"/>
         </scene>
-        <!--Update Property Email-->
+        <!--Update Company Email-->
         <scene sceneID="lyk-9H-hpI">
             <objects>
-                <viewController storyboardIdentifier="updatePropertyNameViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="mh2-zT-IrH" userLabel="Update Property Email" customClass="UpdatePropertyNameViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="updateCompanyNameViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="mh2-zT-IrH" userLabel="Update Company Email" customClass="UpdateCompanyNameViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Yh3-vB-Alm">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Property Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dd2-SP-iIl" userLabel="Title">
-                                <rect key="frame" x="42.666666666666657" y="70" width="329" height="37"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Company Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dd2-SP-iIl" userLabel="Title">
+                                <rect key="frame" x="36" y="30" width="342.33333333333331" height="37"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
                                 <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SjF-H3-w74">
-                                <rect key="frame" x="20.000000000000004" y="20.000000000000004" width="33.333333333333343" height="33.333333333333343"/>
-                                <state key="normal" image="cancelButtonBlue"/>
-                                <connections>
-                                    <action selector="cancelButtonTapped:" destination="mh2-zT-IrH" eventType="touchUpInside" id="BId-Pq-Gcl"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in your new property name below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yjn-sc-Wnu" userLabel="Subtitle">
-                                <rect key="frame" x="57.333333333333343" y="126.99999999999999" width="299.66666666666663" height="20.333333333333329"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in your new company name below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yjn-sc-Wnu" userLabel="Subtitle">
+                                <rect key="frame" x="55" y="87" width="304" height="20.333333333333329"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="inX-OZ-Qsh">
-                                <rect key="frame" x="30" y="177.33333333333334" width="354" height="110.00000000000003"/>
+                                <rect key="frame" x="30" y="137.33333333333334" width="354" height="110"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New Name" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="nVg-sg-361" customClass="NovaOneTextField" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="354" height="45"/>
@@ -3460,12 +3420,10 @@ my friend :)</string>
                             <constraint firstItem="dd2-SP-iIl" firstAttribute="centerX" secondItem="Yh3-vB-Alm" secondAttribute="centerX" id="0tk-RX-Fi6"/>
                             <constraint firstItem="inX-OZ-Qsh" firstAttribute="top" secondItem="Yjn-sc-Wnu" secondAttribute="bottom" constant="30" id="1Rs-vw-uqv"/>
                             <constraint firstItem="Ctu-On-TvO" firstAttribute="trailing" secondItem="inX-OZ-Qsh" secondAttribute="trailing" constant="30" id="HaV-2R-npa"/>
-                            <constraint firstItem="dd2-SP-iIl" firstAttribute="top" secondItem="Ctu-On-TvO" secondAttribute="top" constant="70" id="UFK-by-Eqy"/>
-                            <constraint firstItem="SjF-H3-w74" firstAttribute="leading" secondItem="Ctu-On-TvO" secondAttribute="leading" constant="20" id="eDO-1E-lFI"/>
+                            <constraint firstItem="dd2-SP-iIl" firstAttribute="top" secondItem="Ctu-On-TvO" secondAttribute="top" constant="30" id="UFK-by-Eqy"/>
                             <constraint firstItem="Yjn-sc-Wnu" firstAttribute="top" secondItem="dd2-SP-iIl" secondAttribute="bottom" constant="20" id="n8E-ev-1ic"/>
                             <constraint firstItem="inX-OZ-Qsh" firstAttribute="leading" secondItem="Ctu-On-TvO" secondAttribute="leading" constant="30" id="nXG-UK-qbJ"/>
                             <constraint firstItem="Yjn-sc-Wnu" firstAttribute="centerX" secondItem="Yh3-vB-Alm" secondAttribute="centerX" id="oRR-t0-uy5"/>
-                            <constraint firstItem="SjF-H3-w74" firstAttribute="top" secondItem="Ctu-On-TvO" secondAttribute="top" constant="20" id="tmc-J2-0gL"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ctu-On-TvO"/>
                     </view>
@@ -3600,15 +3558,8 @@ my friend :)</string>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eYh-Cl-JhB">
-                                <rect key="frame" x="19.999999999999996" y="19.999999999999996" width="33.666666666666657" height="33.666666666666657"/>
-                                <state key="normal" image="cancelButtonBlue"/>
-                                <connections>
-                                    <action selector="cancelButtonTapped:" destination="yfj-rV-tWp" eventType="touchUpInside" id="Dtw-lr-INQ"/>
-                                </connections>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jIE-1J-192">
-                                <rect key="frame" x="0.0" y="80" width="414" height="556"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="636"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="enableOptionTableViewCell" id="bRp-lu-LsD" customClass="EnableOptionTableViewCell" customModule="NovaOne" customModuleProvider="target">
@@ -3653,14 +3604,12 @@ my friend :)</string>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="eYh-Cl-JhB" firstAttribute="top" secondItem="zq5-zE-M6T" secondAttribute="top" constant="20" id="2SA-tO-4f0"/>
                             <constraint firstItem="jIE-1J-192" firstAttribute="trailing" secondItem="zq5-zE-M6T" secondAttribute="trailing" id="AeX-W6-Qoh"/>
                             <constraint firstItem="zq5-zE-M6T" firstAttribute="bottom" secondItem="7Kp-58-Fdz" secondAttribute="bottom" constant="20" id="BGt-tu-TUp"/>
                             <constraint firstItem="zq5-zE-M6T" firstAttribute="trailing" secondItem="7Kp-58-Fdz" secondAttribute="trailing" constant="30" id="Ehc-7f-zib"/>
-                            <constraint firstItem="jIE-1J-192" firstAttribute="top" secondItem="zq5-zE-M6T" secondAttribute="top" constant="80" id="P9a-Cm-GKl"/>
+                            <constraint firstItem="jIE-1J-192" firstAttribute="top" secondItem="zq5-zE-M6T" secondAttribute="top" id="P9a-Cm-GKl"/>
                             <constraint firstItem="jIE-1J-192" firstAttribute="leading" secondItem="zq5-zE-M6T" secondAttribute="leading" id="Pra-Bp-TBo"/>
                             <constraint firstItem="7Kp-58-Fdz" firstAttribute="leading" secondItem="zq5-zE-M6T" secondAttribute="leading" constant="30" id="XXz-jZ-HSK"/>
-                            <constraint firstItem="eYh-Cl-JhB" firstAttribute="leading" secondItem="zq5-zE-M6T" secondAttribute="leading" constant="20" id="caE-jQ-kLQ"/>
                             <constraint firstItem="7Kp-58-Fdz" firstAttribute="top" secondItem="jIE-1J-192" secondAttribute="bottom" constant="35" id="rJw-qv-jCb"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zq5-zE-M6T"/>
@@ -4499,6 +4448,7 @@ hours below.</string>
                     <navigationItem key="navigationItem" id="QSs-Pn-y4K"/>
                     <connections>
                         <outlet property="addCompanyEnabledHoursTableView" destination="oCb-38-YOv" id="9Cp-9y-rhD"/>
+                        <outlet property="appointmentHoursButton" destination="80N-gk-zGT" id="pKj-yH-MpR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lJh-6W-4ZS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

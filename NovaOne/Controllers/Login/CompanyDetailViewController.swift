@@ -1,5 +1,5 @@
 //
-//  PropertyDetailViewController.swift
+//  CompanyDetailViewController.swift
 //  NovaOne
 //
 //  Created by Andre Mashraghi on 3/7/20.
@@ -19,15 +19,16 @@ class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITabl
     let alertService = AlertService()
     
     // MARK: Methods
-    func setup() {
+    func setupTableView() {
         self.propertyDetailTableView.delegate = self
         self.propertyDetailTableView.dataSource = self
-        
+    }
+    
+    func setupTopView() {
         // Set up top view style
         self.topView.clipsToBounds = true
         self.topView.layer.cornerRadius = 50
         self.topView.layer.maskedCorners = [.layerMinXMaxYCorner]
-        
     }
     
     func setupCompanyCellsAndTitle(name: String, phoneNumber: String, email: String, address: String) {
@@ -36,19 +37,25 @@ class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITabl
         self.titleLabel.text = address
         
         // Cells
-        let nameCell: [String: Any] = ["cellIcon": UIImage(named: Defaults.Images.locationBlue.rawValue) as Any, "cellTitle": "Name", "cellTitleValue": name, "canUpdateValue": true]
-        let addressCell: [String: Any] = ["cellIcon": UIImage(named: Defaults.Images.locationBlue.rawValue) as Any, "cellTitle": "Address", "cellTitleValue": address, "canUpdateValue": true]
-        let phoneNumberCell: [String: Any] = ["cellIcon": UIImage(named: Defaults.Images.callBlue.rawValue) as Any, "cellTitle": "Phone", "cellTitleValue": phoneNumber, "canUpdateValue": true]
-        let emailCell: [String: Any] = ["cellIcon": UIImage(named: Defaults.Images.emailBlue.rawValue) as Any, "cellTitle": "Email", "cellTitleValue": email, "canUpdateValue": true]
-        let daysOfTheWeekCell: [String: Any] = ["cellIcon": UIImage(named: Defaults.Images.calendarBlue.rawValue) as Any, "cellTitle": "Showing Days", "cellTitleValue": "", "canUpdateValue": true]
-        let hoursOfTheDayCell: [String: Any] = ["cellIcon": UIImage(named: Defaults.Images.calendarBlue.rawValue) as Any, "cellTitle": "Showing Hours", "cellTitleValue": "", "canUpdateValue": true]
+        let nameCell: [String: String] = ["cellTitle": "Name", "cellTitleValue": name]
+        let addressCell: [String: String] = ["cellTitle": "Address", "cellTitleValue": address]
+        let phoneNumberCell: [String: String] = ["cellTitle": "Phone", "cellTitleValue": phoneNumber]
+        let emailCell: [String: String] = ["cellTitle": "Email", "cellTitleValue": email]
+        let daysOfTheWeekCell: [String: String] = ["cellTitle": "Showing Days", "cellTitleValue": ""]
+        let hoursOfTheDayCell: [String: String] = ["cellTitle": "Showing Hours", "cellTitleValue": ""]
         
         self.companyDetailCells = [nameCell, addressCell, phoneNumberCell, emailCell, daysOfTheWeekCell, hoursOfTheDayCell]
     }
     
+    func setupNavigationBackButton() {
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setup()
+        self.setupTableView()
+        self.setupTopView()
+        self.setupNavigationBackButton()
         
         // Setup table cell based on which object was passed to self.company
         if let company = self.company as? Company { // self.company is a CoreData object
@@ -88,8 +95,6 @@ class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITabl
         }
         self.present(popUpViewController, animated: true, completion: nil)
     }
-    
-    
 
 }
 
@@ -104,7 +109,7 @@ extension CompanyDetailViewController {
         
         let companydetailCell = self.companyDetailCells[indexPath.row]
         
-        cell.setup(cellIcon: companydetailCell["cellIcon"] as! UIImage, cellTitle: companydetailCell["cellTitle"] as! String, cellTitleValue: companydetailCell["cellTitleValue"] as! String, canUpdateValue: companydetailCell["canUpdateValue"] as! Bool)
+        cell.setup(cellTitle: companydetailCell["cellTitle"] as! String, cellTitleValue: companydetailCell["cellTitleValue"] as! String)
         
         return cell
     }
@@ -113,34 +118,46 @@ extension CompanyDetailViewController {
         
         tableView.deselectRow(at: indexPath, animated: true) // Deselect the row after it is tapped on
         
-        // Get propertyDetail object based on which row the user taps on
+        // Get company title based on which row the user taps on
         guard let cellTitle = self.companyDetailCells[indexPath.row]["cellTitle"] as? String else { return }
         
-        //Get update view controller based on which cell the user clicked on
+        // Get update view controller based on which cell the user clicked on
         switch cellTitle {
             case "Address":
-                if let updatePropertyAddressViewController = UIHelper.getViewController(currentViewController: self, by: Defaults.ViewControllerIdentifiers.updatePropertyAddress.rawValue) as? UpdatePropertyAddressViewController {
-                    self.present(updatePropertyAddressViewController, animated: true, completion: nil)
+                if let updateCompanyAddressViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateCompanyAddress.rawValue) as? UpdateCompanyAddressViewController {
+                    
+                    self.navigationController?.pushViewController(updateCompanyAddressViewController, animated: true)
+                    
             }
             case "Phone":
-                if let updatePropertyPhoneViewController = UIHelper.getViewController(currentViewController: self, by: Defaults.ViewControllerIdentifiers.updatePropertyPhone.rawValue) as? UpdatePropertyPhoneViewController {
-                    self.present(updatePropertyPhoneViewController, animated: true, completion: nil)
+                if let updateCompanyPhoneViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateCompanyPhone.rawValue) as? UpdateCompanyPhoneViewController {
+                    
+                    self.navigationController?.pushViewController(updateCompanyPhoneViewController, animated: true)
+                    
                 }
         case "Name":
-            if let updatePropertyNameViewController = UIHelper.getViewController(currentViewController: self, by: Defaults.ViewControllerIdentifiers.updatePropertyName.rawValue) as? UpdatePropertyNameViewController {
-                self.present(updatePropertyNameViewController, animated: true, completion: nil)
+            if let updateCompanyNameViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateCompanyName.rawValue) as? UpdateCompanyNameViewController {
+                
+                self.navigationController?.pushViewController(updateCompanyNameViewController, animated: true)
+                
             }
         case "Email":
-            if let updatePropertyEmailViewController = UIHelper.getViewController(currentViewController: self, by: Defaults.ViewControllerIdentifiers.updatePropertyEmail.rawValue) as? UpdatePropertyEmailViewController {
-                self.present(updatePropertyEmailViewController, animated: true, completion: nil)
+            if let updateCompanyEmailViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateCompanyEmail.rawValue) as? UpdateCompanyEmailViewController {
+                
+                self.navigationController?.pushViewController(updateCompanyEmailViewController, animated: true)
+                
             }
         case "Showing Days":
-            if let updateCompanyDaysEnabledViewController = UIHelper.getViewController(currentViewController: self, by: Defaults.ViewControllerIdentifiers.updateCompanyDaysEnabled.rawValue) as? UpdateCompanyDaysEnabledViewController {
-                self.present(updateCompanyDaysEnabledViewController, animated: true, completion: nil)
+            if let updateCompanyDaysEnabledViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateCompanyDaysEnabled.rawValue) as? UpdateCompanyDaysEnabledViewController {
+                
+                self.navigationController?.pushViewController(updateCompanyDaysEnabledViewController, animated: true)
+                
             }
         case "Showing Hours":
-            if let updateCompanyHoursEnabledViewController = UIHelper.getViewController(currentViewController: self, by: Defaults.ViewControllerIdentifiers.updateCompanyHoursEnabled.rawValue) as? UpdateCompanyHoursEnabledViewController {
-                self.present(updateCompanyHoursEnabledViewController, animated: true, completion: nil)
+            if let updateCompanyHoursEnabledViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateCompanyHoursEnabled.rawValue) as? UpdateCompanyHoursEnabledViewController {
+                
+                self.navigationController?.pushViewController(updateCompanyHoursEnabledViewController, animated: true)
+                
             }
             default:
                 print("No cases matched")
