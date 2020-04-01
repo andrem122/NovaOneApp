@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		650250C123E4991700B427D0 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650250C023E4991700B427D0 /* Alert.swift */; };
+		650250C123E4991700B427D0 /* AlertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650250C023E4991700B427D0 /* AlertService.swift */; };
 		650250C323E4A78E00B427D0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650250C223E4A78E00B427D0 /* HomeViewController.swift */; };
 		65230463242FFD900025FE07 /* EnableOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65230462242FFD900025FE07 /* EnableOption.swift */; };
 		6528135623E79C15005A1B1F /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6528135523E79C15005A1B1F /* Customer.swift */; };
@@ -113,9 +113,12 @@
 		65AF665023E881FE001B394F /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF664F23E881FE001B394F /* SupportViewController.swift */; };
 		65AF665123E881FE001B394F /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF664F23E881FE001B394F /* SupportViewController.swift */; };
 		65AF665223E881FE001B394F /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF664F23E881FE001B394F /* SupportViewController.swift */; };
-		65AF665823E88229001B394F /* CreateAppointmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF665723E88229001B394F /* CreateAppointmentViewController.swift */; };
-		65AF665923E88229001B394F /* CreateAppointmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF665723E88229001B394F /* CreateAppointmentViewController.swift */; };
-		65AF665A23E88229001B394F /* CreateAppointmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF665723E88229001B394F /* CreateAppointmentViewController.swift */; };
+		65B2B1D02433B21000014820 /* AddAppointmentTestTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B2B1CF2433B21000014820 /* AddAppointmentTestTypeViewController.swift */; };
+		65B2B1D22433B22400014820 /* AddAppointmentAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B2B1D12433B22400014820 /* AddAppointmentAddressViewController.swift */; };
+		65B2B1D42433B23900014820 /* AddAppointmentEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B2B1D32433B23900014820 /* AddAppointmentEmailViewController.swift */; };
+		65B2B1D62433B25500014820 /* AddAppointmentDateOfBirthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B2B1D52433B25500014820 /* AddAppointmentDateOfBirthViewController.swift */; };
+		65B2B1D82433B26D00014820 /* AddAppointmentGenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B2B1D72433B26D00014820 /* AddAppointmentGenderViewController.swift */; };
+		65B2B1DA2434028D00014820 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B2B1D92434028D00014820 /* PopUpViewController.swift */; };
 		65BA98B72430FD3500CFAA9F /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BA98B62430FD3500CFAA9F /* EmptyViewController.swift */; };
 		65BA98B92431224C00CFAA9F /* AppointmentsContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BA98B82431224C00CFAA9F /* AppointmentsContainerViewController.swift */; };
 		65BA98BB243166C700CFAA9F /* LeadsContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BA98BA243166C700CFAA9F /* LeadsContainerViewController.swift */; };
@@ -161,7 +164,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		650250C023E4991700B427D0 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		650250C023E4991700B427D0 /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
 		650250C223E4A78E00B427D0 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		65230462242FFD900025FE07 /* EnableOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnableOption.swift; sourceTree = "<group>"; };
 		6528135523E79C15005A1B1F /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Customer.swift; path = NovaOne/Models/Customer.swift; sourceTree = SOURCE_ROOT; };
@@ -254,7 +257,12 @@
 		65AF664323E87F2C001B394F /* AppointmentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentsViewController.swift; sourceTree = "<group>"; };
 		65AF664723E881D9001B394F /* LeadsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadsViewController.swift; sourceTree = "<group>"; };
 		65AF664F23E881FE001B394F /* SupportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
-		65AF665723E88229001B394F /* CreateAppointmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAppointmentViewController.swift; sourceTree = "<group>"; };
+		65B2B1CF2433B21000014820 /* AddAppointmentTestTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAppointmentTestTypeViewController.swift; sourceTree = "<group>"; };
+		65B2B1D12433B22400014820 /* AddAppointmentAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAppointmentAddressViewController.swift; sourceTree = "<group>"; };
+		65B2B1D32433B23900014820 /* AddAppointmentEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAppointmentEmailViewController.swift; sourceTree = "<group>"; };
+		65B2B1D52433B25500014820 /* AddAppointmentDateOfBirthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAppointmentDateOfBirthViewController.swift; sourceTree = "<group>"; };
+		65B2B1D72433B26D00014820 /* AddAppointmentGenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAppointmentGenderViewController.swift; sourceTree = "<group>"; };
+		65B2B1D92434028D00014820 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		65BA98B62430FD3500CFAA9F /* EmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewController.swift; sourceTree = "<group>"; };
 		65BA98B82431224C00CFAA9F /* AppointmentsContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentsContainerViewController.swift; sourceTree = "<group>"; };
 		65BA98BA243166C700CFAA9F /* LeadsContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadsContainerViewController.swift; sourceTree = "<group>"; };
@@ -335,7 +343,7 @@
 		658B906423E798F600015C4F /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				650250C023E4991700B427D0 /* Alert.swift */,
+				650250C023E4991700B427D0 /* AlertService.swift */,
 				65ADE2F523E3AF27003D3215 /* HTTPRequests.swift */,
 				65A1FC4C23E48A6800D5CBCF /* Defaults.swift */,
 				65C5467823ECAB2300A198F3 /* AppUtility.swift */,
@@ -483,7 +491,6 @@
 				65AF664723E881D9001B394F /* LeadsViewController.swift */,
 				65AF664323E87F2C001B394F /* AppointmentsViewController.swift */,
 				65AF664F23E881FE001B394F /* SupportViewController.swift */,
-				65AF665723E88229001B394F /* CreateAppointmentViewController.swift */,
 				655D0B22240B43E800D0E329 /* UpdatePhoneViewController.swift */,
 				655D0B24240B440200D0E329 /* UpdateEmailViewController.swift */,
 				655D0B26240B443700D0E329 /* UpdatePasswordViewController.swift */,
@@ -495,6 +502,7 @@
 				65BA98B82431224C00CFAA9F /* AppointmentsContainerViewController.swift */,
 				65BA98BA243166C700CFAA9F /* LeadsContainerViewController.swift */,
 				65AA3E7724328CAE005C2319 /* SuccessViewController.swift */,
+				65B2B1D92434028D00014820 /* PopUpViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -522,6 +530,11 @@
 				65AA3E7C2432C2DB005C2319 /* AddAppointmentPhoneViewController.swift */,
 				65AA3E7E2432C2EA005C2319 /* AddAppointmentTimeViewController.swift */,
 				65AA3E802432CAA6005C2319 /* AddAppointmentUnitTypeViewController.swift */,
+				65B2B1CF2433B21000014820 /* AddAppointmentTestTypeViewController.swift */,
+				65B2B1D12433B22400014820 /* AddAppointmentAddressViewController.swift */,
+				65B2B1D32433B23900014820 /* AddAppointmentEmailViewController.swift */,
+				65B2B1D52433B25500014820 /* AddAppointmentDateOfBirthViewController.swift */,
+				65B2B1D72433B26D00014820 /* AddAppointmentGenderViewController.swift */,
 			);
 			path = "Add Appointment";
 			sourceTree = "<group>";
@@ -721,7 +734,6 @@
 				65AA3E812432CAA6005C2319 /* AddAppointmentUnitTypeViewController.swift in Sources */,
 				657C5F982414016600D52E27 /* CompaniesViewController.swift in Sources */,
 				65AA3E6824327245005C2319 /* AddCompanyPhoneViewController.swift in Sources */,
-				65AF665823E88229001B394F /* CreateAppointmentViewController.swift in Sources */,
 				65ADE2DF23E1C814003D3215 /* FeatureView.swift in Sources */,
 				6591C39E23DA78F900535C46 /* LaunchViewController.swift in Sources */,
 				658046AF242D49D5007D7192 /* Customer+CoreDataClass.swift in Sources */,
@@ -749,6 +761,7 @@
 				6592E3D1240429CA009E4D8D /* SignUpNameViewController.swift in Sources */,
 				657C5F962413ECB200D52E27 /* DateHelper.swift in Sources */,
 				655D0B21240B43D200D0E329 /* UpdatePropertyAddressViewController.swift in Sources */,
+				65B2B1D22433B22400014820 /* AddAppointmentAddressViewController.swift in Sources */,
 				65BA98B72430FD3500CFAA9F /* EmptyViewController.swift in Sources */,
 				65AA3E7624328533005C2319 /* AddCompanyHoursEnabledViewController.swift in Sources */,
 				6580FBE324113D0700695DB6 /* UIHelper.swift in Sources */,
@@ -769,7 +782,11 @@
 				65AA3E6A24327254005C2319 /* AddCompanyEmailViewController.swift in Sources */,
 				65C5467923ECAB2300A198F3 /* AppUtility.swift in Sources */,
 				6591C39C23DA78F900535C46 /* SceneDelegate.swift in Sources */,
+				65B2B1D82433B26D00014820 /* AddAppointmentGenderViewController.swift in Sources */,
+				65B2B1D02433B21000014820 /* AddAppointmentTestTypeViewController.swift in Sources */,
 				6556D57C242FC91200E6B778 /* UpdateCompanyHoursEnabledViewController.swift in Sources */,
+				65B2B1D62433B25500014820 /* AddAppointmentDateOfBirthViewController.swift in Sources */,
+				65B2B1D42433B23900014820 /* AddAppointmentEmailViewController.swift in Sources */,
 				657535EB24035B7E009E3580 /* SignUpEmailViewController.swift in Sources */,
 				65AA3E7224327293005C2319 /* AddCompanyCityViewController.swift in Sources */,
 				658046AE242D49D5007D7192 /* Company+CoreDataProperties.swift in Sources */,
@@ -782,8 +799,9 @@
 				65A18DCE2410454A00F16565 /* NovaOneTextView.swift in Sources */,
 				6592E3D62405D8BA009E4D8D /* HomeTabBarController.swift in Sources */,
 				6580258E240F2F8A00A74DCD /* SignUpPropertyNameViewController.swift in Sources */,
+				65B2B1DA2434028D00014820 /* PopUpViewController.swift in Sources */,
 				658EC6CA23F4CD120042827E /* UIViewBorders.swift in Sources */,
-				650250C123E4991700B427D0 /* Alert.swift in Sources */,
+				650250C123E4991700B427D0 /* AlertService.swift in Sources */,
 				6584FAC324089BA900A06125 /* Lead.swift in Sources */,
 				65446CEC23E0F4370052DEBE /* LoginViewController.swift in Sources */,
 			);
@@ -803,7 +821,6 @@
 				6528135D23E79D5C005A1B1F /* FeatureView.swift in Sources */,
 				6528135B23E79D42005A1B1F /* HomeViewController.swift in Sources */,
 				6591C3B123DA78FB00535C46 /* NovaOneTests.swift in Sources */,
-				65AF665923E88229001B394F /* CreateAppointmentViewController.swift in Sources */,
 				6528135723E79D35005A1B1F /* Customer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -822,7 +839,6 @@
 				6528135E23E79D5D005A1B1F /* FeatureView.swift in Sources */,
 				6528135C23E79D42005A1B1F /* HomeViewController.swift in Sources */,
 				6591C3BC23DA78FB00535C46 /* NovaOneUITests.swift in Sources */,
-				65AF665A23E88229001B394F /* CreateAppointmentViewController.swift in Sources */,
 				6528135823E79D36005A1B1F /* Customer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

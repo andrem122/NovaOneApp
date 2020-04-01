@@ -17,7 +17,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: NovaOneButton!
     let coreDataCustomerEmail: String? = PersistenceService.fetchEntity(Customer.self).first?.email
-    lazy var alert: Alert = Alert(currentViewController: self)
     
     // MARK: Methods
     override func viewDidLoad() {
@@ -235,7 +234,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 
                 case .failure(let error):
                     // Show error message with an alert and enable continue button
-                    self?.alert.alertMessage(title: "Error", message: error.localizedDescription)
+                    AlertService.alert(for: self, title: "Error", message: error.localizedDescription)
                     self?.loginButton.isEnabled = true
                     self?.loginButton.backgroundColor = Defaults.novaOneColor
                 
@@ -267,12 +266,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         // If user name or password field is empty, alert the user with a message and exit the function
         if username.isEmpty {
             
-            alert.alertMessage(title: "Email Required", message: "Email: This field is required.")
+            AlertService.alert(for: self, title: "Email Required", message: "Email: This field is required.")
             return
             
         } else if password.isEmpty {
             
-            alert.alertMessage(title: "Password Required", message: "Password: This field is required.")
+            AlertService.alert(for: self, title: "Password Required", message: "Password: This field is required.")
             return
 
         }

@@ -46,8 +46,6 @@ class AccountTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // If properties cell is tapped on, navigate to navigation controller that
-        // properties view controller is embedded in
-
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

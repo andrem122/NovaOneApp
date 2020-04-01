@@ -22,7 +22,7 @@ class CompaniesViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
-        self.fetchCoreDataCompanies()
+        self.fetchCompanies()
     }
     
     func setup() {
@@ -30,7 +30,7 @@ class CompaniesViewController: UIViewController, UITableViewDelegate, UITableVie
         self.companiesTableView.dataSource = self
     }
     
-    func fetchCoreDataCompanies() {
+    func fetchCompanies() {
         // Get companies for customer from Coredata IF they exist else get them from the database
         
         if self.customerHasCompanies {
@@ -161,16 +161,22 @@ extension CompaniesViewController {
         if self.customerHasCompanies {
             guard let coreDatacompany = self.coreDataCompanies?[indexPath.row] as? Company else { return } // Get company object based on which row the user taps on
             //Get detail view controller, pass object to it, and present it
+            
             if let companyDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.companyDetail.rawValue) as? CompanyDetailViewController {
+                
                 companyDetailViewController.company = coreDatacompany
                 self.navigationController?.pushViewController(companyDetailViewController, animated: true)
+                
             }
         } else {
             let company = self.companies[indexPath.row] // Get company object based on which row the user taps on
             //Get detail view controller, pass object to it, and present it
+            
             if let companyDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.companyDetail.rawValue) as? CompanyDetailViewController {
+                
                 companyDetailViewController.company = company
                 self.navigationController?.pushViewController(companyDetailViewController, animated: true)
+                
             }
         }
     }

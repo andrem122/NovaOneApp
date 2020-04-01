@@ -16,6 +16,7 @@ class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var topView: NovaOneView!
     var company: Any?
     var companyDetailCells: [[String: Any]] = [[:]]
+    let alertService = AlertService()
     
     // MARK: Methods
     func setup() {
@@ -75,6 +76,19 @@ class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITabl
         
     }
     
+    // MARK: Actions
+    @IBAction func deleteButtonTapped(_ sender: Any) {
+        // Set text for pop up view controller
+        let title = "Delete Company"
+        let body = "Are you sure you want to delete the company?"
+        let buttonTitle = "Delete"
+        
+        let popUpViewController = alertService.popUp(title: title, body: body, buttonTitle: buttonTitle) {
+            print("Delete button tapped!")
+        }
+        self.present(popUpViewController, animated: true, completion: nil)
+    }
+    
     
 
 }
@@ -96,6 +110,9 @@ extension CompanyDetailViewController {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true) // Deselect the row after it is tapped on
+        
         // Get propertyDetail object based on which row the user taps on
         guard let cellTitle = self.companyDetailCells[indexPath.row]["cellTitle"] as? String else { return }
         
@@ -128,8 +145,6 @@ extension CompanyDetailViewController {
             default:
                 print("No cases matched")
         }
-        
-        tableView.deselectRow(at: indexPath, animated: true) // Deselect the row after it is tapped on
         
     }
     
