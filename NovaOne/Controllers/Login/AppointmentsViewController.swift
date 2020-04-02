@@ -72,6 +72,8 @@ extension AppointmentsViewController: UITableViewDataSource, UITableViewDelegate
         //Get detail view controller, pass object to it, and present it
         if let appointmentDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.appointmentDetail.rawValue) as? AppointmentDetailViewController {
             appointmentDetailViewController.appointment = appointment
+            
+            appointmentDetailViewController.modalPresentationStyle = .automatic
             self.present(appointmentDetailViewController, animated: true, completion: nil)
         }
     }

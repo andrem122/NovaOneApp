@@ -8,20 +8,20 @@
 
 import UIKit
 
-class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NovaOneObjectDetail {
     
     // MARK: Properties
-    @IBOutlet weak var propertyDetailTableView: UITableView!
+    var objectDetailCells: [[String : String]] = []
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var objectDetailTableView: UITableView!
     @IBOutlet weak var topView: NovaOneView!
     var company: Any?
-    var companyDetailCells: [[String: Any]] = [[:]]
     let alertService = AlertService()
     
     // MARK: Methods
     func setupTableView() {
-        self.propertyDetailTableView.delegate = self
-        self.propertyDetailTableView.dataSource = self
+        self.objectDetailTableView.delegate = self
+        self.objectDetailTableView.dataSource = self
     }
     
     func setupTopView() {
@@ -44,7 +44,7 @@ class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITabl
         let daysOfTheWeekCell: [String: String] = ["cellTitle": "Showing Days", "cellTitleValue": ""]
         let hoursOfTheDayCell: [String: String] = ["cellTitle": "Showing Hours", "cellTitleValue": ""]
         
-        self.companyDetailCells = [nameCell, addressCell, phoneNumberCell, emailCell, daysOfTheWeekCell, hoursOfTheDayCell]
+        self.objectDetailCells = [nameCell, addressCell, phoneNumberCell, emailCell, daysOfTheWeekCell, hoursOfTheDayCell]
     }
     
     func setupNavigationBackButton() {
@@ -101,15 +101,15 @@ class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITabl
 extension CompanyDetailViewController {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.companyDetailCells.count
+        return self.objectDetailCells.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Defaults.TableViewCellIdentifiers.objectDetail.rawValue) as! ObjectDetailTableViewCell
         
-        let companydetailCell = self.companyDetailCells[indexPath.row]
+        let companydetailCell = self.objectDetailCells[indexPath.row]
         
-        cell.setup(cellTitle: companydetailCell["cellTitle"] as! String, cellTitleValue: companydetailCell["cellTitleValue"] as! String)
+        cell.setup(cellTitle: companydetailCell["cellTitle"]!, cellTitleValue: companydetailCell["cellTitleValue"]!)
         
         return cell
     }
@@ -119,7 +119,7 @@ extension CompanyDetailViewController {
         tableView.deselectRow(at: indexPath, animated: true) // Deselect the row after it is tapped on
         
         // Get company title based on which row the user taps on
-        guard let cellTitle = self.companyDetailCells[indexPath.row]["cellTitle"] as? String else { return }
+        guard let cellTitle = self.objectDetailCells[indexPath.row]["cellTitle"] else { return }
         
         // Get update view controller based on which cell the user clicked on
         switch cellTitle {
