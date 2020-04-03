@@ -12,7 +12,10 @@ class AddCompanyNameViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.setupNavigationBar()
+    }
+    
+    func setupNavigationBar() {
         // Set navigation bar style
         UIHelper.setupNavigationBarStyle(for: self.navigationController)
     }

@@ -13,7 +13,7 @@ struct LeadModel: Decodable {
     // MARK: Properties
     var id: Int
     var name: String?
-    var phone: String?
+    var phoneNumber: String?
     var email: String?
     var dateOfInquiry: String?
     var renterBrand: String?
@@ -60,7 +60,7 @@ struct LeadModel: Decodable {
             let id = self.id
             guard
                 let name = self.name,
-                let phoneNumber = self.phone,
+                let phoneNumber = self.phoneNumber,
                 let address = self.address
             else { return "" }
            return "Id: \(id), Name: \(name) \(phoneNumber), Email: \(address)"

@@ -62,5 +62,21 @@ extension LeadsViewController: UITableViewDataSource, UITableViewDelegate {
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true) // Deselect the row after it is tapped on
+        
+        // Get lead object based on which row the user taps on
+        let lead = self.leads[indexPath.row]
+        
+        //Get detail view controller, pass object to it, and present it
+        if let leadDetailViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.leadDetail.rawValue) as? LeadDetailViewController {
+            
+            leadDetailViewController.lead = lead
+            leadDetailViewController.modalPresentationStyle = .automatic
+            self.present(leadDetailViewController, animated: true, completion: nil)
+            
+        }
+    }
 
 }

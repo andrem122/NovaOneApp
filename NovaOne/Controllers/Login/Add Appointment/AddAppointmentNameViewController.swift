@@ -17,6 +17,7 @@ class AddAppointmentNameViewController: UIViewController {
     // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupNavigationBar()
     }
     
 
@@ -34,6 +35,11 @@ class AddAppointmentNameViewController: UIViewController {
         // Hide navigation bar for this view
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         
+    }
+    
+    func setupNavigationBar() {
+        // Set navigation bar style
+        UIHelper.setupNavigationBarStyle(for: self.navigationController)
     }
     
     // MARK: Actions
