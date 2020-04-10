@@ -29,14 +29,12 @@ if ($user_is_verified) {
         l.sent_email_date as \"sentEmailDate\",
         l.filled_out_form as \"filledOutForm\",
         l.made_appointment as \"madeAppointment\",
-        co.address
+        co.name as \"companyName\"
     FROM
         leads_lead l
     INNER JOIN property_company co
         ON l.company_id = co.id
-    INNER JOIN customer_register_customer_user c
-        ON co.id = c.company_id
-    WHERE c.id = :customer_user_id
+    WHERE l.company_id IN (SELECT id FROM property_company WHERE customer_user_id = :customer_user_id)
     ORDER BY date_of_inquiry DESC
     LIMIT 10;
     ";

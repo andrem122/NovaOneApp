@@ -21,86 +21,14 @@ class CompaniesViewController: UIViewController, UITableViewDelegate, UITableVie
     // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setup()
-        self.fetchCompanies()
+        self.setupTableView()
     }
     
-    func setup() {
+    func setupTableView() {
         self.companiesTableView.delegate = self
         self.companiesTableView.dataSource = self
     }
     
-    func fetchCompanies() {
-        // Get companies for customer from Coredata IF they exist else get them from the database
-        
-        if self.customerHasCompanies {
-            guard let coreDataCompanies: [Any] = PersistenceService.fetchCustomerCompanies() else { return }
-            self.coreDataCompanies = coreDataCompanies
-            
-        } else {
-            // No CoreData objects, so get companies from the NovaOne database
-            self.refreshCompanies()
-        }
-    }
-    
-    func refreshCompanies() {
-        // Gets the companies a user has from the NovaOne database via an HTTP Request
-        // and saves to CoreData
-        
-        let httpRequest = HTTPRequests()
-        guard
-            let customer = PersistenceService.fetchEntity(Customer.self).first,
-            let email = customer.email,
-            let password = KeychainWrapper.standard.string(forKey: "password")
-        else {
-            print("Failed to obtain variables for POST request")
-            return
-        }
-        
-        let parameters: [String: Any] = ["customerUserId": customer.id as Any,
-                                         "email": email as Any,
-                                         "password": password as Any]
-        
-        httpRequest.request(endpoint: "/companies.php", dataModel: [CompanyModel].self, parameters: parameters) { (result) in
-                switch result {
-                    
-                    case .success(let companies):
-                        self.companies = companies
-                        
-                        // Save the companies in CoreData
-                        guard let entity = NSEntityDescription.entity(forEntityName: "Company", in: PersistenceService.context) else { return }
-                        
-                        for company in companies {
-                            if let coreDataCompany = NSManagedObject(entity: entity, insertInto: PersistenceService.context) as? Company {
-                                coreDataCompany.address = company.address
-                                coreDataCompany.city = company.city
-                                coreDataCompany.state = company.state
-                                coreDataCompany.zip = company.zip
-                                coreDataCompany.created = company.createdDate
-                                coreDataCompany.daysOfTheWeekEnabled = company.daysOfTheWeekEnabled
-                                coreDataCompany.email = company.email
-                                coreDataCompany.hoursOfTheDayEnabled = company.hoursOfTheDayEnabled
-                                coreDataCompany.id = Int32(company.id)
-                                coreDataCompany.name = company.name
-                                coreDataCompany.phoneNumber = company.phoneNumber
-                                coreDataCompany.shortenedAddress = company.shortenedAddress
-                                coreDataCompany.customer = PersistenceService.fetchCustomerEntity()
-                            }
-                        }
-                    
-                        // Save objects to CoreData once they have been inserted into the context container
-                        PersistenceService.saveContext()
-                        
-                        // Reload table to show new data
-                        self.companiesTableView.reloadData()
-                    
-                    case .failure(let error):
-                        print(error.localizedDescription)
-                    
-                }
-        }
-    }
-
 }
 
 extension CompaniesViewController {
@@ -128,7 +56,7 @@ extension CompaniesViewController {
             
             let company: Company = coreDataCompanies[indexPath.row]
             guard
-                let title = company.shortenedAddress,
+                let title = company.name,
                 let city = company.city,
                 let state = company.state,
                 let zip = company.zip
@@ -149,7 +77,7 @@ extension CompaniesViewController {
             print("Companies from the HTTP request will be shown")
             let company: CompanyModel = self.companies[indexPath.row] // Get the company object based on the row number each cell is in
             // Pass in appointment object to set up cell properties (address, city, etc.)
-            let address = company.shortenedAddress
+            let title = company.name
             
             // Get date of appointment as a string
             let dateFormatter = DateFormatter()
@@ -157,7 +85,7 @@ extension CompaniesViewController {
             let createdTimeDate: Date = company.createdDate
             let createdTime: String = dateFormatter.string(from: createdTimeDate)
             
-            cell.setup(title: address, subTitleOne: "Fort Pierce, FL", subTitleTwo: "34950", subTitleThree: createdTime)
+            cell.setup(title: title, subTitleOne: "Fort Pierce, FL", subTitleTwo: "34950", subTitleThree: createdTime)
         }
         
         return cell

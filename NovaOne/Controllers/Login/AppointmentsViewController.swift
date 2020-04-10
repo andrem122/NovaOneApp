@@ -42,7 +42,7 @@ extension AppointmentsViewController: UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let appointment: AppointmentModel = self.appointments[indexPath.row] // Get the appointment object based on the row number each cell is in
-        let cellIdentifier: String = "novaOneTableCell"
+        let cellIdentifier: String = Defaults.TableViewCellIdentifiers.novaOne.rawValue
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! NovaOneTableViewCell // Get cell with identifier so we can use the custom cell we made
         
         // Pass in appointment object to set up cell properties (address, name, etc.)

@@ -720,7 +720,7 @@ and you have 4 calls.</string>
                                 <rect key="frame" x="0.0" y="44" width="414" height="625"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="novaOneTableCell" rowHeight="115" id="mks-rP-h9s" userLabel="appointmentTableCell" customClass="NovaOneTableViewCell" customModule="NovaOne" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="novaOneTableViewCell" rowHeight="115" id="mks-rP-h9s" userLabel="appointmentTableCell" customClass="NovaOneTableViewCell" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="115"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mks-rP-h9s" id="Bok-Aj-ewI">
@@ -1709,7 +1709,7 @@ of your company?</string>
                                 <rect key="frame" x="0.0" y="44" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="novaOneTableCell" rowHeight="115" id="hLe-h0-gPR" userLabel="leadsTableCell" customClass="NovaOneTableViewCell" customModule="NovaOne" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="novaOneTableViewCell" rowHeight="115" id="hLe-h0-gPR" userLabel="leadsTableCell" customClass="NovaOneTableViewCell" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="115"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hLe-h0-gPR" id="apS-Q1-kSS">
@@ -2141,7 +2141,7 @@ of your company?</string>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="WKZ-lS-7Px" kind="show" id="1b1-CJ-4Nr"/>
+                                            <segue destination="2OL-3g-cMj" kind="show" id="YP7-2F-NWR"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -2171,11 +2171,11 @@ of your company?</string>
             <objects>
                 <viewController storyboardIdentifier="companiesViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WKZ-lS-7Px" userLabel="Companies" customClass="CompaniesViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="V88-Pq-Os6">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="625"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="115" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eAH-Jn-ODU" userLabel="Companies Table View">
-                                <rect key="frame" x="0.0" y="88" width="414" height="625"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="581"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="novaOneTableViewCell" rowHeight="115" id="boL-Km-JMu" userLabel="companyTableCell" customClass="NovaOneTableViewCell" customModule="NovaOne" customModuleProvider="target">
@@ -2281,36 +2281,13 @@ of your company?</string>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FJq-ee-neb" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
-                                <rect key="frame" x="30" y="748" width="354" height="45"/>
-                                <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="IQa-QM-BLo"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                                <state key="normal" title="Add Company">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="20"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <segue destination="fu3-xP-iSX" kind="show" id="3kr-gy-oCd"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="FJq-ee-neb" firstAttribute="top" secondItem="eAH-Jn-ODU" secondAttribute="bottom" constant="35" id="8Hn-Rk-Fea"/>
                             <constraint firstItem="eAH-Jn-ODU" firstAttribute="trailing" secondItem="iem-vN-9so" secondAttribute="trailing" id="GTs-Sx-rac"/>
-                            <constraint firstItem="FJq-ee-neb" firstAttribute="leading" secondItem="iem-vN-9so" secondAttribute="leading" constant="30" id="LrH-ih-vXK"/>
-                            <constraint firstItem="iem-vN-9so" firstAttribute="trailing" secondItem="FJq-ee-neb" secondAttribute="trailing" constant="30" id="TXl-Rt-AII"/>
                             <constraint firstItem="eAH-Jn-ODU" firstAttribute="top" secondItem="iem-vN-9so" secondAttribute="top" id="Unm-1h-H7x"/>
                             <constraint firstItem="eAH-Jn-ODU" firstAttribute="leading" secondItem="iem-vN-9so" secondAttribute="leading" id="XNQ-XP-q4L"/>
-                            <constraint firstItem="iem-vN-9so" firstAttribute="bottom" secondItem="FJq-ee-neb" secondAttribute="bottom" constant="20" id="dLc-mY-ElH"/>
+                            <constraint firstItem="iem-vN-9so" firstAttribute="bottom" secondItem="eAH-Jn-ODU" secondAttribute="bottom" id="tR4-gq-TSA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="iem-vN-9so"/>
                     </view>
@@ -2323,7 +2300,7 @@ of your company?</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WcC-gb-1Nv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8826" y="1734"/>
+            <point key="canvasLocation" x="9825" y="1734"/>
         </scene>
         <!--Update Password-->
         <scene sceneID="hbo-Qa-brT">
@@ -2957,7 +2934,7 @@ my friend :)</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GSK-UM-2HD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="10128" y="1734"/>
+            <point key="canvasLocation" x="10642" y="1734"/>
         </scene>
         <!--Update Company Email-->
         <scene sceneID="q4k-9B-dhy">
@@ -5831,6 +5808,64 @@ appointment below.</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z13-qk-xvx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2961" y="3644"/>
+        </scene>
+        <!--Companies Container-->
+        <scene sceneID="5Mg-Kj-GXQ">
+            <objects>
+                <viewController storyboardIdentifier="companiesContainerViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2OL-3g-cMj" userLabel="Companies Container" customClass="CompaniesContainerViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="njE-pZ-GF3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1fu-LD-JDP">
+                                <rect key="frame" x="0.0" y="88" width="414" height="625"/>
+                                <connections>
+                                    <segue destination="WKZ-lS-7Px" kind="embed" id="QN4-BM-wOL"/>
+                                </connections>
+                            </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KRR-qr-PXP" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
+                                <rect key="frame" x="30" y="748" width="354" height="45"/>
+                                <color key="backgroundColor" red="0.32493522759999999" green="0.46187436580000002" blue="0.83199411629999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="8m5-h7-9YT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <state key="normal" title="Add Company">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="fu3-xP-iSX" kind="show" id="8aI-A0-ncT"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="1fu-LD-JDP" firstAttribute="top" secondItem="o6M-R2-pHW" secondAttribute="top" id="7QP-mP-NbO"/>
+                            <constraint firstItem="o6M-R2-pHW" firstAttribute="bottom" secondItem="1fu-LD-JDP" secondAttribute="bottom" constant="100" id="FxH-WR-b2b"/>
+                            <constraint firstItem="o6M-R2-pHW" firstAttribute="trailing" secondItem="KRR-qr-PXP" secondAttribute="trailing" constant="30" id="V5d-ml-9oy"/>
+                            <constraint firstItem="1fu-LD-JDP" firstAttribute="trailing" secondItem="o6M-R2-pHW" secondAttribute="trailing" id="c0w-dZ-aKM"/>
+                            <constraint firstItem="o6M-R2-pHW" firstAttribute="bottom" secondItem="KRR-qr-PXP" secondAttribute="bottom" constant="20" id="hn8-ub-CN6"/>
+                            <constraint firstItem="KRR-qr-PXP" firstAttribute="leading" secondItem="o6M-R2-pHW" secondAttribute="leading" constant="30" id="mJF-mU-w0y"/>
+                            <constraint firstItem="1fu-LD-JDP" firstAttribute="leading" secondItem="o6M-R2-pHW" secondAttribute="leading" id="mtf-rE-Ipc"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="o6M-R2-pHW"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="calendarBlue" id="Snf-K5-zmi"/>
+                    <navigationItem key="navigationItem" id="3cK-HK-L9D">
+                        <barButtonItem key="backBarButtonItem" title=" " id="pn8-Sk-pKz"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="containerView" destination="1fu-LD-JDP" id="LCE-w2-RXJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f73-pH-DHB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="8883" y="1734"/>
         </scene>
     </scenes>
     <resources>

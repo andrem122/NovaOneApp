@@ -96,10 +96,56 @@ class UIHelper {
         
     }
     
-    // Gets a view controller by a string identifier
-    static func getViewController(currentViewController: UIViewController, by identifier: String) -> UIViewController {
-        guard let viewController = currentViewController.storyboard?.instantiateViewController(identifier: identifier) else { return UIViewController() }
-        return viewController
+    static func showEmptyStateContainerViewController(for currentViewController: UIViewController?, containerView: UIView) {
+        // Shows the empty state view controller for a container view
+        
+        if let emptyViewController = currentViewController?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.empty.rawValue) as? EmptyViewController {
+            
+            emptyViewController.setup(title: "No Leads")
+            
+            currentViewController?.addChild(emptyViewController)
+            emptyViewController.view.translatesAutoresizingMaskIntoConstraints = false
+            containerView.addSubview(emptyViewController.view)
+            
+            // Set constraints for embedded view so it shows correctly
+            NSLayoutConstraint.activate([
+                emptyViewController.view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+                emptyViewController.view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+                emptyViewController.view.topAnchor.constraint(equalTo: containerView.topAnchor),
+                emptyViewController.view.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
+            ])
+            
+            emptyViewController.didMove(toParent: currentViewController)
+            
+        }
+    }
+    
+    static func showSuccessContainer<T: UIViewController>(for currentViewController: UIViewController?, successContainerViewIdentifier: String,containerView: UIView, objectType: T.Type, completion: (UIViewController) -> Void) {
+        // Shows the table with items for the container view
+        
+        if let successContainerViewController = currentViewController?.storyboard?.instantiateViewController(identifier: successContainerViewIdentifier) as? T {
+            
+            // Embed appointments view controller into container view so it will show
+            currentViewController?.addChild(successContainerViewController)
+            successContainerViewController.view.translatesAutoresizingMaskIntoConstraints = false
+            containerView.addSubview(successContainerViewController.view)
+            
+            // Set constraints for embedded view so it shows correctly
+            NSLayoutConstraint.activate([
+                successContainerViewController.view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+                successContainerViewController.view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+                successContainerViewController.view.topAnchor.constraint(equalTo: containerView.topAnchor),
+                successContainerViewController.view.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
+            ])
+            
+            successContainerViewController.didMove(toParent: currentViewController)
+            
+            // Plug the success container view controller into the completion function
+            completion(successContainerViewController)
+            
+            // Save to CoreData for future display
+
+        }
     }
     
 }

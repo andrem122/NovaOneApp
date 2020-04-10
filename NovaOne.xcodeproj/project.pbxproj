@@ -30,6 +30,7 @@
 		655D0B25240B440200D0E329 /* UpdateEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655D0B24240B440200D0E329 /* UpdateEmailViewController.swift */; };
 		655D0B27240B443700D0E329 /* UpdatePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655D0B26240B443700D0E329 /* UpdatePasswordViewController.swift */; };
 		65668E79241814C900774548 /* UpdateCompanyPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65668E78241814C900774548 /* UpdateCompanyPhoneViewController.swift */; };
+		656B04DC2441001B003EE193 /* CompaniesContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656B04DB2441001B003EE193 /* CompaniesContainerViewController.swift */; };
 		657535EB24035B7E009E3580 /* SignUpEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657535EA24035B7E009E3580 /* SignUpEmailViewController.swift */; };
 		6575F626242EA21100332729 /* UpdateNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6575F625242EA21100332729 /* UpdateNameViewController.swift */; };
 		6575F62C242EC3A400332729 /* UpdateCompanyDaysEnabledViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6575F62B242EC3A400332729 /* UpdateCompanyDaysEnabledViewController.swift */; };
@@ -183,6 +184,7 @@
 		655D0B24240B440200D0E329 /* UpdateEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateEmailViewController.swift; sourceTree = "<group>"; };
 		655D0B26240B443700D0E329 /* UpdatePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordViewController.swift; sourceTree = "<group>"; };
 		65668E78241814C900774548 /* UpdateCompanyPhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCompanyPhoneViewController.swift; sourceTree = "<group>"; };
+		656B04DB2441001B003EE193 /* CompaniesContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompaniesContainerViewController.swift; sourceTree = "<group>"; };
 		657535EA24035B7E009E3580 /* SignUpEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEmailViewController.swift; sourceTree = "<group>"; };
 		6575F625242EA21100332729 /* UpdateNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateNameViewController.swift; sourceTree = "<group>"; };
 		6575F62B242EC3A400332729 /* UpdateCompanyDaysEnabledViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCompanyDaysEnabledViewController.swift; sourceTree = "<group>"; };
@@ -524,6 +526,7 @@
 				65BA98BA243166C700CFAA9F /* LeadsContainerViewController.swift */,
 				65AA3E7724328CAE005C2319 /* SuccessViewController.swift */,
 				6593CFAC2436A9DC0026C5D7 /* LeadDetailViewController.swift */,
+				656B04DB2441001B003EE193 /* CompaniesContainerViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -751,6 +754,7 @@
 			files = (
 				65DBED6C2429404F0090B39C /* NovaOne.xcdatamodeld in Sources */,
 				65AB8E492427F5A800ED2ECF /* PersistenceService.swift in Sources */,
+				656B04DC2441001B003EE193 /* CompaniesContainerViewController.swift in Sources */,
 				65230463242FFD900025FE07 /* EnableOption.swift in Sources */,
 				6593CFAD2436A9DC0026C5D7 /* LeadDetailViewController.swift in Sources */,
 				655D0B23240B43E800D0E329 /* UpdatePhoneViewController.swift in Sources */,

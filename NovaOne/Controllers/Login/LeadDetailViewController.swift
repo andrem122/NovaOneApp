@@ -61,13 +61,13 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         let email = unwrappedEmail.isEmpty ? "No email" : unwrappedEmail
         
         let dateOfInquiry: String = self.convert(lead: lead.dateOfInquiryDate)
-        let address = lead.shortenedAddress
+        let companyName = lead.companyName
         
         // Create dictionaries for cells
         let phoneNumberCell = ["cellTitle": "Phone", "cellTitleValue": phoneNumber]
         let emailCell = ["cellTitle": "Email", "cellTitleValue": email]
         let renterBrandCell = ["cellTitle": "Renter Brand", "cellTitleValue": renterBrand]
-        let addressCell = ["cellTitle": "Address", "cellTitleValue": address]
+        let addressCell = ["cellTitle": "Company", "cellTitleValue": companyName]
         let dateOfInquiryCell = ["cellTitle": "Date Of Inquiry", "cellTitleValue": dateOfInquiry]
         
         self.titleLabel.text = name

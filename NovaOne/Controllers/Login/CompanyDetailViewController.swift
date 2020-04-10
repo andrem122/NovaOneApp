@@ -34,7 +34,7 @@ class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITabl
     func setupCompanyCellsAndTitle(name: String, phoneNumber: String, email: String, address: String) {
         // Sets up the cell properties for each company cell and title for the view
         // Title
-        self.titleLabel.text = address
+        self.titleLabel.text = name
         
         // Cells
         let nameCell: [String: String] = ["cellTitle": "Name", "cellTitleValue": name]
@@ -44,7 +44,12 @@ class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITabl
         let daysOfTheWeekCell: [String: String] = ["cellTitle": "Showing Days", "cellTitleValue": ""]
         let hoursOfTheDayCell: [String: String] = ["cellTitle": "Showing Hours", "cellTitleValue": ""]
         
-        self.objectDetailCells = [nameCell, addressCell, phoneNumberCell, emailCell, daysOfTheWeekCell, hoursOfTheDayCell]
+        self.objectDetailCells = [nameCell,
+                                  addressCell,
+                                  phoneNumberCell,
+                                  emailCell,
+                                  daysOfTheWeekCell,
+                                  hoursOfTheDayCell]
     }
     
     func setupNavigationBackButton() {
@@ -85,7 +90,14 @@ class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITabl
         let buttonTitle = "Delete"
         
         let popUpViewController = alertService.popUp(title: title, body: body, buttonTitle: buttonTitle) {
-            print("Delete button tapped!")
+            [weak self] in
+            // Delete the company from CoreData
+            
+            // Delete the company from the database
+            
+            // Navigate back to the companies view
+            guard let companiesViewController = self?.storyboard?.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.companies.rawValue) else { return }
+            self?.present(companiesViewController, animated: true, completion: nil)
         }
         self.present(popUpViewController, animated: true, completion: nil)
     }

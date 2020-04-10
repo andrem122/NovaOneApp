@@ -43,65 +43,24 @@ class AppointmentsContainerViewController: UIViewController {
                                 
                                 // Get anchor constraints from container view so that we can layout the views
                                 // that will be embedded in it
-                                guard
-                                    let containerViewLeadingAnchor = self?.containerView.leadingAnchor,
-                                    let containerViewTrailingAnchor = self?.containerView.trailingAnchor,
-                                    let containerViewTopAnchor = self?.containerView.topAnchor,
-                                    let containerViewBottomAnchor = self?.containerView.bottomAnchor
-                                else { return }
                                 
                                 switch result {
                                     
                                     case .success(let appointments):
-                                        
-                                        if let appointmentsViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.appointments.rawValue) as? AppointmentsViewController {
+                                        UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.ViewControllerIdentifiers.appointments.rawValue, containerView: self?.containerView ?? UIView(), objectType: AppointmentsViewController.self) { (appointmentsViewController) in
                                             
-                                            appointmentsViewController.appointments = appointments
+                                            if let appointmentsViewController = appointmentsViewController as? AppointmentsViewController {
+                                                appointmentsViewController.appointments = appointments
+                                            }
                                             
-                                            // Embed appointments view controller into container view so it will show
-                                            self?.addChild(appointmentsViewController)
-                                            appointmentsViewController.view.translatesAutoresizingMaskIntoConstraints = false
-                                            self?.containerView.addSubview(appointmentsViewController.view)
-                                            
-                                            // Set constraints for embedded view so it shows correctly
-                                            NSLayoutConstraint.activate([
-                                                appointmentsViewController.view.leadingAnchor.constraint(equalTo: containerViewLeadingAnchor),
-                                                appointmentsViewController.view.trailingAnchor.constraint(equalTo: containerViewTrailingAnchor),
-                                                appointmentsViewController.view.topAnchor.constraint(equalTo: containerViewTopAnchor),
-                                                appointmentsViewController.view.bottomAnchor.constraint(equalTo: containerViewBottomAnchor)
-                                            ])
-                                            
-                                            appointmentsViewController.didMove(toParent: self)
-                                            
-                                            // Save to CoreData for future display
-
-                                        }
+                                    }
+                                    
                                     case .failure(let error):
                                         print(error.localizedDescription)
                                         
                                         // No appointments were found or an error occurred so embed the empty
                                         // view controller
-                                        if let emptyViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.empty.rawValue) as? EmptyViewController {
-                                            
-                                            // Run on main thread to avoid a crash
-                                            // UILabel will not be found if you try to change the label text with a background thread
-                                            emptyViewController.setup(title: "No Appointments")
-                                            
-                                            self?.addChild(emptyViewController)
-                                            emptyViewController.view.translatesAutoresizingMaskIntoConstraints = false
-                                            self?.containerView.addSubview(emptyViewController.view)
-                                            
-                                            // Set constraints for embedded view so it shows correctly
-                                            NSLayoutConstraint.activate([
-                                                emptyViewController.view.leadingAnchor.constraint(equalTo: containerViewLeadingAnchor),
-                                                emptyViewController.view.trailingAnchor.constraint(equalTo: containerViewTrailingAnchor),
-                                                emptyViewController.view.topAnchor.constraint(equalTo: containerViewTopAnchor),
-                                                emptyViewController.view.bottomAnchor.constraint(equalTo: containerViewBottomAnchor)
-                                            ])
-                                            
-                                            emptyViewController.didMove(toParent: self)
-                                            
-                                        }
+                                        UIHelper.showEmptyStateContainerViewController(for: self, containerView: self?.containerView ?? UIView())
                                     
                                 }
                                 
