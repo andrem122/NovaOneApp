@@ -38,7 +38,7 @@ class AppointmentsContainerViewController: UIViewController {
                                          "password": password as Any]
         
         httpRequest.request(endpoint: "/appointments.php",
-                            dataModel: [AppointmentModel(id: 1)], // Must have one non optional value in our object otherwise JSONDecoder will be able to decode the ANY json response into an appointment object because all fields are optional
+                            dataModel: [AppointmentModel].self,
                             parameters: parameters) { [weak self] (result) in
                                 
                                 // Get anchor constraints from container view so that we can layout the views

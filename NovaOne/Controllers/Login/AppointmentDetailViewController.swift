@@ -51,14 +51,12 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
         // Set cells up for the table view
         
         guard
-            let appointment = self.appointment,
-            let name = appointment.name,
-            let confirmed = appointment.confirmed
+            let appointment = self.appointment
         else { return }
         
         let appointmentTime: String = self.convert(appointment: appointment.timeDate)
         let appointmentCreated: String = self.convert(appointment: appointment.createdDate)
-        let confirmedString = confirmed ? "Yes" : "No"
+        let confirmedString = appointment.confirmed ? "Yes" : "No"
         let address = appointment.shortenedAddress
         
         // Create dictionaries for cells
@@ -67,7 +65,7 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
         let appointmentCreatedCell = ["cellTitle": "Created", "cellTitleValue": appointmentCreated]
         let appointmentConfirmedCell = ["cellTitle": "Confirmed", "cellTitleValue": confirmedString]
         
-        self.titleLabel.text = name
+        self.titleLabel.text = appointment.name
         self.objectDetailCells = [
             addressCell,
             appointmentTimeCell,

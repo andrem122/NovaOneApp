@@ -5747,7 +5747,7 @@ of your company?</string>
         <!--Add Appointment Name-->
         <scene sceneID="iQJ-bp-Q5K">
             <objects>
-                <viewController storyboardIdentifier="addAppointmentNameViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wCm-p0-kiV" userLabel="Add Appointment Name" customClass="AddAppointmentNameViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="updateAppointmentCompanyViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wCm-p0-kiV" userLabel="Add Appointment Name" customClass="AddAppointmentNameViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="C1Q-Ae-WKo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -5759,9 +5759,9 @@ of your company?</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ube-qq-1Bl">
-                                <rect key="frame" x="40.5" y="131" width="333.5" height="41"/>
-                                <string key="text">Type in the new address of the person with 
-the appointment below.</string>
+                                <rect key="frame" x="86.5" y="131" width="241.5" height="41"/>
+                                <string key="text">Select the new company of the 
+appointment below.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>

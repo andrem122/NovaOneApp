@@ -14,27 +14,29 @@ struct CompanyModel: Decodable {
 
     // MARK: Properties
     var id: Int
-    var name: String?
-    var address: String?
-    var phoneNumber: String?
-    var email: String?
-    var created: String?
-    var daysOfTheWeekEnabled: String?
-    var hoursOfTheDayEnabled: String?
+    var name: String
+    var address: String
+    var phoneNumber: String
+    var email: String
+    var created: String
+    var daysOfTheWeekEnabled: String
+    var hoursOfTheDayEnabled: String
+    var city: String
+    var customerUserId: Int
+    var state: String
+    var zip: String
     
     // Computed Properties
     var createdDate: Date {
         get {
-            guard let created = self.created else { return Date() }
-            return DateHelper.createDate(from: created, format: "yyyy-MM-dd HH:mm:ss zzz")
+            return DateHelper.createDate(from: self.created, format: "yyyy-MM-dd HH:mm:ss zzz")
         }
 
     }
     
     var shortenedAddress: String {
         get {
-            guard let address = self.address else { return "" }
-            let addressComponentsArray = address.components(separatedBy: ",")
+            let addressComponentsArray = self.address.components(separatedBy: ",")
             return addressComponentsArray[0]
         }
     }
@@ -43,13 +45,7 @@ struct CompanyModel: Decodable {
     var description: String {
         
         get {
-            let id = self.id
-            guard
-                let name = self.name,
-                let phoneNumber = self.phoneNumber,
-                let address = self.address
-            else { return "" }
-           return "Id: \(id), Name: \(name) \(phoneNumber), Email: \(address)"
+            return "Id: \(self.id), Name: \(self.name) \(self.phoneNumber), Email: \(self.address)"
         }
         
     }

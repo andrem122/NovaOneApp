@@ -25,33 +25,26 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
           $query = "
           SELECT
               c.id,
+              a.password,
+              a.last_login as \"lastLogin\",
+              a.username,
               a.first_name as \"firstName\",
               a.last_name as \"lastName\",
               a.email,
-              a.password,
-              c.phone_number as \"phoneNumber\",
               a.date_joined as \"dateJoined\",
               c.is_paying as \"isPaying\",
               c.wants_sms as \"wantsSms\",
-              c.customer_type as \"customerType\",
-              co.id as \"companyId\",
-              co.name as \"companyName\",
-              co.address as \"companyAddress\",
-              co.phone_number as \"companyPhone\",
-              co.email as \"companyEmail\",
-              co.days_of_the_week_enabled as \"daysOfTheWeekEnabled\",
-              co.hours_of_the_day_enabled as \"hoursOfTheDayEnabled\"
+              c.phone_number as \"phoneNumber\",
+              c.customer_type as \"customerType\"
           FROM
               auth_user a
           INNER JOIN customer_register_customer_user c
               ON a.id = c.user_id
-          INNER JOIN property_company co
-              ON c.company_id = co.id
           WHERE a.email = :email";
           
           
-          $db_object = new Database('pgsql');
-          $db = $db_object->connect('pgsql');
+          $db_object = new Database();
+          $db = $db_object->connect();
           $stmt = $db->prepare($query);
 	      $stmt->bindParam(':email', $email);
 	      

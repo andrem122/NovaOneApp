@@ -41,6 +41,7 @@ class UpdateCompanyHoursEnabledViewController: UIViewController, UITableViewDele
         EnableOption(option: "10:00", selected: false),
         EnableOption(option: "11:00", selected: false),
     ]
+    var company: Any?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,37 +59,46 @@ class UpdateCompanyHoursEnabledViewController: UIViewController, UITableViewDele
         // Sets the check marks on each cell to visible based on what hours
         // the user has selected perviously
         
-         guard
-             let customer = PersistenceService.fetchCustomerEntity(),
-             let hoursOfTheDayEnabledString = customer.hoursOfTheDayEnabled
-         else { return }
-         
-         // Convert hours of the day enabled string into array of integers
-         var hoursOfTheDayEnabled: [String] = hoursOfTheDayEnabledString.components(separatedBy: ",")
-         
-         hoursOfTheDayEnabled = self.convertToTwelveHourFormat(hours: hoursOfTheDayEnabled)
-         
-         for hour in hoursOfTheDayEnabled {
-             // Get the AM/PM part of the hour string
-             let substring = "PM"
-             guard let hourWithoutAMOrPM = hour.components(separatedBy: " ").first else { return } // 12:00
-             
-             // If the substring is PM, get an EnableOption item from the PM array
-             // else get an EnableOption item from the AM array
-             if hour.contains(substring) {
-                 for (index, enableOption) in self.hoursOfTheDayPM.enumerated() {
-                     if enableOption.option == hourWithoutAMOrPM {
-                         self.hoursOfTheDayPM[index].selected = true
-                     }
-                 }
-             } else {
-                 for (index, enableOption) in self.hoursOfTheDayAM.enumerated() {
-                     if enableOption.option == hourWithoutAMOrPM {
-                         self.hoursOfTheDayAM[index].selected = true
-                     }
-                 }
-             }
-         }
+        if let company = self.company as? Company {
+            guard let hoursOfTheDayEnabledString = company.hoursOfTheDayEnabled else { return }
+            self.parseAndUseInfoFrom(hoursOfTheDayEnabledString: hoursOfTheDayEnabledString)
+        } else {
+            guard let company = self.company as? CompanyModel else { return }
+            self.parseAndUseInfoFrom(hoursOfTheDayEnabledString: company.hoursOfTheDayEnabled)
+        }
+        
+    }
+    
+    func parseAndUseInfoFrom(hoursOfTheDayEnabledString: String) {
+        // Gets the hoursOfTheDayEnabled string, converts it
+        // a twelve hour format and sets the selected hours in the table
+        // Convert hours of the day enabled string into array of strings
+        var hoursOfTheDayEnabled: [String] = hoursOfTheDayEnabledString.components(separatedBy: ",")
+        
+        hoursOfTheDayEnabled = self.convertToTwelveHourFormat(hours: hoursOfTheDayEnabled)
+        
+        for hour in hoursOfTheDayEnabled {
+            // Get the AM/PM part of the hour string
+            let substring = "PM"
+            guard let hourWithoutAMOrPM = hour.components(separatedBy: " ").first else { return } // 12:00
+            
+            // If the substring is PM, get an EnableOption item from the PM array
+            // else get an EnableOption item from the AM array
+            if hour.contains(substring) {
+                for (index, enableOption) in self.hoursOfTheDayPM.enumerated() {
+                    if enableOption.option == hourWithoutAMOrPM {
+                        self.hoursOfTheDayPM[index].selected = true
+                    }
+                }
+            } else {
+                for (index, enableOption) in self.hoursOfTheDayAM.enumerated() {
+                    if enableOption.option == hourWithoutAMOrPM {
+                        self.hoursOfTheDayAM[index].selected = true
+                    }
+                }
+            }
+        }
+        
     }
     
     func convertToTwelveHourFormat(hours: [String]) -> [String] {

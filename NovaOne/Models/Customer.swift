@@ -12,28 +12,31 @@ struct CustomerModel: Decodable {
 
     // MARK: Properties
     var id: Int
-    var firstName: String?
-    var lastName: String?
-    var email: String?
-    var phoneNumber: String?
-    var dateJoined: String?
-    var isPaying: Bool?
-    var wantsSms: Bool?
-    var customerType: String?
-    var companyId: Int?
-    var companyName: String?
-    var companyAddress: String?
-    var companyPhone: String?
-    var companyEmail: String?
-    var daysOfTheWeekEnabled: String?
-    var hoursOfTheDayEnabled: String?
+    var password: String
+    var lastLogin: String
+    var username: String
+    var firstName: String
+    var lastName: String
+    var email: String
+    var dateJoined: String
+    var isPaying: Bool
+    var wantsSms: Bool
+    var phoneNumber: String
+    var customerType: String
     
     // Computed properties
     var dateJoinedDate: Date {
         
         get {
-            guard let dateJoined = self.dateJoined else { return Date() }
-            return DateHelper.createDate(from: dateJoined, format: "yyyy-MM-dd HH:mm:ss")
+            return DateHelper.createDate(from: self.dateJoined, format: "yyyy-MM-dd HH:mm:ss")
+        }
+    
+    }
+    
+    var lastLoginDate: Date {
+        
+        get {
+            return DateHelper.createDate(from: self.lastLogin, format: "yyyy-MM-dd HH:mm:ss")
         }
     
     }
@@ -41,24 +44,18 @@ struct CustomerModel: Decodable {
     var fullName: String {
 
         get {
-            
-            guard
-                let firstName = self.firstName,
-                let lastName = self.lastName
-            else { return "" }
-            return "\(firstName) \(lastName)"
-
+            return "\(self.firstName) \(self.lastName)"
         }
 
     }
-//    
-//    // Print object's current state
-//    var description: String {
-//
-//        get {
-//           return "Id: \(self.id), Name: \(self.firstName) \(self.lastName), Email: \(self.email)"
-//        }
-//
-//    }
+    
+    // Print object's current state
+    var description: String {
+
+        get {
+           return "Id: \(self.id), Name: \(self.firstName) \(self.lastName), Email: \(self.email)"
+        }
+
+    }
     
 }

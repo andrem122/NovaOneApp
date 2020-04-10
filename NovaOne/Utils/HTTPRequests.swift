@@ -17,7 +17,7 @@ class HTTPRequests {
     let url: String = Defaults.apiUrl
     
     func handleResponse<DataModel: Decodable>(for request: URLRequest,
-                                   dataModel: DataModel,
+                                              dataModel: DataModel.Type,
                                    completion: @escaping (Result<DataModel, Error>) -> Void) -> Void {
         
         // Create datatask to retrieve information from the internet
@@ -101,7 +101,7 @@ class HTTPRequests {
     // Make HTTP request
     // DataModel could be and data model that confroms to the Decodable protocol
     func request<DataModel: Decodable>(endpoint: String,
-                            dataModel: DataModel,
+                                       dataModel: DataModel.Type,
                             parameters: [String: Any],
                             completion: @escaping (Result<DataModel, Error>) -> Void) {
         

@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="18G2022" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Company" representedClassName="Company" syncable="YES">
-        <attribute name="address" optional="YES" attributeType="String"/>
-        <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="daysOfTheWeekEnabled" optional="YES" attributeType="String"/>
-        <attribute name="email" optional="YES" attributeType="String"/>
-        <attribute name="hoursOfTheDayEnabled" optional="YES" attributeType="String"/>
-        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="phoneNumber" optional="YES" attributeType="String"/>
-        <attribute name="shortenedAddress" optional="YES" attributeType="String"/>
+        <attribute name="address" attributeType="String"/>
+        <attribute name="city" attributeType="String"/>
+        <attribute name="created" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="customerUserId" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="daysOfTheWeekEnabled" attributeType="String"/>
+        <attribute name="email" attributeType="String"/>
+        <attribute name="hoursOfTheDayEnabled" attributeType="String"/>
+        <attribute name="id" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="phoneNumber" attributeType="String"/>
+        <attribute name="shortenedAddress" attributeType="String"/>
+        <attribute name="state" attributeType="String"/>
+        <attribute name="zip" attributeType="String"/>
         <relationship name="customer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Customer" inverseName="companies" inverseEntity="Customer"/>
     </entity>
     <entity name="Customer" representedClassName="Customer" syncable="YES">
-        <attribute name="companyAddress" optional="YES" attributeType="String"/>
-        <attribute name="companyEmail" optional="YES" attributeType="String"/>
-        <attribute name="companyId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="companyName" optional="YES" attributeType="String"/>
-        <attribute name="companyPhone" optional="YES" attributeType="String"/>
-        <attribute name="customerType" optional="YES" attributeType="String"/>
-        <attribute name="dateJoined" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="daysOfTheWeekEnabled" optional="YES" attributeType="String"/>
-        <attribute name="email" optional="YES" attributeType="String"/>
-        <attribute name="firstName" optional="YES" attributeType="String"/>
-        <attribute name="hoursOfTheDayEnabled" optional="YES" attributeType="String"/>
-        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="isPaying" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="lastName" optional="YES" attributeType="String"/>
-        <attribute name="phoneNumber" optional="YES" attributeType="String"/>
-        <attribute name="wantsSms" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="customerType" attributeType="String"/>
+        <attribute name="dateJoined" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="email" attributeType="String"/>
+        <attribute name="firstName" attributeType="String"/>
+        <attribute name="id" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="isPaying" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="lastLogin" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="lastName" attributeType="String"/>
+        <attribute name="password" attributeType="String"/>
+        <attribute name="phoneNumber" attributeType="String"/>
+        <attribute name="username" attributeType="String"/>
+        <attribute name="wantsSms" attributeType="Boolean" usesScalarValueType="YES"/>
         <relationship name="companies" toMany="YES" deletionRule="Nullify" destinationEntity="Company" inverseName="customer" inverseEntity="Company"/>
     </entity>
     <elements>
-        <element name="Company" positionX="-63" positionY="99" width="128" height="193"/>
-        <element name="Customer" positionX="-63" positionY="-18" width="128" height="298"/>
+        <element name="Company" positionX="-63" positionY="99" width="128" height="253"/>
+        <element name="Customer" positionX="-63" positionY="-18" width="128" height="238"/>
     </elements>
 </model>

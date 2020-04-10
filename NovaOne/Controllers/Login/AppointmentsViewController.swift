@@ -46,18 +46,17 @@ extension AppointmentsViewController: UITableViewDataSource, UITableViewDelegate
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! NovaOneTableViewCell // Get cell with identifier so we can use the custom cell we made
         
         // Pass in appointment object to set up cell properties (address, name, etc.)
-        guard
-            let name = appointment.name
-        else { return cell }
         let address = appointment.shortenedAddress
+        let name = appointment.name
         
         // Get date of appointment as a string
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM d, yyyy | h:mm a"
         let appointmentTimeDate: Date = appointment.timeDate
         let appointmentTime: String = dateFormatter.string(from: appointmentTimeDate)
+        let subTitleTwo = appointment.unitType != nil ? appointment.unitType! : appointment.testType!
         
-        cell.setup(title: name, subTitleOne: address, subTitleTwo: "2 Bedrooms", subTitleThree: appointmentTime)
+        cell.setup(title: name, subTitleOne: address, subTitleTwo: subTitleTwo, subTitleThree: appointmentTime)
         
         return cell
     }

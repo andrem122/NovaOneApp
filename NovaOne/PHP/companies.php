@@ -15,7 +15,6 @@ $user_is_verified = verify_user($email, $password, $php_authentication_username_
     
 if ($user_is_verified) {
     
-    // check if user exists in database
     $query = "
     SELECT
         co.id,
@@ -25,12 +24,14 @@ if ($user_is_verified) {
         co.email,
         TO_CHAR(co.created, 'YYYY-MM-DD HH24:MI:SS TZ') as \"created\",
         co.days_of_the_week_enabled as \"daysOfTheWeekEnabled\",
-        co.hours_of_the_day_enabled as \"hoursOfTheDayEnabled\"
+        co.hours_of_the_day_enabled as \"hoursOfTheDayEnabled\",
+        co.city,
+        co.customer_user_id as \"customerUserId\",
+        co.state,
+        co.zip
     FROM
         property_company co
-    INNER JOIN customer_register_customer_user c
-        ON c.company_id = co.id
-    WHERE c.id = :customer_user_id
+    WHERE customer_user_id = :customer_user_id
     ORDER BY created DESC;
     ";
     

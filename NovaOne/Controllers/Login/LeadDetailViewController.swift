@@ -50,10 +50,10 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         // Set cells up for the table view
         
         guard
-            let lead = self.lead,
-            let name = lead.name,
-            let renterBrand = lead.renterBrand
+            let lead = self.lead
         else { return }
+        let name = lead.name
+        let renterBrand = lead.renterBrand
         
         // Set default values for optional types
         let phoneNumber = lead.phoneNumber != nil ? lead.phoneNumber! : "No phone"

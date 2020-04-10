@@ -134,7 +134,7 @@ class PersistenceService {
             
             return companiesSet.count
         } catch {
-            fatalError("Failed to return a Boolean value for customer companies: \(error)")
+            fatalError("Failed to return a count for customer companies: \(error)")
         }
     }
     

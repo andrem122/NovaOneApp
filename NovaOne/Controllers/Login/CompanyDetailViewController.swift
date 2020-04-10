@@ -70,15 +70,9 @@ class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITabl
             self.setupCompanyCellsAndTitle(name: name, phoneNumber: phoneNumber, email: email, address: address)
             
         } else if let company = self.company as? CompanyModel { // self.company is a CompanyModel object
-            guard
-                let name = company.name,
-                let phoneNumber = company.phoneNumber,
-                let email = company.email
-            else { return }
-            let address = company.shortenedAddress
             
             // Plug into setupCompanyCells method
-            self.setupCompanyCellsAndTitle(name: name, phoneNumber: phoneNumber, email: email, address: address)
+            self.setupCompanyCellsAndTitle(name: company.name, phoneNumber: company.phoneNumber, email: company.email, address: company.shortenedAddress)
         }
         
     }
@@ -150,6 +144,7 @@ extension CompanyDetailViewController {
         case "Showing Days":
             if let updateCompanyDaysEnabledViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateCompanyDaysEnabled.rawValue) as? UpdateCompanyDaysEnabledViewController {
                 
+                updateCompanyDaysEnabledViewController.company = company
                 self.navigationController?.pushViewController(updateCompanyDaysEnabledViewController, animated: true)
                 
             }

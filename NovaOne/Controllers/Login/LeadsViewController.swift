@@ -44,12 +44,9 @@ extension LeadsViewController: UITableViewDataSource, UITableViewDelegate {
         let lead: LeadModel = self.leads[indexPath.row] // Get the appointment object based on the row number each cell is in
         let cell = tableView.dequeueReusableCell(withIdentifier: "novaOneTableCell") as! NovaOneTableViewCell // Get cell with identifier so we can use the custom cell we made
         
-        // Unwrap values from object and set up cell text
-        guard
-            let leadName = lead.name,
-            let address = lead.address,
-            let leadBrand = lead.renterBrand
-        else { return cell }
+        let name = lead.name
+        let address = lead.address
+        let leadBrand = lead.renterBrand
         let dateOfInquiryDate = lead.dateOfInquiryDate
         
         // Get date of appointment as a string
@@ -58,7 +55,7 @@ extension LeadsViewController: UITableViewDataSource, UITableViewDelegate {
         let dateContacted: String = dateFormatter.string(from: dateOfInquiryDate)
         
         
-        cell.setup(title: leadName, subTitleOne: address, subTitleTwo: leadBrand, subTitleThree: dateContacted)
+        cell.setup(title: name, subTitleOne: address, subTitleTwo: leadBrand, subTitleThree: dateContacted)
         
         return cell
     }

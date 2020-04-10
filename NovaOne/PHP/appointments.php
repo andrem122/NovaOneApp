@@ -18,21 +18,28 @@ if ($user_is_verified) {
     // check if user exists in database
     $query = "
     SELECT
-        a.id,
-        a.name,
-        a.phone_number as \"phoneNumber\",
-        co.address,
-        a.time,
-        TO_CHAR(a.created, 'YYYY-MM-DD HH24:MI:SS TZ') as \"created\",
-        a.time_zone as \"timeZone\",
-        a.confirmed
-    FROM
-        appointments_appointment_base a
-    INNER JOIN customer_register_customer_user c
-        ON a.customer_user_id = c.id
-    INNER JOIN property_company co
-        ON c.company_id = co.id
-    WHERE customer_user_id = :customer_user_id
+    a.id,
+    a.name,
+    a.phone_number as \"phoneNumber\",
+    a.time,
+    a.created,
+    a.time_zone as \"timeZone\",
+    a.confirmed,
+    a.company_id as \"companyId\",
+    a_re.unit_type as \"unitType\",
+    a_m.email,
+    a_m.date_of_birth as \"dateOfBirth\",
+    a_m.test_type as \"testType\",
+    a_m.gender as \"gender\",
+    a_m.address
+
+
+    FROM appointments_appointment_base a
+    LEFT JOIN appointments_appointment_real_estate a_re
+        ON a.id = a_re.appointment_base_ptr_id
+    LEFT JOIN appointments_appointment_medical a_m
+        ON a.id = a_m.appointment_base_ptr_id
+    WHERE a.company_id IN (SELECT id FROM property_company WHERE customer_user_id = :customer_user_id)
     ORDER BY time DESC;
     ";
     

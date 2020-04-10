@@ -12,27 +12,31 @@ struct AppointmentModel: Decodable {
 
     // MARK: Properties
     var id: Int
-    var name: String?
-    var phoneNumber: String?
+    var name: String
+    var phoneNumber: String
+    var time: String
+    var created: String
+    var timeZone: String
+    var confirmed: Bool
+    var companyId: Int
+    var unitType: String?
+    var email: String?
+    var dateOfBirth: String?
+    var testType: String?
+    var gender: String?
     var address: String?
-    var time: String?
-    var created: String?
-    var timeZone: String?
-    var confirmed: Bool?
     
     // Computed Properties
     var timeDate: Date {
         get {
-            guard let time = self.time else { return Date() }
-            return DateHelper.createDate(from: time, format: "yyyy-MM-dd HH:mm:ssZ")
+            return DateHelper.createDate(from: self.time, format: "yyyy-MM-dd HH:mm:ssZ")
         }
 
     }
     
     var createdDate: Date {
         get {
-            guard let created = self.created else { return Date() }
-            return DateHelper.createDate(from: created, format: "yyyy-MM-dd HH:mm:ss zzz")
+            return DateHelper.createDate(from: self.created, format: "yyyy-MM-dd HH:mm:ss zzz")
         }
 
     }
@@ -50,10 +54,8 @@ struct AppointmentModel: Decodable {
     var initials: String {
         
         get {
-            guard let name = self.name else { return "" }
-            
             // Split the name string into an array if it has spaces
-            let nameComponentsArray = name.components(separatedBy: " ")
+            let nameComponentsArray = self.name.components(separatedBy: " ")
             // If our array has a count greater than one, we have multiple names
             // get the first character of the first and second element
             // in the array
@@ -68,8 +70,8 @@ struct AppointmentModel: Decodable {
             }
             
             // Return the first two characters of the string if only one name is given
-            let index = name.index(name.startIndex, offsetBy: 2)
-            let initials = String(name[..<index])
+            let index = self.name.index(self.name.startIndex, offsetBy: 2)
+            let initials = String(self.name[..<index])
             return initials.uppercased()
         }
         
@@ -81,11 +83,9 @@ struct AppointmentModel: Decodable {
         get {
             let id = self.id
             guard
-                let name = self.name,
-                let phoneNumber = self.phoneNumber,
                 let address = self.address
             else { return "" }
-           return "Id: \(id), Name: \(name) \(phoneNumber), Email: \(address)"
+            return "Id: \(id), Name: \(self.name) \(self.phoneNumber), Email: \(address)"
         }
         
     }

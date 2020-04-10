@@ -155,7 +155,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         let httpRequest = HTTPRequests()
         let parameters: [String: Any] = ["email": username, "password": password]
-        httpRequest.request(endpoint: "/login.php", dataModel: CustomerModel(id: 1), parameters: parameters) { [weak self] (result) in
+        httpRequest.request(endpoint: "/login.php", dataModel: CustomerModel.self, parameters: parameters) { [weak self] (result) in
             
             // Use a switch statement to go through the cases of the Result eumeration
             // and to access the associated values for each enumeration case
@@ -171,27 +171,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     // Go to tab bar view controller
                     if let tabBarViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.TabBarControllerIdentifiers.home.rawValue) as? HomeTabBarController  {
                         
-                        // Unwrap optionals from CustomerModel instance
-                        guard
-                            let companyAddress = customer.companyAddress,
-                            let companyEmail = customer.companyEmail,
-                            let companyId = customer.companyId,
-                            let companyName = customer.companyName,
-                            let companyPhone = customer.companyPhone,
-                            let customerType = customer.customerType,
-                            let daysOfTheWeekEnabled = customer.daysOfTheWeekEnabled,
-                            let email = customer.email,
-                            let firstName = customer.firstName,
-                            let hoursOfTheDayEnabled = customer.hoursOfTheDayEnabled,
-                            let isPaying = customer.isPaying,
-                            let lastName = customer.lastName,
-                            let phoneNumber = customer.phoneNumber,
-                            let wantsSms = customer.wantsSms
-                        else { return }
-                        
                         // Get non optionals from CustomerModel instance
                         let dateJoinedDate = customer.dateJoinedDate
-                        let id = customer.id
+                        let id = Int32(customer.id)
+                        let customerType = customer.customerType
+                        let email = customer.email
+                        let firstName = customer.firstName
+                        let isPaying = customer.isPaying
+                        let lastName = customer.lastName
+                        let phoneNumber = customer.phoneNumber
+                        let wantsSms = customer.wantsSms
+                        let username = customer.username
+                        let lastLoginDate = customer.lastLoginDate
                         
                         // If there are no customer CoreData objects, save the new customer object
                         let customerCount = PersistenceService.entityExists(entityName: Defaults.CoreDataEntities.customer.rawValue)
@@ -202,7 +193,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                                 return
                             }
                             
-                            coreDataCustomerObject.addCustomer(companyAddress: companyAddress, companyEmail: companyEmail, companyId: Int32(companyId), companyName: companyName, companyPhone: companyPhone, customerType: customerType, dateJoined: dateJoinedDate, daysOfTheWeekEnabled: daysOfTheWeekEnabled, email: email, firstName: firstName, hoursOfTheDayEnabled: hoursOfTheDayEnabled, id: Int32(id), isPaying: isPaying, lastName: lastName, phoneNumber: phoneNumber, wantsSms: wantsSms, companies: nil)
+                            coreDataCustomerObject.addCustomer(customerType: customerType, dateJoined: dateJoinedDate, email: email, firstName: firstName, id: id, isPaying: isPaying, lastName: lastName, phoneNumber: phoneNumber, wantsSms: wantsSms, password: password, username: username, lastLogin: lastLoginDate, companies: nil)
                             
                             PersistenceService.saveContext()
                             
@@ -222,7 +213,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                                 return
                             }
                             
-                            coreDataCustomerObject.addCustomer(companyAddress: companyAddress, companyEmail: companyEmail, companyId: Int32(companyId), companyName: companyName, companyPhone: companyPhone, customerType: customerType, dateJoined: dateJoinedDate, daysOfTheWeekEnabled: daysOfTheWeekEnabled, email: email, firstName: firstName, hoursOfTheDayEnabled: hoursOfTheDayEnabled, id: Int32(id), isPaying: isPaying, lastName: lastName, phoneNumber: phoneNumber, wantsSms: wantsSms, companies: nil)
+                            coreDataCustomerObject.addCustomer(customerType: customerType, dateJoined: dateJoinedDate, email: email, firstName: firstName, id: id, isPaying: isPaying, lastName: lastName, phoneNumber: phoneNumber, wantsSms: wantsSms, password: password, username: username, lastLogin: lastLoginDate, companies: nil)
                             
                             PersistenceService.saveContext()
                             

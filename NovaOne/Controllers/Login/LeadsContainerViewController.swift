@@ -38,7 +38,7 @@ class LeadsContainerViewController: UIViewController {
                                          "password": password as Any]
         
         httpRequest.request(endpoint: "/leads.php",
-                            dataModel: [LeadModel(id: 1)],
+                            dataModel: [LeadModel].self,
                             parameters: parameters) { [weak self] (result) in
                                 
                                 // Get anchor constraints from container view so that we can layout the views

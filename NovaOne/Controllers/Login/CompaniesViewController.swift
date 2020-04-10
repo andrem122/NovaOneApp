@@ -61,7 +61,7 @@ class CompaniesViewController: UIViewController, UITableViewDelegate, UITableVie
                                          "email": email as Any,
                                          "password": password as Any]
         
-        httpRequest.request(endpoint: "/properties.php", dataModel: [CompanyModel(id: 1)], parameters: parameters) { (result) in
+        httpRequest.request(endpoint: "/companies.php", dataModel: [CompanyModel].self, parameters: parameters) { (result) in
                 switch result {
                     
                     case .success(let companies):
@@ -73,6 +73,9 @@ class CompaniesViewController: UIViewController, UITableViewDelegate, UITableVie
                         for company in companies {
                             if let coreDataCompany = NSManagedObject(entity: entity, insertInto: PersistenceService.context) as? Company {
                                 coreDataCompany.address = company.address
+                                coreDataCompany.city = company.city
+                                coreDataCompany.state = company.state
+                                coreDataCompany.zip = company.zip
                                 coreDataCompany.created = company.createdDate
                                 coreDataCompany.daysOfTheWeekEnabled = company.daysOfTheWeekEnabled
                                 coreDataCompany.email = company.email
@@ -124,7 +127,14 @@ extension CompaniesViewController {
             else { return cell }
             
             let company: Company = coreDataCompanies[indexPath.row]
-            guard let address = company.shortenedAddress else { return cell }
+            guard
+                let title = company.shortenedAddress,
+                let city = company.city,
+                let state = company.state,
+                let zip = company.zip
+            else { return cell }
+            
+            let subTitleOne = "\(city), \(state)"
             
             // Get date of appointment as a string
             let dateFormatter = DateFormatter()
@@ -132,7 +142,8 @@ extension CompaniesViewController {
             guard let createdTimeDate: Date = company.created else { return cell }
             let createdTime: String = dateFormatter.string(from: createdTimeDate)
             
-            cell.setup(title: address, subTitleOne: "Fort Pierce, FL", subTitleTwo: "34950", subTitleThree: createdTime)
+            
+            cell.setup(title: title, subTitleOne: subTitleOne, subTitleTwo: zip, subTitleThree: createdTime)
             
         } else { // Show items from the NovaOne database that were obtained via an HTTP request
             print("Companies from the HTTP request will be shown")
