@@ -163,6 +163,7 @@ extension CompanyDetailViewController {
         case "Showing Hours":
             if let updateCompanyHoursEnabledViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateCompanyHoursEnabled.rawValue) as? UpdateCompanyHoursEnabledViewController {
                 
+                updateCompanyHoursEnabledViewController.company = self.company
                 self.navigationController?.pushViewController(updateCompanyHoursEnabledViewController, animated: true)
                 
             }

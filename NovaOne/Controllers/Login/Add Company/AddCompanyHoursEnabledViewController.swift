@@ -75,7 +75,8 @@ class AddCompanyHoursEnabledViewController: UIViewController, UITableViewDataSou
             // Navigate to success screen once the company has been sucessfully added
             if let successViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.success.rawValue) as? SuccessViewController {
                 
-                successViewController.setup(title: "Company Added!", subtitle: "The company has been successfully added.")
+                successViewController.titleLabelText = "Company Added!"
+                successViewController.subtitleText = "The company has been successfully added."
                 self.present(successViewController, animated: true, completion: nil)
                 
             }

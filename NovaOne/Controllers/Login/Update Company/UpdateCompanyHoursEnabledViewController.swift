@@ -41,15 +41,16 @@ class UpdateCompanyHoursEnabledViewController: UIViewController, UITableViewDele
         EnableOption(option: "10:00", selected: false),
         EnableOption(option: "11:00", selected: false),
     ]
+    let alertService = AlertService()
     var company: Any?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setup()
+        self.setupTableView()
         self.setHours()
     }
     
-    func setup() {
+    func setupTableView() {
         // Set delegate and datasource for table view
         self.updateCompanyHoursEnabledTableView.delegate = self
         self.updateCompanyHoursEnabledTableView.dataSource = self
@@ -59,11 +60,18 @@ class UpdateCompanyHoursEnabledViewController: UIViewController, UITableViewDele
         // Sets the check marks on each cell to visible based on what hours
         // the user has selected perviously
         
+        // For CoreData
         if let company = self.company as? Company {
-            guard let hoursOfTheDayEnabledString = company.hoursOfTheDayEnabled else { return }
+            guard let hoursOfTheDayEnabledString = company.hoursOfTheDayEnabled else {
+                print("Could not get hours of the day enabled string from customer object")
+                return
+            }
             self.parseAndUseInfoFrom(hoursOfTheDayEnabledString: hoursOfTheDayEnabledString)
-        } else {
-            guard let company = self.company as? CompanyModel else { return }
+        } else { // For HTTP request data model
+            guard let company = self.company as? CompanyModel else {
+                print("Could not get hours of the day enabled string from customer object")
+                return
+            }
             self.parseAndUseInfoFrom(hoursOfTheDayEnabledString: company.hoursOfTheDayEnabled)
         }
         
@@ -76,6 +84,7 @@ class UpdateCompanyHoursEnabledViewController: UIViewController, UITableViewDele
         var hoursOfTheDayEnabled: [String] = hoursOfTheDayEnabledString.components(separatedBy: ",")
         
         hoursOfTheDayEnabled = self.convertToTwelveHourFormat(hours: hoursOfTheDayEnabled)
+        print(hoursOfTheDayEnabled)
         
         for hour in hoursOfTheDayEnabled {
             // Get the AM/PM part of the hour string
@@ -116,6 +125,25 @@ class UpdateCompanyHoursEnabledViewController: UIViewController, UITableViewDele
         }
         
         return twelveHourArray
+        
+    }
+    
+    // MARK: Actions
+    @IBAction func updateButtonTapped(_ sender: Any) {
+        let title = "Update Hours"
+        let body = "Are you sure you want to update company hours?"
+        let buttonTitle = "Update"
+        
+        let popUpViewController = alertService.popUp(title: title, body: body, buttonTitle: buttonTitle) {
+            [weak self] in
+            // Update CoreData
+            
+            // Update database
+            
+            // Navigate to company detail view controller
+            self?.navigationController?.popViewController(animated: true)
+        }
+        self.present(popUpViewController, animated: true, completion: nil)
         
     }
     

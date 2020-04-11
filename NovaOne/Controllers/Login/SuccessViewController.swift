@@ -13,18 +13,19 @@ class SuccessViewController: UIViewController {
     // MARK: Properties
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
+    var titleLabelText: String?
+    var subtitleText: String?
     
     // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setup()
     }
     
-    func setup(title: String, subtitle: String) {
+    func setup() {
         // Sets up the text for the title and subtitle text
-        DispatchQueue.main.async {
-            self.titleLabel.text = title
-            self.subtitleLabel.text = subtitle
-        }
+        self.titleLabel.text = titleLabelText
+        self.subtitleLabel.text = subtitleText
     }
     
     // MARK: Actions

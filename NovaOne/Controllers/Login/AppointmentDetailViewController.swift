@@ -57,20 +57,53 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
         let appointmentTime: String = self.convert(appointment: appointment.timeDate)
         let appointmentCreated: String = self.convert(appointment: appointment.createdDate)
         let confirmedString = appointment.confirmed ? "Yes" : "No"
-        let address = appointment.shortenedAddress
+        let phoneNumber = appointment.phoneNumber
         
         // Create dictionaries for cells
-        let addressCell = ["cellTitle": "Address", "cellTitleValue": address]
+        let phoneNumberCell = ["cellTitle": "Phone Number", "cellTitleValue": phoneNumber]
         let appointmentTimeCell = ["cellTitle": "Time", "cellTitleValue": appointmentTime]
         let appointmentCreatedCell = ["cellTitle": "Created", "cellTitleValue": appointmentCreated]
         let appointmentConfirmedCell = ["cellTitle": "Confirmed", "cellTitleValue": confirmedString]
         
         self.titleLabel.text = appointment.name
         self.objectDetailCells = [
-            addressCell,
+            phoneNumberCell,
             appointmentTimeCell,
             appointmentCreatedCell,
             appointmentConfirmedCell]
+        
+        // Additional cells for different customer types
+        guard
+            let customer = PersistenceService.fetchCustomerEntity(),
+            let customerType = customer.customerType
+        else { return }
+        
+        if customerType == Defaults.CustomerTypes.propertyManager.rawValue {
+            
+            guard let unitType = appointment.unitType else { return }
+            let unitTypeCell = ["cellTitle": "Unit Type", "cellTitleValue": unitType]
+            self.objectDetailCells.append(unitTypeCell)
+            
+        } else if customerType == Defaults.CustomerTypes.medicalWorker.rawValue {
+            
+            guard
+                let email = appointment.email,
+                let dateOfBirth = appointment.dateOfBirth,
+                let testType = appointment.testType,
+                let gender = appointment.gender
+            else { return }
+            let address = appointment.shortenedAddress
+            
+            let emailCell = ["cellTitle": "Email", "cellTitleValue": email]
+            let dateOfBirthCell = ["cellTitle": "Date Of Birth", "cellTitleValue": dateOfBirth]
+            let testTypeCell = ["cellTitle": "Test Type", "cellTitleValue": testType]
+            let genderCell = ["cellTitle": "Gender", "cellTitleValue": gender]
+            let addressCell = ["cellTitle": "Address", "cellTitleValue": address]
+            
+            let cells = [emailCell, dateOfBirthCell, testTypeCell, genderCell, addressCell]
+            self.objectDetailCells.append(contentsOf: cells)
+            
+        }
     }
     
     // MARK: Actions
@@ -102,6 +135,7 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
 }
 
 extension AppointmentDetailViewController {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.objectDetailCells.count
     }
@@ -114,5 +148,9 @@ extension AppointmentDetailViewController {
         cell.setup(cellTitle: objectDetailCell["cellTitle"]!, cellTitleValue: objectDetailCell["cellTitleValue"]!)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
