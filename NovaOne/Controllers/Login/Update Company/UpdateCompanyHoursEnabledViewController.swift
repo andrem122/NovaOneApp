@@ -142,6 +142,8 @@ class UpdateCompanyHoursEnabledViewController: UIViewController, UITableViewDele
             
             // Navigate to company detail view controller
             self?.navigationController?.popViewController(animated: true)
+            
+            // Refresh company detail view to reflect data changes made by user
         }
         self.present(popUpViewController, animated: true, completion: nil)
         

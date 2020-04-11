@@ -12,12 +12,20 @@ class AppointmentsViewController: UIViewController {
     
     // MARK: Properties
     @IBOutlet weak var appointmentTableView: UITableView!
+    @IBOutlet weak var navigationBar: UINavigationBar!
     var appointments: [AppointmentModel] = []
+    
     
     // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupTableView()
+        self.setupNavigationBar()
+    }
+    
+    func setupNavigationBar() {
+        self.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationBar.shadowImage = UIImage()
     }
     
     func setupTableView() {
@@ -69,11 +77,15 @@ extension AppointmentsViewController: UITableViewDataSource, UITableViewDelegate
         let appointment = self.appointments[indexPath.row]
         
         //Get detail view controller, pass object to it, and present it
-        if let appointmentDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.appointmentDetail.rawValue) as? AppointmentDetailViewController {
+        if let appointmentDetailNavigationController = self.storyboard?.instantiateViewController(withIdentifier: Defaults.NavigationControllerIdentifiers.appointmentDetail.rawValue) as? UINavigationController {
+            
+            guard let appointmentDetailViewController = appointmentDetailNavigationController.viewControllers[0] as? AppointmentDetailViewController else { return }
             appointmentDetailViewController.appointment = appointment
             
-            appointmentDetailViewController.modalPresentationStyle = .automatic
-            self.present(appointmentDetailViewController, animated: true, completion: nil)
+            appointmentDetailNavigationController.modalPresentationStyle = .fullScreen
+            
+            self.present(appointmentDetailNavigationController, animated: true, completion: nil)
+            
         }
     }
     

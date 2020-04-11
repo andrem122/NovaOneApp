@@ -23,6 +23,12 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
         self.setupObjectDetailCellsAndTitle()
         self.setupTableView()
         self.setupTopView()
+        self.setupNavigationBar()
+    }
+    
+    func setupNavigationBar() {
+        // Set up the navigation bar
+        UIHelper.setupNavigationBarStyle(for: self.navigationController)
     }
     
     func setupTopView() {
@@ -33,6 +39,7 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
     }
     
     func setupTableView() {
+        // Set up the table view
         self.objectDetailTableView.delegate = self
         self.objectDetailTableView.dataSource = self
     }
@@ -132,6 +139,10 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
         self.present(popUpViewController, animated: true, completion: nil)
     }
     
+    @IBAction func cancelButtonTapped(_ sender: Any) {
+        self.navigationController?.dismiss(animated: true, completion: nil)
+    }
+    
 }
 
 extension AppointmentDetailViewController {
@@ -151,6 +162,82 @@ extension AppointmentDetailViewController {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        
+            tableView.deselectRow(at: indexPath, animated: true) // Deselect the row after it is tapped on
+            
+            // Get company title based on which row the user taps on
+            guard let cellTitle = self.objectDetailCells[indexPath.row]["cellTitle"] else { return }
+            print(cellTitle)
+        
+            // Get update view controller based on which cell the user clicked on
+            switch cellTitle {
+                case "Email":
+                    if let updateAppointmentEmailViewController = self.storyboard?.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentEmail.rawValue) as? UpdateAppointmentEmailViewController {
+                        
+                        self.navigationController?.pushViewController(updateAppointmentEmailViewController, animated: true)
+                        
+                    }
+                
+                case "Phone Number":
+                    if let updateAppointmentPhoneViewController = self.storyboard?.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentPhone.rawValue) as? UpdateAppointmentPhoneViewController {
+                        
+                        self.navigationController?.pushViewController(updateAppointmentPhoneViewController, animated: true)
+                        
+                    }
+                
+                case "Time":
+                    if let updateAppointmentTimeViewController = self.storyboard?.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentTime.rawValue) as? UpdateAppointmentTimeViewController {
+                        
+                        self.navigationController?.pushViewController(updateAppointmentTimeViewController, animated: true)
+                        
+                    }
+                
+                case "Confirmed":
+                    if let updateAppointmentStatusViewController = self.storyboard?.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentStatus.rawValue) as? UpdateAppointmentStatusViewController {
+                        
+                        self.navigationController?.pushViewController(updateAppointmentStatusViewController, animated: true)
+                        
+                    }
+                
+                case "Date Of Birth":
+                    if let updateAppointmentDateOfBirthViewController = self.storyboard?.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentDateOfBirth.rawValue) as? UpdateAppointmentDateOfBirthViewController {
+                        
+                        self.navigationController?.pushViewController(updateAppointmentDateOfBirthViewController, animated: true)
+                        
+                    }
+                
+                case "Unit Type":
+                    if let updateAppointmentUnitTypeViewController = self.storyboard?.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentUnitType.rawValue) as? UpdateAppointmentUnitTypeViewController {
+                        
+                        self.navigationController?.pushViewController(updateAppointmentUnitTypeViewController, animated: true)
+                        
+                    }
+                
+                case "Test Type":
+                    if let updateAppointmentTestTypeViewController = self.storyboard?.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentTestType.rawValue) as? UpdateAppointmentTestTypeViewController {
+                        
+                        self.navigationController?.pushViewController(updateAppointmentTestTypeViewController, animated: true)
+                        
+                    }
+                
+                case "Gender":
+                    if let updateAppointmentGenderViewController = self.storyboard?.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentGender.rawValue) as? UpdateAppointmentGenderViewController {
+                        
+                        self.navigationController?.pushViewController(updateAppointmentGenderViewController, animated: true)
+                        
+                    }
+                
+                case "Address":
+                    if let updateAppointmentAddressViewController = self.storyboard?.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentAddress.rawValue) as? UpdateAppointmentAddressViewController {
+                        
+                        self.navigationController?.pushViewController(updateAppointmentAddressViewController, animated: true)
+                        
+                    }
+                
+                default:
+                    print("No cases matched")
+            }
+
     }
+    
 }
