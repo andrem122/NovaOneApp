@@ -230,7 +230,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p5x-OD-s8g" userLabel="Cancel Button">
-                                <rect key="frame" x="20" y="76" width="33.5" height="33.5"/>
+                                <rect key="frame" x="20" y="76" width="67" height="67"/>
                                 <state key="normal" image="cancelButtonBlue"/>
                                 <connections>
                                     <action selector="cancelButtonTapped:" destination="3nd-WK-PNW" eventType="touchUpInside" id="AQ2-0X-vAi"/>
@@ -273,7 +273,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5O7-UW-25n" userLabel="Cancel Button">
-                                <rect key="frame" x="20" y="64" width="33.5" height="33.5"/>
+                                <rect key="frame" x="20" y="64" width="67" height="67"/>
                                 <state key="normal" image="cancelButtonBlue"/>
                                 <connections>
                                     <action selector="cancelButtonTouch:" destination="00c-Xy-omL" eventType="touchUpInside" id="I9r-bb-DbA"/>
@@ -743,7 +743,7 @@ and you have 4 calls.</string>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j7F-yk-LVA" userLabel="Email Button">
-                                                            <rect key="frame" x="296" y="11.5" width="27" height="27"/>
+                                                            <rect key="frame" x="269" y="-2" width="54" height="54"/>
                                                             <state key="normal" image="emailBlue"/>
                                                             <connections>
                                                                 <action selector="emailButtonTapped:" destination="mks-rP-h9s" eventType="touchUpInside" id="Jgo-34-ZTf"/>
@@ -1032,7 +1032,7 @@ on how to reset your password.</string>
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kEj-0U-bzz">
-                                <rect key="frame" x="20" y="64" width="33.5" height="33.5"/>
+                                <rect key="frame" x="20" y="64" width="67" height="67"/>
                                 <state key="normal" image="cancelButtonBlue"/>
                                 <connections>
                                     <action selector="cancelButtonTapped:" destination="T1A-G4-xJU" eventType="touchUpInside" id="kgs-AH-JO8"/>
@@ -1742,7 +1742,7 @@ of your company?</string>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uPa-aU-gkr" userLabel="Email Button">
-                                                            <rect key="frame" x="296" y="11.5" width="27" height="27"/>
+                                                            <rect key="frame" x="269" y="-2" width="54" height="54"/>
                                                             <state key="normal" image="emailBlue"/>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z4E-mK-dZr" userLabel="Call Button">
@@ -4404,13 +4404,13 @@ hours below.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Appointment" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lZA-Gm-ydZ">
-                                <rect key="frame" x="80" y="126" width="254.5" height="37"/>
+                                <rect key="frame" x="80" y="86" width="254.5" height="37"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
                                 <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DoO-rN-Ogz">
-                                <rect key="frame" x="68" y="183" width="278.5" height="41"/>
+                                <rect key="frame" x="68" y="143" width="278.5" height="41"/>
                                 <string key="text">Type in the name of the person with 
 the appointment below.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -4418,7 +4418,7 @@ the appointment below.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="7LU-T7-iRh">
-                                <rect key="frame" x="30" y="254" width="354" height="110"/>
+                                <rect key="frame" x="30" y="214" width="354" height="110"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="QgE-B5-coD" customClass="NovaOneTextField" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="354" height="45"/>
@@ -4461,29 +4461,14 @@ the appointment below.</string>
                                     </button>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c27-bK-FKL" userLabel="Cancel Button">
-                                <rect key="frame" x="20" y="76" width="33.5" height="33.5"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="33.329999999999998" id="Agm-cX-dLv"/>
-                                    <constraint firstAttribute="height" constant="33.329999999999998" id="Mcz-Xv-v7l"/>
-                                    <constraint firstAttribute="width" secondItem="c27-bK-FKL" secondAttribute="height" multiplier="1:1" id="UP7-4K-Tbh"/>
-                                </constraints>
-                                <state key="normal" title="Button" image="cancelButtonBlue"/>
-                                <connections>
-                                    <action selector="cancelButtonTapped:" destination="21X-dn-5Df" eventType="touchUpInside" id="dD6-SU-xVO"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="DoO-rN-Ogz" firstAttribute="top" secondItem="lZA-Gm-ydZ" secondAttribute="bottom" constant="20" id="ACz-b8-3LX"/>
-                            <constraint firstItem="c27-bK-FKL" firstAttribute="leading" secondItem="hrp-fJ-yKF" secondAttribute="leading" constant="20" id="AxC-V4-0sp"/>
-                            <constraint firstItem="lZA-Gm-ydZ" firstAttribute="top" secondItem="hrp-fJ-yKF" secondAttribute="top" constant="70" id="EWd-dA-RDe"/>
+                            <constraint firstItem="lZA-Gm-ydZ" firstAttribute="top" secondItem="hrp-fJ-yKF" secondAttribute="top" constant="30" id="EWd-dA-RDe"/>
                             <constraint firstItem="lZA-Gm-ydZ" firstAttribute="centerX" secondItem="Ecy-4G-OFs" secondAttribute="centerX" id="FX9-rb-8si"/>
                             <constraint firstItem="hrp-fJ-yKF" firstAttribute="trailing" secondItem="7LU-T7-iRh" secondAttribute="trailing" constant="30" id="Fl3-9P-UqW"/>
                             <constraint firstItem="7LU-T7-iRh" firstAttribute="top" secondItem="DoO-rN-Ogz" secondAttribute="bottom" constant="30" id="QHa-nq-puz"/>
-                            <constraint firstItem="hrp-fJ-yKF" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="c27-bK-FKL" secondAttribute="trailing" id="RUo-Ab-9Ue"/>
-                            <constraint firstItem="c27-bK-FKL" firstAttribute="top" secondItem="hrp-fJ-yKF" secondAttribute="top" constant="20" id="TJj-er-eID"/>
                             <constraint firstItem="7LU-T7-iRh" firstAttribute="leading" secondItem="hrp-fJ-yKF" secondAttribute="leading" constant="30" id="WGz-qy-sXU"/>
                             <constraint firstItem="DoO-rN-Ogz" firstAttribute="centerX" secondItem="Ecy-4G-OFs" secondAttribute="centerX" id="XB3-3Y-hi7"/>
                         </constraints>
@@ -6595,7 +6580,7 @@ with the appointment.</string>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="If6-vI-b0I">
-                                <rect key="frame" x="0.0" y="56" width="414" height="652"/>
+                                <rect key="frame" x="0.0" y="207" width="414" height="501"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="enableOptionTableViewCell" id="eDW-wK-aBM" customClass="EnableOptionTableViewCell" customModule="NovaOne" customModuleProvider="target">
@@ -6605,8 +6590,8 @@ with the appointment.</string>
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sunday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a1I-37-x2m" userLabel="Option Label">
-                                                    <rect key="frame" x="20" y="11.5" width="57" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a1I-37-x2m" userLabel="Option Label">
+                                                    <rect key="frame" x="20" y="11.5" width="72.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -6636,24 +6621,47 @@ with the appointment.</string>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Appointment" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YEA-sL-vxc">
+                                <rect key="frame" x="80" y="89" width="254.5" height="37"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
+                                <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="szJ-uU-e4b">
+                                <rect key="frame" x="82.5" y="146" width="249.5" height="41"/>
+                                <string key="text">Select the company you want to 
+make an appointment for.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="szJ-uU-e4b" firstAttribute="top" secondItem="YEA-sL-vxc" secondAttribute="bottom" constant="20" id="1KF-zN-ZGe"/>
+                            <constraint firstItem="YEA-sL-vxc" firstAttribute="top" secondItem="KTh-mw-2Al" secondAttribute="top" constant="33" id="3OB-lJ-Uvk"/>
+                            <constraint firstItem="If6-vI-b0I" firstAttribute="top" secondItem="szJ-uU-e4b" secondAttribute="bottom" constant="20" id="74y-ax-Yln"/>
+                            <constraint firstItem="YEA-sL-vxc" firstAttribute="centerX" secondItem="oGA-HU-g0M" secondAttribute="centerX" id="8fb-h5-uEL"/>
                             <constraint firstItem="KTh-mw-2Al" firstAttribute="bottom" secondItem="RB2-ge-dGa" secondAttribute="bottom" constant="20" id="DMG-jd-NqG"/>
                             <constraint firstItem="If6-vI-b0I" firstAttribute="trailing" secondItem="KTh-mw-2Al" secondAttribute="trailing" id="EwJ-wo-dWH"/>
                             <constraint firstItem="RB2-ge-dGa" firstAttribute="top" secondItem="If6-vI-b0I" secondAttribute="bottom" constant="35" id="Fih-Dd-qU2"/>
                             <constraint firstItem="KTh-mw-2Al" firstAttribute="trailing" secondItem="RB2-ge-dGa" secondAttribute="trailing" constant="30" id="KqT-gY-3l3"/>
                             <constraint firstItem="RB2-ge-dGa" firstAttribute="leading" secondItem="KTh-mw-2Al" secondAttribute="leading" constant="30" id="ZoP-L9-PQX"/>
-                            <constraint firstItem="If6-vI-b0I" firstAttribute="top" secondItem="KTh-mw-2Al" secondAttribute="top" id="plt-8o-Z1E"/>
+                            <constraint firstItem="szJ-uU-e4b" firstAttribute="centerX" secondItem="oGA-HU-g0M" secondAttribute="centerX" id="c8D-Co-YDL"/>
                             <constraint firstItem="If6-vI-b0I" firstAttribute="leading" secondItem="KTh-mw-2Al" secondAttribute="leading" id="w5p-in-V8g"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="KTh-mw-2Al"/>
                     </view>
                     <navigationItem key="navigationItem" id="wL7-mt-cca">
                         <barButtonItem key="backBarButtonItem" title=" " id="eam-3s-ioz"/>
+                        <barButtonItem key="leftBarButtonItem" image="cancelButtonBlue" width="33.5" id="EOz-6S-Qsq">
+                            <connections>
+                                <action selector="cancelButtonTapped:" destination="P4x-aS-XL0" id="hqA-ME-f51"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="updateCompanyDaysEnabledTableView" destination="If6-vI-b0I" id="HVX-3b-vPG"/>
+                        <outlet property="tableView" destination="If6-vI-b0I" id="b0R-Jc-XD2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AkT-fE-aZL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

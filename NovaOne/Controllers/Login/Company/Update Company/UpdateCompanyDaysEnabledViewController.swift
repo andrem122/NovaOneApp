@@ -13,13 +13,13 @@ class UpdateCompanyDaysEnabledViewController: UIViewController, UITableViewDeleg
     // MARK: Properties
     @IBOutlet weak var updateCompanyDaysEnabledTableView: UITableView!
     var daysOfTheWeek: [EnableOption] = [
-        EnableOption(option: "Sunday", selected: false),
-        EnableOption(option: "Monday", selected: false),
-        EnableOption(option: "Tuesday", selected: false),
-        EnableOption(option: "Wednesday", selected: false),
-        EnableOption(option: "Thursday", selected: false),
-        EnableOption(option: "Friday", selected: false),
-        EnableOption(option: "Saturday", selected: false),
+        EnableOption(option: "Sunday", selected: false, id: nil),
+        EnableOption(option: "Monday", selected: false, id: nil),
+        EnableOption(option: "Tuesday", selected: false, id: nil),
+        EnableOption(option: "Wednesday", selected: false, id: nil),
+        EnableOption(option: "Thursday", selected: false, id: nil),
+        EnableOption(option: "Friday", selected: false, id: nil),
+        EnableOption(option: "Saturday", selected: false, id: nil),
     ]
     var company: Any?
     

@@ -78,6 +78,7 @@ extension CompaniesViewController {
             let company: CompanyModel = self.companies[indexPath.row] // Get the company object based on the row number each cell is in
             // Pass in appointment object to set up cell properties (address, city, etc.)
             let title = company.name
+            let subTitleOne = "\(company.city), \(company.state)"
             
             // Get date of appointment as a string
             let dateFormatter = DateFormatter()
@@ -85,7 +86,7 @@ extension CompaniesViewController {
             let createdTimeDate: Date = company.createdDate
             let createdTime: String = dateFormatter.string(from: createdTimeDate)
             
-            cell.setup(title: title, subTitleOne: "Fort Pierce, FL", subTitleTwo: "34950", subTitleThree: createdTime)
+            cell.setup(title: title, subTitleOne: subTitleOne, subTitleTwo: company.zip, subTitleThree: createdTime)
         }
         
         return cell

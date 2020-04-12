@@ -62,7 +62,6 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
         else { return }
         
         let appointmentTime: String = self.convert(appointment: appointment.timeDate)
-        let appointmentCreated: String = self.convert(appointment: appointment.createdDate)
         let confirmedString = appointment.confirmed ? "Yes" : "No"
         let phoneNumber = appointment.phoneNumber
         

@@ -11,4 +11,5 @@ import Foundation
 struct EnableOption {
     let option: String
     var selected: Bool
+    let id: Int?
 }
