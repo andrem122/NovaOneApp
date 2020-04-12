@@ -84,7 +84,6 @@ class UpdateCompanyHoursEnabledViewController: UIViewController, UITableViewDele
         var hoursOfTheDayEnabled: [String] = hoursOfTheDayEnabledString.components(separatedBy: ",")
         
         hoursOfTheDayEnabled = self.convertToTwelveHourFormat(hours: hoursOfTheDayEnabled)
-        print(hoursOfTheDayEnabled)
         
         for hour in hoursOfTheDayEnabled {
             // Get the AM/PM part of the hour string

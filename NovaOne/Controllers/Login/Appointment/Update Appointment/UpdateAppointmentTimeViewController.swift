@@ -1,5 +1,5 @@
 //
-//  UpdateAppointmentGenderViewController.swift
+//  UpdateAppointmentTimeViewController.swift
 //  NovaOne
 //
 //  Created by Andre Mashraghi on 4/11/20.
@@ -8,8 +8,11 @@
 
 import UIKit
 
-class UpdateAppointmentGenderViewController: UIViewController {
-
+class UpdateAppointmentTimeViewController: UIViewController {
+    
+    // MARK: Properties
+    @IBOutlet weak var timeDatePicker: UIDatePicker!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

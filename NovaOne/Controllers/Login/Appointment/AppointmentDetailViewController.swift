@@ -69,14 +69,12 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
         // Create dictionaries for cells
         let phoneNumberCell = ["cellTitle": "Phone Number", "cellTitleValue": phoneNumber]
         let appointmentTimeCell = ["cellTitle": "Time", "cellTitleValue": appointmentTime]
-        let appointmentCreatedCell = ["cellTitle": "Created", "cellTitleValue": appointmentCreated]
         let appointmentConfirmedCell = ["cellTitle": "Confirmed", "cellTitleValue": confirmedString]
         
         self.titleLabel.text = appointment.name
         self.objectDetailCells = [
             phoneNumberCell,
             appointmentTimeCell,
-            appointmentCreatedCell,
             appointmentConfirmedCell]
         
         // Additional cells for different customer types

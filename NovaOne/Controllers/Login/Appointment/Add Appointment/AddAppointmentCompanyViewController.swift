@@ -1,14 +1,14 @@
 //
-//  UpdateAppointmentTestTypeViewController.swift
+//  AddAppointmentCompanyViewController.swift
 //  NovaOne
 //
-//  Created by Andre Mashraghi on 4/11/20.
+//  Created by Andre Mashraghi on 4/12/20.
 //  Copyright © 2020 Andre Mashraghi. All rights reserved.
 //
 
 import UIKit
 
-class UpdateAppointmentTestTypeViewController: UIViewController {
+class AddAppointmentCompanyViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

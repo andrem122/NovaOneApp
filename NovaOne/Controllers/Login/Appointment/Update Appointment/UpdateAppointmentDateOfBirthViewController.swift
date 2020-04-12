@@ -1,5 +1,5 @@
 //
-//  UpdateAppointmentTimeViewController.swift
+//  UpdateAppointmentDateOfBirthViewController.swift
 //  NovaOne
 //
 //  Created by Andre Mashraghi on 4/11/20.
@@ -8,8 +8,11 @@
 
 import UIKit
 
-class UpdateAppointmentTimeViewController: UIViewController {
-
+class UpdateAppointmentDateOfBirthViewController: UIViewController {
+    
+    // MARK: Properties
+    @IBOutlet weak var dateOfBirthPicker: UIDatePicker!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

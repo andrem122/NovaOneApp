@@ -29,6 +29,8 @@ class AppointmentsViewController: UIViewController {
     }
     
     func setupTableView() {
+        // Set up the table view
+        
         self.appointmentTableView.delegate = self
         self.appointmentTableView.dataSource = self
         
