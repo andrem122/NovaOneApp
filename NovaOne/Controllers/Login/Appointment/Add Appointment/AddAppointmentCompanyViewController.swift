@@ -127,11 +127,11 @@ extension AddAppointmentCompanyViewController {
             self.options[count].selected = false
         }
         
-        tableView.reloadData()
-        
         let cell = tableView.cellForRow(at: indexPath) as! EnableOptionTableViewCell
         let selected = cell.toggleCheckMark(cell: cell)
         self.options[indexPath.row].selected = selected
+        
+        tableView.reloadData()
         
     }
     

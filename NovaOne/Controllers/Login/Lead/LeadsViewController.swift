@@ -12,20 +12,88 @@ class LeadsViewController: UIViewController {
     
     // MARK: Properties
     @IBOutlet weak var leadsTableView: UITableView!
+    @IBOutlet weak var navigationBar: UINavigationBar!
     var customer: CustomerModel?
     var leads: [LeadModel] = []
+    lazy var refresher: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = .lightGray
+        refreshControl.addTarget(self, action: #selector(self.getLeads), for: .valueChanged)
+        return refreshControl
+    }()
         
     // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setUp()
-        self.leadsTableView.delegate = self
-        self.leadsTableView.dataSource = self
+        self.setupNavigationBar()
+        self.setupTableView()
     }
     
-    func setUp() {
+    func setupNavigationBar() {
+        self.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationBar.shadowImage = UIImage()
+    }
+    
+    @objc func getLeads() {
+        // Gets leads from the database via an HTTP request
+        // and saves to CoreData
+        
+        print("Updating leads table...")
+        let httpRequest = HTTPRequests()
+        guard
+            let customer = PersistenceService.fetchCustomerEntity(),
+            let email = customer.email,
+            let password = KeychainWrapper.standard.string(forKey: "password")
+        else {
+            print("Failed to obtain variables for POST request")
+            return
+        }
+        let customerUserId = customer.id
+        
+        let parameters: [String: Any] = ["customerUserId": customerUserId as Any,
+                                         "email": email as Any,
+                                         "password": password as Any]
+        
+        httpRequest.request(endpoint: "/leads.php",
+                            dataModel: [LeadModel].self,
+                            parameters: parameters) { [weak self] (result) in
+                                
+                                let deadline = DispatchTime.now() + .milliseconds(700)
+                                switch result {
+                                    
+                                    case .success(let leads):
+                                        self?.leads = leads
+                                        self?.leadsTableView.reloadData()
+                                        
+                                        // Stop the refresh control 700 miliseconds after the data is retrieved to make it look more natrual when loading
+                                        DispatchQueue.main.asyncAfter(deadline: deadline) {
+                                            self?.refresher.endRefreshing()
+                                        }
+                                    
+                                    case .failure(let error):
+                                        print(error.localizedDescription)
+                                        DispatchQueue.main.asyncAfter(deadline: deadline) {
+                                            self?.refresher.endRefreshing()
+                                        }
+                                    
+                                }
+                                
+        }
+        
+    }
+    
+    func setupTableView() {
         // Set seperator color for table view
         self.leadsTableView.separatorColor = UIColor(white: 0.95, alpha: 1)
+        self.leadsTableView.delegate = self
+        self.leadsTableView.dataSource = self
+        
+        // Refresh control
+        if #available(iOS 10.0, *) {
+            self.leadsTableView.refreshControl = self.refresher
+        } else {
+            self.leadsTableView.addSubview(self.refresher)
+        }
     }
 
 }

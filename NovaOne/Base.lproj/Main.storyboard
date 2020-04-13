@@ -230,7 +230,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p5x-OD-s8g" userLabel="Cancel Button">
-                                <rect key="frame" x="20" y="76" width="67" height="67"/>
+                                <rect key="frame" x="20" y="76" width="33.5" height="33.5"/>
                                 <state key="normal" image="cancelButtonBlue"/>
                                 <connections>
                                     <action selector="cancelButtonTapped:" destination="3nd-WK-PNW" eventType="touchUpInside" id="AQ2-0X-vAi"/>
@@ -273,7 +273,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5O7-UW-25n" userLabel="Cancel Button">
-                                <rect key="frame" x="20" y="64" width="67" height="67"/>
+                                <rect key="frame" x="20" y="64" width="33.5" height="33.5"/>
                                 <state key="normal" image="cancelButtonBlue"/>
                                 <connections>
                                     <action selector="cancelButtonTouch:" destination="00c-Xy-omL" eventType="touchUpInside" id="I9r-bb-DbA"/>
@@ -743,7 +743,7 @@ and you have 4 calls.</string>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j7F-yk-LVA" userLabel="Email Button">
-                                                            <rect key="frame" x="269" y="-2" width="54" height="54"/>
+                                                            <rect key="frame" x="296" y="11.5" width="27" height="27"/>
                                                             <state key="normal" image="emailBlue"/>
                                                             <connections>
                                                                 <action selector="emailButtonTapped:" destination="mks-rP-h9s" eventType="touchUpInside" id="Jgo-34-ZTf"/>
@@ -1032,7 +1032,7 @@ on how to reset your password.</string>
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kEj-0U-bzz">
-                                <rect key="frame" x="20" y="64" width="67" height="67"/>
+                                <rect key="frame" x="20" y="64" width="33.5" height="33.5"/>
                                 <state key="normal" image="cancelButtonBlue"/>
                                 <connections>
                                     <action selector="cancelButtonTapped:" destination="T1A-G4-xJU" eventType="touchUpInside" id="kgs-AH-JO8"/>
@@ -1716,7 +1716,7 @@ of your company?</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="115" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nls-Pw-One" userLabel="Leads Table View">
-                                <rect key="frame" x="0.0" y="44" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="681"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="novaOneTableViewCell" rowHeight="115" id="hLe-h0-gPR" userLabel="leadsTableCell" customClass="NovaOneTableViewCell" customModule="NovaOne" customModuleProvider="target">
@@ -1742,7 +1742,7 @@ of your company?</string>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uPa-aU-gkr" userLabel="Email Button">
-                                                            <rect key="frame" x="269" y="-2" width="54" height="54"/>
+                                                            <rect key="frame" x="296" y="11.5" width="27" height="27"/>
                                                             <state key="normal" image="emailBlue"/>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z4E-mK-dZr" userLabel="Call Button">
@@ -1839,12 +1839,23 @@ of your company?</string>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p7c-ML-viY">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Leads" id="bEv-r4-s9E">
+                                        <barButtonItem key="backBarButtonItem" title=" " id="GPj-cA-61a"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="rdx-ny-3dx" firstAttribute="trailing" secondItem="nls-Pw-One" secondAttribute="trailing" id="1MN-he-yYX"/>
-                            <constraint firstItem="nls-Pw-One" firstAttribute="top" secondItem="rdx-ny-3dx" secondAttribute="top" id="9a6-68-dBd"/>
+                            <constraint firstItem="p7c-ML-viY" firstAttribute="leading" secondItem="rdx-ny-3dx" secondAttribute="leading" id="5XI-Qr-7hC"/>
+                            <constraint firstItem="p7c-ML-viY" firstAttribute="trailing" secondItem="rdx-ny-3dx" secondAttribute="trailing" id="9YO-TX-Eu5"/>
+                            <constraint firstItem="nls-Pw-One" firstAttribute="top" secondItem="p7c-ML-viY" secondAttribute="bottom" id="KKS-xr-iLp"/>
                             <constraint firstItem="rdx-ny-3dx" firstAttribute="bottom" secondItem="nls-Pw-One" secondAttribute="bottom" id="Krg-vf-WIm"/>
+                            <constraint firstItem="p7c-ML-viY" firstAttribute="top" secondItem="rdx-ny-3dx" secondAttribute="top" id="UCA-Ns-6wf"/>
                             <constraint firstItem="nls-Pw-One" firstAttribute="leading" secondItem="rdx-ny-3dx" secondAttribute="leading" id="y5Y-aB-rW4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rdx-ny-3dx"/>
@@ -1867,6 +1878,7 @@ of your company?</string>
                     </navigationItem>
                     <connections>
                         <outlet property="leadsTableView" destination="nls-Pw-One" id="dH1-tX-Rof"/>
+                        <outlet property="navigationBar" destination="p7c-ML-viY" id="Tog-fw-2qJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dk2-rT-9GW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

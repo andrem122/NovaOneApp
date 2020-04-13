@@ -15,6 +15,13 @@ class AppointmentsViewController: UIViewController {
     @IBOutlet weak var navigationBar: UINavigationBar!
     var appointments: [AppointmentModel] = []
     
+    lazy var refresher: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = .lightGray
+        refreshControl.addTarget(self, action: #selector(self.getAppointments), for: .valueChanged)
+        return refreshControl
+    }()
+    
     
     // MARK: Methods
     override func viewDidLoad() {
@@ -28,11 +35,68 @@ class AppointmentsViewController: UIViewController {
         self.navigationBar.shadowImage = UIImage()
     }
     
+    @objc func getAppointments() {
+        // Gets appointments from the database via an HTTP request
+        // and saves to CoreData
+        
+        print("Updating")
+        let httpRequest = HTTPRequests()
+        guard
+            let customer = PersistenceService.fetchCustomerEntity(),
+            let email = customer.email,
+            let password = KeychainWrapper.standard.string(forKey: "password")
+        else {
+            print("Failed to obtain variables for POST request")
+            return
+        }
+        let customerUserId = customer.id
+        
+        let parameters: [String: Any] = ["customerUserId": customerUserId as Any,
+                                         "email": email as Any,
+                                         "password": password as Any]
+        
+        httpRequest.request(endpoint: "/appointments.php",
+                            dataModel: [AppointmentModel].self,
+                            parameters: parameters) { [weak self] (result) in
+                                
+                                let deadline = DispatchTime.now() + .milliseconds(700)
+                                switch result {
+                                    
+                                    case .success(let appointments):
+                                        self?.appointments = appointments
+                                        self?.appointmentTableView.reloadData()
+                                        
+                                        // Stop the refresh control 700 miliseconds after the data is retrieved to make it look more natrual when loading
+                                        DispatchQueue.main.asyncAfter(deadline: deadline) {
+                                            self?.refresher.endRefreshing()
+                                        }
+                                    
+                                    case .failure(let error):
+                                        print(error.localizedDescription)
+                                        DispatchQueue.main.asyncAfter(deadline: deadline) {
+                                            self?.refresher.endRefreshing()
+                                        }
+                                    
+                                }
+                                
+                                
+                                
+        }
+        
+    }
+    
     func setupTableView() {
         // Set up the table view
         
         self.appointmentTableView.delegate = self
         self.appointmentTableView.dataSource = self
+        
+        // Refresh control
+        if #available(iOS 10.0, *) {
+            self.appointmentTableView.refreshControl = self.refresher
+        } else {
+            self.appointmentTableView.addSubview(self.refresher)
+        }
         
         // Set seperator color for table view
         self.appointmentTableView.separatorColor = UIColor(white: 0.95, alpha: 1)
