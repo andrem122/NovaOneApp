@@ -18,7 +18,7 @@ class LeadsViewController: UIViewController {
     lazy var refresher: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.tintColor = .lightGray
-        refreshControl.addTarget(self, action: #selector(self.getLeads), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(self.refreshData), for: .valueChanged)
         return refreshControl
     }()
         
@@ -34,11 +34,10 @@ class LeadsViewController: UIViewController {
         self.navigationBar.shadowImage = UIImage()
     }
     
-    @objc func getLeads() {
+    func getData(endpoint: String, append: Bool, lastObjectId: Int?) {
         // Gets leads from the database via an HTTP request
         // and saves to CoreData
         
-        print("Updating leads table...")
         let httpRequest = HTTPRequests()
         guard
             let customer = PersistenceService.fetchCustomerEntity(),
@@ -46,15 +45,18 @@ class LeadsViewController: UIViewController {
             let password = KeychainWrapper.standard.string(forKey: "password")
         else {
             print("Failed to obtain variables for POST request")
+            self.refresher.endRefreshing()
             return
         }
         let customerUserId = customer.id
-        
+        let unwrappedLastObjectId = lastObjectId != nil ? lastObjectId! : 0
+
         let parameters: [String: Any] = ["customerUserId": customerUserId as Any,
                                          "email": email as Any,
-                                         "password": password as Any]
+                                         "password": password as Any,
+                                         "lastObjectId": unwrappedLastObjectId as Any]
         
-        httpRequest.request(endpoint: "/leads.php",
+        httpRequest.request(endpoint: endpoint,
                             dataModel: [LeadModel].self,
                             parameters: parameters) { [weak self] (result) in
                                 
@@ -62,12 +64,18 @@ class LeadsViewController: UIViewController {
                                 switch result {
                                     
                                     case .success(let leads):
-                                        self?.leads = leads
-                                        self?.leadsTableView.reloadData()
+                                        
+                                        // Append to the leads array or make overwrite
+                                        if append {
+                                            self?.leads.append(contentsOf: leads)
+                                        } else {
+                                            self?.leads = leads
+                                        }
                                         
                                         // Stop the refresh control 700 miliseconds after the data is retrieved to make it look more natrual when loading
                                         DispatchQueue.main.asyncAfter(deadline: deadline) {
                                             self?.refresher.endRefreshing()
+                                            self?.leadsTableView.reloadData()
                                         }
                                     
                                     case .failure(let error):
@@ -79,7 +87,11 @@ class LeadsViewController: UIViewController {
                                 }
                                 
         }
-        
+    }
+    
+    @objc func refreshData() {
+        // Refresh data on pull down of the table view
+        self.getData(endpoint: "/leads.php", append: false, lastObjectId: nil)
     }
     
     func setupTableView() {
@@ -143,6 +155,25 @@ extension LeadsViewController: UITableViewDataSource, UITableViewDelegate {
             self.present(leadDetailViewController, animated: true, completion: nil)
             
         }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        // Get last item index from data array
+        let lastItemIndex = self.leads.count - 1
+        let lastObjectId = self.leads[lastItemIndex].id
+        
+        if indexPath.row == lastItemIndex {
+            // Get more data
+            self.loadMoreDataOnEndScroll(lastObjectId: lastObjectId)
+        }
+    }
+    
+    func loadMoreDataOnEndScroll(lastObjectId: Int) {
+        // Gets more leads from the database after scrolling past
+        // the last lead in the table
+        print("Getting more leads from the database")
+        self.getData(endpoint: "/moreLeads.php", append: true, lastObjectId: lastObjectId)
+        
     }
 
 }

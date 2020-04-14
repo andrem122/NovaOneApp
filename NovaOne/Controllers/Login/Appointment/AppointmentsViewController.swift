@@ -169,6 +169,4 @@ extension AppointmentsViewController: UITableViewDelegate, SkeletonTableViewData
             
         }
     }
-    
-    
 }

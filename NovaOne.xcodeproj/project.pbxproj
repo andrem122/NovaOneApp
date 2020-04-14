@@ -24,6 +24,7 @@
 		6528135F23E79D63005A1B1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6591C39923DA78F900535C46 /* AppDelegate.swift */; };
 		6528136023E79D63005A1B1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6591C39923DA78F900535C46 /* AppDelegate.swift */; };
 		65316D532445F8A90072F78A /* libSkeletonView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65316D522445F8A90072F78A /* libSkeletonView.a */; };
+		65316D5524465E5D0072F78A /* moreLeads.php in Resources */ = {isa = PBXBuildFile; fileRef = 65316D5424465E5D0072F78A /* moreLeads.php */; };
 		653D2184244523C5009DA68E /* credentials.php in Resources */ = {isa = PBXBuildFile; fileRef = 653D2183244523C5009DA68E /* credentials.php */; };
 		65446CEC23E0F4370052DEBE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65446CEB23E0F4370052DEBE /* LoginViewController.swift */; };
 		65446CEF23E0F7DF0052DEBE /* NovaOneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65446CEE23E0F7DF0052DEBE /* NovaOneButton.swift */; };
@@ -83,7 +84,6 @@
 		659CCD3823EE46260066C9CB /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659CCD3523EE46260066C9CB /* ErrorResponse.swift */; };
 		659D487823F375F0007AC005 /* leads.php in Resources */ = {isa = PBXBuildFile; fileRef = 659D487623F375EF007AC005 /* leads.php */; };
 		659D487923F375F0007AC005 /* appointments.php in Resources */ = {isa = PBXBuildFile; fileRef = 659D487723F375F0007AC005 /* appointments.php */; };
-		659D487B23F37772007AC005 /* verify_user.php in Resources */ = {isa = PBXBuildFile; fileRef = 659D487A23F37771007AC005 /* verify_user.php */; };
 		65A18DCE2410454A00F16565 /* NovaOneTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A18DCD2410454A00F16565 /* NovaOneTextView.swift */; };
 		65A4CD842445004800EE4AAA /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A4CD822444FFDB00EE4AAA /* Defaults.swift */; };
 		65A4CD882445065E00EE4AAA /* HelpTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A4CD872445065E00EE4AAA /* HelpTableViewController.swift */; };
@@ -188,6 +188,7 @@
 		65230462242FFD900025FE07 /* EnableOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnableOption.swift; sourceTree = "<group>"; };
 		6528135523E79C15005A1B1F /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Customer.swift; path = NovaOne/Models/Customer.swift; sourceTree = SOURCE_ROOT; };
 		65316D522445F8A90072F78A /* libSkeletonView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libSkeletonView.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		65316D5424465E5D0072F78A /* moreLeads.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = moreLeads.php; sourceTree = "<group>"; };
 		653D2183244523C5009DA68E /* credentials.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = credentials.php; sourceTree = "<group>"; };
 		653D2185244523E5009DA68E /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		65446CEB23E0F4370052DEBE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -252,7 +253,6 @@
 		659CCD3523EE46260066C9CB /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		659D487623F375EF007AC005 /* leads.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = leads.php; sourceTree = "<group>"; };
 		659D487723F375F0007AC005 /* appointments.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = appointments.php; sourceTree = "<group>"; };
-		659D487A23F37771007AC005 /* verify_user.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = verify_user.php; sourceTree = "<group>"; };
 		659D487D23F38C01007AC005 /* NovaOne.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NovaOne.xcdatamodel; sourceTree = "<group>"; };
 		65A18DCD2410454A00F16565 /* NovaOneTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovaOneTextView.swift; sourceTree = "<group>"; };
 		65A4CD822444FFDB00EE4AAA /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
@@ -674,7 +674,6 @@
 			children = (
 				653D2183244523C5009DA68E /* credentials.php */,
 				6578D9F02415AD06002E94BF /* companies.php */,
-				659D487A23F37771007AC005 /* verify_user.php */,
 				659D487723F375F0007AC005 /* appointments.php */,
 				65D75F7323FB495900C7988E /* utils.php */,
 				659D487623F375EF007AC005 /* leads.php */,
@@ -682,6 +681,7 @@
 				6583195123F2209C001D378D /* django_password.php */,
 				6583195023F2209C001D378D /* login.php */,
 				6583194E23F2209C001D378D /* settings.php */,
+				65316D5424465E5D0072F78A /* moreLeads.php */,
 			);
 			path = PHP;
 			sourceTree = "<group>";
@@ -839,12 +839,12 @@
 				659D487923F375F0007AC005 /* appointments.php in Resources */,
 				6583195323F2209C001D378D /* settings.php in Resources */,
 				6583195623F2209C001D378D /* django_password.php in Resources */,
-				659D487B23F37772007AC005 /* verify_user.php in Resources */,
 				653D2184244523C5009DA68E /* credentials.php in Resources */,
 				6591C3A323DA78FB00535C46 /* Assets.xcassets in Resources */,
 				659D487823F375F0007AC005 /* leads.php in Resources */,
 				6591C3A123DA78F900535C46 /* Main.storyboard in Resources */,
 				6578D9F12415AD06002E94BF /* companies.php in Resources */,
+				65316D5524465E5D0072F78A /* moreLeads.php in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

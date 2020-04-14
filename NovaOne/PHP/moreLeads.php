@@ -4,6 +4,7 @@
     
     // user data
     $customer_user_id = $_POST['customerUserId'];
+    $last_object_id = $_POST['lastObjectId'];
     $email = $_POST['email'];
     $password = $_POST['password'];
     $php_authentication_username_f = $_POST['PHPAuthenticationUsername'];
@@ -32,12 +33,14 @@
     INNER JOIN property_company co
         ON l.company_id = co.id
     WHERE l.company_id IN (SELECT id FROM property_company WHERE customer_user_id = :customer_user_id)
+    AND l.id < :last_object_id
     ORDER BY date_of_inquiry DESC
     LIMIT 15;
     ";
     
     // query the database and echo results
-    query_db($query, $user_is_verified, $customer_user_id, '');
+    query_db($query, $user_is_verified, $customer_user_id, $last_object_id);
     
 ?>
+
 
