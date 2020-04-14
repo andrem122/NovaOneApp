@@ -15,7 +15,18 @@ class AppointmentsContainerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.getAppointments()
+        self.showSkeletonLoading()
+        
+        // Have a bit of a delay when fetching data so the data shows more smoothly
+        let deadline = DispatchTime.now() + .milliseconds(700)
+        DispatchQueue.main.asyncAfter(deadline: deadline) {
+            self.getAppointments()
+        }
+    }
+    
+    func showSkeletonLoading() {
+        // Shows the appointments view which automatically shows a loading skeleton on viewDidLoad
+        UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.ViewControllerIdentifiers.appointments.rawValue, containerView: self.containerView ?? UIView(), objectType: AppointmentsViewController.self, completion: nil)
     }
     
     func getAppointments() {
@@ -41,27 +52,24 @@ class AppointmentsContainerViewController: UIViewController {
                             dataModel: [AppointmentModel].self,
                             parameters: parameters) { [weak self] (result) in
                                 
-                                // Get anchor constraints from container view so that we can layout the views
-                                // that will be embedded in it
-                                
                                 switch result {
-                                    
+
                                     case .success(let appointments):
-                                        UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.ViewControllerIdentifiers.appointments.rawValue, containerView: self?.containerView ?? UIView(), objectType: AppointmentsViewController.self) { (appointmentsViewController) in
-                                            
-                                            if let appointmentsViewController = appointmentsViewController as? AppointmentsViewController {
-                                                appointmentsViewController.appointments = appointments
-                                            }
-                                            
-                                    }
-                                    
+                                        UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.ViewControllerIdentifiers.appointments.rawValue, containerView: self?.containerView ?? UIView(), objectType: AppointmentsViewController.self) {
+                                            appointmentsViewController in
+                                            guard let appointmentsViewController = appointmentsViewController as? AppointmentsViewController else { return }
+                                            appointmentsViewController.appointments = appointments
+                                            appointmentsViewController.view.hideSkeleton()
+                                            appointmentsViewController.appointmentTableView.reloadData()
+                                        }
+
                                     case .failure(let error):
                                         print(error.localizedDescription)
-                                        
+
                                         // No appointments were found or an error occurred so embed the empty
                                         // view controller
                                         UIHelper.showEmptyStateContainerViewController(for: self, containerView: self?.containerView ?? UIView())
-                                    
+
                                 }
                                 
         }

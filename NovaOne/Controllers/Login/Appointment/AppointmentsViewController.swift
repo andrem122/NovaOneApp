@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class AppointmentsViewController: UIViewController {
     
@@ -28,6 +29,7 @@ class AppointmentsViewController: UIViewController {
         super.viewDidLoad()
         self.setupTableView()
         self.setupNavigationBar()
+        self.setupSkeletonView()
     }
     
     func setupNavigationBar() {
@@ -35,11 +37,15 @@ class AppointmentsViewController: UIViewController {
         self.navigationBar.shadowImage = UIImage()
     }
     
+    func setupSkeletonView() {
+        // Start the animation of the skeleton view
+        self.view.showAnimatedGradientSkeleton()
+    }
+    
     @objc func getAppointments() {
         // Gets appointments from the database via an HTTP request
         // and saves to CoreData
-        
-        print("Updating")
+        self.setupSkeletonView()
         let httpRequest = HTTPRequests()
         guard
             let customer = PersistenceService.fetchCustomerEntity(),
@@ -64,17 +70,19 @@ class AppointmentsViewController: UIViewController {
                                     
                                     case .success(let appointments):
                                         self?.appointments = appointments
-                                        self?.appointmentTableView.reloadData()
                                         
                                         // Stop the refresh control 700 miliseconds after the data is retrieved to make it look more natrual when loading
                                         DispatchQueue.main.asyncAfter(deadline: deadline) {
                                             self?.refresher.endRefreshing()
+                                            self?.view.hideSkeleton()
+                                            self?.appointmentTableView.reloadData() // reload table view so new data shows
                                         }
                                     
                                     case .failure(let error):
                                         print(error.localizedDescription)
                                         DispatchQueue.main.asyncAfter(deadline: deadline) {
                                             self?.refresher.endRefreshing()
+                                            self?.view.hideSkeleton()
                                         }
                                     
                                 }
@@ -104,7 +112,11 @@ class AppointmentsViewController: UIViewController {
 
 }
 
-extension AppointmentsViewController: UITableViewDataSource, UITableViewDelegate {
+extension AppointmentsViewController: UITableViewDelegate, SkeletonTableViewDataSource {
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return Defaults.TableViewCellIdentifiers.novaOne.rawValue
+    }
     
     // Shows how many rows our table view should show
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -120,17 +132,20 @@ extension AppointmentsViewController: UITableViewDataSource, UITableViewDelegate
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! NovaOneTableViewCell // Get cell with identifier so we can use the custom cell we made
         
         // Pass in appointment object to set up cell properties (address, name, etc.)
-        let address = appointment.shortenedAddress
-        let name = appointment.name
-        
         // Get date of appointment as a string
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM d, yyyy | h:mm a"
         let appointmentTimeDate: Date = appointment.timeDate
         let appointmentTime: String = dateFormatter.string(from: appointmentTimeDate)
+        
+        let appointmentCreatedDate: Date = appointment.createdDate
+        let appointmentCreated: String = dateFormatter.string(from: appointmentCreatedDate)
+        
+        let title = appointment.name
+        let subTitleOne = appointment.address != nil ? appointment.address! : appointmentCreated
         let subTitleTwo = appointment.unitType != nil ? appointment.unitType! : appointment.testType!
         
-        cell.setup(title: name, subTitleOne: address, subTitleTwo: subTitleTwo, subTitleThree: appointmentTime)
+        cell.setup(title: title, subTitleOne: subTitleOne, subTitleTwo: subTitleTwo, subTitleThree: appointmentTime)
         
         return cell
     }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		08DF2B7E31EF8B8D87B8CC6B /* libPods-NovaOne-NovaOneUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 340905DB32B5C079C2E8C0B5 /* libPods-NovaOne-NovaOneUITests.a */; };
+		647BC11BF09BB0FFD1A21419 /* libPods-NovaOne.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 456976310F83D351065F9977 /* libPods-NovaOne.a */; };
 		650250C123E4991700B427D0 /* AlertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650250C023E4991700B427D0 /* AlertService.swift */; };
 		650250C323E4A78E00B427D0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650250C223E4A78E00B427D0 /* HomeViewController.swift */; };
 		65230463242FFD900025FE07 /* EnableOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65230462242FFD900025FE07 /* EnableOption.swift */; };
@@ -21,9 +23,10 @@
 		6528135E23E79D5D005A1B1F /* FeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ADE2DE23E1C814003D3215 /* FeatureView.swift */; };
 		6528135F23E79D63005A1B1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6591C39923DA78F900535C46 /* AppDelegate.swift */; };
 		6528136023E79D63005A1B1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6591C39923DA78F900535C46 /* AppDelegate.swift */; };
+		65316D532445F8A90072F78A /* libSkeletonView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65316D522445F8A90072F78A /* libSkeletonView.a */; };
+		653D2184244523C5009DA68E /* credentials.php in Resources */ = {isa = PBXBuildFile; fileRef = 653D2183244523C5009DA68E /* credentials.php */; };
 		65446CEC23E0F4370052DEBE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65446CEB23E0F4370052DEBE /* LoginViewController.swift */; };
 		65446CEF23E0F7DF0052DEBE /* NovaOneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65446CEE23E0F7DF0052DEBE /* NovaOneButton.swift */; };
-		65496D0123F1D6F9008EB3FF /* (null) in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6556D57C242FC91200E6B778 /* UpdateCompanyHoursEnabledViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6556D57B242FC91200E6B778 /* UpdateCompanyHoursEnabledViewController.swift */; };
 		655D0B21240B43D200D0E329 /* UpdateCompanyAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655D0B20240B43D200D0E329 /* UpdateCompanyAddressViewController.swift */; };
 		655D0B23240B43E800D0E329 /* UpdatePhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655D0B22240B43E800D0E329 /* UpdatePhoneViewController.swift */; };
@@ -58,7 +61,6 @@
 		6583195623F2209C001D378D /* django_password.php in Resources */ = {isa = PBXBuildFile; fileRef = 6583195123F2209C001D378D /* django_password.php */; };
 		6584FAC324089BA900A06125 /* Lead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6584FAC224089BA900A06125 /* Lead.swift */; };
 		658AF5FC240DA66800577446 /* SignUpCompanyAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658AF5FB240DA66800577446 /* SignUpCompanyAddressViewController.swift */; };
-		658C079623F0F21C00DFD471 /* (null) in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		658EC6C623F4870D0042827E /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658EC6C523F4870D0042827E /* Appointment.swift */; };
 		658EC6C823F4B1310042827E /* NovaOneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658EC6C723F4B1310042827E /* NovaOneView.swift */; };
 		658EC6CA23F4CD120042827E /* UIViewBorders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658EC6C923F4CD120042827E /* UIViewBorders.swift */; };
@@ -84,7 +86,6 @@
 		659D487B23F37772007AC005 /* verify_user.php in Resources */ = {isa = PBXBuildFile; fileRef = 659D487A23F37771007AC005 /* verify_user.php */; };
 		65A18DCE2410454A00F16565 /* NovaOneTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A18DCD2410454A00F16565 /* NovaOneTextView.swift */; };
 		65A4CD842445004800EE4AAA /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A4CD822444FFDB00EE4AAA /* Defaults.swift */; };
-		65A4CD86244500FD00EE4AAA /* credentials.php in Resources */ = {isa = PBXBuildFile; fileRef = 65A4CD85244500FD00EE4AAA /* credentials.php */; };
 		65A4CD882445065E00EE4AAA /* HelpTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A4CD872445065E00EE4AAA /* HelpTableViewController.swift */; };
 		65AA3E662432722D005C2319 /* AddCompanyNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AA3E652432722D005C2319 /* AddCompanyNameViewController.swift */; };
 		65AA3E6824327245005C2319 /* AddCompanyPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AA3E6724327245005C2319 /* AddCompanyPhoneViewController.swift */; };
@@ -145,6 +146,7 @@
 		65DF7525243563F20044E6F7 /* NovaOneObjectDetailProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DF7524243563F20044E6F7 /* NovaOneObjectDetailProtocol.swift */; };
 		65FA42C224181A430040C915 /* UpdateCompanyEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FA42C124181A430040C915 /* UpdateCompanyEmailViewController.swift */; };
 		65FA42C424181B6C0040C915 /* UpdateCompanyNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FA42C324181B6C0040C915 /* UpdateCompanyNameViewController.swift */; };
+		D6555FF552868046CF9D634A /* libPods-NovaOneTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8687C03649CC91286147822C /* libPods-NovaOneTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -165,14 +167,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		658C079723F0F21C00DFD471 /* Embed Frameworks */ = {
+		6561CD152445F7A6001B2ABF /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				658C079623F0F21C00DFD471 /* (null) in Embed Frameworks */,
-				65496D0123F1D6F9008EB3FF /* (null) in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -180,10 +180,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2EF2A837445AC1495E85164F /* Pods-NovaOne.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NovaOne.release.xcconfig"; path = "Target Support Files/Pods-NovaOne/Pods-NovaOne.release.xcconfig"; sourceTree = "<group>"; };
+		340905DB32B5C079C2E8C0B5 /* libPods-NovaOne-NovaOneUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NovaOne-NovaOneUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		456976310F83D351065F9977 /* libPods-NovaOne.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NovaOne.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		650250C023E4991700B427D0 /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
 		650250C223E4A78E00B427D0 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		65230462242FFD900025FE07 /* EnableOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnableOption.swift; sourceTree = "<group>"; };
 		6528135523E79C15005A1B1F /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Customer.swift; path = NovaOne/Models/Customer.swift; sourceTree = SOURCE_ROOT; };
+		65316D522445F8A90072F78A /* libSkeletonView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libSkeletonView.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		653D2183244523C5009DA68E /* credentials.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = credentials.php; sourceTree = "<group>"; };
+		653D2185244523E5009DA68E /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		65446CEB23E0F4370052DEBE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		65446CEE23E0F7DF0052DEBE /* NovaOneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovaOneButton.swift; sourceTree = "<group>"; };
 		6556D57B242FC91200E6B778 /* UpdateCompanyHoursEnabledViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCompanyHoursEnabledViewController.swift; sourceTree = "<group>"; };
@@ -249,9 +255,7 @@
 		659D487A23F37771007AC005 /* verify_user.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = verify_user.php; sourceTree = "<group>"; };
 		659D487D23F38C01007AC005 /* NovaOne.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NovaOne.xcdatamodel; sourceTree = "<group>"; };
 		65A18DCD2410454A00F16565 /* NovaOneTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovaOneTextView.swift; sourceTree = "<group>"; };
-		65A1FC4C23E48A6800D5CBCF /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Defaults.swift; path = ../Defaults.swift; sourceTree = "<group>"; };
 		65A4CD822444FFDB00EE4AAA /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
-		65A4CD85244500FD00EE4AAA /* credentials.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = credentials.php; sourceTree = "<group>"; };
 		65A4CD872445065E00EE4AAA /* HelpTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpTableViewController.swift; sourceTree = "<group>"; };
 		65AA3E652432722D005C2319 /* AddCompanyNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCompanyNameViewController.swift; sourceTree = "<group>"; };
 		65AA3E6724327245005C2319 /* AddCompanyPhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCompanyPhoneViewController.swift; sourceTree = "<group>"; };
@@ -307,6 +311,12 @@
 		65DF7524243563F20044E6F7 /* NovaOneObjectDetailProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovaOneObjectDetailProtocol.swift; sourceTree = "<group>"; };
 		65FA42C124181A430040C915 /* UpdateCompanyEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCompanyEmailViewController.swift; sourceTree = "<group>"; };
 		65FA42C324181B6C0040C915 /* UpdateCompanyNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCompanyNameViewController.swift; sourceTree = "<group>"; };
+		8687C03649CC91286147822C /* libPods-NovaOneTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NovaOneTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C165A958EC1B46D1F527F2E2 /* Pods-NovaOne.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NovaOne.debug.xcconfig"; path = "Target Support Files/Pods-NovaOne/Pods-NovaOne.debug.xcconfig"; sourceTree = "<group>"; };
+		C691C7C649829426F16AF263 /* Pods-NovaOneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NovaOneTests.release.xcconfig"; path = "Target Support Files/Pods-NovaOneTests/Pods-NovaOneTests.release.xcconfig"; sourceTree = "<group>"; };
+		D59621FE9C2352CAF3E636D0 /* Pods-NovaOne-NovaOneUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NovaOne-NovaOneUITests.debug.xcconfig"; path = "Target Support Files/Pods-NovaOne-NovaOneUITests/Pods-NovaOne-NovaOneUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		E9E11A59367A2E52E7CC36E2 /* Pods-NovaOne-NovaOneUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NovaOne-NovaOneUITests.release.xcconfig"; path = "Target Support Files/Pods-NovaOne-NovaOneUITests/Pods-NovaOne-NovaOneUITests.release.xcconfig"; sourceTree = "<group>"; };
+		F19442EDE138B1789FA4CF42 /* Pods-NovaOneTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NovaOneTests.debug.xcconfig"; path = "Target Support Files/Pods-NovaOneTests/Pods-NovaOneTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -314,6 +324,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				647BC11BF09BB0FFD1A21419 /* libPods-NovaOne.a in Frameworks */,
+				65316D532445F8A90072F78A /* libSkeletonView.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +333,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6555FF552868046CF9D634A /* libPods-NovaOneTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,12 +341,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08DF2B7E31EF8B8D87B8CC6B /* libPods-NovaOne-NovaOneUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		128303873666773DCDC7409B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C165A958EC1B46D1F527F2E2 /* Pods-NovaOne.debug.xcconfig */,
+				2EF2A837445AC1495E85164F /* Pods-NovaOne.release.xcconfig */,
+				D59621FE9C2352CAF3E636D0 /* Pods-NovaOne-NovaOneUITests.debug.xcconfig */,
+				E9E11A59367A2E52E7CC36E2 /* Pods-NovaOne-NovaOneUITests.release.xcconfig */,
+				F19442EDE138B1789FA4CF42 /* Pods-NovaOneTests.debug.xcconfig */,
+				C691C7C649829426F16AF263 /* Pods-NovaOneTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		5E12E673B1B759884CA10D85 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				65316D522445F8A90072F78A /* libSkeletonView.a */,
+				456976310F83D351065F9977 /* libPods-NovaOne.a */,
+				340905DB32B5C079C2E8C0B5 /* libPods-NovaOne-NovaOneUITests.a */,
+				8687C03649CC91286147822C /* libPods-NovaOneTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		65446CED23E0F7860052DEBE /* IBDesignables */ = {
 			isa = PBXGroup;
 			children = (
@@ -426,9 +464,9 @@
 		658B906423E798F600015C4F /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				653D2185244523E5009DA68E /* Defaults.swift */,
 				650250C023E4991700B427D0 /* AlertService.swift */,
 				65ADE2F523E3AF27003D3215 /* HTTPRequests.swift */,
-				65A1FC4C23E48A6800D5CBCF /* Defaults.swift */,
 				65C5467823ECAB2300A198F3 /* AppUtility.swift */,
 				658EC6C923F4CD120042827E /* UIViewBorders.swift */,
 				6580FBE224113D0700695DB6 /* UIHelper.swift */,
@@ -481,6 +519,8 @@
 				6591C3AF23DA78FB00535C46 /* NovaOneTests */,
 				6591C3BA23DA78FB00535C46 /* NovaOneUITests */,
 				6591C39723DA78F900535C46 /* Products */,
+				128303873666773DCDC7409B /* Pods */,
+				5E12E673B1B759884CA10D85 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -502,7 +542,7 @@
 				659C1A88240AB57F003C91C1 /* Table Views */,
 				6592E3D42405D86F009E4D8D /* Tab Bars */,
 				658EC6C423F484F50042827E /* Table View Cells */,
-				65AB289C23F21CC800075889 /* Frameworks */,
+				65AB289C23F21CC800075889 /* Keychain */,
 				658B906623E7990000015C4F /* Models */,
 				658B906523E798FB00015C4F /* Controllers */,
 				658B906423E798F600015C4F /* Utils */,
@@ -620,19 +660,19 @@
 			path = "Add Appointment";
 			sourceTree = "<group>";
 		};
-		65AB289C23F21CC800075889 /* Frameworks */ = {
+		65AB289C23F21CC800075889 /* Keychain */ = {
 			isa = PBXGroup;
 			children = (
 				6583194923F2206E001D378D /* KeychainItemAccessibility.swift */,
 				6583194A23F2206E001D378D /* KeychainWrapper.swift */,
 			);
-			path = Frameworks;
+			path = Keychain;
 			sourceTree = "<group>";
 		};
 		65ADE2E823E39067003D3215 /* PHP */ = {
 			isa = PBXGroup;
 			children = (
-				65A4CD85244500FD00EE4AAA /* credentials.php */,
+				653D2183244523C5009DA68E /* credentials.php */,
 				6578D9F02415AD06002E94BF /* companies.php */,
 				659D487A23F37771007AC005 /* verify_user.php */,
 				659D487723F375F0007AC005 /* appointments.php */,
@@ -690,10 +730,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6591C3C023DA78FB00535C46 /* Build configuration list for PBXNativeTarget "NovaOne" */;
 			buildPhases = (
+				8CD9DBB2FA32DFBBC44AC836 /* [CP] Check Pods Manifest.lock */,
 				6591C39223DA78F900535C46 /* Sources */,
 				6591C39323DA78F900535C46 /* Frameworks */,
 				6591C39423DA78F900535C46 /* Resources */,
-				658C079723F0F21C00DFD471 /* Embed Frameworks */,
+				6561CD152445F7A6001B2ABF /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -708,6 +749,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6591C3C323DA78FB00535C46 /* Build configuration list for PBXNativeTarget "NovaOneTests" */;
 			buildPhases = (
+				63B6A2854482D8B8AFDAFB1C /* [CP] Check Pods Manifest.lock */,
 				6591C3A823DA78FB00535C46 /* Sources */,
 				6591C3A923DA78FB00535C46 /* Frameworks */,
 				6591C3AA23DA78FB00535C46 /* Resources */,
@@ -726,6 +768,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6591C3C623DA78FB00535C46 /* Build configuration list for PBXNativeTarget "NovaOneUITests" */;
 			buildPhases = (
+				828906FAC7122276BED7DA0B /* [CP] Check Pods Manifest.lock */,
 				6591C3B323DA78FB00535C46 /* Sources */,
 				6591C3B423DA78FB00535C46 /* Frameworks */,
 				6591C3B523DA78FB00535C46 /* Resources */,
@@ -797,7 +840,7 @@
 				6583195323F2209C001D378D /* settings.php in Resources */,
 				6583195623F2209C001D378D /* django_password.php in Resources */,
 				659D487B23F37772007AC005 /* verify_user.php in Resources */,
-				65A4CD86244500FD00EE4AAA /* credentials.php in Resources */,
+				653D2184244523C5009DA68E /* credentials.php in Resources */,
 				6591C3A323DA78FB00535C46 /* Assets.xcassets in Resources */,
 				659D487823F375F0007AC005 /* leads.php in Resources */,
 				6591C3A123DA78F900535C46 /* Main.storyboard in Resources */,
@@ -820,6 +863,75 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		63B6A2854482D8B8AFDAFB1C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NovaOneTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		828906FAC7122276BED7DA0B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NovaOne-NovaOneUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8CD9DBB2FA32DFBBC44AC836 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NovaOne-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6591C39223DA78F900535C46 /* Sources */ = {
@@ -1107,6 +1219,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -1116,16 +1229,18 @@
 		};
 		6591C3C123DA78FB00535C46 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C165A958EC1B46D1F527F2E2 /* Pods-NovaOne.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3CDSLHGVXH;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = NovaOne/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.novaonesoftware.NovaOne;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1135,16 +1250,18 @@
 		};
 		6591C3C223DA78FB00535C46 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2EF2A837445AC1495E85164F /* Pods-NovaOne.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3CDSLHGVXH;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = NovaOne/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.novaonesoftware.NovaOne;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -1155,6 +1272,7 @@
 		};
 		6591C3C423DA78FB00535C46 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F19442EDE138B1789FA4CF42 /* Pods-NovaOneTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1177,6 +1295,7 @@
 		};
 		6591C3C523DA78FB00535C46 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C691C7C649829426F16AF263 /* Pods-NovaOneTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1199,8 +1318,8 @@
 		};
 		6591C3C723DA78FB00535C46 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D59621FE9C2352CAF3E636D0 /* Pods-NovaOne-NovaOneUITests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3CDSLHGVXH;
 				INFOPLIST_FILE = NovaOneUITests/Info.plist;
@@ -1219,8 +1338,8 @@
 		};
 		6591C3C823DA78FB00535C46 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E9E11A59367A2E52E7CC36E2 /* Pods-NovaOne-NovaOneUITests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3CDSLHGVXH;
 				INFOPLIST_FILE = NovaOneUITests/Info.plist;

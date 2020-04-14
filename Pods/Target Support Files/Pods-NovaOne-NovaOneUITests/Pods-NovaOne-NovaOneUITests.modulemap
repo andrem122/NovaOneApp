@@ -1,0 +1,6 @@
+module Pods_NovaOne_NovaOneUITests {
+  umbrella header "Pods-NovaOne-NovaOneUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

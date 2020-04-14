@@ -1,0 +1,973 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		08BA4AFDF80F37DB1A10AA44C74B227D /* CollectionSkeletonProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9010D792F1A465DF5F65AA65096D394 /* CollectionSkeletonProtocol.swift */; };
+		0C2C51B1BDC87A3635F5196EEB7083E8 /* UILabel+Multiline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137421AC72AC766D81505908E520830A /* UILabel+Multiline.swift */; };
+		0FE4D75FEA77CDB5498F169C758CC2F0 /* SkeletonView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EC47827C2B106B3C456653C39458AD2B /* SkeletonView-dummy.m */; };
+		12C470684EF838D8D4537A2FB17AE396 /* UIView+Transitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FA01DADAA0F41BB1BAD396420E67EE /* UIView+Transitions.swift */; };
+		151101418AED60F364E0A9B97D978A41 /* Pods-NovaOne-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8708F80F7BFCDDFA73251EA57BBB8F55 /* Pods-NovaOne-dummy.m */; };
+		18BF98509A7880F36D67D5D133721996 /* Pods-NovaOneTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D80FE3675E60C0BB16E1E5367933C0A2 /* Pods-NovaOneTests-dummy.m */; };
+		1E26F5FB590758008DC3B92F14FE4A41 /* Recoverable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E40FAAA1B57393B19F45BD8344C01B8 /* Recoverable.swift */; };
+		1F422E6F6AB3EB45E092B058B6B08255 /* UIView+CollectionSkeleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD36AB78A002D2FA77FA7C331145AC69 /* UIView+CollectionSkeleton.swift */; };
+		210EE6DBCB30BB756E93A86C5ED9053E /* SkeletonReusableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988BC1CADB2112720CA169E8B9542FB4 /* SkeletonReusableCell.swift */; };
+		2222AD81E36828DEFE909CF56E4CA5B6 /* SkeletonCollectionViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358D4B532238E27111E28DE19F3A7D2E /* SkeletonCollectionViewProtocols.swift */; };
+		230AFFDFCFF203831B4027402BAC270F /* ProcessInfo+XCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B0C9101C51A0691DA1E0FF32D33A67 /* ProcessInfo+XCTest.swift */; };
+		24812575BB977E905862894716327BFA /* UITableView+CollectionSkeleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69D1F58A591F3575F88C5663D10A46C /* UITableView+CollectionSkeleton.swift */; };
+		2E34A05944BEAA4A6AB66D4FF585FDED /* ContainsMultilineText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6AD985F0537A343B97D49A2A07674E /* ContainsMultilineText.swift */; };
+		3FEE66A634158F79A0A604714074DBFD /* GenericCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A433B5262CC87C16C8DF579F7448408C /* GenericCollectionView.swift */; };
+		4FD60FAA2725F9F3B6E886D973F04C6E /* SkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F53AEBC8687F333B352D08CB0463E8 /* SkeletonView.swift */; };
+		5173935A91A55D0A5044CD51035E7197 /* UIColor+Skeleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5A012E378368AD88379A0DD9E0D454 /* UIColor+Skeleton.swift */; };
+		594E9343D80F58D7BCA1CDB46EFD75C4 /* AssociationPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EC8188CDD6301B868978087E196A71 /* AssociationPolicy.swift */; };
+		5B737B5095F3829EB628CB73D6196C52 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B174B72AA0187B3CF6B69874BB77E5 /* UIView+Extension.swift */; };
+		5ECE242FA37BC9BDB4CAC2677410A2E1 /* Pods-NovaOne-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DBEF2426BAFE08160E1C5083AF18A20C /* Pods-NovaOne-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		6CA69A97113FFDE57CC3E77252E34E72 /* PrepareForSkeletonProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941C22A1913A264F5314CDA87CC8441A /* PrepareForSkeletonProtocol.swift */; };
+		6FFF08C600C454EBEDDE0CA133882B51 /* SkeletonTableViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = F801331AB802C5C3C0DAFF9D1D50D0E6 /* SkeletonTableViewProtocols.swift */; };
+		7268506CED7A8D2D1C547B53E699F7E8 /* UIView+IBInspectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4293F34C5C582A39A4BF5ACA5BC243D4 /* UIView+IBInspectable.swift */; };
+		7569ABC5D0049242A7BB99B2DADD863C /* SkeletonView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B74E385BA7EFB359FF3F5F15227A2BA /* SkeletonView-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		76A586465F5DA8CD88D32733463AA251 /* Swizzling.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB3DA1439CA9ED67BE7F08D665344C6 /* Swizzling.swift */; };
+		7B8F60312502B54E893F795F6E909CA1 /* SubviewsSkeletonables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026689F9447CDE67E34C4A752BE17CEE /* SubviewsSkeletonables.swift */; };
+		7D9017C97478A5AD841080FD0344E5F6 /* Pods-NovaOne-NovaOneUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E2966C6035F112F8C4119C80AB081A19 /* Pods-NovaOne-NovaOneUITests-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		841A9708C8F7BC0DC3C5978CF82F71E9 /* SkeletonTransitionStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF42A04C1DED71B75B5F75E89CFB873 /* SkeletonTransitionStyle.swift */; };
+		886350EB9313427A001ECE45FBE55B79 /* SkeletonAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532BC5E37126C3EB352D4BD272289D66 /* SkeletonAppearance.swift */; };
+		8C670F178433C899BCF5B64A71C04CB5 /* UICollectionView+CollectionSkeleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADF2122DE561B96EDB2B9C4C32C2A90 /* UICollectionView+CollectionSkeleton.swift */; };
+		8EFA998149BD8E7FBFC16F571A161AE1 /* SkeletonCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C410B1A85E104002E798F6DFAF4BB3 /* SkeletonCollectionDataSource.swift */; };
+		9210BA834653B3BCFFA8015858F71802 /* Int+Whitespaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE99D2F414FF8719D8C189B4F927F88 /* Int+Whitespaces.swift */; };
+		92A16A7C59888C0EB1A79AB71A7B37B3 /* SkeletonAnimationBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0664283D1E41A89DF13D4EDA73553F36 /* SkeletonAnimationBuilder.swift */; };
+		99A2758FC91B4BCD8FD65AE177682D50 /* Pods-NovaOne-NovaOneUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 431DE85C6530903E7A105DC20746C529 /* Pods-NovaOne-NovaOneUITests-dummy.m */; };
+		9CAF3489F6DDA4EED0CE7389D80EB286 /* SkeletonGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C452A14C37DD5FF5142ED8D665CB8E76 /* SkeletonGradient.swift */; };
+		A195408BB95A92A20A52BA1A22C19F83 /* SkeletonLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34067162D1F92A6EC9A561F4D9D53492 /* SkeletonLayer.swift */; };
+		A26987EC960BC2E5C4E8E7E15423247B /* RecoverableViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E92717FE04925B94B5FD51185C6E14 /* RecoverableViewState.swift */; };
+		A6AB04A198221BC961954AFCF1D7C9B9 /* UITableView+VisibleSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195B4858D8B87BF3F7249FCCBA3DE5F0 /* UITableView+VisibleSections.swift */; };
+		B320E99E34F9CFBD52A7CDD5C9201AE3 /* UITextView+Multiline.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C94EC99551DF35030BF8B519433B58 /* UITextView+Multiline.swift */; };
+		B585C43846A31BDAEE7672D32D29E701 /* SkeletonConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CE5077378F1A5EA7D4AD472F20F6C5 /* SkeletonConfig.swift */; };
+		BBF953995F2BA9E22E1D548774919819 /* SkeletonMultilineLayerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C9828680E03BC8DE40B6554A13A6CB /* SkeletonMultilineLayerBuilder.swift */; };
+		BC3B46566F5E178CE783DBF090D9BD91 /* CALayer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8C19EBBE44D2ABCEAA34CA629F9659 /* CALayer+Extensions.swift */; };
+		BE857616BD452A27D21A6615FD4696E5 /* SkeletonLayerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B57E1FBFBE69CEA74ED2420CD3E826 /* SkeletonLayerBuilder.swift */; };
+		D2450E74CB859C2759E0F5DC256BF70E /* UIView+UIApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7039471951B21B3D83579387D9609A28 /* UIView+UIApplicationDelegate.swift */; };
+		DCDB8A04E257FC6E9C3279129017A39F /* RecursiveProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DA87E9A7413D01C6DFF9896FB4644F /* RecursiveProtocol.swift */; };
+		E260FFC9D9B9A39A049347B4AB3FE72E /* SkeletonFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EDCA07CBBFCEFC7294AD6E5C9BD7F7 /* SkeletonFlow.swift */; };
+		F18242879BCA75BE541161F2C967C0D1 /* UIView+Frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4C957FD1321F4EBE53D9B165886030 /* UIView+Frame.swift */; };
+		F61D1E548BF3D8808EAB0B37EB4A65CB /* SkeletonDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACE2C2023D786064CDB2E57BCFD11A9 /* SkeletonDebug.swift */; };
+		FDA764F3180C1E42E3001494228815A2 /* SkeletonCollectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D369E4B7E83F3CE2CEAF4CB33BEF0315 /* SkeletonCollectionDelegate.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A930AD9E6F20E283AB301F81072C1561 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CEEFD1CB630CA790F0396E2E24A4C8C;
+			remoteInfo = SkeletonView;
+		};
+		C03FE9B2932CFC5C2F14744C9C90E6F4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 871336C126D501F19E73BEB3CAB0714F;
+			remoteInfo = "Pods-NovaOne";
+		};
+		E6215C33265251DDC3079981F45D5237 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CEEFD1CB630CA790F0396E2E24A4C8C;
+			remoteInfo = SkeletonView;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		026689F9447CDE67E34C4A752BE17CEE /* SubviewsSkeletonables.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SubviewsSkeletonables.swift; path = Sources/SubviewsSkeletonables.swift; sourceTree = "<group>"; };
+		0664283D1E41A89DF13D4EDA73553F36 /* SkeletonAnimationBuilder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SkeletonAnimationBuilder.swift; path = Sources/SkeletonAnimationBuilder.swift; sourceTree = "<group>"; };
+		09B3210D1B6FA2AA4B44AAA3BC354C7A /* SkeletonView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SkeletonView.release.xcconfig; sourceTree = "<group>"; };
+		0C80559AB02E119567CE7146E281BF32 /* Pods-NovaOneTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NovaOneTests.debug.xcconfig"; sourceTree = "<group>"; };
+		10EC8188CDD6301B868978087E196A71 /* AssociationPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssociationPolicy.swift; path = Sources/Helpers/AssociationPolicy.swift; sourceTree = "<group>"; };
+		1248B8ED2813093360863AB063163952 /* libPods-NovaOne.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-NovaOne.a"; path = "libPods-NovaOne.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		137421AC72AC766D81505908E520830A /* UILabel+Multiline.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UILabel+Multiline.swift"; path = "Sources/Multilines/UILabel+Multiline.swift"; sourceTree = "<group>"; };
+		195B4858D8B87BF3F7249FCCBA3DE5F0 /* UITableView+VisibleSections.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UITableView+VisibleSections.swift"; path = "Sources/Extensions/UITableView+VisibleSections.swift"; sourceTree = "<group>"; };
+		1BD4260CC90AB8034F39FEC6D61DD5FC /* Pods-NovaOne.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-NovaOne.modulemap"; sourceTree = "<group>"; };
+		34067162D1F92A6EC9A561F4D9D53492 /* SkeletonLayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SkeletonLayer.swift; path = Sources/SkeletonLayer.swift; sourceTree = "<group>"; };
+		358D4B532238E27111E28DE19F3A7D2E /* SkeletonCollectionViewProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SkeletonCollectionViewProtocols.swift; path = Sources/Collections/CollectionViews/SkeletonCollectionViewProtocols.swift; sourceTree = "<group>"; };
+		39F08A6B91CA4AB2E31418D02AD5C78F /* SkeletonView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SkeletonView-prefix.pch"; sourceTree = "<group>"; };
+		3B6D537EA9B2B529D8E7AA7042802034 /* Pods-NovaOne.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NovaOne.debug.xcconfig"; sourceTree = "<group>"; };
+		3CEE1B12DC3F3A43B556BDC046F92AE5 /* Pods-NovaOneTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-NovaOneTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		4293F34C5C582A39A4BF5ACA5BC243D4 /* UIView+IBInspectable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIView+IBInspectable.swift"; path = "Sources/Extensions/UIView+IBInspectable.swift"; sourceTree = "<group>"; };
+		431DE85C6530903E7A105DC20746C529 /* Pods-NovaOne-NovaOneUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-NovaOne-NovaOneUITests-dummy.m"; sourceTree = "<group>"; };
+		46DA87E9A7413D01C6DFF9896FB4644F /* RecursiveProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RecursiveProtocol.swift; path = Sources/Helpers/RecursiveProtocol.swift; sourceTree = "<group>"; };
+		4B30DAD5BE40A26180670D4EB9831EC1 /* SkeletonView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SkeletonView.modulemap; sourceTree = "<group>"; };
+		4B74E385BA7EFB359FF3F5F15227A2BA /* SkeletonView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SkeletonView-umbrella.h"; sourceTree = "<group>"; };
+		4D5A012E378368AD88379A0DD9E0D454 /* UIColor+Skeleton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIColor+Skeleton.swift"; path = "Sources/Extensions/UIColor+Skeleton.swift"; sourceTree = "<group>"; };
+		4E40FAAA1B57393B19F45BD8344C01B8 /* Recoverable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Recoverable.swift; path = Sources/Recoverable/Recoverable.swift; sourceTree = "<group>"; };
+		530BA7A5B79D4F59F131B514923461C1 /* libPods-NovaOneTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-NovaOneTests.a"; path = "libPods-NovaOneTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		532BC5E37126C3EB352D4BD272289D66 /* SkeletonAppearance.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SkeletonAppearance.swift; path = Sources/Appearance/SkeletonAppearance.swift; sourceTree = "<group>"; };
+		5D4C957FD1321F4EBE53D9B165886030 /* UIView+Frame.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIView+Frame.swift"; path = "Sources/Extensions/UIView+Frame.swift"; sourceTree = "<group>"; };
+		5D6AD985F0537A343B97D49A2A07674E /* ContainsMultilineText.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ContainsMultilineText.swift; path = Sources/Multilines/ContainsMultilineText.swift; sourceTree = "<group>"; };
+		5F8C19EBBE44D2ABCEAA34CA629F9659 /* CALayer+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CALayer+Extensions.swift"; path = "Sources/Extensions/CALayer+Extensions.swift"; sourceTree = "<group>"; };
+		66E92717FE04925B94B5FD51185C6E14 /* RecoverableViewState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RecoverableViewState.swift; path = Sources/Recoverable/RecoverableViewState.swift; sourceTree = "<group>"; };
+		6B0E6E5DB024C7E90E3581EBD97F36B3 /* Pods-NovaOne.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NovaOne.release.xcconfig"; sourceTree = "<group>"; };
+		6FA44D980865B709B63DAD17B530E87D /* Pods-NovaOne-NovaOneUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-NovaOne-NovaOneUITests-acknowledgements.plist"; sourceTree = "<group>"; };
+		7039471951B21B3D83579387D9609A28 /* UIView+UIApplicationDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIView+UIApplicationDelegate.swift"; path = "Sources/Extensions/UIView+UIApplicationDelegate.swift"; sourceTree = "<group>"; };
+		71E345CFC9E7E6EF4D5398E7263DF31E /* libPods-NovaOne-NovaOneUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-NovaOne-NovaOneUITests.a"; path = "libPods-NovaOne-NovaOneUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7338CED5483724AB77C7BBF556DDFC49 /* Pods-NovaOne-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-NovaOne-acknowledgements.markdown"; sourceTree = "<group>"; };
+		7C14C29AFA8D0D2C35F10FEE331BBC1B /* SkeletonView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SkeletonView.debug.xcconfig; sourceTree = "<group>"; };
+		8708F80F7BFCDDFA73251EA57BBB8F55 /* Pods-NovaOne-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-NovaOne-dummy.m"; sourceTree = "<group>"; };
+		90B0C9101C51A0691DA1E0FF32D33A67 /* ProcessInfo+XCTest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ProcessInfo+XCTest.swift"; path = "Sources/Extensions/ProcessInfo+XCTest.swift"; sourceTree = "<group>"; };
+		941C22A1913A264F5314CDA87CC8441A /* PrepareForSkeletonProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PrepareForSkeletonProtocol.swift; path = Sources/Helpers/PrepareForSkeletonProtocol.swift; sourceTree = "<group>"; };
+		96CE5077378F1A5EA7D4AD472F20F6C5 /* SkeletonConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SkeletonConfig.swift; path = Sources/SkeletonConfig.swift; sourceTree = "<group>"; };
+		97788E5CE97C2890E7109371A600BBE7 /* Pods-NovaOne-NovaOneUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NovaOne-NovaOneUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		988BC1CADB2112720CA169E8B9542FB4 /* SkeletonReusableCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SkeletonReusableCell.swift; path = Sources/Collections/Generics/SkeletonReusableCell.swift; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A433B5262CC87C16C8DF579F7448408C /* GenericCollectionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GenericCollectionView.swift; path = Sources/Collections/Generics/GenericCollectionView.swift; sourceTree = "<group>"; };
+		B1F53AEBC8687F333B352D08CB0463E8 /* SkeletonView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SkeletonView.swift; path = Sources/SkeletonView.swift; sourceTree = "<group>"; };
+		B3C9828680E03BC8DE40B6554A13A6CB /* SkeletonMultilineLayerBuilder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SkeletonMultilineLayerBuilder.swift; path = Sources/Builders/SkeletonMultilineLayerBuilder.swift; sourceTree = "<group>"; };
+		B9EDCA07CBBFCEFC7294AD6E5C9BD7F7 /* SkeletonFlow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SkeletonFlow.swift; path = Sources/SkeletonFlow.swift; sourceTree = "<group>"; };
+		BF8EA39DA0E2CD7AF76CF35546E9BCAF /* Pods-NovaOne-NovaOneUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-NovaOne-NovaOneUITests.modulemap"; sourceTree = "<group>"; };
+		BFB3DA1439CA9ED67BE7F08D665344C6 /* Swizzling.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Swizzling.swift; path = Sources/Helpers/Swizzling.swift; sourceTree = "<group>"; };
+		C1C94EC99551DF35030BF8B519433B58 /* UITextView+Multiline.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UITextView+Multiline.swift"; path = "Sources/Multilines/UITextView+Multiline.swift"; sourceTree = "<group>"; };
+		C3B174B72AA0187B3CF6B69874BB77E5 /* UIView+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIView+Extension.swift"; path = "Sources/Extensions/UIView+Extension.swift"; sourceTree = "<group>"; };
+		C452A14C37DD5FF5142ED8D665CB8E76 /* SkeletonGradient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SkeletonGradient.swift; path = Sources/SkeletonGradient.swift; sourceTree = "<group>"; };
+		C702D54776F75C6B1EE827F6F3C7E976 /* Pods-NovaOneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NovaOneTests.release.xcconfig"; sourceTree = "<group>"; };
+		C9010D792F1A465DF5F65AA65096D394 /* CollectionSkeletonProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CollectionSkeletonProtocol.swift; path = Sources/Collections/CollectionSkeletonProtocol.swift; sourceTree = "<group>"; };
+		CACE2C2023D786064CDB2E57BCFD11A9 /* SkeletonDebug.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SkeletonDebug.swift; path = Sources/Debug/SkeletonDebug.swift; sourceTree = "<group>"; };
+		CADF2122DE561B96EDB2B9C4C32C2A90 /* UICollectionView+CollectionSkeleton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UICollectionView+CollectionSkeleton.swift"; path = "Sources/Collections/CollectionViews/UICollectionView+CollectionSkeleton.swift"; sourceTree = "<group>"; };
+		CBF42A04C1DED71B75B5F75E89CFB873 /* SkeletonTransitionStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SkeletonTransitionStyle.swift; path = Sources/Transitions/SkeletonTransitionStyle.swift; sourceTree = "<group>"; };
+		CD36AB78A002D2FA77FA7C331145AC69 /* UIView+CollectionSkeleton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIView+CollectionSkeleton.swift"; path = "Sources/Collections/UIView+CollectionSkeleton.swift"; sourceTree = "<group>"; };
+		CDC8C1E54D1F3A8B5CAC89FFFF6A3F80 /* libSkeletonView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libSkeletonView.a; path = libSkeletonView.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0FA01DADAA0F41BB1BAD396420E67EE /* UIView+Transitions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIView+Transitions.swift"; path = "Sources/Transitions/UIView+Transitions.swift"; sourceTree = "<group>"; };
+		D2018B7C71C75492769111FB6D974471 /* Pods-NovaOne-NovaOneUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NovaOne-NovaOneUITests.release.xcconfig"; sourceTree = "<group>"; };
+		D369E4B7E83F3CE2CEAF4CB33BEF0315 /* SkeletonCollectionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SkeletonCollectionDelegate.swift; path = Sources/Collections/SkeletonCollectionDelegate.swift; sourceTree = "<group>"; };
+		D80FE3675E60C0BB16E1E5367933C0A2 /* Pods-NovaOneTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-NovaOneTests-dummy.m"; sourceTree = "<group>"; };
+		DBEF2426BAFE08160E1C5083AF18A20C /* Pods-NovaOne-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-NovaOne-umbrella.h"; sourceTree = "<group>"; };
+		E1C410B1A85E104002E798F6DFAF4BB3 /* SkeletonCollectionDataSource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SkeletonCollectionDataSource.swift; path = Sources/Collections/SkeletonCollectionDataSource.swift; sourceTree = "<group>"; };
+		E2966C6035F112F8C4119C80AB081A19 /* Pods-NovaOne-NovaOneUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-NovaOne-NovaOneUITests-umbrella.h"; sourceTree = "<group>"; };
+		E69D1F58A591F3575F88C5663D10A46C /* UITableView+CollectionSkeleton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UITableView+CollectionSkeleton.swift"; path = "Sources/Collections/TableViews/UITableView+CollectionSkeleton.swift"; sourceTree = "<group>"; };
+		E9CD8000C44CDD90C19CD96DB982BA0E /* Pods-NovaOne-NovaOneUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-NovaOne-NovaOneUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		EC47827C2B106B3C456653C39458AD2B /* SkeletonView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SkeletonView-dummy.m"; sourceTree = "<group>"; };
+		F2E6CF07997B336268B5F8A9555FCCE8 /* Pods-NovaOneTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-NovaOneTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		F7B57E1FBFBE69CEA74ED2420CD3E826 /* SkeletonLayerBuilder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SkeletonLayerBuilder.swift; path = Sources/Builders/SkeletonLayerBuilder.swift; sourceTree = "<group>"; };
+		F801331AB802C5C3C0DAFF9D1D50D0E6 /* SkeletonTableViewProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SkeletonTableViewProtocols.swift; path = Sources/Collections/TableViews/SkeletonTableViewProtocols.swift; sourceTree = "<group>"; };
+		FBE99D2F414FF8719D8C189B4F927F88 /* Int+Whitespaces.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Int+Whitespaces.swift"; path = "Sources/Extensions/Int+Whitespaces.swift"; sourceTree = "<group>"; };
+		FE81CC96DA20E9990F4477B7C0629938 /* Pods-NovaOne-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-NovaOne-acknowledgements.plist"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7DF3A592453867B84FF262A35EB500B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80EB1A8A6F023AA4D7EC084E80796F07 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8A561834B549EF6C74AE185D809EEEA8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F388F286030494E5D5874FA83BB5D2C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		23F38A2E884B69ABDD4EED7BCBA6063E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				990A1E8E759880972E29329050BAE088 /* SkeletonView */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		46B4AF2E5072EAE356987084AFC3E7CE /* Pods-NovaOne-NovaOneUITests */ = {
+			isa = PBXGroup;
+			children = (
+				BF8EA39DA0E2CD7AF76CF35546E9BCAF /* Pods-NovaOne-NovaOneUITests.modulemap */,
+				E9CD8000C44CDD90C19CD96DB982BA0E /* Pods-NovaOne-NovaOneUITests-acknowledgements.markdown */,
+				6FA44D980865B709B63DAD17B530E87D /* Pods-NovaOne-NovaOneUITests-acknowledgements.plist */,
+				431DE85C6530903E7A105DC20746C529 /* Pods-NovaOne-NovaOneUITests-dummy.m */,
+				E2966C6035F112F8C4119C80AB081A19 /* Pods-NovaOne-NovaOneUITests-umbrella.h */,
+				97788E5CE97C2890E7109371A600BBE7 /* Pods-NovaOne-NovaOneUITests.debug.xcconfig */,
+				D2018B7C71C75492769111FB6D974471 /* Pods-NovaOne-NovaOneUITests.release.xcconfig */,
+			);
+			name = "Pods-NovaOne-NovaOneUITests";
+			path = "Target Support Files/Pods-NovaOne-NovaOneUITests";
+			sourceTree = "<group>";
+		};
+		4A5311CD526F98E9206B9CD0BD22ED41 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1248B8ED2813093360863AB063163952 /* libPods-NovaOne.a */,
+				71E345CFC9E7E6EF4D5398E7263DF31E /* libPods-NovaOne-NovaOneUITests.a */,
+				530BA7A5B79D4F59F131B514923461C1 /* libPods-NovaOneTests.a */,
+				CDC8C1E54D1F3A8B5CAC89FFFF6A3F80 /* libSkeletonView.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		990A1E8E759880972E29329050BAE088 /* SkeletonView */ = {
+			isa = PBXGroup;
+			children = (
+				10EC8188CDD6301B868978087E196A71 /* AssociationPolicy.swift */,
+				5F8C19EBBE44D2ABCEAA34CA629F9659 /* CALayer+Extensions.swift */,
+				C9010D792F1A465DF5F65AA65096D394 /* CollectionSkeletonProtocol.swift */,
+				5D6AD985F0537A343B97D49A2A07674E /* ContainsMultilineText.swift */,
+				A433B5262CC87C16C8DF579F7448408C /* GenericCollectionView.swift */,
+				FBE99D2F414FF8719D8C189B4F927F88 /* Int+Whitespaces.swift */,
+				941C22A1913A264F5314CDA87CC8441A /* PrepareForSkeletonProtocol.swift */,
+				90B0C9101C51A0691DA1E0FF32D33A67 /* ProcessInfo+XCTest.swift */,
+				4E40FAAA1B57393B19F45BD8344C01B8 /* Recoverable.swift */,
+				66E92717FE04925B94B5FD51185C6E14 /* RecoverableViewState.swift */,
+				46DA87E9A7413D01C6DFF9896FB4644F /* RecursiveProtocol.swift */,
+				0664283D1E41A89DF13D4EDA73553F36 /* SkeletonAnimationBuilder.swift */,
+				532BC5E37126C3EB352D4BD272289D66 /* SkeletonAppearance.swift */,
+				E1C410B1A85E104002E798F6DFAF4BB3 /* SkeletonCollectionDataSource.swift */,
+				D369E4B7E83F3CE2CEAF4CB33BEF0315 /* SkeletonCollectionDelegate.swift */,
+				358D4B532238E27111E28DE19F3A7D2E /* SkeletonCollectionViewProtocols.swift */,
+				96CE5077378F1A5EA7D4AD472F20F6C5 /* SkeletonConfig.swift */,
+				CACE2C2023D786064CDB2E57BCFD11A9 /* SkeletonDebug.swift */,
+				B9EDCA07CBBFCEFC7294AD6E5C9BD7F7 /* SkeletonFlow.swift */,
+				C452A14C37DD5FF5142ED8D665CB8E76 /* SkeletonGradient.swift */,
+				34067162D1F92A6EC9A561F4D9D53492 /* SkeletonLayer.swift */,
+				F7B57E1FBFBE69CEA74ED2420CD3E826 /* SkeletonLayerBuilder.swift */,
+				B3C9828680E03BC8DE40B6554A13A6CB /* SkeletonMultilineLayerBuilder.swift */,
+				988BC1CADB2112720CA169E8B9542FB4 /* SkeletonReusableCell.swift */,
+				F801331AB802C5C3C0DAFF9D1D50D0E6 /* SkeletonTableViewProtocols.swift */,
+				CBF42A04C1DED71B75B5F75E89CFB873 /* SkeletonTransitionStyle.swift */,
+				B1F53AEBC8687F333B352D08CB0463E8 /* SkeletonView.swift */,
+				026689F9447CDE67E34C4A752BE17CEE /* SubviewsSkeletonables.swift */,
+				BFB3DA1439CA9ED67BE7F08D665344C6 /* Swizzling.swift */,
+				CADF2122DE561B96EDB2B9C4C32C2A90 /* UICollectionView+CollectionSkeleton.swift */,
+				4D5A012E378368AD88379A0DD9E0D454 /* UIColor+Skeleton.swift */,
+				137421AC72AC766D81505908E520830A /* UILabel+Multiline.swift */,
+				E69D1F58A591F3575F88C5663D10A46C /* UITableView+CollectionSkeleton.swift */,
+				195B4858D8B87BF3F7249FCCBA3DE5F0 /* UITableView+VisibleSections.swift */,
+				C1C94EC99551DF35030BF8B519433B58 /* UITextView+Multiline.swift */,
+				CD36AB78A002D2FA77FA7C331145AC69 /* UIView+CollectionSkeleton.swift */,
+				C3B174B72AA0187B3CF6B69874BB77E5 /* UIView+Extension.swift */,
+				5D4C957FD1321F4EBE53D9B165886030 /* UIView+Frame.swift */,
+				4293F34C5C582A39A4BF5ACA5BC243D4 /* UIView+IBInspectable.swift */,
+				D0FA01DADAA0F41BB1BAD396420E67EE /* UIView+Transitions.swift */,
+				7039471951B21B3D83579387D9609A28 /* UIView+UIApplicationDelegate.swift */,
+				C1E43807317CDDC68E7284E06E8FBA80 /* Support Files */,
+			);
+			name = SkeletonView;
+			path = SkeletonView;
+			sourceTree = "<group>";
+		};
+		A6F480DDF0C1080A8E5E22283E61B332 /* Pods-NovaOneTests */ = {
+			isa = PBXGroup;
+			children = (
+				F2E6CF07997B336268B5F8A9555FCCE8 /* Pods-NovaOneTests-acknowledgements.markdown */,
+				3CEE1B12DC3F3A43B556BDC046F92AE5 /* Pods-NovaOneTests-acknowledgements.plist */,
+				D80FE3675E60C0BB16E1E5367933C0A2 /* Pods-NovaOneTests-dummy.m */,
+				0C80559AB02E119567CE7146E281BF32 /* Pods-NovaOneTests.debug.xcconfig */,
+				C702D54776F75C6B1EE827F6F3C7E976 /* Pods-NovaOneTests.release.xcconfig */,
+			);
+			name = "Pods-NovaOneTests";
+			path = "Target Support Files/Pods-NovaOneTests";
+			sourceTree = "<group>";
+		};
+		C0893A88BD24CB480EA0EC211AEC847B /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				D463F6136C256349967050A999B5CBF3 /* Pods-NovaOne */,
+				46B4AF2E5072EAE356987084AFC3E7CE /* Pods-NovaOne-NovaOneUITests */,
+				A6F480DDF0C1080A8E5E22283E61B332 /* Pods-NovaOneTests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		C1E43807317CDDC68E7284E06E8FBA80 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				4B30DAD5BE40A26180670D4EB9831EC1 /* SkeletonView.modulemap */,
+				EC47827C2B106B3C456653C39458AD2B /* SkeletonView-dummy.m */,
+				39F08A6B91CA4AB2E31418D02AD5C78F /* SkeletonView-prefix.pch */,
+				4B74E385BA7EFB359FF3F5F15227A2BA /* SkeletonView-umbrella.h */,
+				7C14C29AFA8D0D2C35F10FEE331BBC1B /* SkeletonView.debug.xcconfig */,
+				09B3210D1B6FA2AA4B44AAA3BC354C7A /* SkeletonView.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/SkeletonView";
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				D89477F20FB1DE18A04690586D7808C4 /* Frameworks */,
+				23F38A2E884B69ABDD4EED7BCBA6063E /* Pods */,
+				4A5311CD526F98E9206B9CD0BD22ED41 /* Products */,
+				C0893A88BD24CB480EA0EC211AEC847B /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D463F6136C256349967050A999B5CBF3 /* Pods-NovaOne */ = {
+			isa = PBXGroup;
+			children = (
+				1BD4260CC90AB8034F39FEC6D61DD5FC /* Pods-NovaOne.modulemap */,
+				7338CED5483724AB77C7BBF556DDFC49 /* Pods-NovaOne-acknowledgements.markdown */,
+				FE81CC96DA20E9990F4477B7C0629938 /* Pods-NovaOne-acknowledgements.plist */,
+				8708F80F7BFCDDFA73251EA57BBB8F55 /* Pods-NovaOne-dummy.m */,
+				DBEF2426BAFE08160E1C5083AF18A20C /* Pods-NovaOne-umbrella.h */,
+				3B6D537EA9B2B529D8E7AA7042802034 /* Pods-NovaOne.debug.xcconfig */,
+				6B0E6E5DB024C7E90E3581EBD97F36B3 /* Pods-NovaOne.release.xcconfig */,
+			);
+			name = "Pods-NovaOne";
+			path = "Target Support Files/Pods-NovaOne";
+			sourceTree = "<group>";
+		};
+		D89477F20FB1DE18A04690586D7808C4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		45BAF46460E69818AED5412733ACF758 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D9017C97478A5AD841080FD0344E5F6 /* Pods-NovaOne-NovaOneUITests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE4FAED7D5228B493C190A54263B2775 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7569ABC5D0049242A7BB99B2DADD863C /* SkeletonView-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DA9175FA6C8B10BB8E38C14A60AA56E7 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5ECE242FA37BC9BDB4CAC2677410A2E1 /* Pods-NovaOne-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F6DE25BD66032CC2853A91A1A383CA29 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		0EEB38038A52425F62480A4A467DFE26 /* Pods-NovaOne-NovaOneUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 81284BD6DE8F1DE46E88A4BD435B01EB /* Build configuration list for PBXNativeTarget "Pods-NovaOne-NovaOneUITests" */;
+			buildPhases = (
+				45BAF46460E69818AED5412733ACF758 /* Headers */,
+				815018A90ED6FD76D572D7858C5151F7 /* Sources */,
+				7DF3A592453867B84FF262A35EB500B2 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9B9EB1485FE27A637CEC481D2F0FB7E8 /* PBXTargetDependency */,
+			);
+			name = "Pods-NovaOne-NovaOneUITests";
+			productName = "Pods-NovaOne-NovaOneUITests";
+			productReference = 71E345CFC9E7E6EF4D5398E7263DF31E /* libPods-NovaOne-NovaOneUITests.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		70736CEEB055E8358B9E80A38204067C /* Pods-NovaOneTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FC123E8293CCE936F99D349C3B7B67D3 /* Build configuration list for PBXNativeTarget "Pods-NovaOneTests" */;
+			buildPhases = (
+				F6DE25BD66032CC2853A91A1A383CA29 /* Headers */,
+				DDCA881C647AF0F5512E40FEADA7118E /* Sources */,
+				9F388F286030494E5D5874FA83BB5D2C /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B340C1F40B4EC935D6A95BEB095EE385 /* PBXTargetDependency */,
+			);
+			name = "Pods-NovaOneTests";
+			productName = "Pods-NovaOneTests";
+			productReference = 530BA7A5B79D4F59F131B514923461C1 /* libPods-NovaOneTests.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		871336C126D501F19E73BEB3CAB0714F /* Pods-NovaOne */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6D39F80244AD7E90B1AAA390D9A8C6D5 /* Build configuration list for PBXNativeTarget "Pods-NovaOne" */;
+			buildPhases = (
+				DA9175FA6C8B10BB8E38C14A60AA56E7 /* Headers */,
+				215A7F242264CB26957091C73DF7DE3B /* Sources */,
+				8A561834B549EF6C74AE185D809EEEA8 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C7A41711300BF3C1FFFA9C69BA653962 /* PBXTargetDependency */,
+			);
+			name = "Pods-NovaOne";
+			productName = "Pods-NovaOne";
+			productReference = 1248B8ED2813093360863AB063163952 /* libPods-NovaOne.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		8CEEFD1CB630CA790F0396E2E24A4C8C /* SkeletonView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ACDFD409A9BFF8C3EEFDBDBC8A49DB65 /* Build configuration list for PBXNativeTarget "SkeletonView" */;
+			buildPhases = (
+				CE4FAED7D5228B493C190A54263B2775 /* Headers */,
+				98A5F2AEE2B4E1FB5A2F53AFAB4A619A /* Sources */,
+				80EB1A8A6F023AA4D7EC084E80796F07 /* Frameworks */,
+				CA6907D73D81F03F67EC53F49B5A3D17 /* Copy generated compatibility header */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SkeletonView;
+			productName = SkeletonView;
+			productReference = CDC8C1E54D1F3A8B5CAC89FFFF6A3F80 /* libSkeletonView.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = 4A5311CD526F98E9206B9CD0BD22ED41 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				871336C126D501F19E73BEB3CAB0714F /* Pods-NovaOne */,
+				0EEB38038A52425F62480A4A467DFE26 /* Pods-NovaOne-NovaOneUITests */,
+				70736CEEB055E8358B9E80A38204067C /* Pods-NovaOneTests */,
+				8CEEFD1CB630CA790F0396E2E24A4C8C /* SkeletonView */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		CA6907D73D81F03F67EC53F49B5A3D17 /* Copy generated compatibility header */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DERIVED_SOURCES_DIR}/${PRODUCT_MODULE_NAME}-Swift.h",
+				"${PODS_ROOT}/Headers/Public/SkeletonView/SkeletonView.modulemap",
+				"${PODS_ROOT}/Headers/Public/SkeletonView/SkeletonView-umbrella.h",
+			);
+			name = "Copy generated compatibility header";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${BUILT_PRODUCTS_DIR}/${PRODUCT_MODULE_NAME}.modulemap",
+				"${BUILT_PRODUCTS_DIR}/SkeletonView-umbrella.h",
+				"${BUILT_PRODUCTS_DIR}/Swift Compatibility Header/${PRODUCT_MODULE_NAME}-Swift.h",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "COMPATIBILITY_HEADER_PATH=\"${BUILT_PRODUCTS_DIR}/Swift Compatibility Header/${PRODUCT_MODULE_NAME}-Swift.h\"\nMODULE_MAP_PATH=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_MODULE_NAME}.modulemap\"\n\nditto \"${DERIVED_SOURCES_DIR}/${PRODUCT_MODULE_NAME}-Swift.h\" \"${COMPATIBILITY_HEADER_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/SkeletonView/SkeletonView.modulemap\" \"${MODULE_MAP_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/SkeletonView/SkeletonView-umbrella.h\" \"${BUILT_PRODUCTS_DIR}\"\nprintf \"\\n\\nmodule ${PRODUCT_MODULE_NAME}.Swift {\\n  header \\\"${COMPATIBILITY_HEADER_PATH}\\\"\\n  requires objc\\n}\\n\" >> \"${MODULE_MAP_PATH}\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		215A7F242264CB26957091C73DF7DE3B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				151101418AED60F364E0A9B97D978A41 /* Pods-NovaOne-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		815018A90ED6FD76D572D7858C5151F7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				99A2758FC91B4BCD8FD65AE177682D50 /* Pods-NovaOne-NovaOneUITests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		98A5F2AEE2B4E1FB5A2F53AFAB4A619A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				594E9343D80F58D7BCA1CDB46EFD75C4 /* AssociationPolicy.swift in Sources */,
+				BC3B46566F5E178CE783DBF090D9BD91 /* CALayer+Extensions.swift in Sources */,
+				08BA4AFDF80F37DB1A10AA44C74B227D /* CollectionSkeletonProtocol.swift in Sources */,
+				2E34A05944BEAA4A6AB66D4FF585FDED /* ContainsMultilineText.swift in Sources */,
+				3FEE66A634158F79A0A604714074DBFD /* GenericCollectionView.swift in Sources */,
+				9210BA834653B3BCFFA8015858F71802 /* Int+Whitespaces.swift in Sources */,
+				6CA69A97113FFDE57CC3E77252E34E72 /* PrepareForSkeletonProtocol.swift in Sources */,
+				230AFFDFCFF203831B4027402BAC270F /* ProcessInfo+XCTest.swift in Sources */,
+				1E26F5FB590758008DC3B92F14FE4A41 /* Recoverable.swift in Sources */,
+				A26987EC960BC2E5C4E8E7E15423247B /* RecoverableViewState.swift in Sources */,
+				DCDB8A04E257FC6E9C3279129017A39F /* RecursiveProtocol.swift in Sources */,
+				92A16A7C59888C0EB1A79AB71A7B37B3 /* SkeletonAnimationBuilder.swift in Sources */,
+				886350EB9313427A001ECE45FBE55B79 /* SkeletonAppearance.swift in Sources */,
+				8EFA998149BD8E7FBFC16F571A161AE1 /* SkeletonCollectionDataSource.swift in Sources */,
+				FDA764F3180C1E42E3001494228815A2 /* SkeletonCollectionDelegate.swift in Sources */,
+				2222AD81E36828DEFE909CF56E4CA5B6 /* SkeletonCollectionViewProtocols.swift in Sources */,
+				B585C43846A31BDAEE7672D32D29E701 /* SkeletonConfig.swift in Sources */,
+				F61D1E548BF3D8808EAB0B37EB4A65CB /* SkeletonDebug.swift in Sources */,
+				E260FFC9D9B9A39A049347B4AB3FE72E /* SkeletonFlow.swift in Sources */,
+				9CAF3489F6DDA4EED0CE7389D80EB286 /* SkeletonGradient.swift in Sources */,
+				A195408BB95A92A20A52BA1A22C19F83 /* SkeletonLayer.swift in Sources */,
+				BE857616BD452A27D21A6615FD4696E5 /* SkeletonLayerBuilder.swift in Sources */,
+				BBF953995F2BA9E22E1D548774919819 /* SkeletonMultilineLayerBuilder.swift in Sources */,
+				210EE6DBCB30BB756E93A86C5ED9053E /* SkeletonReusableCell.swift in Sources */,
+				6FFF08C600C454EBEDDE0CA133882B51 /* SkeletonTableViewProtocols.swift in Sources */,
+				841A9708C8F7BC0DC3C5978CF82F71E9 /* SkeletonTransitionStyle.swift in Sources */,
+				0FE4D75FEA77CDB5498F169C758CC2F0 /* SkeletonView-dummy.m in Sources */,
+				4FD60FAA2725F9F3B6E886D973F04C6E /* SkeletonView.swift in Sources */,
+				7B8F60312502B54E893F795F6E909CA1 /* SubviewsSkeletonables.swift in Sources */,
+				76A586465F5DA8CD88D32733463AA251 /* Swizzling.swift in Sources */,
+				8C670F178433C899BCF5B64A71C04CB5 /* UICollectionView+CollectionSkeleton.swift in Sources */,
+				5173935A91A55D0A5044CD51035E7197 /* UIColor+Skeleton.swift in Sources */,
+				0C2C51B1BDC87A3635F5196EEB7083E8 /* UILabel+Multiline.swift in Sources */,
+				24812575BB977E905862894716327BFA /* UITableView+CollectionSkeleton.swift in Sources */,
+				A6AB04A198221BC961954AFCF1D7C9B9 /* UITableView+VisibleSections.swift in Sources */,
+				B320E99E34F9CFBD52A7CDD5C9201AE3 /* UITextView+Multiline.swift in Sources */,
+				1F422E6F6AB3EB45E092B058B6B08255 /* UIView+CollectionSkeleton.swift in Sources */,
+				5B737B5095F3829EB628CB73D6196C52 /* UIView+Extension.swift in Sources */,
+				F18242879BCA75BE541161F2C967C0D1 /* UIView+Frame.swift in Sources */,
+				7268506CED7A8D2D1C547B53E699F7E8 /* UIView+IBInspectable.swift in Sources */,
+				12C470684EF838D8D4537A2FB17AE396 /* UIView+Transitions.swift in Sources */,
+				D2450E74CB859C2759E0F5DC256BF70E /* UIView+UIApplicationDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DDCA881C647AF0F5512E40FEADA7118E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18BF98509A7880F36D67D5D133721996 /* Pods-NovaOneTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9B9EB1485FE27A637CEC481D2F0FB7E8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SkeletonView;
+			target = 8CEEFD1CB630CA790F0396E2E24A4C8C /* SkeletonView */;
+			targetProxy = E6215C33265251DDC3079981F45D5237 /* PBXContainerItemProxy */;
+		};
+		B340C1F40B4EC935D6A95BEB095EE385 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-NovaOne";
+			target = 871336C126D501F19E73BEB3CAB0714F /* Pods-NovaOne */;
+			targetProxy = C03FE9B2932CFC5C2F14744C9C90E6F4 /* PBXContainerItemProxy */;
+		};
+		C7A41711300BF3C1FFFA9C69BA653962 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SkeletonView;
+			target = 8CEEFD1CB630CA790F0396E2E24A4C8C /* SkeletonView */;
+			targetProxy = A930AD9E6F20E283AB301F81072C1561 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1422B121EAEAEA11307496903FA623C6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		33BA06F7E9B58B27A699E4E495482146 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B6D537EA9B2B529D8E7AA7042802034 /* Pods-NovaOne.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-NovaOne/Pods-NovaOne.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		44041BE562D0FDBBA74F9C4EED6CFDF6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6B0E6E5DB024C7E90E3581EBD97F36B3 /* Pods-NovaOne.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-NovaOne/Pods-NovaOne.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4E40B35D93196DD1360CF6973D701293 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 09B3210D1B6FA2AA4B44AAA3BC354C7A /* SkeletonView.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/SkeletonView/SkeletonView-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MODULEMAP_FILE = Headers/Public/SkeletonView/SkeletonView.modulemap;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = SkeletonView;
+				PRODUCT_NAME = SkeletonView;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		872D9C813F3EE26958581D08A7907221 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D2018B7C71C75492769111FB6D974471 /* Pods-NovaOne-NovaOneUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-NovaOne-NovaOneUITests/Pods-NovaOne-NovaOneUITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		993D590712BFB06863C5BDEBFAD5197A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7C14C29AFA8D0D2C35F10FEE331BBC1B /* SkeletonView.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/SkeletonView/SkeletonView-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MODULEMAP_FILE = Headers/Public/SkeletonView/SkeletonView.modulemap;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = SkeletonView;
+				PRODUCT_NAME = SkeletonView;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9E019F260FAC34FEDEF15604DC7AC3EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C702D54776F75C6B1EE827F6F3C7E976 /* Pods-NovaOneTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D10CF80B5CA9722B4717E27C0BBE8993 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0C80559AB02E119567CE7146E281BF32 /* Pods-NovaOneTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		ED7888FA6713EABBF66D26A8003AD1CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		FC7A30793D8E1C5173C9363D7B0D3B21 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 97788E5CE97C2890E7109371A600BBE7 /* Pods-NovaOne-NovaOneUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-NovaOne-NovaOneUITests/Pods-NovaOne-NovaOneUITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED7888FA6713EABBF66D26A8003AD1CA /* Debug */,
+				1422B121EAEAEA11307496903FA623C6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6D39F80244AD7E90B1AAA390D9A8C6D5 /* Build configuration list for PBXNativeTarget "Pods-NovaOne" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				33BA06F7E9B58B27A699E4E495482146 /* Debug */,
+				44041BE562D0FDBBA74F9C4EED6CFDF6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		81284BD6DE8F1DE46E88A4BD435B01EB /* Build configuration list for PBXNativeTarget "Pods-NovaOne-NovaOneUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC7A30793D8E1C5173C9363D7B0D3B21 /* Debug */,
+				872D9C813F3EE26958581D08A7907221 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ACDFD409A9BFF8C3EEFDBDBC8A49DB65 /* Build configuration list for PBXNativeTarget "SkeletonView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				993D590712BFB06863C5BDEBFAD5197A /* Debug */,
+				4E40B35D93196DD1360CF6973D701293 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FC123E8293CCE936F99D349C3B7B67D3 /* Build configuration list for PBXNativeTarget "Pods-NovaOneTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D10CF80B5CA9722B4717E27C0BBE8993 /* Debug */,
+				9E019F260FAC34FEDEF15604DC7AC3EA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}

@@ -120,7 +120,7 @@ class UIHelper {
         }
     }
     
-    static func showSuccessContainer<T: UIViewController>(for currentViewController: UIViewController?, successContainerViewIdentifier: String,containerView: UIView, objectType: T.Type, completion: (UIViewController) -> Void) {
+    static func showSuccessContainer<T: UIViewController>(for currentViewController: UIViewController?, successContainerViewIdentifier: String,containerView: UIView, objectType: T.Type, completion: ((UIViewController) -> Void)?) {
         // Shows the table with items for the container view
         
         if let successContainerViewController = currentViewController?.storyboard?.instantiateViewController(identifier: successContainerViewIdentifier) as? T {
@@ -141,7 +141,9 @@ class UIHelper {
             successContainerViewController.didMove(toParent: currentViewController)
             
             // Plug the success container view controller into the completion function
-            completion(successContainerViewController)
+            if let completion = completion {
+                completion(successContainerViewController)
+            }
             
             // Save to CoreData for future display
 
