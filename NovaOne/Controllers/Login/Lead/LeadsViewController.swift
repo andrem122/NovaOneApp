@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class LeadsViewController: UIViewController {
     
@@ -27,11 +28,16 @@ class LeadsViewController: UIViewController {
         super.viewDidLoad()
         self.setupNavigationBar()
         self.setupTableView()
+        self.setupSkeletonView()
     }
     
     func setupNavigationBar() {
         self.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationBar.shadowImage = UIImage()
+    }
+    
+    func setupSkeletonView() {
+        self.view.showAnimatedGradientSkeleton()
     }
     
     func getData(endpoint: String, append: Bool, lastObjectId: Int?) {
@@ -75,12 +81,14 @@ class LeadsViewController: UIViewController {
                                         // Stop the refresh control 700 miliseconds after the data is retrieved to make it look more natrual when loading
                                         DispatchQueue.main.asyncAfter(deadline: deadline) {
                                             self?.refresher.endRefreshing()
+                                            self?.view.hideSkeleton()
                                             self?.leadsTableView.reloadData()
                                         }
                                     
                                     case .failure(let error):
                                         print(error.localizedDescription)
                                         DispatchQueue.main.asyncAfter(deadline: deadline) {
+                                            self?.view.hideSkeleton()
                                             self?.refresher.endRefreshing()
                                         }
                                     
@@ -91,6 +99,7 @@ class LeadsViewController: UIViewController {
     
     @objc func refreshData() {
         // Refresh data on pull down of the table view
+        self.setupSkeletonView()
         self.getData(endpoint: "/leads.php", append: false, lastObjectId: nil)
     }
     
@@ -110,7 +119,11 @@ class LeadsViewController: UIViewController {
 
 }
 
-extension LeadsViewController: UITableViewDataSource, UITableViewDelegate {
+extension LeadsViewController: UITableViewDelegate, SkeletonTableViewDataSource {
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return Defaults.TableViewCellIdentifiers.novaOne.rawValue
+    }
     
     // Shows how many rows our table view should show
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -160,12 +173,13 @@ extension LeadsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         // Get last item index from data array
         let lastItemIndex = self.leads.count - 1
-        let lastObjectId = self.leads[lastItemIndex].id
         
-        if indexPath.row == lastItemIndex {
+        if self.leads.count > 0 && indexPath.row == lastItemIndex {
+            let lastObjectId = self.leads[lastItemIndex].id
             // Get more data
             self.loadMoreDataOnEndScroll(lastObjectId: lastObjectId)
         }
+
     }
     
     func loadMoreDataOnEndScroll(lastObjectId: Int) {

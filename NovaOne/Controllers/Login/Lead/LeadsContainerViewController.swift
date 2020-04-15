@@ -18,6 +18,11 @@ class LeadsContainerViewController: UIViewController {
         self.getLeads()
     }
     
+    func showSkeletonLoading() {
+        // Shows the appointments view which automatically shows a loading skeleton on viewDidLoad
+        UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.ViewControllerIdentifiers.leads.rawValue, containerView: self.containerView ?? UIView(), objectType: LeadsViewController.self, completion: nil)
+    }
+    
     func getLeads() {
         // Gets appointments from the database via an HTTP request
         // and saves to CoreData
@@ -48,6 +53,8 @@ class LeadsContainerViewController: UIViewController {
                                             
                                             if let leadsViewController = leadsViewController as? LeadsViewController {
                                                 leadsViewController.leads = leads
+                                                leadsViewController.view.hideSkeleton()
+                                                leadsViewController.leadsTableView.reloadData()
                                             }
                                             
                                     }
