@@ -15,13 +15,15 @@ class LeadsViewController: UIViewController {
     // MARK: Properties
     @IBOutlet weak var leadsTableView: UITableView!
     @IBOutlet weak var navigationBar: UINavigationBar!
+    var tableIsRefreshing: Bool = false
+    var timer: Timer?
     var customer: CustomerModel?
     var bottomTableViewSpinner: UIActivityIndicatorView? = nil
     var leads: [Lead] = []
     lazy var refresher: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.tintColor = .lightGray
-        refreshControl.addTarget(self, action: #selector(self.refreshData), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(self.refreshDataOnPullDown), for: .valueChanged)
         return refreshControl
     }()
         
@@ -31,6 +33,7 @@ class LeadsViewController: UIViewController {
         self.getCoreData()
         self.setupNavigationBar()
         self.setupTableView()
+        self.updateTableData()
     }
     
     func setupNavigationBar() {
@@ -86,7 +89,7 @@ class LeadsViewController: UIViewController {
             PersistenceService.saveContext()
     }
     
-    func getData(endpoint: String, append: Bool, lastObjectId: Int32?) {
+    func getData(endpoint: String, append: Bool, lastObjectId: Int32?, completion: (() -> Void)?) {
         // Get data from the database via an HTTP request
         
         let httpRequest = HTTPRequests()
@@ -124,6 +127,10 @@ class LeadsViewController: UIViewController {
                                         self?.saveObjectsToCoreData(objects: leads)
                                         self?.getCoreData()
                                         
+                                        // Run the completion handler
+                                        guard let unwrappedCompletion = completion else { return }
+                                        unwrappedCompletion()
+                                        
                                         // Stop the refresh control 700 miliseconds after the data is retrieved to make it look more natrual when loading
                                         DispatchQueue.main.asyncAfter(deadline: deadline) {
                                             self?.hideTableLoadingAnimations()
@@ -131,6 +138,11 @@ class LeadsViewController: UIViewController {
                                     
                                     case .failure(let error):
                                         print(error.localizedDescription)
+                                        
+                                        // Run the completion handler
+                                        guard let unwrappedCompletion = completion else { return }
+                                        unwrappedCompletion()
+                                        
                                         DispatchQueue.main.asyncAfter(deadline: deadline) {
                                             self?.hideTableLoadingAnimations()
                                         }
@@ -140,10 +152,41 @@ class LeadsViewController: UIViewController {
         }
     }
     
-    @objc func refreshData() {
+    @objc func refreshDataOnPullDown() {
         // Refresh data on pull down of the table view
+        
+        print("Refreshing table data")
+        self.tableIsRefreshing = true
+        self.timer?.invalidate() // Stop the auto refresh when manually refreshing
         self.view.showAnimatedGradientSkeleton()
-        self.getData(endpoint: "/leads.php", append: false, lastObjectId: nil)
+        
+        self.getData(endpoint: "/leads.php", append: false, lastObjectId: nil) {
+            [weak self] in
+            
+            // Reactivate timer after manual refresh
+            self?.timer = Timer.scheduledTimer(timeInterval: 60.0, target: self as Any, selector: #selector(self?.refreshDataAutomatically), userInfo: nil, repeats: true)
+            self?.tableIsRefreshing = false
+            
+        }
+        
+    }
+    
+    @objc func refreshDataAutomatically() {
+        // Refresh data on pull down of the table view
+        
+        print("Refreshing table data automatically")
+        self.tableIsRefreshing = true
+        self.view.showAnimatedGradientSkeleton()
+        
+        self.getData(endpoint: "/leads.php", append: false, lastObjectId: nil) {
+            [weak self] in
+            self?.tableIsRefreshing = false
+        }
+    }
+    
+    func updateTableData() {
+        // Sets up the timer to refresh the table data automatically every minute
+        self.timer = Timer.scheduledTimer(timeInterval: 30.0, target: self, selector: #selector(self.refreshDataAutomatically), userInfo: nil, repeats: true)
     }
     
     func setupTableView() {
@@ -218,25 +261,27 @@ extension LeadsViewController: UITableViewDelegate, SkeletonTableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        // Get last item index from data array
-        let lastItemIndex = self.leads.count - 1
-        
-        if self.leads.count > 0 && indexPath.row == lastItemIndex {
-            let lastObjectId = self.leads[lastItemIndex].id
-            // Get more data
-            self.getData(endpoint: "/moreLeads.php", append: true, lastObjectId: lastObjectId)
-        }
         
         // Show loading indicator at bottom of table view
         let lastSectionIndex = tableView.numberOfSections - 1 // Get last section in tableview
         let lastRowIndex = tableView.numberOfRows(inSection: lastSectionIndex) - 1 // Get last row index in last section of tableview
         
         // If at the last row in the last section of the table
-        if indexPath.section == lastSectionIndex && indexPath.row == lastRowIndex {
+        if self.leads.count > 0 && self.tableIsRefreshing == false && indexPath.section == lastSectionIndex && indexPath.row == lastRowIndex {
+            
+            print("REACHED THE BOTTOM OF THE TABLE. MAKING REQUEST FOR MORE DATA...")
+            let lastItemIndex = self.leads.count - 1
+            let lastObjectId = self.leads[lastItemIndex].id
+            
+            // Make HTTP request for more data
+            self.getData(endpoint: "/moreLeads.php", append: true, lastObjectId: lastObjectId, completion: nil)
+            
+            // Make loading icon
             self.bottomTableViewSpinner = UIActivityIndicatorView(style: .medium)
             self.bottomTableViewSpinner?.startAnimating()
             self.bottomTableViewSpinner?.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 60)
             
+            // Show the loading icon on the table footer
             self.leadsTableView.tableFooterView = self.bottomTableViewSpinner
             self.leadsTableView.tableFooterView?.isHidden = false
         }
