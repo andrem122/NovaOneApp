@@ -12,7 +12,7 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     // MARK: Properties
     var objectDetailCells: [[String : String]] = []
-    var lead: LeadModel?
+    var lead: Lead?
     @IBOutlet weak var objectDetailTableView: UITableView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var topView: NovaOneView!
@@ -50,18 +50,19 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         // Set cells up for the table view
         
         guard
-            let lead = self.lead
+            let lead = self.lead,
+            let name = lead.name,
+            let renterBrand = lead.renterBrand,
+            let companyName = lead.companyName,
+            let dateOfInquiryDate = lead.dateOfInquiry
         else { return }
-        let name = lead.name
-        let renterBrand = lead.renterBrand
         
         // Set default values for optional types
         let phoneNumber = lead.phoneNumber != nil ? lead.phoneNumber! : "No phone"
         let unwrappedEmail = lead.email != nil ? lead.email! : "" // lead.email! returns an empty string even if it is not nil
         let email = unwrappedEmail.isEmpty ? "No email" : unwrappedEmail
         
-        let dateOfInquiry: String = self.convert(lead: lead.dateOfInquiryDate)
-        let companyName = lead.companyName
+        let dateOfInquiry: String = self.convert(lead: dateOfInquiryDate)
         
         // Create dictionaries for cells
         let phoneNumberCell = ["cellTitle": "Phone", "cellTitleValue": phoneNumber]

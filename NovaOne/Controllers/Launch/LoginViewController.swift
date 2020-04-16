@@ -16,7 +16,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: NovaOneButton!
-    let coreDataCustomerEmail: String? = PersistenceService.fetchEntity(Customer.self).first?.email
+    let coreDataCustomerEmail: String? = PersistenceService.fetchEntity(Customer.self, with: nil, sort: nil).first?.email
     let alertService = AlertService()
     
     // MARK: Methods
@@ -185,7 +185,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         let lastLoginDate = customer.lastLoginDate
                         
                         // If there are no customer CoreData objects, save the new customer object
-                        let customerCount = PersistenceService.entityExists(entityName: Defaults.CoreDataEntities.customer.rawValue)
+                        let customerCount = PersistenceService.fetchCount(for: Defaults.CoreDataEntities.customer.rawValue)
                         if customerCount == 0 { // New users to the app logging in for first time
                             print("New user to the app!")
                             guard let coreDataCustomerObject = NSEntityDescription.insertNewObject(forEntityName: Defaults.CoreDataEntities.customer.rawValue, into: PersistenceService.context) as? Customer else {
@@ -206,6 +206,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             // Delete all CoreData data from previous logins
                             PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.customer.rawValue)
                             PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.company.rawValue)
+                            PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.lead.rawValue)
                             
                             // Create new customer object in CoreData for new login information
                             guard let coreDataCustomerObject = NSEntityDescription.insertNewObject(forEntityName: Defaults.CoreDataEntities.customer.rawValue, into: PersistenceService.context) as? Customer else {

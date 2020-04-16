@@ -65,10 +65,14 @@ class PersistenceService {
     }
     
     // MARK: - Core Data Fetching
-    static func fetchEntity<T: NSManagedObject>(_ objectType: T.Type) -> [T] {
-        // Gets all objects from an entity type in CoreData
+    static func fetchEntity<T: NSManagedObject>(_ objectType: T.Type, with predicate: NSPredicate?, sort by: [NSSortDescriptor]?) -> [T] {
+        // Gets filtered objects from an entity type in CoreData
         let entityName = String(describing: objectType)
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+        
+        // Filter and sort data if needed by using predicates and sort descriptors
+        fetchRequest.predicate = predicate
+        fetchRequest.sortDescriptors = by
         
         do {
             let objects = try self.context.fetch(fetchRequest) as? [T]
@@ -138,8 +142,8 @@ class PersistenceService {
         }
     }
     
-    static func entityExists(entityName: String) -> Int {
-        // Checks if a given entitiy has objects saved to CoreData
+    static func fetchCount(for entityName: String) -> Int {
+        // Gets a count of how many objects a given entity has saved to CoreData
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         fetchRequest.includesSubentities = false
         
@@ -162,7 +166,7 @@ class PersistenceService {
             try self.context.execute(request)
             self.saveContext()
         } catch {
-            print("Detele all data in \(entityName) error :", error)
+            print("Failed to delete all data for \(entityName): \(error)")
         }
     }
     

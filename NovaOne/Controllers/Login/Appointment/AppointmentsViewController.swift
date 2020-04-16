@@ -15,11 +15,11 @@ class AppointmentsViewController: UIViewController {
     @IBOutlet weak var appointmentTableView: UITableView!
     @IBOutlet weak var navigationBar: UINavigationBar!
     var appointments: [AppointmentModel] = []
-    
+    var bottomTableViewSpinner: UIActivityIndicatorView? = nil
     lazy var refresher: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.tintColor = .lightGray
-        refreshControl.addTarget(self, action: #selector(self.getAppointments), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(self.refreshData), for: .valueChanged)
         return refreshControl
     }()
     
@@ -27,8 +27,8 @@ class AppointmentsViewController: UIViewController {
     // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupTableView()
         self.setupNavigationBar()
+        self.setupTableView()
         self.setupSkeletonView()
     }
     
@@ -38,14 +38,13 @@ class AppointmentsViewController: UIViewController {
     }
     
     func setupSkeletonView() {
-        // Start the animation of the skeleton view
         self.view.showAnimatedGradientSkeleton()
     }
     
-    @objc func getAppointments() {
+    func getData(endpoint: String, append: Bool, lastObjectId: Int?) {
         // Gets appointments from the database via an HTTP request
         // and saves to CoreData
-        self.setupSkeletonView()
+        
         let httpRequest = HTTPRequests()
         guard
             let customer = PersistenceService.fetchCustomerEntity(),
@@ -53,15 +52,18 @@ class AppointmentsViewController: UIViewController {
             let password = KeychainWrapper.standard.string(forKey: "password")
         else {
             print("Failed to obtain variables for POST request")
+            self.refresher.endRefreshing()
             return
         }
         let customerUserId = customer.id
-        
+        let unwrappedLastObjectId = lastObjectId != nil ? lastObjectId! : 0
+
         let parameters: [String: Any] = ["customerUserId": customerUserId as Any,
                                          "email": email as Any,
-                                         "password": password as Any]
+                                         "password": password as Any,
+                                         "lastObjectId": unwrappedLastObjectId as Any]
         
-        httpRequest.request(endpoint: "/appointments.php",
+        httpRequest.request(endpoint: endpoint,
                             dataModel: [AppointmentModel].self,
                             parameters: parameters) { [weak self] (result) in
                                 
@@ -69,33 +71,44 @@ class AppointmentsViewController: UIViewController {
                                 switch result {
                                     
                                     case .success(let appointments):
-                                        self?.appointments = appointments
+                                        
+                                        // Append to the appointments array or make overwrite
+                                        if append {
+                                            self?.appointments.append(contentsOf: appointments)
+                                        } else {
+                                            self?.appointments = appointments
+                                        }
                                         
                                         // Stop the refresh control 700 miliseconds after the data is retrieved to make it look more natrual when loading
                                         DispatchQueue.main.asyncAfter(deadline: deadline) {
                                             self?.refresher.endRefreshing()
+                                            self?.bottomTableViewSpinner?.stopAnimating()
                                             self?.view.hideSkeleton()
-                                            self?.appointmentTableView.reloadData() // reload table view so new data shows
+                                            self?.appointmentTableView.reloadData()
                                         }
                                     
                                     case .failure(let error):
                                         print(error.localizedDescription)
                                         DispatchQueue.main.asyncAfter(deadline: deadline) {
-                                            self?.refresher.endRefreshing()
                                             self?.view.hideSkeleton()
+                                            self?.bottomTableViewSpinner?.stopAnimating()
+                                            self?.refresher.endRefreshing()
                                         }
                                     
                                 }
                                 
-                                
-                                
         }
-        
+    }
+    
+    @objc func refreshData() {
+        // Refresh data on pull down of the table view
+        self.setupSkeletonView()
+        self.getData(endpoint: "/appointments.php", append: false, lastObjectId: nil)
     }
     
     func setupTableView() {
-        // Set up the table view
-        
+        // Set seperator color for table view
+        self.appointmentTableView.separatorColor = UIColor(white: 0.95, alpha: 1)
         self.appointmentTableView.delegate = self
         self.appointmentTableView.dataSource = self
         
@@ -105,9 +118,6 @@ class AppointmentsViewController: UIViewController {
         } else {
             self.appointmentTableView.addSubview(self.refresher)
         }
-        
-        // Set seperator color for table view
-        self.appointmentTableView.separatorColor = UIColor(white: 0.95, alpha: 1)
     }
 
 }
@@ -126,7 +136,6 @@ extension AppointmentsViewController: UITableViewDelegate, SkeletonTableViewData
     // This is where we configure each cell in our table view
     // Paramater 'indexPath' represents the row number that each table view cell is contained in (Example: first appointment object has indexPath of zero)
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let appointment: AppointmentModel = self.appointments[indexPath.row] // Get the appointment object based on the row number each cell is in
         let cellIdentifier: String = Defaults.TableViewCellIdentifiers.novaOne.rawValue
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! NovaOneTableViewCell // Get cell with identifier so we can use the custom cell we made
@@ -144,13 +153,12 @@ extension AppointmentsViewController: UITableViewDelegate, SkeletonTableViewData
         let title = appointment.name
         let subTitleOne = appointment.address != nil ? appointment.address! : appointmentCreated
         let subTitleTwo = appointment.unitType != nil ? appointment.unitType! : appointment.testType!
-        
+               
         cell.setup(title: title, subTitleOne: subTitleOne, subTitleTwo: subTitleTwo, subTitleThree: appointmentTime)
-        
+               
         return cell
     }
     
-    // Function gets called every time a row in the table gets tapped on
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true) // Deselect the row after it is tapped on
         
@@ -158,15 +166,47 @@ extension AppointmentsViewController: UITableViewDelegate, SkeletonTableViewData
         let appointment = self.appointments[indexPath.row]
         
         //Get detail view controller, pass object to it, and present it
-        if let appointmentDetailNavigationController = self.storyboard?.instantiateViewController(withIdentifier: Defaults.NavigationControllerIdentifiers.appointmentDetail.rawValue) as? UINavigationController {
+        if let appointmentDetailViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.appointmentDetail.rawValue) as? AppointmentDetailViewController {
             
-            guard let appointmentDetailViewController = appointmentDetailNavigationController.viewControllers[0] as? AppointmentDetailViewController else { return }
             appointmentDetailViewController.appointment = appointment
-            
-            appointmentDetailNavigationController.modalPresentationStyle = .fullScreen
-            
-            self.present(appointmentDetailNavigationController, animated: true, completion: nil)
+            appointmentDetailViewController.modalPresentationStyle = .automatic
+            self.present(appointmentDetailViewController, animated: true, completion: nil)
             
         }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        // Get last item index from data array
+        let lastItemIndex = self.appointments.count - 1
+        
+        if self.appointments.count > 0 && indexPath.row == lastItemIndex {
+            let lastObjectId = self.appointments[lastItemIndex].id
+            // Get more data
+            self.loadMoreDataOnEndScroll(lastObjectId: lastObjectId)
+        }
+        
+        // Show loading indicator at bottom of table view
+        let lastSectionIndex = tableView.numberOfSections - 1 // Get last section in tableview
+        let lastRowIndex = tableView.numberOfRows(inSection: lastSectionIndex) - 1 // Get last row index in last section of tableview
+        
+        // If at the last row in the last section of the table
+        if indexPath.section == lastSectionIndex && indexPath.row == lastRowIndex {
+            self.bottomTableViewSpinner = UIActivityIndicatorView(style: .medium)
+            self.bottomTableViewSpinner?.startAnimating()
+            self.bottomTableViewSpinner?.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 60)
+            
+            self.appointmentTableView.tableFooterView = self.bottomTableViewSpinner
+            self.appointmentTableView.tableFooterView?.isHidden = false
+        }
+        
+
+    }
+    
+    func loadMoreDataOnEndScroll(lastObjectId: Int) {
+        // Gets more appointments from the database after scrolling past
+        // the last appointment in the table
+        print("Getting more appointments from the database")
+        self.getData(endpoint: "/moreAppointments.php", append: true, lastObjectId: lastObjectId)
+        
     }
 }

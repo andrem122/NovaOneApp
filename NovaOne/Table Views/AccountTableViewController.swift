@@ -25,7 +25,7 @@ class AccountTableViewController: UITableViewController {
         
         // Set values for each label
         guard
-            let customer = PersistenceService.fetchEntity(Customer.self).first,
+            let customer = PersistenceService.fetchEntity(Customer.self, with: nil, sort: nil).first,
             let emailAddress = customer.email,
             let phoneNumber = customer.phoneNumber
         else { return }

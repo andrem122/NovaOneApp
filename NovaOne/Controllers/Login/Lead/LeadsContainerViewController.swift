@@ -7,24 +7,83 @@
 //
 
 import UIKit
+import CoreData
 
 class LeadsContainerViewController: UIViewController {
     
     // MARK: Properties
     @IBOutlet weak var containerView: UIView!
+    let objectCount = PersistenceService.fetchCount(for: Defaults.CoreDataEntities.lead.rawValue)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.getLeads()
+        self.showSuccessContainer()
+        self.showCoreDataOrRequestData()
     }
     
-    func showSkeletonLoading() {
-        // Shows the appointments view which automatically shows a loading skeleton on viewDidLoad
+    func showCoreDataOrRequestData() {
+        // Gets CoreData and passes it to table view OR makes a request for data if no CoreData exists
+        
+        if self.objectCount > 0 {
+            print("SHOWING LEADS FROM CORE DATA")
+            // Get CoreData objects and pass to the next view
+            self.showSuccessContainer()
+            
+        } else {
+            // Show loading screen first before fetching data
+            UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.ViewControllerIdentifiers.leads.rawValue, containerView: self.containerView, objectType: LeadsViewController.self) { (leadsViewController) in
+                
+                // Activate skeleton loading screen for leads view controller
+                guard let leadsViewController = leadsViewController as? LeadsViewController else { return }
+                leadsViewController.view.showAnimatedGradientSkeleton()
+                
+            }
+            
+            // Get data via an HTTP request and save to coredata for the next view
+            self.getData()
+        }
+        
+    }
+    
+    func showSuccessContainer() {
+        // Shows the next view when the data request is successful
         UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.ViewControllerIdentifiers.leads.rawValue, containerView: self.containerView ?? UIView(), objectType: LeadsViewController.self, completion: nil)
     }
     
-    func getLeads() {
-        // Gets appointments from the database via an HTTP request
+    func saveObjectsToCoreData(objects: [Decodable]) {
+        // Saves leads data to CoreData
+        guard let entity = NSEntityDescription.entity(forEntityName: Defaults.CoreDataEntities.lead.rawValue, in: PersistenceService.context) else { return }
+            
+            guard let leads = objects as? [LeadModel] else { return }
+            for lead in leads {
+                if let coreDataLead = NSManagedObject(entity: entity, insertInto: PersistenceService.context) as? Lead {
+                    
+                    coreDataLead.id = Int32(lead.id)
+                    coreDataLead.name = lead.name
+                    coreDataLead.phoneNumber = lead.phoneNumber
+                    coreDataLead.email = lead.email
+                    coreDataLead.dateOfInquiry = lead.dateOfInquiryDate
+                    coreDataLead.renterBrand = lead.renterBrand
+                    coreDataLead.companyId = Int32(lead.companyId)
+                    coreDataLead.sentTextDate = lead.sentTextDateDate
+                    coreDataLead.sentEmailDate = lead.sentEmailDateDate
+                    coreDataLead.filledOutForm = lead.filledOutForm
+                    coreDataLead.madeAppointment = lead.madeAppointment
+                    coreDataLead.companyName = lead.companyName
+                    
+                    let predicate = NSPredicate(format: "id == %@", String(lead.companyId))
+                    coreDataLead.company = PersistenceService.fetchEntity(Company.self, with: predicate, sort: nil).first
+    
+                    
+                }
+            }
+        
+        // Save objects to CoreData once they have been inserted into the context container
+        PersistenceService.saveContext()
+    }
+    
+    func getData() {
+        // Gets data from the database via an HTTP request
         // and saves to CoreData
         
         let httpRequest = HTTPRequests()
@@ -51,11 +110,8 @@ class LeadsContainerViewController: UIViewController {
                                     case .success(let leads):
                                         UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.ViewControllerIdentifiers.leads.rawValue, containerView: self?.containerView ?? UIView(), objectType: LeadsViewController.self) { (leadsViewController) in
                                             
-                                            if let leadsViewController = leadsViewController as? LeadsViewController {
-                                                leadsViewController.leads = leads
-                                                leadsViewController.view.hideSkeleton()
-                                                leadsViewController.leadsTableView.reloadData()
-                                            }
+                                            // Save data in CoreData
+                                            self?.saveObjectsToCoreData(objects: leads)
                                             
                                     }
                                     case .failure(let error):
