@@ -15,15 +15,16 @@ class LeadsViewController: UIViewController {
     // MARK: Properties
     @IBOutlet weak var leadsTableView: UITableView!
     @IBOutlet weak var navigationBar: UINavigationBar!
-    var tableIsRefreshing: Bool = false
     var timer: Timer?
     var customer: CustomerModel?
     var bottomTableViewSpinner: UIActivityIndicatorView? = nil
+    var tableIsRefreshing: Bool = true
+    var appendingDataToTable: Bool = false
     var leads: [Lead] = []
     lazy var refresher: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.tintColor = .lightGray
-        refreshControl.addTarget(self, action: #selector(self.refreshDataOnPullDown), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(self.refreshData), for: .valueChanged)
         return refreshControl
     }()
         
@@ -33,7 +34,15 @@ class LeadsViewController: UIViewController {
         self.getCoreData()
         self.setupNavigationBar()
         self.setupTableView()
-        self.updateTableData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.timer?.invalidate()
     }
     
     func setupNavigationBar() {
@@ -46,7 +55,6 @@ class LeadsViewController: UIViewController {
         // Gets data from CoreData and sorts by dateOfInquiry field
         let sortDescriptors = [NSSortDescriptor(key: "dateOfInquiry", ascending: false)]
         self.leads = PersistenceService.fetchEntity(Lead.self, with: nil, sort: sortDescriptors)
-        self.view.hideSkeleton()
     }
     
     func hideTableLoadingAnimations() {
@@ -127,24 +135,22 @@ class LeadsViewController: UIViewController {
                                         self?.saveObjectsToCoreData(objects: leads)
                                         self?.getCoreData()
                                         
-                                        // Run the completion handler
-                                        guard let unwrappedCompletion = completion else { return }
-                                        unwrappedCompletion()
-                                        
                                         // Stop the refresh control 700 miliseconds after the data is retrieved to make it look more natrual when loading
                                         DispatchQueue.main.asyncAfter(deadline: deadline) {
                                             self?.hideTableLoadingAnimations()
+                                            // Run the completion handler
+                                            guard let unwrappedCompletion = completion else { return }
+                                            unwrappedCompletion()
                                         }
                                     
                                     case .failure(let error):
                                         print(error.localizedDescription)
                                         
-                                        // Run the completion handler
-                                        guard let unwrappedCompletion = completion else { return }
-                                        unwrappedCompletion()
-                                        
                                         DispatchQueue.main.asyncAfter(deadline: deadline) {
                                             self?.hideTableLoadingAnimations()
+                                            // Run the completion handler
+                                            guard let unwrappedCompletion = completion else { return }
+                                            unwrappedCompletion()
                                         }
                                     
                                 }
@@ -152,41 +158,31 @@ class LeadsViewController: UIViewController {
         }
     }
     
-    @objc func refreshDataOnPullDown() {
-        // Refresh data on pull down of the table view
+    @objc func refreshData() {
+        // Refresh data of the table view
         
-        print("Refreshing table data")
-        self.tableIsRefreshing = true
-        self.timer?.invalidate() // Stop the auto refresh when manually refreshing
-        self.view.showAnimatedGradientSkeleton()
-        
-        self.getData(endpoint: "/leads.php", append: false, lastObjectId: nil) {
-            [weak self] in
+        if self.appendingDataToTable == false {
             
-            // Reactivate timer after manual refresh
-            self?.timer = Timer.scheduledTimer(timeInterval: 60.0, target: self as Any, selector: #selector(self?.refreshDataAutomatically), userInfo: nil, repeats: true)
-            self?.tableIsRefreshing = false
+            print("Refreshing table data")
+            print(self.timer?.description as Any)
+            self.timer?.invalidate() // Stop the auto refresh when manually refreshing
+            self.tableIsRefreshing = true
+            self.view.showAnimatedGradientSkeleton()
+            
+            self.getData(endpoint: "/leads.php", append: false, lastObjectId: nil) {
+                [weak self] in
+                self?.tableIsRefreshing = false
+                self?.timer = Timer.scheduledTimer(timeInterval: 20.0, target: self as Any, selector: #selector(self?.refreshData), userInfo: nil, repeats: true)
+                
+            }
             
         }
         
     }
     
-    @objc func refreshDataAutomatically() {
-        // Refresh data on pull down of the table view
-        
-        print("Refreshing table data automatically")
-        self.tableIsRefreshing = true
-        self.view.showAnimatedGradientSkeleton()
-        
-        self.getData(endpoint: "/leads.php", append: false, lastObjectId: nil) {
-            [weak self] in
-            self?.tableIsRefreshing = false
-        }
-    }
-    
-    func updateTableData() {
+    func setTimerForTableRefresh() {
         // Sets up the timer to refresh the table data automatically every minute
-        self.timer = Timer.scheduledTimer(timeInterval: 30.0, target: self, selector: #selector(self.refreshDataAutomatically), userInfo: nil, repeats: true)
+        self.timer = Timer.scheduledTimer(timeInterval: 20.0, target: self, selector: #selector(self.refreshData), userInfo: nil, repeats: true)
     }
     
     func setupTableView() {
@@ -211,10 +207,6 @@ extension LeadsViewController: UITableViewDelegate, SkeletonTableViewDataSource 
         return Defaults.TableViewCellIdentifiers.novaOne.rawValue
     }
     
-    func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.leads.count
-    }
-    
     // Shows how many rows our table view should show
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.leads.count
@@ -224,23 +216,29 @@ extension LeadsViewController: UITableViewDelegate, SkeletonTableViewDataSource 
     // Paramater 'indexPath' represents the row number that each table view cell is contained in (Example: first appointment object has indexPath of zero)
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let lead: Lead = self.leads[indexPath.row] // Get the object based on the row number each cell is in
         let cellIdentifier: String = Defaults.TableViewCellIdentifiers.novaOne.rawValue
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! NovaOneTableViewCell // Get cell with identifier so we can use the custom cell we made
         
-        guard
-            let name = lead.name,
-            let companyName = lead.companyName,
-            let leadBrand = lead.renterBrand,
-            let dateOfInquiry = lead.dateOfInquiry
-        else { return cell }
+        if self.tableIsRefreshing == false {
+            
+            // Set up cell with values if we have objects in the leads array
+            let lead: Lead = self.leads[indexPath.row] // Get the object based on the row number each cell is in
+            guard
+                let name = lead.name,
+                let companyName = lead.companyName,
+                let leadBrand = lead.renterBrand,
+                let dateOfInquiry = lead.dateOfInquiry
+            else { return cell }
+            
+            // Get date of appointment as a string
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MMM d, yyyy | h:mm a"
+            let dateContacted: String = dateFormatter.string(from: dateOfInquiry)
+            
+            cell.setup(title: name, subTitleOne: companyName, subTitleTwo: leadBrand, subTitleThree: dateContacted)
+            
+        }
         
-        // Get date of appointment as a string
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM d, yyyy | h:mm a"
-        let dateContacted: String = dateFormatter.string(from: dateOfInquiry)
-        
-        cell.setup(title: name, subTitleOne: companyName, subTitleTwo: leadBrand, subTitleThree: dateContacted)
         return cell
     }
     
@@ -267,14 +265,20 @@ extension LeadsViewController: UITableViewDelegate, SkeletonTableViewDataSource 
         let lastRowIndex = tableView.numberOfRows(inSection: lastSectionIndex) - 1 // Get last row index in last section of tableview
         
         // If at the last row in the last section of the table
-        if self.leads.count > 0 && self.tableIsRefreshing == false && indexPath.section == lastSectionIndex && indexPath.row == lastRowIndex {
+        if self.tableIsRefreshing == false && tableView.isDragging && indexPath.section == lastSectionIndex && indexPath.row == lastRowIndex {
             
             print("REACHED THE BOTTOM OF THE TABLE. MAKING REQUEST FOR MORE DATA...")
+            self.appendingDataToTable = true
+            self.timer?.invalidate()
             let lastItemIndex = self.leads.count - 1
             let lastObjectId = self.leads[lastItemIndex].id
             
             // Make HTTP request for more data
-            self.getData(endpoint: "/moreLeads.php", append: true, lastObjectId: lastObjectId, completion: nil)
+            self.getData(endpoint: "/moreLeads.php", append: true, lastObjectId: lastObjectId) {
+                [weak self] in
+                self?.appendingDataToTable = false
+                self?.setTimerForTableRefresh()
+            }
             
             // Make loading icon
             self.bottomTableViewSpinner = UIActivityIndicatorView(style: .medium)

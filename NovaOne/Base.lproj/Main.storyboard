@@ -666,9 +666,6 @@ and you have 4 calls.</string>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                 </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <segue destination="7qS-on-qoA" kind="embed" id="LEr-gA-8Ul"/>
-                                </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v8g-kd-nrC" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
                                 <rect key="frame" x="30" y="748" width="354" height="45"/>
@@ -719,11 +716,11 @@ and you have 4 calls.</string>
             <objects>
                 <viewController storyboardIdentifier="appointmentsViewController" title="Appointments" useStoryboardIdentifierAsRestorationIdentifier="YES" id="7qS-on-qoA" customClass="AppointmentsViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6dD-dw-mWj">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="669"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="115" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bhM-qQ-2A0">
-                                <rect key="frame" x="0.0" y="88" width="414" height="581"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="novaOneTableViewCell" rowHeight="115" id="mks-rP-h9s" userLabel="appointmentTableCell" customClass="NovaOneTableViewCell" customModule="NovaOne" customModuleProvider="target">
@@ -966,9 +963,6 @@ and you have 4 calls.</string>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                 </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <segue destination="vNh-rt-Nre" kind="embed" id="0mz-Bu-fBM"/>
-                                </connections>
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -1106,7 +1100,7 @@ on how to reset your password.</string>
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kEj-0U-bzz">
-                                <rect key="frame" x="20" y="64" width="67" height="67"/>
+                                <rect key="frame" x="20" y="64" width="33.5" height="33.5"/>
                                 <state key="normal" image="cancelButtonBlue"/>
                                 <connections>
                                     <action selector="cancelButtonTapped:" destination="T1A-G4-xJU" eventType="touchUpInside" id="kgs-AH-JO8"/>
@@ -1786,11 +1780,11 @@ of your company?</string>
             <objects>
                 <viewController storyboardIdentifier="leadsViewController" title="Appointments" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vNh-rt-Nre" userLabel="Leads" customClass="LeadsViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Fb3-3g-f36">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="769"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="115" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nls-Pw-One" userLabel="Leads Table View">
-                                <rect key="frame" x="0.0" y="88" width="414" height="681"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="novaOneTableViewCell" rowHeight="115" id="hLe-h0-gPR" userLabel="leadsTableCell" customClass="NovaOneTableViewCell" customModule="NovaOne" customModuleProvider="target">

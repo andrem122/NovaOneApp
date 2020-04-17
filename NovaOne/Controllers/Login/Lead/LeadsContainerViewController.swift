@@ -17,7 +17,6 @@ class LeadsContainerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.showSuccessContainer()
         self.showCoreDataOrRequestData()
     }
     
@@ -27,27 +26,17 @@ class LeadsContainerViewController: UIViewController {
         if self.objectCount > 0 {
             print("SHOWING LEADS FROM CORE DATA")
             // Get CoreData objects and pass to the next view
-            self.showSuccessContainer()
-            
-        } else {
-            // Show loading screen first before fetching data
-            UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.ViewControllerIdentifiers.leads.rawValue, containerView: self.containerView, objectType: LeadsViewController.self) { (leadsViewController) in
-                
-                // Activate skeleton loading screen for leads view controller
+            UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.ViewControllerIdentifiers.leads.rawValue, containerView: self.containerView ?? UIView(), objectType: LeadsViewController.self) {
+                leadsViewController in
                 guard let leadsViewController = leadsViewController as? LeadsViewController else { return }
-                leadsViewController.view.showAnimatedGradientSkeleton()
-                
+                leadsViewController.setTimerForTableRefresh()
             }
             
+        } else {
             // Get data via an HTTP request and save to coredata for the next view
             self.getData()
         }
         
-    }
-    
-    func showSuccessContainer() {
-        // Shows the next view when the data request is successful
-        UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.ViewControllerIdentifiers.leads.rawValue, containerView: self.containerView ?? UIView(), objectType: LeadsViewController.self, completion: nil)
     }
     
     func saveObjectsToCoreData(objects: [Decodable]) {
@@ -112,6 +101,10 @@ class LeadsContainerViewController: UIViewController {
                                             
                                             // Save data in CoreData
                                             self?.saveObjectsToCoreData(objects: leads)
+                                            
+                                            // Setup timer fore refreshing leads
+                                            guard let leadsViewController = leadsViewController as? LeadsViewController else { return }
+                                            leadsViewController.setTimerForTableRefresh()
                                             
                                     }
                                     case .failure(let error):
