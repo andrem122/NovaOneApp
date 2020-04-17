@@ -65,6 +65,11 @@ class LeadsViewController: UIViewController {
         self.leadsTableView.reloadData()
     }
     
+    func setTimerForTableRefresh() {
+        // Setup the timer for automatic refresh of table data
+        self.timer = Timer.scheduledTimer(timeInterval: 80.0, target: self, selector: #selector(self.refreshData), userInfo: nil, repeats: true)
+    }
+    
     func saveObjectsToCoreData(objects: [Decodable]) {
         // Saves leads data to CoreData
         guard let entity = NSEntityDescription.entity(forEntityName: Defaults.CoreDataEntities.lead.rawValue, in: PersistenceService.context) else { return }
@@ -177,17 +182,12 @@ class LeadsViewController: UIViewController {
                 [weak self] in
                 
                 self?.tableIsRefreshing = false
-                self?.timer = Timer.scheduledTimer(timeInterval: 20.0, target: self as Any, selector: #selector(self?.refreshData), userInfo: nil, repeats: true)
+                self?.timer = Timer.scheduledTimer(timeInterval: 80.0, target: self as Any, selector: #selector(self?.refreshData), userInfo: nil, repeats: true)
                 
             }
             
         }
         
-    }
-    
-    func setTimerForTableRefresh() {
-        // Sets up the timer to refresh the table data automatically every minute
-        self.timer = Timer.scheduledTimer(timeInterval: 80.0, target: self, selector: #selector(self.refreshData), userInfo: nil, repeats: true)
     }
     
     func setupTableView() {
@@ -281,8 +281,10 @@ extension LeadsViewController: UITableViewDelegate, SkeletonTableViewDataSource 
             // Make HTTP request for more data
             self.getData(endpoint: "/moreLeads.php", append: true, lastObjectId: lastObjectId) {
                 [weak self] in
+                
                 self?.appendingDataToTable = false
-                self?.setTimerForTableRefresh()
+                self?.timer = Timer.scheduledTimer(timeInterval: 10.0, target: self as Any, selector: #selector(self?.refreshData), userInfo: nil, repeats: true)
+                
             }
             
             // Make loading icon
