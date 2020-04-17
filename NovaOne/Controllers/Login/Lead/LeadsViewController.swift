@@ -24,7 +24,7 @@ class LeadsViewController: UIViewController {
     lazy var refresher: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.tintColor = .lightGray
-        refreshControl.addTarget(self, action: #selector(self.refreshData), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(self.refreshDataOnPullDown), for: .valueChanged)
         return refreshControl
     }()
         
@@ -67,7 +67,8 @@ class LeadsViewController: UIViewController {
     
     func setTimerForTableRefresh() {
         // Setup the timer for automatic refresh of table data
-        self.timer = Timer.scheduledTimer(timeInterval: 80.0, target: self, selector: #selector(self.refreshData), userInfo: nil, repeats: true)
+        print("Timer object created")
+        self.timer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(self.refreshDataAutomatically), userInfo: nil, repeats: true)
     }
     
     func saveObjectsToCoreData(objects: [Decodable]) {
@@ -163,15 +164,15 @@ class LeadsViewController: UIViewController {
         }
     }
     
-    @objc func refreshData() {
-        // Refresh data of the table view
+    @objc func refreshDataAutomatically() {
+        // Refresh data of the table view if the user is not scrolling
         
-        if self.appendingDataToTable == false {
+        if self.appendingDataToTable == false && self.tableIsRefreshing == false && self.leads.count > 0 && self.leadsTableView.isDecelerating == false && self.leadsTableView.isDragging == false {
             
             print("Refreshing table data")
             print(self.timer?.description as Any)
             
-            self.timer?.invalidate() // Stop the auto refresh when manually refreshing
+            self.timer?.invalidate()
             self.tableIsRefreshing = true
             self.view.showAnimatedGradientSkeleton()
             
@@ -182,7 +183,36 @@ class LeadsViewController: UIViewController {
                 [weak self] in
                 
                 self?.tableIsRefreshing = false
-                self?.timer = Timer.scheduledTimer(timeInterval: 80.0, target: self as Any, selector: #selector(self?.refreshData), userInfo: nil, repeats: true)
+                print("Timer object created by auto refreshing")
+                self?.timer = Timer.scheduledTimer(timeInterval: 10.0, target: self as Any, selector: #selector(self?.refreshDataAutomatically), userInfo: nil, repeats: true)
+                
+            }
+            
+        }
+        
+    }
+    
+    @objc func refreshDataOnPullDown() {
+        // Refresh data of the table view if the user is not scrolling
+        
+        if self.appendingDataToTable == false && self.tableIsRefreshing == false && self.leads.count > 0 {
+            
+            print("Refreshing table data")
+            print(self.timer?.description as Any)
+            
+            self.timer?.invalidate()
+            self.tableIsRefreshing = true
+            self.view.showAnimatedGradientSkeleton()
+            
+            let lastIndex = self.leads.count - 1
+            let lastObjectId = self.leads[lastIndex].id
+            
+            self.getData(endpoint: "/refreshLeads.php", append: false, lastObjectId: lastObjectId) {
+                [weak self] in
+                
+                self?.tableIsRefreshing = false
+                print("Timer object created by refreshing")
+                self?.timer = Timer.scheduledTimer(timeInterval: 10.0, target: self as Any, selector: #selector(self?.refreshDataAutomatically), userInfo: nil, repeats: true)
                 
             }
             
@@ -225,7 +255,6 @@ extension LeadsViewController: UITableViewDelegate, SkeletonTableViewDataSource 
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! NovaOneTableViewCell // Get cell with identifier so we can use the custom cell we made
         
         if self.tableIsRefreshing == false {
-            
             // Set up cell with values if we have objects in the leads array
             let lead: Lead = self.leads[indexPath.row] // Get the object based on the row number each cell is in
             guard
@@ -283,7 +312,8 @@ extension LeadsViewController: UITableViewDelegate, SkeletonTableViewDataSource 
                 [weak self] in
                 
                 self?.appendingDataToTable = false
-                self?.timer = Timer.scheduledTimer(timeInterval: 10.0, target: self as Any, selector: #selector(self?.refreshData), userInfo: nil, repeats: true)
+                 print("Timer object created by appending")
+                self?.timer = Timer.scheduledTimer(timeInterval: 10.0, target: self as Any, selector: #selector(self?.refreshDataAutomatically), userInfo: nil, repeats: true)
                 
             }
             
@@ -299,5 +329,5 @@ extension LeadsViewController: UITableViewDelegate, SkeletonTableViewDataSource 
         
 
     }
-
+    
 }

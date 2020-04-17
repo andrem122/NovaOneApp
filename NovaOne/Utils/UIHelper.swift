@@ -144,8 +144,6 @@ class UIHelper {
             if let completion = completion {
                 completion(successContainerViewController)
             }
-            
-            // Save to CoreData for future display
 
         }
     }

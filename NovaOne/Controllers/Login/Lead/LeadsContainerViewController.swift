@@ -39,8 +39,9 @@ class LeadsContainerViewController: UIViewController {
         
     }
     
-    func saveObjectsToCoreData(objects: [Decodable]) {
-        // Saves leads data to CoreData
+    func saveObjectsToCoreDataAndSend(for leadsViewController: LeadsViewController, objects: [Decodable]) {
+        // Saves leads data to CoreData and sends them to leads view for display
+        
         guard let entity = NSEntityDescription.entity(forEntityName: Defaults.CoreDataEntities.lead.rawValue, in: PersistenceService.context) else { return }
             
             guard let leads = objects as? [LeadModel] else { return }
@@ -69,11 +70,24 @@ class LeadsContainerViewController: UIViewController {
         
         // Save objects to CoreData once they have been inserted into the context container
         PersistenceService.saveContext()
+        
+        // Send the data to the leads view controller
+        let sortDescriptors = [NSSortDescriptor(key: "dateOfInquiry", ascending: false)]
+        leadsViewController.leads = PersistenceService.fetchEntity(Lead.self, with: nil, sort: sortDescriptors)
+        
     }
     
     func getData() {
         // Gets data from the database via an HTTP request
         // and saves to CoreData
+        
+        // Show the loading screen
+        UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.ViewControllerIdentifiers.leads.rawValue, containerView: self.containerView ?? UIView(), objectType: LeadsViewController.self) { (leadsViewController) in
+
+            guard let leadsViewController = leadsViewController as? LeadsViewController else { return }
+            leadsViewController.view.showAnimatedGradientSkeleton()
+
+        }
         
         let httpRequest = HTTPRequests()
         guard
@@ -99,14 +113,15 @@ class LeadsContainerViewController: UIViewController {
                                     case .success(let leads):
                                         UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.ViewControllerIdentifiers.leads.rawValue, containerView: self?.containerView ?? UIView(), objectType: LeadsViewController.self) { (leadsViewController) in
                                             
-                                            // Save data in CoreData
-                                            self?.saveObjectsToCoreData(objects: leads)
-                                            
                                             // Setup timer fore refreshing leads
                                             guard let leadsViewController = leadsViewController as? LeadsViewController else { return }
                                             leadsViewController.setTimerForTableRefresh()
                                             
+                                            // Save data in CoreData
+                                            self?.saveObjectsToCoreDataAndSend(for: leadsViewController, objects: leads)
+                                            
                                     }
+                                    
                                     case .failure(let error):
                                         print(error.localizedDescription)
                                         
