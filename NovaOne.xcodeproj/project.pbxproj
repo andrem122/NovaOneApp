@@ -33,6 +33,7 @@
 		655D0B23240B43E800D0E329 /* UpdatePhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655D0B22240B43E800D0E329 /* UpdatePhoneViewController.swift */; };
 		655D0B25240B440200D0E329 /* UpdateEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655D0B24240B440200D0E329 /* UpdateEmailViewController.swift */; };
 		655D0B27240B443700D0E329 /* UpdatePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655D0B26240B443700D0E329 /* UpdatePasswordViewController.swift */; };
+		6560F004244A30FE0097792D /* refreshLeads.php in Resources */ = {isa = PBXBuildFile; fileRef = 6560F003244A30FE0097792D /* refreshLeads.php */; };
 		65668E79241814C900774548 /* UpdateCompanyPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65668E78241814C900774548 /* UpdateCompanyPhoneViewController.swift */; };
 		656760522443837500EF4388 /* AddAppointmentCompanyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656760512443837500EF4388 /* AddAppointmentCompanyViewController.swift */; };
 		6569539B24477F6300CF86B7 /* moreAppointments.php in Resources */ = {isa = PBXBuildFile; fileRef = 6569539A24477F6300CF86B7 /* moreAppointments.php */; };
@@ -201,6 +202,7 @@
 		655D0B22240B43E800D0E329 /* UpdatePhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePhoneViewController.swift; sourceTree = "<group>"; };
 		655D0B24240B440200D0E329 /* UpdateEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateEmailViewController.swift; sourceTree = "<group>"; };
 		655D0B26240B443700D0E329 /* UpdatePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordViewController.swift; sourceTree = "<group>"; };
+		6560F003244A30FE0097792D /* refreshLeads.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = refreshLeads.php; sourceTree = "<group>"; };
 		65668E78241814C900774548 /* UpdateCompanyPhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCompanyPhoneViewController.swift; sourceTree = "<group>"; };
 		656760512443837500EF4388 /* AddAppointmentCompanyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAppointmentCompanyViewController.swift; sourceTree = "<group>"; };
 		6569539A24477F6300CF86B7 /* moreAppointments.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = moreAppointments.php; sourceTree = "<group>"; };
@@ -689,6 +691,7 @@
 				6583194E23F2209C001D378D /* settings.php */,
 				65316D5424465E5D0072F78A /* moreLeads.php */,
 				6569539A24477F6300CF86B7 /* moreAppointments.php */,
+				6560F003244A30FE0097792D /* refreshLeads.php */,
 			);
 			path = PHP;
 			sourceTree = "<group>";
@@ -854,6 +857,7 @@
 				6591C3A123DA78F900535C46 /* Main.storyboard in Resources */,
 				6578D9F12415AD06002E94BF /* companies.php in Resources */,
 				65316D5524465E5D0072F78A /* moreLeads.php in Resources */,
+				6560F004244A30FE0097792D /* refreshLeads.php in Resources */,
 				6569539B24477F6300CF86B7 /* moreAppointments.php in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

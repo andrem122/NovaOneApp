@@ -18,7 +18,7 @@ class LeadsViewController: UIViewController {
     var timer: Timer?
     var customer: CustomerModel?
     var bottomTableViewSpinner: UIActivityIndicatorView? = nil
-    var tableIsRefreshing: Bool = true
+    var tableIsRefreshing: Bool = false
     var appendingDataToTable: Bool = false
     var leads: [Lead] = []
     lazy var refresher: UIRefreshControl = {
@@ -165,12 +165,17 @@ class LeadsViewController: UIViewController {
             
             print("Refreshing table data")
             print(self.timer?.description as Any)
+            
             self.timer?.invalidate() // Stop the auto refresh when manually refreshing
             self.tableIsRefreshing = true
             self.view.showAnimatedGradientSkeleton()
             
-            self.getData(endpoint: "/leads.php", append: false, lastObjectId: nil) {
+            let lastIndex = self.leads.count - 1
+            let lastObjectId = self.leads[lastIndex].id
+            
+            self.getData(endpoint: "/refreshLeads.php", append: false, lastObjectId: lastObjectId) {
                 [weak self] in
+                
                 self?.tableIsRefreshing = false
                 self?.timer = Timer.scheduledTimer(timeInterval: 20.0, target: self as Any, selector: #selector(self?.refreshData), userInfo: nil, repeats: true)
                 
@@ -182,7 +187,7 @@ class LeadsViewController: UIViewController {
     
     func setTimerForTableRefresh() {
         // Sets up the timer to refresh the table data automatically every minute
-        self.timer = Timer.scheduledTimer(timeInterval: 20.0, target: self, selector: #selector(self.refreshData), userInfo: nil, repeats: true)
+        self.timer = Timer.scheduledTimer(timeInterval: 80.0, target: self, selector: #selector(self.refreshData), userInfo: nil, repeats: true)
     }
     
     func setupTableView() {
