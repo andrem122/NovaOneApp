@@ -34,7 +34,7 @@
         ON l.company_id = co.id
     WHERE l.company_id IN (SELECT id FROM property_company WHERE customer_user_id = :customer_user_id)
     AND l.id < :last_object_id
-    ORDER BY date_of_inquiry DESC
+    ORDER BY l.id DESC
     LIMIT 15;
     ";
     

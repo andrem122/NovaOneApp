@@ -36,8 +36,9 @@ class LeadsViewController: UIViewController {
         self.setupTableView()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.setTimerForTableRefresh() // Awake from nib is called once, and we want one timer object, not multiple
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -53,7 +54,7 @@ class LeadsViewController: UIViewController {
     
     func getCoreData() {
         // Gets data from CoreData and sorts by dateOfInquiry field
-        let sortDescriptors = [NSSortDescriptor(key: "dateOfInquiry", ascending: false)]
+        let sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
         self.leads = PersistenceService.fetchEntity(Lead.self, with: nil, sort: sortDescriptors)
     }
     
@@ -68,7 +69,7 @@ class LeadsViewController: UIViewController {
     func setTimerForTableRefresh() {
         // Setup the timer for automatic refresh of table data
         print("Timer object created")
-        self.timer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(self.refreshDataAutomatically), userInfo: nil, repeats: true)
+        self.timer = Timer.scheduledTimer(timeInterval: 80.0, target: self, selector: #selector(self.refreshDataAutomatically), userInfo: nil, repeats: true)
     }
     
     func saveObjectsToCoreData(objects: [Decodable]) {
@@ -172,7 +173,6 @@ class LeadsViewController: UIViewController {
             print("Refreshing table data")
             print(self.timer?.description as Any)
             
-            self.timer?.invalidate()
             self.tableIsRefreshing = true
             self.view.showAnimatedGradientSkeleton()
             
@@ -181,11 +181,7 @@ class LeadsViewController: UIViewController {
             
             self.getData(endpoint: "/refreshLeads.php", append: false, lastObjectId: lastObjectId) {
                 [weak self] in
-                
                 self?.tableIsRefreshing = false
-                print("Timer object created by auto refreshing")
-                self?.timer = Timer.scheduledTimer(timeInterval: 10.0, target: self as Any, selector: #selector(self?.refreshDataAutomatically), userInfo: nil, repeats: true)
-                
             }
             
         }
@@ -200,7 +196,6 @@ class LeadsViewController: UIViewController {
             print("Refreshing table data")
             print(self.timer?.description as Any)
             
-            self.timer?.invalidate()
             self.tableIsRefreshing = true
             self.view.showAnimatedGradientSkeleton()
             
@@ -209,11 +204,7 @@ class LeadsViewController: UIViewController {
             
             self.getData(endpoint: "/refreshLeads.php", append: false, lastObjectId: lastObjectId) {
                 [weak self] in
-                
                 self?.tableIsRefreshing = false
-                print("Timer object created by refreshing")
-                self?.timer = Timer.scheduledTimer(timeInterval: 10.0, target: self as Any, selector: #selector(self?.refreshDataAutomatically), userInfo: nil, repeats: true)
-                
             }
             
         }
@@ -303,18 +294,13 @@ extension LeadsViewController: UITableViewDelegate, SkeletonTableViewDataSource 
             
             print("REACHED THE BOTTOM OF THE TABLE. MAKING REQUEST FOR MORE DATA...")
             self.appendingDataToTable = true
-            self.timer?.invalidate()
             let lastItemIndex = self.leads.count - 1
             let lastObjectId = self.leads[lastItemIndex].id
             
             // Make HTTP request for more data
             self.getData(endpoint: "/moreLeads.php", append: true, lastObjectId: lastObjectId) {
                 [weak self] in
-                
                 self?.appendingDataToTable = false
-                 print("Timer object created by appending")
-                self?.timer = Timer.scheduledTimer(timeInterval: 10.0, target: self as Any, selector: #selector(self?.refreshDataAutomatically), userInfo: nil, repeats: true)
-                
             }
             
             // Make loading icon

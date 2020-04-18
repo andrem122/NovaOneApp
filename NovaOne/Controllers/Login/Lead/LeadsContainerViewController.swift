@@ -26,11 +26,7 @@ class LeadsContainerViewController: UIViewController {
         if self.objectCount > 0 {
             print("SHOWING LEADS FROM CORE DATA")
             // Get CoreData objects and pass to the next view
-            UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.ViewControllerIdentifiers.leads.rawValue, containerView: self.containerView ?? UIView(), objectType: LeadsViewController.self) {
-                leadsViewController in
-                guard let leadsViewController = leadsViewController as? LeadsViewController else { return }
-                leadsViewController.setTimerForTableRefresh()
-            }
+            UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.ViewControllerIdentifiers.leads.rawValue, containerView: self.containerView ?? UIView(), objectType: LeadsViewController.self, completion: nil)
             
         } else {
             // Get data via an HTTP request and save to coredata for the next view
@@ -72,7 +68,7 @@ class LeadsContainerViewController: UIViewController {
         PersistenceService.saveContext()
         
         // Send the data to the leads view controller
-        let sortDescriptors = [NSSortDescriptor(key: "dateOfInquiry", ascending: false)]
+        let sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
         leadsViewController.leads = PersistenceService.fetchEntity(Lead.self, with: nil, sort: sortDescriptors)
         
     }
@@ -80,14 +76,6 @@ class LeadsContainerViewController: UIViewController {
     func getData() {
         // Gets data from the database via an HTTP request
         // and saves to CoreData
-        
-        // Show the loading screen
-        UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.ViewControllerIdentifiers.leads.rawValue, containerView: self.containerView ?? UIView(), objectType: LeadsViewController.self) { (leadsViewController) in
-
-            guard let leadsViewController = leadsViewController as? LeadsViewController else { return }
-            leadsViewController.view.showAnimatedGradientSkeleton()
-
-        }
         
         let httpRequest = HTTPRequests()
         guard
@@ -113,10 +101,7 @@ class LeadsContainerViewController: UIViewController {
                                     case .success(let leads):
                                         UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.ViewControllerIdentifiers.leads.rawValue, containerView: self?.containerView ?? UIView(), objectType: LeadsViewController.self) { (leadsViewController) in
                                             
-                                            // Setup timer fore refreshing leads
                                             guard let leadsViewController = leadsViewController as? LeadsViewController else { return }
-                                            leadsViewController.setTimerForTableRefresh()
-                                            
                                             // Save data in CoreData
                                             self?.saveObjectsToCoreDataAndSend(for: leadsViewController, objects: leads)
                                             
