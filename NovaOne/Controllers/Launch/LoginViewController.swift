@@ -16,7 +16,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: NovaOneButton!
-    let coreDataCustomerEmail: String? = PersistenceService.fetchEntity(Customer.self, with: nil, sort: nil).first?.email
+    let coreDataCustomerEmail: String? = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first?.email
     let alertService = AlertService()
     
     // MARK: Methods

@@ -99,7 +99,7 @@
         
     }
     
-    function query_db($query, $user_is_verified, $customer_user_id, $last_object_id) {
+    function query_db($query, $user_is_verified, $customer_user_id, $first_object_id, $last_object_id) {
         if ($user_is_verified) {
             
             $db_object = new Database();
@@ -108,6 +108,11 @@
             
             // bind parameters
             $stmt->bindParam(':customer_user_id', $customer_user_id);
+            
+            if(!empty($first_object_id)) {
+                $stmt->bindParam(':first_object_id', $first_object_id);
+            }
+            
             if (!empty($last_object_id)) {
                 $stmt->bindParam(':last_object_id', $last_object_id);
             }

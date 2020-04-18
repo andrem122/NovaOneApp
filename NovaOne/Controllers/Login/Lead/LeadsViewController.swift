@@ -77,7 +77,7 @@ class LeadsViewController: UIViewController {
     func getCoreData() {
         // Gets data from CoreData and sorts by dateOfInquiry field
         let sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
-        self.leads = PersistenceService.fetchEntity(Lead.self, with: nil, sort: sortDescriptors)
+        self.leads = PersistenceService.fetchEntity(Lead.self, filter: nil, sort: sortDescriptors)
         self.filteredLeads = self.leads
     }
     
@@ -91,7 +91,6 @@ class LeadsViewController: UIViewController {
     
     func setTimerForTableRefresh() {
         // Setup the timer for automatic refresh of table data
-        print("Timer object created")
         self.timer = Timer.scheduledTimer(timeInterval: 80.0, target: self, selector: #selector(self.refreshDataAutomatically), userInfo: nil, repeats: true)
     }
     
@@ -117,7 +116,7 @@ class LeadsViewController: UIViewController {
                     coreDataLead.companyName = lead.companyName
                     
                     let predicate = NSPredicate(format: "id == %@", String(lead.companyId))
-                    coreDataLead.company = PersistenceService.fetchEntity(Company.self, with: predicate, sort: nil).first
+                    coreDataLead.company = PersistenceService.fetchEntity(Company.self, filter: predicate, sort: nil).first
                     
                     
                 }
@@ -127,25 +126,26 @@ class LeadsViewController: UIViewController {
             PersistenceService.saveContext()
     }
     
-    func getData(endpoint: String, append: Bool, lastObjectId: Int32?, completion: (() -> Void)?) {
+    func getData(endpoint: String, append: Bool, firstObjectId: Int32?, lastObjectId: Int32?, completion: (() -> Void)?) {
         // Get data from the database via an HTTP request
         
         let httpRequest = HTTPRequests()
         guard
-            let customer = PersistenceService.fetchEntity(Customer.self, with: nil, sort: nil).first,
+            let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
             let email = customer.email,
             let password = KeychainWrapper.standard.string(forKey: "password")
         else {
-            print("Failed to obtain variables for POST request")
             self.refresher.endRefreshing()
             return
         }
         let customerUserId = customer.id
+        let unwrappedFirstObjectId = firstObjectId != nil ? firstObjectId! : 0
         let unwrappedLastObjectId = lastObjectId != nil ? lastObjectId! : 0
 
         let parameters: [String: Any] = ["customerUserId": customerUserId as Any,
                                          "email": email as Any,
                                          "password": password as Any,
+                                         "firstObjectId": unwrappedFirstObjectId as Any,
                                          "lastObjectId": unwrappedLastObjectId as Any]
         
         httpRequest.request(endpoint: endpoint,
@@ -193,20 +193,20 @@ class LeadsViewController: UIViewController {
         
         if self.appendingDataToTable == false && self.tableIsRefreshing == false && filteredLeads.count > 0 && self.leadsTableView.isDecelerating == false && self.leadsTableView.isDragging == false && self.searchController.isActive == false {
             
-            print("Refreshing table data")
-            print(self.timer?.description as Any)
-            
             self.tableIsRefreshing = true
             self.view.showAnimatedGradientSkeleton()
             
             let lastIndex = self.filteredLeads.count - 1
+            let firstObjectId = self.filteredLeads[0].id
             let lastObjectId = self.filteredLeads[lastIndex].id
             
-            self.getData(endpoint: "/refreshLeads.php", append: false, lastObjectId: lastObjectId) {
+            self.getData(endpoint: "/refreshLeads.php", append: false, firstObjectId: firstObjectId, lastObjectId: lastObjectId) {
                 [weak self] in
                 self?.tableIsRefreshing = false
             }
             
+        } else {
+            self.hideTableLoadingAnimations()
         }
         
     }
@@ -214,22 +214,22 @@ class LeadsViewController: UIViewController {
     @objc func refreshDataOnPullDown() {
         // Refresh data of the table view if the user is not scrolling
         
-        if self.appendingDataToTable == false && self.tableIsRefreshing == false && self.filteredLeads.count > 0 {
-            
-            print("Refreshing table data")
-            print(self.timer?.description as Any)
+        if self.searchController.isActive == false && self.appendingDataToTable == false && self.tableIsRefreshing == false && self.filteredLeads.count > 0 {
             
             self.tableIsRefreshing = true
             self.view.showAnimatedGradientSkeleton()
             
             let lastIndex = self.filteredLeads.count - 1
+            let firstObjectId = self.filteredLeads[0].id
             let lastObjectId = self.filteredLeads[lastIndex].id
             
-            self.getData(endpoint: "/refreshLeads.php", append: false, lastObjectId: lastObjectId) {
+            self.getData(endpoint: "/refreshLeads.php", append: false, firstObjectId: firstObjectId, lastObjectId: lastObjectId) {
                 [weak self] in
                 self?.tableIsRefreshing = false
             }
             
+        } else {
+            self.hideTableLoadingAnimations()
         }
         
     }
@@ -330,13 +330,12 @@ extension LeadsViewController: UITableViewDelegate, UISearchResultsUpdating, Ske
         // If at the last row in the last section of the table
         if self.searchController.isActive == false && self.appendingDataToTable == false && self.tableIsRefreshing == false && tableView.isDragging && indexPath.section == lastSectionIndex && indexPath.row == lastRowIndex {
             
-            print("REACHED THE BOTTOM OF THE TABLE. MAKING REQUEST FOR MORE DATA...")
             self.appendingDataToTable = true
             let lastItemIndex = self.filteredLeads.count - 1
             let lastObjectId = self.filteredLeads[lastItemIndex].id
             
             // Make HTTP request for more data
-            self.getData(endpoint: "/moreLeads.php", append: true, lastObjectId: lastObjectId) {
+            self.getData(endpoint: "/moreLeads.php", append: true, firstObjectId: nil, lastObjectId: lastObjectId) {
                 [weak self] in
                 self?.appendingDataToTable = false
             }

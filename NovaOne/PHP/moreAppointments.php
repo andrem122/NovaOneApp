@@ -44,7 +44,7 @@
     ";
     
     // query the database and echo results
-    query_db($query, $user_is_verified, $customer_user_id, $last_object_id);
+    query_db($query, $user_is_verified, $customer_user_id, '', $last_object_id);
     
 ?>
 

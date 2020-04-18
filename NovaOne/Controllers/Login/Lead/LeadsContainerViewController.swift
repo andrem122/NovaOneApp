@@ -59,7 +59,7 @@ class LeadsContainerViewController: UIViewController {
                     coreDataLead.companyName = lead.companyName
                     
                     let predicate = NSPredicate(format: "id == %@", String(lead.companyId))
-                    coreDataLead.company = PersistenceService.fetchEntity(Company.self, with: predicate, sort: nil).first
+                    coreDataLead.company = PersistenceService.fetchEntity(Company.self, filter: predicate, sort: nil).first
     
                     
                 }
@@ -70,7 +70,9 @@ class LeadsContainerViewController: UIViewController {
         
         // Send the data to the leads view controller
         let sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
-        leadsViewController.leads = PersistenceService.fetchEntity(Lead.self, with: nil, sort: sortDescriptors)
+        let coreDataLeads = PersistenceService.fetchEntity(Lead.self, filter: nil, sort: sortDescriptors)
+        leadsViewController.leads = coreDataLeads
+        leadsViewController.filteredLeads = coreDataLeads
         
     }
     
