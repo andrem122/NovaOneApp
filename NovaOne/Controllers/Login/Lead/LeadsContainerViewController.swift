@@ -13,6 +13,7 @@ class LeadsContainerViewController: UIViewController {
     
     // MARK: Properties
     @IBOutlet weak var containerView: UIView!
+    var loadingIndicator: UIActivityIndicatorView?
     let objectCount = PersistenceService.fetchCount(for: Defaults.CoreDataEntities.lead.rawValue)
     
     override func viewDidLoad() {
@@ -73,9 +74,25 @@ class LeadsContainerViewController: UIViewController {
         
     }
     
+    func showLoadingIndicator() {
+        // Shows the loading indicator
+        self.loadingIndicator = UIActivityIndicatorView(style: .medium)
+        self.loadingIndicator?.startAnimating()
+        
+        // Position the loading animation
+        let x = self.view.bounds.size.width / 2
+        let y = self.view.bounds.size.height / 2
+        self.loadingIndicator?.center = CGPoint(x: x, y: y)
+        
+        guard let loadingIndicator = self.loadingIndicator else { return }
+        self.view.addSubview(loadingIndicator)
+    }
+    
     func getData() {
         // Gets data from the database via an HTTP request
         // and saves to CoreData
+        
+        self.showLoadingIndicator()
         
         let httpRequest = HTTPRequests()
         guard
@@ -99,6 +116,8 @@ class LeadsContainerViewController: UIViewController {
                                 switch result {
                                     
                                     case .success(let leads):
+                                        self?.loadingIndicator?.stopAnimating()
+                                        
                                         UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.ViewControllerIdentifiers.leads.rawValue, containerView: self?.containerView ?? UIView(), objectType: LeadsViewController.self) { (leadsViewController) in
                                             
                                             guard let leadsViewController = leadsViewController as? LeadsViewController else { return }

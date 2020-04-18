@@ -36,14 +36,14 @@ class LeadsViewController: UIViewController {
         self.setupTableView()
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        self.setTimerForTableRefresh() // Awake from nib is called once, and we want one timer object, not multiple
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.setTimerForTableRefresh()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        self.timer?.invalidate()
+        self.timer?.invalidate() // Invalidate timer when view disapears
     }
     
     func setupNavigationBar() {
@@ -290,7 +290,7 @@ extension LeadsViewController: UITableViewDelegate, SkeletonTableViewDataSource 
         let lastRowIndex = tableView.numberOfRows(inSection: lastSectionIndex) - 1 // Get last row index in last section of tableview
         
         // If at the last row in the last section of the table
-        if self.tableIsRefreshing == false && tableView.isDragging && indexPath.section == lastSectionIndex && indexPath.row == lastRowIndex {
+        if self.appendingDataToTable == false && self.tableIsRefreshing == false && tableView.isDragging && indexPath.section == lastSectionIndex && indexPath.row == lastRowIndex {
             
             print("REACHED THE BOTTOM OF THE TABLE. MAKING REQUEST FOR MORE DATA...")
             self.appendingDataToTable = true
