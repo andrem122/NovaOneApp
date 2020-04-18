@@ -15,8 +15,8 @@ class DateHelper {
     static let now: Date = Date()
     
     // MARK: Methods
-    // Converts string of a given format to a Date object
     static func createDate(from dateString: String, format: String) -> Date {
+        // Converts string of a given format to a Date object
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = format
         dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
@@ -29,6 +29,14 @@ class DateHelper {
         guard let finalDate = calendar.date(from: components) else { return self.now }
         
         return finalDate
+    }
+    
+    static func createString(from date: Date, format: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        
+        return dateFormatter.string(from: date)
     }
     
 }
