@@ -42,4 +42,5 @@ extension AddAppointmentGenderViewController {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return self.genders[row] // Get the string in the genders array and display it for each row in the picker
     }
+    
 }

@@ -682,9 +682,6 @@ and you have 4 calls.</string>
                                         <real key="value" value="20"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <segue destination="cz7-UF-eXn" kind="show" id="0WR-vo-ZQh"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -959,18 +956,40 @@ and you have 4 calls.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jDb-sL-E0J">
-                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="669"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GsG-On-wGK" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
+                                <rect key="frame" x="30" y="748" width="354" height="45"/>
+                                <color key="backgroundColor" red="0.32493522759999999" green="0.46187436580000002" blue="0.83199411629999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="yma-9F-2uZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <state key="normal" title="Add Lead">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="addAndRefreshButtonTapped:" destination="Lhy-AA-gdv" eventType="touchUpInside" id="0SZ-i3-gqp"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="jDb-sL-E0J" firstAttribute="top" secondItem="5Ts-dM-TBs" secondAttribute="top" id="0PS-aS-QvJ"/>
-                            <constraint firstItem="jDb-sL-E0J" firstAttribute="bottom" secondItem="5Ts-dM-TBs" secondAttribute="bottom" id="eBQ-i9-xFE"/>
+                            <constraint firstItem="5Ts-dM-TBs" firstAttribute="bottom" secondItem="GsG-On-wGK" secondAttribute="bottom" constant="20" id="Rc1-xI-ft5"/>
                             <constraint firstItem="jDb-sL-E0J" firstAttribute="leading" secondItem="5Ts-dM-TBs" secondAttribute="leading" id="pda-XA-2Ca"/>
+                            <constraint firstItem="5Ts-dM-TBs" firstAttribute="trailing" secondItem="GsG-On-wGK" secondAttribute="trailing" constant="30" id="q7V-c4-q4t"/>
+                            <constraint firstItem="5Ts-dM-TBs" firstAttribute="bottom" secondItem="jDb-sL-E0J" secondAttribute="bottom" constant="100" id="qCO-is-G3h"/>
                             <constraint firstItem="jDb-sL-E0J" firstAttribute="trailing" secondItem="5Ts-dM-TBs" secondAttribute="trailing" id="qnC-Le-W5g"/>
+                            <constraint firstItem="GsG-On-wGK" firstAttribute="leading" secondItem="5Ts-dM-TBs" secondAttribute="leading" constant="30" id="rHc-b1-yX9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5Ts-dM-TBs"/>
                         <userDefinedRuntimeAttributes>
@@ -979,12 +998,13 @@ and you have 4 calls.</string>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="userBlue" id="7DV-Ab-xEd"/>
                     <connections>
+                        <outlet property="addAndRefreshButton" destination="GsG-On-wGK" id="3fO-2o-ySB"/>
                         <outlet property="containerView" destination="jDb-sL-E0J" id="fws-Sz-BCK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tf9-Zy-Q3y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5771" y="2142"/>
+            <point key="canvasLocation" x="5913" y="2143"/>
         </scene>
         <!--Contact Us-->
         <scene sceneID="zje-gJ-TP2">
@@ -2817,7 +2837,7 @@ my friend :)</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mmg-qk-G4W" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6899" y="4432"/>
+            <point key="canvasLocation" x="8245" y="4432"/>
         </scene>
         <!--Update Company Phone-->
         <scene sceneID="ZpQ-2X-ITh">
@@ -4404,7 +4424,7 @@ hours below.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u0c-8w-umF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7748" y="4432"/>
+            <point key="canvasLocation" x="9019" y="4432"/>
         </scene>
         <!--Pop Up View Controller-->
         <scene sceneID="qdK-R2-hMC">
@@ -4508,24 +4528,24 @@ hours below.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ku5-Vf-UQ0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8633.3333333333339" y="4431.521739130435"/>
+            <point key="canvasLocation" x="9806" y="4432"/>
         </scene>
         <!--Add Appointment Name-->
         <scene sceneID="6SC-2n-pom">
             <objects>
                 <viewController storyboardIdentifier="addAppointmentNameViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="21X-dn-5Df" userLabel="Add Appointment Name" customClass="AddAppointmentNameViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ecy-4G-OFs">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Appointment" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lZA-Gm-ydZ">
-                                <rect key="frame" x="80" y="86" width="254.5" height="37"/>
+                                <rect key="frame" x="80" y="118" width="254.5" height="37"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
                                 <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DoO-rN-Ogz">
-                                <rect key="frame" x="68" y="143" width="278.5" height="41"/>
+                                <rect key="frame" x="68" y="175" width="278.5" height="41"/>
                                 <string key="text">Type in the name of the person with 
 the appointment below.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -4533,7 +4553,7 @@ the appointment below.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="7LU-T7-iRh">
-                                <rect key="frame" x="30" y="214" width="354" height="110"/>
+                                <rect key="frame" x="30" y="246" width="354" height="110"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="QgE-B5-coD" customClass="NovaOneTextField" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="354" height="45"/>
@@ -4606,17 +4626,17 @@ the appointment below.</string>
             <objects>
                 <viewController storyboardIdentifier="addAppointmentPhoneViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WbO-qO-CU7" userLabel="Add Appointment Phone" customClass="AddAppointmentPhoneViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rFy-5s-eMk">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Appointment Phone" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Czp-fF-dzf">
-                                <rect key="frame" x="63.5" y="86" width="287.5" height="37"/>
+                                <rect key="frame" x="63.5" y="118" width="287.5" height="37"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
                                 <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oWd-J8-Eh9">
-                                <rect key="frame" x="51.5" y="143" width="311.5" height="41"/>
+                                <rect key="frame" x="51.5" y="175" width="311.5" height="41"/>
                                 <string key="text">Type in the phone number of the person 
 with the appointment below.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -4624,7 +4644,7 @@ with the appointment below.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="21K-3z-4yw">
-                                <rect key="frame" x="30" y="214" width="354" height="110"/>
+                                <rect key="frame" x="30" y="246" width="354" height="110"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone Number" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="iUb-Gm-PfO" customClass="NovaOneTextField" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="354" height="45"/>
@@ -4693,17 +4713,17 @@ with the appointment below.</string>
             <objects>
                 <viewController storyboardIdentifier="addAppointmentTimeViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8x9-uS-aHU" userLabel="Add Appointment Time" customClass="AddAppointmentTimeViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GpG-cS-v9Z">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Appointment Time" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HSV-NM-VrY">
-                                <rect key="frame" x="73.5" y="86" width="267.5" height="37"/>
+                                <rect key="frame" x="73.5" y="118" width="267.5" height="37"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
                                 <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hAi-7r-PE5">
-                                <rect key="frame" x="69" y="143" width="276" height="41"/>
+                                <rect key="frame" x="69" y="175" width="276" height="41"/>
                                 <string key="text">Choose the time of the appointment
  below.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -4711,10 +4731,10 @@ with the appointment below.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="xgW-0X-VmV">
-                                <rect key="frame" x="0.0" y="214" width="414" height="216"/>
+                                <rect key="frame" x="0.0" y="246" width="414" height="216"/>
                             </datePicker>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rkh-d5-eHj" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
-                                <rect key="frame" x="30" y="440" width="354" height="45"/>
+                                <rect key="frame" x="30" y="472" width="354" height="45"/>
                                 <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="4CR-ZV-GPR"/>
@@ -5390,7 +5410,7 @@ with the appointment below.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e3j-28-JOx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9464" y="4432"/>
+            <point key="canvasLocation" x="10587" y="4432"/>
         </scene>
         <!--Sign Up Company City-->
         <scene sceneID="nwC-xq-X6z">
@@ -5790,6 +5810,22 @@ of your company?</string>
             </objects>
             <point key="canvasLocation" x="4077" y="2879"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="V89-IG-Wy8">
+            <objects>
+                <navigationController storyboardIdentifier="addLeadNavigationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WhH-0Z-LD5" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hJO-tO-2hG">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="AiO-n8-JYl" kind="relationship" relationship="rootViewController" id="5By-ph-qJY"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tvA-zu-XUO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5912" y="2879"/>
+        </scene>
         <!--Lead Detail-->
         <scene sceneID="eE9-6S-ry9">
             <objects>
@@ -5898,7 +5934,7 @@ of your company?</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v4O-QL-SDI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6826" y="2879"/>
+            <point key="canvasLocation" x="6825" y="2879"/>
         </scene>
         <!--Update Appointment Phone Number-->
         <scene sceneID="iQJ-bp-Q5K">
@@ -6666,16 +6702,16 @@ with the appointment.</string>
             </objects>
             <point key="canvasLocation" x="3057" y="2879"/>
         </scene>
-        <!--Update Company Days Enabled-->
+        <!--Add Appointment Company-->
         <scene sceneID="wuA-BX-D7c">
             <objects>
-                <viewController storyboardIdentifier="addAppointmentCompanyViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="P4x-aS-XL0" userLabel="Update Company Days Enabled" customClass="AddAppointmentCompanyViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="addAppointmentCompanyViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="P4x-aS-XL0" userLabel="Add Appointment Company" customClass="AddAppointmentCompanyViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oGA-HU-g0M">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RB2-ge-dGa" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
-                                <rect key="frame" x="30" y="743" width="354" height="45"/>
+                                <rect key="frame" x="30" y="797" width="354" height="45"/>
                                 <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="FGM-r4-HJr"/>
@@ -6695,7 +6731,7 @@ with the appointment.</string>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="If6-vI-b0I">
-                                <rect key="frame" x="0.0" y="207" width="414" height="501"/>
+                                <rect key="frame" x="0.0" y="239" width="414" height="523"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="enableOptionTableViewCell" id="eDW-wK-aBM" customClass="EnableOptionTableViewCell" customModule="NovaOne" customModuleProvider="target">
@@ -6737,13 +6773,13 @@ with the appointment.</string>
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Appointment" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YEA-sL-vxc">
-                                <rect key="frame" x="80" y="89" width="254.5" height="37"/>
+                                <rect key="frame" x="80" y="121" width="254.5" height="37"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
                                 <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="szJ-uU-e4b">
-                                <rect key="frame" x="82.5" y="146" width="249.5" height="41"/>
+                                <rect key="frame" x="82.5" y="178" width="249.5" height="41"/>
                                 <string key="text">Select the company you want to 
 make an appointment for.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -6911,6 +6947,451 @@ make an appointment for.</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A9d-v2-JRH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="11532" y="2502"/>
+        </scene>
+        <!--Add Lead Name-->
+        <scene sceneID="bjV-FB-ZPG">
+            <objects>
+                <viewController storyboardIdentifier="addLeadNameViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="44k-r7-hbx" userLabel="Add Lead Name" customClass="AddLeadNameViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VRh-9g-wBb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Lead" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2u9-7J-SXL">
+                                <rect key="frame" x="139" y="118" width="136.5" height="37"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
+                                <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in the name of the lead below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JLG-9Z-Mx2">
+                                <rect key="frame" x="72" y="175" width="270" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="8ZC-3h-KCD">
+                                <rect key="frame" x="30" y="225.5" width="354" height="110"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="FMR-Kl-jeH" customClass="NovaOneTextField" customModule="NovaOne" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="354" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="d4X-YV-GSt"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="name"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sEG-wV-WPV" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="65" width="354" height="45"/>
+                                        <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="7zJ-uY-DfE"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                        <state key="normal" title="Continue">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <segue destination="4gz-FX-5RM" kind="show" id="3CK-Kb-cmj"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="8ZC-3h-KCD" firstAttribute="leading" secondItem="QvU-Uv-gB2" secondAttribute="leading" constant="30" id="BzK-Ru-lcm"/>
+                            <constraint firstItem="2u9-7J-SXL" firstAttribute="top" secondItem="QvU-Uv-gB2" secondAttribute="top" constant="30" id="I0m-fV-zIm"/>
+                            <constraint firstItem="QvU-Uv-gB2" firstAttribute="trailing" secondItem="8ZC-3h-KCD" secondAttribute="trailing" constant="30" id="QY5-g2-PzZ"/>
+                            <constraint firstItem="JLG-9Z-Mx2" firstAttribute="top" secondItem="2u9-7J-SXL" secondAttribute="bottom" constant="20" id="em2-9Y-RAg"/>
+                            <constraint firstItem="JLG-9Z-Mx2" firstAttribute="centerX" secondItem="VRh-9g-wBb" secondAttribute="centerX" id="hqc-Ig-rWD"/>
+                            <constraint firstItem="8ZC-3h-KCD" firstAttribute="top" secondItem="JLG-9Z-Mx2" secondAttribute="bottom" constant="30" id="nrP-ew-QYe"/>
+                            <constraint firstItem="2u9-7J-SXL" firstAttribute="centerX" secondItem="VRh-9g-wBb" secondAttribute="centerX" id="yry-i2-JMG"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="QvU-Uv-gB2"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="LNP-GS-6sB">
+                        <barButtonItem key="backBarButtonItem" title=" " id="Mh7-gf-zUh"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lrs-HQ-jge" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5912" y="4351"/>
+        </scene>
+        <!--Add Lead Company-->
+        <scene sceneID="QLR-BI-9xo">
+            <objects>
+                <viewController storyboardIdentifier="addLeadCompanyViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="AiO-n8-JYl" userLabel="Add Lead Company" customClass="AddLeadCompanyViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Kmy-17-I3c">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vCD-IY-qZ3" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
+                                <rect key="frame" x="30" y="797" width="354" height="45"/>
+                                <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="idO-6K-GEg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                <state key="normal" title="Continue">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="44k-r7-hbx" kind="show" id="ph0-3g-bqg"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5bX-Cw-QI7">
+                                <rect key="frame" x="0.0" y="239" width="414" height="523"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="enableOptionTableViewCell" id="Rse-30-7qQ" customClass="EnableOptionTableViewCell" customModule="NovaOne" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Rse-30-7qQ" id="sZp-KV-bxx">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sh2-7k-Pyd" userLabel="Option Label">
+                                                    <rect key="frame" x="20" y="11.5" width="72.5" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tick" translatesAutoresizingMaskIntoConstraints="NO" id="t0E-Ux-dpm">
+                                                    <rect key="frame" x="368" y="9" width="26" height="26"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="26" id="38M-9t-XQ7"/>
+                                                        <constraint firstAttribute="width" constant="26" id="5Rz-DJ-fmR"/>
+                                                        <constraint firstAttribute="width" secondItem="t0E-Ux-dpm" secondAttribute="height" multiplier="1:1" id="dtt-D8-LSM"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="t0E-Ux-dpm" secondAttribute="trailing" constant="20" id="BTJ-Rg-YR7"/>
+                                                <constraint firstItem="sh2-7k-Pyd" firstAttribute="leading" secondItem="sZp-KV-bxx" secondAttribute="leading" constant="20" id="CL3-yt-gwv"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="sh2-7k-Pyd" secondAttribute="trailing" id="NPn-FB-dPA"/>
+                                                <constraint firstItem="sh2-7k-Pyd" firstAttribute="centerY" secondItem="sZp-KV-bxx" secondAttribute="centerY" id="fF5-6g-o8M"/>
+                                                <constraint firstItem="t0E-Ux-dpm" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="sZp-KV-bxx" secondAttribute="leading" id="g1p-am-7FM"/>
+                                                <constraint firstItem="t0E-Ux-dpm" firstAttribute="centerY" secondItem="sZp-KV-bxx" secondAttribute="centerY" id="z42-on-38i"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="checkMarkImage" destination="t0E-Ux-dpm" id="N9t-Eg-2P0"/>
+                                            <outlet property="optionLabel" destination="sh2-7k-Pyd" id="Ug9-Xp-dUv"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Lead" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X5b-M8-cHB">
+                                <rect key="frame" x="139" y="121" width="136.5" height="37"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
+                                <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ohD-81-3aN">
+                                <rect key="frame" x="94.5" y="178" width="225.5" height="41"/>
+                                <string key="text">Select the company you want
+ to add the lead to.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="vCD-IY-qZ3" firstAttribute="top" secondItem="5bX-Cw-QI7" secondAttribute="bottom" constant="35" id="819-Ax-qZ1"/>
+                            <constraint firstItem="X5b-M8-cHB" firstAttribute="top" secondItem="ecS-zv-FDr" secondAttribute="top" constant="33" id="C7V-JN-8dR"/>
+                            <constraint firstItem="X5b-M8-cHB" firstAttribute="centerX" secondItem="Kmy-17-I3c" secondAttribute="centerX" id="HE8-B0-ETZ"/>
+                            <constraint firstItem="5bX-Cw-QI7" firstAttribute="top" secondItem="ohD-81-3aN" secondAttribute="bottom" constant="20" id="IiE-y2-iGG"/>
+                            <constraint firstItem="ohD-81-3aN" firstAttribute="centerX" secondItem="Kmy-17-I3c" secondAttribute="centerX" id="cZV-wD-79U"/>
+                            <constraint firstItem="5bX-Cw-QI7" firstAttribute="trailing" secondItem="ecS-zv-FDr" secondAttribute="trailing" id="kNN-l3-2cE"/>
+                            <constraint firstItem="ohD-81-3aN" firstAttribute="top" secondItem="X5b-M8-cHB" secondAttribute="bottom" constant="20" id="kW8-bo-ROh"/>
+                            <constraint firstItem="ecS-zv-FDr" firstAttribute="trailing" secondItem="vCD-IY-qZ3" secondAttribute="trailing" constant="30" id="knD-sj-NKz"/>
+                            <constraint firstItem="ecS-zv-FDr" firstAttribute="bottom" secondItem="vCD-IY-qZ3" secondAttribute="bottom" constant="20" id="l1T-ro-VXy"/>
+                            <constraint firstItem="vCD-IY-qZ3" firstAttribute="leading" secondItem="ecS-zv-FDr" secondAttribute="leading" constant="30" id="qWG-88-Hxg"/>
+                            <constraint firstItem="5bX-Cw-QI7" firstAttribute="leading" secondItem="ecS-zv-FDr" secondAttribute="leading" id="uwd-7j-obB"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ecS-zv-FDr"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="cpS-EX-oHL">
+                        <barButtonItem key="backBarButtonItem" title=" " id="EKI-pV-9eo"/>
+                        <barButtonItem key="leftBarButtonItem" image="cancelButtonBlue" id="8dg-on-sV5">
+                            <connections>
+                                <action selector="cancelButtonTapped:" destination="AiO-n8-JYl" id="Sfq-VY-TmL"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="5bX-Cw-QI7" id="2ff-CH-iE5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ro3-8w-OZP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5912" y="3625"/>
+        </scene>
+        <!--Add Lead Email-->
+        <scene sceneID="JXh-NC-5s5">
+            <objects>
+                <viewController storyboardIdentifier="addLeadEmailViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4gz-FX-5RM" userLabel="Add Lead Email" customClass="AddLeadEmailViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HKM-Lp-vlO">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Lead Email" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y16-aw-oWJ">
+                                <rect key="frame" x="96.5" y="118" width="221" height="37"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
+                                <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in the email of the lead below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uxo-ss-Ubj">
+                                <rect key="frame" x="73" y="175" width="268.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="AxM-Cp-Bq5">
+                                <rect key="frame" x="30" y="225.5" width="354" height="110"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="RDd-vI-Ru1" customClass="NovaOneTextField" customModule="NovaOne" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="354" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="XEh-WQ-xTg"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nr4-3F-mPU" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="65" width="354" height="45"/>
+                                        <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="A46-li-0x4"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                        <state key="normal" title="Continue">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <segue destination="zHY-pD-5U5" kind="show" id="tsw-md-SgY"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="uxo-ss-Ubj" firstAttribute="centerX" secondItem="HKM-Lp-vlO" secondAttribute="centerX" id="42v-88-hUb"/>
+                            <constraint firstItem="Y16-aw-oWJ" firstAttribute="centerX" secondItem="HKM-Lp-vlO" secondAttribute="centerX" id="O7l-BM-nSw"/>
+                            <constraint firstItem="AxM-Cp-Bq5" firstAttribute="top" secondItem="uxo-ss-Ubj" secondAttribute="bottom" constant="30" id="fX2-qd-Q6b"/>
+                            <constraint firstItem="bQ4-fS-ybl" firstAttribute="trailing" secondItem="AxM-Cp-Bq5" secondAttribute="trailing" constant="30" id="hF3-sL-Mbm"/>
+                            <constraint firstItem="uxo-ss-Ubj" firstAttribute="top" secondItem="Y16-aw-oWJ" secondAttribute="bottom" constant="20" id="ivo-hs-8Vr"/>
+                            <constraint firstItem="Y16-aw-oWJ" firstAttribute="top" secondItem="bQ4-fS-ybl" secondAttribute="top" constant="30" id="oZF-YJ-vbU"/>
+                            <constraint firstItem="AxM-Cp-Bq5" firstAttribute="leading" secondItem="bQ4-fS-ybl" secondAttribute="leading" constant="30" id="wJs-i2-d0k"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="bQ4-fS-ybl"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="0hA-6f-m2X">
+                        <barButtonItem key="backBarButtonItem" title=" " id="TrR-ef-ThS"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3d3-cN-u5b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5912" y="5163"/>
+        </scene>
+        <!--Add Lead Phone-->
+        <scene sceneID="3PT-Nw-L6F">
+            <objects>
+                <viewController storyboardIdentifier="addLeadPhoneViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zHY-pD-5U5" userLabel="Add Lead Phone" customClass="AddLeadPhoneViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="W1f-wp-9A3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Lead Phone" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lna-td-zJT">
+                                <rect key="frame" x="90" y="118" width="234.5" height="37"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
+                                <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hsr-qm-L8F">
+                                <rect key="frame" x="104.5" y="175" width="205" height="41"/>
+                                <string key="text">Type in the phone number 
+of the lead below.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="r8l-6c-z8r">
+                                <rect key="frame" x="30" y="246" width="354" height="110"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone Number" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="iDa-si-r5f" customClass="NovaOneTextField" customModule="NovaOne" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="354" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="wwp-5r-F6d"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next" textContentType="tel"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wCA-7R-S3q" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="65" width="354" height="45"/>
+                                        <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="xE4-4Q-YMH"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                        <state key="normal" title="Continue">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <segue destination="WR0-3y-yYe" kind="show" id="uiE-3U-PZZ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="9Om-MK-RBH" firstAttribute="trailing" secondItem="r8l-6c-z8r" secondAttribute="trailing" constant="30" id="2vD-cl-d19"/>
+                            <constraint firstItem="r8l-6c-z8r" firstAttribute="leading" secondItem="9Om-MK-RBH" secondAttribute="leading" constant="30" id="DTG-sH-kfZ"/>
+                            <constraint firstItem="lna-td-zJT" firstAttribute="centerX" secondItem="W1f-wp-9A3" secondAttribute="centerX" id="IX3-IT-o4P"/>
+                            <constraint firstItem="hsr-qm-L8F" firstAttribute="top" secondItem="lna-td-zJT" secondAttribute="bottom" constant="20" id="Miy-8O-Bd7"/>
+                            <constraint firstItem="hsr-qm-L8F" firstAttribute="centerX" secondItem="W1f-wp-9A3" secondAttribute="centerX" id="Ncy-yU-qDM"/>
+                            <constraint firstItem="r8l-6c-z8r" firstAttribute="top" secondItem="hsr-qm-L8F" secondAttribute="bottom" constant="30" id="Q1J-OA-ok4"/>
+                            <constraint firstItem="lna-td-zJT" firstAttribute="top" secondItem="9Om-MK-RBH" secondAttribute="top" constant="30" id="ZpO-r6-mgt"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9Om-MK-RBH"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="1G7-9i-6vI">
+                        <barButtonItem key="backBarButtonItem" title=" " id="Cga-yp-xFQ"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4y3-Y3-Qzm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5912" y="5905"/>
+        </scene>
+        <!--Add Lead Renter Brand-->
+        <scene sceneID="gak-Xm-fU2">
+            <objects>
+                <viewController storyboardIdentifier="addLeadRenterBrandViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WR0-3y-yYe" userLabel="Add Lead Renter Brand" customClass="AddLeadRenterBrandViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HAS-Yl-ffl">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hH1-TG-Sfa">
+                                <rect key="frame" x="112.5" y="118" width="189" height="74"/>
+                                <string key="text">Add Lead 
+Renter Brand</string>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
+                                <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pFb-Wj-lb9">
+                                <rect key="frame" x="101.5" y="212" width="211.5" height="41"/>
+                                <string key="text">Choose the renter brand of 
+the lead below.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wOU-Hs-316" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
+                                <rect key="frame" x="30" y="509" width="354" height="45"/>
+                                <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="AGR-dR-OFx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                <state key="normal" title="Add Lead">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hZs-AE-coc" userLabel="Renter Brand Picker">
+                                <rect key="frame" x="0.0" y="283" width="413" height="216"/>
+                            </pickerView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="wOU-Hs-316" firstAttribute="leading" secondItem="FkT-Lu-3LE" secondAttribute="leading" constant="30" id="4Ca-1p-HZJ"/>
+                            <constraint firstItem="FkT-Lu-3LE" firstAttribute="trailing" secondItem="hZs-AE-coc" secondAttribute="trailing" constant="1" id="6Q3-cD-qNT"/>
+                            <constraint firstItem="pFb-Wj-lb9" firstAttribute="centerX" secondItem="HAS-Yl-ffl" secondAttribute="centerX" id="7hp-B0-v13"/>
+                            <constraint firstItem="hZs-AE-coc" firstAttribute="leading" secondItem="FkT-Lu-3LE" secondAttribute="leading" id="C1z-3R-Dyu"/>
+                            <constraint firstItem="hH1-TG-Sfa" firstAttribute="top" secondItem="FkT-Lu-3LE" secondAttribute="top" constant="30" id="CqU-fH-Azx"/>
+                            <constraint firstItem="wOU-Hs-316" firstAttribute="top" secondItem="hZs-AE-coc" secondAttribute="bottom" constant="10" id="D3h-AI-XyF"/>
+                            <constraint firstItem="FkT-Lu-3LE" firstAttribute="trailing" secondItem="wOU-Hs-316" secondAttribute="trailing" constant="30" id="KjT-KJ-10r"/>
+                            <constraint firstItem="hH1-TG-Sfa" firstAttribute="centerX" secondItem="HAS-Yl-ffl" secondAttribute="centerX" id="WFQ-lE-8Ih"/>
+                            <constraint firstItem="hZs-AE-coc" firstAttribute="top" secondItem="pFb-Wj-lb9" secondAttribute="bottom" constant="30" id="iWK-x2-Zdi"/>
+                            <constraint firstItem="pFb-Wj-lb9" firstAttribute="top" secondItem="hH1-TG-Sfa" secondAttribute="bottom" constant="20" id="y5J-7f-M5D"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="FkT-Lu-3LE"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="MFm-vG-hsx">
+                        <barButtonItem key="backBarButtonItem" title=" " id="448-EN-ExA"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="picker" destination="hZs-AE-coc" id="Slh-hK-Obc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WxO-Ds-yTb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5912" y="6607"/>
         </scene>
     </scenes>
     <resources>

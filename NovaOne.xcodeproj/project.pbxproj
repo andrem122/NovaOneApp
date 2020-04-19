@@ -37,6 +37,11 @@
 		65668E79241814C900774548 /* UpdateCompanyPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65668E78241814C900774548 /* UpdateCompanyPhoneViewController.swift */; };
 		656760522443837500EF4388 /* AddAppointmentCompanyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656760512443837500EF4388 /* AddAppointmentCompanyViewController.swift */; };
 		6569539B24477F6300CF86B7 /* moreAppointments.php in Resources */ = {isa = PBXBuildFile; fileRef = 6569539A24477F6300CF86B7 /* moreAppointments.php */; };
+		65695AB5244CC80900D35E55 /* AddLeadNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65695AB4244CC80900D35E55 /* AddLeadNameViewController.swift */; };
+		65695AB7244CC83C00D35E55 /* AddLeadEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65695AB6244CC83C00D35E55 /* AddLeadEmailViewController.swift */; };
+		65695AB9244CC84C00D35E55 /* AddLeadPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65695AB8244CC84C00D35E55 /* AddLeadPhoneViewController.swift */; };
+		65695ABB244CC86F00D35E55 /* AddLeadRenterBrandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65695ABA244CC86F00D35E55 /* AddLeadRenterBrandViewController.swift */; };
+		65695ABD244CC8C600D35E55 /* AddLeadCompanyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65695ABC244CC8C600D35E55 /* AddLeadCompanyViewController.swift */; };
 		656B04DC2441001B003EE193 /* CompaniesContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656B04DB2441001B003EE193 /* CompaniesContainerViewController.swift */; };
 		657535EB24035B7E009E3580 /* SignUpEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657535EA24035B7E009E3580 /* SignUpEmailViewController.swift */; };
 		6575F626242EA21100332729 /* UpdateNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6575F625242EA21100332729 /* UpdateNameViewController.swift */; };
@@ -206,6 +211,11 @@
 		65668E78241814C900774548 /* UpdateCompanyPhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCompanyPhoneViewController.swift; sourceTree = "<group>"; };
 		656760512443837500EF4388 /* AddAppointmentCompanyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAppointmentCompanyViewController.swift; sourceTree = "<group>"; };
 		6569539A24477F6300CF86B7 /* moreAppointments.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = moreAppointments.php; sourceTree = "<group>"; };
+		65695AB4244CC80900D35E55 /* AddLeadNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLeadNameViewController.swift; sourceTree = "<group>"; };
+		65695AB6244CC83C00D35E55 /* AddLeadEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLeadEmailViewController.swift; sourceTree = "<group>"; };
+		65695AB8244CC84C00D35E55 /* AddLeadPhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLeadPhoneViewController.swift; sourceTree = "<group>"; };
+		65695ABA244CC86F00D35E55 /* AddLeadRenterBrandViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLeadRenterBrandViewController.swift; sourceTree = "<group>"; };
+		65695ABC244CC8C600D35E55 /* AddLeadCompanyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLeadCompanyViewController.swift; sourceTree = "<group>"; };
 		656B04DB2441001B003EE193 /* CompaniesContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompaniesContainerViewController.swift; sourceTree = "<group>"; };
 		657535EA24035B7E009E3580 /* SignUpEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEmailViewController.swift; sourceTree = "<group>"; };
 		6575F625242EA21100332729 /* UpdateNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateNameViewController.swift; sourceTree = "<group>"; };
@@ -442,6 +452,7 @@
 		656760562443866100EF4388 /* Lead */ = {
 			isa = PBXGroup;
 			children = (
+				65695AB3244CC7D900D35E55 /* Add Lead */,
 				65AF664723E881D9001B394F /* LeadsViewController.swift */,
 				6593CFAC2436A9DC0026C5D7 /* LeadDetailViewController.swift */,
 				65BA98BA243166C700CFAA9F /* LeadsContainerViewController.swift */,
@@ -458,6 +469,18 @@
 				657FECF02401D2A800437945 /* ForgotViewController.swift */,
 			);
 			path = Launch;
+			sourceTree = "<group>";
+		};
+		65695AB3244CC7D900D35E55 /* Add Lead */ = {
+			isa = PBXGroup;
+			children = (
+				65695AB4244CC80900D35E55 /* AddLeadNameViewController.swift */,
+				65695AB6244CC83C00D35E55 /* AddLeadEmailViewController.swift */,
+				65695AB8244CC84C00D35E55 /* AddLeadPhoneViewController.swift */,
+				65695ABA244CC86F00D35E55 /* AddLeadRenterBrandViewController.swift */,
+				65695ABC244CC8C600D35E55 /* AddLeadCompanyViewController.swift */,
+			);
+			path = "Add Lead";
 			sourceTree = "<group>";
 		};
 		657AC33D23DCFC8E00DA6096 /* Views */ = {
@@ -954,6 +977,7 @@
 			files = (
 				65A4CD882445065E00EE4AAA /* HelpTableViewController.swift in Sources */,
 				65A4CD842445004800EE4AAA /* Defaults.swift in Sources */,
+				65695AB7244CC83C00D35E55 /* AddLeadEmailViewController.swift in Sources */,
 				65DBED6C2429404F0090B39C /* NovaOne.xcdatamodeld in Sources */,
 				65AB8E492427F5A800ED2ECF /* PersistenceService.swift in Sources */,
 				656B04DC2441001B003EE193 /* CompaniesContainerViewController.swift in Sources */,
@@ -996,8 +1020,10 @@
 				65AA3E7B2432C2C2005C2319 /* AddAppointmentNameViewController.swift in Sources */,
 				65BA98BB243166C700CFAA9F /* LeadsContainerViewController.swift in Sources */,
 				659CCD3623EE46260066C9CB /* ErrorResponse.swift in Sources */,
+				65695ABD244CC8C600D35E55 /* AddLeadCompanyViewController.swift in Sources */,
 				6575F62E242EC7F500332729 /* EnabledOptionTableViewCell.swift in Sources */,
 				65C14C332434DAA500848606 /* PopUpOkViewController.swift in Sources */,
+				65695AB5244CC80900D35E55 /* AddLeadNameViewController.swift in Sources */,
 				65ABA261243F6469002051D1 /* Customer+CoreDataClass.swift in Sources */,
 				658EC6C823F4B1310042827E /* NovaOneView.swift in Sources */,
 				65AA3E6C24327261005C2319 /* AddCompanyStreetViewController.swift in Sources */,
@@ -1010,7 +1036,9 @@
 				6592E3D1240429CA009E4D8D /* SignUpNameViewController.swift in Sources */,
 				657C5F962413ECB200D52E27 /* DateHelper.swift in Sources */,
 				655D0B21240B43D200D0E329 /* UpdateCompanyAddressViewController.swift in Sources */,
+				65695ABB244CC86F00D35E55 /* AddLeadRenterBrandViewController.swift in Sources */,
 				65B2B1D22433B22400014820 /* AddAppointmentAddressViewController.swift in Sources */,
+				65695AB9244CC84C00D35E55 /* AddLeadPhoneViewController.swift in Sources */,
 				65BA98B72430FD3500CFAA9F /* EmptyViewController.swift in Sources */,
 				65AA3E7624328533005C2319 /* AddCompanyHoursEnabledViewController.swift in Sources */,
 				65ABA263243F6469002051D1 /* Company+CoreDataClass.swift in Sources */,

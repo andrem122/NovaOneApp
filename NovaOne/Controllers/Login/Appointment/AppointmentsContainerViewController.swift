@@ -68,7 +68,7 @@ class AppointmentsContainerViewController: UIViewController {
 
                                         // No appointments were found or an error occurred so embed the empty
                                         // view controller
-                                        UIHelper.showEmptyStateContainerViewController(for: self, containerView: self?.containerView ?? UIView())
+                                        UIHelper.showEmptyStateContainerViewController(for: self, containerView: self?.containerView ?? UIView(), title: "No Appointments", completion: nil)
 
                                 }
                                 

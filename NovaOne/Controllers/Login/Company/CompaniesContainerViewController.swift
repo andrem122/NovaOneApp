@@ -103,7 +103,7 @@ class CompaniesContainerViewController: UIViewController {
                         print(error.localizedDescription)
                         
                         // Show empty state view
-                        UIHelper.showEmptyStateContainerViewController(for: self, containerView: self?.containerView ?? UIView())
+                        UIHelper.showEmptyStateContainerViewController(for: self, containerView: self?.containerView ?? UIView(), title: "No Appointments", completion: nil)
                     
                 }
         }

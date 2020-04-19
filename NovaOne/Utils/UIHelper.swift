@@ -84,9 +84,8 @@ class UIHelper {
 
     }
     
-    // Disables a button
     static func disable(button: UIButton, disabledColor: UIColor, borderedButton: Bool?) {
-        
+        // Disables a button
         button.isEnabled = false
         if borderedButton == true {
             button.layer.borderColor = disabledColor.cgColor
@@ -96,12 +95,23 @@ class UIHelper {
         
     }
     
-    static func showEmptyStateContainerViewController(for currentViewController: UIViewController?, containerView: UIView) {
+    static func enable(button: UIButton, enabledColor: UIColor, borderedButton: Bool?) {
+        // Enables a button
+        button.isEnabled = true
+        if borderedButton == true {
+            button.layer.borderColor = enabledColor.cgColor
+        } else {
+            button.backgroundColor = enabledColor
+        }
+        
+    }
+    
+    static func showEmptyStateContainerViewController(for currentViewController: UIViewController?, containerView: UIView, title: String, completion: ((EmptyViewController) -> Void)?) {
         // Shows the empty state view controller for a container view
         
         if let emptyViewController = currentViewController?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.empty.rawValue) as? EmptyViewController {
             
-            emptyViewController.setup(title: "No Leads")
+            emptyViewController.titleLabelText = title
             
             currentViewController?.addChild(emptyViewController)
             emptyViewController.view.translatesAutoresizingMaskIntoConstraints = false
@@ -116,6 +126,11 @@ class UIHelper {
             ])
             
             emptyViewController.didMove(toParent: currentViewController)
+            
+            // Plug the empty container view controller into the completion function
+            if let completion = completion {
+                completion(emptyViewController)
+            }
             
         }
     }

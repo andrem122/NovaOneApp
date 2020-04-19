@@ -12,18 +12,18 @@ class EmptyViewController: UIViewController {
     
     // MARK: Properties
     @IBOutlet weak var titleLabel: UILabel!
+    var titleLabelText: String?
     
     
     // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupTitle()
     }
     
-    func setup(title: String) {
-        DispatchQueue.main.async {
-            // Sets the title text
-            self.titleLabel.text = title
-        }
+    func setupTitle() {
+        // Sets the text for the title label
+        self.titleLabel.text = self.titleLabelText
     }
     
 }
