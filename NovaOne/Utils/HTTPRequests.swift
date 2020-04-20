@@ -56,12 +56,10 @@ class HTTPRequests {
                         // Try to convert to customer object from JSON data
                         if let object = try? JSONDecoder().decode(DataModel.self, from: unwrappedData) {
                             
-                            print("Decodable block")
                             completion(.success(object)) // Pass object to result enumeration as an associated value
                             
                         } else {
                             
-                            print("Error block")
                             // Since our try has a question mark (try?), it will run this code in the 'else'
                             // block and make our error become nil if something in the 'do' block fails
                             

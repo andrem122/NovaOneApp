@@ -125,6 +125,8 @@ class LeadsContainerViewController: UIViewController {
                                         UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.ViewControllerIdentifiers.leads.rawValue, containerView: self?.containerView ?? UIView(), objectType: LeadsViewController.self) { (leadsViewController) in
                                             
                                             guard let leadsViewController = leadsViewController as? LeadsViewController else { return }
+                                            leadsViewController.parentViewContainerController = self
+                                            
                                             // Save data in CoreData
                                             self?.saveObjectsToCoreDataAndSend(for: leadsViewController, objects: leads)
                                             
@@ -142,6 +144,7 @@ class LeadsContainerViewController: UIViewController {
                                             
                                             // Tell the empty state view controller what its parent view controller is
                                             emptyViewController.parentViewContainerController = self
+                                        
                                     }
                                     
                                 }

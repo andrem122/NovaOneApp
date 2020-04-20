@@ -36,7 +36,7 @@
     WHERE l.company_id IN (SELECT id FROM property_company WHERE customer_user_id = :customer_user_id)
     AND l.id <= :first_object_id
     AND l.id >= :last_object_id
-    ORDER BY date_of_inquiry DESC;
+    ORDER BY l.id DESC;
     ";
     
     // query the database and echo results

@@ -16,6 +16,7 @@ class LeadsViewController: UIViewController {
     @IBOutlet weak var leadsTableView: UITableView!
     @IBOutlet weak var navigationBar: UINavigationBar!
     var timer: Timer?
+    var parentViewContainerController: UIViewController?
     var customer: CustomerModel?
     var bottomTableViewSpinner: UIActivityIndicatorView? = nil
     var tableIsRefreshing: Bool = false
@@ -23,6 +24,7 @@ class LeadsViewController: UIViewController {
     var leads: [Lead] = []
     var filteredLeads: [Lead] = []
     var searchController: UISearchController!
+    let alertService = AlertService()
     lazy var refresher: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.tintColor = .lightGray
@@ -174,7 +176,36 @@ class LeadsViewController: UIViewController {
                                         }
                                     
                                     case .failure(let error):
-                                        print(error.localizedDescription)
+                                        // If there is an error other than 'No rows found', display the error in a
+                                        // pop up OK view controller
+                                        
+                                        if error.localizedDescription != Defaults.ErrorResponseReasons.noRowsFound.rawValue {
+                                            let title = "Error"
+                                            let body = error.localizedDescription
+                                            guard let popUpOkViewController = self?.alertService.popUpOk(title: title, body: body) else { return }
+                                            self?.present(popUpOkViewController, animated: true, completion: nil)
+                                        }
+                                        
+                                        
+                                        // If no rows were found, delete all
+                                        // leads from core data. This means the user could have added a lead online through the
+                                        // website and deleted online. Our app needs to delete all data to reflect the changes
+                                        // made online.
+                                        if self?.appendingDataToTable == false && error.localizedDescription == Defaults.ErrorResponseReasons.noRowsFound.rawValue {
+                                            
+                                            PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.lead.rawValue)
+                                            
+                                            guard let leadsContainerViewController = self?.parentViewContainerController as? LeadsContainerViewController else { return }
+                                            leadsContainerViewController.containerView.subviews[0].removeFromSuperview()
+                                            
+                                            // Show empty state view controller
+                                            let containerView = leadsContainerViewController.containerView
+                                            let title = "No Leads"
+                                            UIHelper.showEmptyStateContainerViewController(for: leadsContainerViewController, containerView: containerView ?? UIView(), title: title) { (emptyViewController) in
+                                                emptyViewController.parentViewContainerController = leadsContainerViewController
+                                            }
+                                            
+                                        }
                                         
                                         DispatchQueue.main.asyncAfter(deadline: deadline) {
                                             self?.hideTableLoadingAnimations()
