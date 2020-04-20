@@ -119,7 +119,7 @@ class AppointmentsViewController: UIViewController {
             self.appointmentTableView.addSubview(self.refresher)
         }
     }
-
+    
 }
 
 extension AppointmentsViewController: UITableViewDelegate, SkeletonTableViewDataSource {

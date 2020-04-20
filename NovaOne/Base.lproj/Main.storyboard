@@ -230,7 +230,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p5x-OD-s8g" userLabel="Cancel Button">
-                                <rect key="frame" x="20" y="76" width="33.5" height="33.5"/>
+                                <rect key="frame" x="20" y="76" width="67" height="67"/>
                                 <state key="normal" image="cancelButtonBlue"/>
                                 <connections>
                                     <action selector="cancelButtonTapped:" destination="3nd-WK-PNW" eventType="touchUpInside" id="AQ2-0X-vAi"/>
@@ -656,43 +656,25 @@ and you have 4 calls.</string>
         <!--Appointments Container-->
         <scene sceneID="1VA-eb-AKV">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j1R-4q-OIR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="appointmentsContainerViewController" id="nih-Xv-dpA" userLabel="Appointments Container" customClass="AppointmentsContainerViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XJP-0S-Zwq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p8K-wR-Rer">
-                                <rect key="frame" x="0.0" y="44" width="414" height="669"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v8g-kd-nrC" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
-                                <rect key="frame" x="30" y="748" width="354" height="45"/>
-                                <color key="backgroundColor" red="0.32493522759999999" green="0.46187436580000002" blue="0.83199411629999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="x8B-Gs-Io7"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                <state key="normal" title="Add Appointment">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="20"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="7uT-uX-srM" firstAttribute="bottom" secondItem="v8g-kd-nrC" secondAttribute="bottom" constant="20" id="BKq-9n-6Pb"/>
                             <constraint firstItem="p8K-wR-Rer" firstAttribute="top" secondItem="7uT-uX-srM" secondAttribute="top" id="DLY-hr-zBF"/>
-                            <constraint firstItem="7uT-uX-srM" firstAttribute="bottom" secondItem="p8K-wR-Rer" secondAttribute="bottom" constant="100" id="TFt-ci-Iw8"/>
+                            <constraint firstItem="7uT-uX-srM" firstAttribute="bottom" secondItem="p8K-wR-Rer" secondAttribute="bottom" id="TFt-ci-Iw8"/>
                             <constraint firstItem="p8K-wR-Rer" firstAttribute="trailing" secondItem="7uT-uX-srM" secondAttribute="trailing" id="f4G-xb-EMz"/>
                             <constraint firstItem="p8K-wR-Rer" firstAttribute="leading" secondItem="7uT-uX-srM" secondAttribute="leading" id="hzu-Uc-2aD"/>
-                            <constraint firstItem="v8g-kd-nrC" firstAttribute="leading" secondItem="7uT-uX-srM" secondAttribute="leading" constant="30" id="lji-m1-w1Z"/>
-                            <constraint firstItem="7uT-uX-srM" firstAttribute="trailing" secondItem="v8g-kd-nrC" secondAttribute="trailing" constant="30" id="sn8-eT-fNq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7uT-uX-srM"/>
                         <userDefinedRuntimeAttributes>
@@ -704,7 +686,6 @@ and you have 4 calls.</string>
                         <outlet property="containerView" destination="p8K-wR-Rer" id="FW0-2f-h7e"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="j1R-4q-OIR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3057" y="2143"/>
         </scene>
@@ -908,9 +889,16 @@ and you have 4 calls.</string>
                             </tableView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kcg-YN-e3F">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                                <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
-                                    <navigationItem title="Appointments" id="T3s-mW-Smv"/>
+                                    <navigationItem title="Appointments" id="T3s-mW-Smv">
+                                        <barButtonItem key="rightBarButtonItem" title="Add" image="plus" catalog="system" id="uMA-cj-JjI">
+                                            <color key="tintColor" red="0.32493522759999999" green="0.46187436580000002" blue="0.83199411629999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <segue destination="cz7-UF-eXn" kind="show" id="qd0-Ce-Jfa"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                         </subviews>
@@ -950,46 +938,25 @@ and you have 4 calls.</string>
         <!--Leads Container View Controller-->
         <scene sceneID="iBJ-u1-vcI">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tf9-Zy-Q3y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="leadsContainerViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Lhy-AA-gdv" customClass="LeadsContainerViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="anj-gJ-dd9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jDb-sL-E0J">
-                                <rect key="frame" x="0.0" y="44" width="414" height="669"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GsG-On-wGK" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
-                                <rect key="frame" x="30" y="748" width="354" height="45"/>
-                                <color key="backgroundColor" red="0.32493522759999999" green="0.46187436580000002" blue="0.83199411629999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="yma-9F-2uZ"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                <state key="normal" title="Add Lead">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="20"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="addAndRefreshButtonTapped:" destination="Lhy-AA-gdv" eventType="touchUpInside" id="0SZ-i3-gqp"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="jDb-sL-E0J" firstAttribute="top" secondItem="5Ts-dM-TBs" secondAttribute="top" id="0PS-aS-QvJ"/>
-                            <constraint firstItem="5Ts-dM-TBs" firstAttribute="bottom" secondItem="GsG-On-wGK" secondAttribute="bottom" constant="20" id="Rc1-xI-ft5"/>
                             <constraint firstItem="jDb-sL-E0J" firstAttribute="leading" secondItem="5Ts-dM-TBs" secondAttribute="leading" id="pda-XA-2Ca"/>
-                            <constraint firstItem="5Ts-dM-TBs" firstAttribute="trailing" secondItem="GsG-On-wGK" secondAttribute="trailing" constant="30" id="q7V-c4-q4t"/>
-                            <constraint firstItem="5Ts-dM-TBs" firstAttribute="bottom" secondItem="jDb-sL-E0J" secondAttribute="bottom" constant="100" id="qCO-is-G3h"/>
+                            <constraint firstItem="5Ts-dM-TBs" firstAttribute="bottom" secondItem="jDb-sL-E0J" secondAttribute="bottom" id="qCO-is-G3h"/>
                             <constraint firstItem="jDb-sL-E0J" firstAttribute="trailing" secondItem="5Ts-dM-TBs" secondAttribute="trailing" id="qnC-Le-W5g"/>
-                            <constraint firstItem="GsG-On-wGK" firstAttribute="leading" secondItem="5Ts-dM-TBs" secondAttribute="leading" constant="30" id="rHc-b1-yX9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5Ts-dM-TBs"/>
                         <userDefinedRuntimeAttributes>
@@ -998,11 +965,9 @@ and you have 4 calls.</string>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="userBlue" id="7DV-Ab-xEd"/>
                     <connections>
-                        <outlet property="addAndRefreshButton" destination="GsG-On-wGK" id="3fO-2o-ySB"/>
                         <outlet property="containerView" destination="jDb-sL-E0J" id="fws-Sz-BCK"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Tf9-Zy-Q3y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5913" y="2143"/>
         </scene>
@@ -1966,6 +1931,12 @@ of your company?</string>
                                 <items>
                                     <navigationItem title="Leads" id="bEv-r4-s9E">
                                         <barButtonItem key="backBarButtonItem" title=" " id="GPj-cA-61a"/>
+                                        <barButtonItem key="rightBarButtonItem" title="Add" image="plus" catalog="system" id="IvW-6q-kG3">
+                                            <color key="tintColor" red="0.32493522759999999" green="0.46187436580000002" blue="0.83199411629999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <segue destination="WhH-0Z-LD5" kind="show" id="QMF-pa-Ecs"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -2823,11 +2794,34 @@ my friend :)</string>
                                     </label>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EXu-Np-aAf" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
+                                <rect key="frame" x="30" y="797" width="354" height="45"/>
+                                <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="eY1-4m-hKS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                <state key="normal" title="Refresh">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="refreshButtonTapped:" destination="6h4-rM-fOO" eventType="touchUpInside" id="BML-MA-M9I"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="EXu-Np-aAf" firstAttribute="leading" secondItem="yoe-kN-rAb" secondAttribute="leading" constant="30" id="8Uc-J0-GQr"/>
+                            <constraint firstItem="yoe-kN-rAb" firstAttribute="trailing" secondItem="EXu-Np-aAf" secondAttribute="trailing" constant="30" id="Bf9-1b-P0Y"/>
                             <constraint firstItem="W2R-7a-5M2" firstAttribute="centerX" secondItem="1re-eQ-YAy" secondAttribute="centerX" id="EYK-LS-5vQ"/>
                             <constraint firstItem="W2R-7a-5M2" firstAttribute="top" secondItem="yoe-kN-rAb" secondAttribute="top" constant="100" id="P4M-Pl-PET"/>
+                            <constraint firstItem="yoe-kN-rAb" firstAttribute="bottom" secondItem="EXu-Np-aAf" secondAttribute="bottom" constant="20" id="vfq-R7-USM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="yoe-kN-rAb"/>
                     </view>
@@ -4535,17 +4529,17 @@ hours below.</string>
             <objects>
                 <viewController storyboardIdentifier="addAppointmentNameViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="21X-dn-5Df" userLabel="Add Appointment Name" customClass="AddAppointmentNameViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ecy-4G-OFs">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Appointment" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lZA-Gm-ydZ">
-                                <rect key="frame" x="80" y="118" width="254.5" height="37"/>
+                                <rect key="frame" x="80" y="86" width="254.5" height="37"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
                                 <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DoO-rN-Ogz">
-                                <rect key="frame" x="68" y="175" width="278.5" height="41"/>
+                                <rect key="frame" x="68" y="143" width="278.5" height="41"/>
                                 <string key="text">Type in the name of the person with 
 the appointment below.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -4553,7 +4547,7 @@ the appointment below.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="7LU-T7-iRh">
-                                <rect key="frame" x="30" y="246" width="354" height="110"/>
+                                <rect key="frame" x="30" y="214" width="354" height="110"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="QgE-B5-coD" customClass="NovaOneTextField" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="354" height="45"/>
@@ -4626,17 +4620,17 @@ the appointment below.</string>
             <objects>
                 <viewController storyboardIdentifier="addAppointmentPhoneViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WbO-qO-CU7" userLabel="Add Appointment Phone" customClass="AddAppointmentPhoneViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rFy-5s-eMk">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Appointment Phone" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Czp-fF-dzf">
-                                <rect key="frame" x="63.5" y="118" width="287.5" height="37"/>
+                                <rect key="frame" x="63.5" y="86" width="287.5" height="37"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
                                 <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oWd-J8-Eh9">
-                                <rect key="frame" x="51.5" y="175" width="311.5" height="41"/>
+                                <rect key="frame" x="51.5" y="143" width="311.5" height="41"/>
                                 <string key="text">Type in the phone number of the person 
 with the appointment below.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -4644,7 +4638,7 @@ with the appointment below.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="21K-3z-4yw">
-                                <rect key="frame" x="30" y="246" width="354" height="110"/>
+                                <rect key="frame" x="30" y="214" width="354" height="110"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone Number" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="iUb-Gm-PfO" customClass="NovaOneTextField" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="354" height="45"/>
@@ -4713,17 +4707,17 @@ with the appointment below.</string>
             <objects>
                 <viewController storyboardIdentifier="addAppointmentTimeViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8x9-uS-aHU" userLabel="Add Appointment Time" customClass="AddAppointmentTimeViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GpG-cS-v9Z">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Appointment Time" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HSV-NM-VrY">
-                                <rect key="frame" x="73.5" y="118" width="267.5" height="37"/>
+                                <rect key="frame" x="73.5" y="86" width="267.5" height="37"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
                                 <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hAi-7r-PE5">
-                                <rect key="frame" x="69" y="175" width="276" height="41"/>
+                                <rect key="frame" x="69" y="143" width="276" height="41"/>
                                 <string key="text">Choose the time of the appointment
  below.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -4731,10 +4725,10 @@ with the appointment below.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="xgW-0X-VmV">
-                                <rect key="frame" x="0.0" y="246" width="414" height="216"/>
+                                <rect key="frame" x="0.0" y="214" width="414" height="216"/>
                             </datePicker>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rkh-d5-eHj" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
-                                <rect key="frame" x="30" y="472" width="354" height="45"/>
+                                <rect key="frame" x="30" y="440" width="354" height="45"/>
                                 <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="4CR-ZV-GPR"/>
@@ -5813,7 +5807,8 @@ of your company?</string>
         <!--Navigation Controller-->
         <scene sceneID="V89-IG-Wy8">
             <objects>
-                <navigationController storyboardIdentifier="addLeadNavigationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WhH-0Z-LD5" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="addLeadNavigationController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WhH-0Z-LD5" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="fjj-iP-imE"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hJO-tO-2hG">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -6707,11 +6702,11 @@ with the appointment.</string>
             <objects>
                 <viewController storyboardIdentifier="addAppointmentCompanyViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="P4x-aS-XL0" userLabel="Add Appointment Company" customClass="AddAppointmentCompanyViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oGA-HU-g0M">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RB2-ge-dGa" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
-                                <rect key="frame" x="30" y="797" width="354" height="45"/>
+                                <rect key="frame" x="30" y="743" width="354" height="45"/>
                                 <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="FGM-r4-HJr"/>
@@ -6731,7 +6726,7 @@ with the appointment.</string>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="If6-vI-b0I">
-                                <rect key="frame" x="0.0" y="239" width="414" height="523"/>
+                                <rect key="frame" x="0.0" y="207" width="414" height="501"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="enableOptionTableViewCell" id="eDW-wK-aBM" customClass="EnableOptionTableViewCell" customModule="NovaOne" customModuleProvider="target">
@@ -6773,13 +6768,13 @@ with the appointment.</string>
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Appointment" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YEA-sL-vxc">
-                                <rect key="frame" x="80" y="121" width="254.5" height="37"/>
+                                <rect key="frame" x="80" y="89" width="254.5" height="37"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
                                 <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="szJ-uU-e4b">
-                                <rect key="frame" x="82.5" y="178" width="249.5" height="41"/>
+                                <rect key="frame" x="82.5" y="146" width="249.5" height="41"/>
                                 <string key="text">Select the company you want to 
 make an appointment for.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -6953,23 +6948,23 @@ make an appointment for.</string>
             <objects>
                 <viewController storyboardIdentifier="addLeadNameViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="44k-r7-hbx" userLabel="Add Lead Name" customClass="AddLeadNameViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VRh-9g-wBb">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Lead" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2u9-7J-SXL">
-                                <rect key="frame" x="139" y="118" width="136.5" height="37"/>
+                                <rect key="frame" x="139" y="86" width="136.5" height="37"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
                                 <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in the name of the lead below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JLG-9Z-Mx2">
-                                <rect key="frame" x="72" y="175" width="270" height="20.5"/>
+                                <rect key="frame" x="72" y="143" width="270" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="8ZC-3h-KCD">
-                                <rect key="frame" x="30" y="225.5" width="354" height="110"/>
+                                <rect key="frame" x="30" y="193.5" width="354" height="110"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="FMR-Kl-jeH" customClass="NovaOneTextField" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="354" height="45"/>
@@ -7038,11 +7033,11 @@ make an appointment for.</string>
             <objects>
                 <viewController storyboardIdentifier="addLeadCompanyViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="AiO-n8-JYl" userLabel="Add Lead Company" customClass="AddLeadCompanyViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Kmy-17-I3c">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vCD-IY-qZ3" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
-                                <rect key="frame" x="30" y="797" width="354" height="45"/>
+                                <rect key="frame" x="30" y="743" width="354" height="45"/>
                                 <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="idO-6K-GEg"/>
@@ -7062,7 +7057,7 @@ make an appointment for.</string>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5bX-Cw-QI7">
-                                <rect key="frame" x="0.0" y="239" width="414" height="523"/>
+                                <rect key="frame" x="0.0" y="207" width="414" height="501"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="enableOptionTableViewCell" id="Rse-30-7qQ" customClass="EnableOptionTableViewCell" customModule="NovaOne" customModuleProvider="target">
@@ -7104,13 +7099,13 @@ make an appointment for.</string>
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Lead" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X5b-M8-cHB">
-                                <rect key="frame" x="139" y="121" width="136.5" height="37"/>
+                                <rect key="frame" x="139" y="89" width="136.5" height="37"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
                                 <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ohD-81-3aN">
-                                <rect key="frame" x="94.5" y="178" width="225.5" height="41"/>
+                                <rect key="frame" x="94.5" y="146" width="225.5" height="41"/>
                                 <string key="text">Select the company you want
  to add the lead to.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -7155,23 +7150,23 @@ make an appointment for.</string>
             <objects>
                 <viewController storyboardIdentifier="addLeadEmailViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4gz-FX-5RM" userLabel="Add Lead Email" customClass="AddLeadEmailViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HKM-Lp-vlO">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Lead Email" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y16-aw-oWJ">
-                                <rect key="frame" x="96.5" y="118" width="221" height="37"/>
+                                <rect key="frame" x="96.5" y="86" width="221" height="37"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
                                 <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in the email of the lead below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uxo-ss-Ubj">
-                                <rect key="frame" x="73" y="175" width="268.5" height="20.5"/>
+                                <rect key="frame" x="73" y="143" width="268.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="AxM-Cp-Bq5">
-                                <rect key="frame" x="30" y="225.5" width="354" height="110"/>
+                                <rect key="frame" x="30" y="193.5" width="354" height="110"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="RDd-vI-Ru1" customClass="NovaOneTextField" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="354" height="45"/>
@@ -7240,17 +7235,17 @@ make an appointment for.</string>
             <objects>
                 <viewController storyboardIdentifier="addLeadPhoneViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zHY-pD-5U5" userLabel="Add Lead Phone" customClass="AddLeadPhoneViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="W1f-wp-9A3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Lead Phone" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lna-td-zJT">
-                                <rect key="frame" x="90" y="118" width="234.5" height="37"/>
+                                <rect key="frame" x="90" y="86" width="234.5" height="37"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
                                 <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hsr-qm-L8F">
-                                <rect key="frame" x="104.5" y="175" width="205" height="41"/>
+                                <rect key="frame" x="104.5" y="143" width="205" height="41"/>
                                 <string key="text">Type in the phone number 
 of the lead below.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -7258,7 +7253,7 @@ of the lead below.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="r8l-6c-z8r">
-                                <rect key="frame" x="30" y="246" width="354" height="110"/>
+                                <rect key="frame" x="30" y="214" width="354" height="110"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone Number" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="iDa-si-r5f" customClass="NovaOneTextField" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="354" height="45"/>
@@ -7327,11 +7322,11 @@ of the lead below.</string>
             <objects>
                 <viewController storyboardIdentifier="addLeadRenterBrandViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WR0-3y-yYe" userLabel="Add Lead Renter Brand" customClass="AddLeadRenterBrandViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HAS-Yl-ffl">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hH1-TG-Sfa">
-                                <rect key="frame" x="112.5" y="118" width="189" height="74"/>
+                                <rect key="frame" x="112.5" y="86" width="189" height="74"/>
                                 <string key="text">Add Lead 
 Renter Brand</string>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
@@ -7339,7 +7334,7 @@ Renter Brand</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pFb-Wj-lb9">
-                                <rect key="frame" x="101.5" y="212" width="211.5" height="41"/>
+                                <rect key="frame" x="101.5" y="180" width="211.5" height="41"/>
                                 <string key="text">Choose the renter brand of 
 the lead below.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -7347,7 +7342,7 @@ the lead below.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wOU-Hs-316" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
-                                <rect key="frame" x="30" y="509" width="354" height="45"/>
+                                <rect key="frame" x="30" y="477" width="354" height="45"/>
                                 <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="AGR-dR-OFx"/>
@@ -7364,7 +7359,7 @@ the lead below.</string>
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hZs-AE-coc" userLabel="Renter Brand Picker">
-                                <rect key="frame" x="0.0" y="283" width="413" height="216"/>
+                                <rect key="frame" x="0.0" y="251" width="413" height="216"/>
                             </pickerView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -7409,6 +7404,7 @@ the lead below.</string>
         <image name="leadsGraph" width="104" height="81"/>
         <image name="novaOneLogo" width="85.5" height="85.5"/>
         <image name="novaOneLogoVertical" width="120.5" height="120.5"/>
+        <image name="plus" catalog="system" width="64" height="56"/>
         <image name="rightAngleBlue" width="42.5" height="42.5"/>
         <image name="settingsBlack" width="27" height="27"/>
         <image name="settingsBlue" width="27" height="27"/>

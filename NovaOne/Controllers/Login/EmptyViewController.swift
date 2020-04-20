@@ -13,6 +13,7 @@ class EmptyViewController: UIViewController {
     // MARK: Properties
     @IBOutlet weak var titleLabel: UILabel!
     var titleLabelText: String?
+    var parentViewContainerController: UIViewController? // The container view that this view is embedded in
     
     
     // MARK: Methods
@@ -24,6 +25,19 @@ class EmptyViewController: UIViewController {
     func setupTitle() {
         // Sets the text for the title label
         self.titleLabel.text = self.titleLabelText
+    }
+    
+    // MARK: Actions
+    @IBAction func refreshButtonTapped(_ sender: Any) {
+        
+        if let leadsContainerViewController = self.parentViewContainerController as? LeadsContainerViewController {
+            leadsContainerViewController.containerView.subviews[0].removeFromSuperview() // Remove empty state view controller from container view
+            leadsContainerViewController.viewDidLoad() // Reload view did load to check for new objects
+        } else if let appointmentsContainerViewController = self.parentViewContainerController as? AppointmentsContainerViewController {
+            appointmentsContainerViewController.containerView.subviews[0].removeFromSuperview()
+            appointmentsContainerViewController.viewDidLoad()
+        }
+        
     }
     
 }

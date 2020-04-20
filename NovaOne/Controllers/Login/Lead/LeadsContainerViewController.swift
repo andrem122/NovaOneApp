@@ -13,17 +13,12 @@ class LeadsContainerViewController: UIViewController {
     
     // MARK: Properties
     @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var addAndRefreshButton: NovaOneButton!
     var loadingIndicator: UIActivityIndicatorView?
     let objectCount = PersistenceService.fetchCount(for: Defaults.CoreDataEntities.lead.rawValue)
     
     // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Disable button on load
-        UIHelper.disable(button: self.addAndRefreshButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil)
-        
         self.showCoreDataOrRequestData()
     }
     
@@ -32,9 +27,6 @@ class LeadsContainerViewController: UIViewController {
         
         if self.objectCount > 0 {
             print("SHOWING LEADS FROM CORE DATA")
-            // Enable button
-            UIHelper.enable(button: self.addAndRefreshButton, enabledColor: Defaults.novaOneColor, borderedButton: nil)
-            
             // Get CoreData objects and pass to the next view
             UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.ViewControllerIdentifiers.leads.rawValue, containerView: self.containerView ?? UIView(), objectType: LeadsViewController.self, completion: nil)
             
@@ -130,13 +122,6 @@ class LeadsContainerViewController: UIViewController {
                                     case .success(let leads):
                                         self?.loadingIndicator?.stopAnimating()
                                         
-                                        // Change text of button to 'Add Lead'
-                                        let buttonTitle = "Add Lead"
-                                        self?.addAndRefreshButton.setTitle(buttonTitle, for: .normal)
-                                        
-                                        // Enable the button
-                                        UIHelper.enable(button: self?.addAndRefreshButton ?? UIButton(), enabledColor: Defaults.novaOneColor, borderedButton: nil)
-                                        
                                         UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.ViewControllerIdentifiers.leads.rawValue, containerView: self?.containerView ?? UIView(), objectType: LeadsViewController.self) { (leadsViewController) in
                                             
                                             guard let leadsViewController = leadsViewController as? LeadsViewController else { return }
@@ -151,37 +136,16 @@ class LeadsContainerViewController: UIViewController {
                                         // view controller
                                         
                                         self?.loadingIndicator?.stopAnimating()
-                                        
-                                        // Change text of button to 'Refresh'
-                                        let buttonTitle = "Refresh"
-                                        self?.addAndRefreshButton.setTitle(buttonTitle, for: .normal)
-                                        
-                                        // Enable the button
-                                        UIHelper.enable(button: self?.addAndRefreshButton ?? UIButton(), enabledColor: Defaults.novaOneColor, borderedButton: nil)
-                                        
-                                        UIHelper.showEmptyStateContainerViewController(for: self, containerView: self?.containerView ?? UIView(), title: "No Leads", completion: nil)
+
+                                        UIHelper.showEmptyStateContainerViewController(for: self, containerView: self?.containerView ?? UIView(), title: "No Leads") {
+                                            (emptyViewController) in
+                                            
+                                            // Tell the empty state view controller what its parent view controller is
+                                            emptyViewController.parentViewContainerController = self
+                                    }
+                                    
                                 }
                                 
-        }
-        
-    }
-    
-    // MARK: Actions
-    @IBAction func addAndRefreshButtonTapped(_ sender: Any) {
-        
-        // If there is data, go to the add lead navigation controller
-        let leadCount = PersistenceService.fetchCount(for: Defaults.CoreDataEntities.lead.rawValue)
-        if leadCount > 0 {
-            
-            guard let addLeadNavigationController = self.storyboard?.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addLead.rawValue) as? UINavigationController else { return }
-            
-            addLeadNavigationController.modalPresentationStyle = .fullScreen
-            self.present(addLeadNavigationController, animated: true, completion: nil)
-            
-        } else {
-            // No leads, so call getData function and remove the empty view controller
-            self.containerView.subviews[0].removeFromSuperview()
-            self.getData()
         }
         
     }
