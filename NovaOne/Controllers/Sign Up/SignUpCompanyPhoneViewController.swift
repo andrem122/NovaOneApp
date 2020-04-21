@@ -34,7 +34,7 @@ class SignUpCompanyPhoneViewController: UIViewController {
     // MARK: Actions
     @IBAction func propertyPhoneTextFieldChanged(_ sender: Any) {
         
-        UIHelper.toggle(button: self.continueButton, textFields: [self.propertyPhoneTextField], enabledColor: Defaults.novaOneColor, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil, closure: nil)
+        UIHelper.toggle(button: self.continueButton, textField: self.propertyPhoneTextField, enabledColor: Defaults.novaOneColor, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false, closure: nil)
         
     }
     

@@ -30,7 +30,7 @@ class AddCompanyEmailViewController: UIViewController {
     
     
     @IBAction func companyEmailFieldChanged(_ sender: Any) {
-        UIHelper.toggle(button: self.continueButton, textFields: [self.companyEmailTextField], enabledColor: Defaults.novaOneColor, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false, closure: nil)
+        UIHelper.toggle(button: self.continueButton, textField: self.companyEmailTextField, enabledColor: Defaults.novaOneColor, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false, closure: nil)
     }
     
 }

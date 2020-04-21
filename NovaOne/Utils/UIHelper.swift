@@ -21,13 +21,15 @@ class UIHelper {
     }
     
     // Toggles a button between enabled and disabled states based on text field values
-    static func toggle(button: UIButton, textFields: [UITextField], enabledColor: UIColor, disabledColor: UIColor, borderedButton: Bool?, closure: (([UITextField]) -> Bool)?) {
+    static func toggle(button: UIButton, textField: UITextField?, enabledColor: UIColor, disabledColor: UIColor, borderedButton: Bool?, closure: (() -> Bool)?) {
         
         // If we decide to use the closure (more than one text field we want to check the value of before disabling the button)
         if let unwrappedClosure = closure {
             
-            if unwrappedClosure(textFields) {
+            // Closure will return a boolean and if it is false, the button will be disabled else it will be enabled
+            if unwrappedClosure() == false {
                 
+                // Disable the button
                 button.isEnabled = false
                 
                 if borderedButton == true {
@@ -39,6 +41,7 @@ class UIHelper {
                 
             } else {
                 
+                // Enable button if true is returned
                 button.isEnabled = true
                 
                 if borderedButton == true {
@@ -53,7 +56,8 @@ class UIHelper {
         } else { // One text field we are checking the value of to disable the button
             
             guard
-                let text = textFields[0].text
+                let textField = textField,
+                let text = textField.text
             else { return }
             
             if text.isEmpty {

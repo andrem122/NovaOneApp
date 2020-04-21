@@ -96,9 +96,9 @@ class AddAppointmentCompanyViewController: UIViewController, UITableViewDelegate
                                 coreDataCompany.customer = PersistenceService.fetchCustomerEntity()
                             }
                             
-                            PersistenceService.saveContext()
                         }
-                    
+                        
+                        PersistenceService.saveContext()
                         self.tableView.reloadData()
                         
                     

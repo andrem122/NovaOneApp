@@ -21,11 +21,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: Methods
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        self.setUpGeneric()
+        self.setupTextFields()
+        self.setupLoginButton()
         self.authenticateUsingBiometrics()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,40 +42,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         AppUtility.lockOrientation(.all)
     }
     
-    func setUpGeneric() {
-        
+    func setupTextFields() {
         // Set delegates for each text field so we can use the delegate methods for each text field
         self.passwordTextField.delegate = self
         self.userNameTextField.delegate = self
-        
+    }
+    
+    func setupLoginButton() {
+        // Set up the login button
         // Disable continue button and only enable it when the user starts typing into one of the text fields
         self.loginButton.isEnabled = false
         self.loginButton.backgroundColor = Defaults.novaOneColorDisabledColor
-        
     }
-    
-    // Toggles the login button from between disabled and enabled states
-    // based on email text field value
-    func toggleLoginButton() {
-        
-        guard
-            let email = self.userNameTextField.text
-        else { return }
-        
-        if email.isEmpty {
-            
-            self.loginButton.isEnabled = false
-            self.loginButton.backgroundColor = Defaults.novaOneColorDisabledColor
-            
-        } else {
-            
-            self.loginButton.isEnabled = true
-            self.loginButton.backgroundColor = Defaults.novaOneColor
-            
-        }
-        
-    }
-    
     
     func authenticateUsingBiometrics() {
         
@@ -105,6 +82,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             self.passwordTextField.text = keychainPassword
                             
                             self.formDataLogin(username: keychainUsername, password: keychainPassword)
+                            self.getCompanies(username: keychainUsername, password: keychainPassword)
                             
                         }
                         
@@ -188,10 +166,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         let customerCount = PersistenceService.fetchCount(for: Defaults.CoreDataEntities.customer.rawValue)
                         if customerCount == 0 { // New users to the app logging in for first time
                             print("New user to the app!")
-                            guard let coreDataCustomerObject = NSEntityDescription.insertNewObject(forEntityName: Defaults.CoreDataEntities.customer.rawValue, into: PersistenceService.context) as? Customer else {
-                                print("Failed to create new Customer object!")
-                                return
-                            }
+                            guard let coreDataCustomerObject = NSEntityDescription.insertNewObject(forEntityName: Defaults.CoreDataEntities.customer.rawValue, into: PersistenceService.context) as? Customer else { return }
                             
                             coreDataCustomerObject.addCustomer(customerType: customerType, dateJoined: dateJoinedDate, email: email, firstName: firstName, id: id, isPaying: isPaying, lastName: lastName, phoneNumber: phoneNumber, wantsSms: wantsSms, password: password, username: username, lastLogin: lastLoginDate, companies: nil)
                             
@@ -209,10 +184,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.lead.rawValue)
                             
                             // Create new customer object in CoreData for new login information
-                            guard let coreDataCustomerObject = NSEntityDescription.insertNewObject(forEntityName: Defaults.CoreDataEntities.customer.rawValue, into: PersistenceService.context) as? Customer else {
-                                print("Failed to create new Customer object!")
-                                return
-                            }
+                            guard let coreDataCustomerObject = NSEntityDescription.insertNewObject(forEntityName: Defaults.CoreDataEntities.customer.rawValue, into: PersistenceService.context) as? Customer else { return }
                             
                             coreDataCustomerObject.addCustomer(customerType: customerType, dateJoined: dateJoinedDate, email: email, firstName: firstName, id: id, isPaying: isPaying, lastName: lastName, phoneNumber: phoneNumber, wantsSms: wantsSms, password: password, username: username, lastLogin: lastLoginDate, companies: nil)
                             
@@ -246,6 +218,52 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    func getCompanies(username: String, password: String) {
+        // Gets company data belonging to the customer
+        
+        let httpRequest = HTTPRequests()
+        guard
+            let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first
+        else { return }
+        let customerUserId = customer.id
+        
+        let parameters: [String: Any] = ["email": username, "password": password, "customerUserId": customerUserId]
+        httpRequest.request(endpoint: "companies.php", dataModel: [CompanyModel].self, parameters: parameters) { (result) in
+            
+            switch result {
+                case .success(let companies):
+                    for company in companies {
+                        
+                        // Save to CoreData
+                        guard let entity = NSEntityDescription.entity(forEntityName: Defaults.CoreDataEntities.company.rawValue, in: PersistenceService.context) else { return }
+                        
+                        if let coreDataCompany = NSManagedObject(entity: entity, insertInto: PersistenceService.context) as? Company {
+                            coreDataCompany.address = company.address
+                            coreDataCompany.city = company.city
+                            coreDataCompany.state = company.state
+                            coreDataCompany.zip = company.zip
+                            coreDataCompany.created = company.createdDate
+                            coreDataCompany.daysOfTheWeekEnabled = company.daysOfTheWeekEnabled
+                            coreDataCompany.email = company.email
+                            coreDataCompany.hoursOfTheDayEnabled = company.hoursOfTheDayEnabled
+                            coreDataCompany.id = Int32(company.id)
+                            coreDataCompany.name = company.name
+                            coreDataCompany.phoneNumber = company.phoneNumber
+                            coreDataCompany.shortenedAddress = company.shortenedAddress
+                            coreDataCompany.customer = PersistenceService.fetchCustomerEntity()
+                        }
+                        
+                    }
+                
+                PersistenceService.saveContext()
+                
+                case .failure(let error):
+                    print(error.localizedDescription)
+            }
+            
+        }
+    }
+    
     // MARK: Actions
     // Cancel button touched
     @IBAction func cancelButtonTouch(_ sender: UIButton) {
@@ -258,34 +276,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     // Login button touched
     @IBAction func loginButtonTouch(_ sender: NovaOneButton) {
         
-        // Check if fields are empty before proceeding to log in user
-        // Input field text
-        guard // unwrap optionals safely
+        guard
             let username = self.userNameTextField.text,
             let password = self.passwordTextField.text
         else { return }
-        
-        // If user name or password field is empty, alert the user with a message and exit the function
-        if username.isEmpty {
-            // Set text for pop up ok view controller
-            let title = "Email Required"
-            let body = "Email: This field is required."
-            
-            let popUpOkViewController = self.alertService.popUpOk(title: title, body: body)
-            self.present(popUpOkViewController, animated: true, completion: nil)
-            return
-            
-        } else if password.isEmpty {
-            
-            // Set text for pop up ok view controller
-            let title = "Password Required"
-            let body = "Password: This field is required."
-            
-            let popUpOkViewController = self.alertService.popUpOk(title: title, body: body)
-            self.present(popUpOkViewController, animated: true, completion: nil)
-            return
-
-        }
         
         // Disable button to prevent multiple requests
         self.loginButton.isEnabled = false
@@ -293,6 +287,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         // Proceed with logging the user in if text fields are not empty
         self.formDataLogin(username: username, password: password)
+        self.getCompanies(username: username, password: password)
         
     }
     
@@ -302,25 +297,39 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     // Username field editing changed
     @IBAction func usernameEditingChanged(_ sender: Any) {
-        
-        self.toggleLoginButton()
-        
+        UIHelper.toggle(button: self.loginButton, textField: nil, enabledColor: Defaults.novaOneColor, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false) { () -> Bool in
+            
+            guard
+                let username = self.userNameTextField.text,
+                let password = self.passwordTextField.text
+            else { return false }
+            
+            if username.isEmpty || password.isEmpty {
+                return false
+            }
+            
+            return true
+            
+        }
     }
     
     // Password field editing changed
     @IBAction func passwordEditingChanged(_ sender: Any) {
-        
-        self.toggleLoginButton()
-        
+        UIHelper.toggle(button: self.loginButton, textField: nil, enabledColor: Defaults.novaOneColor, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false) { () -> Bool in
+            
+            guard
+                let username = self.userNameTextField.text,
+                let password = self.passwordTextField.text
+            else { return false }
+            
+            if username.isEmpty || password.isEmpty {
+                return false
+            }
+            
+            return true
+            
+        }
     }
-    
-
-
-    // MARK: - Navigation
-
-    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-    }*/
 
 }
 

@@ -96,9 +96,9 @@ class AddLeadCompanyViewController: UIViewController, UITableViewDataSource, UIT
                                 coreDataCompany.customer = PersistenceService.fetchCustomerEntity()
                             }
                             
-                            PersistenceService.saveContext()
                         }
-                    
+                        
+                        PersistenceService.saveContext()
                         self.tableView.reloadData()
                         
                     

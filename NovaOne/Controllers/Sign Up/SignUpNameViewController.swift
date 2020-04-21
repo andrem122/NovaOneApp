@@ -34,43 +34,43 @@ class SignUpNameViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: Actions
     @IBAction func firstNameTextFieldChanged(_ sender: Any) {
-        UIHelper.toggle(button: self.continueButton, textFields: [self.firstNameTextField, self.lastNameTextField], enabledColor: Defaults.novaOneColor, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil) { (textFields) -> Bool in
+        UIHelper.toggle(button: self.continueButton, textField: nil, enabledColor: Defaults.novaOneColor, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil) { () -> Bool in
             
             // Unwrap text from text fields
             guard
-                let firstName = textFields[0].text,
-                let lastName = textFields[1].text
-            else { return true }
+                let firstName = self.firstNameTextField.text,
+                let lastName = self.lastNameTextField.text
+            else { return false }
             
-            // If first name and last name text values are empty, return true so that the button will be disabled
+            // If first name and last name text values are empty, return false so that the button will be disabled
             if firstName.isEmpty || lastName.isEmpty {
-                return true
+                return false
             }
             
             // First and last name text values are NOT empty.
-            // Return false to enable button
-            return false
+            // Return true to enable button
+            return true
         }
     }
     
     
     @IBAction func lastNameTextFieldChanged(_ sender: Any) {
-        UIHelper.toggle(button: self.continueButton, textFields: [self.firstNameTextField, self.lastNameTextField], enabledColor: Defaults.novaOneColor, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil) { (textFields) -> Bool in
+        UIHelper.toggle(button: self.continueButton, textField: nil, enabledColor: Defaults.novaOneColor, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil) { () -> Bool in
             
             // Unwrap text from text fields
             guard
-                let firstName = textFields[0].text,
-                let lastName = textFields[1].text
-            else { return true }
+                let firstName = self.firstNameTextField.text,
+                let lastName = self.lastNameTextField.text
+            else { return false }
             
             // If first name and last name text values are empty, return true so that the button will be disabled
             if firstName.isEmpty || lastName.isEmpty {
-                return true
+                return false
             }
             
             // First and last name text values are NOT empty.
             // Return false to enable button
-            return false
+            return true
         }
     }
 

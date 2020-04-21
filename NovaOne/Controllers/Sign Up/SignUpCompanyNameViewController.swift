@@ -34,6 +34,6 @@ class SignUpCompanyNameViewController: UIViewController {
     // MARK: Actions
     
     @IBAction func propertyNameTextFieldChanged(_ sender: Any) {
-        UIHelper.toggle(button: self.continueButton, textFields: [self.propertyNameTextField], enabledColor: Defaults.novaOneColor, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil, closure: nil)
+        UIHelper.toggle(button: self.continueButton, textField: self.propertyNameTextField, enabledColor: Defaults.novaOneColor, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil, closure: nil)
     }
 }

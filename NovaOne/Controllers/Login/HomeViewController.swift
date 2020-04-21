@@ -18,6 +18,8 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUp()
+        let count = PersistenceService.fetchCount(for: "Company")
+        print("COMPANY COUNT: \(count)")
     }
     
     // MARK: Set Up

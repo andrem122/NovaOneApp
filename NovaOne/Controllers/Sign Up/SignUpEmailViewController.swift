@@ -53,7 +53,7 @@ class SignUpEmailViewController: UIViewController {
     
     @IBAction func emailFieldChanged(_ sender: Any) {
         
-        UIHelper.toggle(button: self.continueButton, textFields: [self.emailAddressTextField], enabledColor: Defaults.novaOneColor, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil, closure: nil)
+        UIHelper.toggle(button: self.continueButton, textField: self.emailAddressTextField, enabledColor: Defaults.novaOneColor, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil, closure: nil)
         
     }
     
