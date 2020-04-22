@@ -168,3 +168,37 @@ class UIHelper {
     }
     
 }
+
+var vSpinner: UIView? // Global variable, must set to nil when done using to avoid memory leak
+extension UIViewController {
+    
+    func showSpinner(for view: UIView) {
+        // Shows a spinner/loading icon for the current view
+        
+        // Create a view that has the same CGRect dimensions as the parent view
+        let spinnerView = UIView.init(frame: view.bounds)
+        spinnerView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+        
+        // Create the spinner that goes in the center of the spinner view
+        let spinner = UIActivityIndicatorView(style: .medium)
+        spinner.startAnimating()
+        spinner.center = spinnerView.center
+        
+        // Add subviews
+        DispatchQueue.main.async {
+            spinnerView.addSubview(spinner)
+            view.addSubview(spinnerView)
+        }
+        
+        vSpinner = spinnerView
+        
+    }
+    
+    func removeSpinner() {
+        // Removes the spinner from the view it is embedded in and deallocates it from memory
+        DispatchQueue.main.async {
+            vSpinner?.removeFromSuperview()
+            vSpinner = nil
+        }
+    }
+}

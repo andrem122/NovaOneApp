@@ -82,11 +82,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             self.passwordTextField.text = keychainPassword
                             
                             self.formDataLogin(username: keychainUsername, password: keychainPassword) {
-                                [weak self] (homeTabBarController) in
-                                
-                                guard let homeViewController = homeTabBarController.viewControllers?[0] as? HomeViewController else { return }
-                                
-                                self?.getObjectCounts(homeViewController: homeViewController)
+                                [weak self] in
                                 self?.getCompanies()
                             }
                             
@@ -135,7 +131,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     // Sends a post request using url encoded string
-    func formDataLogin(username: String, password: String, success: ((UITabBarController) -> Void)?) {
+    func formDataLogin(username: String, password: String, success: (() -> Void)?) {
         
         let httpRequest = HTTPRequests()
         let parameters: [String: Any] = ["email": username, "password": password]
@@ -148,15 +144,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 // If the result is successful, we will get the customer object we passed into the
                 // result enum and move on to the next view
                 case .success(let customer):
+                    
                     // Add username and password to keychain if the username and password is correct
                     KeychainWrapper.standard.set(username, forKey: "username")
                     KeychainWrapper.standard.set(password, forKey: "password")
                     
                     // Go to tab bar view controller
                     if let tabBarViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.TabBarControllerIdentifiers.home.rawValue) as? HomeTabBarController  {
-                        
-                        guard let unwrappedSuccess = success else { return }
-                        unwrappedSuccess(tabBarViewController)
                         
                         // Get non optionals from CustomerModel instance
                         let dateJoinedDate = customer.dateJoinedDate
@@ -200,6 +194,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             PersistenceService.saveContext()
                             
                         }
+                        
+                        guard let unwrappedSuccess = success else { return }
+                        unwrappedSuccess()
                         
                         tabBarViewController.modalPresentationStyle = .fullScreen // Set presentaion style of view to full screen
                         self?.present(tabBarViewController, animated: true, completion: nil)
@@ -275,35 +272,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func getObjectCounts(homeViewController: HomeViewController) {
-        // Gets the number of a chosen object from the database
-        let httpRequest = HTTPRequests()
-        guard
-            let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
-            let email = customer.email,
-            let password = KeychainWrapper.standard.string(forKey: "password")
-        else { return }
-        let customerUserId = customer.id
-        
-        let parameters: [String: Any] = ["email": email as Any, "password": password as Any, "customerUserId": customerUserId as Any]
-        httpRequest.request(endpoint: "/objectCounts.php", dataModel: [ObjectCount].self, parameters: parameters) { (result) in
-            
-            switch result {
-                case .success(let objectCounts):
-                    for objectCount in objectCounts {
-                        // Pass to home view controller
-                        homeViewController.leadCount = objectCount.count
-                        
-                        // Save to user defaults for later use
-                        UserDefaults.standard.set(objectCount.count, forKey: objectCount.name)
-                    }
-                case .failure(let error):
-                    print(error.localizedDescription)
-            }
-            
-        }
-    }
-    
     // MARK: Actions
     // Cancel button touched
     @IBAction func cancelButtonTouch(_ sender: UIButton) {
@@ -327,11 +295,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         // Proceed with logging the user in if text fields are not empty
         self.formDataLogin(username: username, password: password) {
-            [weak self] (homeTabBarController) in
-            
-            guard let homeViewController = homeTabBarController.viewControllers?[0] as? HomeViewController else { return }
-            
-            self?.getObjectCounts(homeViewController: homeViewController)
+            [weak self] in
             self?.getCompanies()
         }
         
