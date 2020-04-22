@@ -81,8 +81,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             self.userNameTextField.text = keychainUsername
                             self.passwordTextField.text = keychainPassword
                             
-                            self.formDataLogin(username: keychainUsername, password: keychainPassword)
-                            self.getCompanies(username: keychainUsername, password: keychainPassword)
+                            self.formDataLogin(username: keychainUsername, password: keychainPassword) {
+                                [weak self] (homeTabBarController) in
+                                
+                                guard let homeViewController = homeTabBarController.viewControllers?[0] as? HomeViewController else { return }
+                                
+                                self?.getObjectCounts(homeViewController: homeViewController)
+                                self?.getCompanies()
+                            }
                             
                         }
                         
@@ -129,7 +135,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     // Sends a post request using url encoded string
-    func formDataLogin(username: String, password: String) {
+    func formDataLogin(username: String, password: String, success: ((UITabBarController) -> Void)?) {
         
         let httpRequest = HTTPRequests()
         let parameters: [String: Any] = ["email": username, "password": password]
@@ -148,6 +154,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     
                     // Go to tab bar view controller
                     if let tabBarViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.TabBarControllerIdentifiers.home.rawValue) as? HomeTabBarController  {
+                        
+                        guard let unwrappedSuccess = success else { return }
+                        unwrappedSuccess(tabBarViewController)
                         
                         // Get non optionals from CustomerModel instance
                         let dateJoinedDate = customer.dateJoinedDate
@@ -194,7 +203,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         
                         tabBarViewController.modalPresentationStyle = .fullScreen // Set presentaion style of view to full screen
                         self?.present(tabBarViewController, animated: true, completion: nil)
-                        
                     }
                 
                 case .failure(let error):
@@ -218,20 +226,23 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    func getCompanies(username: String, password: String) {
+    func getCompanies() {
         // Gets company data belonging to the customer
         
         let httpRequest = HTTPRequests()
         guard
-            let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first
+            let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
+            let email = customer.email,
+            let password = KeychainWrapper.standard.string(forKey: "password")
         else { return }
         let customerUserId = customer.id
         
-        let parameters: [String: Any] = ["email": username, "password": password, "customerUserId": customerUserId]
-        httpRequest.request(endpoint: "companies.php", dataModel: [CompanyModel].self, parameters: parameters) { (result) in
+        let parameters: [String: Any] = ["email": email as Any, "password": password as Any, "customerUserId": customerUserId as Any]
+        httpRequest.request(endpoint: "/companies.php", dataModel: [CompanyModel].self, parameters: parameters) { (result) in
             
             switch result {
                 case .success(let companies):
+                    print("SAVING COMPANIES TO COREDATA")
                     for company in companies {
                         
                         // Save to CoreData
@@ -264,6 +275,35 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    func getObjectCounts(homeViewController: HomeViewController) {
+        // Gets the number of a chosen object from the database
+        let httpRequest = HTTPRequests()
+        guard
+            let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
+            let email = customer.email,
+            let password = KeychainWrapper.standard.string(forKey: "password")
+        else { return }
+        let customerUserId = customer.id
+        
+        let parameters: [String: Any] = ["email": email as Any, "password": password as Any, "customerUserId": customerUserId as Any]
+        httpRequest.request(endpoint: "/objectCounts.php", dataModel: [ObjectCount].self, parameters: parameters) { (result) in
+            
+            switch result {
+                case .success(let objectCounts):
+                    for objectCount in objectCounts {
+                        // Pass to home view controller
+                        homeViewController.leadCount = objectCount.count
+                        
+                        // Save to user defaults for later use
+                        UserDefaults.standard.set(objectCount.count, forKey: objectCount.name)
+                    }
+                case .failure(let error):
+                    print(error.localizedDescription)
+            }
+            
+        }
+    }
+    
     // MARK: Actions
     // Cancel button touched
     @IBAction func cancelButtonTouch(_ sender: UIButton) {
@@ -286,8 +326,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.loginButton.backgroundColor = Defaults.novaOneColorDisabledColor
         
         // Proceed with logging the user in if text fields are not empty
-        self.formDataLogin(username: username, password: password)
-        self.getCompanies(username: username, password: password)
+        self.formDataLogin(username: username, password: password) {
+            [weak self] (homeTabBarController) in
+            
+            guard let homeViewController = homeTabBarController.viewControllers?[0] as? HomeViewController else { return }
+            
+            self?.getObjectCounts(homeViewController: homeViewController)
+            self?.getCompanies()
+        }
         
     }
     

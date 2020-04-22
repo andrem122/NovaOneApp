@@ -230,7 +230,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p5x-OD-s8g" userLabel="Cancel Button">
-                                <rect key="frame" x="20" y="76" width="67" height="67"/>
+                                <rect key="frame" x="20" y="76" width="33.5" height="33.5"/>
                                 <state key="normal" image="cancelButtonBlue"/>
                                 <connections>
                                     <action selector="cancelButtonTapped:" destination="3nd-WK-PNW" eventType="touchUpInside" id="AQ2-0X-vAi"/>
@@ -451,13 +451,13 @@
                                     <constraint firstAttribute="width" constant="30" id="eRO-kJ-gVi"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9,932" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khO-a6-o7N" userLabel="Number Of Leads">
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9,932" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khO-a6-o7N" userLabel="Number Of Leads">
                                 <rect key="frame" x="53" y="310.5" width="131" height="26"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1,372" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2kC-3D-YEV" userLabel="Number Of Appointments">
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1,372" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2kC-3D-YEV" userLabel="Number Of Appointments">
                                 <rect key="frame" x="303.5" y="310.5" width="55.5" height="26"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                                 <nil key="textColor"/>
@@ -595,6 +595,8 @@ and you have 4 calls.</string>
                     <connections>
                         <outlet property="graphView" destination="y5c-au-FPh" id="AtN-mQ-LQV"/>
                         <outlet property="greetingLabel" destination="O8T-Hx-Xeb" id="b1m-WO-KFk"/>
+                        <outlet property="numberOfAppointmentsLabel" destination="2kC-3D-YEV" id="vdH-0p-J3x"/>
+                        <outlet property="numberOfLeadsLabel" destination="khO-a6-o7N" id="DKQ-04-t4V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KTJ-ue-lSq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -651,12 +653,11 @@ and you have 4 calls.</string>
                     <viewLayoutGuide key="safeArea" id="0SH-Lf-1Ma"/>
                 </stackView>
             </objects>
-            <point key="canvasLocation" x="2045" y="2143"/>
+            <point key="canvasLocation" x="2044.9275362318842" y="2142.8571428571427"/>
         </scene>
         <!--Appointments Container-->
         <scene sceneID="1VA-eb-AKV">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="j1R-4q-OIR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="appointmentsContainerViewController" id="nih-Xv-dpA" userLabel="Appointments Container" customClass="AppointmentsContainerViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XJP-0S-Zwq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -686,6 +687,7 @@ and you have 4 calls.</string>
                         <outlet property="containerView" destination="p8K-wR-Rer" id="FW0-2f-h7e"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j1R-4q-OIR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3057" y="2143"/>
         </scene>
@@ -938,7 +940,6 @@ and you have 4 calls.</string>
         <!--Leads Container View Controller-->
         <scene sceneID="iBJ-u1-vcI">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Tf9-Zy-Q3y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="leadsContainerViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Lhy-AA-gdv" customClass="LeadsContainerViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="anj-gJ-dd9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -968,6 +969,7 @@ and you have 4 calls.</string>
                         <outlet property="containerView" destination="jDb-sL-E0J" id="fws-Sz-BCK"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tf9-Zy-Q3y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5913" y="2143"/>
         </scene>

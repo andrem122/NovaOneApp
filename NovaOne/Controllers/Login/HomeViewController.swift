@@ -14,16 +14,20 @@ class HomeViewController: UIViewController {
     // MARK: Properties
     @IBOutlet weak var graphView: UIView!
     @IBOutlet weak var greetingLabel: UILabel!
+    @IBOutlet weak var numberOfLeadsLabel: UILabel!
+    @IBOutlet weak var numberOfAppointmentsLabel: UILabel!
+    var leadCount: Int = 0
+    var appointmentCount = 0
+    var homeTabBarController: UITabBarController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setUp()
-        let count = PersistenceService.fetchCount(for: "Company")
-        print("COMPANY COUNT: \(count)")
+        self.setupGreetingLabel()
+        self.setupNumberLabels()
     }
     
     // MARK: Set Up
-    func setUp() {
+    func setupGreetingLabel() {
         
         // Get current day of the week
         let currentDate = Date()
@@ -35,9 +39,28 @@ class HomeViewController: UIViewController {
         guard let customer = PersistenceService.fetchCustomerEntity() else { return }
         
         guard let firstName = customer.firstName else { return }
-        let greetingString = "Hello \(firstName), it's \(weekDay),\nand you have 4 calls."
+        let greetingString = "Hello \(firstName), it's \(weekDay),\nand you have 4 leads."
         self.greetingLabel.text = greetingString
         
     }
+    
+    func setupNumberLabels() {
+        // Setup labels
+        
+        self.numberOfLeadsLabel.text = String(self.leadCount)
+        
+        // Add gesture recognizers, so that when the labels are tapped, something happens
+        let tap = UITapGestureRecognizer(target: self, action: #selector(HomeViewController.numberOfLeadsLabelTapped))
+        self.numberOfLeadsLabel.isUserInteractionEnabled = true
+        self.numberOfLeadsLabel.addGestureRecognizer(tap)
+        
+    }
+    
+    // MARK: Actions
+    @IBAction func numberOfLeadsLabelTapped(sender: UITapGestureRecognizer) {
+        self.tabBarController?.selectedIndex = 3
+    }
+    
+    
 
 }
