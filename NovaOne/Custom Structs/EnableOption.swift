@@ -6,8 +6,6 @@
 //  Copyright © 2020 Andre Mashraghi. All rights reserved.
 //
 
-import Foundation
-
 struct EnableOption {
     let option: String
     var selected: Bool

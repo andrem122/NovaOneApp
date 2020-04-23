@@ -11,10 +11,8 @@
 		647BC11BF09BB0FFD1A21419 /* libPods-NovaOne.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 456976310F83D351065F9977 /* libPods-NovaOne.a */; };
 		650250C123E4991700B427D0 /* AlertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650250C023E4991700B427D0 /* AlertService.swift */; };
 		650250C323E4A78E00B427D0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650250C223E4A78E00B427D0 /* HomeViewController.swift */; };
+		6516A8432452169F003B974A /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6516A8422452169F003B974A /* Customer.swift */; };
 		65230463242FFD900025FE07 /* EnableOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65230462242FFD900025FE07 /* EnableOption.swift */; };
-		6528135623E79C15005A1B1F /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6528135523E79C15005A1B1F /* Customer.swift */; };
-		6528135723E79D35005A1B1F /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6528135523E79C15005A1B1F /* Customer.swift */; };
-		6528135823E79D36005A1B1F /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6528135523E79C15005A1B1F /* Customer.swift */; };
 		6528135923E79D3F005A1B1F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65446CEB23E0F4370052DEBE /* LoginViewController.swift */; };
 		6528135A23E79D3F005A1B1F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65446CEB23E0F4370052DEBE /* LoginViewController.swift */; };
 		6528135B23E79D42005A1B1F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650250C223E4A78E00B427D0 /* HomeViewController.swift */; };
@@ -89,6 +87,7 @@
 		6592E3D324042AA9009E4D8D /* SignUpPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6592E3D224042AA9009E4D8D /* SignUpPhoneViewController.swift */; };
 		6592E3D62405D8BA009E4D8D /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6592E3D52405D8BA009E4D8D /* HomeTabBarController.swift */; };
 		6593CFAD2436A9DC0026C5D7 /* LeadDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6593CFAC2436A9DC0026C5D7 /* LeadDetailViewController.swift */; };
+		6598EED424520E5D00CEF5A4 /* ChartValuesWithDateAsXAxis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6598EED324520E5D00CEF5A4 /* ChartValuesWithDateAsXAxis.swift */; };
 		659C1A8A240AB5B3003C91C1 /* AccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659C1A89240AB5B3003C91C1 /* AccountTableViewController.swift */; };
 		659CCD3623EE46260066C9CB /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659CCD3523EE46260066C9CB /* ErrorResponse.swift */; };
 		659CCD3723EE46260066C9CB /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659CCD3523EE46260066C9CB /* ErrorResponse.swift */; };
@@ -155,6 +154,7 @@
 		65DD90FC2434FBC3003DDB73 /* SignUpCompanyStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD90FB2434FBC3003DDB73 /* SignUpCompanyStateViewController.swift */; };
 		65DD90FE2434FBD1003DDB73 /* SignUpCompanyZipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD90FD2434FBD1003DDB73 /* SignUpCompanyZipViewController.swift */; };
 		65DF7525243563F20044E6F7 /* NovaOneObjectDetailProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DF7524243563F20044E6F7 /* NovaOneObjectDetailProtocol.swift */; };
+		65E0970D24511C3E00D2CC00 /* ChartHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E0970C24511C3E00D2CC00 /* ChartHelper.swift */; };
 		65FA42C224181A430040C915 /* UpdateCompanyEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FA42C124181A430040C915 /* UpdateCompanyEmailViewController.swift */; };
 		65FA42C424181B6C0040C915 /* UpdateCompanyNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FA42C324181B6C0040C915 /* UpdateCompanyNameViewController.swift */; };
 		D6555FF552868046CF9D634A /* libPods-NovaOneTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8687C03649CC91286147822C /* libPods-NovaOneTests.a */; };
@@ -196,8 +196,8 @@
 		456976310F83D351065F9977 /* libPods-NovaOne.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NovaOne.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		650250C023E4991700B427D0 /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
 		650250C223E4A78E00B427D0 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		6516A8422452169F003B974A /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		65230462242FFD900025FE07 /* EnableOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnableOption.swift; sourceTree = "<group>"; };
-		6528135523E79C15005A1B1F /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Customer.swift; path = NovaOne/Models/Customer.swift; sourceTree = SOURCE_ROOT; };
 		65316D522445F8A90072F78A /* libSkeletonView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libSkeletonView.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		65316D5424465E5D0072F78A /* moreLeads.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = moreLeads.php; sourceTree = "<group>"; };
 		653D2183244523C5009DA68E /* credentials.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = credentials.php; sourceTree = "<group>"; };
@@ -271,6 +271,7 @@
 		6592E3D224042AA9009E4D8D /* SignUpPhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPhoneViewController.swift; sourceTree = "<group>"; };
 		6592E3D52405D8BA009E4D8D /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
 		6593CFAC2436A9DC0026C5D7 /* LeadDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadDetailViewController.swift; sourceTree = "<group>"; };
+		6598EED324520E5D00CEF5A4 /* ChartValuesWithDateAsXAxis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartValuesWithDateAsXAxis.swift; sourceTree = "<group>"; };
 		659C1A89240AB5B3003C91C1 /* AccountTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewController.swift; sourceTree = "<group>"; };
 		659CCD3523EE46260066C9CB /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		659D487623F375EF007AC005 /* leads.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = leads.php; sourceTree = "<group>"; };
@@ -331,6 +332,7 @@
 		65DD90FB2434FBC3003DDB73 /* SignUpCompanyStateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompanyStateViewController.swift; sourceTree = "<group>"; };
 		65DD90FD2434FBD1003DDB73 /* SignUpCompanyZipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompanyZipViewController.swift; sourceTree = "<group>"; };
 		65DF7524243563F20044E6F7 /* NovaOneObjectDetailProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovaOneObjectDetailProtocol.swift; sourceTree = "<group>"; };
+		65E0970C24511C3E00D2CC00 /* ChartHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartHelper.swift; sourceTree = "<group>"; };
 		65FA42C124181A430040C915 /* UpdateCompanyEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCompanyEmailViewController.swift; sourceTree = "<group>"; };
 		65FA42C324181B6C0040C915 /* UpdateCompanyNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCompanyNameViewController.swift; sourceTree = "<group>"; };
 		8687C03649CC91286147822C /* libPods-NovaOneTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NovaOneTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -508,6 +510,7 @@
 				657C5F952413ECB200D52E27 /* DateHelper.swift */,
 				65AB8E482427F5A800ED2ECF /* PersistenceService.swift */,
 				65A4CD822444FFDB00EE4AAA /* Defaults.swift */,
+				65E0970C24511C3E00D2CC00 /* ChartHelper.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -524,18 +527,17 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		658B906623E7990000015C4F /* Models */ = {
+		658B906623E7990000015C4F /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
 				659CCD3523EE46260066C9CB /* ErrorResponse.swift */,
-				6528135523E79C15005A1B1F /* Customer.swift */,
 				658EC6C523F4870D0042827E /* Appointment.swift */,
 				6584FAC224089BA900A06125 /* Lead.swift */,
 				6578D9EE24158E55002E94BF /* Company.swift */,
-				65230462242FFD900025FE07 /* EnableOption.swift */,
 				656A8F82244F5B140028ABAE /* ObjectCount.swift */,
+				6516A8422452169F003B974A /* Customer.swift */,
 			);
-			path = Models;
+			path = "Data Models";
 			sourceTree = "<group>";
 		};
 		658EC6C423F484F50042827E /* Table View Cells */ = {
@@ -573,13 +575,14 @@
 		6591C39823DA78F900535C46 /* NovaOne */ = {
 			isa = PBXGroup;
 			children = (
+				6598EED524520E7900CEF5A4 /* Custom Structs */,
 				65DF7526243568C90044E6F7 /* Protocols */,
 				65BCE1822429327100E5040E /* Core Data */,
 				659C1A88240AB57F003C91C1 /* Table Views */,
 				6592E3D42405D86F009E4D8D /* Tab Bars */,
 				658EC6C423F484F50042827E /* Table View Cells */,
 				65AB289C23F21CC800075889 /* Keychain */,
-				658B906623E7990000015C4F /* Models */,
+				658B906623E7990000015C4F /* Data Models */,
 				658B906523E798FB00015C4F /* Controllers */,
 				658B906423E798F600015C4F /* Utils */,
 				65ADE2E823E39067003D3215 /* PHP */,
@@ -619,6 +622,15 @@
 				6592E3D52405D8BA009E4D8D /* HomeTabBarController.swift */,
 			);
 			path = "Tab Bars";
+			sourceTree = "<group>";
+		};
+		6598EED524520E7900CEF5A4 /* Custom Structs */ = {
+			isa = PBXGroup;
+			children = (
+				65230462242FFD900025FE07 /* EnableOption.swift */,
+				6598EED324520E5D00CEF5A4 /* ChartValuesWithDateAsXAxis.swift */,
+			);
+			path = "Custom Structs";
 			sourceTree = "<group>";
 		};
 		659C1A88240AB57F003C91C1 /* Table Views */ = {
@@ -998,6 +1010,7 @@
 				658EC6C623F4870D0042827E /* Appointment.swift in Sources */,
 				6578D9EF24158E55002E94BF /* Company.swift in Sources */,
 				655D0B27240B443700D0E329 /* UpdatePasswordViewController.swift in Sources */,
+				65E0970D24511C3E00D2CC00 /* ChartHelper.swift in Sources */,
 				65668E79241814C900774548 /* UpdateCompanyPhoneViewController.swift in Sources */,
 				65AA3E7D2432C2DB005C2319 /* AddAppointmentPhoneViewController.swift in Sources */,
 				65802592240F4A8B00A74DCD /* SignUpCompanyEmailViewController.swift in Sources */,
@@ -1017,6 +1030,7 @@
 				657EAE702409AF080074D44A /* NovaOneTableViewCell.swift in Sources */,
 				65AA3E6E2432726F005C2319 /* AddCompanyStateViewController.swift in Sources */,
 				657FECF12401D2A800437945 /* ForgotViewController.swift in Sources */,
+				6598EED424520E5D00CEF5A4 /* ChartValuesWithDateAsXAxis.swift in Sources */,
 				6583194C23F2206E001D378D /* KeychainWrapper.swift in Sources */,
 				6578D9ED24158174002E94BF /* ObjectDetailTableViewCell.swift in Sources */,
 				65AF80EC2442494800167C8D /* UpdateAppointmentTestTypeViewController.swift in Sources */,
@@ -1049,6 +1063,7 @@
 				65695AB9244CC84C00D35E55 /* AddLeadPhoneViewController.swift in Sources */,
 				65BA98B72430FD3500CFAA9F /* EmptyViewController.swift in Sources */,
 				65AA3E7624328533005C2319 /* AddCompanyHoursEnabledViewController.swift in Sources */,
+				6516A8432452169F003B974A /* Customer.swift in Sources */,
 				65ABA263243F6469002051D1 /* Company+CoreDataClass.swift in Sources */,
 				6580FBE324113D0700695DB6 /* UIHelper.swift in Sources */,
 				65AA3E7824328CAE005C2319 /* SuccessViewController.swift in Sources */,
@@ -1083,7 +1098,6 @@
 				65ADE2F623E3AF27003D3215 /* HTTPRequests.swift in Sources */,
 				6575F626242EA21100332729 /* UpdateNameViewController.swift in Sources */,
 				65DD90FE2434FBD1003DDB73 /* SignUpCompanyZipViewController.swift in Sources */,
-				6528135623E79C15005A1B1F /* Customer.swift in Sources */,
 				65A18DCE2410454A00F16565 /* NovaOneTextView.swift in Sources */,
 				6592E3D62405D8BA009E4D8D /* HomeTabBarController.swift in Sources */,
 				6580258E240F2F8A00A74DCD /* SignUpCompanyNameViewController.swift in Sources */,
@@ -1109,7 +1123,6 @@
 				6528135D23E79D5C005A1B1F /* FeatureView.swift in Sources */,
 				6528135B23E79D42005A1B1F /* HomeViewController.swift in Sources */,
 				6591C3B123DA78FB00535C46 /* NovaOneTests.swift in Sources */,
-				6528135723E79D35005A1B1F /* Customer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1125,7 +1138,6 @@
 				6528135E23E79D5D005A1B1F /* FeatureView.swift in Sources */,
 				6528135C23E79D42005A1B1F /* HomeViewController.swift in Sources */,
 				6591C3BC23DA78FB00535C46 /* NovaOneUITests.swift in Sources */,
-				6528135823E79D36005A1B1F /* Customer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

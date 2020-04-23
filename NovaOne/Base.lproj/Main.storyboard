@@ -428,9 +428,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="leadsGraph" translatesAutoresizingMaskIntoConstraints="NO" id="ALZ-RU-klH">
-                                <rect key="frame" x="0.0" y="454.5" width="414" height="358.5"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Appointments" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hff-3s-U7I">
                                 <rect key="frame" x="252.5" y="348" width="146.5" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -544,6 +541,10 @@ and you have 4 calls.</string>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qnf-Ni-96m" userLabel="Chart Container View">
+                                <rect key="frame" x="0.0" y="454.5" width="414" height="358.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -556,13 +557,15 @@ and you have 4 calls.</string>
                             <constraint firstItem="wj5-OX-xG2" firstAttribute="top" secondItem="JOy-Cr-frl" secondAttribute="bottom" constant="150" id="7Zo-Uf-3qr"/>
                             <constraint firstItem="2kC-3D-YEV" firstAttribute="leading" secondItem="wj5-OX-xG2" secondAttribute="trailing" constant="8" id="7f6-hk-hhb"/>
                             <constraint firstItem="PzM-XK-3g0" firstAttribute="trailing" secondItem="23J-qh-t3U" secondAttribute="trailing" constant="262" id="917-NC-FAi"/>
-                            <constraint firstItem="PzM-XK-3g0" firstAttribute="trailing" secondItem="ALZ-RU-klH" secondAttribute="trailing" id="9cU-R7-nLF"/>
                             <constraint firstItem="583-IF-1zN" firstAttribute="leading" secondItem="PzM-XK-3g0" secondAttribute="leading" constant="15" id="CA0-bw-3JN"/>
                             <constraint firstItem="7rd-J8-dc3" firstAttribute="centerY" secondItem="Soh-O5-bFS" secondAttribute="centerY" id="CNY-TC-GTb"/>
                             <constraint firstAttribute="trailing" secondItem="7rd-J8-dc3" secondAttribute="trailing" constant="15" id="Ena-aS-mOA"/>
+                            <constraint firstItem="qnf-Ni-96m" firstAttribute="bottom" secondItem="PzM-XK-3g0" secondAttribute="bottom" id="GZJ-4q-Ahm"/>
                             <constraint firstItem="Hff-3s-U7I" firstAttribute="leading" secondItem="PzM-XK-3g0" secondAttribute="leading" constant="252.66999999999999" id="KPh-uf-n5y"/>
                             <constraint firstItem="JOy-Cr-frl" firstAttribute="leading" secondItem="PzM-XK-3g0" secondAttribute="leading" id="Mg7-rz-kru"/>
+                            <constraint firstItem="qnf-Ni-96m" firstAttribute="trailing" secondItem="PzM-XK-3g0" secondAttribute="trailing" id="NWM-TB-4Eb"/>
                             <constraint firstItem="JOy-Cr-frl" firstAttribute="height" secondItem="dcc-mZ-THk" secondAttribute="height" multiplier="0.13" id="O6G-5Z-dE6"/>
+                            <constraint firstItem="qnf-Ni-96m" firstAttribute="top" secondItem="y5c-au-FPh" secondAttribute="bottom" constant="8" id="Qyu-FD-RPX"/>
                             <constraint firstItem="Ddt-AZ-O3H" firstAttribute="top" secondItem="583-IF-1zN" secondAttribute="bottom" constant="8" id="RbC-JJ-Wdz"/>
                             <constraint firstItem="PzM-XK-3g0" firstAttribute="trailing" secondItem="583-IF-1zN" secondAttribute="trailing" constant="230" id="SEC-Vv-W7D"/>
                             <constraint firstItem="JOy-Cr-frl" firstAttribute="top" secondItem="PzM-XK-3g0" secondAttribute="top" id="TF1-iF-nBS"/>
@@ -571,18 +574,16 @@ and you have 4 calls.</string>
                             <constraint firstItem="23J-qh-t3U" firstAttribute="leading" secondItem="PzM-XK-3g0" secondAttribute="leading" constant="67" id="ae0-Ry-1P9"/>
                             <constraint firstItem="PzM-XK-3g0" firstAttribute="trailing" secondItem="Soh-O5-bFS" secondAttribute="trailing" constant="120" id="avM-7t-Lkh"/>
                             <constraint firstItem="2kC-3D-YEV" firstAttribute="top" secondItem="JOy-Cr-frl" secondAttribute="bottom" constant="150" id="bHa-g7-LYO"/>
-                            <constraint firstItem="ALZ-RU-klH" firstAttribute="leading" secondItem="PzM-XK-3g0" secondAttribute="leading" id="d71-ku-6zy"/>
+                            <constraint firstItem="qnf-Ni-96m" firstAttribute="height" secondItem="dcc-mZ-THk" secondAttribute="height" multiplier="0.4" id="bnp-2Y-qyV"/>
                             <constraint firstItem="Soh-O5-bFS" firstAttribute="top" secondItem="JOy-Cr-frl" secondAttribute="bottom" constant="18" id="eUD-um-mOa"/>
                             <constraint firstItem="PzM-XK-3g0" firstAttribute="trailing" secondItem="Ddt-AZ-O3H" secondAttribute="trailing" constant="230" id="elr-h5-y6v"/>
                             <constraint firstItem="583-IF-1zN" firstAttribute="top" secondItem="JOy-Cr-frl" secondAttribute="bottom" constant="70" id="fPc-zY-OQH"/>
-                            <constraint firstItem="ALZ-RU-klH" firstAttribute="top" secondItem="y5c-au-FPh" secondAttribute="bottom" constant="8.3300000000000001" id="fzi-w1-3E5"/>
                             <constraint firstItem="khO-a6-o7N" firstAttribute="top" secondItem="JOy-Cr-frl" secondAttribute="bottom" constant="150" id="gBJ-hT-kvV"/>
-                            <constraint firstItem="PzM-XK-3g0" firstAttribute="bottom" secondItem="ALZ-RU-klH" secondAttribute="bottom" id="gRY-Md-Kse"/>
                             <constraint firstItem="23J-qh-t3U" firstAttribute="top" secondItem="khO-a6-o7N" secondAttribute="bottom" constant="7.6699999999999999" id="glN-SM-uzF"/>
                             <constraint firstItem="Soh-O5-bFS" firstAttribute="leading" secondItem="PzM-XK-3g0" secondAttribute="leading" constant="15" id="kD0-3f-brc"/>
                             <constraint firstItem="khO-a6-o7N" firstAttribute="leading" secondItem="l0h-EL-YFn" secondAttribute="trailing" constant="8" id="mzV-iA-bxw"/>
-                            <constraint firstItem="ALZ-RU-klH" firstAttribute="height" secondItem="dcc-mZ-THk" secondAttribute="height" multiplier="0.4" id="sTI-mw-zYt"/>
                             <constraint firstItem="JOy-Cr-frl" firstAttribute="trailing" secondItem="PzM-XK-3g0" secondAttribute="trailing" id="tDB-nH-aeV"/>
+                            <constraint firstItem="qnf-Ni-96m" firstAttribute="leading" secondItem="PzM-XK-3g0" secondAttribute="leading" id="uXv-ED-Och"/>
                             <constraint firstItem="Hff-3s-U7I" firstAttribute="top" secondItem="wj5-OX-xG2" secondAttribute="bottom" constant="7.6699999999999999" id="uyc-po-VeO"/>
                             <constraint firstItem="Ddt-AZ-O3H" firstAttribute="leading" secondItem="PzM-XK-3g0" secondAttribute="leading" constant="15" id="wjy-mm-hYD"/>
                         </constraints>
@@ -593,6 +594,7 @@ and you have 4 calls.</string>
                         <barButtonItem key="backBarButtonItem" title=" " id="Q2C-D4-B7v"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="chartContainerView" destination="qnf-Ni-96m" id="P63-V9-9jg"/>
                         <outlet property="graphView" destination="y5c-au-FPh" id="AtN-mQ-LQV"/>
                         <outlet property="greetingLabel" destination="O8T-Hx-Xeb" id="b1m-WO-KFk"/>
                         <outlet property="numberOfAppointmentsLabel" destination="2kC-3D-YEV" id="vdH-0p-J3x"/>
@@ -1087,7 +1089,7 @@ on how to reset your password.</string>
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kEj-0U-bzz">
-                                <rect key="frame" x="20" y="64" width="33.5" height="33.5"/>
+                                <rect key="frame" x="20" y="64" width="67" height="67"/>
                                 <state key="normal" image="cancelButtonBlue"/>
                                 <connections>
                                     <action selector="cancelButtonTapped:" destination="T1A-G4-xJU" eventType="touchUpInside" id="kgs-AH-JO8"/>
@@ -1809,7 +1811,7 @@ of your company?</string>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uPa-aU-gkr" userLabel="Email Button">
-                                                            <rect key="frame" x="296" y="11.5" width="27" height="27"/>
+                                                            <rect key="frame" x="269" y="-2" width="54" height="54"/>
                                                             <state key="normal" image="emailBlue"/>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z4E-mK-dZr" userLabel="Call Button">
@@ -7403,7 +7405,6 @@ the lead below.</string>
         <image name="gpsMap" width="400" height="370.5"/>
         <image name="homeBlack" width="27" height="27"/>
         <image name="homeBlue" width="27" height="27"/>
-        <image name="leadsGraph" width="104" height="81"/>
         <image name="novaOneLogo" width="85.5" height="85.5"/>
         <image name="novaOneLogoVertical" width="120.5" height="120.5"/>
         <image name="plus" catalog="system" width="64" height="56"/>

@@ -5,7 +5,6 @@
 //  Created by Andre Mashraghi on 1/29/20.
 //  Copyright © 2020 Andre Mashraghi. All rights reserved.
 //
-
 import UIKit
 
 struct CustomerModel: Decodable {

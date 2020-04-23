@@ -1,16 +1,22 @@
 PODS:
+  - Charts (3.5.0):
+    - Charts/Core (= 3.5.0)
+  - Charts/Core (3.5.0)
   - SkeletonView (1.8.7)
 
 DEPENDENCIES:
+  - Charts
   - SkeletonView
 
 SPEC REPOS:
   trunk:
+    - Charts
     - SkeletonView
 
 SPEC CHECKSUMS:
+  Charts: 40a08591df1f8ad5c223ddedfb1a06da92f24f7c
   SkeletonView: ba5370f41280b2f0a76918bb143c1294232bb4f4
 
-PODFILE CHECKSUM: 358f19aae6f2efb5ea35078a67ee652ea40b61cf
+PODFILE CHECKSUM: c987f678a7c4a9b8144b5e6b0e456fef10eb8f02
 
 COCOAPODS: 1.9.1
