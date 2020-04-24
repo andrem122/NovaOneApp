@@ -19,25 +19,28 @@ class HomeViewController: UIViewController, ChartViewDelegate {
     @IBOutlet weak var numberOfAppointmentsLabel: UILabel!
     @IBOutlet weak var chartContainerView: UIView!
     var lineChart = LineChartView()
+    var lineChartValues = [ChartValuesWithDateAsXAxis]()
     
     // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        lineChart.delegate = self
         self.getObjectCounts() {
             [weak self] in
             self?.setupGreetingLabel()
             self?.setupNumberLabels()
+            self?.getChartData() {
+                self?.setupLineChart()
+            }
         }
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        self.setupLineChart()
-    }
+//    override func viewDidLayoutSubviews() {
+//        super.viewDidLayoutSubviews()
+//        self.setupLineChart()
+//    }
     
     func setupLineChart() {
-        
+        lineChart.delegate = self
         // Setup frame of chart
         let width = self.chartContainerView.bounds.width
         let height = self.chartContainerView.bounds.height
@@ -62,30 +65,12 @@ class HomeViewController: UIViewController, ChartViewDelegate {
         lineChart.rightAxis.drawAxisLineEnabled = false
         
         // Setup x axis values to have a date string as the x-axis
-        var dateComponents = DateComponents()
-        dateComponents.year = 2020
-        dateComponents.month = 7
-        dateComponents.day = 11
-        dateComponents.timeZone = TimeZone(abbreviation: "America/New_York")
-        dateComponents.hour = 8
-        dateComponents.minute = 23
-        
-        let calendar = Calendar.current
-        let date1 = calendar.date(from: dateComponents)
-        
-        dateComponents.day = 18
-        let date2 = calendar.date(from: dateComponents)
-        
-        dateComponents.day = 31
-        let date3 = calendar.date(from: dateComponents)
-        
-        let chartValues = [ChartValuesWithDateAsXAxis(x: date1!, y: 4.0), ChartValuesWithDateAsXAxis(x: date2!, y: 2.0), ChartValuesWithDateAsXAxis(x: date3!, y: 8.0)]
-        
         let formatter = DateFormatter()
         formatter.dateFormat = "E d"
         
         let xValuesNumberFormatter = ChartXAxisFormatter(dateFormatter: formatter)
         lineChart.xAxis.valueFormatter = xValuesNumberFormatter
+        //lineChart.xAxis.setLabelCount(7, force: true)
         
         
         // Add chart view to chart container view
@@ -93,9 +78,9 @@ class HomeViewController: UIViewController, ChartViewDelegate {
         
         // Create data entries
         var entries = [ChartDataEntry]()
-        for chartValue in chartValues {
-            let xValue = chartValue.x.timeIntervalSince1970
-            let yValue = chartValue.y
+        for lineChartValue in self.lineChartValues {
+            let xValue = lineChartValue.x.timeIntervalSince1970
+            let yValue = lineChartValue.y
             let entry = ChartDataEntry(x: xValue, y: yValue)
             entries.append(entry)
         }
@@ -148,10 +133,60 @@ class HomeViewController: UIViewController, ChartViewDelegate {
         
     }
     
+    func getChartData(success: @escaping () -> Void) {
+        // Gets chart data from the database
+        let httpRequest = HTTPRequests()
+        guard
+            let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
+            let email = customer.email,
+            let password = KeychainWrapper.standard.string(forKey: "password")
+        else { return }
+        let customerUserId = customer.id
+        
+        let parameters: [String: Any] = ["email": email as Any, "password": password as Any, "customerUserId": customerUserId as Any]
+        httpRequest.request(endpoint: "/chartData.php", dataModel: [LineChartDataModel].self, parameters: parameters) {
+            [weak self] (result) in
+            
+            switch result {
+                case .success(let lineChartData):
+                    let startDate = lineChartData[0].dateDate.timeIntervalSince1970
+                    let calendar = Calendar.current
+                    
+                    // Bind data to a variable
+                    for number in 0..<7 { // We want 7 days of data points to represent a week of data
+                        
+                        var count = 0.0 // Set count to zero for the day as default
+                        var date: Date = Date(timeIntervalSince1970: Double(number) * 3600 * 24 + startDate) // add n number of days to the start date
+                        
+                        for lineData in lineChartData {
+                            let dateComponentsFromData = calendar.dateComponents([.year, .month, .day], from: lineData.dateDate)
+                            let dateComponentsFromDate = calendar.dateComponents([.year, .month, .day], from: date)
+                            
+                            if dateComponentsFromData.day == dateComponentsFromDate.day {
+                                count = Double(lineData.count)
+                                date = lineData.dateDate
+                            }
+                        }
+                        
+                        print("Count: \(count), Date: \(date)")
+                        
+                        let chartValuesWithDateAsXAxis = ChartValuesWithDateAsXAxis(x: date, y: count)
+                        self?.lineChartValues.append(chartValuesWithDateAsXAxis)
+                    }
+                    success()
+                case .failure(let error):
+                    print(error.localizedDescription)
+            }
+            
+            self?.removeSpinner()
+            
+        }
+    }
+    
     func getObjectCounts(success: @escaping () -> Void) {
         // Gets the number of a chosen object from the database
         
-        self.showSpinner(for: self.view) // Show the loading screen
+        self.showSpinner(for: self.view)
         
         let httpRequest = HTTPRequests()
         guard
@@ -162,8 +197,8 @@ class HomeViewController: UIViewController, ChartViewDelegate {
         let customerUserId = customer.id
         
         let parameters: [String: Any] = ["email": email as Any, "password": password as Any, "customerUserId": customerUserId as Any]
-        httpRequest.request(endpoint: "/objectCounts.php", dataModel: [ObjectCount].self, parameters: parameters) {
-            [weak self] (result) in
+        httpRequest.request(endpoint: "/objectCounts.php", dataModel: [ObjectCountModel].self, parameters: parameters) {
+            (result) in
             
             switch result {
                 case .success(let objectCounts):
@@ -177,8 +212,6 @@ class HomeViewController: UIViewController, ChartViewDelegate {
                 case .failure(let error):
                     print(error.localizedDescription)
             }
-            
-            self?.removeSpinner()
             
         }
     }

@@ -6,9 +6,7 @@
 //  Copyright © 2020 Andre Mashraghi. All rights reserved.
 //
 
-import UIKit
-
-struct ObjectCount: Decodable {
+struct ObjectCountModel: Decodable {
     // A model used to decode data relating to an objects count and name in the database
 
     // MARK: Properties
