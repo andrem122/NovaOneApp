@@ -5,7 +5,6 @@
 //  Created by Andre Mashraghi on 1/31/20.
 //  Copyright © 2020 Andre Mashraghi. All rights reserved.
 //
-
 import UIKit
 import CoreData
 import Charts
@@ -18,86 +17,75 @@ class HomeViewController: UIViewController, ChartViewDelegate {
     @IBOutlet weak var numberOfLeadsLabel: UILabel!
     @IBOutlet weak var numberOfAppointmentsLabel: UILabel!
     @IBOutlet weak var chartContainerView: UIView!
-    var lineChart = LineChartView()
-    var lineChartValues = [ChartValuesWithDateAsXAxis]()
+    @IBOutlet weak var segmentControl: UISegmentedControl!
+    @IBOutlet weak var chartTitle: UILabel!
+    var barChart = BarChartView()
+    var chartEntries = [BarChartDataEntry]()
+    var xLabels = [String]()
     
     // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        barChart.delegate = self
         self.getObjectCounts() {
             [weak self] in
             self?.setupGreetingLabel()
             self?.setupNumberLabels()
-            self?.getChartData() {
-                self?.setupLineChart()
+            self?.getWeeklyChartData() {
+                self?.setupChart()
             }
         }
     }
     
-//    override func viewDidLayoutSubviews() {
-//        super.viewDidLayoutSubviews()
-//        self.setupLineChart()
-//    }
-    
-    func setupLineChart() {
-        lineChart.delegate = self
+    func setupChart() {
         // Setup frame of chart
         let width = self.chartContainerView.bounds.width
         let height = self.chartContainerView.bounds.height
         
-        lineChart.frame = CGRect(x: 0, y: 0, width: width, height: height)
+        self.barChart.frame = CGRect(x: 0, y: 0, width: width, height: height) // x, y, width, and height all refer to the parent view which may not be the superview
         
         // Set colors
         let colors = [Defaults.novaOneColor]
-        lineChart.gridBackgroundColor = .white
+        self.barChart.gridBackgroundColor = .white
         
         // Set grid style
-        
         // For X axis
-        lineChart.xAxis.labelPosition = .bottom
-        lineChart.xAxis.drawGridLinesEnabled = false // remove x grid lines behind data
-        lineChart.xAxis.drawAxisLineEnabled = false // remove axis line and leave only numbers
-        lineChart.leftAxis.enabled = false // remove the left x axis
+        self.barChart.xAxis.labelPosition = .bottom
+        self.barChart.xAxis.drawGridLinesEnabled = false // remove x grid lines behind data
+        self.barChart.xAxis.drawAxisLineEnabled = false // remove axis line and leave only numbers
+        self.barChart.leftAxis.enabled = false // remove the left x axis
+        self.barChart.xAxis.granularityEnabled = true
+        self.barChart.xAxis.granularity = 1.0
+        self.barChart.xAxis.labelCount = self.chartEntries.count
         
         // For Y axis
-        lineChart.rightAxis.labelPosition = .insideChart
-        lineChart.rightAxis.drawGridLinesEnabled = false
-        lineChart.rightAxis.drawAxisLineEnabled = false
+        self.barChart.rightAxis.labelPosition = .insideChart
+        self.barChart.rightAxis.drawGridLinesEnabled = false
+        self.barChart.rightAxis.drawAxisLineEnabled = false
+        
+        // Disable zooming
+        self.barChart.scaleYEnabled = false
+        self.barChart.scaleXEnabled = false
+        self.barChart.setScaleEnabled(false)
+        
+        // Animation
+        self.barChart.animate(xAxisDuration: 2.0, yAxisDuration: 2.0)
         
         // Setup x axis values to have a date string as the x-axis
-        let formatter = DateFormatter()
-        formatter.dateFormat = "E d"
-        
-        let xValuesNumberFormatter = ChartXAxisFormatter(dateFormatter: formatter)
-        lineChart.xAxis.valueFormatter = xValuesNumberFormatter
-        //lineChart.xAxis.setLabelCount(7, force: true)
+        let xValuesNumberFormatter = ChartXAxisFormatter(xLabels: self.xLabels) // Plug in x values into our custom XAxisFormatter class
+        self.barChart.xAxis.valueFormatter = xValuesNumberFormatter
         
         
         // Add chart view to chart container view
-        self.chartContainerView.addSubview(lineChart)
+        self.chartContainerView.addSubview(barChart)
         
-        // Create data entries
-        var entries = [ChartDataEntry]()
-        for lineChartValue in self.lineChartValues {
-            let xValue = lineChartValue.x.timeIntervalSince1970
-            let yValue = lineChartValue.y
-            let entry = ChartDataEntry(x: xValue, y: yValue)
-            entries.append(entry)
-        }
-        
-        let set = LineChartDataSet(entries: entries)
+        // Create data set from entries
+        let set = BarChartDataSet(entries: self.chartEntries)
         set.colors = colors
         set.label = "Leads" // The title next to the data set
-        set.drawCirclesEnabled = false
         
-        let gradientColors = [Defaults.novaOneColor.cgColor, UIColor.clear.cgColor] as CFArray // Colors of the gradient
-        let colorLocations:[CGFloat] = [1.0, 0.0] // Positioning of the gradient
-        let gradient = CGGradient.init(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: gradientColors, locations: colorLocations) // Gradient Object
-        set.fill = Fill.fillWithLinearGradient(gradient!, angle: 90.0) // Set the Gradient
-        set.drawFilledEnabled = true // Draw the Gradient
-        
-        let data = LineChartData(dataSet: set)
-        lineChart.data = data
+        let data = BarChartData(dataSet: set)
+        barChart.data = data
     }
     
     func setupGreetingLabel() {
@@ -133,7 +121,7 @@ class HomeViewController: UIViewController, ChartViewDelegate {
         
     }
     
-    func getChartData(success: @escaping () -> Void) {
+    func getWeeklyChartData(success: (() -> Void)?) {
         // Gets chart data from the database
         let httpRequest = HTTPRequests()
         guard
@@ -144,36 +132,118 @@ class HomeViewController: UIViewController, ChartViewDelegate {
         let customerUserId = customer.id
         
         let parameters: [String: Any] = ["email": email as Any, "password": password as Any, "customerUserId": customerUserId as Any]
-        httpRequest.request(endpoint: "/chartData.php", dataModel: [LineChartDataModel].self, parameters: parameters) {
+        httpRequest.request(endpoint: "/chartDataWeekly.php", dataModel: [ChartDataWeeklyModel].self, parameters: parameters) {
             [weak self] (result) in
             
             switch result {
-                case .success(let lineChartData):
-                    let startDate = lineChartData[0].dateDate.timeIntervalSince1970
+                case .success(let chartData):
+                    // Remove all previous data from the entries and x labels array
+                    self?.chartEntries.removeAll()
+                    self?.xLabels.removeAll()
+                    
+                    guard let startDate = (chartData.map {$0.dateDate}).min() else { return }
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "E\nd"
                     let calendar = Calendar.current
+                    var dateComponent = DateComponents()
                     
                     // Bind data to a variable
                     for number in 0..<7 { // We want 7 days of data points to represent a week of data
                         
                         var count = 0.0 // Set count to zero for the day as default
-                        var date: Date = Date(timeIntervalSince1970: Double(number) * 3600 * 24 + startDate) // add n number of days to the start date
                         
-                        for lineData in lineChartData {
-                            let dateComponentsFromData = calendar.dateComponents([.year, .month, .day], from: lineData.dateDate)
+                        dateComponent.day = number // Add n number of days to the start date
+                        guard var date = calendar.date(byAdding: dateComponent, to: startDate) else { return }
+                        
+                        for data in chartData {
+                            let dateComponentsFromData = calendar.dateComponents([.year, .month, .day], from: data.dateDate)
                             let dateComponentsFromDate = calendar.dateComponents([.year, .month, .day], from: date)
                             
                             if dateComponentsFromData.day == dateComponentsFromDate.day {
-                                count = Double(lineData.count)
-                                date = lineData.dateDate
+                                count = Double(data.count)
+                                date = data.dateDate
                             }
                         }
                         
-                        print("Count: \(count), Date: \(date)")
+                        // Add to x labels array
+                        let dateString = dateFormatter.string(from: date)
+                        self?.xLabels.append(dateString)
                         
-                        let chartValuesWithDateAsXAxis = ChartValuesWithDateAsXAxis(x: date, y: count)
-                        self?.lineChartValues.append(chartValuesWithDateAsXAxis)
+                        let chartEntry = BarChartDataEntry(x: Double(number), y: count)
+                        self?.chartEntries.append(chartEntry)
                     }
-                    success()
+                    guard let unwrappedSuccess = success else { return }
+                    unwrappedSuccess()
+                case .failure(let error):
+                    print(error.localizedDescription)
+            }
+            
+            self?.removeSpinner()
+            
+        }
+    }
+    
+    func getMonthlyChartData(success: (() -> Void)?) {
+        // Gets chart data from the database
+        let httpRequest = HTTPRequests()
+        guard
+            let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
+            let email = customer.email,
+            let password = KeychainWrapper.standard.string(forKey: "password")
+        else { return }
+        let customerUserId = customer.id
+        
+        let parameters: [String: Any] = ["email": email as Any, "password": password as Any, "customerUserId": customerUserId as Any]
+        httpRequest.request(endpoint: "/chartDataMonthly.php", dataModel: [ChartDataMonthlyModel].self, parameters: parameters) {
+            [weak self] (result) in
+            
+            switch result {
+                case .success(let chartData):
+                    // Remove all previous data from the entries and x labels array
+                    self?.chartEntries.removeAll()
+                    self?.xLabels.removeAll()
+                    
+                    let dateFormatter = DateFormatter()
+                    let calendar = Calendar.current
+                    
+                    let currentDate = Date()
+                    guard let startDate = calendar.date(byAdding: .year, value: -1, to: currentDate) else { return } // Get date from one year ago as starting point and add 1 month during each loop
+                    
+                    // Bind data to a variables
+                    for number in 0..<12 { // We want 12 months of data points to represent a year of data
+                        
+                        var count = 0.0 // Set count to zero for the month as default
+                        guard let date = calendar.date(byAdding: .month, value: number, to: startDate) else { return }
+                        
+                        dateFormatter.dateFormat = "MMM"
+                        let monthFromDate = dateFormatter.string(from: date) // Returns shorthand of month Ex: 'Apr'
+                        
+                        dateFormatter.dateFormat = "yyyy"
+                        let yearFromDate = dateFormatter.string(from: date) // Returns year as yyyy Ex: '2020'
+                        
+                        let dateString = "\(monthFromDate)\n\(yearFromDate)" // Returns with month then year Ex: 'Apr 2020'
+                        
+                        for data in chartData {
+                            
+                            let monthFromData = data.month
+                            let yearFromData = data.year
+                            
+                            if monthFromData == monthFromDate && yearFromDate == yearFromData {
+                                count = Double(data.count) // Change count from zero to the number in the data
+                            }
+                            
+                            
+                        }
+                        print("Count: \(count), Month/Year: \(dateString)")
+                        
+                        // Add to x labels array
+                        self?.xLabels.append(dateString)
+                        
+                        let chartEntry = BarChartDataEntry(x: Double(number), y: count)
+                        self?.chartEntries.append(chartEntry)
+                    }
+                    guard let unwrappedSuccess = success else { return }
+                    unwrappedSuccess()
                 case .failure(let error):
                     print(error.localizedDescription)
             }
@@ -220,5 +290,26 @@ class HomeViewController: UIViewController, ChartViewDelegate {
     @IBAction func numberOfLeadsLabelTapped(sender: UITapGestureRecognizer) {
         self.tabBarController?.selectedIndex = 3
     }
-
+    
+    
+    @IBAction func segmentControlValueChanged(_ sender: Any) {
+        let title = self.segmentControl.titleForSegment(at: self.segmentControl.selectedSegmentIndex)
+        
+        self.barChart.removeFromSuperview()
+        self.showSpinner(for: self.chartContainerView)
+        if title == "Month" {
+            self.chartTitle.text = "Leads Per Month"
+            self.getMonthlyChartData() {
+                [weak self] in
+                self?.setupChart()
+            }
+        } else {
+            self.chartTitle.text = "Leads Per Week"
+            self.getWeeklyChartData() {
+                [weak self] in
+                self?.setupChart()
+            }
+        }
+    }
+    
 }

@@ -225,50 +225,53 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     func getCompanies() {
         // Gets company data belonging to the customer
+        let companyCount = PersistenceService.fetchCount(for: Defaults.CoreDataEntities.company.rawValue)
         
-        let httpRequest = HTTPRequests()
-        guard
-            let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
-            let email = customer.email,
-            let password = KeychainWrapper.standard.string(forKey: "password")
-        else { return }
-        let customerUserId = customer.id
-        
-        let parameters: [String: Any] = ["email": email as Any, "password": password as Any, "customerUserId": customerUserId as Any]
-        httpRequest.request(endpoint: "/companies.php", dataModel: [CompanyModel].self, parameters: parameters) { (result) in
+        if companyCount == 0 {
+            let httpRequest = HTTPRequests()
+            guard
+                let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
+                let email = customer.email,
+                let password = KeychainWrapper.standard.string(forKey: "password")
+            else { return }
+            let customerUserId = customer.id
             
-            switch result {
-                case .success(let companies):
-                    print("SAVING COMPANIES TO COREDATA")
-                    for company in companies {
-                        
-                        // Save to CoreData
-                        guard let entity = NSEntityDescription.entity(forEntityName: Defaults.CoreDataEntities.company.rawValue, in: PersistenceService.context) else { return }
-                        
-                        if let coreDataCompany = NSManagedObject(entity: entity, insertInto: PersistenceService.context) as? Company {
-                            coreDataCompany.address = company.address
-                            coreDataCompany.city = company.city
-                            coreDataCompany.state = company.state
-                            coreDataCompany.zip = company.zip
-                            coreDataCompany.created = company.createdDate
-                            coreDataCompany.daysOfTheWeekEnabled = company.daysOfTheWeekEnabled
-                            coreDataCompany.email = company.email
-                            coreDataCompany.hoursOfTheDayEnabled = company.hoursOfTheDayEnabled
-                            coreDataCompany.id = Int32(company.id)
-                            coreDataCompany.name = company.name
-                            coreDataCompany.phoneNumber = company.phoneNumber
-                            coreDataCompany.shortenedAddress = company.shortenedAddress
-                            coreDataCompany.customer = PersistenceService.fetchCustomerEntity()
+            let parameters: [String: Any] = ["email": email as Any, "password": password as Any, "customerUserId": customerUserId as Any]
+            httpRequest.request(endpoint: "/companies.php", dataModel: [CompanyModel].self, parameters: parameters) { (result) in
+                
+                switch result {
+                    case .success(let companies):
+                        print("SAVING COMPANIES TO COREDATA")
+                        for company in companies {
+                            
+                            // Save to CoreData
+                            guard let entity = NSEntityDescription.entity(forEntityName: Defaults.CoreDataEntities.company.rawValue, in: PersistenceService.context) else { return }
+                            
+                            if let coreDataCompany = NSManagedObject(entity: entity, insertInto: PersistenceService.context) as? Company {
+                                coreDataCompany.address = company.address
+                                coreDataCompany.city = company.city
+                                coreDataCompany.state = company.state
+                                coreDataCompany.zip = company.zip
+                                coreDataCompany.created = company.createdDate
+                                coreDataCompany.daysOfTheWeekEnabled = company.daysOfTheWeekEnabled
+                                coreDataCompany.email = company.email
+                                coreDataCompany.hoursOfTheDayEnabled = company.hoursOfTheDayEnabled
+                                coreDataCompany.id = Int32(company.id)
+                                coreDataCompany.name = company.name
+                                coreDataCompany.phoneNumber = company.phoneNumber
+                                coreDataCompany.shortenedAddress = company.shortenedAddress
+                                coreDataCompany.customer = PersistenceService.fetchCustomerEntity()
+                            }
+                            
                         }
-                        
-                    }
+                    
+                    PersistenceService.saveContext()
+                    
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                }
                 
-                PersistenceService.saveContext()
-                
-                case .failure(let error):
-                    print(error.localizedDescription)
             }
-            
         }
     }
     

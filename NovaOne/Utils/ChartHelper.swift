@@ -9,12 +9,12 @@
 import Foundation
 import Charts
 
-class ChartXAxisFormatter {
+class ChartXAxisFormatter: NSObject {
     // Formats the x axis for charts
-    fileprivate var dateFormatter: DateFormatter? // fileprivate means this property is only accessible from the same source where it was declared
+    var xLabels: [String]?
     
-    init(dateFormatter: DateFormatter) {
-        self.dateFormatter = dateFormatter
+    init(xLabels: [String]) {
+        self.xLabels = xLabels
     }
     
 }
@@ -23,11 +23,11 @@ extension ChartXAxisFormatter: IAxisValueFormatter {
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
         // Return a string value for every x value inserted into a ChartDataEntry object
         guard
-            let dateFormatter = self.dateFormatter
+            let xLabels = self.xLabels
         else { return "" }
         
-        let date = Date(timeIntervalSince1970: value)
-        return dateFormatter.string(from: date)
+        let stringForValue = xLabels[Int(value)]
+        return stringForValue
     }
     
 }
