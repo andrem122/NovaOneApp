@@ -330,6 +330,7 @@ class HomeViewController: UIViewController, ChartViewDelegate {
         
         // If the compaines container view controller is NOT visible on the navigation stack, push it to be visible
         if (accountTableViewController.navigationController?.visibleViewController as? CompaniesContainerViewController) == nil {
+            accountTableViewController.navigationController?.popToRootViewController(animated: true)
             accountTableViewController.navigationController?.pushViewController(companiesContainerViewController, animated: true)
         }
         
