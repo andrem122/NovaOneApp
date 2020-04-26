@@ -16,9 +16,11 @@ class HomeViewController: UIViewController, ChartViewDelegate {
     @IBOutlet weak var greetingLabel: UILabel!
     @IBOutlet weak var numberOfLeadsLabel: UILabel!
     @IBOutlet weak var numberOfAppointmentsLabel: UILabel!
+    @IBOutlet weak var numberOfCompaniesLabel: UILabel!
     @IBOutlet weak var chartContainerView: UIView!
     @IBOutlet weak var segmentControl: UISegmentedControl!
     @IBOutlet weak var chartTitle: UILabel!
+    let alertService = AlertService()
     var barChart = BarChartView()
     var chartEntries = [BarChartDataEntry]()
     var xLabels = [String]()
@@ -59,7 +61,7 @@ class HomeViewController: UIViewController, ChartViewDelegate {
         self.barChart.xAxis.labelCount = self.chartEntries.count
         
         // For Y axis
-        self.barChart.rightAxis.labelPosition = .insideChart
+        self.barChart.rightAxis.labelPosition = .outsideChart
         self.barChart.rightAxis.drawGridLinesEnabled = false
         self.barChart.rightAxis.drawAxisLineEnabled = false
         
@@ -106,18 +108,26 @@ class HomeViewController: UIViewController, ChartViewDelegate {
         
     }
     
+    func addGestureRecognizer(to label: UILabel, selector: Selector) {
+        let tap = UITapGestureRecognizer(target: self, action: selector)
+        label.isUserInteractionEnabled = true
+        label.addGestureRecognizer(tap)
+    }
+    
     func setupNumberLabels() {
         // Setup labels
         
         let leadCount = UserDefaults.standard.integer(forKey: Defaults.UserDefaults.leadCount.rawValue)
         let appointmentCount = UserDefaults.standard.integer(forKey: Defaults.UserDefaults.appointmentCount.rawValue)
+        let companyCount = UserDefaults.standard.integer(forKey: Defaults.UserDefaults.companyCount.rawValue)
         self.numberOfLeadsLabel.text = String(leadCount)
         self.numberOfAppointmentsLabel.text = String(appointmentCount)
+        self.numberOfCompaniesLabel.text = String(companyCount)
         
         // Add gesture recognizers, so that when the labels are tapped, something happens
-        let tap = UITapGestureRecognizer(target: self, action: #selector(HomeViewController.numberOfLeadsLabelTapped))
-        self.numberOfLeadsLabel.isUserInteractionEnabled = true
-        self.numberOfLeadsLabel.addGestureRecognizer(tap)
+        self.addGestureRecognizer(to: self.numberOfLeadsLabel, selector: #selector(HomeViewController.numberOfLeadsLabelTapped))
+        self.addGestureRecognizer(to: self.numberOfAppointmentsLabel, selector: #selector(HomeViewController.numberOfAppointmentsLabelTapped))
+        self.addGestureRecognizer(to: self.numberOfCompaniesLabel, selector: #selector(HomeViewController.numberOfCompaniesLabelTapped))
         
     }
     
@@ -175,6 +185,7 @@ class HomeViewController: UIViewController, ChartViewDelegate {
                     guard let unwrappedSuccess = success else { return }
                     unwrappedSuccess()
                 case .failure(let error):
+                    self?.showPopUpOk(error: error)
                     print(error.localizedDescription)
             }
             
@@ -246,6 +257,7 @@ class HomeViewController: UIViewController, ChartViewDelegate {
                     unwrappedSuccess()
                 case .failure(let error):
                     print(error.localizedDescription)
+                    self?.showPopUpOk(error: error)
             }
             
             self?.removeSpinner()
@@ -268,7 +280,7 @@ class HomeViewController: UIViewController, ChartViewDelegate {
         
         let parameters: [String: Any] = ["email": email as Any, "password": password as Any, "customerUserId": customerUserId as Any]
         httpRequest.request(endpoint: "/objectCounts.php", dataModel: [ObjectCountModel].self, parameters: parameters) {
-            (result) in
+            [weak self] (result) in
             
             switch result {
                 case .success(let objectCounts):
@@ -281,14 +293,46 @@ class HomeViewController: UIViewController, ChartViewDelegate {
                     success()
                 case .failure(let error):
                     print(error.localizedDescription)
+                    self?.showPopUpOk(error: error)
             }
             
         }
     }
     
+    func showPopUpOk(error: Error) {
+        // Shows the pop up ok view controller with a message and title
+        
+        // Set text for pop up ok view controller
+        let title = "Error"
+        let body = error.localizedDescription
+        
+        let popUpOkViewController = self.alertService.popUpOk(title: title, body: body)
+        self.present(popUpOkViewController, animated: true, completion: nil)
+    }
+    
     // MARK: Actions
     @IBAction func numberOfLeadsLabelTapped(sender: UITapGestureRecognizer) {
-        self.tabBarController?.selectedIndex = 3
+        self.tabBarController?.selectedIndex = 2 // Leads view
+    }
+    
+    @IBAction func numberOfAppointmentsLabelTapped(sender: UITapGestureRecognizer) {
+        print("Number of appointments label tapped!")
+        self.tabBarController?.selectedIndex = 1 // Appointments view
+    }
+    
+    @IBAction func numberOfCompaniesLabelTapped(sender: UITapGestureRecognizer) {
+        
+        self.tabBarController?.selectedIndex = 3 // Account view
+        
+        guard let accountNavigationController = self.tabBarController?.viewControllers?[3] as? UINavigationController else { return }
+        guard let companiesContainerViewController = self.storyboard?.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.companiesContainer.rawValue) as? CompaniesContainerViewController else { return }
+        guard let accountTableViewController = accountNavigationController.viewControllers[0] as? AccountTableViewController else { return }
+        
+        // If the compaines container view controller is NOT visible on the navigation stack, push it to be visible
+        if (accountTableViewController.navigationController?.visibleViewController as? CompaniesContainerViewController) == nil {
+            accountTableViewController.navigationController?.pushViewController(companiesContainerViewController, animated: true)
+        }
+        
     }
     
     

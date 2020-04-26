@@ -16,7 +16,9 @@
     $query = "
     SELECT 'leadCount' AS name, COUNT(*) FROM leads_lead WHERE company_id IN (SELECT id FROM property_company WHERE customer_user_id = :customer_user_id)
     UNION
-    SELECT 'appointmentCount' AS appointmentsCount, COUNT(*) FROM appointments_appointment_base WHERE company_id IN (SELECT id FROM property_company WHERE customer_user_id = :customer_user_id);
+    SELECT 'appointmentCount' AS appointmentsCount, COUNT(*) FROM appointments_appointment_base WHERE company_id IN (SELECT id FROM property_company WHERE customer_user_id = :customer_user_id)
+    UNION
+    SELECT 'companyCount' AS companyCount, COUNT(*) FROM property_company WHERE customer_user_id = :customer_user_id;
     ";
     
     // query the database and echo results
