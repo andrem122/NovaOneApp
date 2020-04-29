@@ -120,6 +120,7 @@
 		65ABA264243F6469002051D1 /* Company+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ABA260243F6469002051D1 /* Company+CoreDataProperties.swift */; };
 		65AC9BFE2454B42B001E61A0 /* chartDataMonthly.php in Resources */ = {isa = PBXBuildFile; fileRef = 65AC9BFD2454B42B001E61A0 /* chartDataMonthly.php */; };
 		65AC9C002454B9D8001E61A0 /* ChartDataMonthly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AC9BFF2454B9D8001E61A0 /* ChartDataMonthly.swift */; };
+		65AD1BBD24576059007C4444 /* BaseLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AD1BBC24576059007C4444 /* BaseLoginViewController.swift */; };
 		65AD3926243652AC00005370 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AD3925243652AC00005370 /* LaunchScreenViewController.swift */; };
 		65ADE2DF23E1C814003D3215 /* FeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ADE2DE23E1C814003D3215 /* FeatureView.swift */; };
 		65ADE2E123E1C84E003D3215 /* Feature.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65ADE2E023E1C84E003D3215 /* Feature.xib */; };
@@ -307,6 +308,7 @@
 		65ABA260243F6469002051D1 /* Company+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Company+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		65AC9BFD2454B42B001E61A0 /* chartDataMonthly.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = chartDataMonthly.php; sourceTree = "<group>"; };
 		65AC9BFF2454B9D8001E61A0 /* ChartDataMonthly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartDataMonthly.swift; sourceTree = "<group>"; };
+		65AD1BBC24576059007C4444 /* BaseLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseLoginViewController.swift; sourceTree = "<group>"; };
 		65AD3925243652AC00005370 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		65ADE2DE23E1C814003D3215 /* FeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureView.swift; sourceTree = "<group>"; };
 		65ADE2E023E1C84E003D3215 /* Feature.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Feature.xib; sourceTree = "<group>"; };
@@ -526,6 +528,8 @@
 		658B906523E798FB00015C4F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				6592E3D42405D86F009E4D8D /* Tab Bars */,
+				659C1A88240AB57F003C91C1 /* Table Views */,
 				65C14C322434DAA500848606 /* PopUpOkViewController.swift */,
 				65B2B1D92434028D00014820 /* PopUpViewController.swift */,
 				6568EAE3240B4CBD007FCE5C /* Launch */,
@@ -588,8 +592,6 @@
 				6598EED524520E7900CEF5A4 /* Custom Structs */,
 				65DF7526243568C90044E6F7 /* Protocols */,
 				65BCE1822429327100E5040E /* Core Data */,
-				659C1A88240AB57F003C91C1 /* Table Views */,
-				6592E3D42405D86F009E4D8D /* Tab Bars */,
 				658EC6C423F484F50042827E /* Table View Cells */,
 				65AB289C23F21CC800075889 /* Keychain */,
 				658B906623E7990000015C4F /* Data Models */,
@@ -681,6 +683,7 @@
 				65AF664F23E881FE001B394F /* SupportViewController.swift */,
 				65BA98B62430FD3500CFAA9F /* EmptyViewController.swift */,
 				65AA3E7724328CAE005C2319 /* SuccessViewController.swift */,
+				65AD1BBC24576059007C4444 /* BaseLoginViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -1108,6 +1111,7 @@
 				65B2B1D62433B25500014820 /* AddAppointmentDateOfBirthViewController.swift in Sources */,
 				65B2B1D42433B23900014820 /* AddAppointmentEmailViewController.swift in Sources */,
 				65AF80F22442498800167C8D /* UpdateAppointmentTimeViewController.swift in Sources */,
+				65AD1BBD24576059007C4444 /* BaseLoginViewController.swift in Sources */,
 				657535EB24035B7E009E3580 /* SignUpEmailViewController.swift in Sources */,
 				65AA3E7224327293005C2319 /* AddCompanyCityViewController.swift in Sources */,
 				659C1A8A240AB5B3003C91C1 /* AccountTableViewController.swift in Sources */,

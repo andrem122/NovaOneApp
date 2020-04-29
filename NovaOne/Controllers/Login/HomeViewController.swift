@@ -9,7 +9,7 @@ import UIKit
 import CoreData
 import Charts
 
-class HomeViewController: UIViewController, ChartViewDelegate {
+class HomeViewController: BaseLoginViewController, ChartViewDelegate {
 
     // MARK: Properties
     @IBOutlet weak var graphView: UIView!
@@ -20,6 +20,8 @@ class HomeViewController: UIViewController, ChartViewDelegate {
     @IBOutlet weak var chartContainerView: UIView!
     @IBOutlet weak var segmentControl: UISegmentedControl!
     @IBOutlet weak var chartTitle: UILabel!
+    @IBOutlet weak var navigationBar: UINavigationBar!
+    @IBOutlet weak var navItem: UINavigationItem!
     let alertService = AlertService()
     var barChart = BarChartView()
     var chartEntries = [BarChartDataEntry]()
@@ -28,6 +30,7 @@ class HomeViewController: UIViewController, ChartViewDelegate {
     // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupNavigationBar(for: self, navigationBar: self.navigationBar, navigationItem: self.navItem)
         barChart.delegate = self
         self.getObjectCounts() {
             [weak self] in
