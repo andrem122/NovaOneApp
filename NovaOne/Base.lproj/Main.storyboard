@@ -493,16 +493,16 @@ and you have 4 leads.</string>
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="wkW-aQ-VTr" userLabel="Appointments Stack View">
-                                <rect key="frame" x="197.5" y="183" width="107.5" height="49.5"/>
+                                <rect key="frame" x="172.5" y="183" width="132.5" height="49.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nRg-vT-h1K">
-                                        <rect key="frame" x="0.0" y="0.0" width="107.5" height="24"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="132.5" height="24"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendarBlue" translatesAutoresizingMaskIntoConstraints="NO" id="wj5-OX-xG2">
-                                                <rect key="frame" x="0.0" y="0.0" width="29" height="24"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="54" height="24"/>
                                             </imageView>
                                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="19,932" textAlignment="natural" lineBreakMode="tailTruncation" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="2kC-3D-YEV" userLabel="Number Of Appointments">
-                                                <rect key="frame" x="37" y="0.0" width="70.5" height="24"/>
+                                                <rect key="frame" x="62" y="0.0" width="70.5" height="24"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -510,7 +510,7 @@ and you have 4 leads.</string>
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Appointments" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="Hff-3s-U7I">
-                                        <rect key="frame" x="0.0" y="29" width="107.5" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="29" width="132.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -574,16 +574,16 @@ and you have 4 leads.</string>
                                 </connections>
                             </segmentedControl>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="aRI-41-JrA" userLabel="Leads Stack View">
-                                <rect key="frame" x="15" y="183" width="105.5" height="49.5"/>
+                                <rect key="frame" x="15" y="183" width="132.5" height="49.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="CBE-np-wig">
-                                        <rect key="frame" x="0.0" y="0.0" width="105.5" height="24"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="132.5" height="24"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="252" verticalHuggingPriority="252" image="userBlue" translatesAutoresizingMaskIntoConstraints="NO" id="l0h-EL-YFn">
-                                                <rect key="frame" x="0.0" y="0.0" width="27" height="24"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="54" height="24"/>
                                             </imageView>
                                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="749" text="10,932" textAlignment="natural" lineBreakMode="tailTruncation" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="khO-a6-o7N" userLabel="Number Of Leads">
-                                                <rect key="frame" x="35" y="0.0" width="70.5" height="24"/>
+                                                <rect key="frame" x="62" y="0.0" width="70.5" height="24"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -591,7 +591,7 @@ and you have 4 leads.</string>
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="600" verticalHuggingPriority="251" text="Leads" lineBreakMode="tailTruncation" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="23J-qh-t3U">
-                                        <rect key="frame" x="0.0" y="29" width="105.5" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="29" width="132.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -606,12 +606,6 @@ and you have 4 leads.</string>
                                 <rect key="frame" x="0.0" y="287" width="320" height="144"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h98-r2-ba7">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                <items>
-                                    <navigationItem title="Dashboard" id="KOO-WL-VcJ"/>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -624,13 +618,11 @@ and you have 4 leads.</string>
                             <constraint firstItem="JaZ-G2-KKf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="PzM-XK-3g0" secondAttribute="leading" id="9DD-hl-iCq"/>
                             <constraint firstItem="PzM-XK-3g0" firstAttribute="trailing" secondItem="hZ4-IT-LCj" secondAttribute="trailing" constant="15" id="9bu-En-vnq"/>
                             <constraint firstItem="2kC-3D-YEV" firstAttribute="width" secondItem="dcc-mZ-THk" secondAttribute="width" multiplier="0.22" id="CKj-rc-rme"/>
-                            <constraint firstItem="h98-r2-ba7" firstAttribute="leading" secondItem="PzM-XK-3g0" secondAttribute="leading" id="Cqv-rI-IAz"/>
                             <constraint firstItem="JOy-Cr-frl" firstAttribute="height" secondItem="dcc-mZ-THk" secondAttribute="height" multiplier="0.14" id="D4Z-cH-ba5"/>
                             <constraint firstItem="khO-a6-o7N" firstAttribute="width" secondItem="dcc-mZ-THk" secondAttribute="width" multiplier="0.22" id="DOR-xz-8bI"/>
                             <constraint firstItem="qnf-Ni-96m" firstAttribute="height" secondItem="dcc-mZ-THk" secondAttribute="height" multiplier="0.3" id="Ec9-0I-9aA"/>
                             <constraint firstItem="qnf-Ni-96m" firstAttribute="trailing" secondItem="PzM-XK-3g0" secondAttribute="trailing" id="FAO-mR-eG3"/>
                             <constraint firstItem="NjQ-h1-NfZ" firstAttribute="leading" secondItem="PzM-XK-3g0" secondAttribute="leading" constant="15" id="H27-Ja-MyT"/>
-                            <constraint firstItem="JOy-Cr-frl" firstAttribute="top" secondItem="h98-r2-ba7" secondAttribute="bottom" id="Kvo-Pg-N1g"/>
                             <constraint firstItem="y5c-au-FPh" firstAttribute="leading" secondItem="dcc-mZ-THk" secondAttribute="leading" constant="15" id="LA2-Nu-Jgz"/>
                             <constraint firstItem="583-IF-1zN" firstAttribute="height" secondItem="dcc-mZ-THk" secondAttribute="height" multiplier="0.04" id="LTg-zp-Bjv"/>
                             <constraint firstItem="Soh-O5-bFS" firstAttribute="leading" secondItem="PzM-XK-3g0" secondAttribute="leading" constant="15" id="LWl-u0-2OS"/>
@@ -639,7 +631,6 @@ and you have 4 leads.</string>
                             <constraint firstItem="PzM-XK-3g0" firstAttribute="trailing" secondItem="JaZ-G2-KKf" secondAttribute="trailing" constant="15" id="VIQ-we-yrn"/>
                             <constraint firstItem="NjQ-h1-NfZ" firstAttribute="centerY" secondItem="JaZ-G2-KKf" secondAttribute="centerY" id="XOD-xG-NuM"/>
                             <constraint firstItem="khO-a6-o7N" firstAttribute="height" secondItem="dcc-mZ-THk" secondAttribute="height" multiplier="0.05" id="Xuz-jy-tX9"/>
-                            <constraint firstItem="h98-r2-ba7" firstAttribute="top" secondItem="PzM-XK-3g0" secondAttribute="top" id="c0l-Vg-HKa"/>
                             <constraint firstItem="wz8-Gy-qwd" firstAttribute="leading" secondItem="dcc-mZ-THk" secondAttribute="leading" constant="15" id="dmn-l7-vbc"/>
                             <constraint firstItem="PzM-XK-3g0" firstAttribute="trailing" secondItem="wkW-aQ-VTr" secondAttribute="trailing" constant="15" id="idw-uo-23G"/>
                             <constraint firstAttribute="trailing" secondItem="wz8-Gy-qwd" secondAttribute="trailing" constant="15" id="lXP-e3-wiY"/>
@@ -655,8 +646,8 @@ and you have 4 leads.</string>
                             <constraint firstItem="wz8-Gy-qwd" firstAttribute="top" secondItem="JOy-Cr-frl" secondAttribute="bottom" constant="1" id="w3C-2P-em7"/>
                             <constraint firstItem="Soh-O5-bFS" firstAttribute="top" secondItem="JOy-Cr-frl" secondAttribute="bottom" id="xyn-mK-MeW"/>
                             <constraint firstItem="JOy-Cr-frl" firstAttribute="trailing" secondItem="PzM-XK-3g0" secondAttribute="trailing" id="ya8-wH-cms"/>
+                            <constraint firstItem="JOy-Cr-frl" firstAttribute="top" secondItem="PzM-XK-3g0" secondAttribute="top" id="ziy-kg-XBF"/>
                             <constraint firstItem="y5c-au-FPh" firstAttribute="top" secondItem="aRI-41-JrA" secondAttribute="bottom" constant="10" id="zqL-Gg-4bt"/>
-                            <constraint firstItem="h98-r2-ba7" firstAttribute="trailing" secondItem="PzM-XK-3g0" secondAttribute="trailing" id="zuQ-jv-mR8"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PzM-XK-3g0"/>
                         <variation key="default">
@@ -671,13 +662,12 @@ and you have 4 leads.</string>
                         </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="homeBlue" selectedImage="homeBlack" id="3RH-DB-XTN" userLabel="Home"/>
+                    <navigationItem key="navigationItem" id="pO0-EB-7p5"/>
                     <connections>
                         <outlet property="chartContainerView" destination="qnf-Ni-96m" id="P63-V9-9jg"/>
                         <outlet property="chartTitle" destination="NjQ-h1-NfZ" id="ryb-nz-zt3"/>
                         <outlet property="graphView" destination="y5c-au-FPh" id="AtN-mQ-LQV"/>
                         <outlet property="greetingLabel" destination="O8T-Hx-Xeb" id="b1m-WO-KFk"/>
-                        <outlet property="navItem" destination="KOO-WL-VcJ" id="3dd-wz-ZJP"/>
-                        <outlet property="navigationBar" destination="h98-r2-ba7" id="veV-YP-K5Y"/>
                         <outlet property="numberOfAppointmentsLabel" destination="2kC-3D-YEV" id="vdH-0p-J3x"/>
                         <outlet property="numberOfCompaniesLabel" destination="583-IF-1zN" id="UQx-IN-4Nf"/>
                         <outlet property="numberOfLeadsLabel" destination="khO-a6-o7N" id="DKQ-04-t4V"/>
@@ -738,7 +728,7 @@ and you have 4 leads.</string>
                     <viewLayoutGuide key="safeArea" id="0SH-Lf-1Ma"/>
                 </stackView>
             </objects>
-            <point key="canvasLocation" x="1952.8" y="2140.4797601199402"/>
+            <point key="canvasLocation" x="2949.375" y="2140"/>
         </scene>
         <!--Appointments Container-->
         <scene sceneID="1VA-eb-AKV">
@@ -749,7 +739,7 @@ and you have 4 leads.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p8K-wR-Rer">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="387"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                 </userDefinedRuntimeAttributes>
@@ -774,7 +764,7 @@ and you have 4 leads.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j1R-4q-OIR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3057" y="2143"/>
+            <point key="canvasLocation" x="4053.75" y="2142.5"/>
         </scene>
         <!--Appointments-->
         <scene sceneID="IVK-Rm-1MW">
@@ -1020,7 +1010,7 @@ and you have 4 leads.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lAr-yv-9Hl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4078" y="2143"/>
+            <point key="canvasLocation" x="5073.75" y="2142.5"/>
         </scene>
         <!--Leads Container View Controller-->
         <scene sceneID="iBJ-u1-vcI">
@@ -1031,7 +1021,7 @@ and you have 4 leads.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jDb-sL-E0J">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="387"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                 </userDefinedRuntimeAttributes>
@@ -1056,7 +1046,7 @@ and you have 4 leads.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tf9-Zy-Q3y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5913" y="2143"/>
+            <point key="canvasLocation" x="6909.375" y="2142.5"/>
         </scene>
         <!--Contact Us-->
         <scene sceneID="zje-gJ-TP2">
@@ -1126,7 +1116,212 @@ and you have 4 leads.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YBn-l7-15F" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="12380" y="2502"/>
+            <point key="canvasLocation" x="13376.25" y="2501.25"/>
+        </scene>
+        <!--Container View Controller-->
+        <scene sceneID="VNd-R5-UeX">
+            <objects>
+                <viewController storyboardIdentifier="containerViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lfG-rP-LBc" customClass="ContainerViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="t8b-XO-HQm">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HHc-JS-ti3" userLabel="View Container View">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <connections>
+                                    <segue destination="dnP-vU-H2q" kind="embed" id="myR-2q-qs1"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="HHc-JS-ti3" firstAttribute="trailing" secondItem="Ypg-wP-m1l" secondAttribute="trailing" id="Lko-VH-qJA"/>
+                            <constraint firstItem="Ypg-wP-m1l" firstAttribute="bottom" secondItem="HHc-JS-ti3" secondAttribute="bottom" id="Ml3-vL-1H3"/>
+                            <constraint firstItem="HHc-JS-ti3" firstAttribute="leading" secondItem="Ypg-wP-m1l" secondAttribute="leading" id="lZI-XA-4pb"/>
+                            <constraint firstItem="HHc-JS-ti3" firstAttribute="top" secondItem="Ypg-wP-m1l" secondAttribute="top" id="lsD-uu-Cnt"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Ypg-wP-m1l"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jWD-Lq-b5c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1056" y="889"/>
+        </scene>
+        <!--Menu Table View Controller-->
+        <scene sceneID="a3c-qM-zXm">
+            <objects>
+                <tableViewController id="BKU-7W-1R9" customClass="MenuTableViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="FG9-rf-2Wa">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <sections>
+                            <tableViewSection id="Gjv-XU-xkE">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="rgJ-tu-pJn">
+                                        <rect key="frame" x="0.0" y="18" width="320" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rgJ-tu-pJn" id="Zso-nW-sdQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="homeBlue" translatesAutoresizingMaskIntoConstraints="NO" id="6MT-sZ-dJY">
+                                                    <rect key="frame" x="15" y="9.5" width="25" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="25" id="3Ak-b7-HPh"/>
+                                                        <constraint firstAttribute="height" constant="25" id="j60-x9-j0g"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W72-nQ-Odb">
+                                                    <rect key="frame" x="48" y="11.5" width="45.5" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="6MT-sZ-dJY" firstAttribute="centerY" secondItem="Zso-nW-sdQ" secondAttribute="centerY" id="0wi-za-SQu"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="W72-nQ-Odb" secondAttribute="trailing" id="8Pp-yD-ZL4"/>
+                                                <constraint firstItem="W72-nQ-Odb" firstAttribute="centerY" secondItem="Zso-nW-sdQ" secondAttribute="centerY" id="Coo-jD-Buc"/>
+                                                <constraint firstItem="6MT-sZ-dJY" firstAttribute="leading" secondItem="Zso-nW-sdQ" secondAttribute="leading" constant="15" id="Zh2-PC-rng"/>
+                                                <constraint firstItem="W72-nQ-Odb" firstAttribute="leading" secondItem="6MT-sZ-dJY" secondAttribute="trailing" constant="8" id="wlS-8B-CCY"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="mes-kn-O0j">
+                                        <rect key="frame" x="0.0" y="61.5" width="320" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mes-kn-O0j" id="kx6-JQ-cgQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Appointments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fvs-2i-YA1">
+                                                    <rect key="frame" x="48" y="11.5" width="106" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendarBlue" translatesAutoresizingMaskIntoConstraints="NO" id="pdR-is-on1">
+                                                    <rect key="frame" x="15" y="9.5" width="25" height="25"/>
+                                                    <color key="tintColor" red="0.32493522759999999" green="0.46187436580000002" blue="0.83199411629999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="ElF-Vx-kMf"/>
+                                                        <constraint firstAttribute="width" constant="25" id="Hv7-gJ-tAX"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="pdR-is-on1" firstAttribute="centerY" secondItem="kx6-JQ-cgQ" secondAttribute="centerY" id="7us-Ua-E9s"/>
+                                                <constraint firstItem="Fvs-2i-YA1" firstAttribute="centerY" secondItem="kx6-JQ-cgQ" secondAttribute="centerY" id="Lm9-T2-aEp"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="Fvs-2i-YA1" secondAttribute="trailing" id="QeJ-tk-KNa"/>
+                                                <constraint firstItem="Fvs-2i-YA1" firstAttribute="leading" secondItem="pdR-is-on1" secondAttribute="trailing" constant="8" id="iEQ-4X-uF3"/>
+                                                <constraint firstItem="pdR-is-on1" firstAttribute="leading" secondItem="kx6-JQ-cgQ" secondAttribute="leading" constant="15" id="tHg-Ed-mb7"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="16d-Hl-sxK">
+                                        <rect key="frame" x="0.0" y="105" width="320" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="16d-Hl-sxK" id="sLv-3E-WC9">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userBlue" translatesAutoresizingMaskIntoConstraints="NO" id="w8A-9j-2oS">
+                                                    <rect key="frame" x="15" y="9.5" width="25" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="25" id="3Vk-ZS-h1H"/>
+                                                        <constraint firstAttribute="height" constant="25" id="4sa-Rc-N81"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Leads" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vpi-kj-LQk">
+                                                    <rect key="frame" x="48" y="11.5" width="46" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="w8A-9j-2oS" firstAttribute="centerY" secondItem="sLv-3E-WC9" secondAttribute="centerY" id="PHi-3H-I09"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="vpi-kj-LQk" secondAttribute="trailing" id="R8u-5b-bNz"/>
+                                                <constraint firstItem="vpi-kj-LQk" firstAttribute="centerY" secondItem="sLv-3E-WC9" secondAttribute="centerY" id="USl-dN-71u"/>
+                                                <constraint firstItem="vpi-kj-LQk" firstAttribute="leading" secondItem="w8A-9j-2oS" secondAttribute="trailing" constant="8" id="kc7-5w-XKV"/>
+                                                <constraint firstItem="w8A-9j-2oS" firstAttribute="leading" secondItem="sLv-3E-WC9" secondAttribute="leading" constant="15" id="sQh-3o-NXR"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Yvx-lz-nc6">
+                                        <rect key="frame" x="0.0" y="148.5" width="320" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Yvx-lz-nc6" id="1jo-H1-Mag">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="briefcase" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Uhx-Sf-kDp">
+                                                    <rect key="frame" x="15" y="9" width="28" height="26"/>
+                                                    <color key="tintColor" red="0.32493522759999999" green="0.46187436580000002" blue="0.83199411629999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="28" id="LqX-ac-Z9E"/>
+                                                        <constraint firstAttribute="width" constant="28" id="VKR-Be-6z9"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Companies" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LK9-IS-VRC">
+                                                    <rect key="frame" x="51" y="11.5" width="85.5" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="LK9-IS-VRC" firstAttribute="centerY" secondItem="1jo-H1-Mag" secondAttribute="centerY" id="F3f-Y7-U62"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="LK9-IS-VRC" secondAttribute="trailing" id="IHa-Tq-gqw"/>
+                                                <constraint firstItem="Uhx-Sf-kDp" firstAttribute="centerY" secondItem="1jo-H1-Mag" secondAttribute="centerY" id="Jvw-ka-2fd"/>
+                                                <constraint firstItem="LK9-IS-VRC" firstAttribute="leading" secondItem="Uhx-Sf-kDp" secondAttribute="trailing" constant="8" id="Lfv-7E-G98"/>
+                                                <constraint firstItem="Uhx-Sf-kDp" firstAttribute="leading" secondItem="1jo-H1-Mag" secondAttribute="leading" constant="15" id="dPC-zE-3Pa"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="NUp-JM-aaT">
+                                        <rect key="frame" x="0.0" y="192" width="320" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NUp-JM-aaT" id="NPF-pj-7bC">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8sE-pz-eei">
+                                                    <rect key="frame" x="48" y="11.5" width="63" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="settingsBlue" translatesAutoresizingMaskIntoConstraints="NO" id="g8R-G4-kP7">
+                                                    <rect key="frame" x="15" y="9.5" width="25" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="Vx0-4k-Gdj"/>
+                                                        <constraint firstAttribute="width" constant="25" id="kEt-qO-WN3"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="8sE-pz-eei" firstAttribute="centerY" secondItem="NPF-pj-7bC" secondAttribute="centerY" id="1YF-KD-WN4"/>
+                                                <constraint firstItem="g8R-G4-kP7" firstAttribute="centerY" secondItem="NPF-pj-7bC" secondAttribute="centerY" id="3o5-cf-RDu"/>
+                                                <constraint firstItem="g8R-G4-kP7" firstAttribute="leading" secondItem="NPF-pj-7bC" secondAttribute="leading" constant="15" id="gIp-hg-7je"/>
+                                                <constraint firstItem="8sE-pz-eei" firstAttribute="leading" secondItem="g8R-G4-kP7" secondAttribute="trailing" constant="8" id="jMR-A7-BYW"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="8sE-pz-eei" secondAttribute="trailing" id="tPO-YQ-9Vv"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="BKU-7W-1R9" id="ayl-OR-iXE"/>
+                            <outlet property="delegate" destination="BKU-7W-1R9" id="9zy-MF-7CA"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4if-nr-DOW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1056" y="1643"/>
         </scene>
         <!--Forgot Username/Password-->
         <scene sceneID="FSi-6q-ErE">
@@ -1817,6 +2012,15 @@ of your company?</string>
             <objects>
                 <tabBarController storyboardIdentifier="homeTabBarViewController" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qM3-NE-hxq" customClass="HomeTabBarController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="9zO-bw-ReH">
+                        <barButtonItem key="backBarButtonItem" title=" " id="yqt-0e-ANN"/>
+                        <barButtonItem key="rightBarButtonItem" title="Menu" image="list.dash" catalog="system" id="Zry-eG-v8O">
+                            <color key="tintColor" red="0.32493522759999999" green="0.46187436580000002" blue="0.83199411629999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="menuButtonTapped:" destination="qM3-NE-hxq" id="mM0-qk-wfd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" itemPositioning="centered" itemSpacing="40" id="8dP-P0-PM2">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1840,12 +2044,12 @@ of your company?</string>
                         <segue destination="IkL-Lu-9O6" kind="relationship" relationship="viewControllers" id="Pca-bb-TWh"/>
                         <segue destination="nih-Xv-dpA" kind="relationship" relationship="viewControllers" id="H5D-lj-7YU"/>
                         <segue destination="Lhy-AA-gdv" kind="relationship" relationship="viewControllers" id="dF7-n3-a6G"/>
-                        <segue destination="nke-Dc-k7k" kind="relationship" relationship="viewControllers" id="Sw9-HI-LBy"/>
+                        <segue destination="tGV-Bw-WqH" kind="relationship" relationship="viewControllers" id="XPC-8x-Z3X"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkJ-6r-2gf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1057" y="890"/>
+            <point key="canvasLocation" x="2869" y="889"/>
         </scene>
         <!--Leads-->
         <scene sceneID="vPi-1y-lRx">
@@ -2064,7 +2268,7 @@ of your company?</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dk2-rT-9GW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6826" y="2142"/>
+            <point key="canvasLocation" x="7822.5" y="2141.25"/>
         </scene>
         <!--Account Table View-->
         <scene sceneID="Nbd-b8-Ie1">
@@ -2355,6 +2559,7 @@ of your company?</string>
                             <outlet property="delegate" destination="tGV-Bw-WqH" id="DTo-Z1-EX9"/>
                         </connections>
                     </tableView>
+                    <tabBarItem key="tabBarItem" title="" selectedImage="settingsBlue" id="zyh-iZ-GMy"/>
                     <navigationItem key="navigationItem" title="Account" id="uDo-kE-29S">
                         <barButtonItem key="backBarButtonItem" title=" " id="BfC-CI-tqG"/>
                     </navigationItem>
@@ -2367,18 +2572,18 @@ of your company?</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IDT-yF-7Js" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8783" y="2143"/>
+            <point key="canvasLocation" x="8970" y="2141"/>
         </scene>
         <!--Companies-->
         <scene sceneID="mVp-E7-DUw">
             <objects>
                 <viewController storyboardIdentifier="companiesViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WKZ-lS-7Px" userLabel="Companies" customClass="CompaniesViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="V88-Pq-Os6">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="287"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="336"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="115" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eAH-Jn-ODU" userLabel="Companies Table View">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="287"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="336"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="novaOneTableViewCell" rowHeight="115" id="boL-Km-JMu" userLabel="companyTableCell" customClass="NovaOneTableViewCell" customModule="NovaOne" customModuleProvider="target">
@@ -2604,7 +2809,7 @@ of your company?</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E6x-HI-62r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9806" y="2502"/>
+            <point key="canvasLocation" x="10801.875" y="2501.25"/>
         </scene>
         <!--Update Email-->
         <scene sceneID="1fV-Ld-ara">
@@ -2684,7 +2889,7 @@ of your company?</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="amg-a5-gi8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9806" y="1781"/>
+            <point key="canvasLocation" x="9780" y="1363"/>
         </scene>
         <!--Update Phone-->
         <scene sceneID="8UF-HN-fr0">
@@ -2764,7 +2969,7 @@ of your company?</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hno-Gy-Efg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="10639" y="2502"/>
+            <point key="canvasLocation" x="11636.25" y="2501.25"/>
         </scene>
         <!--Update Company Address-->
         <scene sceneID="nVo-rM-LQG">
@@ -2844,7 +3049,7 @@ of your company?</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RwH-A6-bsp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="13771" y="2080"/>
+            <point key="canvasLocation" x="14767.5" y="2080"/>
         </scene>
         <!--Empty-->
         <scene sceneID="zD3-Tg-jHs">
@@ -2998,25 +3203,6 @@ my friend :)</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gdh-Cc-F2k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="13772" y="1363"/>
-        </scene>
-        <!--Account Navigation Controller-->
-        <scene sceneID="nmE-Ce-Ftk">
-            <objects>
-                <navigationController storyboardIdentifier="accountNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="nke-Dc-k7k" userLabel="Account Navigation Controller" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="settingsBlue" selectedImage="settingsBlack" id="1hI-Qt-IL5"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="R0q-iD-3f3">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="tGV-Bw-WqH" kind="relationship" relationship="rootViewController" id="cwJ-zb-Pq9"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wIh-8t-bT4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="7878" y="2143"/>
         </scene>
         <!--Company Detail-->
         <scene sceneID="u4g-95-3Eo">
@@ -3406,7 +3592,7 @@ my friend :)</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0qS-I9-sIP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="14580" y="2080"/>
+            <point key="canvasLocation" x="15577.5" y="2080"/>
         </scene>
         <!--Update Name-->
         <scene sceneID="Nl0-5c-JsM">
@@ -3599,7 +3785,7 @@ my friend :)</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YBu-th-XTV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="15390" y="2080"/>
+            <point key="canvasLocation" x="16387.5" y="2080"/>
         </scene>
         <!--Add Company Name-->
         <scene sceneID="hzd-yW-KIf">
@@ -4219,7 +4405,7 @@ email  below.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ptv-EM-g1c" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
-                                <rect key="frame" x="30" y="366" width="260" height="45"/>
+                                <rect key="frame" x="30" y="415" width="260" height="45"/>
                                 <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="uaX-zC-Rtx"/>
@@ -4239,7 +4425,7 @@ email  below.</string>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LK0-F5-0Or">
-                                <rect key="frame" x="0.0" y="192" width="320" height="139"/>
+                                <rect key="frame" x="0.0" y="192" width="320" height="188"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="enableOptionTableViewCell" id="FO7-AQ-JAO" customClass="EnableOptionTableViewCell" customModule="NovaOne" customModuleProvider="target">
@@ -4331,7 +4517,7 @@ days below.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="80N-gk-zGT" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
-                                <rect key="frame" x="30" y="366" width="260" height="45"/>
+                                <rect key="frame" x="30" y="415" width="260" height="45"/>
                                 <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="kva-lJ-CZA"/>
@@ -4351,7 +4537,7 @@ days below.</string>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oCb-38-YOv">
-                                <rect key="frame" x="0.0" y="202" width="320" height="129"/>
+                                <rect key="frame" x="0.0" y="202" width="320" height="178"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="enableOptionTableViewCell" id="jRw-4b-Ps8" customClass="EnableOptionTableViewCell" customModule="NovaOne" customModuleProvider="target">
@@ -4875,7 +5061,7 @@ with the appointment below.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dm3-QV-Odx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="835" y="2879"/>
+            <point key="canvasLocation" x="1831.875" y="2878.75"/>
         </scene>
         <!--Add Appointment Unit Type-->
         <scene sceneID="ODG-hh-XcK">
@@ -5889,7 +6075,7 @@ of your company?</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VHx-W7-nq6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4077" y="2879"/>
+            <point key="canvasLocation" x="5073.75" y="2878.75"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="V89-IG-Wy8">
@@ -5906,7 +6092,7 @@ of your company?</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tvA-zu-XUO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5912" y="2879"/>
+            <point key="canvasLocation" x="6909.375" y="2878.75"/>
         </scene>
         <!--Lead Detail-->
         <scene sceneID="eE9-6S-ry9">
@@ -6016,7 +6202,7 @@ of your company?</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v4O-QL-SDI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6825" y="2879"/>
+            <point key="canvasLocation" x="7822.5" y="2878.75"/>
         </scene>
         <!--Update Appointment Phone Number-->
         <scene sceneID="iQJ-bp-Q5K">
@@ -6113,13 +6299,13 @@ the appointment.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1fu-LD-JDP">
-                                <rect key="frame" x="0.0" y="44" width="320" height="287"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="336"/>
                                 <connections>
                                     <segue destination="WKZ-lS-7Px" kind="embed" id="QN4-BM-wOL"/>
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KRR-qr-PXP" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
-                                <rect key="frame" x="30" y="366" width="260" height="45"/>
+                                <rect key="frame" x="30" y="415" width="260" height="45"/>
                                 <color key="backgroundColor" red="0.32493522759999999" green="0.46187436580000002" blue="0.83199411629999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="8m5-h7-9YT"/>
@@ -6454,7 +6640,7 @@ with the appointment below.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="coz-Eg-Iie" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5059" y="2879"/>
+            <point key="canvasLocation" x="6056.25" y="2878.75"/>
         </scene>
         <!--Update Appointment Unit Type-->
         <scene sceneID="Pet-KX-dyv">
@@ -6772,7 +6958,7 @@ with the appointment.</string>
                 <navigationController storyboardIdentifier="appointmentDetailNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Gqz-n8-rfo" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ytq-3h-FiX">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -6782,7 +6968,7 @@ with the appointment.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="53S-P9-LQh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3057" y="2879"/>
+            <point key="canvasLocation" x="4053.75" y="2878.75"/>
         </scene>
         <!--Add Appointment Company-->
         <scene sceneID="wuA-BX-D7c">
@@ -7028,7 +7214,7 @@ make an appointment for.</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A9d-v2-JRH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="11532" y="2502"/>
+            <point key="canvasLocation" x="12528.75" y="2501.25"/>
         </scene>
         <!--Add Lead Name-->
         <scene sceneID="bjV-FB-ZPG">
@@ -7475,9 +7661,28 @@ the lead below.</string>
             </objects>
             <point key="canvasLocation" x="5912" y="6607"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="XDv-0W-rDi">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dnP-vU-H2q" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aJM-GD-pGj">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="qM3-NE-hxq" kind="relationship" relationship="rootViewController" id="YHv-HT-3Pt"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5yy-8I-gxu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1952" y="889"/>
+        </scene>
     </scenes>
     <resources>
         <image name="account" width="42.666667938232422" height="42.666667938232422"/>
+        <image name="briefcase" catalog="system" width="64" height="50"/>
         <image name="calendar" width="42.5" height="42.5"/>
         <image name="calendarBlue" width="27" height="27"/>
         <image name="callBlue" width="27" height="27"/>
@@ -7488,11 +7693,11 @@ the lead below.</string>
         <image name="gpsMap" width="400" height="370.5"/>
         <image name="homeBlack" width="27" height="27"/>
         <image name="homeBlue" width="27" height="27"/>
+        <image name="list.dash" catalog="system" width="64" height="42"/>
         <image name="novaOneLogo" width="85.5" height="85.5"/>
         <image name="novaOneLogoVertical" width="120.5" height="120.5"/>
-        <image name="plus" catalog="system" width="64" height="56"/>
+        <image name="plus" catalog="system" width="32" height="32"/>
         <image name="rightAngleBlue" width="42.5" height="42.5"/>
-        <image name="settingsBlack" width="27" height="27"/>
         <image name="settingsBlue" width="27" height="27"/>
         <image name="success" width="170.5" height="170.5"/>
         <image name="tick" width="26.5" height="26.5"/>

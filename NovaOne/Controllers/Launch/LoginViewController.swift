@@ -149,8 +149,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     KeychainWrapper.standard.set(username, forKey: "username")
                     KeychainWrapper.standard.set(password, forKey: "password")
                     
-                    // Go to tab bar view controller
-                    if let tabBarViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.TabBarControllerIdentifiers.home.rawValue) as? HomeTabBarController  {
+                    // Go to container view controller
+                    if let containerViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.container.rawValue) as? ContainerViewController  {
                         
                         // Get non optionals from CustomerModel instance
                         let dateJoinedDate = customer.dateJoinedDate
@@ -198,8 +198,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         guard let unwrappedSuccess = success else { return }
                         unwrappedSuccess()
                         
-                        tabBarViewController.modalPresentationStyle = .fullScreen // Set presentaion style of view to full screen
-                        self?.present(tabBarViewController, animated: true, completion: nil)
+                        containerViewController.modalPresentationStyle = .fullScreen // Set presentaion style of view to full screen
+                        self?.present(containerViewController, animated: true, completion: nil)
                     }
                 
                 case .failure(let error):
