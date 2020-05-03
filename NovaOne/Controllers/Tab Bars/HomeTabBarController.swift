@@ -21,7 +21,7 @@ class HomeTabBarController: UITabBarController, UITableViewDelegate {
     
     // MARK: Actions
     @IBAction func menuButtonTapped(_ sender: Any) {
-        menuLauncher.showMenu()
+        menuLauncher.toggleMenu()
     }
     
 }
