@@ -44,39 +44,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dS4-WB-wNb">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="223.5"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pmq-FH-aga" userLabel="Scroll Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="223.5"/>
-                                        <color key="backgroundColor" red="0.32108205560000003" green="0.41871821879999999" blue="0.84972596170000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" red="0.32108205560000003" green="0.41871821879999999" blue="0.84972596170000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="Pmq-FH-aga" secondAttribute="trailing" id="Oly-rk-x53"/>
-                                    <constraint firstItem="Pmq-FH-aga" firstAttribute="leading" secondItem="dS4-WB-wNb" secondAttribute="leading" id="ZtP-EF-u0g"/>
-                                    <constraint firstItem="Pmq-FH-aga" firstAttribute="centerY" secondItem="dS4-WB-wNb" secondAttribute="centerY" id="gUj-8H-cdN"/>
-                                    <constraint firstItem="Pmq-FH-aga" firstAttribute="centerX" secondItem="dS4-WB-wNb" secondAttribute="centerX" id="kmX-Gl-Yau"/>
-                                    <constraint firstItem="Pmq-FH-aga" firstAttribute="top" secondItem="dS4-WB-wNb" secondAttribute="top" id="wuj-fy-uo2"/>
-                                    <constraint firstAttribute="bottom" secondItem="Pmq-FH-aga" secondAttribute="bottom" constant="255" id="zma-BG-fjt"/>
-                                </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="LCK-x3-Q3w"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="C3e-qc-qe0"/>
-                            </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Var-FQ-vSO" userLabel="Bottom" customClass="NovaOneView" customModule="NovaOne" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="223.5" width="320" height="256.5"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Var-FQ-vSO" userLabel="Button View" customClass="NovaOneView" customModule="NovaOne" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="288" width="320" height="192"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="RkN-5s-BE6" userLabel="Button Stack">
-                                        <rect key="frame" x="30" y="45" width="260" height="167"/>
+                                        <rect key="frame" x="30" y="12.5" width="260" height="167"/>
                                         <subviews>
-                                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Nuy-EC-WEE">
+                                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="XJr-z9-bcG">
                                                 <rect key="frame" x="0.0" y="0.0" width="260" height="37"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="37" id="JdW-de-bk2"/>
-                                                </constraints>
-                                                <color key="pageIndicatorTintColor" red="0.32108205560000003" green="0.41871821879999999" blue="0.84972596170000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="pageIndicatorTintColor" red="0.32493522759999999" green="0.46187436580000002" blue="0.83199411629999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="currentPageIndicatorTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </pageControl>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rpx-e3-csF" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
@@ -124,11 +100,9 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstItem="RkN-5s-BE6" firstAttribute="top" secondItem="Var-FQ-vSO" secondAttribute="top" constant="44.666666666666657" id="06Z-FF-qKc"/>
-                                    <constraint firstAttribute="trailing" secondItem="RkN-5s-BE6" secondAttribute="trailing" constant="30" id="Ju9-Gk-fku"/>
-                                    <constraint firstItem="RkN-5s-BE6" firstAttribute="centerY" secondItem="Var-FQ-vSO" secondAttribute="centerY" id="S71-sI-JUL"/>
-                                    <constraint firstItem="RkN-5s-BE6" firstAttribute="centerX" secondItem="Var-FQ-vSO" secondAttribute="centerX" id="pOT-Qq-psP"/>
-                                    <constraint firstItem="RkN-5s-BE6" firstAttribute="leading" secondItem="Var-FQ-vSO" secondAttribute="leading" constant="30" id="x2X-tj-MuX"/>
+                                    <constraint firstItem="RkN-5s-BE6" firstAttribute="centerY" secondItem="Var-FQ-vSO" secondAttribute="centerY" id="6h1-uY-t3H"/>
+                                    <constraint firstAttribute="trailing" secondItem="RkN-5s-BE6" secondAttribute="trailing" constant="30" id="P6Z-zt-88F"/>
+                                    <constraint firstItem="RkN-5s-BE6" firstAttribute="leading" secondItem="Var-FQ-vSO" secondAttribute="leading" constant="30" id="oLn-GI-jfJ"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -140,21 +114,17 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <color key="tintColor" red="0.34144568710000001" green="0.44140715450000001" blue="0.91635996099999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Var-FQ-vSO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="DYH-63-9wN"/>
-                            <constraint firstItem="Var-FQ-vSO" firstAttribute="top" secondItem="dS4-WB-wNb" secondAttribute="bottom" id="DiP-5W-AHQ"/>
-                            <constraint firstItem="dS4-WB-wNb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="NnI-ma-Z5U"/>
-                            <constraint firstItem="dS4-WB-wNb" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="asY-jl-4CF"/>
-                            <constraint firstItem="Var-FQ-vSO" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="eWQ-NV-idM"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Var-FQ-vSO" secondAttribute="bottom" id="oxv-O8-ITy"/>
-                            <constraint firstItem="dS4-WB-wNb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="woZ-bW-iYk"/>
+                            <constraint firstItem="Var-FQ-vSO" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Iao-Hx-YiX"/>
+                            <constraint firstItem="Var-FQ-vSO" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="RCp-wf-Lsl"/>
+                            <constraint firstItem="Var-FQ-vSO" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.4" id="okA-s2-r2Z"/>
+                            <constraint firstItem="Var-FQ-vSO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="xSM-lx-Baz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="AXb-c4-qqS"/>
                     <connections>
-                        <outlet property="featurePageControl" destination="Nuy-EC-WEE" id="vSw-ix-Cp7"/>
-                        <outlet property="featureScrollView" destination="dS4-WB-wNb" id="NaE-vJ-Lzr"/>
                         <outlet property="logInButton" destination="loA-uI-ehb" id="VQ9-zn-Law"/>
+                        <outlet property="pageControl" destination="XJr-z9-bcG" id="KSd-7V-jhz"/>
                         <outlet property="signUpButton" destination="Rpx-e3-csF" id="nlw-8h-0l9"/>
                     </connections>
                 </viewController>
@@ -661,7 +631,9 @@ and you have 4 leads.</string>
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="homeBlue" selectedImage="homeBlack" id="3RH-DB-XTN" userLabel="Home"/>
+                    <tabBarItem key="tabBarItem" title="" image="house" catalog="system" id="3RH-DB-XTN" userLabel="Home">
+                        <color key="badgeColor" red="0.32493522759999999" green="0.46187436580000002" blue="0.83199411629999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" id="pO0-EB-7p5"/>
                     <connections>
                         <outlet property="chartContainerView" destination="qnf-Ni-96m" id="P63-V9-9jg"/>
@@ -757,7 +729,9 @@ and you have 4 leads.</string>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="calendarBlue" id="zqY-gA-3yS"/>
+                    <tabBarItem key="tabBarItem" title="" image="calendar" catalog="system" id="zqY-gA-3yS">
+                        <color key="badgeColor" red="0.32493522759999999" green="0.46187436580000002" blue="0.83199411629999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
                     <connections>
                         <outlet property="containerView" destination="p8K-wR-Rer" id="FW0-2f-h7e"/>
                     </connections>
@@ -1039,7 +1013,9 @@ and you have 4 leads.</string>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="userBlue" id="7DV-Ab-xEd"/>
+                    <tabBarItem key="tabBarItem" title="" image="person" catalog="system" id="7DV-Ab-xEd">
+                        <color key="badgeColor" red="0.32493522759999999" green="0.46187436580000002" blue="0.83199411629999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
                     <connections>
                         <outlet property="containerView" destination="jDb-sL-E0J" id="fws-Sz-BCK"/>
                     </connections>
@@ -2383,7 +2359,9 @@ of your company?</string>
                             <outlet property="delegate" destination="tGV-Bw-WqH" id="DTo-Z1-EX9"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="" selectedImage="settingsBlue" id="zyh-iZ-GMy"/>
+                    <tabBarItem key="tabBarItem" title="" image="gear" catalog="system" id="zyh-iZ-GMy">
+                        <color key="badgeColor" red="0.32493522759999999" green="0.46187436580000002" blue="0.83199411629999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" title="Account" id="uDo-kE-29S">
                         <barButtonItem key="backBarButtonItem" title=" " id="BfC-CI-tqG"/>
                     </navigationItem>
@@ -5907,7 +5885,7 @@ of your company?</string>
                 <navigationController storyboardIdentifier="addLeadNavigationController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WhH-0Z-LD5" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="fjj-iP-imE"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hJO-tO-2hG">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -7507,21 +7485,22 @@ the lead below.</string>
     <resources>
         <image name="account" width="42.666667938232422" height="42.666667938232422"/>
         <image name="calendar" width="42.5" height="42.5"/>
+        <image name="calendar" catalog="system" width="64" height="52"/>
         <image name="calendarBlue" width="27" height="27"/>
         <image name="callBlue" width="27" height="27"/>
         <image name="cancelButtonBlue" width="33.5" height="33.5"/>
         <image name="clipboard" width="42.666667938232422" height="42.666667938232422"/>
         <image name="emailBlue" width="27" height="27"/>
         <image name="empty" width="170.5" height="170.5"/>
+        <image name="gear" catalog="system" width="64" height="58"/>
         <image name="gpsMap" width="400" height="370.5"/>
-        <image name="homeBlack" width="27" height="27"/>
-        <image name="homeBlue" width="27" height="27"/>
+        <image name="house" catalog="system" width="64" height="54"/>
         <image name="list.dash" catalog="system" width="64" height="42"/>
         <image name="novaOneLogo" width="85.5" height="85.5"/>
         <image name="novaOneLogoVertical" width="120.5" height="120.5"/>
+        <image name="person" catalog="system" width="64" height="58"/>
         <image name="plus" catalog="system" width="32" height="32"/>
         <image name="rightAngleBlue" width="42.5" height="42.5"/>
-        <image name="settingsBlue" width="27" height="27"/>
         <image name="success" width="170.5" height="170.5"/>
         <image name="tick" width="26.5" height="26.5"/>
         <image name="userBlack" width="27" height="27"/>

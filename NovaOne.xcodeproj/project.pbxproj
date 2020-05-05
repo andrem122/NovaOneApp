@@ -158,6 +158,7 @@
 		65C9A74C245CF1E5009651B4 /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C9A74B245CF1E5009651B4 /* MenuCollectionViewCell.swift */; };
 		65C9A74E245CF28A009651B4 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C9A74D245CF28A009651B4 /* BaseCell.swift */; };
 		65D169AD245DDFE6006219C8 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D169AC245DDFE6006219C8 /* Defaults.swift */; };
+		65D169AF245F598C006219C8 /* SliderLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D169AE245F598C006219C8 /* SliderLauncher.swift */; };
 		65D75F7423FB495900C7988E /* utils.php in Resources */ = {isa = PBXBuildFile; fileRef = 65D75F7323FB495900C7988E /* utils.php */; };
 		65DBED6C2429404F0090B39C /* NovaOne.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 659D487C23F38C01007AC005 /* NovaOne.xcdatamodeld */; };
 		65DD90FA2434FB8F003DDB73 /* SignUpCompanyCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD90F92434FB8F003DDB73 /* SignUpCompanyCityViewController.swift */; };
@@ -346,6 +347,7 @@
 		65C9A74B245CF1E5009651B4 /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		65C9A74D245CF28A009651B4 /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		65D169AC245DDFE6006219C8 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
+		65D169AE245F598C006219C8 /* SliderLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderLauncher.swift; sourceTree = "<group>"; };
 		65D75F7323FB495900C7988E /* utils.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = utils.php; sourceTree = "<group>"; };
 		65DD90F92434FB8F003DDB73 /* SignUpCompanyCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompanyCityViewController.swift; sourceTree = "<group>"; };
 		65DD90FB2434FBC3003DDB73 /* SignUpCompanyStateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompanyStateViewController.swift; sourceTree = "<group>"; };
@@ -532,6 +534,7 @@
 				65E0970C24511C3E00D2CC00 /* ChartHelper.swift */,
 				652F8ED6245CF6C6008FAF38 /* Extensions.swift */,
 				65D169AC245DDFE6006219C8 /* Defaults.swift */,
+				65D169AE245F598C006219C8 /* SliderLauncher.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1125,6 +1128,7 @@
 				657535EB24035B7E009E3580 /* SignUpEmailViewController.swift in Sources */,
 				65AA3E7224327293005C2319 /* AddCompanyCityViewController.swift in Sources */,
 				659C1A8A240AB5B3003C91C1 /* AccountTableViewController.swift in Sources */,
+				65D169AF245F598C006219C8 /* SliderLauncher.swift in Sources */,
 				65ADE2F623E3AF27003D3215 /* HTTPRequests.swift in Sources */,
 				6575F626242EA21100332729 /* UpdateNameViewController.swift in Sources */,
 				65DD90FE2434FBD1003DDB73 /* SignUpCompanyZipViewController.swift in Sources */,

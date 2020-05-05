@@ -36,11 +36,17 @@ class MenuCollectionViewCell: BaseCell {
     
     override var isHighlighted: Bool {
         didSet {
+            
             if self.isHighlighted {
                 self.backgroundColor = .lightGray
+                self.menuOptionNameLabel.textColor = .white
+                self.iconImage.tintColor = .white
             } else {
                 self.backgroundColor = .white
+                self.menuOptionNameLabel.textColor = .black
+                self.iconImage.tintColor = Defaults.novaOneColor
             }
+            
         }
     }
     
@@ -53,10 +59,7 @@ class MenuCollectionViewCell: BaseCell {
         
         // Add constraints to subviews
         self.addConstraints(with: "H:|-8-[v0(30)]-8-[v1]|", views: self.iconImage, self.menuOptionNameLabel)
-        self.addConstraints(with: "V:|[v0(30)]|", views: self.iconImage)
-        
-        // Center icon image to superviews Y center value
-        self.addConstraint(NSLayoutConstraint(item: self.iconImage, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
+        self.addConstraints(with: "V:|-10-[v0(30)]-10-|", views: self.iconImage)
         
         // Center label to icon image
         self.addConstraint(NSLayoutConstraint(item: self.menuOptionNameLabel, attribute: .centerY, relatedBy: .equal, toItem: self.iconImage, attribute: .centerY, multiplier: 1, constant: 0))
