@@ -25,9 +25,9 @@ class SliderLauncher: NSObject {
     
     let slides: [Slide] = {
         return [
-            Slide(title: "Mako's Adventures", subtitle: "This is a subtitle", imageName: "novaOneLogo"),
             Slide(title: "Welcome To NovaOne", subtitle: "Automate your lead process today!", imageName: "novaOneLogo"),
-            Slide(title: "Welcome To Mako Land", subtitle: "Rah rah roo!", imageName: "novaOneLogo")
+            Slide(title: "24/7 Contact", subtitle: "NovaOne works 24/7 to contact and qualify leads", imageName: "novaOneLogo"),
+            Slide(title: "Automated Appointments", subtitle: "NovaOne makes it easy to set up appointments with leads", imageName: "novaOneLogo")
         ]
     }()
     let scrollView: UIScrollView = {
@@ -89,12 +89,10 @@ class SliderLauncher: NSObject {
     }
     
     func setUpSliderTimer() {
-        print("Timer enabled")
         self.timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(changeSlides), userInfo: nil, repeats: true)
     }
     
     func disableTimer() {
-        print("Timer disabled")
         self.timer?.invalidate()
     }
     
@@ -137,14 +135,12 @@ extension SliderLauncher: UIScrollViewDelegate {
            Turn off timer so the scroll view does not scroll every time the user
            begins to scroll the scroll view
         */
-        print("TIMER INVALIDATED")
         self.timer?.invalidate()
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         // Function fired every time the scroll view is done being dragged
         // Reactivate the timer after user stops dragging the scroll view
-        print("TIMER REACTIVATED")
         self.timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(changeSlides), userInfo: nil, repeats: true)
     }
     
