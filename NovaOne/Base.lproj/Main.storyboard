@@ -1118,6 +1118,10 @@ and you have 4 leads.</string>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ypg-wP-m1l"/>
                     </view>
+                    <connections>
+                        <outlet property="viewContainer" destination="HHc-JS-ti3" id="JId-ij-NRF"/>
+                        <outlet property="viewContainerLeadingConstraint" destination="lZI-XA-4pb" id="LMW-pd-NiJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jWD-Lq-b5c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1296,7 +1300,7 @@ on how to reset your password.</string>
                         <barButtonItem key="backBarButtonItem" title=" " id="frb-iO-epV"/>
                     </navigationItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bMv-Nt-raQ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     </navigationBar>
@@ -4853,7 +4857,7 @@ with the appointment below.</string>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="XiS-4g-r8Y"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cXW-mU-hPt">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -7484,8 +7488,8 @@ the lead below.</string>
     </scenes>
     <resources>
         <image name="account" width="42.666667938232422" height="42.666667938232422"/>
-        <image name="calendar" catalog="system" width="64" height="52"/>
         <image name="calendar" width="42.5" height="42.5"/>
+        <image name="calendar" catalog="system" width="64" height="52"/>
         <image name="calendarBlue" width="27" height="27"/>
         <image name="callBlue" width="27" height="27"/>
         <image name="cancelButtonBlue" width="33.5" height="33.5"/>

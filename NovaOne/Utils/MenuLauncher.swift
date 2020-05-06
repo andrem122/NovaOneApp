@@ -59,7 +59,7 @@ class MenuLauncher: NSObject, UICollectionViewDelegate, UICollectionViewDataSour
             // Add menu view to the window
             window.addSubview(self.collectionView)
             
-            let collectionViewWidth = window.frame.width / 2 // Make menu half the window
+            let collectionViewWidth = window.frame.width / 3 // Make menu half the window
             let collectionViewHeight = window.frame.height
             
             // Set up a shadow around the menu so we can see it easier

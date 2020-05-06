@@ -10,7 +10,7 @@ import UIKit
 
 extension UIView {
     func addConstraints(with format: String, views: UIView...) {
-        
+        // Adds constraints to views through a visual string format
         var viewsDictionary = [String: UIView]()
         for (index, view) in views.enumerated() {
             let key = "v\(index)"
@@ -20,5 +20,12 @@ extension UIView {
         
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: viewsDictionary))
         
+    }
+}
+
+extension UIViewController {
+    func getSizeClass() -> (UIUserInterfaceSizeClass, UIUserInterfaceSizeClass) {
+        // Returns the horizontal and vertical size class in a tuple
+        return (self.traitCollection.horizontalSizeClass, self.traitCollection.verticalSizeClass)
     }
 }
