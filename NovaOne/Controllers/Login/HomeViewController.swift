@@ -40,7 +40,21 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         }
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        if UIDevice.current.orientation.isLandscape {
+            print("Landscape")
+            self.barChart.sizeThatFits(self.chartContainerView.frame.size)
+        } else {
+            print("Portrait")
+            self.barChart.sizeThatFits(self.chartContainerView.frame.size)
+        }
+    }
+    
     func setupChart() {
+        // Add chart view to chart container view
+        self.chartContainerView.addSubview(barChart)
+        
         // Setup frame of chart
         let width = self.chartContainerView.bounds.width
         let height = self.chartContainerView.bounds.height
@@ -77,10 +91,6 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         // Setup x axis values to have a date string as the x-axis
         let xValuesNumberFormatter = ChartXAxisFormatter(xLabels: self.xLabels) // Plug in x values into our custom XAxisFormatter class
         self.barChart.xAxis.valueFormatter = xValuesNumberFormatter
-        
-        
-        // Add chart view to chart container view
-        self.chartContainerView.addSubview(barChart)
         
         // Create data set from entries
         let set = BarChartDataSet(entries: self.chartEntries)
