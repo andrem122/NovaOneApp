@@ -14,8 +14,7 @@ class HomeTabBarController: UITabBarController, UITableViewDelegate {
     let toggleMenuNotificationName = NSNotification.Name(Defaults.NotificationObservers.toggleMenu.rawValue)
     @IBOutlet weak var menuButton: UIBarButtonItem!
     lazy var menuLauncher: MenuLauncher = {
-        let launcher = MenuLauncher()
-        launcher.homeTabBarController = self
+        let launcher = MenuLauncher(homeTabBarController: self)
         return launcher
     }()
     
@@ -25,7 +24,7 @@ class HomeTabBarController: UITabBarController, UITableViewDelegate {
     }
     
     override func viewDidLayoutSubviews() {
-        self.popOutMenu()
+        //self.popOutMenu()
     }
     
     // MARK: Actions
@@ -78,9 +77,9 @@ class HomeTabBarController: UITabBarController, UITableViewDelegate {
         case (.regular, .regular):
             print("Regular width, regular height")
             // Toggle the menu and hide the menu button
-            menuLauncher.toggleMenu(completion: nil)
-            self.menuButton.isEnabled = false
-            self.menuButton.tintColor = .clear
+//            menuLauncher.toggleMenu(completion: nil)
+//            self.menuButton.isEnabled = false
+//            self.menuButton.tintColor = .clear
         case (.compact, .regular):
             print("Compact width, regular height")
         case (_, _):

@@ -41,8 +41,8 @@ class MenuLauncher: NSObject, UICollectionViewDelegate, UICollectionViewDataSour
     }()
     let cellReuseIdentifier: String = "menuCell"
     var menuOpen: Bool = false
-    var homeTabBarController: HomeTabBarController?
-    
+    var homeTabBarController: HomeTabBarController
+    let menuWidth: CGFloat = 250
     let menuOptions: [MenuOption] = {
         return [
         MenuOption(name: MenuOptionNames.home.rawValue, enumMenuOption: .home, imageName: "house"),
@@ -53,9 +53,14 @@ class MenuLauncher: NSObject, UICollectionViewDelegate, UICollectionViewDataSour
     }()
     var menuLeadingConstraint: NSLayoutConstraint?
     
-    override init() {
+    init(homeTabBarController: HomeTabBarController) {
+        self.homeTabBarController = homeTabBarController
         super.init()
         self.setupCollectionView()
+    }
+
+    convenience override init() {
+        self.init(homeTabBarController: HomeTabBarController()) // calls above mentioned controller with default view
     }
     
     func setupCollectionView() {
@@ -72,8 +77,14 @@ class MenuLauncher: NSObject, UICollectionViewDelegate, UICollectionViewDataSour
             // Add menu view to the window
             window.addSubview(self.collectionView)
             
-            let collectionViewWidth = CGFloat(300)
-            let collectionViewHeight = window.bounds.height
+            // Add constraints
+            if self.collectionView.constraints.count == 0 {
+                let topConstraint = NSLayoutConstraint(item: self.collectionView, attribute: .top, relatedBy: .equal, toItem: window, attribute: .top, multiplier: 1, constant: 0)
+                let bottomConstraint = NSLayoutConstraint(item: self.collectionView, attribute: .bottom, relatedBy: .equal, toItem: window.safeAreaLayoutGuide, attribute: .bottom, multiplier: 1, constant: 0)
+                self.menuLeadingConstraint = NSLayoutConstraint(item: self.collectionView, attribute: .leading, relatedBy: .equal, toItem: window.safeAreaLayoutGuide, attribute: .leading, multiplier: 1, constant: -self.menuWidth)
+                let widthConstraint = NSLayoutConstraint(item: self.collectionView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: self.menuWidth)
+                NSLayoutConstraint.activate([topConstraint, bottomConstraint, self.menuLeadingConstraint!, widthConstraint])
+            }
             
             // Set up a shadow around the menu so we can see it easier
             self.collectionView.layer.shadowColor = UIColor.black.cgColor
@@ -82,38 +93,36 @@ class MenuLauncher: NSObject, UICollectionViewDelegate, UICollectionViewDataSour
             //self.collectionView.layer.shouldRasterize = true
             self.collectionView.layer.masksToBounds = false
             self.collectionView.translatesAutoresizingMaskIntoConstraints = false
-            
+
             if self.menuOpen == false {
                 // Opening the menu
-                let collectionViewClosedFrame = CGRect(x: -collectionViewWidth, y: 0, width: collectionViewWidth, height: collectionViewHeight)
-                self.collectionView.frame = collectionViewClosedFrame
-                self.collectionView.layer.shadowOpacity = 0.5 // Show shadow of menu before it is animated open
-                
-                let collectionViewOpenFrame = CGRect(x: 0, y: 0, width: collectionViewWidth, height: collectionViewHeight)
-                
+                self.menuLeadingConstraint?.constant = 0
+
                 UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-                    self.collectionView.frame = collectionViewOpenFrame
-                }) { [weak self] (success) in
-                    
-                    self?.collectionView.layer.shadowPath = UIBezierPath(rect: collectionViewOpenFrame).cgPath
-                    self?.menuOpen = true
+                    self.collectionView.layer.shadowOpacity = 0.5 // Show shadow of menu before it is animated open
+                    window.layoutIfNeeded()
+                }) {(success) in
                     guard let unwrappedCompletion = completion else { return }
                     unwrappedCompletion()
-                    
                 }
+                self.menuOpen = true
                 
             } else {
                 // Closing the menu
+                self.menuLeadingConstraint?.constant = -self.menuWidth
                 UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                     self.collectionView.layer.shadowOpacity = 0 // Animate shadow to fade away with the sliding in of the menu
-                    self.collectionView.frame = CGRect(x: -collectionViewWidth, y: 0, width: collectionViewWidth, height: collectionViewHeight)
-                }) {
-                    [weak self ] (success) in
-                    self?.menuOpen = false
+                    window.layoutIfNeeded()
+                }) {(success) in
                     guard let unwrappedCompletion = completion else { return }
                     unwrappedCompletion()
                 }
+                
+                self.menuOpen = false
             }
+            
+            guard let menuLeadingConstraint = self.menuLeadingConstraint else { return }
+            print("Menu Leading Constraint Value: \(menuLeadingConstraint.constant)")
         }
     }
 }
@@ -144,7 +153,7 @@ extension MenuLauncher {
         self.toggleMenu {
             [weak self] in
             guard let menuOption = self?.menuOptions[indexPath.item] else { return }
-            self?.homeTabBarController?.showViewForMenuOptionSelected(menuOption: menuOption)
+            self?.homeTabBarController.showViewForMenuOptionSelected(menuOption: menuOption)
         }
         
     }
