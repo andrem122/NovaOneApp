@@ -8,14 +8,24 @@
 
 import UIKit
 
+enum MenuOptionNames: String {
+    case home = "Home"
+    case appointments = "Appointments"
+    case leads = "Leads"
+    case companies = "Companies"
+    case account = "Account"
+}
+
 class MenuOption: NSObject {
     // A model class to represent each item/cell in the menu
     
     let name: String
+    let enumMenuOption: MenuOptionNames
     let imageName: String
     
-    init(name: String, imageName: String) {
+    init(name: String, enumMenuOption: MenuOptionNames, imageName: String) {
         self.name = name
+        self.enumMenuOption = enumMenuOption
         self.imageName = imageName
     }
 }
@@ -31,14 +41,17 @@ class MenuLauncher: NSObject, UICollectionViewDelegate, UICollectionViewDataSour
     }()
     let cellReuseIdentifier: String = "menuCell"
     var menuOpen: Bool = false
+    var homeTabBarController: HomeTabBarController?
+    
     let menuOptions: [MenuOption] = {
         return [
-        MenuOption(name: "Home", imageName: "house"),
-        MenuOption(name: "Appointments", imageName: "calendar"),
-        MenuOption(name: "Leads", imageName: "person"),
-        MenuOption(name: "Companies", imageName: "briefcase"),
-        MenuOption(name: "Account", imageName: "gear")]
+        MenuOption(name: MenuOptionNames.home.rawValue, enumMenuOption: .home, imageName: "house"),
+        MenuOption(name: MenuOptionNames.appointments.rawValue, enumMenuOption: .appointments, imageName: "calendar"),
+        MenuOption(name: MenuOptionNames.leads.rawValue, enumMenuOption: .leads, imageName: "person"),
+        MenuOption(name: MenuOptionNames.companies.rawValue, enumMenuOption: .companies, imageName: "briefcase"),
+        MenuOption(name: MenuOptionNames.account.rawValue, enumMenuOption: .account, imageName: "gear")]
     }()
+    var menuLeadingConstraint: NSLayoutConstraint?
     
     override init() {
         super.init()
@@ -52,15 +65,15 @@ class MenuLauncher: NSObject, UICollectionViewDelegate, UICollectionViewDataSour
         self.collectionView.register(MenuCollectionViewCell.self, forCellWithReuseIdentifier: self.cellReuseIdentifier)
     }
     
-    func toggleMenu() {
+    func toggleMenu(completion: (() -> Void)?) {
         // Shows the menu
         if let window = UIApplication.shared.windows.filter({$0.isKeyWindow}).first {
             
             // Add menu view to the window
             window.addSubview(self.collectionView)
             
-            let collectionViewWidth = window.frame.width / 3 // Make menu half the window
-            let collectionViewHeight = window.frame.height
+            let collectionViewWidth = CGFloat(300)
+            let collectionViewHeight = window.bounds.height
             
             // Set up a shadow around the menu so we can see it easier
             self.collectionView.layer.shadowColor = UIColor.black.cgColor
@@ -68,6 +81,7 @@ class MenuLauncher: NSObject, UICollectionViewDelegate, UICollectionViewDataSour
             self.collectionView.layer.shadowOffset = CGSize(width: 3.0, height: 3.0)
             //self.collectionView.layer.shouldRasterize = true
             self.collectionView.layer.masksToBounds = false
+            self.collectionView.translatesAutoresizingMaskIntoConstraints = false
             
             if self.menuOpen == false {
                 // Opening the menu
@@ -80,8 +94,12 @@ class MenuLauncher: NSObject, UICollectionViewDelegate, UICollectionViewDataSour
                 UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                     self.collectionView.frame = collectionViewOpenFrame
                 }) { [weak self] (success) in
+                    
                     self?.collectionView.layer.shadowPath = UIBezierPath(rect: collectionViewOpenFrame).cgPath
                     self?.menuOpen = true
+                    guard let unwrappedCompletion = completion else { return }
+                    unwrappedCompletion()
+                    
                 }
                 
             } else {
@@ -89,10 +107,12 @@ class MenuLauncher: NSObject, UICollectionViewDelegate, UICollectionViewDataSour
                 UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                     self.collectionView.layer.shadowOpacity = 0 // Animate shadow to fade away with the sliding in of the menu
                     self.collectionView.frame = CGRect(x: -collectionViewWidth, y: 0, width: collectionViewWidth, height: collectionViewHeight)
-                }, completion: nil)
-                
-                self.menuOpen = false
-                
+                }) {
+                    [weak self ] (success) in
+                    self?.menuOpen = false
+                    guard let unwrappedCompletion = completion else { return }
+                    unwrappedCompletion()
+                }
             }
         }
     }
@@ -117,6 +137,16 @@ extension MenuLauncher {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        self.toggleMenu {
+            [weak self] in
+            guard let menuOption = self?.menuOptions[indexPath.item] else { return }
+            self?.homeTabBarController?.showViewForMenuOptionSelected(menuOption: menuOption)
+        }
+        
     }
    
 }

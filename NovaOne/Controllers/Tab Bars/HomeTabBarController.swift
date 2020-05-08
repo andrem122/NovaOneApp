@@ -12,8 +12,12 @@ class HomeTabBarController: UITabBarController, UITableViewDelegate {
     
     // MARK: Properties
     let toggleMenuNotificationName = NSNotification.Name(Defaults.NotificationObservers.toggleMenu.rawValue)
-    let menuLauncher = MenuLauncher()
     @IBOutlet weak var menuButton: UIBarButtonItem!
+    lazy var menuLauncher: MenuLauncher = {
+        let launcher = MenuLauncher()
+        launcher.homeTabBarController = self
+        return launcher
+    }()
     
     // MARK: Methods
     override func viewDidLoad() {
@@ -26,7 +30,30 @@ class HomeTabBarController: UITabBarController, UITableViewDelegate {
     
     // MARK: Actions
     @IBAction func menuButtonTapped(_ sender: Any) {
-        menuLauncher.toggleMenu()
+        menuLauncher.toggleMenu(completion: nil)
+    }
+    
+    func showViewForMenuOptionSelected(menuOption: MenuOption) {
+        // Shows the view associated with the tapped on menu option
+        let enumMenuOption = menuOption.enumMenuOption
+        
+        switch enumMenuOption {
+        case .home:
+            self.selectedIndex = 0
+        case .appointments:
+            self.selectedIndex = 1
+        case .leads:
+            self.selectedIndex = 2
+        case .companies:
+            self.selectedIndex = 3 // Account view
+            
+            guard let accountTableViewController = self.viewControllers?[3] as? UITableViewController else { return }
+            guard let companiesContainerViewController = self.storyboard?.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.companiesContainer.rawValue) as? CompaniesContainerViewController else { return }
+    
+            accountTableViewController.navigationController?.pushViewController(companiesContainerViewController, animated: true)
+        case .account:
+            self.selectedIndex = 3
+        }
     }
     
     func popOutMenu() {
@@ -51,7 +78,7 @@ class HomeTabBarController: UITabBarController, UITableViewDelegate {
         case (.regular, .regular):
             print("Regular width, regular height")
             // Toggle the menu and hide the menu button
-            menuLauncher.toggleMenu()
+            menuLauncher.toggleMenu(completion: nil)
             self.menuButton.isEnabled = false
             self.menuButton.tintColor = .clear
         case (.compact, .regular):

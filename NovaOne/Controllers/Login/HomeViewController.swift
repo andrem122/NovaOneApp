@@ -43,10 +43,8 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         if UIDevice.current.orientation.isLandscape {
-            print("Landscape")
             self.barChart.sizeThatFits(self.chartContainerView.frame.size)
         } else {
-            print("Portrait")
             self.barChart.sizeThatFits(self.chartContainerView.frame.size)
         }
     }
@@ -60,6 +58,15 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         let height = self.chartContainerView.bounds.height
         
         self.barChart.frame = CGRect(x: 0, y: 0, width: width, height: height) // x, y, width, and height all refer to the parent view which may not be the superview
+        self.barChart.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Set constraints
+        NSLayoutConstraint.activate([
+            self.barChart.leftAnchor.constraint(equalTo: self.chartContainerView.leftAnchor),
+            self.barChart.rightAnchor.constraint(equalTo: self.chartContainerView.rightAnchor),
+            self.barChart.topAnchor.constraint(equalTo: self.chartContainerView.topAnchor),
+            self.barChart.bottomAnchor.constraint(equalTo: self.chartContainerView.bottomAnchor)
+        ])
         
         // Set colors
         let colors = [Defaults.novaOneColor]
@@ -131,6 +138,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         let leadCount = UserDefaults.standard.integer(forKey: Defaults.UserDefaults.leadCount.rawValue)
         let appointmentCount = UserDefaults.standard.integer(forKey: Defaults.UserDefaults.appointmentCount.rawValue)
         let companyCount = UserDefaults.standard.integer(forKey: Defaults.UserDefaults.companyCount.rawValue)
+        
         self.numberOfLeadsLabel.text = String(leadCount)
         self.numberOfAppointmentsLabel.text = String(appointmentCount)
         self.numberOfCompaniesLabel.text = String(companyCount)
@@ -256,7 +264,6 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
                             
                             
                         }
-                        print("Count: \(count), Month/Year: \(dateString)")
                         
                         // Add to x labels array
                         self?.xLabels.append(dateString)
@@ -334,16 +341,10 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
     @IBAction func numberOfCompaniesLabelTapped(sender: UITapGestureRecognizer) {
         
         self.tabBarController?.selectedIndex = 3 // Account view
-        
-        guard let accountNavigationController = self.tabBarController?.viewControllers?[3] as? UINavigationController else { return }
+        guard let accountTableViewController = self.tabBarController?.viewControllers?[3] as? UITableViewController else { return }
         guard let companiesContainerViewController = self.storyboard?.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.companiesContainer.rawValue) as? CompaniesContainerViewController else { return }
-        guard let accountTableViewController = accountNavigationController.viewControllers[0] as? AccountTableViewController else { return }
-        
-        // If the compaines container view controller is NOT visible on the navigation stack, push it to be visible
-        if (accountTableViewController.navigationController?.visibleViewController as? CompaniesContainerViewController) == nil {
-            accountTableViewController.navigationController?.popToRootViewController(animated: true)
-            accountTableViewController.navigationController?.pushViewController(companiesContainerViewController, animated: true)
-        }
+
+        accountTableViewController.navigationController?.pushViewController(companiesContainerViewController, animated: true)
         
     }
     
