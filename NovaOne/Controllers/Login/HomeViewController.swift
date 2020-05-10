@@ -40,15 +40,6 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         }
     }
     
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        if UIDevice.current.orientation.isLandscape {
-            self.barChart.sizeThatFits(self.chartContainerView.frame.size)
-        } else {
-            self.barChart.sizeThatFits(self.chartContainerView.frame.size)
-        }
-    }
-    
     func setupChart() {
         // Add chart view to chart container view
         self.chartContainerView.addSubview(barChart)

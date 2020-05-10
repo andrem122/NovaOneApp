@@ -14,7 +14,8 @@ class StartViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var pageControl: UIPageControl!
-    lazy var sliderLauncher = SliderLauncher(pageControl: self.pageControl)
+    @IBOutlet weak var scrollView: UIScrollView!
+    lazy var sliderLauncher = SliderLauncher(scrollView: self.scrollView, pageControl: self.pageControl)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +24,7 @@ class StartViewController: UIViewController, UIScrollViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // Rotate the orientation of the screen to potrait and lock it
-        AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
+        //AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
         sliderLauncher.launchSlider()
     }
     
@@ -32,8 +33,16 @@ class StartViewController: UIViewController, UIScrollViewDelegate {
         
         // Reset lock orientation to all so that if naviagting to another view,
         // you can rotate the orientation again
-        AppUtility.lockOrientation(.all)
+        //AppUtility.lockOrientation(.all)
         sliderLauncher.disableTimer()
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate(alongsideTransition: nil) {
+            [weak self] (_) in
+            self?.sliderLauncher.repositionSlideOnDeviceRotation()
+        }
     }
     
 

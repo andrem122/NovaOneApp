@@ -77,7 +77,7 @@ class MenuLauncher: NSObject, UICollectionViewDelegate, UICollectionViewDataSour
             // Add menu view to the window
             window.addSubview(self.collectionView)
             
-            // Add constraints
+            // Add constraints to menu if we haven't already added them when the menu was toggled
             if self.collectionView.constraints.count == 0 {
                 let topConstraint = NSLayoutConstraint(item: self.collectionView, attribute: .top, relatedBy: .equal, toItem: window, attribute: .top, multiplier: 1, constant: 0)
                 let bottomConstraint = NSLayoutConstraint(item: self.collectionView, attribute: .bottom, relatedBy: .equal, toItem: window.safeAreaLayoutGuide, attribute: .bottom, multiplier: 1, constant: 0)

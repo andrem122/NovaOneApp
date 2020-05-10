@@ -26,35 +26,31 @@ class SliderLauncher: NSObject {
     let slides: [Slide] = {
         return [
             Slide(title: "Welcome To NovaOne", subtitle: "Automate your lead process today!", imageName: "novaOneLogo"),
-            Slide(title: "24/7 Contact", subtitle: "NovaOne works 24/7 to contact and qualify leads", imageName: "novaOneLogo"),
-            Slide(title: "Automated Appointments", subtitle: "NovaOne makes it easy to set up appointments with leads", imageName: "novaOneLogo")
+            Slide(title: "24/7 Contact", subtitle: "NovaOne works 24/7 to contact and qualify leads", imageName: "texting"),
+            Slide(title: "Automated Appointments", subtitle: "NovaOne makes it easy to set up appointments with leads", imageName: "interface")
         ]
     }()
-    let scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.frame = .zero
-        scrollView.backgroundColor = Defaults.novaOneColor
-        scrollView.isPagingEnabled = true
-        scrollView.showsHorizontalScrollIndicator = false
-        return scrollView
-    }()
     var pageControl: UIPageControl
+    var scrollView: UIScrollView
     var slideIndex: Int = 0
     var timer: Timer?
     var sliderDidEndLaunching = false
     
-    init(pageControl: UIPageControl) {
+    init(scrollView: UIScrollView, pageControl: UIPageControl) {
         self.pageControl = pageControl
+        self.scrollView = scrollView
         super.init()
         self.setupScrollView()
     }
 
     convenience override init() {
-        self.init(pageControl: UIPageControl()) // calls above mentioned controller with default view
+        self.init(scrollView: UIScrollView(), pageControl: UIPageControl()) // calls above mentioned controller with default view
     }
     
     func setupScrollView() {
         self.scrollView.delegate = self
+        self.scrollView.showsHorizontalScrollIndicator = false
+        self.scrollView.showsVerticalScrollIndicator = false
     }
     
     func launchSlider() {
@@ -62,26 +58,41 @@ class SliderLauncher: NSObject {
         
         if let window = UIApplication.shared.windows.filter({$0.isKeyWindow}).first {
             
-            window.addSubview(self.scrollView)
-            
             // Setup the scroll view
-            let scrollViewContentSize = window.frame.width * CGFloat(self.slides.count)
-            self.scrollView.contentSize = CGSize(width: scrollViewContentSize, height: 335) // height of scroll view must be equal to height of feature.xib file object to prevent vertical scrolling
-            self.scrollView.frame = CGRect(x: 0, y: 0, width: window.frame.width, height: window.frame.height * 0.60)
+            let scrollViewContentSize = window.bounds.width * CGFloat(self.slides.count)
+            self.scrollView.contentSize = CGSize(width: scrollViewContentSize, height: self.scrollView.bounds.height)
             
             // Setup slides in scroll view
+            var nextSlideLeadingConstraint = self.scrollView.leftAnchor
             for (index, slide) in self.slides.enumerated() {
                 
                 if let featureView = Bundle.main.loadNibNamed("Feature", owner: self, options: nil)?.first as? FeatureView {
                     
                     featureView.slide = slide
+                    featureView.translatesAutoresizingMaskIntoConstraints = false
                     self.scrollView.addSubview(featureView)
                     
-                    // Set featureView frame
-                    featureView.frame = CGRect(x: CGFloat(index) * self.scrollView.frame.width, y: 0, width: self.scrollView.frame.width, height: self.scrollView.frame.height)
+                    // Set constraints
+                    NSLayoutConstraint.activate([
+                        featureView.leftAnchor.constraint(equalTo: nextSlideLeadingConstraint),
+                        featureView.topAnchor.constraint(equalTo: self.scrollView.topAnchor),
+                        featureView.widthAnchor.constraint(equalTo: self.scrollView.widthAnchor),
+                        featureView.heightAnchor.constraint(equalTo: self.scrollView.heightAnchor),
+                    ])
+                    
+                    nextSlideLeadingConstraint = featureView.rightAnchor
+                    
+                    // Set last slide right anchor
+                    if index == slides.count - 1 {
+                        NSLayoutConstraint.activate([
+                            featureView.rightAnchor.constraint(equalTo: self.scrollView.rightAnchor)
+                        ])
+                    }
+                    
                 }
                 
             }
+            
         }
         
         self.setUpSliderTimer()
@@ -89,6 +100,7 @@ class SliderLauncher: NSObject {
     }
     
     func setUpSliderTimer() {
+        print("Setting up a timer")
         self.timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(changeSlides), userInfo: nil, repeats: true)
     }
     
@@ -98,7 +110,6 @@ class SliderLauncher: NSObject {
     
     @objc func changeSlides() {
         // Changes slides for the scroll view timer one slide at a time
-        
         if self.slideIndex < self.slides.count - 1 {
             self.slideIndex += 1 // Set featureViewIndex to one because zero times anything is zero and will result waiting in another 3 seconds and the slider not sliding on the first timer count
             
@@ -115,6 +126,16 @@ class SliderLauncher: NSObject {
         print("Slide Index: \(self.slideIndex)")
         
         
+    }
+    
+    func repositionSlideOnDeviceRotation() {
+        // Changes slides for the scroll view when the device changes orientation
+        self.disableTimer()
+        
+        let xPosition = CGFloat(self.slideIndex) * self.scrollView.frame.width
+        self.scrollView.setContentOffset(CGPoint(x: xPosition, y: 0), animated: true)
+        
+        self.timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(changeSlides), userInfo: nil, repeats: true)
     }
     
 }
