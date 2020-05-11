@@ -25,9 +25,9 @@ class SliderLauncher: NSObject {
     
     let slides: [Slide] = {
         return [
-            Slide(title: "Welcome To NovaOne", subtitle: "Automate your lead process today!", imageName: "novaOneLogo"),
+            Slide(title: "Welcome To NovaOne", subtitle: "Automate your lead process today!", imageName: "novaOneLogoSlider"),
             Slide(title: "24/7 Contact", subtitle: "NovaOne works 24/7 to contact and qualify leads", imageName: "texting"),
-            Slide(title: "Automated Appointments", subtitle: "NovaOne makes it easy to set up appointments with leads", imageName: "interface")
+            Slide(title: "Auto Appointments", subtitle: "NovaOne makes it easy to set up appointments with leads", imageName: "interface")
         ]
     }()
     var pageControl: UIPageControl
@@ -75,7 +75,7 @@ class SliderLauncher: NSObject {
                     // Set constraints
                     NSLayoutConstraint.activate([
                         featureView.leftAnchor.constraint(equalTo: nextSlideLeadingConstraint),
-                        featureView.topAnchor.constraint(equalTo: self.scrollView.topAnchor),
+                        featureView.centerYAnchor.constraint(equalTo: self.scrollView.centerYAnchor),
                         featureView.widthAnchor.constraint(equalTo: self.scrollView.widthAnchor),
                         featureView.heightAnchor.constraint(equalTo: self.scrollView.heightAnchor),
                     ])
