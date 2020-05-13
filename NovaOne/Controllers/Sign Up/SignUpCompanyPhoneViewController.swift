@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SignUpCompanyPhoneViewController: UIViewController {
+class SignUpCompanyPhoneViewController: BaseSignUpViewController {
     
     // MARK: Properties
     @IBOutlet weak var continueButton: NovaOneButton!
@@ -26,9 +26,14 @@ class SignUpCompanyPhoneViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        AppUtility.lockOrientation(.portrait, andRotateTo: .portrait) // Lock orientation to potrait
         // Make text field become first responder
         self.propertyPhoneTextField.becomeFirstResponder()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        AppUtility.lockOrientation(.all) // Reset orientation
     }
     
     // MARK: Actions

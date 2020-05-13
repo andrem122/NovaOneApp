@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SignUpCompanyNameViewController: UIViewController {
+class SignUpCompanyNameViewController: BaseSignUpViewController {
     
     // MARK: Properties
     @IBOutlet weak var continueButton: NovaOneButton!

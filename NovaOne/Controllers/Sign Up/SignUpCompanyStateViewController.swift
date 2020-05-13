@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SignUpCompanyStateViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class SignUpCompanyStateViewController: BaseSignUpViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     // MARK: Properties
     @IBOutlet weak var statePicker: UIPickerView!

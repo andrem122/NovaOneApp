@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SignUpPasswordViewController: UIViewController {
+class SignUpPasswordViewController: BaseSignUpViewController {
     
     // MARK: Properties
     @IBOutlet weak var passwordTextField: NovaOneTextField!
@@ -27,15 +27,27 @@ class SignUpPasswordViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        // Make text field become first responder
-        self.passwordTextField.becomeFirstResponder()
+        AppUtility.lockOrientation(.portrait, andRotateTo: .portrait) // Lock orientation to potrait
+        self.passwordTextField.becomeFirstResponder() // Make text field become first responder
     }
     
     // MARK: Actions
-    
     @IBAction func passwordTextFieldChanged(_ sender: Any) {
         UIHelper.toggle(button: self.continueButton, textField: self.passwordTextField, enabledColor: Defaults.novaOneColor, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil, closure: nil)
     }
-
+    
+    
+    @IBAction func continueButtonTapped(_ sender: Any) {
+        guard let password = self.passwordTextField.text else { return }
+        if password.count < 10 {
+            let popUpOkViewController = self.alertService.popUpOk(title: "Password Length", body: "Password must be at least ten characters long.")
+            self.present(popUpOkViewController, animated: true, completion: nil)
+        } else {
+            guard let signUpNameViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.signUpName.rawValue) as? SignUpNameViewController else { return }
+            self.customer?.password = password
+            signUpNameViewController.customer = self.customer
+            self.navigationController?.pushViewController(signUpNameViewController, animated: true)
+        }
+    }
+    
 }

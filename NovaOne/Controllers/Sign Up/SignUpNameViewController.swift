@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SignUpNameViewController: UIViewController, UITextFieldDelegate {
+class SignUpNameViewController: BaseSignUpViewController, UITextFieldDelegate {
     
     // MARK: Properties
     @IBOutlet weak var firstNameTextField: NovaOneTextField!
@@ -73,7 +73,10 @@ class SignUpNameViewController: UIViewController, UITextFieldDelegate {
             return true
         }
     }
-
+    
+    @IBAction func continueButtonTapped(_ sender: Any) {
+    }
+    
 }
 
 extension SignUpNameViewController {

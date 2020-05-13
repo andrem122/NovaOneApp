@@ -19,22 +19,18 @@ class StartViewController: UIViewController, UIScrollViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        changeStyleForInterfaceStyle()
+        self.changeStyleForInterfaceStyle()
+        self.setupPageControlForRegularSizeClass()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // Rotate the orientation of the screen to potrait and lock it
-        //AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
         sliderLauncher.launchSlider()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        // Reset lock orientation to all so that if naviagting to another view,
-        // you can rotate the orientation again
-        //AppUtility.lockOrientation(.all)
         sliderLauncher.disableTimer()
     }
     
@@ -47,6 +43,14 @@ class StartViewController: UIViewController, UIScrollViewDelegate {
         coordinator.animate(alongsideTransition: nil) {
             [weak self] (_) in
             self?.sliderLauncher.repositionSlideOnDeviceRotation()
+        }
+    }
+    
+    func setupPageControlForRegularSizeClass() {
+        // Sets up the page control for the regular width & height size class
+        if self.traitCollection.horizontalSizeClass == .regular && self.traitCollection.verticalSizeClass == .regular {
+            // Change size of page control dots for ipads
+            self.pageControl.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
         }
     }
     

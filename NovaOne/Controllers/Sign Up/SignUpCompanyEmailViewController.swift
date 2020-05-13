@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SignUpCompanyEmailViewController: UIViewController {
+class SignUpCompanyEmailViewController: BaseSignUpViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
