@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SignUpPhoneViewController: BaseSignUpViewController {
+class SignUpPhoneViewController: BaseSignUpViewController, UITextFieldDelegate {
     
     // MARK: Properties
     @IBOutlet weak var phoneTextField: NovaOneTextField!
@@ -16,10 +16,14 @@ class SignUpPhoneViewController: BaseSignUpViewController {
     
     // MARK: Methods
     func setup() {
+        self.phoneTextField.delegate = self
         UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil)
+        print(self.customer?.firstName)
     }
     
     func format(phoneNumber: String, shouldRemoveLastDigit: Bool = false) -> String {
+        // Formats a phone number in (XXX) XXX-XXXX format when typing into the text field
+        
         guard !phoneNumber.isEmpty else { return "" }
         guard let regex = try? NSRegularExpression(pattern: "[\\s-\\(\\)]", options: .caseInsensitive) else { return "" }
         let r = NSString(string: phoneNumber).range(of: phoneNumber)
@@ -62,8 +66,43 @@ class SignUpPhoneViewController: BaseSignUpViewController {
     }
     
     // MARK: Actions
+    
     @IBAction func phoneTextFieldChanged(_ sender: Any) {
-        UIHelper.toggle(button: self.continueButton, textField: self.phoneTextField, enabledColor: Defaults.novaOneColor, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil, closure: nil)
     }
+    
+    @IBAction func continueButtonTapped(_ sender: Any) {
+        
+    }
+    
+}
 
+extension SignUpPhoneViewController {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        guard var phoneNumber = textField.text else { return false }
+        UIHelper.toggle(button: self.continueButton, textField: nil, enabledColor: Defaults.novaOneColor, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil) {() -> Bool in
+            
+            let unformattedPhoneNumber = phoneNumber.replacingOccurrences(of: "[\\(\\)\\s-]", with: "", options: .regularExpression, range: nil)
+            
+            // Add one to the unformatted phone number count because textfield.text
+            // does NOT include the last typed character into the textfield
+            if phoneNumber.isEmpty || string.isEmpty || unformattedPhoneNumber.count + 1 < 10 {
+                return false
+            }
+            
+            // Number entered is 10 digits and is not empty, so enable continue button
+            return true
+        }
+
+        phoneNumber.append(string)
+        if range.length == 1 {
+            textField.text = self.format(phoneNumber: phoneNumber, shouldRemoveLastDigit: true)
+        } else {
+            textField.text = self.format(phoneNumber: phoneNumber)
+        }
+        
+        return false
+    }
+    
 }

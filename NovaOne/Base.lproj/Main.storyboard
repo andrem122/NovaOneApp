@@ -766,14 +766,14 @@ and you have 4 leads.</string>
                                 <exclude reference="b86-Vm-ZcJ"/>
                                 <exclude reference="Hxz-Z3-40J"/>
                                 <exclude reference="foC-GP-8M1"/>
-                                <exclude reference="SLM-4r-bTB"/>
-                                <exclude reference="uRU-wU-6M5"/>
-                                <exclude reference="vCj-dD-9FD"/>
-                                <exclude reference="vHs-uu-Fhg"/>
                                 <exclude reference="616-jn-s43"/>
                                 <exclude reference="8Pc-zX-KAr"/>
                                 <exclude reference="o9i-oc-bHs"/>
                                 <exclude reference="z2s-my-NNz"/>
+                                <exclude reference="SLM-4r-bTB"/>
+                                <exclude reference="uRU-wU-6M5"/>
+                                <exclude reference="vCj-dD-9FD"/>
+                                <exclude reference="vHs-uu-Fhg"/>
                                 <exclude reference="h5H-pe-Fx8"/>
                                 <exclude reference="olH-T5-kKA"/>
                                 <exclude reference="1wh-00-Kif"/>
@@ -807,13 +807,13 @@ and you have 4 leads.</string>
                                 <exclude reference="Xuz-jy-tX9"/>
                                 <include reference="foC-GP-8M1"/>
                                 <include reference="LA2-Nu-Jgz"/>
-                                <exclude reference="N1v-Pw-Jfd"/>
-                                <include reference="uRU-wU-6M5"/>
-                                <include reference="vCj-dD-9FD"/>
                                 <include reference="616-jn-s43"/>
                                 <exclude reference="H27-Ja-MyT"/>
                                 <include reference="o9i-oc-bHs"/>
                                 <include reference="z2s-my-NNz"/>
+                                <exclude reference="N1v-Pw-Jfd"/>
+                                <include reference="uRU-wU-6M5"/>
+                                <include reference="vCj-dD-9FD"/>
                                 <exclude reference="8ex-Ea-pw1"/>
                                 <exclude reference="CKj-rc-rme"/>
                                 <include reference="h5H-pe-Fx8"/>
@@ -840,11 +840,11 @@ and you have 4 leads.</string>
                                 <exclude reference="lXP-e3-wiY"/>
                                 <exclude reference="LTg-zp-Bjv"/>
                                 <include reference="TDI-GJ-KRU"/>
+                                <include reference="8Pc-zX-KAr"/>
+                                <exclude reference="H27-Ja-MyT"/>
                                 <exclude reference="N1v-Pw-Jfd"/>
                                 <include reference="SLM-4r-bTB"/>
                                 <include reference="vHs-uu-Fhg"/>
-                                <include reference="8Pc-zX-KAr"/>
-                                <exclude reference="H27-Ja-MyT"/>
                                 <include reference="1wh-00-Kif"/>
                                 <include reference="26U-U6-LwQ"/>
                                 <exclude reference="2qe-ns-J83"/>
@@ -1373,7 +1373,7 @@ and you have 4 leads.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l81-Bp-mqS">
-                                <rect key="frame" x="89.333333333333314" y="70" width="235.33333333333337" height="40.666666666666657"/>
+                                <rect key="frame" x="89.333333333333329" y="70" width="235.33333333333337" height="40.666666666666657"/>
                                 <string key="text">Please enter the email address 
 associated with your account.</string>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
@@ -1452,7 +1452,7 @@ on how to reset your password.</string>
                                             <constraint firstAttribute="height" constant="45" id="gfn-JR-czZ"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="go" secureTextEntry="YES" textContentType="email"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="go" secureTextEntry="YES" textContentType="password"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="20"/>
@@ -1491,7 +1491,7 @@ on how to reset your password.</string>
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create A Password" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7xd-hx-0ia" userLabel="Title">
-                                <rect key="frame" x="30" y="30" width="354" height="33.666666666666657"/>
+                                <rect key="frame" x="30" y="29.999999999999996" width="354" height="33.666666666666657"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                 <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1594,7 +1594,7 @@ on how to reset your password.</string>
                                             <constraint firstAttribute="height" constant="45" id="fNS-to-jI9"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="continue" secureTextEntry="YES" textContentType="name"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="go" textContentType="name"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="20"/>
@@ -1628,6 +1628,7 @@ on how to reset your password.</string>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="continueButtonTapped:" destination="f0p-nn-6Fb" eventType="touchUpInside" id="JyZ-gH-t8k"/>
+                                            <segue destination="EBv-if-n2Q" kind="show" id="IPO-VT-YsR"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1690,7 +1691,7 @@ on how to reset your password.</string>
                                             <constraint firstAttribute="height" constant="45" id="zTJ-rF-iLS"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="continue" textContentType="tel"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="continue" textContentType="tel"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="20"/>
@@ -1703,18 +1704,18 @@ on how to reset your password.</string>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="phoneTextFieldChanged:" destination="EBv-if-n2Q" eventType="editingChanged" id="gdI-sK-DbO"/>
+                                            <action selector="phoneTextFieldChanged:" destination="EBv-if-n2Q" eventType="editingChanged" id="9Ob-Mb-YZ6"/>
                                         </connections>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mpw-vS-7oU" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mpw-vS-7oU" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="65" width="354" height="45"/>
                                         <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="hKa-P7-LWc"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                                        <state key="normal" title="Continue">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
+                                        <state key="normal" title="Continue" image="lock" catalog="system">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -1722,6 +1723,9 @@ on how to reset your password.</string>
                                                 <real key="value" value="20"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="continueButtonTapped:" destination="EBv-if-n2Q" eventType="touchUpInside" id="7Sa-jm-ifu"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -2335,13 +2339,13 @@ on how to reset your password.</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amanda Taylor" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="waM-9h-XE1" userLabel="Name Value">
-                                                    <rect key="frame" x="371.33333333333331" y="10" width="112" height="20"/>
+                                                    <rect key="frame" x="271" y="10" width="112" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gUr-ED-k0J">
-                                                    <rect key="frame" x="489.33333333333331" y="10" width="20" height="20"/>
+                                                    <rect key="frame" x="389" y="10" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="20" id="Db5-Ze-UBq"/>
                                                         <constraint firstAttribute="width" secondItem="gUr-ED-k0J" secondAttribute="height" multiplier="1:1" id="Jpd-SQ-R6T"/>
@@ -2379,7 +2383,7 @@ on how to reset your password.</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="47" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="Zdt-f1-zvg" userLabel="Customer Number Value">
-                                                    <rect key="frame" x="484.33333333333331" y="10" width="20" height="20"/>
+                                                    <rect key="frame" x="384" y="10" width="20" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -2409,7 +2413,7 @@ on how to reset your password.</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8WZ-sR-Zxu">
-                                                    <rect key="frame" x="489.33333333333331" y="10" width="20" height="20"/>
+                                                    <rect key="frame" x="389" y="10" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="8WZ-sR-Zxu" secondAttribute="height" multiplier="1:1" id="IaN-nx-6qS"/>
                                                         <constraint firstAttribute="height" constant="20" id="MGu-Uj-0tN"/>
@@ -2444,7 +2448,7 @@ on how to reset your password.</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bQF-kD-f7o">
-                                                    <rect key="frame" x="489.33333333333331" y="10" width="20" height="20"/>
+                                                    <rect key="frame" x="389" y="10" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="bQF-kD-f7o" secondAttribute="height" multiplier="1:1" id="ROL-hZ-B8p"/>
                                                         <constraint firstAttribute="height" constant="20" id="mos-py-EIn"/>
@@ -2483,13 +2487,13 @@ on how to reset your password.</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="andre.mashraghi@gmail.com" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="YEy-Um-pYw">
-                                                    <rect key="frame" x="263.33333333333331" y="10" width="220" height="20"/>
+                                                    <rect key="frame" x="163" y="10" width="220" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="apW-7G-FBp">
-                                                    <rect key="frame" x="489.33333333333331" y="10" width="20" height="20"/>
+                                                    <rect key="frame" x="389" y="10" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="apW-7G-FBp" secondAttribute="height" multiplier="1:1" id="Ihs-Tv-qaA"/>
                                                         <constraint firstAttribute="height" constant="20" id="xMT-sz-AOC"/>
@@ -2527,13 +2531,13 @@ on how to reset your password.</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="561-246-5571" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="7IP-w7-3n5">
-                                                    <rect key="frame" x="374" y="10" width="109.33333333333331" height="20"/>
+                                                    <rect key="frame" x="273.66666666666669" y="10" width="109.33333333333331" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RnR-vl-Ocx">
-                                                    <rect key="frame" x="489.33333333333331" y="10" width="20" height="20"/>
+                                                    <rect key="frame" x="389" y="10" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="zsT-IO-1Lf"/>
                                                     </constraints>
@@ -2571,7 +2575,7 @@ on how to reset your password.</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LQh-3n-tRl">
-                                                    <rect key="frame" x="489.33333333333331" y="10" width="20" height="20"/>
+                                                    <rect key="frame" x="389" y="10" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="fhq-OO-ARt"/>
                                                     </constraints>
@@ -3264,7 +3268,7 @@ my friend :)</string>
                                         <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company Details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f58-GM-B3N">
-                                        <rect key="frame" x="117.66666666666669" y="190.33333333333334" width="178.66666666666663" height="27.666666666666657"/>
+                                        <rect key="frame" x="117.66666666666667" y="190.33333333333334" width="178.66666666666663" height="27.666666666666657"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="23"/>
                                         <color key="textColor" red="0.054096423089504242" green="0.011432306841015816" blue="0.030369827523827553" alpha="0.78898223460000005" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -4672,7 +4676,7 @@ hours below.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="k3E-xG-IDk">
-                                <rect key="frame" x="95" y="130" width="224.33333333333337" height="250.33333333333337"/>
+                                <rect key="frame" x="95.000000000000014" y="130" width="224.33333333333337" height="250.33333333333337"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="success" translatesAutoresizingMaskIntoConstraints="NO" id="uR7-V6-XAh">
                                         <rect key="frame" x="27" y="0.0" width="170" height="170"/>
@@ -4849,7 +4853,7 @@ hours below.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Appointment" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lZA-Gm-ydZ">
-                                <rect key="frame" x="79.666666666666686" y="86" width="254.66666666666663" height="37"/>
+                                <rect key="frame" x="79.666666666666671" y="86" width="254.66666666666663" height="37"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
                                 <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -5577,7 +5581,7 @@ with the appointment below.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Gender" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pJl-wX-Q5I">
-                                <rect key="frame" x="97.333333333333314" y="30" width="219.33333333333337" height="37"/>
+                                <rect key="frame" x="97.333333333333329" y="30" width="219.33333333333337" height="37"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
                                 <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -6058,7 +6062,7 @@ with the appointment below.</string>
                                         <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Appointment Details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G3U-1g-ZhB">
-                                        <rect key="frame" x="100" y="190.33333333333334" width="214.33333333333337" height="27.666666666666657"/>
+                                        <rect key="frame" x="100.00000000000001" y="190.33333333333334" width="214.33333333333337" height="27.666666666666657"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="23"/>
                                         <color key="textColor" red="0.054096423089999998" green="0.01143230684" blue="0.03036982752" alpha="0.78898223460000005" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -6337,7 +6341,7 @@ Number</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ube-qq-1Bl">
-                                <rect key="frame" x="94.333333333333314" y="124.00000000000001" width="225.66666666666669" height="40.666666666666671"/>
+                                <rect key="frame" x="94.333333333333329" y="124.00000000000001" width="225.66666666666669" height="40.666666666666671"/>
                                 <string key="text">Update the phone number of 
 the appointment.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -6767,7 +6771,7 @@ with the appointment below.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4YU-Lz-4cW">
-                                <rect key="frame" x="117.33333333333331" y="30" width="179.66666666666669" height="74"/>
+                                <rect key="frame" x="117.33333333333333" y="30" width="179.66666666666669" height="74"/>
                                 <string key="text">Update Test 
 Type</string>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
@@ -6838,7 +6842,7 @@ Type</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Address" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xqq-n1-OqZ">
-                                <rect key="frame" x="90.666666666666686" y="30" width="232.66666666666663" height="37"/>
+                                <rect key="frame" x="90.666666666666671" y="30" width="232.66666666666663" height="37"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
                                 <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -6922,7 +6926,7 @@ with the appointment below.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p4x-WW-WT7">
-                                <rect key="frame" x="117.66666666666669" y="30" width="178.66666666666663" height="74"/>
+                                <rect key="frame" x="117.66666666666667" y="30" width="178.66666666666663" height="74"/>
                                 <string key="text">Update Unit 
 Type</string>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
@@ -6993,7 +6997,7 @@ Type</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7WV-YS-MsT">
-                                <rect key="frame" x="108.66666666666669" y="30" width="196.66666666666663" height="37"/>
+                                <rect key="frame" x="108.66666666666667" y="30" width="196.66666666666663" height="37"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
                                 <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -7157,13 +7161,13 @@ with the appointment.</string>
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Appointment" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YEA-sL-vxc">
-                                <rect key="frame" x="79.666666666666686" y="89" width="254.66666666666663" height="37"/>
+                                <rect key="frame" x="79.666666666666671" y="89" width="254.66666666666663" height="37"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
                                 <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="szJ-uU-e4b">
-                                <rect key="frame" x="82.333333333333314" y="146" width="249.33333333333337" height="40.666666666666657"/>
+                                <rect key="frame" x="82.333333333333329" y="146" width="249.33333333333337" height="40.666666666666657"/>
                                 <string key="text">Select the company you want to 
 make an appointment for.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -7227,7 +7231,7 @@ make an appointment for.</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Akg-Ye-UyR">
-                                                    <rect key="frame" x="489.33333333333331" y="10" width="20" height="20"/>
+                                                    <rect key="frame" x="389" y="10" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="0o2-B7-gVe"/>
                                                         <constraint firstAttribute="width" secondItem="Akg-Ye-UyR" secondAttribute="height" multiplier="1:1" id="zSe-c9-Q7M"/>
@@ -7266,7 +7270,7 @@ make an appointment for.</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="es3-qY-yj7">
-                                                    <rect key="frame" x="489.33333333333331" y="10" width="20" height="20"/>
+                                                    <rect key="frame" x="389" y="10" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="LCO-bo-5FG"/>
                                                     </constraints>
@@ -7298,7 +7302,7 @@ make an appointment for.</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G8D-ww-vdB">
-                                                    <rect key="frame" x="489.33333333333331" y="10" width="20" height="20"/>
+                                                    <rect key="frame" x="389" y="10" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="6Lq-uN-zit"/>
                                                     </constraints>
@@ -7494,7 +7498,7 @@ make an appointment for.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ohD-81-3aN">
-                                <rect key="frame" x="94.333333333333314" y="146" width="225.33333333333337" height="40.666666666666657"/>
+                                <rect key="frame" x="94.333333333333329" y="146" width="225.33333333333337" height="40.666666666666657"/>
                                 <string key="text">Select the company you want
  to add the lead to.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -7628,7 +7632,7 @@ make an appointment for.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Lead Phone" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lna-td-zJT">
-                                <rect key="frame" x="89.666666666666686" y="86" width="234.66666666666663" height="37"/>
+                                <rect key="frame" x="89.666666666666671" y="86" width="234.66666666666663" height="37"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
                                 <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -7715,7 +7719,7 @@ of the lead below.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hH1-TG-Sfa">
-                                <rect key="frame" x="112.66666666666669" y="86" width="188.66666666666663" height="74"/>
+                                <rect key="frame" x="112.66666666666667" y="86" width="188.66666666666663" height="74"/>
                                 <string key="text">Add Lead 
 Renter Brand</string>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
@@ -7723,7 +7727,7 @@ Renter Brand</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pFb-Wj-lb9">
-                                <rect key="frame" x="101.33333333333331" y="180" width="211.66666666666669" height="40.666666666666657"/>
+                                <rect key="frame" x="101.33333333333333" y="180" width="211.66666666666669" height="40.666666666666657"/>
                                 <string key="text">Choose the renter brand of 
 the lead below.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -7810,6 +7814,7 @@ the lead below.</string>
         <image name="gpsMap" width="400" height="370.33334350585938"/>
         <image name="house" catalog="system" width="64" height="54"/>
         <image name="list.dash" catalog="system" width="64" height="42"/>
+        <image name="lock" catalog="system" width="64" height="64"/>
         <image name="novaOneLogo" width="85.333335876464844" height="85.333335876464844"/>
         <image name="novaOneLogoVertical" width="120.66666412353516" height="120.66666412353516"/>
         <image name="person" catalog="system" width="64" height="58"/>

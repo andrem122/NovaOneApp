@@ -31,7 +31,7 @@ class StartViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        sliderLauncher.disableTimer()
+        sliderLauncher.timer?.invalidate()
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

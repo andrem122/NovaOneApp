@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SignUpPasswordViewController: BaseSignUpViewController {
+class SignUpPasswordViewController: BaseSignUpViewController, UITextFieldDelegate {
     
     // MARK: Properties
     @IBOutlet weak var passwordTextField: NovaOneTextField!
@@ -16,6 +16,7 @@ class SignUpPasswordViewController: BaseSignUpViewController {
     
     // MARK: Methods
     func setup() {
+        self.passwordTextField.delegate = self
         UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil)
     }
     
@@ -50,4 +51,11 @@ class SignUpPasswordViewController: BaseSignUpViewController {
         }
     }
     
+}
+
+extension SignUpPasswordViewController {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.continueButton.sendActions(for: .touchUpInside)
+        return true
+    }
 }
