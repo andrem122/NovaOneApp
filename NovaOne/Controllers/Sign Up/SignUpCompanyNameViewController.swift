@@ -16,6 +16,7 @@ class SignUpCompanyNameViewController: BaseSignUpViewController {
     
     // MARK: Methods
     func setup() {
+        print(self.customer?.customerType)
         UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil)
     }
     
@@ -32,7 +33,6 @@ class SignUpCompanyNameViewController: BaseSignUpViewController {
     }
     
     // MARK: Actions
-    
     @IBAction func propertyNameTextFieldChanged(_ sender: Any) {
         UIHelper.toggle(button: self.continueButton, textField: self.propertyNameTextField, enabledColor: Defaults.novaOneColor, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil, closure: nil)
     }

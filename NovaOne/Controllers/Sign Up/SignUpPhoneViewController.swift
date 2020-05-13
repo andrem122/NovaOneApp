@@ -18,7 +18,6 @@ class SignUpPhoneViewController: BaseSignUpViewController, UITextFieldDelegate {
     func setup() {
         self.phoneTextField.delegate = self
         UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil)
-        print(self.customer?.firstName)
     }
     
     func format(phoneNumber: String, shouldRemoveLastDigit: Bool = false) -> String {
@@ -66,12 +65,19 @@ class SignUpPhoneViewController: BaseSignUpViewController, UITextFieldDelegate {
     }
     
     // MARK: Actions
-    
-    @IBAction func phoneTextFieldChanged(_ sender: Any) {
-    }
-    
     @IBAction func continueButtonTapped(_ sender: Any) {
+        guard
+            let customerTypeViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.signUpCustomerType.rawValue) as? SignUpCustomerTypeViewController,
+            let phoneNumber = self.phoneTextField.text
+        else { return }
         
+        let unformattedPhoneNumber = "+1" + phoneNumber.replacingOccurrences(of: "[\\(\\)\\s-]", with: "", options: .regularExpression, range: nil)
+        print(unformattedPhoneNumber)
+        
+        self.customer?.phoneNumber = unformattedPhoneNumber
+        customerTypeViewController.customer = self.customer
+        
+        self.navigationController?.pushViewController(customerTypeViewController, animated: true)
     }
     
 }

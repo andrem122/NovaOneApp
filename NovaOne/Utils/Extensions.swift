@@ -29,3 +29,15 @@ extension UIViewController {
         return (self.traitCollection.horizontalSizeClass, self.traitCollection.verticalSizeClass)
     }
 }
+
+extension String {
+    var isAlphabetical: Bool {
+        // Returns false or true if the string has only alphabetical characters
+        return !self.isEmpty && self.range(of: "[^a-zA-Z]", options: .regularExpression) == nil
+    }
+    
+    func trim() -> String {
+        // Removes any leading and trailing white space for strings
+        return self.trimmingCharacters(in: CharacterSet.whitespaces)
+    }
+}

@@ -61,8 +61,7 @@ class SignUpEmailViewController: BaseSignUpViewController, UITextFieldDelegate {
             self.navigationController?.pushViewController(signUpPasswordViewController, animated: true)
         } else {
             // Email is not valid, so present pop up
-            let title = "Invalid Email"
-            let popUpOkViewController = self.alertService.popUpOk(title: title, body: "Please enter a valid email.")
+            let popUpOkViewController = self.alertService.popUpOk(title: "Invalid Email", body: "Please enter a valid email.")
             self.present(popUpOkViewController, animated: true, completion: nil)
         }
         

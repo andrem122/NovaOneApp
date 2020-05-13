@@ -32,19 +32,6 @@ class SignUpNameViewController: BaseSignUpViewController, UITextFieldDelegate {
         self.firstNameTextField.becomeFirstResponder()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard
-            let signUpPhoneViewController = segue.destination as? SignUpPhoneViewController,
-            let firstName = self.firstNameTextField.text,
-            let lastName = self.lastNameTextField.text
-        else { return }
-        
-        self.customer?.firstName = firstName
-        self.customer?.lastName = lastName
-        
-        signUpPhoneViewController.customer = self.customer
-    }
-    
     // MARK: Actions
     @IBAction func firstNameTextFieldChanged(_ sender: Any) {
         UIHelper.toggle(button: self.continueButton, textField: nil, enabledColor: Defaults.novaOneColor, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil) { [weak self] () -> Bool in
@@ -88,6 +75,27 @@ class SignUpNameViewController: BaseSignUpViewController, UITextFieldDelegate {
     }
     
     @IBAction func continueButtonTapped(_ sender: Any) {
+        guard
+            let firstName = self.firstNameTextField.text,
+            let lastName = self.lastNameTextField.text
+        else { return }
+        
+        if firstName.trim().isAlphabetical && lastName.trim().isAlphabetical {
+            guard
+                let signUpPhoneViewController = self.storyboard?.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.signUpPhone.rawValue) as? SignUpPhoneViewController
+            else { return }
+
+            // Pass customer object
+            self.customer?.firstName = firstName
+            self.customer?.lastName = lastName
+            signUpPhoneViewController.customer = self.customer
+            
+            // Navigate to next view controller
+            self.navigationController?.pushViewController(signUpPhoneViewController, animated: true)
+        } else {
+            let popUpOkViewController = self.alertService.popUpOk(title: "Invalid Name", body: "Please enter a name with only alphabetic characters.")
+            self.present(popUpOkViewController, animated: true, completion: nil)
+        }
     }
     
 }
@@ -98,8 +106,7 @@ extension SignUpNameViewController {
         if textField == self.firstNameTextField {
             self.lastNameTextField.becomeFirstResponder()
         } else {
-            guard let signUpPhoneViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.signUpPhone.rawValue) as? SignUpPhoneViewController else { return false }
-            self.navigationController?.pushViewController(signUpPhoneViewController, animated: true)
+            self.continueButton.sendActions(for: .touchUpInside)
         }
         
         return true
