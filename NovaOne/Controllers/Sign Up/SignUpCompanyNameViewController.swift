@@ -16,7 +16,6 @@ class SignUpCompanyNameViewController: BaseSignUpViewController {
     
     // MARK: Methods
     func setup() {
-        print(self.customer?.customerType)
         UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil)
     }
     
@@ -36,4 +35,18 @@ class SignUpCompanyNameViewController: BaseSignUpViewController {
     @IBAction func propertyNameTextFieldChanged(_ sender: Any) {
         UIHelper.toggle(button: self.continueButton, textField: self.propertyNameTextField, enabledColor: Defaults.novaOneColor, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil, closure: nil)
     }
+    
+    @IBAction func continueButtonTapped(_ sender: Any) {
+        guard
+            let signUpCompanyAddressViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.signUpCompanyAddress.rawValue) as? SignUpCompanyAddressViewController,
+            let companyName = self.propertyNameTextField.text
+        else { return }
+        
+        self.company = CompanySignUpModel(address: "", name: companyName, phoneNumber: "", email: "", city: "", state: "", zip: "")
+        signUpCompanyAddressViewController.company = self.company
+        signUpCompanyAddressViewController.customer = self.customer
+        
+        self.navigationController?.pushViewController(signUpCompanyAddressViewController, animated: true)
+    }
+    
 }

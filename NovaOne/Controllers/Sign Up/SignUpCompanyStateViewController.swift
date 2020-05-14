@@ -76,6 +76,9 @@ class SignUpCompanyStateViewController: BaseSignUpViewController, UIPickerViewDe
         self.statePicker.dataSource = self
     }
     
+    @IBAction func continueButtonTapped(_ sender: Any) {
+    }
+    
 }
 
 extension SignUpCompanyStateViewController {

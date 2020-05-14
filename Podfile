@@ -8,6 +8,7 @@ target 'NovaOne' do
   # Pods for NovaOne
   pod 'SkeletonView'
   pod 'Charts'
+  pod 'GooglePlaces'
   
   target 'NovaOneTests' do
     inherit! :search_paths

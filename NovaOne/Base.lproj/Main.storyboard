@@ -318,7 +318,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5O7-UW-25n" userLabel="Cancel Button">
-                                <rect key="frame" x="20" y="20" width="33.5" height="33.5"/>
+                                <rect key="frame" x="20" y="20" width="67" height="67"/>
                                 <state key="normal" image="cancelButtonBlue"/>
                                 <connections>
                                     <action selector="cancelButtonTouch:" destination="00c-Xy-omL" eventType="touchUpInside" id="I9r-bb-DbA"/>
@@ -758,12 +758,12 @@ and you have 4 leads.</string>
                                 <exclude reference="YWF-cW-gfR"/>
                                 <exclude reference="Ldl-KT-Ijv"/>
                                 <exclude reference="mki-Rd-W3K"/>
-                                <exclude reference="Rlk-k5-6Hd"/>
-                                <exclude reference="zwk-at-UiM"/>
                                 <exclude reference="TDI-GJ-KRU"/>
                                 <exclude reference="iqe-ZV-J8j"/>
                                 <exclude reference="KXi-WX-qe9"/>
                                 <exclude reference="b86-Vm-ZcJ"/>
+                                <exclude reference="Rlk-k5-6Hd"/>
+                                <exclude reference="zwk-at-UiM"/>
                                 <exclude reference="Hxz-Z3-40J"/>
                                 <exclude reference="foC-GP-8M1"/>
                                 <exclude reference="616-jn-s43"/>
@@ -774,14 +774,14 @@ and you have 4 leads.</string>
                                 <exclude reference="uRU-wU-6M5"/>
                                 <exclude reference="vCj-dD-9FD"/>
                                 <exclude reference="vHs-uu-Fhg"/>
-                                <exclude reference="h5H-pe-Fx8"/>
-                                <exclude reference="olH-T5-kKA"/>
                                 <exclude reference="1wh-00-Kif"/>
                                 <exclude reference="5SU-oX-jc7"/>
                                 <exclude reference="656-q3-1Ul"/>
                                 <exclude reference="SCR-bN-Jb3"/>
                                 <exclude reference="XS0-nR-WjD"/>
                                 <exclude reference="iy0-Jm-Jw9"/>
+                                <exclude reference="h5H-pe-Fx8"/>
+                                <exclude reference="olH-T5-kKA"/>
                                 <exclude reference="HvC-yU-hKt"/>
                                 <exclude reference="Ltv-Di-a2G"/>
                             </mask>
@@ -795,13 +795,13 @@ and you have 4 leads.</string>
                                 <exclude reference="idw-uo-23G"/>
                                 <include reference="Ldl-KT-Ijv"/>
                                 <exclude reference="ya8-wH-cms"/>
-                                <exclude reference="mlu-3I-NPX"/>
-                                <include reference="zwk-at-UiM"/>
-                                <exclude reference="lXP-e3-wiY"/>
                                 <exclude reference="LTg-zp-Bjv"/>
                                 <include reference="iqe-ZV-J8j"/>
                                 <include reference="KXi-WX-qe9"/>
                                 <include reference="b86-Vm-ZcJ"/>
+                                <exclude reference="mlu-3I-NPX"/>
+                                <include reference="zwk-at-UiM"/>
+                                <exclude reference="lXP-e3-wiY"/>
                                 <exclude reference="DOR-xz-8bI"/>
                                 <include reference="Hxz-Z3-40J"/>
                                 <exclude reference="Xuz-jy-tX9"/>
@@ -814,14 +814,14 @@ and you have 4 leads.</string>
                                 <exclude reference="N1v-Pw-Jfd"/>
                                 <include reference="uRU-wU-6M5"/>
                                 <include reference="vCj-dD-9FD"/>
-                                <exclude reference="8ex-Ea-pw1"/>
-                                <exclude reference="CKj-rc-rme"/>
-                                <include reference="h5H-pe-Fx8"/>
-                                <include reference="olH-T5-kKA"/>
                                 <exclude reference="2qe-ns-J83"/>
                                 <exclude reference="Ec9-0I-9aA"/>
                                 <include reference="XS0-nR-WjD"/>
                                 <include reference="iy0-Jm-Jw9"/>
+                                <exclude reference="8ex-Ea-pw1"/>
+                                <exclude reference="CKj-rc-rme"/>
+                                <include reference="h5H-pe-Fx8"/>
+                                <include reference="olH-T5-kKA"/>
                                 <include reference="HvC-yU-hKt"/>
                             </mask>
                         </variation>
@@ -835,11 +835,11 @@ and you have 4 leads.</string>
                                 <exclude reference="idw-uo-23G"/>
                                 <include reference="mki-Rd-W3K"/>
                                 <exclude reference="ya8-wH-cms"/>
+                                <exclude reference="LTg-zp-Bjv"/>
+                                <include reference="TDI-GJ-KRU"/>
                                 <include reference="Rlk-k5-6Hd"/>
                                 <exclude reference="mlu-3I-NPX"/>
                                 <exclude reference="lXP-e3-wiY"/>
-                                <exclude reference="LTg-zp-Bjv"/>
-                                <include reference="TDI-GJ-KRU"/>
                                 <include reference="8Pc-zX-KAr"/>
                                 <exclude reference="H27-Ja-MyT"/>
                                 <exclude reference="N1v-Pw-Jfd"/>
@@ -1814,6 +1814,9 @@ on how to reset your password.</string>
                                                 <real key="value" value="20"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="continueButtonTapped:" destination="bxd-fv-GAZ" eventType="touchUpInside" id="iqH-4I-mV3"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -2005,6 +2008,9 @@ on how to reset your password.</string>
                                                 <real key="value" value="20"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="continueButtonTapped:" destination="sDn-PQ-oEz" eventType="touchUpInside" id="IFc-qN-IVi"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -5768,6 +5774,9 @@ with the appointment below.</string>
                                                 <real key="value" value="20"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="continueButtonTapped:" destination="kLE-f3-7RU" eventType="touchUpInside" id="IKl-gv-xbq"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -5795,6 +5804,9 @@ with the appointment below.</string>
                     <navigationItem key="navigationItem" title=" " id="Lol-2C-vON">
                         <barButtonItem key="backBarButtonItem" title=" " id="2rA-Ao-LlH"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="continueButton" destination="V7Y-zg-YIC" id="cdF-a9-N8O"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ku6-of-1Ot" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -5830,6 +5842,9 @@ with the appointment below.</string>
                                         <real key="value" value="20"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="continueButtonTapped:" destination="xOl-LC-oHf" eventType="touchUpInside" id="ioG-ey-1am"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose the state of your company below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="JQV-jT-YHY" userLabel="Subtitle">
                                 <rect key="frame" x="30" y="117" width="260" height="41"/>
@@ -5993,6 +6008,9 @@ with the appointment below.</string>
                                                 <real key="value" value="20"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="continueButtonTapped:" destination="dmo-dK-WGr" eventType="touchUpInside" id="2P9-FT-XSl"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -6020,6 +6038,10 @@ with the appointment below.</string>
                     <navigationItem key="navigationItem" title=" " id="QJV-EP-SDU">
                         <barButtonItem key="backBarButtonItem" title=" " id="ZQ7-34-hrR"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="continueButton" destination="hPO-EU-L8k" id="cX1-Ae-iiq"/>
+                        <outlet property="zipCodeTextField" destination="fa1-Yu-Jrv" id="PKa-wG-Fr1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f0h-Id-z0Z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -7058,7 +7080,7 @@ with the appointment.</string>
                 <navigationController storyboardIdentifier="appointmentDetailNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Gqz-n8-rfo" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ytq-3h-FiX">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

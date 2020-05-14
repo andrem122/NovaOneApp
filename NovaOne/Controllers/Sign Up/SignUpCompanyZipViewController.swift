@@ -9,9 +9,17 @@
 import UIKit
 
 class SignUpCompanyZipViewController: BaseSignUpViewController {
-
+    
+    // MARK: Properties
+    @IBOutlet weak var zipCodeTextField: NovaOneTextField!
+    @IBOutlet weak var continueButton: NovaOneButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
+    
+    @IBAction func continueButtonTapped(_ sender: Any) {
+    }
+    
 }

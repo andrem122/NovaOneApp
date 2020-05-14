@@ -9,11 +9,18 @@
 import UIKit
 
 class SignUpCompanyCityViewController: BaseSignUpViewController {
-
+    
+    // MARK: Properties
+    @IBOutlet weak var continueButton: NovaOneButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-
+    
+    
+    @IBAction func continueButtonTapped(_ sender: Any) {
+    }
+    
 }

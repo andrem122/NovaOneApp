@@ -820,6 +820,7 @@
 				6591C39323DA78F900535C46 /* Frameworks */,
 				6591C39423DA78F900535C46 /* Resources */,
 				6561CD152445F7A6001B2ABF /* Embed Frameworks */,
+				9C01D2BADAC9F2BC2686A7E8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -857,6 +858,7 @@
 				6591C3B323DA78FB00535C46 /* Sources */,
 				6591C3B423DA78FB00535C46 /* Frameworks */,
 				6591C3B523DA78FB00535C46 /* Resources */,
+				39666553738E0895459CA8BC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -955,6 +957,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		39666553738E0895459CA8BC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NovaOne-NovaOneUITests/Pods-NovaOne-NovaOneUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NovaOne-NovaOneUITests/Pods-NovaOne-NovaOneUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NovaOne-NovaOneUITests/Pods-NovaOne-NovaOneUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		63B6A2854482D8B8AFDAFB1C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1019,6 +1038,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9C01D2BADAC9F2BC2686A7E8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NovaOne/Pods-NovaOne-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NovaOne/Pods-NovaOne-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NovaOne/Pods-NovaOne-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

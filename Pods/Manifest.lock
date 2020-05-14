@@ -2,21 +2,29 @@ PODS:
   - Charts (3.5.0):
     - Charts/Core (= 3.5.0)
   - Charts/Core (3.5.0)
+  - GoogleMaps/Base (3.8.0)
+  - GooglePlaces (3.8.0):
+    - GoogleMaps/Base (= 3.8.0)
   - SkeletonView (1.8.7)
 
 DEPENDENCIES:
   - Charts
+  - GooglePlaces
   - SkeletonView
 
 SPEC REPOS:
   trunk:
     - Charts
+    - GoogleMaps
+    - GooglePlaces
     - SkeletonView
 
 SPEC CHECKSUMS:
   Charts: 40a08591df1f8ad5c223ddedfb1a06da92f24f7c
+  GoogleMaps: 7c8d66d70e4e8c300f43a7219d8fdaad7b325a9a
+  GooglePlaces: d5f70c3e9e427964fdeca1301a665d276ccd8754
   SkeletonView: ba5370f41280b2f0a76918bb143c1294232bb4f4
 
-PODFILE CHECKSUM: c987f678a7c4a9b8144b5e6b0e456fef10eb8f02
+PODFILE CHECKSUM: 5c9d92e7ce23aede001d525166c745b42d38297e
 
 COCOAPODS: 1.9.1
