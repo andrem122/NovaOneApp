@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GooglePlaces
 
 extension UIView {
     func addConstraints(with format: String, views: UIView...) {

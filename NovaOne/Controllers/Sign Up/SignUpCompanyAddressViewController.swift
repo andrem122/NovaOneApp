@@ -9,20 +9,20 @@
 import UIKit
 import GooglePlaces
 
-class SignUpCompanyAddressViewController: BaseSignUpViewController, GMSAutocompleteViewControllerDelegate {
+class SignUpCompanyAddressViewController: BaseSignUpViewController, GMSAutocompleteResultsViewControllerDelegate, UITextFieldDelegate {
     
     // MARK: Properties
     @IBOutlet weak var addressTextField: NovaOneTextField!
     @IBOutlet weak var continueButton: NovaOneButton!
     var resultsViewController: GMSAutocompleteResultsViewController?
     var searchController: UISearchController?
-    let autocompleteController = GMSAutocompleteViewController()
-    
+    var resultView: UITextView?
     
     // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setup()
+        self.setupButton()
+        self.setupTextField()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -32,32 +32,49 @@ class SignUpCompanyAddressViewController: BaseSignUpViewController, GMSAutocompl
         self.addressTextField.becomeFirstResponder()
     }
     
-    func setup() {
-        self.autocompleteController.delegate = self
+    func presentAutocomplete(textForSearchBar: String) {
+        // Sets up and shows the autocomplete view controller
+        
+        // Setup results view controller
+        self.resultsViewController = GMSAutocompleteResultsViewController()
+        self.resultsViewController?.delegate = self
+        
+        // Setup search controller
+        self.searchController = UISearchController()
+        self.searchController?.searchResultsUpdater = self.resultsViewController
+        
+        // Add the search bar to the right of the nav bar,
+        // use a popover to display the results.
+        // Set an explicit size as we don't want to use the entire nav bar.
+        self.resultsViewController?.view.addSubview((self.searchController?.searchBar)!)
+        self.resultsViewController?.view.translatesAutoresizingMaskIntoConstraints = false
+        self.searchController?.searchBar.sizeToFit()
+        self.searchController?.searchBar.text = textForSearchBar
+        
+        // When UISearchController presents the results view, present it in
+        // this view controller, not one further up the chain.
+        self.definesPresentationContext = true
+        
+        // Keep the navigation bar visible.
+        searchController?.hidesNavigationBarDuringPresentation = false
+        self.searchController?.obscuresBackgroundDuringPresentation = false
+        searchController?.modalPresentationStyle = .fullScreen
+        
+        guard let resultsViewController = self.resultsViewController else { return }
+        self.present(resultsViewController, animated: true, completion: nil)
+    }
+    
+    func setupTextField() {
+        self.addressTextField.delegate = self
+    }
+    
+    func setupButton() {
         UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil)
     }
     
     // MARK: Actions
     @IBAction func addressTextFieldChanged(_ sender: Any) {
         UIHelper.toggle(button: self.continueButton, textField: self.addressTextField, enabledColor: Defaults.novaOneColor, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil, closure: nil)
-        
-        guard let address = self.addressTextField.text else { return }
-        self.present(autocompleteController, animated: true) {
-            [weak self] in
-            
-            guard let views = self?.autocompleteController.view.subviews else { return }
-            
-            guard let subview = views.first else { return }
-            let subviewsOfSubview = subview.subviews
-            let subOfNavTransitionView = subviewsOfSubview[0].subviews
-            let subOfContentView = subOfNavTransitionView[0].subviews
-            
-            guard let searchBar = subOfContentView[0] as? UISearchBar else { return }
-            searchBar.text = address
-            searchBar.delegate?.searchBar?(searchBar, textDidChange: address)
-            
-        }
-        
     }
     
     
@@ -72,16 +89,11 @@ class SignUpCompanyAddressViewController: BaseSignUpViewController, GMSAutocompl
 }
 
 extension SignUpCompanyAddressViewController {
-    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-        // Place was selected from autocomplete
+    
+    func resultsController(_ resultsController: GMSAutocompleteResultsViewController, didAutocompleteWith place: GMSPlace) {
         
         self.dismiss(animated: true) {
-            guard let selectedAddress = place.formattedAddress else { return }
-            self.addressTextField.text = selectedAddress
-            self.company?.address = selectedAddress
-            
             guard let addressComponents = place.addressComponents else { return }
-            
             for component in addressComponents {
                 
                 let componentType = component.types[0]
@@ -96,15 +108,17 @@ extension SignUpCompanyAddressViewController {
                 
             }
         }
-        
     }
     
-    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
-        print("Autocomplete Error: ", error.localizedDescription)
+    func resultsController(_ resultsController: GMSAutocompleteResultsViewController, didFailAutocompleteWithError error: Error) {
+        print("Error: ", error.localizedDescription)
     }
     
-    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
-        self.dismiss(animated: true, completion: nil)
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if !string.isEmpty {
+            self.presentAutocomplete(textForSearchBar: string)
+        }
+        return true
     }
     
 }
