@@ -8,6 +8,7 @@
 
 import UIKit
 import GooglePlaces
+import MapKit
 
 extension UIView {
     func addConstraints(with format: String, views: UIView...) {
@@ -40,5 +41,27 @@ extension String {
     func trim() -> String {
         // Removes any leading and trailing white space for strings
         return self.trimmingCharacters(in: CharacterSet.whitespaces)
+    }
+}
+
+extension MKMapView {
+    func centerToLocation(_ location: CLLocation, regionRadius: CLLocationDistance = 1000) {
+        // Centers map to a location so it's visible to the user and the zoom level is adequate and adds an annotation to the map
+        let coordinateRegion = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
+        self.setRegion(coordinateRegion, animated: true)
+        
+        // Add an annotation to the map
+        let locationMarker = MKPointAnnotation()
+        locationMarker.title = ""
+        locationMarker.coordinate = location.coordinate
+        self.addAnnotation(locationMarker)
+        
+    }
+    
+    func removeAllAnnotations() {
+        // Removes all previously added annotations
+        for annotation in self.annotations {
+            self.removeAnnotation(annotation)
+        }
     }
 }

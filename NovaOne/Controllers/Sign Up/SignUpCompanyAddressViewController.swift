@@ -8,12 +8,15 @@
 
 import UIKit
 import GooglePlaces
+import MapKit
+import CoreLocation
 
-class SignUpCompanyAddressViewController: BaseSignUpViewController, GMSAutocompleteResultsViewControllerDelegate, UITextFieldDelegate {
+class SignUpCompanyAddressViewController: BaseSignUpViewController, GMSAutocompleteResultsViewControllerDelegate, UITextFieldDelegate, MKMapViewDelegate {
     
     // MARK: Properties
     @IBOutlet weak var addressTextField: NovaOneTextField!
     @IBOutlet weak var continueButton: NovaOneButton!
+    @IBOutlet weak var mapView: MKMapView!
     var resultsViewController: GMSAutocompleteResultsViewController?
     var searchController: UISearchController?
     var resultView: UITextView?
@@ -23,6 +26,7 @@ class SignUpCompanyAddressViewController: BaseSignUpViewController, GMSAutocompl
         super.viewDidLoad()
         self.setupButton()
         self.setupTextField()
+        self.setupMapView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -30,6 +34,15 @@ class SignUpCompanyAddressViewController: BaseSignUpViewController, GMSAutocompl
         
         // Make text field become first responder
         self.addressTextField.becomeFirstResponder()
+    }
+    
+    func setupMapView() {
+        self.mapView.delegate = self
+        self.mapView.isZoomEnabled = false
+        self.mapView.isPitchEnabled = false
+        self.mapView.isScrollEnabled = false
+        self.mapView.isUserInteractionEnabled = false
+        self.mapView.isHidden = true
     }
     
     func presentAutocomplete(textForSearchBar: String) {
@@ -56,12 +69,17 @@ class SignUpCompanyAddressViewController: BaseSignUpViewController, GMSAutocompl
         self.definesPresentationContext = true
         
         // Keep the navigation bar visible.
-        searchController?.hidesNavigationBarDuringPresentation = false
         self.searchController?.obscuresBackgroundDuringPresentation = false
         searchController?.modalPresentationStyle = .fullScreen
         
         guard let resultsViewController = self.resultsViewController else { return }
-        self.present(resultsViewController, animated: true, completion: nil)
+        self.present(resultsViewController, animated: true) {
+            DispatchQueue.main.async {
+                [weak self] in
+                self?.mapView.removeAllAnnotations()
+                self?.searchController?.searchBar.becomeFirstResponder()
+            }
+        }
     }
     
     func setupTextField() {
@@ -73,40 +91,59 @@ class SignUpCompanyAddressViewController: BaseSignUpViewController, GMSAutocompl
     }
     
     // MARK: Actions
-    @IBAction func addressTextFieldChanged(_ sender: Any) {
-        UIHelper.toggle(button: self.continueButton, textField: self.addressTextField, enabledColor: Defaults.novaOneColor, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil, closure: nil)
-    }
-    
-    
     @IBAction func continueButtonTapped(_ sender: Any) {
-        guard let signUpCompanyCityViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.signUpCompanyCity.rawValue) as? SignUpCompanyCityViewController else { return }
+        guard let signUpCompanyPhoneViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.signUpCompanyPhone.rawValue) as? SignUpCompanyPhoneViewController else { return }
         
+        // Pass customer and company object to next view controller
+        signUpCompanyPhoneViewController.customer = self.customer
+        signUpCompanyPhoneViewController.company = self.company
         
-        
-        self.present(signUpCompanyCityViewController, animated: true, completion: nil)
+        self.present(signUpCompanyPhoneViewController, animated: true, completion: nil)
     }
     
 }
 
 extension SignUpCompanyAddressViewController {
     
+    // Google Places
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController, didAutocompleteWith place: GMSPlace) {
         
         self.dismiss(animated: true) {
-            guard let addressComponents = place.addressComponents else { return }
+            [weak self] in
+            
+            guard
+                let addressComponents = place.addressComponents,
+                let address = place.formattedAddress,
+                let continueButton = self?.continueButton
+            else { return }
+            
+            // Set text for address field
+            self?.addressTextField.text = address
+            self?.addressTextField.resignFirstResponder()
+            UIHelper.toggle(button: continueButton, textField: self?.addressTextField, enabledColor: Defaults.novaOneColor, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil, closure: nil)
+            
+            // Set location for map view
+            let latitude = place.coordinate.latitude
+            let longitude = place.coordinate.longitude
+            let selectedLocation = CLLocation(latitude: latitude, longitude: longitude)
+            self?.mapView.centerToLocation(selectedLocation)
+            self?.mapView.isHidden = false
+            
+            // Get city, state, and zip from the place the user selected
             for component in addressComponents {
                 
                 let componentType = component.types[0]
-                if componentType == "locality" { // City
-                    self.company?.city = component.name
-                } else if componentType == "administrative_area_level_1" { // State
+                if componentType == Defaults.GooglePlaceAddressComponents.city.rawValue { // City
+                    self?.company?.city = component.name
+                } else if componentType == Defaults.GooglePlaceAddressComponents.state.rawValue { // State
                     guard let state = component.shortName else { return }
-                    self.company?.state = state
-                } else if componentType == "postal_code" { // Zip code
-                    self.company?.zip = component.name
+                    self?.company?.state = state
+                } else if componentType == Defaults.GooglePlaceAddressComponents.zip.rawValue { // Zip code
+                    self?.company?.zip = component.name
                 }
                 
             }
+            
         }
     }
     
@@ -114,6 +151,8 @@ extension SignUpCompanyAddressViewController {
         print("Error: ", error.localizedDescription)
     }
     
+    
+    // Textfields
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if !string.isEmpty {
             self.presentAutocomplete(textForSearchBar: string)
@@ -121,4 +160,20 @@ extension SignUpCompanyAddressViewController {
         return true
     }
     
+    // Maps
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard annotation is MKPointAnnotation else { return nil }
+        
+        let reuseIdentifier = "annotation"
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier)
+        
+        if annotationView == nil {
+            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
+            annotationView?.canShowCallout = true
+        } else {
+            annotationView?.annotation = annotation
+        }
+        
+        return annotationView
+    }
 }
