@@ -23,10 +23,6 @@ class UpdateCompanyDaysEnabledViewController: UIViewController, UITableViewDeleg
     ]
     var company: Any?
     
-    // For sign up process
-    var companySignUp: CompanySignUpModel?
-    var customerSignUp: CustomerSignUpModel?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()

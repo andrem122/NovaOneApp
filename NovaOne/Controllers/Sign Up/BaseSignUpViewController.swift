@@ -26,6 +26,7 @@ class BaseSignUpViewController: UIViewController {
         print("Setting up navigation bar...")
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.tintColor = Defaults.novaOneColor
     }
 
 }

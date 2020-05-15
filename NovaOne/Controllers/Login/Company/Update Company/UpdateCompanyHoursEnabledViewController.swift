@@ -44,10 +44,6 @@ class UpdateCompanyHoursEnabledViewController: UIViewController, UITableViewDele
     let alertService = AlertService()
     var company: Any?
     
-    // For sign up process
-    var companySignUp: CompanySignUpModel?
-    var customerSignUp: CustomerSignUpModel?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupTableView()

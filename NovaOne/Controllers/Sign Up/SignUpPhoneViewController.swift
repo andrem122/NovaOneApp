@@ -20,38 +20,6 @@ class SignUpPhoneViewController: BaseSignUpViewController, UITextFieldDelegate {
         UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil)
     }
     
-    func format(phoneNumber: String, shouldRemoveLastDigit: Bool = false) -> String {
-        // Formats a phone number in (XXX) XXX-XXXX format when typing into the text field
-        
-        guard !phoneNumber.isEmpty else { return "" }
-        guard let regex = try? NSRegularExpression(pattern: "[\\s-\\(\\)]", options: .caseInsensitive) else { return "" }
-        let r = NSString(string: phoneNumber).range(of: phoneNumber)
-        var number = regex.stringByReplacingMatches(in: phoneNumber, options: .init(rawValue: 0), range: r, withTemplate: "")
-        
-        if number.count > 10 {
-            let tenthDigitIndex = number.index(number.startIndex, offsetBy: 10)
-            number = String(number[number.startIndex..<tenthDigitIndex])
-        }
-        
-        if shouldRemoveLastDigit {
-            let end = number.index(number.startIndex, offsetBy: number.count-1)
-            number = String(number[number.startIndex..<end])
-        }
-        
-        if number.count < 7 {
-            let end = number.index(number.startIndex, offsetBy: number.count)
-            let range = number.startIndex..<end
-            number = number.replacingOccurrences(of: "(\\d{3})(\\d+)", with: "($1) $2", options: .regularExpression, range: range)
-            
-        } else {
-            let end = number.index(number.startIndex, offsetBy: number.count)
-            let range = number.startIndex..<end
-            number = number.replacingOccurrences(of: "(\\d{3})(\\d{3})(\\d+)", with: "($1) $2-$3", options: .regularExpression, range: range)
-        }
-        
-        return number
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
@@ -72,7 +40,6 @@ class SignUpPhoneViewController: BaseSignUpViewController, UITextFieldDelegate {
         else { return }
         
         let unformattedPhoneNumber = "+1" + phoneNumber.replacingOccurrences(of: "[\\(\\)\\s-]", with: "", options: .regularExpression, range: nil)
-        print(unformattedPhoneNumber)
         
         self.customer?.phoneNumber = unformattedPhoneNumber
         customerTypeViewController.customer = self.customer
@@ -103,9 +70,9 @@ extension SignUpPhoneViewController {
 
         phoneNumber.append(string)
         if range.length == 1 {
-            textField.text = self.format(phoneNumber: phoneNumber, shouldRemoveLastDigit: true)
+            textField.text = InputFormatters.format(phoneNumber: phoneNumber, shouldRemoveLastDigit: true)
         } else {
-            textField.text = self.format(phoneNumber: phoneNumber)
+            textField.text = InputFormatters.format(phoneNumber: phoneNumber)
         }
         
         return false

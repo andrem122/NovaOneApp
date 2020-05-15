@@ -23,6 +23,11 @@ class AddCompanyDaysEnabledViewController: UIViewController, UITableViewDelegate
         EnableOption(option: "Friday", selected: false, id: nil),
         EnableOption(option: "Saturday", selected: false, id: nil),
     ]
+    let alertService = AlertService()
+    
+    // For sign up process
+    var company: CompanySignUpModel?
+    var customer: CustomerSignUpModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +38,28 @@ class AddCompanyDaysEnabledViewController: UIViewController, UITableViewDelegate
         // Set delegates and datasource for table view
         self.addCompanyDaysEnabledTableView.delegate = self
         self.addCompanyDaysEnabledTableView.dataSource = self
+    }
+    
+    func optionIsSelected() -> Bool {
+        // Checks if at least one option is selected in the [EnableOption] array
+        for day in daysOfTheWeek {
+            if day.selected == true {
+                return true
+            }
+        }
+        
+        return false
+    }
+    
+    // MARK: Actions
+    @IBAction func continueButtonTapped(_ sender: Any) {
+        if self.optionIsSelected() == true {
+            guard let addCompanyHoursEnabledViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addCompanyHoursEnabled.rawValue) as? AddCompanyHoursEnabledViewController else { return }
+            self.navigationController?.pushViewController(addCompanyHoursEnabledViewController, animated: true)
+        } else {
+            let popUpOkViewController = self.alertService.popUpOk(title: "Select A Day", body: "Please select at least one day.")
+            self.present(popUpOkViewController, animated: true, completion: nil)
+        }
     }
     
     // MARK: Navigation

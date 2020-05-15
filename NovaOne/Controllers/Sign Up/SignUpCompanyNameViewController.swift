@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SignUpCompanyNameViewController: BaseSignUpViewController {
+class SignUpCompanyNameViewController: BaseSignUpViewController, UITextFieldDelegate {
     
     // MARK: Properties
     @IBOutlet weak var continueButton: NovaOneButton!
@@ -16,6 +16,7 @@ class SignUpCompanyNameViewController: BaseSignUpViewController {
     
     // MARK: Methods
     func setup() {
+        self.propertyNameTextField.delegate = self
         UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil)
     }
     
@@ -49,4 +50,11 @@ class SignUpCompanyNameViewController: BaseSignUpViewController {
         self.navigationController?.pushViewController(signUpCompanyAddressViewController, animated: true)
     }
     
+}
+
+extension SignUpCompanyNameViewController {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.continueButton.sendActions(for: .touchUpInside)
+        return true
+    }
 }

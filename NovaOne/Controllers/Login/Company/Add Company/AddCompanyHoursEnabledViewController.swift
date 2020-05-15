@@ -45,6 +45,10 @@ class AddCompanyHoursEnabledViewController: UIViewController, UITableViewDataSou
         EnableOption(option: "11:00", selected: false, id: nil),
     ]
     
+    // For sign up process
+    var company: CompanySignUpModel?
+    var customer: CustomerSignUpModel?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupTableView()

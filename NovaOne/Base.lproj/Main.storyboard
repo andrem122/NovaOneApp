@@ -1709,6 +1709,7 @@ on how to reset your password.</string>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="hKa-P7-LWc"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
                                         <state key="normal" title="Continue" image="lock" catalog="system">
@@ -1782,7 +1783,7 @@ on how to reset your password.</string>
                                             <constraint firstAttribute="height" constant="45" id="6cG-vW-Huo"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="continue" textContentType="tel"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="go" textContentType="name"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="20"/>
@@ -1876,7 +1877,7 @@ on how to reset your password.</string>
                                             <constraint firstAttribute="height" constant="45" id="2cP-tM-DHP"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="go" textContentType="tel"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="go" textContentType="tel"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="20"/>
@@ -1898,6 +1899,7 @@ on how to reset your password.</string>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="Ig3-Fv-UUX"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
@@ -1921,7 +1923,7 @@ on how to reset your password.</string>
                                 <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in the contact phone of your property below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IAr-WE-OOU" userLabel="Subtitle">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in the contact phone of your company below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IAr-WE-OOU" userLabel="Subtitle">
                                 <rect key="frame" x="30" y="150.5" width="260" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -1952,7 +1954,102 @@ on how to reset your password.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k7I-5v-JcV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8413" y="120"/>
+            <point key="canvasLocation" x="9503" y="120"/>
+        </scene>
+        <!--Sign Up Company Email-->
+        <scene sceneID="ZMX-T5-02Q">
+            <objects>
+                <viewController storyboardIdentifier="signUpCompanyEmailViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uQh-qW-yYs" userLabel="Sign Up Company Email" customClass="SignUpCompanyEmailViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YZM-sI-Jp6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="xGx-GW-I6R">
+                                <rect key="frame" x="30" y="188" width="260" height="110"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Company Email" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="RHM-md-IuA" customClass="NovaOneTextField" customModule="NovaOne" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="260" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="QyD-IR-D5f"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="go" textContentType="email"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="emailAddressTextFieldChanged:" destination="uQh-qW-yYs" eventType="editingChanged" id="Y6a-Dw-jDT"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tjc-bI-yNz" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="65" width="260" height="45"/>
+                                        <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="oPH-IX-csT"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                        <state key="normal" title="Continue">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="continueButtonTapped:" destination="uQh-qW-yYs" eventType="touchUpInside" id="P8u-in-Sdz"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What is the email of your company?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="23" translatesAutoresizingMaskIntoConstraints="NO" id="IKo-qB-1Tj" userLabel="Title">
+                                <rect key="frame" x="30" y="30" width="260" height="67"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in the contact email of your company below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4jY-9b-6mP" userLabel="Subtitle">
+                                <rect key="frame" x="30" y="117" width="260" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="YqE-zQ-II8" firstAttribute="trailing" secondItem="IKo-qB-1Tj" secondAttribute="trailing" constant="30" id="0dw-IZ-fdx"/>
+                            <constraint firstItem="xGx-GW-I6R" firstAttribute="leading" secondItem="YqE-zQ-II8" secondAttribute="leading" constant="30" id="FzW-Ql-2xz"/>
+                            <constraint firstItem="4jY-9b-6mP" firstAttribute="leading" secondItem="YqE-zQ-II8" secondAttribute="leading" constant="30" id="MiO-06-e3r"/>
+                            <constraint firstItem="IKo-qB-1Tj" firstAttribute="top" secondItem="YqE-zQ-II8" secondAttribute="top" constant="30" id="Qag-63-FJx"/>
+                            <constraint firstItem="xGx-GW-I6R" firstAttribute="top" secondItem="4jY-9b-6mP" secondAttribute="bottom" constant="30" id="bcQ-w5-Ser"/>
+                            <constraint firstItem="4jY-9b-6mP" firstAttribute="top" secondItem="IKo-qB-1Tj" secondAttribute="bottom" constant="20" id="dam-jt-7NF"/>
+                            <constraint firstItem="YqE-zQ-II8" firstAttribute="trailing" secondItem="xGx-GW-I6R" secondAttribute="trailing" constant="30" id="luZ-7s-nA5"/>
+                            <constraint firstItem="IKo-qB-1Tj" firstAttribute="leading" secondItem="YqE-zQ-II8" secondAttribute="leading" constant="30" id="sil-Ba-hAE"/>
+                            <constraint firstItem="YqE-zQ-II8" firstAttribute="trailing" secondItem="4jY-9b-6mP" secondAttribute="trailing" constant="30" id="zBN-46-EiL"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="YqE-zQ-II8"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="eR3-ml-Rps">
+                        <barButtonItem key="backBarButtonItem" title=" " id="qES-FJ-Q0p"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="continueButton" destination="tjc-bI-yNz" id="sUj-4k-RY4"/>
+                        <outlet property="emailAddressTextField" destination="RHM-md-IuA" id="Iv4-tP-fGJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vur-0R-nIM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="8499" y="120"/>
         </scene>
         <!--Sign Up Company Address-->
         <scene sceneID="AL5-CN-ihz">
@@ -1971,13 +2068,13 @@ on how to reset your password.</string>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="6bN-XY-hHa">
                                 <rect key="frame" x="30" y="188" width="260" height="110"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Street Address" textAlignment="center" minimumFontSize="15" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="aFj-S9-0GN" customClass="NovaOneTextField" customModule="NovaOne" customModuleProvider="target">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Street Address" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="aFj-S9-0GN" customClass="NovaOneTextField" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="260" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="fBZ-oF-B5u"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="go" textContentType="address-line1"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="go" textContentType="street-address"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="20"/>
@@ -4470,7 +4567,7 @@ email  below.</string>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="K9c-gb-sDl" kind="show" id="dPb-9K-5J6"/>
+                                    <action selector="continueButtonTapped:" destination="tcm-BF-RZ0" eventType="touchUpInside" id="yAc-Bf-gkr"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LK0-F5-0Or">
@@ -4586,7 +4683,7 @@ days below.</string>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oCb-38-YOv">
-                                <rect key="frame" x="0.0" y="202" width="320" height="178"/>
+                                <rect key="frame" x="0.0" y="158" width="320" height="222"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="enableOptionTableViewCell" id="jRw-4b-Ps8" customClass="EnableOptionTableViewCell" customModule="NovaOne" customModuleProvider="target">
@@ -4629,13 +4726,13 @@ days below.</string>
                                 <sections/>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Appointment Hours" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lxj-A1-JtO">
-                                <rect key="frame" x="18.5" y="84" width="283" height="37"/>
+                                <rect key="frame" x="18.5" y="40" width="283" height="37"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
                                 <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rrX-wn-l38">
-                                <rect key="frame" x="21.5" y="141" width="277" height="41"/>
+                                <rect key="frame" x="21.5" y="97" width="277" height="41"/>
                                 <string key="text">Choose your company appointment 
 hours below.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -5958,7 +6055,7 @@ with the appointment below.</string>
                 <navigationController storyboardIdentifier="addLeadNavigationController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WhH-0Z-LD5" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="fjj-iP-imE"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hJO-tO-2hG">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -7557,8 +7654,8 @@ the lead below.</string>
     </scenes>
     <resources>
         <image name="account" width="42.666667938232422" height="42.666667938232422"/>
-        <image name="calendar" width="42.5" height="42.5"/>
         <image name="calendar" catalog="system" width="128" height="106"/>
+        <image name="calendar" width="42.5" height="42.5"/>
         <image name="calendarBlue" width="27" height="27"/>
         <image name="callBlue" width="27" height="27"/>
         <image name="cancelButtonBlue" width="33.5" height="33.5"/>

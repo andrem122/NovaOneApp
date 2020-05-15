@@ -9,7 +9,6 @@
 import UIKit
 import GooglePlaces
 import MapKit
-import CoreLocation
 
 class SignUpCompanyAddressViewController: BaseSignUpViewController, GMSAutocompleteResultsViewControllerDelegate, UITextFieldDelegate, MKMapViewDelegate {
     
@@ -92,13 +91,20 @@ class SignUpCompanyAddressViewController: BaseSignUpViewController, GMSAutocompl
     
     // MARK: Actions
     @IBAction func continueButtonTapped(_ sender: Any) {
-        guard let signUpCompanyPhoneViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.signUpCompanyPhone.rawValue) as? SignUpCompanyPhoneViewController else { return }
         
-        // Pass customer and company object to next view controller
-        signUpCompanyPhoneViewController.customer = self.customer
-        signUpCompanyPhoneViewController.company = self.company
-        
-        self.present(signUpCompanyPhoneViewController, animated: true, completion: nil)
+        guard let address = self.addressTextField.text else { return }
+        if address.isEmpty {
+            let popUpOkViewController = self.alertService.popUpOk(title: "Address Required", body: "Please type in an address.")
+            self.present(popUpOkViewController, animated: true, completion: nil)
+        } else {
+            guard let signUpCompanyEmailViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.signUpCompanyEmail.rawValue) as? SignUpCompanyEmailViewController else { return }
+            
+            // Pass customer and company object to next view controller
+            signUpCompanyEmailViewController.customer = self.customer
+            signUpCompanyEmailViewController.company = self.company
+            
+            self.navigationController?.pushViewController(signUpCompanyEmailViewController, animated: true)
+        }
     }
     
 }
@@ -162,6 +168,7 @@ extension SignUpCompanyAddressViewController {
     
     // Maps
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        // Set a view for each annotation
         guard annotation is MKPointAnnotation else { return nil }
         
         let reuseIdentifier = "annotation"
