@@ -40,6 +40,7 @@
 		656760522443837500EF4388 /* AddAppointmentCompanyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656760512443837500EF4388 /* AddAppointmentCompanyViewController.swift */; };
 		6567D457246F3D5B008823E5 /* InputValidators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6567D456246F3D5B008823E5 /* InputValidators.swift */; };
 		6567D459246F41CB008823E5 /* InputFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6567D458246F41CB008823E5 /* InputFormatters.swift */; };
+		6567D45B246F6B97008823E5 /* AddCompanyHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6567D45A246F6B97008823E5 /* AddCompanyHelper.swift */; };
 		6569539B24477F6300CF86B7 /* moreAppointments.php in Resources */ = {isa = PBXBuildFile; fileRef = 6569539A24477F6300CF86B7 /* moreAppointments.php */; };
 		65695AB5244CC80900D35E55 /* AddLeadNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65695AB4244CC80900D35E55 /* AddLeadNameViewController.swift */; };
 		65695AB7244CC83C00D35E55 /* AddLeadEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65695AB6244CC83C00D35E55 /* AddLeadEmailViewController.swift */; };
@@ -229,6 +230,7 @@
 		656760512443837500EF4388 /* AddAppointmentCompanyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAppointmentCompanyViewController.swift; sourceTree = "<group>"; };
 		6567D456246F3D5B008823E5 /* InputValidators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputValidators.swift; sourceTree = "<group>"; };
 		6567D458246F41CB008823E5 /* InputFormatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFormatters.swift; sourceTree = "<group>"; };
+		6567D45A246F6B97008823E5 /* AddCompanyHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCompanyHelper.swift; sourceTree = "<group>"; };
 		6569539A24477F6300CF86B7 /* moreAppointments.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = moreAppointments.php; sourceTree = "<group>"; };
 		65695AB4244CC80900D35E55 /* AddLeadNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLeadNameViewController.swift; sourceTree = "<group>"; };
 		65695AB6244CC83C00D35E55 /* AddLeadEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLeadEmailViewController.swift; sourceTree = "<group>"; };
@@ -539,6 +541,7 @@
 				65D169AE245F598C006219C8 /* SliderLauncher.swift */,
 				6567D456246F3D5B008823E5 /* InputValidators.swift */,
 				6567D458246F41CB008823E5 /* InputFormatters.swift */,
+				6567D45A246F6B97008823E5 /* AddCompanyHelper.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1131,6 +1134,7 @@
 				6516A8432452169F003B974A /* Customer.swift in Sources */,
 				65ABA263243F6469002051D1 /* Company+CoreDataClass.swift in Sources */,
 				65C9A74E245CF28A009651B4 /* BaseCell.swift in Sources */,
+				6567D45B246F6B97008823E5 /* AddCompanyHelper.swift in Sources */,
 				6580FBE324113D0700695DB6 /* UIHelper.swift in Sources */,
 				65AA3E7824328CAE005C2319 /* SuccessViewController.swift in Sources */,
 				657C5F9A241406EA00D52E27 /* CompanyDetailViewController.swift in Sources */,

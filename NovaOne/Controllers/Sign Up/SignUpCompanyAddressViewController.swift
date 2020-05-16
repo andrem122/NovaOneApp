@@ -135,7 +135,8 @@ extension SignUpCompanyAddressViewController {
             self?.mapView.centerToLocation(selectedLocation)
             self?.mapView.isHidden = false
             
-            // Get city, state, and zip from the place the user selected
+            // Get street address, city, state, and zip from the place the user selected
+            self?.company?.address = address
             for component in addressComponents {
                 
                 let componentType = component.types[0]

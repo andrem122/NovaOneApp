@@ -40,21 +40,18 @@ class AddCompanyDaysEnabledViewController: UIViewController, UITableViewDelegate
         self.addCompanyDaysEnabledTableView.dataSource = self
     }
     
-    func optionIsSelected() -> Bool {
-        // Checks if at least one option is selected in the [EnableOption] array
-        for day in daysOfTheWeek {
-            if day.selected == true {
-                return true
-            }
-        }
-        
-        return false
-    }
-    
     // MARK: Actions
     @IBAction func continueButtonTapped(_ sender: Any) {
-        if self.optionIsSelected() == true {
+        if AddCompanyHelper.optionIsSelected(options: self.daysOfTheWeek) == true {
             guard let addCompanyHoursEnabledViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addCompanyHoursEnabled.rawValue) as? AddCompanyHoursEnabledViewController else { return }
+            
+            // Get selected options and pass objects
+            let selectedOptionsString = AddCompanyHelper.getSelectedOptions(options: self.daysOfTheWeek)
+            print(selectedOptionsString)
+            self.company?.daysOfTheWeekEnabled = selectedOptionsString
+            addCompanyHoursEnabledViewController.company = self.company
+            addCompanyHoursEnabledViewController.customer = self.customer
+            
             self.navigationController?.pushViewController(addCompanyHoursEnabledViewController, animated: true)
         } else {
             let popUpOkViewController = self.alertService.popUpOk(title: "Select A Day", body: "Please select at least one day.")

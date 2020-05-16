@@ -27,4 +27,6 @@ struct CompanySignUpModel: Decodable {
     var city: String
     var state: String
     var zip: String
+    var daysOfTheWeekEnabled: String
+    var hoursOfTheDayEnabled: String
 }

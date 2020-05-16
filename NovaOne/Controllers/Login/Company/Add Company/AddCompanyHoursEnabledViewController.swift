@@ -53,6 +53,8 @@ class AddCompanyHoursEnabledViewController: UIViewController, UITableViewDataSou
         super.viewDidLoad()
         self.setupTableView()
         self.setButtonTitle()
+        print(self.customer)
+        print(self.company)
     }
     
     func setupTableView() {
@@ -63,14 +65,14 @@ class AddCompanyHoursEnabledViewController: UIViewController, UITableViewDataSou
     
     func setButtonTitle() {
         // Set the title for the appointment hours button
-        if userIsSigningUp {
+        if self.userIsSigningUp {
             self.appointmentHoursButton.setTitle("Finish Sign Up", for: .normal)
         }
     }
     
     // MARK: Actions
     @IBAction func addCompanyButtonTapped(_ sender: Any) {
-        if userIsSigningUp {
+        if self.userIsSigningUp {
             // Navigate to home screen if user is signing up
             if let homeTabBarController = self.storyboard?.instantiateViewController(identifier: Defaults.TabBarControllerIdentifiers.home.rawValue) as? HomeTabBarController {
                 self.present(homeTabBarController, animated: true, completion: nil)
