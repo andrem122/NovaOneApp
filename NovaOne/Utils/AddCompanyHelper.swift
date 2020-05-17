@@ -23,12 +23,15 @@ struct AddCompanyHelper {
     
     static func getSelectedOptions(options: [EnableOption]) -> String {
         // Gets all EnableOption items that have selected equal to true and makes it into a string of numbers
+        let selectedOptions = options.filter { (option) -> Bool in
+            option.selected == true
+        }
+        
         var selectedString = String()
-        let count = options.count
         for (index, option) in options.enumerated() {
-            if option.selected == true && index != count - 1 {
+            if option.selected == true && option.id != selectedOptions.last?.id {
                 selectedString += String(index) + ","
-            } else if option.selected == true && index == count - 1 {
+            } else if option.selected == true {
                 selectedString += String(index)
             }
         }

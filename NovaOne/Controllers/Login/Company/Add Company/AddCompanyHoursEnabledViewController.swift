@@ -13,36 +13,37 @@ class AddCompanyHoursEnabledViewController: UIViewController, UITableViewDataSou
     // MARK: Properties
     @IBOutlet weak var addCompanyEnabledHoursTableView: UITableView!
     @IBOutlet weak var appointmentHoursButton: NovaOneButton!
+    let alertService = AlertService()
     var userIsSigningUp: Bool = false // A Boolean that indicates whether or not the current user is new and signing up
     
     var hoursOfTheDayAM: [EnableOption] = [
-        EnableOption(option: "12:00", selected: false, id: nil),
-        EnableOption(option: "1:00", selected: false, id: nil),
-        EnableOption(option: "2:00", selected: false, id: nil),
-        EnableOption(option: "3:00", selected: false, id: nil),
-        EnableOption(option: "4:00", selected: false, id: nil),
-        EnableOption(option: "5:00", selected: false, id: nil),
-        EnableOption(option: "6:00", selected: false, id: nil),
-        EnableOption(option: "7:00", selected: false, id: nil),
-        EnableOption(option: "8:00", selected: false, id: nil),
-        EnableOption(option: "9:00", selected: false, id: nil),
-        EnableOption(option: "10:00", selected: false, id: nil),
-        EnableOption(option: "11:00", selected: false, id: nil),
+        EnableOption(option: "12:00", selected: false, id: 0),
+        EnableOption(option: "1:00", selected: false, id: 1),
+        EnableOption(option: "2:00", selected: false, id: 2),
+        EnableOption(option: "3:00", selected: false, id: 3),
+        EnableOption(option: "4:00", selected: false, id: 4),
+        EnableOption(option: "5:00", selected: false, id: 5),
+        EnableOption(option: "6:00", selected: false, id: 6),
+        EnableOption(option: "7:00", selected: false, id: 7),
+        EnableOption(option: "8:00", selected: false, id: 8),
+        EnableOption(option: "9:00", selected: false, id: 9),
+        EnableOption(option: "10:00", selected: false, id: 10),
+        EnableOption(option: "11:00", selected: false, id: 11),
     ]
     
     var hoursOfTheDayPM: [EnableOption] = [
-        EnableOption(option: "12:00", selected: false, id: nil),
-        EnableOption(option: "1:00", selected: false, id: nil),
-        EnableOption(option: "2:00", selected: false, id: nil),
-        EnableOption(option: "3:00", selected: false, id: nil),
-        EnableOption(option: "4:00", selected: false, id: nil),
-        EnableOption(option: "5:00", selected: false, id: nil),
-        EnableOption(option: "6:00", selected: false, id: nil),
-        EnableOption(option: "7:00", selected: false, id: nil),
-        EnableOption(option: "8:00", selected: false, id: nil),
-        EnableOption(option: "9:00", selected: false, id: nil),
-        EnableOption(option: "10:00", selected: false, id: nil),
-        EnableOption(option: "11:00", selected: false, id: nil),
+        EnableOption(option: "12:00", selected: false, id: 12),
+        EnableOption(option: "1:00", selected: false, id: 13),
+        EnableOption(option: "2:00", selected: false, id: 14),
+        EnableOption(option: "3:00", selected: false, id: 15),
+        EnableOption(option: "4:00", selected: false, id: 16),
+        EnableOption(option: "5:00", selected: false, id: 17),
+        EnableOption(option: "6:00", selected: false, id: 18),
+        EnableOption(option: "7:00", selected: false, id: 19),
+        EnableOption(option: "8:00", selected: false, id: 20),
+        EnableOption(option: "9:00", selected: false, id: 21),
+        EnableOption(option: "10:00", selected: false, id: 22),
+        EnableOption(option: "11:00", selected: false, id: 23),
     ]
     
     // For sign up process
@@ -53,8 +54,6 @@ class AddCompanyHoursEnabledViewController: UIViewController, UITableViewDataSou
         super.viewDidLoad()
         self.setupTableView()
         self.setButtonTitle()
-        print(self.customer)
-        print(self.company)
     }
     
     func setupTableView() {
@@ -72,20 +71,83 @@ class AddCompanyHoursEnabledViewController: UIViewController, UITableViewDataSou
     
     // MARK: Actions
     @IBAction func addCompanyButtonTapped(_ sender: Any) {
-        if self.userIsSigningUp {
-            // Navigate to home screen if user is signing up
-            if let homeTabBarController = self.storyboard?.instantiateViewController(identifier: Defaults.TabBarControllerIdentifiers.home.rawValue) as? HomeTabBarController {
-                self.present(homeTabBarController, animated: true, completion: nil)
+        
+        let didSelectHours = AddCompanyHelper.optionIsSelected(options: self.hoursOfTheDayAM + self.hoursOfTheDayPM)
+        if didSelectHours {
+            
+            if self.userIsSigningUp {
+                // Make POST request with customer data to API
+                let selectedOptionsString = AddCompanyHelper.getSelectedOptions(options: self.hoursOfTheDayAM + self.hoursOfTheDayPM)
+                self.company?.hoursOfTheDayEnabled = selectedOptionsString
+                print(self.customer as Any)
+                print(self.company as Any)
+                
+                // Unwrap needed POST data from objects
+                guard
+                    let email = self.customer?.email,
+                    let password = self.customer?.password,
+                    let firstName = self.customer?.firstName,
+                    let lastName = self.customer?.lastName,
+                    let phoneNumber = self.customer?.phoneNumber,
+                    let customerType = self.customer?.customerType,
+                    let companyName = self.company?.name,
+                    let companyAddress = self.company?.address,
+                    let companyPhoneNumber = self.company?.phoneNumber,
+                    let companyEmail = self.company?.email,
+                    let companyDaysEnabled = self.company?.daysOfTheWeekEnabled,
+                    let companyHoursEnabled = self.company?.hoursOfTheDayEnabled,
+                    let companyCity = self.company?.city,
+                    let companyState = self.company?.state,
+                    let companyZip = self.company?.zip
+                else { return }
+                
+                let parameters: [String: String] = ["email": email,
+                                                    "password": password,
+                                                    "firstName": firstName,
+                                                    "lastName": lastName,
+                                                    "phoneNumber": phoneNumber,
+                                                    "customerType": customerType,
+                                                    "companyName": companyName,
+                                                    "companyAddress": companyAddress,
+                                                    "companyPhoneNumber": companyPhoneNumber,
+                                                    "companyEmail": companyEmail,
+                                                    "companyDaysEnabled": companyDaysEnabled,
+                                                    "companyHoursEnabled": companyHoursEnabled,
+                                                    "companyCity": companyCity,
+                                                    "companyState": companyState,
+                                                    "companyZip": companyZip]
+                
+                let httpRequest = HTTPRequests()
+                httpRequest.request(endpoint: "/signup.php", dataModel: SuccessResponse.self, parameters: parameters) {
+                    [weak self] (result) in
+                    switch result {
+                    case .success(let success):
+                        print(success.reason)
+                    case .failure(let error):
+                        guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
+                        self?.present(popUpOkViewController, animated: true, completion: nil)
+                    }
+                }
+                // Make Login POST request once POST request with customer data is complete
+                
+                // Once login POST request to API is complete, navigate to home screen if user is signing up
+//                if let homeTabBarController = self.storyboard?.instantiateViewController(identifier: Defaults.TabBarControllerIdentifiers.home.rawValue) as? HomeTabBarController {
+//                    self.present(homeTabBarController, animated: true, completion: nil)
+//                }
+            } else {
+                // Navigate to success screen once the company has been sucessfully added
+                if let successViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.success.rawValue) as? SuccessViewController {
+                    
+                    successViewController.titleLabelText = "Company Added!"
+                    successViewController.subtitleText = "The company has been successfully added."
+                    self.present(successViewController, animated: true, completion: nil)
+                    
+                }
             }
+            
         } else {
-            // Navigate to success screen once the company has been sucessfully added
-            if let successViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.success.rawValue) as? SuccessViewController {
-                
-                successViewController.titleLabelText = "Company Added!"
-                successViewController.subtitleText = "The company has been successfully added."
-                self.present(successViewController, animated: true, completion: nil)
-                
-            }
+            let popUpOkViewController = self.alertService.popUpOk(title: "Select An Hour", body: "Please select at least one hour.")
+            self.present(popUpOkViewController, animated: true, completion: nil)
         }
     
     }

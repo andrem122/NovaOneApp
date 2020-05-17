@@ -15,13 +15,13 @@ class AddCompanyDaysEnabledViewController: UIViewController, UITableViewDelegate
     var userIsSigningUp: Bool = false // A Boolean that indicates whether or not the current user is new and signing up
     
     var daysOfTheWeek: [EnableOption] = [
-        EnableOption(option: "Sunday", selected: false, id: nil),
-        EnableOption(option: "Monday", selected: false, id: nil),
-        EnableOption(option: "Tuesday", selected: false, id: nil),
-        EnableOption(option: "Wednesday", selected: false, id: nil),
-        EnableOption(option: "Thursday", selected: false, id: nil),
-        EnableOption(option: "Friday", selected: false, id: nil),
-        EnableOption(option: "Saturday", selected: false, id: nil),
+        EnableOption(option: "Sunday", selected: false, id: 0),
+        EnableOption(option: "Monday", selected: false, id: 1),
+        EnableOption(option: "Tuesday", selected: false, id: 2),
+        EnableOption(option: "Wednesday", selected: false, id: 3),
+        EnableOption(option: "Thursday", selected: false, id: 4),
+        EnableOption(option: "Friday", selected: false, id: 5),
+        EnableOption(option: "Saturday", selected: false, id: 6),
     ]
     let alertService = AlertService()
     
@@ -47,8 +47,8 @@ class AddCompanyDaysEnabledViewController: UIViewController, UITableViewDelegate
             
             // Get selected options and pass objects
             let selectedOptionsString = AddCompanyHelper.getSelectedOptions(options: self.daysOfTheWeek)
-            print(selectedOptionsString)
             self.company?.daysOfTheWeekEnabled = selectedOptionsString
+            addCompanyHoursEnabledViewController.userIsSigningUp = true
             addCompanyHoursEnabledViewController.company = self.company
             addCompanyHoursEnabledViewController.customer = self.customer
             

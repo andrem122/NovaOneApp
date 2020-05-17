@@ -6,7 +6,7 @@
         $algorithm = "pbkdf2_sha256";
         $iterations = 10000;
 
-        $newSalt = mcrypt_create_iv(6, MCRYPT_DEV_URANDOM);
+        $newSalt = random_bytes(6);
         $newSalt = base64_encode($newSalt);
 
         $hash = hash_pbkdf2("SHA256", $password, $newSalt, $iterations, 0, true);

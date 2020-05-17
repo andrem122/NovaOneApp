@@ -28,8 +28,8 @@
                   //check if user exists in database
                   $query = 'SELECT * FROM auth_user WHERE email = :email';
                   
-                  $db_object = new Database('pgsql');
-                  $db = $db_object->connect('pgsql');
+                  $db_object = new Database();
+                  $db = $db_object->connect();
                   $stmt = $db->prepare($query);
                   $stmt->bindParam(':email', $email);
                   

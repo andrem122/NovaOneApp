@@ -14,7 +14,7 @@ class Database {
     private $db_uri;
     protected $db;
     
-    public function __construct($db_type = 'pgsql') {
+    public function __construct() {
         $this->db_username = $GLOBALS['pg_db_username'];
         $this->db_password = $GLOBALS['pg_db_password'];
         $this->db_name = $GLOBALS['pg_db_name'];
