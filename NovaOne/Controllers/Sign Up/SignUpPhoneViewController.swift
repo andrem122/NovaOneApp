@@ -34,17 +34,41 @@ class SignUpPhoneViewController: BaseSignUpViewController, UITextFieldDelegate {
     
     // MARK: Actions
     @IBAction func continueButtonTapped(_ sender: Any) {
-        guard
-            let customerTypeViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.signUpCustomerType.rawValue) as? SignUpCustomerTypeViewController,
-            let phoneNumber = self.phoneTextField.text
-        else { return }
         
-        let unformattedPhoneNumber = "+1" + phoneNumber.replacingOccurrences(of: "[\\(\\)\\s-]", with: "", options: .regularExpression, range: nil)
+        // Disable button while doing HTTP request
+        UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
+        self.showSpinner(for: self.view, textForLabel: "Validating Phone Number")
         
-        self.customer?.phoneNumber = unformattedPhoneNumber
-        customerTypeViewController.customer = self.customer
+        // Parameter values
+        guard let phoneNumber = self.phoneTextField.text else { return }
+        let unformattedPhoneNumber = "%2B1" + phoneNumber.replacingOccurrences(of: "[\\(\\)\\s-]", with: "", options: .regularExpression, range: nil)
         
-        self.navigationController?.pushViewController(customerTypeViewController, animated: true)
+        let httpRequest = HTTPRequests()
+        let parameters: [String: String] = ["valueToCheckInDatabase": unformattedPhoneNumber, "tableName": "customer_register_customer_user", "columnName": "phone_number"]
+        httpRequest.request(endpoint: "/signupInputCheck.php", dataModel: SuccessResponse.self, parameters: parameters) { [weak self] (result) in
+            switch result {
+            case .success(let success):
+                
+                print(success.reason)
+                guard
+                    let customerTypeViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.signUpCustomerType.rawValue) as? SignUpCustomerTypeViewController
+                else { return }
+                
+                self?.customer?.phoneNumber = unformattedPhoneNumber
+                customerTypeViewController.customer = self?.customer
+                
+                self?.navigationController?.pushViewController(customerTypeViewController, animated: true)
+                
+            case .failure(let error):
+                guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
+                self?.present(popUpOkViewController, animated: true, completion: nil)
+            }
+            
+            guard let button = self?.continueButton else { return }
+            UIHelper.enable(button: button, enabledColor: Defaults.novaOneColor, borderedButton: false)
+            
+            self?.removeSpinner()
+        }
     }
     
 }

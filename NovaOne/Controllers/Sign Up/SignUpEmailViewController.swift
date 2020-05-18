@@ -46,12 +46,34 @@ class SignUpEmailViewController: BaseSignUpViewController, UITextFieldDelegate {
     @IBAction func continueButtonTapped(_ sender: Any) {
         guard let email = emailAddressTextField.text else { return }
         
-        // If email is valid, proceed to the next view
+        // If email is valid, check for it in the database before continuing
         if InputValidators.isValidEmail(email: email) {
-            self.customer = CustomerSignUpModel(email: email, password: "", phoneNumber: "", firstName: "", lastName: "", customerType: "")
-            guard let signUpPasswordViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.signUpPassword.rawValue) as? SignUpPasswordViewController else { return }
-            signUpPasswordViewController.customer = self.customer
-            self.navigationController?.pushViewController(signUpPasswordViewController, animated: true)
+            // Disable button while doing HTTP request
+            UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
+            self.showSpinner(for: self.view, textForLabel: "Validating Email")
+            
+            let httpRequest = HTTPRequests()
+            let parameters: [String: String] = ["valueToCheckInDatabase": email, "tableName": "auth_user", "columnName": "email"]
+            httpRequest.request(endpoint: "/signupInputCheck.php", dataModel: SuccessResponse.self, parameters: parameters) { [weak self] (result) in
+                switch result {
+                case .success(let success):
+                    
+                    print(success.reason)
+                    self?.customer = CustomerSignUpModel(email: email, password: "", phoneNumber: "", firstName: "", lastName: "", customerType: "")
+                    guard let signUpPasswordViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.signUpPassword.rawValue) as? SignUpPasswordViewController else { return }
+                    signUpPasswordViewController.customer = self?.customer
+                    self?.navigationController?.pushViewController(signUpPasswordViewController, animated: true)
+                    
+                case .failure(let error):
+                    guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
+                    self?.present(popUpOkViewController, animated: true, completion: nil)
+                }
+                
+                guard let button = self?.continueButton else { return }
+                UIHelper.enable(button: button, enabledColor: Defaults.novaOneColor, borderedButton: false)
+                
+                self?.removeSpinner()
+            }
         } else {
             // Email is not valid, so present pop up
             let popUpOkViewController = self.alertService.popUpOk(title: "Invalid Email", body: "Please enter a valid email.")

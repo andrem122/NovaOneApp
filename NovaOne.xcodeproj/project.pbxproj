@@ -157,6 +157,7 @@
 		65BA98B92431224C00CFAA9F /* AppointmentsContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BA98B82431224C00CFAA9F /* AppointmentsContainerViewController.swift */; };
 		65BA98BB243166C700CFAA9F /* LeadsContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BA98BA243166C700CFAA9F /* LeadsContainerViewController.swift */; };
 		65C14C332434DAA500848606 /* PopUpOkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C14C322434DAA500848606 /* PopUpOkViewController.swift */; };
+		65C230E224718F430099DA1A /* signupInputCheck.php in Resources */ = {isa = PBXBuildFile; fileRef = 65C230E124718F430099DA1A /* signupInputCheck.php */; };
 		65C5467923ECAB2300A198F3 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C5467823ECAB2300A198F3 /* AppUtility.swift */; };
 		65C5467A23ECAB2300A198F3 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C5467823ECAB2300A198F3 /* AppUtility.swift */; };
 		65C5467B23ECAB2400A198F3 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C5467823ECAB2300A198F3 /* AppUtility.swift */; };
@@ -352,6 +353,7 @@
 		65BA98B82431224C00CFAA9F /* AppointmentsContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentsContainerViewController.swift; sourceTree = "<group>"; };
 		65BA98BA243166C700CFAA9F /* LeadsContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadsContainerViewController.swift; sourceTree = "<group>"; };
 		65C14C322434DAA500848606 /* PopUpOkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpOkViewController.swift; sourceTree = "<group>"; };
+		65C230E124718F430099DA1A /* signupInputCheck.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = signupInputCheck.php; sourceTree = "<group>"; };
 		65C5467823ECAB2300A198F3 /* AppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
 		65C9A74B245CF1E5009651B4 /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		65C9A74D245CF28A009651B4 /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
@@ -766,6 +768,7 @@
 				6516A844245255E7003B974A /* chartDataWeekly.php */,
 				65AC9BFD2454B42B001E61A0 /* chartDataMonthly.php */,
 				65074FB02470622F008AC4B2 /* signup.php */,
+				65C230E124718F430099DA1A /* signupInputCheck.php */,
 			);
 			path = PHP;
 			sourceTree = "<group>";
@@ -929,6 +932,7 @@
 				6591C3A123DA78F900535C46 /* Main.storyboard in Resources */,
 				6578D9F12415AD06002E94BF /* companies.php in Resources */,
 				65316D5524465E5D0072F78A /* moreLeads.php in Resources */,
+				65C230E224718F430099DA1A /* signupInputCheck.php in Resources */,
 				6560F004244A30FE0097792D /* refreshLeads.php in Resources */,
 				6569539B24477F6300CF86B7 /* moreAppointments.php in Resources */,
 			);

@@ -99,9 +99,9 @@
         
     }
     
-    function query_db($query, $user_is_verified, $customer_user_id, $first_object_id, $last_object_id) {
+    function query_db_login($query, $user_is_verified, $customer_user_id, $first_object_id, $last_object_id) {
         if ($user_is_verified) {
-            
+            // queries the database for the users who are logged in
             $db_object = new Database();
             $db = $db_object->connect();
             $stmt = $db->prepare($query);
@@ -146,5 +146,69 @@
             }
             
         }
+    }
+    
+    function query_db_signup($query, $parameters = array('' => '')) {
+        
+        // queries the database for the signup process
+        $db_object = new Database();
+        $db = $db_object->connect();
+        $stmt = $db->prepare($query);
+        
+        // bind parameters
+        foreach ($parameters as $parameter_key => $parameter_value) {
+            $stmt->bindParam($parameter_key, $parameter_value);
+        }
+        
+        if ($stmt->execute()) {
+            return $stmt;
+        } else {
+            http_response_code(500);
+            echo $stmt->errorInfo();
+        }
+        
+    }
+    
+    function signup_input_check($value_to_check_in_database, $table_name, $column_name, $request_method, $php_authentication_username_f, $php_authentication_password_f) {
+        // checks the input of a field for an existing value in the database
+        
+        // function variables
+        $response_array = array();
+        $column_name_formatted = ucfirst(str_replace("_"," ", $column_name));
+        
+        if($request_method === 'POST') {
+            
+            if($php_authentication_username_f === $GLOBALS['php_authentication_username'] && $php_authentication_password_f === $GLOBALS['php_authentication_password']) {
+                
+                if(!isset($value_to_check_in_database)) {
+                    // set a 400 (bad request) response code and exit.
+                    http_response_code(400);
+                    $response_array = array('error' => 6, 'reason' => 'Oops! Please complete all fields and try again.');
+                } else {
+                    $parameter = ':' . $column_name;
+                    $query = 'SELECT * FROM ' . $table_name . ' WHERE ' . $column_name . ' = ' . $parameter;
+                    $parameters = array($parameter => $value_to_check_in_database);
+                    $stmt = query_db_signup($query, $parameters);
+                    
+                    if ($stmt->rowCount() > 0) {
+                        $response_array = array('error' => 8, 'reason' => $column_name_formatted . ' has already been registered. Please use a different ' . strtolower($column_name_formatted) . '.');
+                    } else {
+                        $response_array = array('success' => 2, 'reason' => $column_name_formatted . ' not found in database.');
+                    }
+                }
+                
+            } else {
+                // not a POST request from the NovaOne app. Set a 403 (forbidden) response code.
+                http_response_code(403);
+                $response_array = array('error' => 4, 'reason' => 'Forbidden POST request');
+            }
+            
+        } else {
+            // not a POST request. set a 403 (forbidden) response code.
+            http_response_code(403);
+            $response_array = array('error' => 5, 'reason' => 'Forbidden: Only POST requests allowed.');
+        }
+        
+        return $response_array;
     }
 

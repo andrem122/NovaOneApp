@@ -277,7 +277,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
     func getObjectCounts(success: @escaping () -> Void) {
         // Gets the number of a chosen object from the database
         
-        self.showSpinner(for: self.view)
+        self.showSpinner(for: self.view, textForLabel: nil)
         
         let httpRequest = HTTPRequests()
         guard
@@ -344,7 +344,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         let title = self.segmentControl.titleForSegment(at: self.segmentControl.selectedSegmentIndex)
         
         self.barChart.removeFromSuperview()
-        self.showSpinner(for: self.chartContainerView)
+        self.showSpinner(for: self.chartContainerView, textForLabel: nil)
         if title == "Month" {
             self.chartTitle.text = "Leads Per Month"
             self.getMonthlyChartData() {

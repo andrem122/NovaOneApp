@@ -76,10 +76,53 @@ extension UIView {
     }
 }
 
+var vSpinner: UIView? // Global variable, must set to nil when done using to avoid memory leak
 extension UIViewController {
     func getSizeClass() -> (UIUserInterfaceSizeClass, UIUserInterfaceSizeClass) {
         // Returns the horizontal and vertical size class in a tuple
         return (self.traitCollection.horizontalSizeClass, self.traitCollection.verticalSizeClass)
+    }
+    
+    func showSpinner(for view: UIView, textForLabel: String?) {
+        // Shows a spinner/loading icon for the current view
+        
+        // Create a view that has the same CGRect dimensions as the parent view
+        let spinnerView = UIView.init(frame: view.bounds)
+        spinnerView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+        
+        // Create the spinner that goes in the center of the spinner view
+        let spinner = UIActivityIndicatorView(style: .medium)
+        spinner.startAnimating()
+        spinner.center = spinnerView.center
+        
+        // Create label to go underneath spinner
+        let label = UILabel()
+        label.frame.size = CGSize(width: spinnerView.bounds.width, height: 30) // Set width and height so label is visible
+        label.center = CGPoint(x: spinnerView.center.x, y: spinnerView.center.y + 25) // Set position on spinnerView
+        guard let text = textForLabel else { return }
+        
+        // Add subviews
+        DispatchQueue.main.async {
+            spinnerView.addSubview(label)
+            spinnerView.addSubview(spinner)
+            view.addSubview(spinnerView)
+            
+            label.text = text
+            label.textColor = .lightGray
+            label.textAlignment = .center
+            label.font.withSize(15)
+        }
+        
+        vSpinner = spinnerView
+        
+    }
+    
+    func removeSpinner() {
+        // Removes the spinner from the view it is embedded in and deallocates it from memory
+        DispatchQueue.main.async {
+            vSpinner?.removeFromSuperview()
+            vSpinner = nil
+        }
     }
 }
 

@@ -50,7 +50,7 @@ class SignUpCompanyPhoneViewController: BaseSignUpViewController, UITextFieldDel
             let phoneNumber = self.propertyPhoneTextField.text
         else { return }
         
-        let unformattedPhoneNumber = "+1" + phoneNumber.replacingOccurrences(of: "[\\(\\)\\s-]", with: "", options: .regularExpression, range: nil)
+        let unformattedPhoneNumber = "%2B1" + phoneNumber.replacingOccurrences(of: "[\\(\\)\\s-]", with: "", options: .regularExpression, range: nil)
         
         self.company?.phoneNumber = unformattedPhoneNumber
         addCompanyDaysEnabledViewController.customer = self.customer

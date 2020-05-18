@@ -41,7 +41,7 @@
     ";
     
     // query the database and echo results
-    query_db($query, $user_is_verified, $customer_user_id, '');
+    query_db_login($query, $user_is_verified, $customer_user_id, '');
     
 ?>
 
