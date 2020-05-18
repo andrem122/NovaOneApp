@@ -25,11 +25,11 @@ class AlertService {
         return popUpOkViewController
     }
     
-    func popUp(title: String, body: String, buttonTitle: String, completion: @escaping () -> Void) -> PopUpViewController {
+    func popUp(title: String, body: String, buttonTitle: String, completion: @escaping () -> Void) -> PopUpActionViewController {
         // Returns a pop up with a cancel and action button
         
         let storyboard = UIStoryboard(name: Defaults.storyboardName, bundle: .main)
-        guard let popUpViewController = storyboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.popUp.rawValue) as? PopUpViewController else { return PopUpViewController() }
+        guard let popUpViewController = storyboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.popUp.rawValue) as? PopUpActionViewController else { return PopUpActionViewController() }
         
         // Set text values for the pop up view controller
         popUpViewController.popUpTitle = title

@@ -60,8 +60,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         // Check if user has username and password in keychain already
         // If they have a keychain credentials, then login to server using keychain credentials
         // on successful biometric authentication
-        if let keychainUsername = KeychainWrapper.standard.string(forKey: "username"),
-            let keychainPassword = KeychainWrapper.standard.string(forKey: "password") {
+        if let keychainEmail = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.email.rawValue),
+            let keychainPassword = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue) {
             
             let authContext = LAContext()
             let authReason = "Authenticate to access your NovaOne account."
@@ -78,10 +78,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             self.tabBarController?.selectedIndex = 2
                             
                             // Set text fields to have credentials on successful authentication
-                            self.userNameTextField.text = keychainUsername
+                            self.userNameTextField.text = keychainEmail
                             self.passwordTextField.text = keychainPassword
                             
-                            self.formDataLogin(username: keychainUsername, password: keychainPassword) {
+                            self.formDataLogin(email: keychainEmail, password: keychainPassword) {
                                 [weak self] in
                                 self?.getCompanies()
                             }
@@ -131,10 +131,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     // Sends a post request using url encoded string
-    func formDataLogin(username: String, password: String, success: (() -> Void)?) {
+    func formDataLogin(email: String, password: String, success: (() -> Void)?) {
         
         let httpRequest = HTTPRequests()
-        let parameters: [String: Any] = ["email": username, "password": password]
+        let parameters: [String: Any] = ["email": email, "password": password]
         httpRequest.request(endpoint: "/login.php", dataModel: CustomerModel.self, parameters: parameters) { [weak self] (result) in
             
             // Use a switch statement to go through the cases of the Result eumeration
@@ -146,8 +146,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 case .success(let customer):
                     
                     // Add username and password to keychain if the username and password is correct
-                    KeychainWrapper.standard.set(username, forKey: "username")
-                    KeychainWrapper.standard.set(password, forKey: "password")
+                    KeychainWrapper.standard.set(email, forKey: Defaults.KeychainKeys.email.rawValue)
+                    KeychainWrapper.standard.set(password, forKey: Defaults.KeychainKeys.password.rawValue)
                     
                     // Go to container view controller
                     if let containerViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.container.rawValue) as? ContainerViewController  {
@@ -232,7 +232,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             guard
                 let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
                 let email = customer.email,
-                let password = KeychainWrapper.standard.string(forKey: "password")
+                let password = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue)
             else { return }
             let customerUserId = customer.id
             
@@ -288,7 +288,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBAction func loginButtonTouch(_ sender: NovaOneButton) {
         
         guard
-            let username = self.userNameTextField.text,
+            let email = self.userNameTextField.text,
             let password = self.passwordTextField.text
         else { return }
         
@@ -297,7 +297,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.loginButton.backgroundColor = Defaults.novaOneColorDisabledColor
         
         // Proceed with logging the user in if text fields are not empty
-        self.formDataLogin(username: username, password: password) {
+        self.formDataLogin(email: email, password: password) {
             [weak self] in
             self?.getCompanies()
         }

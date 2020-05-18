@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PopUpViewController: UIViewController {
+class PopUpActionViewController: UIViewController {
     
     // MARK: Properties
     @IBOutlet weak var popUpTitleLabel: UILabel!

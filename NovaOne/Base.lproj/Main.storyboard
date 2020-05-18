@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1DO-qz-DTw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1DO-qz-DTw">
     <device id="retina3_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -318,7 +318,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5O7-UW-25n" userLabel="Cancel Button">
-                                <rect key="frame" x="20" y="20" width="33.5" height="33.5"/>
+                                <rect key="frame" x="20" y="20" width="67" height="67"/>
                                 <state key="normal" image="cancelButtonBlue"/>
                                 <connections>
                                     <action selector="cancelButtonTouch:" destination="00c-Xy-omL" eventType="touchUpInside" id="I9r-bb-DbA"/>
@@ -524,16 +524,16 @@ and you have 4 leads.</string>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="wkW-aQ-VTr" userLabel="Appointments Stack View">
-                                <rect key="frame" x="197.5" y="183" width="107.5" height="49.5"/>
+                                <rect key="frame" x="172.5" y="183" width="132.5" height="49.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nRg-vT-h1K">
-                                        <rect key="frame" x="0.0" y="0.0" width="107.5" height="24"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="132.5" height="24"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendarBlue" translatesAutoresizingMaskIntoConstraints="NO" id="wj5-OX-xG2">
-                                                <rect key="frame" x="0.0" y="0.0" width="29" height="24"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="54" height="24"/>
                                             </imageView>
                                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="19,932" textAlignment="natural" lineBreakMode="tailTruncation" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="2kC-3D-YEV" userLabel="Number Of Appointments">
-                                                <rect key="frame" x="37" y="0.0" width="70.5" height="24"/>
+                                                <rect key="frame" x="62" y="0.0" width="70.5" height="24"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -544,7 +544,7 @@ and you have 4 leads.</string>
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Appointments" lineBreakMode="tailTruncation" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="Hff-3s-U7I">
-                                        <rect key="frame" x="0.0" y="29" width="107.5" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="29" width="132.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -632,16 +632,16 @@ and you have 4 leads.</string>
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="aRI-41-JrA" userLabel="Leads Stack View">
-                                <rect key="frame" x="15" y="183" width="105.5" height="49.5"/>
+                                <rect key="frame" x="15" y="183" width="132.5" height="49.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="CBE-np-wig">
-                                        <rect key="frame" x="0.0" y="0.0" width="105.5" height="24"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="132.5" height="24"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="252" verticalHuggingPriority="252" image="userBlue" translatesAutoresizingMaskIntoConstraints="NO" id="l0h-EL-YFn">
-                                                <rect key="frame" x="0.0" y="0.0" width="27" height="24"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="54" height="24"/>
                                             </imageView>
                                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="749" text="10,932" textAlignment="natural" lineBreakMode="tailTruncation" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="khO-a6-o7N" userLabel="Number Of Leads">
-                                                <rect key="frame" x="35" y="0.0" width="70.5" height="24"/>
+                                                <rect key="frame" x="62" y="0.0" width="70.5" height="24"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -652,7 +652,7 @@ and you have 4 leads.</string>
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="600" verticalHuggingPriority="251" text="Leads" lineBreakMode="tailTruncation" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="23J-qh-t3U">
-                                        <rect key="frame" x="0.0" y="29" width="105.5" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="29" width="132.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -766,14 +766,14 @@ and you have 4 leads.</string>
                                 <exclude reference="zwk-at-UiM"/>
                                 <exclude reference="Hxz-Z3-40J"/>
                                 <exclude reference="foC-GP-8M1"/>
-                                <exclude reference="SLM-4r-bTB"/>
-                                <exclude reference="uRU-wU-6M5"/>
-                                <exclude reference="vCj-dD-9FD"/>
-                                <exclude reference="vHs-uu-Fhg"/>
                                 <exclude reference="616-jn-s43"/>
                                 <exclude reference="8Pc-zX-KAr"/>
                                 <exclude reference="o9i-oc-bHs"/>
                                 <exclude reference="z2s-my-NNz"/>
+                                <exclude reference="SLM-4r-bTB"/>
+                                <exclude reference="uRU-wU-6M5"/>
+                                <exclude reference="vCj-dD-9FD"/>
+                                <exclude reference="vHs-uu-Fhg"/>
                                 <exclude reference="1wh-00-Kif"/>
                                 <exclude reference="5SU-oX-jc7"/>
                                 <exclude reference="656-q3-1Ul"/>
@@ -807,13 +807,13 @@ and you have 4 leads.</string>
                                 <exclude reference="Xuz-jy-tX9"/>
                                 <include reference="foC-GP-8M1"/>
                                 <include reference="LA2-Nu-Jgz"/>
-                                <exclude reference="N1v-Pw-Jfd"/>
-                                <include reference="uRU-wU-6M5"/>
-                                <include reference="vCj-dD-9FD"/>
                                 <include reference="616-jn-s43"/>
                                 <exclude reference="H27-Ja-MyT"/>
                                 <include reference="o9i-oc-bHs"/>
                                 <include reference="z2s-my-NNz"/>
+                                <exclude reference="N1v-Pw-Jfd"/>
+                                <include reference="uRU-wU-6M5"/>
+                                <include reference="vCj-dD-9FD"/>
                                 <exclude reference="2qe-ns-J83"/>
                                 <exclude reference="Ec9-0I-9aA"/>
                                 <include reference="XS0-nR-WjD"/>
@@ -840,11 +840,11 @@ and you have 4 leads.</string>
                                 <include reference="Rlk-k5-6Hd"/>
                                 <exclude reference="mlu-3I-NPX"/>
                                 <exclude reference="lXP-e3-wiY"/>
+                                <include reference="8Pc-zX-KAr"/>
+                                <exclude reference="H27-Ja-MyT"/>
                                 <exclude reference="N1v-Pw-Jfd"/>
                                 <include reference="SLM-4r-bTB"/>
                                 <include reference="vHs-uu-Fhg"/>
-                                <include reference="8Pc-zX-KAr"/>
-                                <exclude reference="H27-Ja-MyT"/>
                                 <include reference="1wh-00-Kif"/>
                                 <include reference="26U-U6-LwQ"/>
                                 <exclude reference="2qe-ns-J83"/>
@@ -1408,7 +1408,7 @@ on how to reset your password.</string>
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kEj-0U-bzz">
-                                <rect key="frame" x="20" y="20" width="33.5" height="33.5"/>
+                                <rect key="frame" x="20" y="20" width="67" height="67"/>
                                 <state key="normal" image="cancelButtonBlue"/>
                                 <connections>
                                     <action selector="cancelButtonTapped:" destination="T1A-G4-xJU" eventType="touchUpInside" id="kgs-AH-JO8"/>
@@ -1539,7 +1539,7 @@ on how to reset your password.</string>
                         <barButtonItem key="backBarButtonItem" title=" " id="frb-iO-epV"/>
                     </navigationItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bMv-Nt-raQ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     </navigationBar>
@@ -2242,7 +2242,7 @@ on how to reset your password.</string>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uPa-aU-gkr" userLabel="Email Button">
-                                                            <rect key="frame" x="202" y="11.5" width="27" height="27"/>
+                                                            <rect key="frame" x="175" y="-2" width="54" height="54"/>
                                                             <state key="normal" image="emailBlue"/>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z4E-mK-dZr" userLabel="Call Button">
@@ -4839,10 +4839,10 @@ hours below.</string>
             </objects>
             <point key="canvasLocation" x="9019" y="4432"/>
         </scene>
-        <!--Pop Up View Controller-->
+        <!--Pop Up Action View Controller-->
         <scene sceneID="qdK-R2-hMC">
             <objects>
-                <viewController storyboardIdentifier="popUpViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="overFullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="S9U-Hu-e9P" customClass="PopUpViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="popUpViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="overFullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="S9U-Hu-e9P" userLabel="Pop Up Action View Controller" customClass="PopUpActionViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uwX-UV-zZN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -6055,7 +6055,7 @@ with the appointment below.</string>
                 <navigationController storyboardIdentifier="addLeadNavigationController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WhH-0Z-LD5" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="fjj-iP-imE"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hJO-tO-2hG">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -7654,23 +7654,23 @@ the lead below.</string>
     </scenes>
     <resources>
         <image name="account" width="42.666667938232422" height="42.666667938232422"/>
-        <image name="calendar" catalog="system" width="128" height="106"/>
         <image name="calendar" width="42.5" height="42.5"/>
+        <image name="calendar" catalog="system" width="64" height="52"/>
         <image name="calendarBlue" width="27" height="27"/>
         <image name="callBlue" width="27" height="27"/>
         <image name="cancelButtonBlue" width="33.5" height="33.5"/>
         <image name="clipboard" width="42.666667938232422" height="42.666667938232422"/>
         <image name="emailBlue" width="27" height="27"/>
         <image name="empty" width="170.5" height="170.5"/>
-        <image name="gear" catalog="system" width="128" height="119"/>
+        <image name="gear" catalog="system" width="64" height="58"/>
         <image name="gpsMap" width="400" height="370.5"/>
         <image name="house" catalog="system" width="32" height="32"/>
-        <image name="list.dash" catalog="system" width="128" height="85"/>
-        <image name="lock" catalog="system" width="128" height="128"/>
+        <image name="list.dash" catalog="system" width="64" height="42"/>
+        <image name="lock" catalog="system" width="64" height="64"/>
         <image name="novaOneLogo" width="85.5" height="85.5"/>
         <image name="novaOneLogoVertical" width="120.5" height="120.5"/>
-        <image name="person" catalog="system" width="128" height="117"/>
-        <image name="plus" catalog="system" width="128" height="113"/>
+        <image name="person" catalog="system" width="64" height="58"/>
+        <image name="plus" catalog="system" width="64" height="56"/>
         <image name="rightAngleBlue" width="42.5" height="42.5"/>
         <image name="success" width="170.5" height="170.5"/>
         <image name="tick" width="26.5" height="26.5"/>

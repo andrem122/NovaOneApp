@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class AddCompanyHoursEnabledViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -14,6 +15,7 @@ class AddCompanyHoursEnabledViewController: UIViewController, UITableViewDataSou
     @IBOutlet weak var addCompanyEnabledHoursTableView: UITableView!
     @IBOutlet weak var appointmentHoursButton: NovaOneButton!
     let alertService = AlertService()
+    let coreDataCustomerEmail: String? = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first?.email
     var userIsSigningUp: Bool = false // A Boolean that indicates whether or not the current user is new and signing up
     
     var hoursOfTheDayAM: [EnableOption] = [
@@ -69,75 +71,162 @@ class AddCompanyHoursEnabledViewController: UIViewController, UITableViewDataSou
         }
     }
     
+    func signupUser(success: @escaping (String, String) -> Void) {
+        // Send a POST request to signup api
+        
+        // Unwrap needed POST data from objects
+        guard
+            let email = self.customer?.email,
+            let password = self.customer?.password,
+            let firstName = self.customer?.firstName,
+            let lastName = self.customer?.lastName,
+            let phoneNumber = self.customer?.phoneNumber,
+            let customerType = self.customer?.customerType,
+            let companyName = self.company?.name,
+            let companyAddress = self.company?.address,
+            let companyPhoneNumber = self.company?.phoneNumber,
+            let companyEmail = self.company?.email,
+            let companyDaysEnabled = self.company?.daysOfTheWeekEnabled,
+            let companyHoursEnabled = self.company?.hoursOfTheDayEnabled,
+            let companyCity = self.company?.city,
+            let companyState = self.company?.state,
+            let companyZip = self.company?.zip
+        else { return }
+        
+        let parameters: [String: String] = ["email": email,
+                                            "password": password,
+                                            "firstName": firstName,
+                                            "lastName": lastName,
+                                            "phoneNumber": phoneNumber,
+                                            "customerType": customerType,
+                                            "companyName": companyName,
+                                            "companyAddress": companyAddress,
+                                            "companyPhoneNumber": companyPhoneNumber,
+                                            "companyEmail": companyEmail,
+                                            "companyDaysEnabled": companyDaysEnabled,
+                                            "companyHoursEnabled": companyHoursEnabled,
+                                            "companyCity": companyCity,
+                                            "companyState": companyState,
+                                            "companyZip": companyZip]
+        
+        let httpRequest = HTTPRequests()
+        httpRequest.request(endpoint: "/signup.php", dataModel: SuccessResponse.self, parameters: parameters) {
+            [weak self] (result) in
+            
+            switch result {
+                case .success(let successResponse):
+                    print(successResponse.reason)
+                    success(email, password)
+                case .failure(let error):
+                    guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
+                    self?.present(popUpOkViewController, animated: true, completion: nil)
+            }
+            
+            self?.removeSpinner()
+        }
+    }
+    
+        func loginUser(email: String, password: String, success: (() -> Void)?) {
+        
+            let httpRequest = HTTPRequests()
+            let parameters: [String: Any] = ["email": email, "password": password]
+            httpRequest.request(endpoint: "/login.php", dataModel: CustomerModel.self, parameters: parameters) { [weak self] (result) in
+                
+                switch result {
+                    case .success(let customer):
+                        
+                        // Go to container view controller
+                        if let containerViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.container.rawValue) as? ContainerViewController  {
+                            
+                            // Get non optionals from CustomerModel instance
+                            let dateJoinedDate = customer.dateJoinedDate
+                            let id = Int32(customer.id)
+                            let customerType = customer.customerType
+                            let email = customer.email
+                            let firstName = customer.firstName
+                            let isPaying = customer.isPaying
+                            let lastName = customer.lastName
+                            let phoneNumber = customer.phoneNumber
+                            let wantsSms = customer.wantsSms
+                            let username = customer.username
+                            let lastLoginDate = customer.lastLoginDate
+                            
+                            // If there are no customer CoreData objects, save the new customer object
+                            let customerCount = PersistenceService.fetchCount(for: Defaults.CoreDataEntities.customer.rawValue)
+                            if customerCount == 0 { // New users to the app logging in for first time
+                                print("New user to the app!")
+                                guard let coreDataCustomerObject = NSEntityDescription.insertNewObject(forEntityName: Defaults.CoreDataEntities.customer.rawValue, into: PersistenceService.context) as? Customer else { return }
+                                
+                                coreDataCustomerObject.addCustomer(customerType: customerType, dateJoined: dateJoinedDate, email: email, firstName: firstName, id: id, isPaying: isPaying, lastName: lastName, phoneNumber: phoneNumber, wantsSms: wantsSms, password: password, username: username, lastLogin: lastLoginDate, companies: nil)
+                                
+                                PersistenceService.saveContext()
+                                
+                            } else if (customerCount > 0) && (email != self?.coreDataCustomerEmail) {
+                                // If the email that was typed into the email text field matches the email attribute value
+                                // of the customer object we have stored in CoreData, do nothing. Otherwise,
+                                // delete ALL data from CoreData and update the customer object
+                                
+                                print("Existing user with new login information!")
+                                // Delete all CoreData data from previous logins
+                                PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.customer.rawValue)
+                                PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.company.rawValue)
+                                PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.lead.rawValue)
+                                
+                                // Create new customer object in CoreData for new login information
+                                guard let coreDataCustomerObject = NSEntityDescription.insertNewObject(forEntityName: Defaults.CoreDataEntities.customer.rawValue, into: PersistenceService.context) as? Customer else { return }
+                                
+                                coreDataCustomerObject.addCustomer(customerType: customerType, dateJoined: dateJoinedDate, email: email, firstName: firstName, id: id, isPaying: isPaying, lastName: lastName, phoneNumber: phoneNumber, wantsSms: wantsSms, password: password, username: username, lastLogin: lastLoginDate, companies: nil)
+                                
+                                PersistenceService.saveContext()
+                                
+                            }
+                            
+                            containerViewController.modalPresentationStyle = .fullScreen // Set presentaion style of view to full screen
+                            self?.present(containerViewController, animated: true, completion: nil)
+                            
+                            guard let unwrappedSuccess = success else { return }
+                            unwrappedSuccess()
+                        }
+                    
+                    case .failure(let error):
+                        // Set text for pop up ok view controller
+                        guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
+                        self?.present(popUpOkViewController, animated: true, completion: nil)
+                    
+                }
+                
+            }
+        
+    }
+    
     // MARK: Actions
     @IBAction func addCompanyButtonTapped(_ sender: Any) {
         
         let didSelectHours = AddCompanyHelper.optionIsSelected(options: self.hoursOfTheDayAM + self.hoursOfTheDayPM)
         if didSelectHours {
             
-            self.showSpinner(for: view, textForLabel: "Signing Up")
             if self.userIsSigningUp {
                 // Make POST request with customer data to API
+                self.showSpinner(for: view, textForLabel: "Signing Up")
                 let selectedOptionsString = AddCompanyHelper.getSelectedOptions(options: self.hoursOfTheDayAM + self.hoursOfTheDayPM)
                 self.company?.hoursOfTheDayEnabled = selectedOptionsString
-                print(self.customer as Any)
-                print(self.company as Any)
                 
-                // Unwrap needed POST data from objects
-                guard
-                    let email = self.customer?.email,
-                    let password = self.customer?.password,
-                    let firstName = self.customer?.firstName,
-                    let lastName = self.customer?.lastName,
-                    let phoneNumber = self.customer?.phoneNumber,
-                    let customerType = self.customer?.customerType,
-                    let companyName = self.company?.name,
-                    let companyAddress = self.company?.address,
-                    let companyPhoneNumber = self.company?.phoneNumber,
-                    let companyEmail = self.company?.email,
-                    let companyDaysEnabled = self.company?.daysOfTheWeekEnabled,
-                    let companyHoursEnabled = self.company?.hoursOfTheDayEnabled,
-                    let companyCity = self.company?.city,
-                    let companyState = self.company?.state,
-                    let companyZip = self.company?.zip
-                else { return }
-                
-                let parameters: [String: String] = ["email": email,
-                                                    "password": password,
-                                                    "firstName": firstName,
-                                                    "lastName": lastName,
-                                                    "phoneNumber": phoneNumber,
-                                                    "customerType": customerType,
-                                                    "companyName": companyName,
-                                                    "companyAddress": companyAddress,
-                                                    "companyPhoneNumber": companyPhoneNumber,
-                                                    "companyEmail": companyEmail,
-                                                    "companyDaysEnabled": companyDaysEnabled,
-                                                    "companyHoursEnabled": companyHoursEnabled,
-                                                    "companyCity": companyCity,
-                                                    "companyState": companyState,
-                                                    "companyZip": companyZip]
-                
-                let httpRequest = HTTPRequests()
-                httpRequest.request(endpoint: "/signup.php", dataModel: SuccessResponse.self, parameters: parameters) {
-                    [weak self] (result) in
-                    
-                    switch result {
-                        case .success(let success):
-                            print(success.reason)
-                        case .failure(let error):
-                            guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
-                            self?.present(popUpOkViewController, animated: true, completion: nil)
-                    }
-                    
-                    self?.removeSpinner()
+                self.signupUser {
+                    [weak self] (email, password) in
+                    self?.loginUser(email: email, password: password, success: {
+                        [weak self] in
+                        
+                        // Add username and password to keychain if user wants to
+                        let title = "Add To Keychain"
+                        let body = "Would you like to securely add your username and password to Keychain for easier login?"
+                        guard let popUpActionViewController = self?.alertService.popUp(title: title, body: body, buttonTitle: "Yes", completion: {
+                            KeychainWrapper.standard.set(email, forKey: Defaults.KeychainKeys.email.rawValue)
+                            KeychainWrapper.standard.set(password, forKey: Defaults.KeychainKeys.password.rawValue)
+                        }) else { return }
+                        self?.present(popUpActionViewController, animated: true, completion: nil)
+                        
+                    })
                 }
-                // Make Login POST request once POST request with customer data is complete
-                
-                // Once login POST request to API is complete, navigate to home screen if user is signing up
-//                if let homeTabBarController = self.storyboard?.instantiateViewController(identifier: Defaults.TabBarControllerIdentifiers.home.rawValue) as? HomeTabBarController {
-//                    self.present(homeTabBarController, animated: true, completion: nil)
-//                }
             } else {
                 // Navigate to success screen once the company has been sucessfully added
                 if let successViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.success.rawValue) as? SuccessViewController {

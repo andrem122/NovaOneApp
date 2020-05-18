@@ -135,7 +135,7 @@ class LeadsViewController: UIViewController {
         guard
             let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
             let email = customer.email,
-            let password = KeychainWrapper.standard.string(forKey: "password")
+            let password = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue)
         else {
             self.refresher.endRefreshing()
             return

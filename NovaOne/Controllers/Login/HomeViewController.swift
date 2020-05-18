@@ -147,7 +147,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         guard
             let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
             let email = customer.email,
-            let password = KeychainWrapper.standard.string(forKey: "password")
+            let password = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue)
         else { return }
         let customerUserId = customer.id
         
@@ -210,7 +210,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         guard
             let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
             let email = customer.email,
-            let password = KeychainWrapper.standard.string(forKey: "password")
+            let password = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue)
         else { return }
         let customerUserId = customer.id
         
@@ -283,7 +283,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         guard
             let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
             let email = customer.email,
-            let password = KeychainWrapper.standard.string(forKey: "password")
+            let password = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue)
         else { return }
         let customerUserId = customer.id
         

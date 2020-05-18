@@ -57,7 +57,7 @@ class AddLeadCompanyViewController: UIViewController, UITableViewDataSource, UIT
             guard
                 let customer = PersistenceService.fetchCustomerEntity(),
                 let email = customer.email,
-                let password = KeychainWrapper.standard.string(forKey: "password")
+                let password = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue)
             else {
                 print("Failed to obtain variables for POST request")
                 return
