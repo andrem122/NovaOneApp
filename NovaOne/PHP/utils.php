@@ -148,29 +148,27 @@
         }
     }
     
-    function query_db_signup($query, $parameters = array('' => '')) {
+    function query_db_signup($db, $query, $parameters = array('' => '')) {
         
         // queries the database for the signup process
-        $db_object = new Database();
-        $db = $db_object->connect();
         $stmt = $db->prepare($query);
         
         // bind parameters
-        foreach ($parameters as $parameter_key => $parameter_value) {
+        foreach ($parameters as $parameter_key => &$parameter_value) {
             $stmt->bindParam($parameter_key, $parameter_value);
         }
         
-        if ($stmt->execute()) {
-            return $stmt;
-        } else {
-            http_response_code(500);
-            echo $stmt->errorInfo();
-        }
+        $stmt->execute();
+        return $stmt;
         
     }
     
     function signup_input_check($value_to_check_in_database, $table_name, $column_name, $request_method, $php_authentication_username_f, $php_authentication_password_f) {
         // checks the input of a field for an existing value in the database
+        
+        // Connect to database
+        $db_object = new Database();
+        $db = $db_object->connect();
         
         // function variables
         $response_array = array();
@@ -188,7 +186,7 @@
                     $parameter = ':' . $column_name;
                     $query = 'SELECT * FROM ' . $table_name . ' WHERE ' . $column_name . ' = ' . $parameter;
                     $parameters = array($parameter => $value_to_check_in_database);
-                    $stmt = query_db_signup($query, $parameters);
+                    $stmt = query_db_signup($db, $query, $parameters);
                     
                     if ($stmt->rowCount() > 0) {
                         $response_array = array('error' => 8, 'reason' => $column_name_formatted . ' has already been registered. Please use a different ' . strtolower($column_name_formatted) . '.');

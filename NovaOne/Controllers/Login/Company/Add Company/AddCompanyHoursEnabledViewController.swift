@@ -75,6 +75,7 @@ class AddCompanyHoursEnabledViewController: UIViewController, UITableViewDataSou
         let didSelectHours = AddCompanyHelper.optionIsSelected(options: self.hoursOfTheDayAM + self.hoursOfTheDayPM)
         if didSelectHours {
             
+            self.showSpinner(for: view, textForLabel: "Signing Up")
             if self.userIsSigningUp {
                 // Make POST request with customer data to API
                 let selectedOptionsString = AddCompanyHelper.getSelectedOptions(options: self.hoursOfTheDayAM + self.hoursOfTheDayPM)
@@ -120,13 +121,16 @@ class AddCompanyHoursEnabledViewController: UIViewController, UITableViewDataSou
                 let httpRequest = HTTPRequests()
                 httpRequest.request(endpoint: "/signup.php", dataModel: SuccessResponse.self, parameters: parameters) {
                     [weak self] (result) in
+                    
                     switch result {
-                    case .success(let success):
-                        print(success.reason)
-                    case .failure(let error):
-                        guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
-                        self?.present(popUpOkViewController, animated: true, completion: nil)
+                        case .success(let success):
+                            print(success.reason)
+                        case .failure(let error):
+                            guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
+                            self?.present(popUpOkViewController, animated: true, completion: nil)
                     }
+                    
+                    self?.removeSpinner()
                 }
                 // Make Login POST request once POST request with customer data is complete
                 
