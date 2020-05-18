@@ -45,19 +45,44 @@ class SignUpCompanyPhoneViewController: BaseSignUpViewController, UITextFieldDel
     }
     
     @IBAction func continueButtonTapped(_ sender: Any) {
-        guard
-            let addCompanyDaysEnabledViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addCompanyDaysEnabled.rawValue) as? AddCompanyDaysEnabledViewController,
-            let phoneNumber = self.propertyPhoneTextField.text
-        else { return }
         
+        // Disable button while doing HTTP request
+        UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
+        self.showSpinner(for: self.view, textForLabel: "Validating Phone Number")
+        
+        // Parameter values
+        guard let phoneNumber = self.propertyPhoneTextField.text else { return }
         let unformattedPhoneNumber = "%2B1" + phoneNumber.replacingOccurrences(of: "[\\(\\)\\s-]", with: "", options: .regularExpression, range: nil)
         
-        self.company?.phoneNumber = unformattedPhoneNumber
-        addCompanyDaysEnabledViewController.customer = self.customer
-        addCompanyDaysEnabledViewController.company = self.company
-        addCompanyDaysEnabledViewController.userIsSigningUp = true // Indicates that the user is new and signing up and not an existing user adding a company
+        let httpRequest = HTTPRequests()
+        let parameters: [String: String] = ["valueToCheckInDatabase": unformattedPhoneNumber, "tableName": "property_company", "columnName": "phone_number"]
+        httpRequest.request(endpoint: "/signupInputCheck.php", dataModel: SuccessResponse.self, parameters: parameters) { [weak self] (result) in
+            switch result {
+            case .success(let success):
+                
+                print(success.reason)
+                guard
+                    let addCompanyDaysEnabledViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addCompanyDaysEnabled.rawValue) as? AddCompanyDaysEnabledViewController
+                else { return }
+                
+                self?.company?.phoneNumber = unformattedPhoneNumber
+                addCompanyDaysEnabledViewController.customer = self?.customer
+                addCompanyDaysEnabledViewController.company = self?.company
+                addCompanyDaysEnabledViewController.userIsSigningUp = true // Indicates that the user is new and signing up and not an existing user adding a company
+                
+                self?.navigationController?.pushViewController(addCompanyDaysEnabledViewController, animated: true)
+                
+            case .failure(let error):
+                guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
+                self?.present(popUpOkViewController, animated: true, completion: nil)
+            }
+            
+            guard let button = self?.continueButton else { return }
+            UIHelper.enable(button: button, enabledColor: Defaults.novaOneColor, borderedButton: false)
+            
+            self?.removeSpinner()
+        }
         
-        self.navigationController?.pushViewController(addCompanyDaysEnabledViewController, animated: true)
     }
     
 }
