@@ -44,11 +44,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         // Add chart view to chart container view
         self.chartContainerView.addSubview(barChart)
         
-        // Setup frame of chart
-        let width = self.chartContainerView.bounds.width
-        let height = self.chartContainerView.bounds.height
-        
-        self.barChart.frame = CGRect(x: 0, y: 0, width: width, height: height) // x, y, width, and height all refer to the parent view which may not be the superview
+        self.barChart.noDataText = "No data available"
         self.barChart.translatesAutoresizingMaskIntoConstraints = false
         
         // Set constraints
@@ -97,6 +93,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         
         let data = BarChartData(dataSet: set)
         barChart.data = data
+        self.barChart.notifyDataSetChanged()
     }
     
     func setupGreetingLabel() {
@@ -196,9 +193,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
                     unwrappedSuccess()
                 case .failure(let error):
                     self?.showPopUpOk(error: error)
-                    print(error.localizedDescription)
             }
-            
             self?.removeSpinner()
             
         }
@@ -266,6 +261,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
                     unwrappedSuccess()
                 case .failure(let error):
                     print(error.localizedDescription)
+                    // Update chart data
                     self?.showPopUpOk(error: error)
             }
             
@@ -325,7 +321,6 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
     }
     
     @IBAction func numberOfAppointmentsLabelTapped(sender: UITapGestureRecognizer) {
-        print("Number of appointments label tapped!")
         self.tabBarController?.selectedIndex = 1 // Appointments view
     }
     

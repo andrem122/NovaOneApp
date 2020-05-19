@@ -126,7 +126,7 @@ class AddCompanyHoursEnabledViewController: UIViewController, UITableViewDataSou
         }
     }
     
-        func loginUser(email: String, password: String, success: (() -> Void)?) {
+        func loginUser(email: String, password: String, success: ((ContainerViewController) -> Void)?) {
         
             let httpRequest = HTTPRequests()
             let parameters: [String: Any] = ["email": email, "password": password]
@@ -185,7 +185,7 @@ class AddCompanyHoursEnabledViewController: UIViewController, UITableViewDataSou
                             self?.present(containerViewController, animated: true, completion: nil)
                             
                             guard let unwrappedSuccess = success else { return }
-                            unwrappedSuccess()
+                            unwrappedSuccess(containerViewController)
                         }
                     
                     case .failure(let error):
@@ -211,10 +211,13 @@ class AddCompanyHoursEnabledViewController: UIViewController, UITableViewDataSou
                 let selectedOptionsString = AddCompanyHelper.getSelectedOptions(options: self.hoursOfTheDayAM + self.hoursOfTheDayPM)
                 self.company?.hoursOfTheDayEnabled = selectedOptionsString
                 
+                // Sign up user
                 self.signupUser {
                     [weak self] (email, password) in
-                    self?.loginUser(email: email, password: password, success: {
-                        [weak self] in
+                    
+                    // Login user and navigate to container view controller
+                    self?.loginUser(email: email, password: password) {
+                        [weak self] (containerViewController) in
                         
                         // Add username and password to keychain if user wants to
                         let title = "Add To Keychain"
@@ -223,9 +226,10 @@ class AddCompanyHoursEnabledViewController: UIViewController, UITableViewDataSou
                             KeychainWrapper.standard.set(email, forKey: Defaults.KeychainKeys.email.rawValue)
                             KeychainWrapper.standard.set(password, forKey: Defaults.KeychainKeys.password.rawValue)
                         }) else { return }
-                        self?.present(popUpActionViewController, animated: true, completion: nil)
+                        containerViewController.present(popUpActionViewController, animated: true, completion: nil)
                         
-                    })
+                    }
+                    
                 }
             } else {
                 // Navigate to success screen once the company has been sucessfully added

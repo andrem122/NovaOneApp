@@ -96,22 +96,21 @@ extension UIViewController {
         spinner.center = spinnerView.center
         
         // Create label to go underneath spinner
-        let label = UILabel()
-        label.frame.size = CGSize(width: spinnerView.bounds.width, height: 30) // Set width and height so label is visible
-        label.center = CGPoint(x: spinnerView.center.x, y: spinnerView.center.y + 25) // Set position on spinnerView
-        guard let text = textForLabel else { return }
-        
-        // Add subviews
-        DispatchQueue.main.async {
-            spinnerView.addSubview(label)
-            spinnerView.addSubview(spinner)
-            view.addSubview(spinnerView)
-            
+        if textForLabel != nil {
+            let label = UILabel()
+            label.frame.size = CGSize(width: spinnerView.bounds.width, height: 30) // Set width and height so label is visible
+            label.center = CGPoint(x: spinnerView.center.x, y: spinnerView.center.y + 25) // Set position on spinnerView
+            guard let text = textForLabel else { return }
             label.text = text
             label.textColor = .lightGray
             label.textAlignment = .center
             label.font.withSize(15)
+            spinnerView.addSubview(label)
         }
+        
+        // Add subviews
+        spinnerView.addSubview(spinner)
+        view.addSubview(spinnerView)
         
         vSpinner = spinnerView
         
