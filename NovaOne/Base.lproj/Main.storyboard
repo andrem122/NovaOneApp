@@ -237,6 +237,9 @@
                                                 <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        </variation>
                                         <connections>
                                             <action selector="emailFieldChanged:" destination="3nd-WK-PNW" eventType="editingChanged" id="M5V-iW-IJ7"/>
                                         </connections>
@@ -257,6 +260,9 @@
                                                 <real key="value" value="20"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        </variation>
                                         <connections>
                                             <action selector="continueButtonTapped:" destination="3nd-WK-PNW" eventType="touchUpInside" id="yCJ-Po-Qqv"/>
                                         </connections>
@@ -268,25 +274,43 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                 <color key="textColor" red="0.26664003729820251" green="0.26668369770050049" blue="0.26663050055503845" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="45"/>
+                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What is your email?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="UtI-MG-IDB" userLabel="Subtitle">
                                 <rect key="frame" x="30" y="139.5" width="260" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                </variation>
                             </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="rHa-3f-XZv" firstAttribute="trailing" secondItem="MHL-is-TaS" secondAttribute="trailing" constant="30" id="BUx-fJ-mSc"/>
-                            <constraint firstItem="T55-TY-6Hf" firstAttribute="leading" secondItem="rHa-3f-XZv" secondAttribute="leading" constant="30" id="LIr-UI-Iod"/>
+                            <constraint firstItem="rHa-3f-XZv" firstAttribute="trailing" secondItem="MHL-is-TaS" secondAttribute="trailing" constant="30" id="BUx-fJ-mSc">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="T55-TY-6Hf" firstAttribute="leading" secondItem="rHa-3f-XZv" secondAttribute="leading" constant="30" id="LIr-UI-Iod">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
                             <constraint firstItem="UtI-MG-IDB" firstAttribute="top" secondItem="T55-TY-6Hf" secondAttribute="bottom" constant="20" id="MMO-Tq-PAq"/>
-                            <constraint firstItem="UtI-MG-IDB" firstAttribute="leading" secondItem="rHa-3f-XZv" secondAttribute="leading" constant="30" id="Pa4-EO-bdh"/>
+                            <constraint firstItem="UtI-MG-IDB" firstAttribute="leading" secondItem="rHa-3f-XZv" secondAttribute="leading" constant="30" id="Pa4-EO-bdh">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
                             <constraint firstItem="MHL-is-TaS" firstAttribute="top" secondItem="UtI-MG-IDB" secondAttribute="bottom" constant="30" id="keK-HC-NAB"/>
-                            <constraint firstItem="rHa-3f-XZv" firstAttribute="trailing" secondItem="T55-TY-6Hf" secondAttribute="trailing" constant="30" id="neE-SZ-em6"/>
-                            <constraint firstItem="MHL-is-TaS" firstAttribute="leading" secondItem="rHa-3f-XZv" secondAttribute="leading" constant="30" id="pLC-kk-Ghp"/>
+                            <constraint firstItem="rHa-3f-XZv" firstAttribute="trailing" secondItem="T55-TY-6Hf" secondAttribute="trailing" constant="30" id="neE-SZ-em6">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="MHL-is-TaS" firstAttribute="leading" secondItem="rHa-3f-XZv" secondAttribute="leading" constant="30" id="pLC-kk-Ghp">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
                             <constraint firstItem="MHL-is-TaS" firstAttribute="centerX" secondItem="iDQ-Uh-pE7" secondAttribute="centerX" id="vf1-kp-ov6"/>
-                            <constraint firstItem="rHa-3f-XZv" firstAttribute="trailing" secondItem="UtI-MG-IDB" secondAttribute="trailing" constant="30" id="wQD-8t-OES"/>
+                            <constraint firstItem="rHa-3f-XZv" firstAttribute="trailing" secondItem="UtI-MG-IDB" secondAttribute="trailing" constant="30" id="wQD-8t-OES">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
                             <constraint firstItem="T55-TY-6Hf" firstAttribute="top" secondItem="rHa-3f-XZv" secondAttribute="top" constant="30" id="yA3-Kg-rGl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rHa-3f-XZv"/>
@@ -318,7 +342,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5O7-UW-25n" userLabel="Cancel Button">
-                                <rect key="frame" x="20" y="20" width="67" height="67"/>
+                                <rect key="frame" x="20" y="20" width="33.5" height="33.5"/>
                                 <state key="normal" image="cancelButtonBlue"/>
                                 <connections>
                                     <action selector="cancelButtonTouch:" destination="00c-Xy-omL" eventType="touchUpInside" id="I9r-bb-DbA"/>
@@ -524,16 +548,16 @@ and you have 4 leads.</string>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="wkW-aQ-VTr" userLabel="Appointments Stack View">
-                                <rect key="frame" x="172.5" y="183" width="132.5" height="49.5"/>
+                                <rect key="frame" x="197.5" y="183" width="107.5" height="49.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nRg-vT-h1K">
-                                        <rect key="frame" x="0.0" y="0.0" width="132.5" height="24"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="107.5" height="24"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendarBlue" translatesAutoresizingMaskIntoConstraints="NO" id="wj5-OX-xG2">
-                                                <rect key="frame" x="0.0" y="0.0" width="54" height="24"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="29" height="24"/>
                                             </imageView>
                                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="19,932" textAlignment="natural" lineBreakMode="tailTruncation" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="2kC-3D-YEV" userLabel="Number Of Appointments">
-                                                <rect key="frame" x="62" y="0.0" width="70.5" height="24"/>
+                                                <rect key="frame" x="37" y="0.0" width="70.5" height="24"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -544,7 +568,7 @@ and you have 4 leads.</string>
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Appointments" lineBreakMode="tailTruncation" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="Hff-3s-U7I">
-                                        <rect key="frame" x="0.0" y="29" width="132.5" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="29" width="107.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -632,16 +656,16 @@ and you have 4 leads.</string>
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="aRI-41-JrA" userLabel="Leads Stack View">
-                                <rect key="frame" x="15" y="183" width="132.5" height="49.5"/>
+                                <rect key="frame" x="15" y="183" width="105.5" height="49.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="CBE-np-wig">
-                                        <rect key="frame" x="0.0" y="0.0" width="132.5" height="24"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="105.5" height="24"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="252" verticalHuggingPriority="252" image="userBlue" translatesAutoresizingMaskIntoConstraints="NO" id="l0h-EL-YFn">
-                                                <rect key="frame" x="0.0" y="0.0" width="54" height="24"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="27" height="24"/>
                                             </imageView>
                                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="749" text="10,932" textAlignment="natural" lineBreakMode="tailTruncation" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="khO-a6-o7N" userLabel="Number Of Leads">
-                                                <rect key="frame" x="62" y="0.0" width="70.5" height="24"/>
+                                                <rect key="frame" x="35" y="0.0" width="70.5" height="24"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -652,7 +676,7 @@ and you have 4 leads.</string>
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="600" verticalHuggingPriority="251" text="Leads" lineBreakMode="tailTruncation" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="23J-qh-t3U">
-                                        <rect key="frame" x="0.0" y="29" width="132.5" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="29" width="105.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -766,14 +790,14 @@ and you have 4 leads.</string>
                                 <exclude reference="zwk-at-UiM"/>
                                 <exclude reference="Hxz-Z3-40J"/>
                                 <exclude reference="foC-GP-8M1"/>
-                                <exclude reference="616-jn-s43"/>
-                                <exclude reference="8Pc-zX-KAr"/>
-                                <exclude reference="o9i-oc-bHs"/>
-                                <exclude reference="z2s-my-NNz"/>
                                 <exclude reference="SLM-4r-bTB"/>
                                 <exclude reference="uRU-wU-6M5"/>
                                 <exclude reference="vCj-dD-9FD"/>
                                 <exclude reference="vHs-uu-Fhg"/>
+                                <exclude reference="616-jn-s43"/>
+                                <exclude reference="8Pc-zX-KAr"/>
+                                <exclude reference="o9i-oc-bHs"/>
+                                <exclude reference="z2s-my-NNz"/>
                                 <exclude reference="1wh-00-Kif"/>
                                 <exclude reference="5SU-oX-jc7"/>
                                 <exclude reference="656-q3-1Ul"/>
@@ -807,13 +831,13 @@ and you have 4 leads.</string>
                                 <exclude reference="Xuz-jy-tX9"/>
                                 <include reference="foC-GP-8M1"/>
                                 <include reference="LA2-Nu-Jgz"/>
+                                <exclude reference="N1v-Pw-Jfd"/>
+                                <include reference="uRU-wU-6M5"/>
+                                <include reference="vCj-dD-9FD"/>
                                 <include reference="616-jn-s43"/>
                                 <exclude reference="H27-Ja-MyT"/>
                                 <include reference="o9i-oc-bHs"/>
                                 <include reference="z2s-my-NNz"/>
-                                <exclude reference="N1v-Pw-Jfd"/>
-                                <include reference="uRU-wU-6M5"/>
-                                <include reference="vCj-dD-9FD"/>
                                 <exclude reference="2qe-ns-J83"/>
                                 <exclude reference="Ec9-0I-9aA"/>
                                 <include reference="XS0-nR-WjD"/>
@@ -840,11 +864,11 @@ and you have 4 leads.</string>
                                 <include reference="Rlk-k5-6Hd"/>
                                 <exclude reference="mlu-3I-NPX"/>
                                 <exclude reference="lXP-e3-wiY"/>
-                                <include reference="8Pc-zX-KAr"/>
-                                <exclude reference="H27-Ja-MyT"/>
                                 <exclude reference="N1v-Pw-Jfd"/>
                                 <include reference="SLM-4r-bTB"/>
                                 <include reference="vHs-uu-Fhg"/>
+                                <include reference="8Pc-zX-KAr"/>
+                                <exclude reference="H27-Ja-MyT"/>
                                 <include reference="1wh-00-Kif"/>
                                 <include reference="26U-U6-LwQ"/>
                                 <exclude reference="2qe-ns-J83"/>
@@ -1408,7 +1432,7 @@ on how to reset your password.</string>
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kEj-0U-bzz">
-                                <rect key="frame" x="20" y="20" width="67" height="67"/>
+                                <rect key="frame" x="20" y="20" width="33.5" height="33.5"/>
                                 <state key="normal" image="cancelButtonBlue"/>
                                 <connections>
                                     <action selector="cancelButtonTapped:" destination="T1A-G4-xJU" eventType="touchUpInside" id="kgs-AH-JO8"/>
@@ -1464,6 +1488,9 @@ on how to reset your password.</string>
                                                 <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        </variation>
                                         <connections>
                                             <action selector="passwordTextFieldChanged:" destination="qrD-b3-aqT" eventType="editingChanged" id="6gy-J3-thW"/>
                                         </connections>
@@ -1484,6 +1511,9 @@ on how to reset your password.</string>
                                                 <real key="value" value="20"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        </variation>
                                         <connections>
                                             <action selector="continueButtonTapped:" destination="qrD-b3-aqT" eventType="touchUpInside" id="dfK-fd-IX4"/>
                                         </connections>
@@ -1495,12 +1525,18 @@ on how to reset your password.</string>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                 <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="45"/>
+                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in a password below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="Qm5-lo-2ZG" userLabel="Subtitle">
                                 <rect key="frame" x="30" y="83.5" width="260" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                </variation>
                             </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -1508,13 +1544,25 @@ on how to reset your password.</string>
                             <constraint firstItem="OaV-XG-lCW" firstAttribute="centerX" secondItem="6VL-qX-d9z" secondAttribute="centerX" id="2qU-qN-d3X"/>
                             <constraint firstItem="Qm5-lo-2ZG" firstAttribute="top" secondItem="7xd-hx-0ia" secondAttribute="bottom" constant="20" id="5dr-ZZ-28i"/>
                             <constraint firstItem="OaV-XG-lCW" firstAttribute="top" secondItem="Qm5-lo-2ZG" secondAttribute="bottom" constant="30" id="9l4-4N-3Z5"/>
-                            <constraint firstItem="7xd-hx-0ia" firstAttribute="leading" secondItem="A7b-Wp-VzB" secondAttribute="leading" constant="30" id="ES8-Id-D0i"/>
+                            <constraint firstItem="7xd-hx-0ia" firstAttribute="leading" secondItem="A7b-Wp-VzB" secondAttribute="leading" constant="30" id="ES8-Id-D0i">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
                             <constraint firstItem="7xd-hx-0ia" firstAttribute="top" secondItem="A7b-Wp-VzB" secondAttribute="top" constant="30" id="Iha-h8-CBG"/>
-                            <constraint firstItem="A7b-Wp-VzB" firstAttribute="trailing" secondItem="7xd-hx-0ia" secondAttribute="trailing" constant="30" id="MnG-zc-S0F"/>
-                            <constraint firstItem="Qm5-lo-2ZG" firstAttribute="leading" secondItem="A7b-Wp-VzB" secondAttribute="leading" constant="30" id="Snz-1S-1D5"/>
-                            <constraint firstItem="A7b-Wp-VzB" firstAttribute="trailing" secondItem="OaV-XG-lCW" secondAttribute="trailing" constant="30" id="idO-MD-kr7"/>
-                            <constraint firstItem="OaV-XG-lCW" firstAttribute="leading" secondItem="A7b-Wp-VzB" secondAttribute="leading" constant="30" id="xAh-t3-WC8"/>
-                            <constraint firstItem="A7b-Wp-VzB" firstAttribute="trailing" secondItem="Qm5-lo-2ZG" secondAttribute="trailing" constant="30" id="xTG-UZ-j4v"/>
+                            <constraint firstItem="A7b-Wp-VzB" firstAttribute="trailing" secondItem="7xd-hx-0ia" secondAttribute="trailing" constant="30" id="MnG-zc-S0F">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="Qm5-lo-2ZG" firstAttribute="leading" secondItem="A7b-Wp-VzB" secondAttribute="leading" constant="30" id="Snz-1S-1D5">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="A7b-Wp-VzB" firstAttribute="trailing" secondItem="OaV-XG-lCW" secondAttribute="trailing" constant="30" id="idO-MD-kr7">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="OaV-XG-lCW" firstAttribute="leading" secondItem="A7b-Wp-VzB" secondAttribute="leading" constant="30" id="xAh-t3-WC8">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="A7b-Wp-VzB" firstAttribute="trailing" secondItem="Qm5-lo-2ZG" secondAttribute="trailing" constant="30" id="xTG-UZ-j4v">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="A7b-Wp-VzB"/>
                     </view>
@@ -1539,7 +1587,7 @@ on how to reset your password.</string>
                         <barButtonItem key="backBarButtonItem" title=" " id="frb-iO-epV"/>
                     </navigationItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bMv-Nt-raQ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     </navigationBar>
@@ -1584,6 +1632,9 @@ on how to reset your password.</string>
                                                 <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        </variation>
                                         <connections>
                                             <action selector="firstNameTextFieldChanged:" destination="f0p-nn-6Fb" eventType="editingChanged" id="UW2-uH-a0e"/>
                                         </connections>
@@ -1606,6 +1657,9 @@ on how to reset your password.</string>
                                                 <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        </variation>
                                         <connections>
                                             <action selector="lastNameTextFieldChanged:" destination="f0p-nn-6Fb" eventType="editingChanged" id="yyH-OG-4GH"/>
                                         </connections>
@@ -1626,6 +1680,9 @@ on how to reset your password.</string>
                                                 <real key="value" value="20"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                        </variation>
                                         <connections>
                                             <action selector="continueButtonTapped:" destination="f0p-nn-6Fb" eventType="touchUpInside" id="9QQ-Jv-aM9"/>
                                         </connections>
@@ -1637,26 +1694,44 @@ on how to reset your password.</string>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                 <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="45"/>
+                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in your first and last name." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="j7L-cL-scj" userLabel="Subtitle">
                                 <rect key="frame" x="30" y="83.5" width="260" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                </variation>
                             </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="U88-Tn-s35" firstAttribute="top" secondItem="j7L-cL-scj" secondAttribute="bottom" constant="30" id="DDE-mO-drB"/>
                             <constraint firstItem="2St-4M-Rca" firstAttribute="top" secondItem="W8L-dI-3cw" secondAttribute="top" constant="30" id="GkP-TK-1wR"/>
-                            <constraint firstItem="U88-Tn-s35" firstAttribute="leading" secondItem="W8L-dI-3cw" secondAttribute="leading" constant="30" id="IAO-ud-vNp"/>
+                            <constraint firstItem="U88-Tn-s35" firstAttribute="leading" secondItem="W8L-dI-3cw" secondAttribute="leading" constant="30" id="IAO-ud-vNp">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
                             <constraint firstItem="j7L-cL-scj" firstAttribute="top" secondItem="2St-4M-Rca" secondAttribute="bottom" constant="20" id="NHH-dk-0M6"/>
-                            <constraint firstItem="2St-4M-Rca" firstAttribute="leading" secondItem="W8L-dI-3cw" secondAttribute="leading" constant="30" id="Wrz-B6-tJk"/>
-                            <constraint firstItem="W8L-dI-3cw" firstAttribute="trailing" secondItem="U88-Tn-s35" secondAttribute="trailing" constant="30" id="cEK-A3-vxp"/>
-                            <constraint firstItem="j7L-cL-scj" firstAttribute="leading" secondItem="W8L-dI-3cw" secondAttribute="leading" constant="30" id="cy4-O0-yOA"/>
+                            <constraint firstItem="2St-4M-Rca" firstAttribute="leading" secondItem="W8L-dI-3cw" secondAttribute="leading" constant="30" id="Wrz-B6-tJk">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="W8L-dI-3cw" firstAttribute="trailing" secondItem="U88-Tn-s35" secondAttribute="trailing" constant="30" id="cEK-A3-vxp">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="j7L-cL-scj" firstAttribute="leading" secondItem="W8L-dI-3cw" secondAttribute="leading" constant="30" id="cy4-O0-yOA">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
                             <constraint firstItem="U88-Tn-s35" firstAttribute="centerX" secondItem="yve-2L-ZAH" secondAttribute="centerX" id="f0S-Rb-1n1"/>
-                            <constraint firstItem="W8L-dI-3cw" firstAttribute="trailing" secondItem="j7L-cL-scj" secondAttribute="trailing" constant="30" id="lvj-DM-3yQ"/>
-                            <constraint firstItem="W8L-dI-3cw" firstAttribute="trailing" secondItem="2St-4M-Rca" secondAttribute="trailing" constant="30" id="qb4-00-iEV"/>
+                            <constraint firstItem="W8L-dI-3cw" firstAttribute="trailing" secondItem="j7L-cL-scj" secondAttribute="trailing" constant="30" id="lvj-DM-3yQ">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="W8L-dI-3cw" firstAttribute="trailing" secondItem="2St-4M-Rca" secondAttribute="trailing" constant="30" id="qb4-00-iEV">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="W8L-dI-3cw"/>
                     </view>
@@ -1702,6 +1777,9 @@ on how to reset your password.</string>
                                                 <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        </variation>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mpw-vS-7oU" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="65" width="260" height="45"/>
@@ -1720,6 +1798,9 @@ on how to reset your password.</string>
                                                 <real key="value" value="20"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        </variation>
                                         <connections>
                                             <action selector="continueButtonTapped:" destination="EBv-if-n2Q" eventType="touchUpInside" id="7Sa-jm-ifu"/>
                                         </connections>
@@ -1731,25 +1812,43 @@ on how to reset your password.</string>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                 <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="45"/>
+                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in your phone number below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="alf-oy-fvm" userLabel="Subtitle">
                                 <rect key="frame" x="30" y="117" width="260" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                </variation>
                             </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="0Pi-gc-tud" firstAttribute="top" secondItem="sTh-xP-c7o" secondAttribute="top" constant="30" id="Ej7-K5-OaL"/>
                             <constraint firstItem="HBg-64-11V" firstAttribute="centerX" secondItem="tff-sc-WCw" secondAttribute="centerX" id="FDp-mB-oCd"/>
-                            <constraint firstItem="0Pi-gc-tud" firstAttribute="leading" secondItem="sTh-xP-c7o" secondAttribute="leading" constant="30" id="JcQ-UM-HJz"/>
-                            <constraint firstItem="HBg-64-11V" firstAttribute="leading" secondItem="sTh-xP-c7o" secondAttribute="leading" constant="30" id="SiU-sT-cnA"/>
+                            <constraint firstItem="0Pi-gc-tud" firstAttribute="leading" secondItem="sTh-xP-c7o" secondAttribute="leading" constant="30" id="JcQ-UM-HJz">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="HBg-64-11V" firstAttribute="leading" secondItem="sTh-xP-c7o" secondAttribute="leading" constant="30" id="SiU-sT-cnA">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
                             <constraint firstItem="alf-oy-fvm" firstAttribute="top" secondItem="0Pi-gc-tud" secondAttribute="bottom" constant="20" id="X0M-NN-xIl"/>
-                            <constraint firstItem="sTh-xP-c7o" firstAttribute="trailing" secondItem="HBg-64-11V" secondAttribute="trailing" constant="30" id="Xae-wa-uTW"/>
-                            <constraint firstItem="sTh-xP-c7o" firstAttribute="trailing" secondItem="alf-oy-fvm" secondAttribute="trailing" constant="30" id="cJD-gC-ueu"/>
-                            <constraint firstItem="alf-oy-fvm" firstAttribute="leading" secondItem="sTh-xP-c7o" secondAttribute="leading" constant="30" id="ggY-B0-6Km"/>
-                            <constraint firstItem="sTh-xP-c7o" firstAttribute="trailing" secondItem="0Pi-gc-tud" secondAttribute="trailing" constant="30" id="l76-ak-9B1"/>
+                            <constraint firstItem="sTh-xP-c7o" firstAttribute="trailing" secondItem="HBg-64-11V" secondAttribute="trailing" constant="30" id="Xae-wa-uTW">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="sTh-xP-c7o" firstAttribute="trailing" secondItem="alf-oy-fvm" secondAttribute="trailing" constant="30" id="cJD-gC-ueu">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="alf-oy-fvm" firstAttribute="leading" secondItem="sTh-xP-c7o" secondAttribute="leading" constant="30" id="ggY-B0-6Km">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="sTh-xP-c7o" firstAttribute="trailing" secondItem="0Pi-gc-tud" secondAttribute="trailing" constant="30" id="l76-ak-9B1">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
                             <constraint firstItem="HBg-64-11V" firstAttribute="top" secondItem="alf-oy-fvm" secondAttribute="bottom" constant="30" id="lid-cA-FpM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="sTh-xP-c7o"/>
@@ -1795,6 +1894,9 @@ on how to reset your password.</string>
                                                 <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        </variation>
                                         <connections>
                                             <action selector="propertyNameTextFieldChanged:" destination="bxd-fv-GAZ" eventType="editingChanged" id="9OO-5M-RBU"/>
                                         </connections>
@@ -1815,6 +1917,9 @@ on how to reset your password.</string>
                                                 <real key="value" value="20"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        </variation>
                                         <connections>
                                             <action selector="continueButtonTapped:" destination="bxd-fv-GAZ" eventType="touchUpInside" id="iqH-4I-mV3"/>
                                         </connections>
@@ -1826,25 +1931,43 @@ on how to reset your password.</string>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                 <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="45"/>
+                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in the name of your company below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="id2-kM-dW1" userLabel="Subtitle">
                                 <rect key="frame" x="30" y="117" width="260" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                </variation>
                             </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="oe5-KH-eTf" firstAttribute="trailing" secondItem="id2-kM-dW1" secondAttribute="trailing" constant="30" id="JGe-LG-ac8"/>
+                            <constraint firstItem="oe5-KH-eTf" firstAttribute="trailing" secondItem="id2-kM-dW1" secondAttribute="trailing" constant="30" id="JGe-LG-ac8">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
                             <constraint firstItem="O23-oJ-eyx" firstAttribute="top" secondItem="oe5-KH-eTf" secondAttribute="top" constant="30" id="Lgf-gM-R19"/>
-                            <constraint firstItem="oe5-KH-eTf" firstAttribute="trailing" secondItem="O23-oJ-eyx" secondAttribute="trailing" constant="30" id="PcK-1r-oM1"/>
-                            <constraint firstItem="id2-kM-dW1" firstAttribute="leading" secondItem="oe5-KH-eTf" secondAttribute="leading" constant="30" id="lfH-Df-341"/>
-                            <constraint firstItem="oe5-KH-eTf" firstAttribute="trailing" secondItem="5Bb-a5-L1z" secondAttribute="trailing" constant="30" id="oCX-Xa-Vrs"/>
+                            <constraint firstItem="oe5-KH-eTf" firstAttribute="trailing" secondItem="O23-oJ-eyx" secondAttribute="trailing" constant="30" id="PcK-1r-oM1">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="id2-kM-dW1" firstAttribute="leading" secondItem="oe5-KH-eTf" secondAttribute="leading" constant="30" id="lfH-Df-341">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="oe5-KH-eTf" firstAttribute="trailing" secondItem="5Bb-a5-L1z" secondAttribute="trailing" constant="30" id="oCX-Xa-Vrs">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
                             <constraint firstItem="5Bb-a5-L1z" firstAttribute="top" secondItem="id2-kM-dW1" secondAttribute="bottom" constant="30" id="qXC-nr-EIV"/>
-                            <constraint firstItem="5Bb-a5-L1z" firstAttribute="leading" secondItem="oe5-KH-eTf" secondAttribute="leading" constant="30" id="sjq-6G-ZwY"/>
+                            <constraint firstItem="5Bb-a5-L1z" firstAttribute="leading" secondItem="oe5-KH-eTf" secondAttribute="leading" constant="30" id="sjq-6G-ZwY">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
                             <constraint firstItem="id2-kM-dW1" firstAttribute="top" secondItem="O23-oJ-eyx" secondAttribute="bottom" constant="20" id="yNP-x6-vmh"/>
-                            <constraint firstItem="O23-oJ-eyx" firstAttribute="leading" secondItem="oe5-KH-eTf" secondAttribute="leading" constant="30" id="yT1-NG-gky"/>
+                            <constraint firstItem="O23-oJ-eyx" firstAttribute="leading" secondItem="oe5-KH-eTf" secondAttribute="leading" constant="30" id="yT1-NG-gky">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="oe5-KH-eTf"/>
                     </view>
@@ -1889,6 +2012,9 @@ on how to reset your password.</string>
                                                 <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        </variation>
                                         <connections>
                                             <action selector="propertyPhoneTextFieldChanged:" destination="ynX-BF-3sf" eventType="editingChanged" id="5kw-7b-VKM"/>
                                         </connections>
@@ -1911,6 +2037,9 @@ on how to reset your password.</string>
                                                 <real key="value" value="20"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        </variation>
                                         <connections>
                                             <action selector="continueButtonTapped:" destination="ynX-BF-3sf" eventType="touchUpInside" id="6X3-uk-fb6"/>
                                         </connections>
@@ -1922,12 +2051,18 @@ on how to reset your password.</string>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                 <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="45"/>
+                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in the contact phone of your company below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IAr-WE-OOU" userLabel="Subtitle">
                                 <rect key="frame" x="30" y="150.5" width="260" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                </variation>
                             </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -1935,12 +2070,24 @@ on how to reset your password.</string>
                             <constraint firstItem="IAr-WE-OOU" firstAttribute="top" secondItem="SiI-yQ-aIz" secondAttribute="bottom" constant="20" id="D2e-rV-HIj"/>
                             <constraint firstItem="SiI-yQ-aIz" firstAttribute="top" secondItem="Dky-ff-jHH" secondAttribute="top" constant="30" id="Foa-Tx-qLK"/>
                             <constraint firstItem="je0-a1-Zyx" firstAttribute="top" secondItem="IAr-WE-OOU" secondAttribute="bottom" constant="30" id="Km6-R0-01j"/>
-                            <constraint firstItem="Dky-ff-jHH" firstAttribute="trailing" secondItem="je0-a1-Zyx" secondAttribute="trailing" constant="30" id="MYA-1Q-ESU"/>
-                            <constraint firstItem="SiI-yQ-aIz" firstAttribute="leading" secondItem="Dky-ff-jHH" secondAttribute="leading" constant="30" id="Nk4-m5-xxH"/>
-                            <constraint firstItem="Dky-ff-jHH" firstAttribute="trailing" secondItem="SiI-yQ-aIz" secondAttribute="trailing" constant="30" id="YcF-bq-uth"/>
-                            <constraint firstItem="Dky-ff-jHH" firstAttribute="trailing" secondItem="IAr-WE-OOU" secondAttribute="trailing" constant="30" id="jc1-xT-B3b"/>
-                            <constraint firstItem="je0-a1-Zyx" firstAttribute="leading" secondItem="Dky-ff-jHH" secondAttribute="leading" constant="30" id="lan-bH-G7o"/>
-                            <constraint firstItem="IAr-WE-OOU" firstAttribute="leading" secondItem="Dky-ff-jHH" secondAttribute="leading" constant="30" id="nwv-lB-9BX"/>
+                            <constraint firstItem="Dky-ff-jHH" firstAttribute="trailing" secondItem="je0-a1-Zyx" secondAttribute="trailing" constant="30" id="MYA-1Q-ESU">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="SiI-yQ-aIz" firstAttribute="leading" secondItem="Dky-ff-jHH" secondAttribute="leading" constant="30" id="Nk4-m5-xxH">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="Dky-ff-jHH" firstAttribute="trailing" secondItem="SiI-yQ-aIz" secondAttribute="trailing" constant="30" id="YcF-bq-uth">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="Dky-ff-jHH" firstAttribute="trailing" secondItem="IAr-WE-OOU" secondAttribute="trailing" constant="30" id="jc1-xT-B3b">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="je0-a1-Zyx" firstAttribute="leading" secondItem="Dky-ff-jHH" secondAttribute="leading" constant="30" id="lan-bH-G7o">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="IAr-WE-OOU" firstAttribute="leading" secondItem="Dky-ff-jHH" secondAttribute="leading" constant="30" id="nwv-lB-9BX">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Dky-ff-jHH"/>
                     </view>
@@ -1985,6 +2132,9 @@ on how to reset your password.</string>
                                                 <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        </variation>
                                         <connections>
                                             <action selector="emailAddressTextFieldChanged:" destination="uQh-qW-yYs" eventType="editingChanged" id="Y6a-Dw-jDT"/>
                                         </connections>
@@ -2006,6 +2156,9 @@ on how to reset your password.</string>
                                                 <real key="value" value="20"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        </variation>
                                         <connections>
                                             <action selector="continueButtonTapped:" destination="uQh-qW-yYs" eventType="touchUpInside" id="P8u-in-Sdz"/>
                                         </connections>
@@ -2017,25 +2170,43 @@ on how to reset your password.</string>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                 <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="45"/>
+                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in the contact email of your company below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4jY-9b-6mP" userLabel="Subtitle">
                                 <rect key="frame" x="30" y="117" width="260" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                </variation>
                             </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="YqE-zQ-II8" firstAttribute="trailing" secondItem="IKo-qB-1Tj" secondAttribute="trailing" constant="30" id="0dw-IZ-fdx"/>
-                            <constraint firstItem="xGx-GW-I6R" firstAttribute="leading" secondItem="YqE-zQ-II8" secondAttribute="leading" constant="30" id="FzW-Ql-2xz"/>
-                            <constraint firstItem="4jY-9b-6mP" firstAttribute="leading" secondItem="YqE-zQ-II8" secondAttribute="leading" constant="30" id="MiO-06-e3r"/>
+                            <constraint firstItem="YqE-zQ-II8" firstAttribute="trailing" secondItem="IKo-qB-1Tj" secondAttribute="trailing" constant="30" id="0dw-IZ-fdx">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="xGx-GW-I6R" firstAttribute="leading" secondItem="YqE-zQ-II8" secondAttribute="leading" constant="30" id="FzW-Ql-2xz">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="4jY-9b-6mP" firstAttribute="leading" secondItem="YqE-zQ-II8" secondAttribute="leading" constant="30" id="MiO-06-e3r">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
                             <constraint firstItem="IKo-qB-1Tj" firstAttribute="top" secondItem="YqE-zQ-II8" secondAttribute="top" constant="30" id="Qag-63-FJx"/>
                             <constraint firstItem="xGx-GW-I6R" firstAttribute="top" secondItem="4jY-9b-6mP" secondAttribute="bottom" constant="30" id="bcQ-w5-Ser"/>
                             <constraint firstItem="4jY-9b-6mP" firstAttribute="top" secondItem="IKo-qB-1Tj" secondAttribute="bottom" constant="20" id="dam-jt-7NF"/>
-                            <constraint firstItem="YqE-zQ-II8" firstAttribute="trailing" secondItem="xGx-GW-I6R" secondAttribute="trailing" constant="30" id="luZ-7s-nA5"/>
-                            <constraint firstItem="IKo-qB-1Tj" firstAttribute="leading" secondItem="YqE-zQ-II8" secondAttribute="leading" constant="30" id="sil-Ba-hAE"/>
-                            <constraint firstItem="YqE-zQ-II8" firstAttribute="trailing" secondItem="4jY-9b-6mP" secondAttribute="trailing" constant="30" id="zBN-46-EiL"/>
+                            <constraint firstItem="YqE-zQ-II8" firstAttribute="trailing" secondItem="xGx-GW-I6R" secondAttribute="trailing" constant="30" id="luZ-7s-nA5">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="IKo-qB-1Tj" firstAttribute="leading" secondItem="YqE-zQ-II8" secondAttribute="leading" constant="30" id="sil-Ba-hAE">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="YqE-zQ-II8" firstAttribute="trailing" secondItem="4jY-9b-6mP" secondAttribute="trailing" constant="30" id="zBN-46-EiL">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YqE-zQ-II8"/>
                     </view>
@@ -2064,6 +2235,9 @@ on how to reset your password.</string>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                 <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="45"/>
+                                </variation>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="6bN-XY-hHa">
                                 <rect key="frame" x="30" y="188" width="260" height="110"/>
@@ -2086,6 +2260,9 @@ on how to reset your password.</string>
                                                 <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        </variation>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ugU-m3-0iG" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="65" width="260" height="45"/>
@@ -2103,6 +2280,9 @@ on how to reset your password.</string>
                                                 <real key="value" value="20"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        </variation>
                                         <connections>
                                             <action selector="continueButtonTapped:" destination="sDn-PQ-oEz" eventType="touchUpInside" id="IFc-qN-IVi"/>
                                         </connections>
@@ -2114,6 +2294,9 @@ on how to reset your password.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                </variation>
                             </label>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="VVX-5A-RN2">
                                 <rect key="frame" x="0.0" y="306" width="320" height="174"/>
@@ -2121,19 +2304,31 @@ on how to reset your password.</string>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="PKG-bA-v24" firstAttribute="trailing" secondItem="9ax-ZV-h38" secondAttribute="trailing" constant="30" id="9NL-rc-X71"/>
+                            <constraint firstItem="PKG-bA-v24" firstAttribute="trailing" secondItem="9ax-ZV-h38" secondAttribute="trailing" constant="30" id="9NL-rc-X71">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
                             <constraint firstItem="9ax-ZV-h38" firstAttribute="top" secondItem="PKG-bA-v24" secondAttribute="top" constant="30" id="D27-by-6zG"/>
                             <constraint firstItem="VVX-5A-RN2" firstAttribute="leading" secondItem="PKG-bA-v24" secondAttribute="leading" id="Gpg-wI-m8Z"/>
-                            <constraint firstItem="QUd-GH-2ON" firstAttribute="leading" secondItem="PKG-bA-v24" secondAttribute="leading" constant="30" id="Itd-9n-CSg"/>
+                            <constraint firstItem="QUd-GH-2ON" firstAttribute="leading" secondItem="PKG-bA-v24" secondAttribute="leading" constant="30" id="Itd-9n-CSg">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
                             <constraint firstItem="6bN-XY-hHa" firstAttribute="top" secondItem="QUd-GH-2ON" secondAttribute="bottom" constant="30" id="M42-69-uw7"/>
                             <constraint firstAttribute="bottom" secondItem="VVX-5A-RN2" secondAttribute="bottom" id="Mvm-q9-2a6"/>
                             <constraint firstItem="VVX-5A-RN2" firstAttribute="top" secondItem="6bN-XY-hHa" secondAttribute="bottom" constant="8" id="Prq-5V-52a"/>
                             <constraint firstItem="VVX-5A-RN2" firstAttribute="trailing" secondItem="PKG-bA-v24" secondAttribute="trailing" id="X4j-8N-0wh"/>
-                            <constraint firstItem="9ax-ZV-h38" firstAttribute="leading" secondItem="PKG-bA-v24" secondAttribute="leading" constant="30" id="fRV-oO-yHn"/>
+                            <constraint firstItem="9ax-ZV-h38" firstAttribute="leading" secondItem="PKG-bA-v24" secondAttribute="leading" constant="30" id="fRV-oO-yHn">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
                             <constraint firstItem="QUd-GH-2ON" firstAttribute="top" secondItem="9ax-ZV-h38" secondAttribute="bottom" constant="20" id="la8-0r-gCC"/>
-                            <constraint firstItem="PKG-bA-v24" firstAttribute="trailing" secondItem="6bN-XY-hHa" secondAttribute="trailing" constant="30" id="tUf-vB-aX9"/>
-                            <constraint firstItem="PKG-bA-v24" firstAttribute="trailing" secondItem="QUd-GH-2ON" secondAttribute="trailing" constant="30" id="uUc-95-lnp"/>
-                            <constraint firstItem="6bN-XY-hHa" firstAttribute="leading" secondItem="PKG-bA-v24" secondAttribute="leading" constant="30" id="zgH-H8-U28"/>
+                            <constraint firstItem="PKG-bA-v24" firstAttribute="trailing" secondItem="6bN-XY-hHa" secondAttribute="trailing" constant="30" id="tUf-vB-aX9">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="PKG-bA-v24" firstAttribute="trailing" secondItem="QUd-GH-2ON" secondAttribute="trailing" constant="30" id="uUc-95-lnp">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="6bN-XY-hHa" firstAttribute="leading" secondItem="PKG-bA-v24" secondAttribute="leading" constant="30" id="zgH-H8-U28">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PKG-bA-v24"/>
                     </view>
@@ -2242,7 +2437,7 @@ on how to reset your password.</string>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uPa-aU-gkr" userLabel="Email Button">
-                                                            <rect key="frame" x="175" y="-2" width="54" height="54"/>
+                                                            <rect key="frame" x="202" y="11.5" width="27" height="27"/>
                                                             <state key="normal" image="emailBlue"/>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z4E-mK-dZr" userLabel="Call Button">
@@ -2432,19 +2627,19 @@ on how to reset your password.</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WWa-VB-X6F">
-                                                    <rect key="frame" x="26" y="10" width="45" height="20"/>
+                                                    <rect key="frame" x="30" y="10" width="45" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amanda Taylor" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="waM-9h-XE1" userLabel="Name Value">
-                                                    <rect key="frame" x="177" y="10" width="112" height="20"/>
+                                                    <rect key="frame" x="371.5" y="10" width="112" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gUr-ED-k0J">
-                                                    <rect key="frame" x="295" y="10" width="20" height="20"/>
+                                                    <rect key="frame" x="489.5" y="10" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="20" id="Db5-Ze-UBq"/>
                                                         <constraint firstAttribute="width" secondItem="gUr-ED-k0J" secondAttribute="height" multiplier="1:1" id="Jpd-SQ-R6T"/>
@@ -2471,18 +2666,18 @@ on how to reset your password.</string>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="40" id="5S3-gX-zCK">
                                         <rect key="frame" x="0.0" y="68" width="320" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5S3-gX-zCK" id="A19-IS-nQt">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5S3-gX-zCK" id="A19-IS-nQt">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customer Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="hIW-p1-Uzp">
-                                                    <rect key="frame" x="26" y="10" width="140" height="20"/>
+                                                    <rect key="frame" x="30" y="10" width="140" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="47" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="Zdt-f1-zvg" userLabel="Customer Number Value">
-                                                    <rect key="frame" x="384" y="10" width="20" height="20"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="47" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="Zdt-f1-zvg" userLabel="Customer Number Value">
+                                                    <rect key="frame" x="484.5" y="10" width="20" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -2506,13 +2701,13 @@ on how to reset your password.</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Help" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="DKU-we-EzJ">
-                                                    <rect key="frame" x="26" y="10" width="35" height="20"/>
+                                                    <rect key="frame" x="30" y="10" width="35" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8WZ-sR-Zxu">
-                                                    <rect key="frame" x="295" y="10" width="20" height="20"/>
+                                                    <rect key="frame" x="489.5" y="10" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="8WZ-sR-Zxu" secondAttribute="height" multiplier="1:1" id="IaN-nx-6qS"/>
                                                         <constraint firstAttribute="height" constant="20" id="MGu-Uj-0tN"/>
@@ -2541,13 +2736,13 @@ on how to reset your password.</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="nxp-TN-rre">
-                                                    <rect key="frame" x="26" y="10" width="132.5" height="20"/>
+                                                    <rect key="frame" x="30" y="10" width="132.5" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bQF-kD-f7o">
-                                                    <rect key="frame" x="295" y="10" width="20" height="20"/>
+                                                    <rect key="frame" x="489.5" y="10" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="bQF-kD-f7o" secondAttribute="height" multiplier="1:1" id="ROL-hZ-B8p"/>
                                                         <constraint firstAttribute="height" constant="20" id="mos-py-EIn"/>
@@ -2580,19 +2775,19 @@ on how to reset your password.</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="4Mj-f5-XtM">
-                                                    <rect key="frame" x="26" y="10" width="106.5" height="20"/>
+                                                    <rect key="frame" x="30" y="10" width="106.5" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="andre.mashraghi@gmail.com" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="YEy-Um-pYw">
-                                                    <rect key="frame" x="69" y="10" width="220" height="20"/>
+                                                    <rect key="frame" x="263.5" y="10" width="220" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="apW-7G-FBp">
-                                                    <rect key="frame" x="295" y="10" width="20" height="20"/>
+                                                    <rect key="frame" x="489.5" y="10" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="apW-7G-FBp" secondAttribute="height" multiplier="1:1" id="Ihs-Tv-qaA"/>
                                                         <constraint firstAttribute="height" constant="20" id="xMT-sz-AOC"/>
@@ -2624,19 +2819,19 @@ on how to reset your password.</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone Number" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="eaC-sR-3cR">
-                                                    <rect key="frame" x="26" y="10" width="113.5" height="20"/>
+                                                    <rect key="frame" x="30" y="10" width="113.5" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="561-246-5571" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="7IP-w7-3n5">
-                                                    <rect key="frame" x="179.5" y="10" width="109.5" height="20"/>
+                                                    <rect key="frame" x="374" y="10" width="109.5" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RnR-vl-Ocx">
-                                                    <rect key="frame" x="295" y="10" width="20" height="20"/>
+                                                    <rect key="frame" x="489.5" y="10" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="zsT-IO-1Lf"/>
                                                     </constraints>
@@ -2668,13 +2863,13 @@ on how to reset your password.</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Companies" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="57m-Mg-Zjg">
-                                                    <rect key="frame" x="26" y="10" width="86" height="20"/>
+                                                    <rect key="frame" x="30" y="10" width="86" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LQh-3n-tRl">
-                                                    <rect key="frame" x="295" y="10" width="20" height="20"/>
+                                                    <rect key="frame" x="489.5" y="10" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="fhq-OO-ARt"/>
                                                     </constraints>
@@ -4566,12 +4761,15 @@ email  below.</string>
                                         <real key="value" value="20"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                </variation>
                                 <connections>
                                     <action selector="continueButtonTapped:" destination="tcm-BF-RZ0" eventType="touchUpInside" id="yAc-Bf-gkr"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LK0-F5-0Or">
-                                <rect key="frame" x="0.0" y="192" width="320" height="188"/>
+                                <rect key="frame" x="0.0" y="229" width="320" height="151"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="enableOptionTableViewCell" id="FO7-AQ-JAO" customClass="EnableOptionTableViewCell" customModule="NovaOne" customModuleProvider="target">
@@ -4582,10 +4780,13 @@ email  below.</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sunday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ozh-3Z-ipQ" userLabel="Option Label">
-                                                    <rect key="frame" x="20" y="11.5" width="57" height="21"/>
+                                                    <rect key="frame" x="20" y="12" width="57" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=regular">
+                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
+                                                    </variation>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tick" translatesAutoresizingMaskIntoConstraints="NO" id="zVF-f0-L4A">
                                                     <rect key="frame" x="274" y="9" width="26" height="26"/>
@@ -4613,35 +4814,61 @@ email  below.</string>
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Appointment Days" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NSN-Of-0xX">
-                                <rect key="frame" x="26" y="74" width="268.5" height="37"/>
+                                <rect key="frame" x="30" y="74" width="260" height="74"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
                                 <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="45"/>
+                                </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wXS-vF-is5">
-                                <rect key="frame" x="21.5" y="131" width="277" height="41"/>
-                                <string key="text">Choose your company appointment 
-days below.</string>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose your company appointment days below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wXS-vF-is5">
+                                <rect key="frame" x="30" y="168" width="260" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                </variation>
                             </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="wXS-vF-is5" firstAttribute="top" secondItem="NSN-Of-0xX" secondAttribute="bottom" constant="20" id="1LA-b8-uCh"/>
+                            <constraint firstItem="c0E-Kx-JKx" firstAttribute="trailing" secondItem="NSN-Of-0xX" secondAttribute="trailing" constant="30" id="31I-OO-qRW"/>
+                            <constraint firstItem="NSN-Of-0xX" firstAttribute="leading" secondItem="c0E-Kx-JKx" secondAttribute="leading" constant="30" id="3rv-2H-nuk"/>
+                            <constraint firstItem="wXS-vF-is5" firstAttribute="leading" secondItem="c0E-Kx-JKx" secondAttribute="leading" constant="30" id="5a5-qY-FHU"/>
                             <constraint firstItem="NSN-Of-0xX" firstAttribute="top" secondItem="c0E-Kx-JKx" secondAttribute="top" constant="30" id="AgH-cs-0bc"/>
+                            <constraint firstItem="c0E-Kx-JKx" firstAttribute="trailing" secondItem="wXS-vF-is5" secondAttribute="trailing" constant="80" id="Hq0-WR-Zdo"/>
                             <constraint firstItem="c0E-Kx-JKx" firstAttribute="bottom" secondItem="ptv-EM-g1c" secondAttribute="bottom" constant="20" id="IfC-2F-X1V"/>
                             <constraint firstItem="LK0-F5-0Or" firstAttribute="trailing" secondItem="c0E-Kx-JKx" secondAttribute="trailing" id="Lq5-wY-GL1"/>
                             <constraint firstItem="ptv-EM-g1c" firstAttribute="top" secondItem="LK0-F5-0Or" secondAttribute="bottom" constant="35" id="OjR-Ck-hm0"/>
+                            <constraint firstItem="c0E-Kx-JKx" firstAttribute="trailing" secondItem="NSN-Of-0xX" secondAttribute="trailing" constant="80" id="SAK-bu-JBU"/>
+                            <constraint firstItem="c0E-Kx-JKx" firstAttribute="trailing" secondItem="wXS-vF-is5" secondAttribute="trailing" constant="30" id="TUC-cU-sEC"/>
                             <constraint firstItem="LK0-F5-0Or" firstAttribute="top" secondItem="wXS-vF-is5" secondAttribute="bottom" constant="20" id="WXF-r9-Rv2"/>
                             <constraint firstItem="LK0-F5-0Or" firstAttribute="leading" secondItem="c0E-Kx-JKx" secondAttribute="leading" id="Xmb-14-1vw"/>
                             <constraint firstItem="c0E-Kx-JKx" firstAttribute="trailing" secondItem="ptv-EM-g1c" secondAttribute="trailing" constant="30" id="YXm-FT-BrN"/>
-                            <constraint firstItem="NSN-Of-0xX" firstAttribute="centerX" secondItem="CYo-r6-8iu" secondAttribute="centerX" id="cJD-9c-wIp"/>
+                            <constraint firstItem="wXS-vF-is5" firstAttribute="leading" secondItem="c0E-Kx-JKx" secondAttribute="leading" constant="80" id="eOX-pL-dyS"/>
                             <constraint firstItem="ptv-EM-g1c" firstAttribute="leading" secondItem="c0E-Kx-JKx" secondAttribute="leading" constant="30" id="fVa-XR-D4l"/>
-                            <constraint firstItem="wXS-vF-is5" firstAttribute="centerX" secondItem="CYo-r6-8iu" secondAttribute="centerX" id="m1J-Ni-1og"/>
+                            <constraint firstItem="NSN-Of-0xX" firstAttribute="leading" secondItem="c0E-Kx-JKx" secondAttribute="leading" constant="80" id="ud3-P2-aam"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="c0E-Kx-JKx"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Hq0-WR-Zdo"/>
+                                <exclude reference="SAK-bu-JBU"/>
+                                <exclude reference="ud3-P2-aam"/>
+                                <exclude reference="eOX-pL-dyS"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=regular">
+                            <mask key="constraints">
+                                <include reference="Hq0-WR-Zdo"/>
+                                <include reference="SAK-bu-JBU"/>
+                                <include reference="ud3-P2-aam"/>
+                                <include reference="eOX-pL-dyS"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="2uP-dq-N0d">
                         <barButtonItem key="backBarButtonItem" title=" " id="S2c-Zh-zPo"/>
@@ -4652,7 +4879,7 @@ days below.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lSm-jL-DUW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="18859" y="3830"/>
+            <point key="canvasLocation" x="18858.75" y="3830"/>
         </scene>
         <!--Add Company Hours Enabled-->
         <scene sceneID="HSi-rB-UEf">
@@ -4678,12 +4905,15 @@ days below.</string>
                                         <real key="value" value="20"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                </variation>
                                 <connections>
                                     <action selector="addCompanyButtonTapped:" destination="K9c-gb-sDl" eventType="touchUpInside" id="PCW-4Z-7Mj"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oCb-38-YOv">
-                                <rect key="frame" x="0.0" y="158" width="320" height="222"/>
+                                <rect key="frame" x="0.0" y="195" width="320" height="185"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="enableOptionTableViewCell" id="jRw-4b-Ps8" customClass="EnableOptionTableViewCell" customModule="NovaOne" customModuleProvider="target">
@@ -4694,10 +4924,13 @@ days below.</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IJB-Zc-bF5" userLabel="Option Label">
-                                                    <rect key="frame" x="20" y="11.5" width="42" height="21"/>
+                                                    <rect key="frame" x="20" y="12" width="42" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=regular">
+                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
+                                                    </variation>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tick" translatesAutoresizingMaskIntoConstraints="NO" id="iio-zG-anr">
                                                     <rect key="frame" x="274" y="9" width="26" height="26"/>
@@ -4726,35 +4959,61 @@ days below.</string>
                                 <sections/>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Appointment Hours" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lxj-A1-JtO">
-                                <rect key="frame" x="18.5" y="40" width="283" height="37"/>
+                                <rect key="frame" x="30" y="40" width="260" height="74"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
                                 <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="46"/>
+                                </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rrX-wn-l38">
-                                <rect key="frame" x="21.5" y="97" width="277" height="41"/>
-                                <string key="text">Choose your company appointment 
-hours below.</string>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose your company appointment hours below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rrX-wn-l38">
+                                <rect key="frame" x="30" y="134" width="260" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                </variation>
                             </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="80N-gk-zGT" firstAttribute="leading" secondItem="nW2-Cc-XT1" secondAttribute="leading" constant="30" id="3ll-fc-1pe"/>
+                            <constraint firstItem="rrX-wn-l38" firstAttribute="leading" secondItem="nW2-Cc-XT1" secondAttribute="leading" constant="30" id="6Jl-hK-56f"/>
+                            <constraint firstItem="nW2-Cc-XT1" firstAttribute="trailing" secondItem="Lxj-A1-JtO" secondAttribute="trailing" constant="80" id="6MV-Sg-YMw"/>
                             <constraint firstItem="80N-gk-zGT" firstAttribute="top" secondItem="oCb-38-YOv" secondAttribute="bottom" constant="35" id="BRh-RR-ZfK"/>
+                            <constraint firstItem="nW2-Cc-XT1" firstAttribute="trailing" secondItem="rrX-wn-l38" secondAttribute="trailing" constant="80" id="BhD-zZ-mHt"/>
+                            <constraint firstItem="nW2-Cc-XT1" firstAttribute="trailing" secondItem="rrX-wn-l38" secondAttribute="trailing" constant="30" id="EaU-gt-4oW"/>
+                            <constraint firstItem="rrX-wn-l38" firstAttribute="leading" secondItem="nW2-Cc-XT1" secondAttribute="leading" constant="80" id="MOt-gE-9wd"/>
+                            <constraint firstItem="nW2-Cc-XT1" firstAttribute="trailing" secondItem="Lxj-A1-JtO" secondAttribute="trailing" constant="30" id="Mts-dm-zqr"/>
                             <constraint firstItem="rrX-wn-l38" firstAttribute="top" secondItem="Lxj-A1-JtO" secondAttribute="bottom" constant="20" id="NgY-jR-Uo2"/>
                             <constraint firstItem="oCb-38-YOv" firstAttribute="leading" secondItem="nW2-Cc-XT1" secondAttribute="leading" id="TDT-bo-yPm"/>
                             <constraint firstItem="nW2-Cc-XT1" firstAttribute="trailing" secondItem="80N-gk-zGT" secondAttribute="trailing" constant="30" id="X9Z-qd-hd0"/>
                             <constraint firstItem="oCb-38-YOv" firstAttribute="top" secondItem="rrX-wn-l38" secondAttribute="bottom" constant="20" id="Xzx-S9-bsE"/>
+                            <constraint firstItem="Lxj-A1-JtO" firstAttribute="leading" secondItem="nW2-Cc-XT1" secondAttribute="leading" constant="30" id="asp-eV-4Up"/>
                             <constraint firstItem="nW2-Cc-XT1" firstAttribute="bottom" secondItem="80N-gk-zGT" secondAttribute="bottom" constant="20" id="f9P-db-vzu"/>
                             <constraint firstItem="oCb-38-YOv" firstAttribute="trailing" secondItem="nW2-Cc-XT1" secondAttribute="trailing" id="gvh-0B-uRC"/>
-                            <constraint firstItem="rrX-wn-l38" firstAttribute="centerX" secondItem="f91-fR-vau" secondAttribute="centerX" id="kmA-rn-BMg"/>
-                            <constraint firstItem="Lxj-A1-JtO" firstAttribute="centerX" secondItem="f91-fR-vau" secondAttribute="centerX" id="rHL-rc-U4J"/>
+                            <constraint firstItem="Lxj-A1-JtO" firstAttribute="leading" secondItem="nW2-Cc-XT1" secondAttribute="leading" constant="80" id="vdj-DY-ELE"/>
                             <constraint firstItem="Lxj-A1-JtO" firstAttribute="top" secondItem="nW2-Cc-XT1" secondAttribute="top" constant="40" id="woG-AM-KMg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nW2-Cc-XT1"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="6MV-Sg-YMw"/>
+                                <exclude reference="BhD-zZ-mHt"/>
+                                <exclude reference="vdj-DY-ELE"/>
+                                <exclude reference="MOt-gE-9wd"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=regular">
+                            <mask key="constraints">
+                                <include reference="6MV-Sg-YMw"/>
+                                <include reference="BhD-zZ-mHt"/>
+                                <include reference="vdj-DY-ELE"/>
+                                <include reference="MOt-gE-9wd"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="QSs-Pn-y4K"/>
                     <connections>
@@ -4764,7 +5023,7 @@ hours below.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lJh-6W-4ZS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="19670" y="3830"/>
+            <point key="canvasLocation" x="19668.75" y="3830"/>
         </scene>
         <!--Success-->
         <scene sceneID="6Lk-rN-MgD">
@@ -5838,6 +6097,9 @@ with the appointment below.</string>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                 <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="45"/>
+                                </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UjJ-dV-JDX" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
                                 <rect key="frame" x="30" y="403.5" width="260" height="45"/>
@@ -5855,6 +6117,9 @@ with the appointment below.</string>
                                         <real key="value" value="20"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                </variation>
                                 <connections>
                                     <action selector="continueButtonTapped:" destination="sNd-Fd-KP4" eventType="touchUpInside" id="lRw-nS-RE7"/>
                                 </connections>
@@ -5864,6 +6129,9 @@ with the appointment below.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                </variation>
                             </label>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Nx-xa-f6j" userLabel="Customer Type Picker">
                                 <rect key="frame" x="0.0" y="167.5" width="320" height="216"/>
@@ -5872,15 +6140,27 @@ with the appointment below.</string>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="ur2-sj-WK1" firstAttribute="top" secondItem="QPt-8I-gWv" secondAttribute="bottom" constant="20" id="0jB-w5-ycr"/>
-                            <constraint firstItem="QPt-8I-gWv" firstAttribute="leading" secondItem="mf6-2l-MG6" secondAttribute="leading" constant="30" id="9ao-G6-xCb"/>
+                            <constraint firstItem="QPt-8I-gWv" firstAttribute="leading" secondItem="mf6-2l-MG6" secondAttribute="leading" constant="30" id="9ao-G6-xCb">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
                             <constraint firstItem="UjJ-dV-JDX" firstAttribute="top" secondItem="9Nx-xa-f6j" secondAttribute="bottom" constant="20" id="9bs-He-7bX"/>
-                            <constraint firstItem="mf6-2l-MG6" firstAttribute="trailing" secondItem="ur2-sj-WK1" secondAttribute="trailing" constant="30" id="Jb6-8x-UCU"/>
+                            <constraint firstItem="mf6-2l-MG6" firstAttribute="trailing" secondItem="ur2-sj-WK1" secondAttribute="trailing" constant="30" id="Jb6-8x-UCU">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
                             <constraint firstItem="9Nx-xa-f6j" firstAttribute="top" secondItem="ur2-sj-WK1" secondAttribute="bottom" constant="30" id="Pz8-xU-QAm"/>
-                            <constraint firstItem="mf6-2l-MG6" firstAttribute="trailing" secondItem="QPt-8I-gWv" secondAttribute="trailing" constant="30" id="XMb-Fk-m93"/>
+                            <constraint firstItem="mf6-2l-MG6" firstAttribute="trailing" secondItem="QPt-8I-gWv" secondAttribute="trailing" constant="30" id="XMb-Fk-m93">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
                             <constraint firstItem="9Nx-xa-f6j" firstAttribute="leading" secondItem="mf6-2l-MG6" secondAttribute="leading" id="ZZM-hd-Olu"/>
-                            <constraint firstItem="mf6-2l-MG6" firstAttribute="trailing" secondItem="UjJ-dV-JDX" secondAttribute="trailing" constant="30" id="bRN-yI-B54"/>
-                            <constraint firstItem="UjJ-dV-JDX" firstAttribute="leading" secondItem="mf6-2l-MG6" secondAttribute="leading" constant="30" id="gVx-ZB-ABM"/>
-                            <constraint firstItem="ur2-sj-WK1" firstAttribute="leading" secondItem="mf6-2l-MG6" secondAttribute="leading" constant="30" id="kpM-7Z-MtW"/>
+                            <constraint firstItem="mf6-2l-MG6" firstAttribute="trailing" secondItem="UjJ-dV-JDX" secondAttribute="trailing" constant="30" id="bRN-yI-B54">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="UjJ-dV-JDX" firstAttribute="leading" secondItem="mf6-2l-MG6" secondAttribute="leading" constant="30" id="gVx-ZB-ABM">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="ur2-sj-WK1" firstAttribute="leading" secondItem="mf6-2l-MG6" secondAttribute="leading" constant="30" id="kpM-7Z-MtW">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
                             <constraint firstItem="QPt-8I-gWv" firstAttribute="top" secondItem="mf6-2l-MG6" secondAttribute="top" constant="30" id="ptm-mp-ga4"/>
                             <constraint firstItem="mf6-2l-MG6" firstAttribute="trailing" secondItem="9Nx-xa-f6j" secondAttribute="trailing" id="vye-48-Qti"/>
                         </constraints>
@@ -7077,13 +7357,13 @@ make an appointment for.</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Us" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="0Cr-Nd-ZBR">
-                                                    <rect key="frame" x="26" y="10" width="85" height="20"/>
+                                                    <rect key="frame" x="30" y="10" width="85" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Akg-Ye-UyR">
-                                                    <rect key="frame" x="295" y="10" width="20" height="20"/>
+                                                    <rect key="frame" x="489.5" y="10" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="0o2-B7-gVe"/>
                                                         <constraint firstAttribute="width" secondItem="Akg-Ye-UyR" secondAttribute="height" multiplier="1:1" id="zSe-c9-Q7M"/>
@@ -7116,13 +7396,13 @@ make an appointment for.</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NovaOne Terms" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="4Xe-Kx-7Tc">
-                                                    <rect key="frame" x="26" y="10" width="121" height="20"/>
+                                                    <rect key="frame" x="30" y="10" width="121" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="es3-qY-yj7">
-                                                    <rect key="frame" x="295" y="10" width="20" height="20"/>
+                                                    <rect key="frame" x="489.5" y="10" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="LCO-bo-5FG"/>
                                                     </constraints>
@@ -7148,13 +7428,13 @@ make an appointment for.</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Privacy" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="oQA-Hv-GFW">
-                                                    <rect key="frame" x="26" y="10" width="55" height="20"/>
+                                                    <rect key="frame" x="30" y="10" width="55" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G8D-ww-vdB">
-                                                    <rect key="frame" x="295" y="10" width="20" height="20"/>
+                                                    <rect key="frame" x="489.5" y="10" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="6Lq-uN-zit"/>
                                                     </constraints>

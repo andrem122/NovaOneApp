@@ -179,7 +179,7 @@ class LeadsViewController: UIViewController {
                                         // If there is an error other than 'No rows found', display the error in a
                                         // pop up OK view controller
                                         
-                                        if error.localizedDescription != Defaults.ErrorResponseReasons.noRowsFound.rawValue {
+                                        if error.localizedDescription != Defaults.ErrorResponseReasons.noData.rawValue {
                                             let title = "Error"
                                             let body = error.localizedDescription
                                             guard let popUpOkViewController = self?.alertService.popUpOk(title: title, body: body) else { return }
@@ -191,7 +191,7 @@ class LeadsViewController: UIViewController {
                                         // leads from core data. This means the user could have added a lead online through the
                                         // website and deleted online. Our app needs to delete all data to reflect the changes
                                         // made online.
-                                        if self?.appendingDataToTable == false && error.localizedDescription == Defaults.ErrorResponseReasons.noRowsFound.rawValue {
+                                        if self?.appendingDataToTable == false && error.localizedDescription == Defaults.ErrorResponseReasons.noData.rawValue {
                                             
                                             PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.lead.rawValue)
                                             

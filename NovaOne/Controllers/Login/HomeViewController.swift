@@ -92,7 +92,13 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         set.label = "Leads" // The title next to the data set
         
         let data = BarChartData(dataSet: set)
-        barChart.data = data
+        
+        if !self.chartEntries.isEmpty {
+            barChart.data = data
+        } else {
+            barChart.data = nil
+        }
+        
         self.barChart.notifyDataSetChanged()
     }
     
@@ -138,7 +144,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         
     }
     
-    func getWeeklyChartData(success: (() -> Void)?) {
+    func getWeeklyChartData(completion: (() -> Void)?) {
         // Gets chart data from the database
         let httpRequest = HTTPRequests()
         guard
@@ -189,17 +195,19 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
                         let chartEntry = BarChartDataEntry(x: Double(number), y: count)
                         self?.chartEntries.append(chartEntry)
                     }
-                    guard let unwrappedSuccess = success else { return }
-                    unwrappedSuccess()
+            
                 case .failure(let error):
                     self?.showPopUpOk(error: error)
             }
+            
+            guard let unwrappedCompletion = completion else { return }
+            unwrappedCompletion()
             self?.removeSpinner()
             
         }
     }
     
-    func getMonthlyChartData(success: (() -> Void)?) {
+    func getMonthlyChartData(completion: (() -> Void)?) {
         // Gets chart data from the database
         let httpRequest = HTTPRequests()
         guard
@@ -257,14 +265,16 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
                         let chartEntry = BarChartDataEntry(x: Double(number), y: count)
                         self?.chartEntries.append(chartEntry)
                     }
-                    guard let unwrappedSuccess = success else { return }
-                    unwrappedSuccess()
+                    
                 case .failure(let error):
-                    print(error.localizedDescription)
                     // Update chart data
+                    self?.barChart.data = nil
+                    self?.barChart.notifyDataSetChanged()
                     self?.showPopUpOk(error: error)
             }
             
+            guard let unwrappedCompletion = completion else { return }
+            unwrappedCompletion()
             self?.removeSpinner()
             
         }
@@ -307,12 +317,14 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
     func showPopUpOk(error: Error) {
         // Shows the pop up ok view controller with a message and title
         
-        // Set text for pop up ok view controller
-        let title = "Error"
-        let body = error.localizedDescription
-        
-        let popUpOkViewController = self.alertService.popUpOk(title: title, body: body)
-        self.present(popUpOkViewController, animated: true, completion: nil)
+        if error.localizedDescription != Defaults.ErrorResponseReasons.noData.rawValue {
+            // Set text for pop up ok view controller
+            let title = "Error"
+            let body = error.localizedDescription
+            
+            let popUpOkViewController = self.alertService.popUpOk(title: title, body: body)
+            self.present(popUpOkViewController, animated: true, completion: nil)
+        }
     }
     
     // MARK: Actions
