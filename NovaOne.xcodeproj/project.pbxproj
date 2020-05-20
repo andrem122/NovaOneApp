@@ -166,6 +166,7 @@
 		65C9A74E245CF28A009651B4 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C9A74D245CF28A009651B4 /* BaseCell.swift */; };
 		65D169AD245DDFE6006219C8 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D169AC245DDFE6006219C8 /* Defaults.swift */; };
 		65D169AF245F598C006219C8 /* SliderLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D169AE245F598C006219C8 /* SliderLauncher.swift */; };
+		65D311A12475BF0B00F290F8 /* GlobalSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D311A02475BF0B00F290F8 /* GlobalSplitViewController.swift */; };
 		65D75F7423FB495900C7988E /* utils.php in Resources */ = {isa = PBXBuildFile; fileRef = 65D75F7323FB495900C7988E /* utils.php */; };
 		65DBED6C2429404F0090B39C /* NovaOne.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 659D487C23F38C01007AC005 /* NovaOne.xcdatamodeld */; };
 		65DF7525243563F20044E6F7 /* NovaOneObjectDetailProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DF7524243563F20044E6F7 /* NovaOneObjectDetailProtocol.swift */; };
@@ -361,6 +362,7 @@
 		65C9A74D245CF28A009651B4 /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		65D169AC245DDFE6006219C8 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		65D169AE245F598C006219C8 /* SliderLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderLauncher.swift; sourceTree = "<group>"; };
+		65D311A02475BF0B00F290F8 /* GlobalSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSplitViewController.swift; sourceTree = "<group>"; };
 		65D75F7323FB495900C7988E /* utils.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = utils.php; sourceTree = "<group>"; };
 		65DF7524243563F20044E6F7 /* NovaOneObjectDetailProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovaOneObjectDetailProtocol.swift; sourceTree = "<group>"; };
 		65E0970C24511C3E00D2CC00 /* ChartHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartHelper.swift; sourceTree = "<group>"; };
@@ -556,6 +558,7 @@
 		658B906523E798FB00015C4F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				65D3119F2475BEEC00F290F8 /* Split View Controllers */,
 				6592E3D42405D86F009E4D8D /* Tab Bars */,
 				659C1A88240AB57F003C91C1 /* Table Views */,
 				65C14C322434DAA500848606 /* PopUpOkViewController.swift */,
@@ -805,6 +808,14 @@
 				659D487C23F38C01007AC005 /* NovaOne.xcdatamodeld */,
 			);
 			path = "Core Data";
+			sourceTree = "<group>";
+		};
+		65D3119F2475BEEC00F290F8 /* Split View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				65D311A02475BF0B00F290F8 /* GlobalSplitViewController.swift */,
+			);
+			path = "Split View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1087,6 +1098,7 @@
 				65AA3E812432CAA6005C2319 /* AddAppointmentUnitTypeViewController.swift in Sources */,
 				657C5F982414016600D52E27 /* CompaniesViewController.swift in Sources */,
 				656760522443837500EF4388 /* AddAppointmentCompanyViewController.swift in Sources */,
+				65D311A12475BF0B00F290F8 /* GlobalSplitViewController.swift in Sources */,
 				65AA3E6824327245005C2319 /* AddCompanyPhoneViewController.swift in Sources */,
 				65ADE2DF23E1C814003D3215 /* FeatureView.swift in Sources */,
 				6591C39E23DA78F900535C46 /* StartViewController.swift in Sources */,

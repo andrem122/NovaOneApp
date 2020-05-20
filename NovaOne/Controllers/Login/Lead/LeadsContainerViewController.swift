@@ -26,9 +26,8 @@ class LeadsContainerViewController: UIViewController {
         // Gets CoreData and passes it to table view OR makes a request for data if no CoreData exists
         
         if self.objectCount > 0 {
-            print("SHOWING LEADS FROM CORE DATA")
             // Get CoreData objects and pass to the next view
-            UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.ViewControllerIdentifiers.leads.rawValue, containerView: self.containerView ?? UIView(), objectType: LeadsViewController.self, completion: nil)
+            UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.SplitViewControllerIdentifiers.leads.rawValue, containerView: self.containerView ?? UIView(), objectType: UISplitViewController.self, completion: nil)
             
         } else {
             // Get data via an HTTP request and save to coredata for the next view
@@ -37,7 +36,7 @@ class LeadsContainerViewController: UIViewController {
         
     }
     
-    func saveObjectsToCoreDataAndSend(for leadsViewController: LeadsViewController, objects: [Decodable]) {
+    func saveObjectsToCoreDataAndSend(for leadstableViewController: LeadsTableViewController, objects: [Decodable]) {
         // Saves leads data to CoreData and sends them to leads view for display
         
         guard let entity = NSEntityDescription.entity(forEntityName: Defaults.CoreDataEntities.lead.rawValue, in: PersistenceService.context) else { return }
@@ -72,8 +71,8 @@ class LeadsContainerViewController: UIViewController {
         // Send the data to the leads view controller
         let sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
         let coreDataLeads = PersistenceService.fetchEntity(Lead.self, filter: nil, sort: sortDescriptors)
-        leadsViewController.leads = coreDataLeads
-        leadsViewController.filteredLeads = coreDataLeads
+        leadstableViewController.leads = coreDataLeads
+        leadstableViewController.filteredLeads = coreDataLeads
         
     }
     
@@ -115,20 +114,25 @@ class LeadsContainerViewController: UIViewController {
         
         httpRequest.request(endpoint: "/leads.php",
                             dataModel: [LeadModel].self,
-                            parameters: parameters) { [weak self] (result) in
+                            parameters: parameters) {
+                                [weak self] (result) in
                                 
                                 switch result {
                                     
                                     case .success(let leads):
                                         self?.loadingIndicator?.stopAnimating()
                                         
-                                        UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.ViewControllerIdentifiers.leads.rawValue, containerView: self?.containerView ?? UIView(), objectType: LeadsViewController.self) { (leadsViewController) in
+                                        UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.SplitViewControllerIdentifiers.leads.rawValue, containerView: self?.containerView ?? UIView(), objectType: UISplitViewController.self) {
+                                            [weak self] (leadsSplitViewController) in
                                             
-                                            guard let leadsViewController = leadsViewController as? LeadsViewController else { return }
-                                            leadsViewController.parentViewContainerController = self
+                                            guard
+                                                let leadsSplitViewController = leadsSplitViewController as? UISplitViewController,
+                                                let leadsNavigationController = leadsSplitViewController.viewControllers.first as? UINavigationController,
+                                                let leadsTableViewController = leadsNavigationController.viewControllers.first as? LeadsTableViewController
+                                            else { return }
                                             
                                             // Save data in CoreData
-                                            self?.saveObjectsToCoreDataAndSend(for: leadsViewController, objects: leads)
+                                            self?.saveObjectsToCoreDataAndSend(for: leadsTableViewController, objects: leads)
                                             
                                     }
                                     

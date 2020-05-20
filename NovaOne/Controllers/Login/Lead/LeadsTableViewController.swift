@@ -275,6 +275,12 @@ class LeadsTableViewController: UITableViewController {
         } else {
             self.tableView.addSubview(self.refresher)
         }
+        
+        // Set detail view on first item
+        guard let leadDetailViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.leadDetail.rawValue) as? LeadDetailViewController else { return }
+        leadDetailViewController.lead = self.filteredLeads.first
+        
+        self.splitViewController?.showDetailViewController(leadDetailViewController, sender: nil)
     }
     
     // Shows how many rows our table view should show
@@ -321,8 +327,7 @@ class LeadsTableViewController: UITableViewController {
         if let leadDetailViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.leadDetail.rawValue) as? LeadDetailViewController {
             
             leadDetailViewController.lead = lead
-            leadDetailViewController.modalPresentationStyle = .automatic
-            self.present(leadDetailViewController, animated: true, completion: nil)
+            self.splitViewController?.showDetailViewController(leadDetailViewController, sender: nil)
             
         }
     }
