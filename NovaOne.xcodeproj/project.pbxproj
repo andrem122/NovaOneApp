@@ -158,6 +158,7 @@
 		65BA98BB243166C700CFAA9F /* LeadsContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BA98BA243166C700CFAA9F /* LeadsContainerViewController.swift */; };
 		65C14C332434DAA500848606 /* PopUpOkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C14C322434DAA500848606 /* PopUpOkViewController.swift */; };
 		65C230E224718F430099DA1A /* signupInputCheck.php in Resources */ = {isa = PBXBuildFile; fileRef = 65C230E124718F430099DA1A /* signupInputCheck.php */; };
+		65C4C6FB2474A8E600E143C5 /* LeadsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C4C6FA2474A8E600E143C5 /* LeadsTableViewController.swift */; };
 		65C5467923ECAB2300A198F3 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C5467823ECAB2300A198F3 /* AppUtility.swift */; };
 		65C5467A23ECAB2300A198F3 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C5467823ECAB2300A198F3 /* AppUtility.swift */; };
 		65C5467B23ECAB2400A198F3 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C5467823ECAB2300A198F3 /* AppUtility.swift */; };
@@ -354,6 +355,7 @@
 		65BA98BA243166C700CFAA9F /* LeadsContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadsContainerViewController.swift; sourceTree = "<group>"; };
 		65C14C322434DAA500848606 /* PopUpOkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpOkViewController.swift; sourceTree = "<group>"; };
 		65C230E124718F430099DA1A /* signupInputCheck.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = signupInputCheck.php; sourceTree = "<group>"; };
+		65C4C6FA2474A8E600E143C5 /* LeadsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadsTableViewController.swift; sourceTree = "<group>"; };
 		65C5467823ECAB2300A198F3 /* AppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
 		65C9A74B245CF1E5009651B4 /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		65C9A74D245CF28A009651B4 /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
@@ -491,6 +493,7 @@
 				65AF664723E881D9001B394F /* LeadsViewController.swift */,
 				6593CFAC2436A9DC0026C5D7 /* LeadDetailViewController.swift */,
 				65BA98BA243166C700CFAA9F /* LeadsContainerViewController.swift */,
+				65C4C6FA2474A8E600E143C5 /* LeadsTableViewController.swift */,
 			);
 			path = Lead;
 			sourceTree = "<group>";
@@ -1100,6 +1103,7 @@
 				6598EED424520E5D00CEF5A4 /* ChartValuesWithDateAsXAxis.swift in Sources */,
 				6583194C23F2206E001D378D /* KeychainWrapper.swift in Sources */,
 				6578D9ED24158174002E94BF /* ObjectDetailTableViewCell.swift in Sources */,
+				65C4C6FB2474A8E600E143C5 /* LeadsTableViewController.swift in Sources */,
 				65C9A74C245CF1E5009651B4 /* MenuCollectionViewCell.swift in Sources */,
 				65AF80EC2442494800167C8D /* UpdateAppointmentTestTypeViewController.swift in Sources */,
 				65AF665023E881FE001B394F /* SupportViewController.swift in Sources */,

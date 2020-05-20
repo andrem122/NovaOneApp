@@ -131,6 +131,11 @@ extension String {
         return !self.isEmpty && self.range(of: "[^a-zA-Z]", options: .regularExpression) == nil
     }
     
+    var isNumeric: Bool {
+        // Returns true if string is a number and false if it is not
+        return Int(self) != nil
+    }
+    
     func trim() -> String {
         // Removes any leading and trailing white space for strings
         return self.trimmingCharacters(in: CharacterSet.whitespaces)
