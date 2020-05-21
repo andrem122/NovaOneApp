@@ -268,6 +268,7 @@ class LeadsTableViewController: UITableViewController {
         self.tableView.separatorColor = UIColor(white: 0.95, alpha: 1)
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.clearsSelectionOnViewWillAppear = false
         
         // Refresh control
         if #available(iOS 10.0, *) {
@@ -277,10 +278,10 @@ class LeadsTableViewController: UITableViewController {
         }
         
         // Set detail view on first item
-        guard let leadDetailViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.leadDetail.rawValue) as? LeadDetailViewController else { return }
-        leadDetailViewController.lead = self.filteredLeads.first
-        
-        self.splitViewController?.showDetailViewController(leadDetailViewController, sender: nil)
+//        guard let leadDetailViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.leadDetail.rawValue) as? LeadDetailViewController else { return }
+//        leadDetailViewController.lead = self.filteredLeads.first
+//
+//        self.splitViewController?.showDetailViewController(leadDetailViewController, sender: nil)
     }
     
     // Shows how many rows our table view should show
@@ -319,17 +320,6 @@ class LeadsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true) // Deselect the row after it is tapped on
-        
-        // Get lead object based on which row the user taps on
-        let lead = self.filteredLeads[indexPath.row]
-        
-        //Get detail view controller, pass object to it, and present it
-        if let leadDetailViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.leadDetail.rawValue) as? LeadDetailViewController {
-            
-            leadDetailViewController.lead = lead
-            self.splitViewController?.showDetailViewController(leadDetailViewController, sender: nil)
-            
-        }
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -362,6 +352,23 @@ class LeadsTableViewController: UITableViewController {
         }
         
 
+    }
+    
+    // MARK: Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Defaults.SegueIdentifiers.leadDetail.rawValue {
+            guard
+                let indexPath = self.tableView.indexPathForSelectedRow,
+                let leadDetailNavigationController = segue.destination as? UINavigationController,
+                let leadDetailViewController = leadDetailNavigationController.viewControllers.first as? LeadDetailViewController
+            else { return }
+            
+            let lead = self.filteredLeads[indexPath.row]
+            leadDetailViewController.lead = lead
+            
+            leadDetailViewController.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
+            leadDetailViewController.navigationItem.leftItemsSupplementBackButton = true
+        }
     }
 }
 
