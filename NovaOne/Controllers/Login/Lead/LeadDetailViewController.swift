@@ -11,7 +11,7 @@ import UIKit
 class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NovaOneObjectDetail {
     
     // MARK: Properties
-    var objectDetailCells: [[String : String]] = []
+    var objectDetailItems: [ObjectDetailItem] = []
     var lead: Lead?
     @IBOutlet weak var objectDetailTableView: UITableView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -47,7 +47,7 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func setupObjectDetailCellsAndTitle() {
-        // Set cells up for the table view
+        // Set cell values for the table view
         
         guard
             let lead = self.lead,
@@ -65,19 +65,19 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         let dateOfInquiry: String = self.convert(lead: dateOfInquiryDate)
         
         // Create dictionaries for cells
-        let phoneNumberCell = ["cellTitle": "Phone", "cellTitleValue": phoneNumber]
-        let emailCell = ["cellTitle": "Email", "cellTitleValue": email]
-        let renterBrandCell = ["cellTitle": "Renter Brand", "cellTitleValue": renterBrand]
-        let addressCell = ["cellTitle": "Company", "cellTitleValue": companyName]
-        let dateOfInquiryCell = ["cellTitle": "Date Of Inquiry", "cellTitleValue": dateOfInquiry]
+        let phoneNumberItem = ObjectDetailItem(title: "Phone", titleValue: phoneNumber)
+        let emailItem = ObjectDetailItem(title: "Email", titleValue: email)
+        let renterBrandItem = ObjectDetailItem(title: "Renter Brand", titleValue: renterBrand)
+        let addressItem = ObjectDetailItem(title: "Company", titleValue: companyName)
+        let dateOfInquiryItem = ObjectDetailItem(title: "Date Of Inquiry", titleValue: dateOfInquiry)
         
         self.titleLabel.text = name
-        self.objectDetailCells = [
-            phoneNumberCell,
-            emailCell,
-            renterBrandCell,
-            dateOfInquiryCell,
-            addressCell]
+        self.objectDetailItems = [
+            phoneNumberItem,
+            emailItem,
+            renterBrandItem,
+            dateOfInquiryItem,
+            addressItem]
         
         self.objectDetailTableView.reloadData()
     }
@@ -91,16 +91,14 @@ extension LeadDetailViewController {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.objectDetailCells.count
+        return self.objectDetailItems.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Defaults.TableViewCellIdentifiers.objectDetail.rawValue) as! ObjectDetailTableViewCell
         
-        let objectDetailCell = self.objectDetailCells[indexPath.row]
-        
-        cell.setup(cellTitle: objectDetailCell["cellTitle"]!, cellTitleValue: objectDetailCell["cellTitleValue"]!)
-        
+        let objectDetailItem = self.objectDetailItems[indexPath.row]
+        cell.objectDetailItem = objectDetailItem
         return cell
     }
     

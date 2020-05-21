@@ -222,9 +222,11 @@ class AddCompanyHoursEnabledViewController: UIViewController, UITableViewDataSou
                         // Add username and password to keychain if user wants to
                         let title = "Add To Keychain"
                         let body = "Would you like to securely add your username and password to Keychain for easier login?"
-                        guard let popUpActionViewController = self?.alertService.popUp(title: title, body: body, buttonTitle: "Yes", completion: {
+                        guard let popUpActionViewController = self?.alertService.popUp(title: title, body: body, buttonTitle: "Yes", actionHandler: {
                             KeychainWrapper.standard.set(email, forKey: Defaults.KeychainKeys.email.rawValue)
                             KeychainWrapper.standard.set(password, forKey: Defaults.KeychainKeys.password.rawValue)
+                        }, cancelHandler: {
+                            print("Action canceled")
                         }) else { return }
                         containerViewController.present(popUpActionViewController, animated: true, completion: nil)
                         

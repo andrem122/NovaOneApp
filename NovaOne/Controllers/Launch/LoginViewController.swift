@@ -130,6 +130,64 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    func navigateToLoginScreenAndSaveData(customer: CustomerModel, success: (() -> Void)?) {
+        // Navigate to login screen and save data to CoreData
+        
+        // Go to container view controller
+        if let containerViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.container.rawValue) as? ContainerViewController  {
+            
+            // Get non optionals from CustomerModel instance
+            let dateJoinedDate = customer.dateJoinedDate
+            let id = Int32(customer.id)
+            let customerType = customer.customerType
+            let email = customer.email
+            let firstName = customer.firstName
+            let isPaying = customer.isPaying
+            let lastName = customer.lastName
+            let phoneNumber = customer.phoneNumber
+            let wantsSms = customer.wantsSms
+            let username = customer.username
+            let password = customer.password
+            let lastLoginDate = customer.lastLoginDate
+            
+            // If there are no customer CoreData objects, save the new customer object
+            let customerCount = PersistenceService.fetchCount(for: Defaults.CoreDataEntities.customer.rawValue)
+            if customerCount == 0 { // New users to the app logging in for first time
+                print("New user to the app!")
+                guard let coreDataCustomerObject = NSEntityDescription.insertNewObject(forEntityName: Defaults.CoreDataEntities.customer.rawValue, into: PersistenceService.context) as? Customer else { return }
+                
+                coreDataCustomerObject.addCustomer(customerType: customerType, dateJoined: dateJoinedDate, email: email, firstName: firstName, id: id, isPaying: isPaying, lastName: lastName, phoneNumber: phoneNumber, wantsSms: wantsSms, password: password, username: username, lastLogin: lastLoginDate, companies: nil)
+                
+                PersistenceService.saveContext()
+                
+            } else if (customerCount > 0) && (username != self.coreDataCustomerEmail) {
+                // If the email that was typed into the email text field matches the email attribute value
+                // of the customer object we have stored in CoreData, do nothing. Otherwise,
+                // delete ALL data from CoreData and update the customer object
+                
+                print("Existing user with new login information!")
+                // Delete all CoreData data from previous logins
+                PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.customer.rawValue)
+                PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.company.rawValue)
+                PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.lead.rawValue)
+                
+                // Create new customer object in CoreData for new login information
+                guard let coreDataCustomerObject = NSEntityDescription.insertNewObject(forEntityName: Defaults.CoreDataEntities.customer.rawValue, into: PersistenceService.context) as? Customer else { return }
+                
+                coreDataCustomerObject.addCustomer(customerType: customerType, dateJoined: dateJoinedDate, email: email, firstName: firstName, id: id, isPaying: isPaying, lastName: lastName, phoneNumber: phoneNumber, wantsSms: wantsSms, password: password, username: username, lastLogin: lastLoginDate, companies: nil)
+                
+                PersistenceService.saveContext()
+                
+            }
+            
+            containerViewController.modalPresentationStyle = .fullScreen // Set presentaion style of view to full screen
+            self.present(containerViewController, animated: true, completion: nil)
+            
+            guard let unwrappedSuccess = success else { return }
+            unwrappedSuccess()
+        }
+    }
+    
     // Sends a post request using url encoded string
     func formDataLogin(email: String, password: String, success: (() -> Void)?) {
         
@@ -144,63 +202,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 // If the result is successful, we will get the customer object we passed into the
                 // result enum and move on to the next view
                 case .success(let customer):
-                    
                     // Add username and password to keychain if the username and password is correct
-                    KeychainWrapper.standard.set(email, forKey: Defaults.KeychainKeys.email.rawValue)
-                    KeychainWrapper.standard.set(password, forKey: Defaults.KeychainKeys.password.rawValue)
-                    
-                    // Go to container view controller
-                    if let containerViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.container.rawValue) as? ContainerViewController  {
+                    let title = "Add To Keychain"
+                    let body = "Would you like to add your email and password to Keychain for easier sign in?"
+                    guard let popUpActionViewController = self?.alertService.popUp(title: title, body: body, buttonTitle: "Yes", actionHandler: {
                         
-                        // Get non optionals from CustomerModel instance
-                        let dateJoinedDate = customer.dateJoinedDate
-                        let id = Int32(customer.id)
-                        let customerType = customer.customerType
-                        let email = customer.email
-                        let firstName = customer.firstName
-                        let isPaying = customer.isPaying
-                        let lastName = customer.lastName
-                        let phoneNumber = customer.phoneNumber
-                        let wantsSms = customer.wantsSms
-                        let username = customer.username
-                        let lastLoginDate = customer.lastLoginDate
+                        // Save to keychain
+                        KeychainWrapper.standard.set(email, forKey: Defaults.KeychainKeys.email.rawValue)
+                        KeychainWrapper.standard.set(password, forKey: Defaults.KeychainKeys.password.rawValue)
                         
-                        // If there are no customer CoreData objects, save the new customer object
-                        let customerCount = PersistenceService.fetchCount(for: Defaults.CoreDataEntities.customer.rawValue)
-                        if customerCount == 0 { // New users to the app logging in for first time
-                            print("New user to the app!")
-                            guard let coreDataCustomerObject = NSEntityDescription.insertNewObject(forEntityName: Defaults.CoreDataEntities.customer.rawValue, into: PersistenceService.context) as? Customer else { return }
-                            
-                            coreDataCustomerObject.addCustomer(customerType: customerType, dateJoined: dateJoinedDate, email: email, firstName: firstName, id: id, isPaying: isPaying, lastName: lastName, phoneNumber: phoneNumber, wantsSms: wantsSms, password: password, username: username, lastLogin: lastLoginDate, companies: nil)
-                            
-                            PersistenceService.saveContext()
-                            
-                        } else if (customerCount > 0) && (username != self?.coreDataCustomerEmail) {
-                            // If the email that was typed into the email text field matches the email attribute value
-                            // of the customer object we have stored in CoreData, do nothing. Otherwise,
-                            // delete ALL data from CoreData and update the customer object
-                            
-                            print("Existing user with new login information!")
-                            // Delete all CoreData data from previous logins
-                            PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.customer.rawValue)
-                            PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.company.rawValue)
-                            PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.lead.rawValue)
-                            
-                            // Create new customer object in CoreData for new login information
-                            guard let coreDataCustomerObject = NSEntityDescription.insertNewObject(forEntityName: Defaults.CoreDataEntities.customer.rawValue, into: PersistenceService.context) as? Customer else { return }
-                            
-                            coreDataCustomerObject.addCustomer(customerType: customerType, dateJoined: dateJoinedDate, email: email, firstName: firstName, id: id, isPaying: isPaying, lastName: lastName, phoneNumber: phoneNumber, wantsSms: wantsSms, password: password, username: username, lastLogin: lastLoginDate, companies: nil)
-                            
-                            PersistenceService.saveContext()
-                            
-                        }
-                        
-                        guard let unwrappedSuccess = success else { return }
-                        unwrappedSuccess()
-                        
-                        containerViewController.modalPresentationStyle = .fullScreen // Set presentaion style of view to full screen
-                        self?.present(containerViewController, animated: true, completion: nil)
-                    }
+                        self?.navigateToLoginScreenAndSaveData(customer: customer, success: success)
+                    }, cancelHandler: {
+                        self?.navigateToLoginScreenAndSaveData(customer: customer, success: success)
+                    }) else { return }
+
+                    self?.present(popUpActionViewController, animated: true, completion: nil)
                 
                 case .failure(let error):
                     // Show error message with a pop up and enable continue button

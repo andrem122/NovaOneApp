@@ -10,8 +10,9 @@ import UIKit
 
 class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NovaOneObjectDetail {
     
+    
     // MARK: Properties
-    var objectDetailCells: [[String : String]] = []
+    var objectDetailItems: [ObjectDetailItem] = []
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var objectDetailTableView: UITableView!
     @IBOutlet weak var topView: NovaOneView!
@@ -66,15 +67,15 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
         let phoneNumber = appointment.phoneNumber
         
         // Create dictionaries for cells
-        let phoneNumberCell = ["cellTitle": "Phone Number", "cellTitleValue": phoneNumber]
-        let appointmentTimeCell = ["cellTitle": "Time", "cellTitleValue": appointmentTime]
-        let appointmentConfirmedCell = ["cellTitle": "Confirmed", "cellTitleValue": confirmedString]
+        let phoneNumberItem = ObjectDetailItem(title: "Phone Number", titleValue: phoneNumber)
+        let appointmentTimeItem = ObjectDetailItem(title: "Time", titleValue: appointmentTime)
+        let appointmentConfirmedItem = ObjectDetailItem(title: "Confirmed", titleValue: confirmedString)
         
         self.titleLabel.text = appointment.name
-        self.objectDetailCells = [
-            phoneNumberCell,
-            appointmentTimeCell,
-            appointmentConfirmedCell]
+        self.objectDetailItems = [
+            phoneNumberItem,
+            appointmentTimeItem,
+            appointmentConfirmedItem]
         
         // Additional cells for different customer types
         guard
@@ -85,8 +86,8 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
         if customerType == Defaults.CustomerTypes.propertyManager.rawValue {
             
             guard let unitType = appointment.unitType else { return }
-            let unitTypeCell = ["cellTitle": "Unit Type", "cellTitleValue": unitType]
-            self.objectDetailCells.append(unitTypeCell)
+            let unitTypeItem = ObjectDetailItem(title: "Unit Type", titleValue: unitType)
+            self.objectDetailItems.append(unitTypeItem)
             
         } else if customerType == Defaults.CustomerTypes.medicalWorker.rawValue {
             
@@ -98,14 +99,14 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
             else { return }
             let address = appointment.shortenedAddress
             
-            let emailCell = ["cellTitle": "Email", "cellTitleValue": email]
-            let dateOfBirthCell = ["cellTitle": "Date Of Birth", "cellTitleValue": dateOfBirth]
-            let testTypeCell = ["cellTitle": "Test Type", "cellTitleValue": testType]
-            let genderCell = ["cellTitle": "Gender", "cellTitleValue": gender]
-            let addressCell = ["cellTitle": "Address", "cellTitleValue": address]
+            let emailCell = ObjectDetailItem(title: "Email", titleValue: email)
+            let dateOfBirthCell = ObjectDetailItem(title: "Date Of Birth", titleValue: dateOfBirth)
+            let testTypeCell = ObjectDetailItem(title: "Test Type", titleValue: testType)
+            let genderCell = ObjectDetailItem(title: "Gender", titleValue: gender)
+            let addressCell = ObjectDetailItem(title: "Address", titleValue: address)
             
             let cells = [emailCell, dateOfBirthCell, testTypeCell, genderCell, addressCell]
-            self.objectDetailCells.append(contentsOf: cells)
+            self.objectDetailItems.append(contentsOf: cells)
             
         }
     }
@@ -117,7 +118,7 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
         let body = "Are you sure you want to delete the appointment?"
         let buttonTitle = "Delete"
         
-        let popUpViewController = alertService.popUp(title: title, body: body, buttonTitle: buttonTitle) {
+        let popUpViewController = alertService.popUp(title: title, body: body, buttonTitle: buttonTitle, actionHandler: {
             [weak self] in
             // Delete from CoreData
             
@@ -132,7 +133,10 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
                 self?.present(homeTabBarController, animated: true, completion: nil)
                 
             }
-        }
+        }, cancelHandler: {
+            print("Action canceled")
+        })
+        
         self.present(popUpViewController, animated: true, completion: nil)
     }
     
@@ -145,16 +149,14 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
 extension AppointmentDetailViewController {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.objectDetailCells.count
+        return self.objectDetailItems.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Defaults.TableViewCellIdentifiers.objectDetail.rawValue) as! ObjectDetailTableViewCell
         
-        let objectDetailCell = self.objectDetailCells[indexPath.row]
-        
-        cell.setup(cellTitle: objectDetailCell["cellTitle"]!, cellTitleValue: objectDetailCell["cellTitleValue"]!)
-        
+        let objectDetailItem = self.objectDetailItems[indexPath.row]
+        cell.objectDetailItem = objectDetailItem
         return cell
     }
     
@@ -163,8 +165,7 @@ extension AppointmentDetailViewController {
             tableView.deselectRow(at: indexPath, animated: true) // Deselect the row after it is tapped on
             
             // Get company title based on which row the user taps on
-            guard let cellTitle = self.objectDetailCells[indexPath.row]["cellTitle"] else { return }
-            print(cellTitle)
+        let cellTitle = self.objectDetailItems[indexPath.row].title
         
             // Get update view controller based on which cell the user clicked on
             switch cellTitle {

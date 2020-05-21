@@ -15,7 +15,7 @@ class StartViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var scrollView: UIScrollView!
-    lazy var sliderLauncher = SliderLauncher(scrollView: self.scrollView, pageControl: self.pageControl)
+    var sliderLauncher: SliderLauncher?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,13 +25,14 @@ class StartViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // Rotate the orientation of the screen to potrait and lock it
-        sliderLauncher.launchSlider()
+        self.sliderLauncher = SliderLauncher(scrollView: self.scrollView, pageControl: self.pageControl)
+        self.sliderLauncher?.launchSlider()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        sliderLauncher.timer?.invalidate()
+        sliderLauncher?.disableTimer()
+        sliderLauncher = nil // Deallocate from memory to prevent slider timer from running
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -42,7 +43,7 @@ class StartViewController: UIViewController, UIScrollViewDelegate {
         super.viewWillTransition(to: size, with: coordinator)
         coordinator.animate(alongsideTransition: nil) {
             [weak self] (_) in
-            self?.sliderLauncher.repositionSlideOnDeviceRotation()
+            self?.sliderLauncher?.repositionSlideOnDeviceRotation()
         }
     }
     

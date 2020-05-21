@@ -133,17 +133,19 @@ class UpdateCompanyHoursEnabledViewController: UIViewController, UITableViewDele
         let body = "Are you sure you want to update company hours?"
         let buttonTitle = "Update"
         
-        let popUpViewController = alertService.popUp(title: title, body: body, buttonTitle: buttonTitle) {
+        let popUpViewController = alertService.popUp(title: title, body: body, buttonTitle: buttonTitle, actionHandler: {
             [weak self] in
-            // Update CoreData
-            
-            // Update database
-            
-            // Navigate to company detail view controller
-            self?.navigationController?.popViewController(animated: true)
-            
-            // Refresh company detail view to reflect data changes made by user
-        }
+                       // Update CoreData
+                       
+                       // Update database
+                       
+                       // Navigate to company detail view controller
+                       self?.navigationController?.popViewController(animated: true)
+                       
+                       // Refresh company detail view to reflect data changes made by user
+            }, cancelHandler: {
+                print("Action canceled")
+        })
         self.present(popUpViewController, animated: true, completion: nil)
         
     }

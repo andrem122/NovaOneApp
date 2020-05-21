@@ -17,7 +17,8 @@ class PopUpActionViewController: UIViewController {
     var popUpTitle = String()
     var popUpBody = String()
     var popUpActionButtonTitle = String()
-    var popUpButtonActionCompletion: (() -> Void)?
+    var actionHandler: (() -> Void)?
+    var cancelHandler: (() -> Void)?
     
     
     // MARK: Methods
@@ -36,12 +37,13 @@ class PopUpActionViewController: UIViewController {
     // MARK: Actions
     @IBAction func popUpCancelButtonTapped(_ sender: Any) {
         self.presentingViewController?.dismiss(animated: true, completion: nil)
+        cancelHandler?()
     }
     
     
     @IBAction func popUpActionButtonTapped(_ sender: Any) {
         self.presentingViewController?.dismiss(animated: true, completion: nil)
         // Call the completion function/handler that happens after you tap the action button
-        popUpButtonActionCompletion?()
+        actionHandler?()
     }
 }

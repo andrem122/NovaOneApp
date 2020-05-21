@@ -167,6 +167,7 @@
 		65D169AD245DDFE6006219C8 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D169AC245DDFE6006219C8 /* Defaults.swift */; };
 		65D169AF245F598C006219C8 /* SliderLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D169AE245F598C006219C8 /* SliderLauncher.swift */; };
 		65D311A12475BF0B00F290F8 /* GlobalSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D311A02475BF0B00F290F8 /* GlobalSplitViewController.swift */; };
+		65D311A32475F8A100F290F8 /* ObjectDetailItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D311A22475F8A100F290F8 /* ObjectDetailItem.swift */; };
 		65D75F7423FB495900C7988E /* utils.php in Resources */ = {isa = PBXBuildFile; fileRef = 65D75F7323FB495900C7988E /* utils.php */; };
 		65DBED6C2429404F0090B39C /* NovaOne.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 659D487C23F38C01007AC005 /* NovaOne.xcdatamodeld */; };
 		65DF7525243563F20044E6F7 /* NovaOneObjectDetailProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DF7524243563F20044E6F7 /* NovaOneObjectDetailProtocol.swift */; };
@@ -363,6 +364,7 @@
 		65D169AC245DDFE6006219C8 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		65D169AE245F598C006219C8 /* SliderLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderLauncher.swift; sourceTree = "<group>"; };
 		65D311A02475BF0B00F290F8 /* GlobalSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSplitViewController.swift; sourceTree = "<group>"; };
+		65D311A22475F8A100F290F8 /* ObjectDetailItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectDetailItem.swift; sourceTree = "<group>"; };
 		65D75F7323FB495900C7988E /* utils.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = utils.php; sourceTree = "<group>"; };
 		65DF7524243563F20044E6F7 /* NovaOneObjectDetailProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovaOneObjectDetailProtocol.swift; sourceTree = "<group>"; };
 		65E0970C24511C3E00D2CC00 /* ChartHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartHelper.swift; sourceTree = "<group>"; };
@@ -584,6 +586,7 @@
 				659CCD3523EE46260066C9CB /* ErrorResponse.swift */,
 				656A1344246B63350002A176 /* SignUpModels.swift */,
 				65074FB2247083AD008AC4B2 /* SuccessResponse.swift */,
+				65D311A22475F8A100F290F8 /* ObjectDetailItem.swift */,
 			);
 			path = "Data Models";
 			sourceTree = "<group>";
@@ -1153,6 +1156,7 @@
 				65ABA263243F6469002051D1 /* Company+CoreDataClass.swift in Sources */,
 				65C9A74E245CF28A009651B4 /* BaseCell.swift in Sources */,
 				6567D45B246F6B97008823E5 /* AddCompanyHelper.swift in Sources */,
+				65D311A32475F8A100F290F8 /* ObjectDetailItem.swift in Sources */,
 				6580FBE324113D0700695DB6 /* UIHelper.swift in Sources */,
 				65AA3E7824328CAE005C2319 /* SuccessViewController.swift in Sources */,
 				657C5F9A241406EA00D52E27 /* CompanyDetailViewController.swift in Sources */,

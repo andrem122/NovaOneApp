@@ -25,7 +25,7 @@ class AlertService {
         return popUpOkViewController
     }
     
-    func popUp(title: String, body: String, buttonTitle: String, completion: @escaping () -> Void) -> PopUpActionViewController {
+    func popUp(title: String, body: String, buttonTitle: String, actionHandler: @escaping () -> Void, cancelHandler: @escaping () -> Void) -> PopUpActionViewController {
         // Returns a pop up with a cancel and action button
         
         let storyboard = UIStoryboard(name: Defaults.storyboardName, bundle: .main)
@@ -35,7 +35,8 @@ class AlertService {
         popUpViewController.popUpTitle = title
         popUpViewController.popUpBody = body
         popUpViewController.popUpActionButtonTitle = buttonTitle
-        popUpViewController.popUpButtonActionCompletion = completion
+        popUpViewController.actionHandler = actionHandler
+        popUpViewController.cancelHandler = cancelHandler
         
         return popUpViewController
     }

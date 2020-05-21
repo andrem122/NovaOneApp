@@ -10,7 +10,7 @@ import UIKit
 
 protocol NovaOneObjectDetail {
     // A bunch of properties we need for the object detail view to work
-    var objectDetailCells: [[String: String]] { get set } // Can read ('get' keyword) and edit the property ('set' keyword)
+    var objectDetailItems: [ObjectDetailItem] { get set } // Can read ('get' keyword) and edit the property ('set' keyword)
     var titleLabel: UILabel! { get }
     var objectDetailTableView: UITableView! { get }
 }

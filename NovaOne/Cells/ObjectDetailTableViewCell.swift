@@ -13,13 +13,11 @@ class ObjectDetailTableViewCell: UITableViewCell {
     // MARK: Properties
     @IBOutlet weak var cellTitleLabel: UILabel!
     @IBOutlet weak var cellTitleValueLabel: UILabel!
-    
-    func setup(cellTitle: String, cellTitleValue: String) {
-        // Set up the title and title value for each cell
-        
-        self.cellTitleLabel.text = cellTitle
-        self.cellTitleValueLabel.text = cellTitleValue
-        
+    var objectDetailItem: ObjectDetailItem? {
+        didSet {
+            self.cellTitleLabel.text = self.objectDetailItem?.title
+            self.cellTitleValueLabel.text = self.objectDetailItem?.titleValue
+        }
     }
 
 }
