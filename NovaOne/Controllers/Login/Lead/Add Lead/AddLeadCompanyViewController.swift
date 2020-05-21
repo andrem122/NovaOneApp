@@ -114,7 +114,7 @@ class AddLeadCompanyViewController: UIViewController, UITableViewDataSource, UIT
     // MARK: Actions
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
-        self.presentingViewController?.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
 }

@@ -21,6 +21,7 @@ class HomeTabBarController: UITabBarController, UITableViewDelegate {
     // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.isHidden = true
     }
     
     override func viewDidLayoutSubviews() {

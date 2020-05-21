@@ -1256,7 +1256,7 @@ and you have 4 leads.</string>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="jDb-sL-E0J" firstAttribute="top" secondItem="5Ts-dM-TBs" secondAttribute="top" id="0PS-aS-QvJ"/>
+                            <constraint firstItem="jDb-sL-E0J" firstAttribute="top" secondItem="5Ts-dM-TBs" secondAttribute="top" id="KFg-h4-sdM"/>
                             <constraint firstItem="jDb-sL-E0J" firstAttribute="leading" secondItem="5Ts-dM-TBs" secondAttribute="leading" id="pda-XA-2Ca"/>
                             <constraint firstItem="5Ts-dM-TBs" firstAttribute="bottom" secondItem="jDb-sL-E0J" secondAttribute="bottom" id="qCO-is-G3h"/>
                             <constraint firstItem="jDb-sL-E0J" firstAttribute="trailing" secondItem="5Ts-dM-TBs" secondAttribute="trailing" id="qnC-Le-W5g"/>
@@ -1275,7 +1275,7 @@ and you have 4 leads.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tf9-Zy-Q3y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6909" y="2176"/>
+            <point key="canvasLocation" x="6638" y="1215"/>
         </scene>
         <!--Contact Us-->
         <scene sceneID="zje-gJ-TP2">
@@ -2543,11 +2543,19 @@ on how to reset your password.</string>
                             <outlet property="delegate" destination="REY-DL-ArW" id="Awk-ew-QK2"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Leads" id="VGT-JS-zJJ"/>
+                    <navigationItem key="navigationItem" title="Leads" id="VGT-JS-zJJ">
+                        <barButtonItem key="backBarButtonItem" title=" " id="EFw-oQ-SXq"/>
+                        <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="CiD-x1-rAZ" userLabel="Add Button">
+                            <color key="tintColor" red="0.32549019610000002" green="0.42352941179999998" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="addButtonTapped:" destination="REY-DL-ArW" id="TXh-1A-4Ic"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UV2-0w-dst" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7725" y="828"/>
+            <point key="canvasLocation" x="9019" y="889"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ZAI-Yx-PWO">
@@ -2556,6 +2564,8 @@ on how to reset your password.</string>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="K79-BW-K2r">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="0.32549019610000002" green="0.42352941179999998" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="REY-DL-ArW" kind="relationship" relationship="rootViewController" id="8oF-CM-bnS"/>
@@ -2563,7 +2573,7 @@ on how to reset your password.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="biG-fc-yeu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6909" y="828"/>
+            <point key="canvasLocation" x="8243" y="889"/>
         </scene>
         <!--Global Split View Controller-->
         <scene sceneID="hNj-0r-aN8">
@@ -2576,7 +2586,7 @@ on how to reset your password.</string>
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mBv-QO-0Qm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6103" y="1120"/>
+            <point key="canvasLocation" x="7427" y="1216"/>
         </scene>
         <!--Account Table View-->
         <scene sceneID="Nbd-b8-Ie1">
@@ -3433,7 +3443,7 @@ my friend :)</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mmg-qk-G4W" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8245" y="4432"/>
+            <point key="canvasLocation" x="10854" y="5230"/>
         </scene>
         <!--Update Company Phone-->
         <scene sceneID="ZpQ-2X-ITh">
@@ -5065,7 +5075,7 @@ email  below.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u0c-8w-umF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9019" y="4432"/>
+            <point key="canvasLocation" x="11728" y="5230"/>
         </scene>
         <!--Pop Up Action View Controller-->
         <scene sceneID="qdK-R2-hMC">
@@ -5169,7 +5179,7 @@ email  below.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ku5-Vf-UQ0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9806" y="4432"/>
+            <point key="canvasLocation" x="12572" y="5230"/>
         </scene>
         <!--Add Appointment Name-->
         <scene sceneID="6SC-2n-pom">
@@ -6051,7 +6061,7 @@ with the appointment below.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e3j-28-JOx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="10587" y="4432"/>
+            <point key="canvasLocation" x="13376" y="5230"/>
         </scene>
         <!--Sign Up Customer Type-->
         <scene sceneID="Z7O-cC-eOy">
@@ -6306,6 +6316,7 @@ with the appointment below.</string>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hJO-tO-2hG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.32549019610000002" green="0.42352941179999998" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="AiO-n8-JYl" kind="relationship" relationship="rootViewController" id="5By-ph-qJY"/>
@@ -6313,7 +6324,7 @@ with the appointment below.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tvA-zu-XUO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6909.375" y="2878.75"/>
+            <point key="canvasLocation" x="9081" y="2471"/>
         </scene>
         <!--Lead Detail-->
         <scene sceneID="eE9-6S-ry9">
@@ -6424,7 +6435,7 @@ with the appointment below.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v4O-QL-SDI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7725" y="1559"/>
+            <point key="canvasLocation" x="9081" y="1643"/>
         </scene>
         <!--Update Appointment Phone Number-->
         <scene sceneID="iQJ-bp-Q5K">
@@ -7521,7 +7532,7 @@ make an appointment for.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lrs-HQ-jge" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5912" y="4351"/>
+            <point key="canvasLocation" x="9081" y="4078"/>
         </scene>
         <!--Add Lead Company-->
         <scene sceneID="QLR-BI-9xo">
@@ -7638,7 +7649,7 @@ make an appointment for.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ro3-8w-OZP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5912" y="3625"/>
+            <point key="canvasLocation" x="9081" y="3283"/>
         </scene>
         <!--Add Lead Email-->
         <scene sceneID="JXh-NC-5s5">
@@ -7723,7 +7734,7 @@ make an appointment for.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3d3-cN-u5b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5912" y="5163"/>
+            <point key="canvasLocation" x="9081" y="4883"/>
         </scene>
         <!--Add Lead Phone-->
         <scene sceneID="3PT-Nw-L6F">
@@ -7810,7 +7821,7 @@ of the lead below.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4y3-Y3-Qzm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5912" y="5905"/>
+            <point key="canvasLocation" x="9081" y="5694"/>
         </scene>
         <!--Add Lead Renter Brand-->
         <scene sceneID="gak-Xm-fU2">
@@ -7881,7 +7892,7 @@ the lead below.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WxO-Ds-yTb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5912" y="6607"/>
+            <point key="canvasLocation" x="9081" y="6536"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="XDv-0W-rDi">
@@ -7907,7 +7918,7 @@ the lead below.</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="KXB-9F-dvY" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="eeW-nd-O1T">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -7917,7 +7928,7 @@ the lead below.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p8L-YE-EYv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6908" y="1559"/>
+            <point key="canvasLocation" x="8244" y="1643"/>
         </scene>
     </scenes>
     <resources>

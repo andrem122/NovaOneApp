@@ -370,6 +370,12 @@ class LeadsTableViewController: UITableViewController {
             leadDetailViewController.navigationItem.leftItemsSupplementBackButton = true
         }
     }
+    
+    // MARK: Actions
+    @IBAction func addButtonTapped(_ sender: Any) {
+        guard let addLeadNavigationController = self.storyboard?.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addLead.rawValue) as? UINavigationController else { return }
+        self.present(addLeadNavigationController, animated: true, completion: nil)
+    }
 }
 
 extension LeadsTableViewController: UISearchResultsUpdating, SkeletonTableViewDataSource {
