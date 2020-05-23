@@ -277,11 +277,6 @@ class LeadsTableViewController: UITableViewController {
             self.tableView.addSubview(self.refresher)
         }
         
-        // Set detail view on first item
-//        guard let leadDetailViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.leadDetail.rawValue) as? LeadDetailViewController else { return }
-//        leadDetailViewController.lead = self.filteredLeads.first
-//
-//        self.splitViewController?.showDetailViewController(leadDetailViewController, sender: nil)
     }
     
     // Shows how many rows our table view should show

@@ -8,6 +8,7 @@
 import UIKit
 import CoreData
 import Charts
+import SkeletonView
 
 class HomeViewController: BaseLoginViewController, ChartViewDelegate {
 
@@ -28,15 +29,18 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
     // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.showAnimatedGradientSkeleton()
         self.setupNavigationBar(for: self, navigationBar: nil, navigationItem: nil)
         barChart.delegate = self
         self.getObjectCounts() {
             [weak self] in
+            self?.view.hideSkeleton()
             self?.setupGreetingLabel()
             self?.setupNumberLabels()
-            self?.getWeeklyChartData() {
-                self?.setupChart()
-            }
+        }
+        self.getWeeklyChartData() {
+            [weak self] in
+            self?.setupChart()
         }
     }
     
@@ -146,6 +150,9 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
     
     func getWeeklyChartData(completion: (() -> Void)?) {
         // Gets chart data from the database
+        
+        self.showSpinner(for: self.chartContainerView, textForLabel: nil)
+        
         let httpRequest = HTTPRequests()
         guard
             let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
@@ -209,6 +216,9 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
     
     func getMonthlyChartData(completion: (() -> Void)?) {
         // Gets chart data from the database
+        
+        self.showSpinner(for: self.chartContainerView, textForLabel: nil)
+        
         let httpRequest = HTTPRequests()
         guard
             let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
@@ -283,8 +293,6 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
     func getObjectCounts(success: @escaping () -> Void) {
         // Gets the number of a chosen object from the database
         
-        self.showSpinner(for: self.view, textForLabel: nil)
-        
         let httpRequest = HTTPRequests()
         guard
             let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
@@ -351,7 +359,6 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         let title = self.segmentControl.titleForSegment(at: self.segmentControl.selectedSegmentIndex)
         
         self.barChart.removeFromSuperview()
-        self.showSpinner(for: self.chartContainerView, textForLabel: nil)
         if title == "Month" {
             self.chartTitle.text = "Leads Per Month"
             self.getMonthlyChartData() {

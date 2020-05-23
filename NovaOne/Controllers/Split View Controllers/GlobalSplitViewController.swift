@@ -16,8 +16,12 @@ class GlobalSplitViewController: UISplitViewController, UISplitViewControllerDel
         self.preferredDisplayMode = .allVisible
     }
 
-    func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController: UIViewController!, ontoPrimaryViewController primaryViewController: UIViewController!) -> Bool{
-      return true
+    func splitViewController(
+             _ splitViewController: UISplitViewController,
+             collapseSecondary secondaryViewController: UIViewController,
+             onto primaryViewController: UIViewController) -> Bool {
+        // Return true to prevent UIKit from applying its default behavior
+        return true
     }
 
 }

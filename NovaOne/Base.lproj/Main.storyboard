@@ -342,7 +342,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5O7-UW-25n" userLabel="Cancel Button">
-                                <rect key="frame" x="20" y="20" width="33.5" height="33.5"/>
+                                <rect key="frame" x="20" y="20" width="67" height="67"/>
                                 <state key="normal" image="cancelButtonBlue"/>
                                 <connections>
                                     <action selector="cancelButtonTouch:" destination="00c-Xy-omL" eventType="touchUpInside" id="I9r-bb-DbA"/>
@@ -507,6 +507,12 @@ and you have 4 leads.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="linesCornerRadius">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -519,6 +525,9 @@ and you have 4 leads.</string>
                                         <variation key="heightClass=compact-widthClass=regular" constant="8"/>
                                     </constraint>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wz8-Gy-qwd" userLabel="Border 2 View" customClass="NovaOneView" customModule="NovaOne" customModuleProvider="target">
                                 <rect key="frame" x="15" y="141" width="290" height="2.5"/>
@@ -548,32 +557,44 @@ and you have 4 leads.</string>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="wkW-aQ-VTr" userLabel="Appointments Stack View">
-                                <rect key="frame" x="172.5" y="183" width="132.5" height="49.5"/>
+                                <rect key="frame" x="197.5" y="183" width="107.5" height="49.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nRg-vT-h1K">
-                                        <rect key="frame" x="0.0" y="0.0" width="132.5" height="24"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="107.5" height="24"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendarBlue" translatesAutoresizingMaskIntoConstraints="NO" id="wj5-OX-xG2">
-                                                <rect key="frame" x="0.0" y="0.0" width="54" height="24"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="29" height="24"/>
                                             </imageView>
                                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="19,932" textAlignment="natural" lineBreakMode="tailTruncation" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="2kC-3D-YEV" userLabel="Number Of Appointments">
-                                                <rect key="frame" x="62" y="0.0" width="70.5" height="24"/>
+                                                <rect key="frame" x="37" y="0.0" width="70.5" height="24"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="linesCornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <variation key="heightClass=compact-widthClass=compact">
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                                 </variation>
                                             </label>
                                         </subviews>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Appointments" lineBreakMode="tailTruncation" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="Hff-3s-U7I">
-                                        <rect key="frame" x="0.0" y="29" width="132.5" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="29" width="107.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                                 <variation key="heightClass=regular-widthClass=regular" spacing="10"/>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y5c-au-FPh" userLabel="Border Above Graph View" customClass="NovaOneView" customModule="NovaOne" customModuleProvider="target">
@@ -643,6 +664,12 @@ and you have 4 leads.</string>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="linesCornerRadius">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <variation key="heightClass=compact-widthClass=compact">
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                         </variation>
@@ -654,29 +681,41 @@ and you have 4 leads.</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="aRI-41-JrA" userLabel="Leads Stack View">
-                                <rect key="frame" x="15" y="183" width="132.5" height="49.5"/>
+                                <rect key="frame" x="15" y="183" width="105.5" height="49.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="CBE-np-wig">
-                                        <rect key="frame" x="0.0" y="0.0" width="132.5" height="24"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="105.5" height="24"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="252" verticalHuggingPriority="252" image="userBlue" translatesAutoresizingMaskIntoConstraints="NO" id="l0h-EL-YFn">
-                                                <rect key="frame" x="0.0" y="0.0" width="54" height="24"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="27" height="24"/>
                                             </imageView>
                                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="749" text="10,932" textAlignment="natural" lineBreakMode="tailTruncation" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="khO-a6-o7N" userLabel="Number Of Leads">
-                                                <rect key="frame" x="62" y="0.0" width="70.5" height="24"/>
+                                                <rect key="frame" x="35" y="0.0" width="70.5" height="24"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="linesCornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <variation key="heightClass=compact-widthClass=compact">
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                                 </variation>
                                             </label>
                                         </subviews>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="600" verticalHuggingPriority="251" text="Leads" lineBreakMode="tailTruncation" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="23J-qh-t3U">
-                                        <rect key="frame" x="0.0" y="29" width="132.5" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="29" width="105.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -685,6 +724,9 @@ and you have 4 leads.</string>
                                 <constraints>
                                     <constraint firstItem="23J-qh-t3U" firstAttribute="leading" secondItem="aRI-41-JrA" secondAttribute="leading" id="aRb-pp-z5g"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                                 <variation key="heightClass=regular-widthClass=regular" spacing="10"/>
                             </stackView>
                         </subviews>
@@ -777,6 +819,9 @@ and you have 4 leads.</string>
                             <constraint firstItem="Soh-O5-bFS" firstAttribute="width" secondItem="dcc-mZ-THk" secondAttribute="width" multiplier="0.35" id="zwk-at-UiM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PzM-XK-3g0"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="YWF-cW-gfR"/>
@@ -790,14 +835,14 @@ and you have 4 leads.</string>
                                 <exclude reference="zwk-at-UiM"/>
                                 <exclude reference="Hxz-Z3-40J"/>
                                 <exclude reference="foC-GP-8M1"/>
-                                <exclude reference="616-jn-s43"/>
-                                <exclude reference="8Pc-zX-KAr"/>
-                                <exclude reference="o9i-oc-bHs"/>
-                                <exclude reference="z2s-my-NNz"/>
                                 <exclude reference="SLM-4r-bTB"/>
                                 <exclude reference="uRU-wU-6M5"/>
                                 <exclude reference="vCj-dD-9FD"/>
                                 <exclude reference="vHs-uu-Fhg"/>
+                                <exclude reference="616-jn-s43"/>
+                                <exclude reference="8Pc-zX-KAr"/>
+                                <exclude reference="o9i-oc-bHs"/>
+                                <exclude reference="z2s-my-NNz"/>
                                 <exclude reference="1wh-00-Kif"/>
                                 <exclude reference="5SU-oX-jc7"/>
                                 <exclude reference="656-q3-1Ul"/>
@@ -831,13 +876,13 @@ and you have 4 leads.</string>
                                 <exclude reference="Xuz-jy-tX9"/>
                                 <include reference="foC-GP-8M1"/>
                                 <include reference="LA2-Nu-Jgz"/>
+                                <exclude reference="N1v-Pw-Jfd"/>
+                                <include reference="uRU-wU-6M5"/>
+                                <include reference="vCj-dD-9FD"/>
                                 <include reference="616-jn-s43"/>
                                 <exclude reference="H27-Ja-MyT"/>
                                 <include reference="o9i-oc-bHs"/>
                                 <include reference="z2s-my-NNz"/>
-                                <exclude reference="N1v-Pw-Jfd"/>
-                                <include reference="uRU-wU-6M5"/>
-                                <include reference="vCj-dD-9FD"/>
                                 <exclude reference="2qe-ns-J83"/>
                                 <exclude reference="Ec9-0I-9aA"/>
                                 <include reference="XS0-nR-WjD"/>
@@ -864,11 +909,11 @@ and you have 4 leads.</string>
                                 <include reference="Rlk-k5-6Hd"/>
                                 <exclude reference="mlu-3I-NPX"/>
                                 <exclude reference="lXP-e3-wiY"/>
-                                <include reference="8Pc-zX-KAr"/>
-                                <exclude reference="H27-Ja-MyT"/>
                                 <exclude reference="N1v-Pw-Jfd"/>
                                 <include reference="SLM-4r-bTB"/>
                                 <include reference="vHs-uu-Fhg"/>
+                                <include reference="8Pc-zX-KAr"/>
+                                <exclude reference="H27-Ja-MyT"/>
                                 <include reference="1wh-00-Kif"/>
                                 <include reference="26U-U6-LwQ"/>
                                 <exclude reference="2qe-ns-J83"/>
@@ -1420,7 +1465,7 @@ on how to reset your password.</string>
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kEj-0U-bzz">
-                                <rect key="frame" x="20" y="20" width="67" height="67"/>
+                                <rect key="frame" x="20" y="20" width="33.5" height="33.5"/>
                                 <state key="normal" image="cancelButtonBlue"/>
                                 <connections>
                                     <action selector="cancelButtonTapped:" destination="T1A-G4-xJU" eventType="touchUpInside" id="kgs-AH-JO8"/>
@@ -2538,6 +2583,9 @@ on how to reset your password.</string>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                         <connections>
                             <outlet property="dataSource" destination="REY-DL-ArW" id="0sv-JL-J0H"/>
                             <outlet property="delegate" destination="REY-DL-ArW" id="Awk-ew-QK2"/>
@@ -2562,7 +2610,7 @@ on how to reset your password.</string>
             <objects>
                 <navigationController storyboardIdentifier="leadsNavigationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Lx2-Hk-MfY" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="K79-BW-K2r">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" red="0.32549019610000002" green="0.42352941179999998" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -7918,7 +7966,7 @@ the lead below.</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="KXB-9F-dvY" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="eeW-nd-O1T">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

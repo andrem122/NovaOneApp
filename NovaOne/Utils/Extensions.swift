@@ -100,6 +100,7 @@ extension UIViewController {
             let label = UILabel()
             label.frame.size = CGSize(width: spinnerView.bounds.width, height: 30) // Set width and height so label is visible
             label.center = CGPoint(x: spinnerView.center.x, y: spinnerView.center.y + 25) // Set position on spinnerView
+            
             guard let text = textForLabel else { return }
             label.text = text
             label.textColor = .lightGray
@@ -108,11 +109,11 @@ extension UIViewController {
             spinnerView.addSubview(label)
         }
         
-        // Add subviews
-        spinnerView.addSubview(spinner)
-        view.addSubview(spinnerView)
-        
-        vSpinner = spinnerView
+        DispatchQueue.main.async {
+            view.addSubview(spinnerView)
+            spinnerView.addSubview(spinner)
+            vSpinner = spinnerView
+        }
         
     }
     

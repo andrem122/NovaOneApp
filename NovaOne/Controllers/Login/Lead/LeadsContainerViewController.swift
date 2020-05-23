@@ -13,7 +13,6 @@ class LeadsContainerViewController: UIViewController {
     
     // MARK: Properties
     @IBOutlet weak var containerView: UIView!
-    var loadingIndicator: UIActivityIndicatorView?
     let objectCount = PersistenceService.fetchCount(for: Defaults.CoreDataEntities.lead.rawValue)
     
     // MARK: Methods
@@ -27,16 +26,18 @@ class LeadsContainerViewController: UIViewController {
         
         if self.objectCount > 0 {
             // Get CoreData objects and pass to the next view
+            print("Showing objects from Core Data")
             UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.SplitViewControllerIdentifiers.leads.rawValue, containerView: self.containerView ?? UIView(), objectType: UISplitViewController.self, completion: nil)
             
         } else {
             // Get data via an HTTP request and save to coredata for the next view
+            print("No Core Data. Getting objects via an HTTP request")
             self.getData()
         }
         
     }
     
-    func saveObjectsToCoreDataAndSend(for leadstableViewController: LeadsTableViewController, objects: [Decodable]) {
+    func saveObjectsToCoreDataAndSend(to leadsTableViewController: LeadsTableViewController, objects: [Decodable]) {
         // Saves leads data to CoreData and sends them to leads view for display
         
         guard let entity = NSEntityDescription.entity(forEntityName: Defaults.CoreDataEntities.lead.rawValue, in: PersistenceService.context) else { return }
@@ -71,41 +72,20 @@ class LeadsContainerViewController: UIViewController {
         // Send the data to the leads view controller
         let sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
         let coreDataLeads = PersistenceService.fetchEntity(Lead.self, filter: nil, sort: sortDescriptors)
-        leadstableViewController.leads = coreDataLeads
-        leadstableViewController.filteredLeads = coreDataLeads
+        leadsTableViewController.leads = coreDataLeads
+        leadsTableViewController.filteredLeads = coreDataLeads
         
-    }
-    
-    func showLoadingIndicator() {
-        // Shows the loading indicator
-        self.loadingIndicator = UIActivityIndicatorView(style: .medium)
-        self.loadingIndicator?.startAnimating()
-        
-        // Position the loading animation
-        let x = self.view.bounds.size.width / 2
-        let y = self.view.bounds.size.height / 2
-        self.loadingIndicator?.center = CGPoint(x: x, y: y)
-        
-        guard let loadingIndicator = self.loadingIndicator else { return }
-        self.view.addSubview(loadingIndicator)
     }
     
     func getData() {
-        // Gets data from the database via an HTTP request
-        // and saves to CoreData
-        
-        // Show the loading indicator while making a request
-        self.showLoadingIndicator()
+        // Gets data from the database via an HTTP request and saves to CoreData
         
         let httpRequest = HTTPRequests()
         guard
             let customer = PersistenceService.fetchCustomerEntity(),
             let email = customer.email,
             let password = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue)
-        else {
-            print("Failed to obtain variables for POST request")
-            return
-        }
+        else { return }
         let customerUserId = customer.id
         
         let parameters: [String: Any] = ["customerUserId": customerUserId as Any,
@@ -120,7 +100,6 @@ class LeadsContainerViewController: UIViewController {
                                 switch result {
                                     
                                     case .success(let leads):
-                                        self?.loadingIndicator?.stopAnimating()
                                         
                                         UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.SplitViewControllerIdentifiers.leads.rawValue, containerView: self?.containerView ?? UIView(), objectType: UISplitViewController.self) {
                                             [weak self] (leadsSplitViewController) in
@@ -132,7 +111,7 @@ class LeadsContainerViewController: UIViewController {
                                             else { return }
                                             
                                             // Save data in CoreData
-                                            self?.saveObjectsToCoreDataAndSend(for: leadsTableViewController, objects: leads)
+                                            self?.saveObjectsToCoreDataAndSend(to: leadsTableViewController, objects: leads)
                                             
                                     }
                                     
@@ -140,9 +119,6 @@ class LeadsContainerViewController: UIViewController {
                                         print(error.localizedDescription)
                                         // No leads were found or an error occurred so show/embed the empty
                                         // view controller
-                                        
-                                        self?.loadingIndicator?.stopAnimating()
-
                                         UIHelper.showEmptyStateContainerViewController(for: self, containerView: self?.containerView ?? UIView(), title: "No Leads") {
                                             (emptyViewController) in
                                             
@@ -154,6 +130,8 @@ class LeadsContainerViewController: UIViewController {
                                 }
                                 
         }
+        
+        self.removeSpinner()
         
     }
     

@@ -202,21 +202,30 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 // If the result is successful, we will get the customer object we passed into the
                 // result enum and move on to the next view
                 case .success(let customer):
-                    // Add username and password to keychain if the username and password is correct
-                    let title = "Add To Keychain"
-                    let body = "Would you like to add your email and password to Keychain for easier sign in?"
-                    guard let popUpActionViewController = self?.alertService.popUp(title: title, body: body, buttonTitle: "Yes", actionHandler: {
-                        
-                        // Save to keychain
-                        KeychainWrapper.standard.set(email, forKey: Defaults.KeychainKeys.email.rawValue)
-                        KeychainWrapper.standard.set(password, forKey: Defaults.KeychainKeys.password.rawValue)
-                        
-                        self?.navigateToLoginScreenAndSaveData(customer: customer, success: success)
-                    }, cancelHandler: {
-                        self?.navigateToLoginScreenAndSaveData(customer: customer, success: success)
-                    }) else { return }
+                    
+                    // Add username and password to keychain if not already in Keychain
+                    let keychainEmail = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.email.rawValue)
+                    let keychainPassword = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue)
+                    if keychainEmail == nil || keychainPassword == nil {
+                        let title = "Add To Keychain"
+                        let body = "Would you like to add your email and password to Keychain for easier sign in?"
+                        guard let popUpActionViewController = self?.alertService.popUp(title: title, body: body, buttonTitle: "Yes", actionHandler: {
+                            
+                            // Save to keychain
+                            KeychainWrapper.standard.set(email, forKey: Defaults.KeychainKeys.email.rawValue)
+                            KeychainWrapper.standard.set(password, forKey: Defaults.KeychainKeys.password.rawValue)
+                            
+                            self?.navigateToLoginScreenAndSaveData(customer: customer, success: success)
+                        }, cancelHandler: {
+                            self?.navigateToLoginScreenAndSaveData(customer: customer, success: success)
+                        }) else { return }
 
-                    self?.present(popUpActionViewController, animated: true, completion: nil)
+                        self?.present(popUpActionViewController, animated: true, completion: nil)
+                        
+                    } else {
+                        self?.navigateToLoginScreenAndSaveData(customer: customer, success: success)
+                    }
+                   
                 
                 case .failure(let error):
                     // Show error message with a pop up and enable continue button

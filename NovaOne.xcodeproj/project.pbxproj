@@ -132,7 +132,6 @@
 		65ADE2E123E1C84E003D3215 /* Feature.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65ADE2E023E1C84E003D3215 /* Feature.xib */; };
 		65ADE2F623E3AF27003D3215 /* HTTPRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ADE2F523E3AF27003D3215 /* HTTPRequests.swift */; };
 		65AF664423E87F2C001B394F /* AppointmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF664323E87F2C001B394F /* AppointmentsViewController.swift */; };
-		65AF664823E881D9001B394F /* LeadsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF664723E881D9001B394F /* LeadsViewController.swift */; };
 		65AF665023E881FE001B394F /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF664F23E881FE001B394F /* SupportViewController.swift */; };
 		65AF665123E881FE001B394F /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF664F23E881FE001B394F /* SupportViewController.swift */; };
 		65AF665223E881FE001B394F /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF664F23E881FE001B394F /* SupportViewController.swift */; };
@@ -333,7 +332,6 @@
 		65ADE2E023E1C84E003D3215 /* Feature.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Feature.xib; sourceTree = "<group>"; };
 		65ADE2F523E3AF27003D3215 /* HTTPRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequests.swift; sourceTree = "<group>"; };
 		65AF664323E87F2C001B394F /* AppointmentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentsViewController.swift; sourceTree = "<group>"; };
-		65AF664723E881D9001B394F /* LeadsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadsViewController.swift; sourceTree = "<group>"; };
 		65AF664F23E881FE001B394F /* SupportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
 		65AF80E1244248F600167C8D /* UpdateAppointmentNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAppointmentNameViewController.swift; sourceTree = "<group>"; };
 		65AF80E32442490600167C8D /* UpdateAppointmentPhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAppointmentPhoneViewController.swift; sourceTree = "<group>"; };
@@ -494,7 +492,6 @@
 			isa = PBXGroup;
 			children = (
 				65695AB3244CC7D900D35E55 /* Add Lead */,
-				65AF664723E881D9001B394F /* LeadsViewController.swift */,
 				6593CFAC2436A9DC0026C5D7 /* LeadDetailViewController.swift */,
 				65BA98BA243166C700CFAA9F /* LeadsContainerViewController.swift */,
 				65C4C6FA2474A8E600E143C5 /* LeadsTableViewController.swift */,
@@ -1173,7 +1170,6 @@
 				657C5F942412D79300D52E27 /* AppointmentDetailViewController.swift in Sources */,
 				6592E3CF240416FE009E4D8D /* SignUpPasswordViewController.swift in Sources */,
 				6592E3D324042AA9009E4D8D /* SignUpPhoneViewController.swift in Sources */,
-				65AF664823E881D9001B394F /* LeadsViewController.swift in Sources */,
 				650250C323E4A78E00B427D0 /* HomeViewController.swift in Sources */,
 				65AA3E6A24327254005C2319 /* AddCompanyEmailViewController.swift in Sources */,
 				65AF80E2244248F600167C8D /* UpdateAppointmentNameViewController.swift in Sources */,
