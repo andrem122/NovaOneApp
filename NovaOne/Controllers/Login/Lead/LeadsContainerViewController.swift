@@ -80,6 +80,8 @@ class LeadsContainerViewController: UIViewController {
     func getData() {
         // Gets data from the database via an HTTP request and saves to CoreData
         
+        self.showSpinner(for: self.view, textForLabel: nil)
+        
         let httpRequest = HTTPRequests()
         guard
             let customer = PersistenceService.fetchCustomerEntity(),
@@ -128,10 +130,9 @@ class LeadsContainerViewController: UIViewController {
                                     }
                                     
                                 }
-                                
+                self?.removeSpinner() // Call inside the closure because the request is asynchronous and if called outside
+                                      // the closure, the spinner will be removed too fast before it can show
         }
-        
-        self.removeSpinner()
         
     }
     
