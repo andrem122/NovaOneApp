@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="18G2022" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19E287" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Appointment" representedClassName="Appointment" syncable="YES" codeGenerationType="class">
+        <attribute name="address" optional="YES" attributeType="String"/>
+        <attribute name="companyId" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="confirmed" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="created" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dateOfBirth" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="gender" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="phoneNumber" attributeType="String"/>
+        <attribute name="testType" optional="YES" attributeType="String"/>
+        <attribute name="time" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="timeZone" attributeType="String"/>
+        <attribute name="unitType" optional="YES" attributeType="String"/>
+        <relationship name="company" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Company" inverseName="appointments" inverseEntity="Company"/>
+    </entity>
     <entity name="Company" representedClassName="Company" syncable="YES">
         <attribute name="address" attributeType="String"/>
         <attribute name="city" attributeType="String"/>
@@ -14,6 +31,7 @@
         <attribute name="shortenedAddress" attributeType="String"/>
         <attribute name="state" attributeType="String"/>
         <attribute name="zip" attributeType="String"/>
+        <relationship name="appointments" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Appointment" inverseName="company" inverseEntity="Appointment"/>
         <relationship name="customer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Customer" inverseName="companies" inverseEntity="Customer"/>
         <relationship name="lead" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Lead" inverseName="company" inverseEntity="Lead"/>
     </entity>
@@ -48,7 +66,8 @@
         <relationship name="company" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Company" inverseName="lead" inverseEntity="Company"/>
     </entity>
     <elements>
-        <element name="Company" positionX="-63" positionY="99" width="128" height="28"/>
+        <element name="Appointment" positionX="-54" positionY="135" width="128" height="28"/>
+        <element name="Company" positionX="-63" positionY="99" width="128" height="283"/>
         <element name="Customer" positionX="-63" positionY="-18" width="128" height="238"/>
         <element name="Lead" positionX="-54" positionY="135" width="128" height="238"/>
     </elements>

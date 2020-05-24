@@ -72,8 +72,8 @@ class LeadsContainerViewController: UIViewController {
         // Send the data to the leads view controller
         let sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
         let coreDataLeads = PersistenceService.fetchEntity(Lead.self, filter: nil, sort: sortDescriptors)
-        leadsTableViewController.leads = coreDataLeads
-        leadsTableViewController.filteredLeads = coreDataLeads
+        leadsTableViewController.objects = coreDataLeads
+        leadsTableViewController.filteredObjects = coreDataLeads
         
     }
     

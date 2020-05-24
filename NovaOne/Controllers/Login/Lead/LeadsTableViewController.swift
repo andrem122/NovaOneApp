@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import SkeletonView
 
-class LeadsTableViewController: UITableViewController {
+class LeadsTableViewController: UITableViewController, NovaOneTableView {
     
     // MARK: Properties
     var timer: Timer?
@@ -19,10 +19,10 @@ class LeadsTableViewController: UITableViewController {
     var bottomTableViewSpinner: UIActivityIndicatorView? = nil
     var tableIsRefreshing: Bool = false
     var appendingDataToTable: Bool = false
-    var leads: [Lead] = []
-    var filteredLeads: [Lead] = []
+    var objects: [NSManagedObject] = []
+    var filteredObjects: [NSManagedObject] = []
     var searchController: UISearchController!
-    let alertService = AlertService()
+    var alertService = AlertService()
     lazy var refresher: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.tintColor = .lightGray
@@ -49,10 +49,26 @@ class LeadsTableViewController: UITableViewController {
         self.timer?.invalidate() // Invalidate timer when view disapears
     }
     
+    func setupTableView() {
+        // Set seperator color for table view
+        self.tableView.separatorColor = UIColor(white: 0.95, alpha: 1)
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.clearsSelectionOnViewWillAppear = false
+        
+        // Refresh control
+        if #available(iOS 10.0, *) {
+            self.tableView.refreshControl = self.refresher
+        } else {
+            self.tableView.addSubview(self.refresher)
+        }
+        
+    }
+    
     func setupSearch() {
         // Setup the search bar and other things needed for the search bar to work
         
-        self.filteredLeads = self.leads
+        self.filteredObjects = self.objects
         
         // Initializing with searchResultsController set to nil means that
         // searchController will use this view controller to display the search results
@@ -77,8 +93,8 @@ class LeadsTableViewController: UITableViewController {
     func getCoreData() {
         // Gets data from CoreData and sorts by dateOfInquiry field
         let sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
-        self.leads = PersistenceService.fetchEntity(Lead.self, filter: nil, sort: sortDescriptors)
-        self.filteredLeads = self.leads
+        self.objects = PersistenceService.fetchEntity(Lead.self, filter: nil, sort: sortDescriptors)
+        self.filteredObjects = self.objects
     }
     
     func hideTableLoadingAnimations() {
@@ -220,16 +236,18 @@ class LeadsTableViewController: UITableViewController {
     @objc func refreshDataAutomatically() {
         // Refresh data of the table view if the user is not scrolling
         
-        if self.appendingDataToTable == false && self.tableIsRefreshing == false && filteredLeads.count > 0 && self.tableView.isDecelerating == false && self.tableView.isDragging == false && self.searchController.isActive == false {
+        if self.appendingDataToTable == false && self.tableIsRefreshing == false && self.filteredObjects.count > 0 && self.tableView.isDecelerating == false && self.tableView.isDragging == false && self.searchController.isActive == false {
             
             self.tableIsRefreshing = true
             self.view.showAnimatedGradientSkeleton()
             
-            let lastIndex = self.filteredLeads.count - 1
-            let firstObjectId = self.filteredLeads[0].id
-            let lastObjectId = self.filteredLeads[lastIndex].id
+            let lastIndex = self.filteredObjects.count - 1
+            guard
+                let firstObject = self.filteredObjects[0] as? Lead,
+                let lastObject = self.filteredObjects[lastIndex] as? Lead
+            else { return }
             
-            self.getData(endpoint: "/refreshLeads.php", append: false, firstObjectId: firstObjectId, lastObjectId: lastObjectId) {
+            self.getData(endpoint: "/refreshLeads.php", append: false, firstObjectId: firstObject.id, lastObjectId: lastObject.id) {
                 [weak self] in
                 self?.tableIsRefreshing = false
             }
@@ -243,16 +261,18 @@ class LeadsTableViewController: UITableViewController {
     @objc func refreshDataOnPullDown() {
         // Refresh data of the table view if the user is not scrolling
         
-        if self.searchController.isActive == false && self.appendingDataToTable == false && self.tableIsRefreshing == false && self.filteredLeads.count > 0 {
+        if self.searchController.isActive == false && self.appendingDataToTable == false && self.tableIsRefreshing == false && self.filteredObjects.count > 0 {
             
             self.tableIsRefreshing = true
             self.view.showAnimatedGradientSkeleton()
             
-            let lastIndex = self.filteredLeads.count - 1
-            let firstObjectId = self.filteredLeads[0].id
-            let lastObjectId = self.filteredLeads[lastIndex].id
+            let lastIndex = self.filteredObjects.count - 1
+            guard
+                let firstObject = self.filteredObjects[0] as? Lead,
+                let lastObject = self.filteredObjects[lastIndex] as? Lead
+            else { return }
             
-            self.getData(endpoint: "/refreshLeads.php", append: false, firstObjectId: firstObjectId, lastObjectId: lastObjectId) {
+            self.getData(endpoint: "/refreshLeads.php", append: false, firstObjectId: firstObject.id, lastObjectId: lastObject.id) {
                 [weak self] in
                 self?.tableIsRefreshing = false
             }
@@ -263,25 +283,9 @@ class LeadsTableViewController: UITableViewController {
         
     }
     
-    func setupTableView() {
-        // Set seperator color for table view
-        self.tableView.separatorColor = UIColor(white: 0.95, alpha: 1)
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        self.clearsSelectionOnViewWillAppear = false
-        
-        // Refresh control
-        if #available(iOS 10.0, *) {
-            self.tableView.refreshControl = self.refresher
-        } else {
-            self.tableView.addSubview(self.refresher)
-        }
-        
-    }
-    
     // Shows how many rows our table view should show
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.filteredLeads.count
+        return self.filteredObjects.count
     }
     
     // This is where we configure each cell in our table view
@@ -293,7 +297,7 @@ class LeadsTableViewController: UITableViewController {
         
         if self.tableIsRefreshing == false {
             // Set up cell with values if we have objects in the leads array
-            let lead: Lead = self.filteredLeads[indexPath.row] // Get the object based on the row number each cell is in
+            guard let lead = self.filteredObjects[indexPath.row] as? Lead else { return cell } // Get the object based on the row number each cell is in
             guard
                 let name = lead.name,
                 let companyName = lead.companyName,
@@ -327,11 +331,11 @@ class LeadsTableViewController: UITableViewController {
         if self.searchController.isActive == false && self.appendingDataToTable == false && self.tableIsRefreshing == false && tableView.isDragging && indexPath.section == lastSectionIndex && indexPath.row == lastRowIndex {
             
             self.appendingDataToTable = true
-            let lastItemIndex = self.filteredLeads.count - 1
-            let lastObjectId = self.filteredLeads[lastItemIndex].id
+            let lastItemIndex = self.filteredObjects.count - 1
+            guard let lastObject = self.filteredObjects[lastItemIndex] as? Lead else { return }
             
             // Make HTTP request for more data
-            self.getData(endpoint: "/moreLeads.php", append: true, firstObjectId: nil, lastObjectId: lastObjectId) {
+            self.getData(endpoint: "/moreLeads.php", append: true, firstObjectId: nil, lastObjectId: lastObject.id) {
                 [weak self] in
                 self?.appendingDataToTable = false
             }
@@ -355,10 +359,10 @@ class LeadsTableViewController: UITableViewController {
             guard
                 let indexPath = self.tableView.indexPathForSelectedRow,
                 let leadDetailNavigationController = segue.destination as? UINavigationController,
-                let leadDetailViewController = leadDetailNavigationController.viewControllers.first as? LeadDetailViewController
+                let leadDetailViewController = leadDetailNavigationController.viewControllers.first as? LeadDetailViewController,
+                let lead = self.filteredObjects[indexPath.row] as? Lead
             else { return }
             
-            let lead = self.filteredLeads[indexPath.row]
             leadDetailViewController.lead = lead
             
             leadDetailViewController.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
@@ -376,8 +380,11 @@ class LeadsTableViewController: UITableViewController {
 extension LeadsTableViewController: UISearchResultsUpdating, SkeletonTableViewDataSource {
     
         func updateSearchResults(for searchController: UISearchController) {
-        guard let searchText = searchController.searchBar.text else { return }
-        self.filteredLeads = searchText.isEmpty ? self.leads : self.leads.filter({ (leadObject: Lead) -> Bool in
+        guard
+            let searchText = searchController.searchBar.text,
+            let objects = self.objects as? [Lead]
+        else { return }
+        self.filteredObjects = searchText.isEmpty ? self.objects : objects.filter({ (leadObject: Lead) -> Bool in
             
             // Leads can be serached via name, company name, and renter brand
             return
