@@ -9,11 +9,11 @@
 import UIKit
 import CoreData
 
-class LeadsContainerViewController: UIViewController {
+class LeadsContainerViewController: UIViewController, NovaOneObjectContainer {
     
     // MARK: Properties
     @IBOutlet weak var containerView: UIView!
-    let objectCount = PersistenceService.fetchCount(for: Defaults.CoreDataEntities.lead.rawValue)
+    var objectCount: Int = PersistenceService.fetchCount(for: Defaults.CoreDataEntities.lead.rawValue)
     
     // MARK: Methods
     override func viewDidLoad() {
@@ -37,7 +37,7 @@ class LeadsContainerViewController: UIViewController {
         
     }
     
-    func saveObjectsToCoreDataAndSend(to leadsTableViewController: LeadsTableViewController, objects: [Decodable]) {
+    func saveObjectsToCoreDataAndSend(to objectsTableViewController: UITableViewController, objects: [Decodable]) {
         // Saves leads data to CoreData and sends them to leads view for display
         
         guard let entity = NSEntityDescription.entity(forEntityName: Defaults.CoreDataEntities.lead.rawValue, in: PersistenceService.context) else { return }
@@ -72,6 +72,8 @@ class LeadsContainerViewController: UIViewController {
         // Send the data to the leads view controller
         let sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
         let coreDataLeads = PersistenceService.fetchEntity(Lead.self, filter: nil, sort: sortDescriptors)
+        
+        guard let leadsTableViewController = objectsTableViewController as? LeadsTableViewController else { return }
         leadsTableViewController.objects = coreDataLeads
         leadsTableViewController.filteredObjects = coreDataLeads
         

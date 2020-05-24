@@ -99,7 +99,7 @@
         
     }
     
-    function query_db_login($query, $user_is_verified, $customer_user_id, $first_object_id, $last_object_id) {
+    function query_db_login($query, $user_is_verified = false, $parameters = array('' => '')) {
         if ($user_is_verified) {
             // queries the database for the users who are logged in
             $db_object = new Database();
@@ -107,14 +107,8 @@
             $stmt = $db->prepare($query);
             
             // bind parameters
-            $stmt->bindParam(':customer_user_id', $customer_user_id);
-            
-            if(!empty($first_object_id)) {
-                $stmt->bindParam(':first_object_id', $first_object_id);
-            }
-            
-            if (!empty($last_object_id)) {
-                $stmt->bindParam(':last_object_id', $last_object_id);
+            foreach ($parameters as $parameter_key => &$parameter_value) {
+                $stmt->bindParam($parameter_key, $parameter_value);
             }
             
             if ($stmt->execute()) {
@@ -139,7 +133,7 @@
             } else {
                 
                 http_response_code(500);
-                $response_array = array('error' => 3, 'reason' => 'SQL Statement could not be executed.');
+                $response_array = $stmt->errorInfo();
                 echo json_encode($response_array);
                 exit();
                 

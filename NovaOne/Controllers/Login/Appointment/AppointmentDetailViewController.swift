@@ -17,7 +17,7 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
     @IBOutlet weak var objectDetailTableView: UITableView!
     @IBOutlet weak var topView: NovaOneView!
     let alertService: AlertService = AlertService()
-    var appointment: AppointmentModel?
+    var appointment: Appointment?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,12 +59,13 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
         // Set cells up for the table view
         
         guard
-            let appointment = self.appointment
+            let appointment = self.appointment,
+            let time = appointment.time,
+            let phoneNumber = appointment.phoneNumber
         else { return }
         
-        let appointmentTime: String = self.convert(appointment: appointment.timeDate)
+        let appointmentTime: String = self.convert(appointment: time)
         let confirmedString = appointment.confirmed ? "Yes" : "No"
-        let phoneNumber = appointment.phoneNumber
         
         // Create dictionaries for cells
         let phoneNumberItem = ObjectDetailItem(title: "Phone Number", titleValue: phoneNumber)
@@ -93,20 +94,21 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
             
             guard
                 let email = appointment.email,
-                let dateOfBirth = appointment.dateOfBirth,
+                let dateOfBirthDate = appointment.dateOfBirth,
                 let testType = appointment.testType,
-                let gender = appointment.gender
+                let gender = appointment.gender,
+                let address = appointment.address
             else { return }
-            let address = appointment.shortenedAddress
+            let dateOfBirth = DateHelper.createString(from: dateOfBirthDate, format: "MM/DD/yyyy")
             
-            let emailCell = ObjectDetailItem(title: "Email", titleValue: email)
-            let dateOfBirthCell = ObjectDetailItem(title: "Date Of Birth", titleValue: dateOfBirth)
-            let testTypeCell = ObjectDetailItem(title: "Test Type", titleValue: testType)
-            let genderCell = ObjectDetailItem(title: "Gender", titleValue: gender)
-            let addressCell = ObjectDetailItem(title: "Address", titleValue: address)
+            let emailItem = ObjectDetailItem(title: "Email", titleValue: email)
+            let dateOfBirthItem = ObjectDetailItem(title: "Date Of Birth", titleValue: dateOfBirth)
+            let testTypeItem = ObjectDetailItem(title: "Test Type", titleValue: testType)
+            let genderItem = ObjectDetailItem(title: "Gender", titleValue: gender)
+            let addressItem = ObjectDetailItem(title: "Address", titleValue: address)
             
-            let cells = [emailCell, dateOfBirthCell, testTypeCell, genderCell, addressCell]
-            self.objectDetailItems.append(contentsOf: cells)
+            let items = [emailItem, dateOfBirthItem, testTypeItem, genderItem, addressItem]
+            self.objectDetailItems.append(contentsOf: items)
             
         }
     }

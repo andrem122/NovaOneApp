@@ -41,6 +41,14 @@ struct AppointmentModel: Decodable {
 
     }
     
+    var dateOfBirthDate: Date {
+        get {
+            guard let dateOfBirth = self.dateOfBirth else { return Date() }
+            return DateHelper.createDate(from: dateOfBirth, format: "yyyy-MM-dd")
+        }
+
+    }
+    
     var shortenedAddress: String {
         get {
             guard let address = self.address else { return "" }

@@ -38,8 +38,8 @@
     LIMIT 15;
     ";
     
-    // query the database and echo results
-    query_db_login($query, $user_is_verified, $customer_user_id, '', $last_object_id);
+    $parameters = array(':customer_user_id' => $customer_user_id, 'last_object_id' => $last_object_id);
+    query_db_login($query, $user_is_verified, $parameters);
     
 ?>
 

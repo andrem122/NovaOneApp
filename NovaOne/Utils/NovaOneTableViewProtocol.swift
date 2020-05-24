@@ -27,7 +27,6 @@ protocol NovaOneTableView {
     // MARK: Methods
     
     // UIViewController Methods
-    func viewDidLoad()
     func viewWillAppear(_ animated: Bool)
     func viewWillDisappear(_ animated: Bool)
     
@@ -41,7 +40,7 @@ protocol NovaOneTableView {
     
     // Data functions
     func saveObjectsToCoreData(objects: [Decodable])
-    func getData(endpoint: String, append: Bool, firstObjectId: Int32?, lastObjectId: Int32?, completion: (() -> Void)?)
+    func getData(endpoint: String, append: Bool, lastObjectId: Int32?, completion: (() -> Void)?)
     
     // Refresh data functions
     func setTimerForTableRefresh()

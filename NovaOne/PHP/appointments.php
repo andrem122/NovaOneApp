@@ -37,11 +37,13 @@
     LEFT JOIN appointments_appointment_medical a_m
         ON a.id = a_m.appointment_base_ptr_id
     WHERE a.company_id IN (SELECT id FROM property_company WHERE customer_user_id = :customer_user_id)
-    ORDER BY time DESC;
+    ORDER BY a.id DESC
+    LIMIT 15;
     ";
     
     // query the database and echo results
-    query_db_login($query, $user_is_verified, $customer_user_id, '');
+    $parameters = array(':customer_user_id' => $customer_user_id);
+    query_db_login($query, $user_is_verified, $parameters);
     
 ?>
 
