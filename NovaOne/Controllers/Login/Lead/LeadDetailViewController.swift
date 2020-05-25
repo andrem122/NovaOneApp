@@ -34,6 +34,7 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     func setupTableView() {
         self.objectDetailTableView.delegate = self
         self.objectDetailTableView.dataSource = self
+        self.objectDetailTableView.rowHeight = 44;
     }
     
     func convert(lead date: Date) -> String {
@@ -79,7 +80,6 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             dateOfInquiryItem,
             addressItem]
         
-        self.objectDetailTableView.reloadData()
     }
 
 }

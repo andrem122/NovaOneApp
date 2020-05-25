@@ -10,7 +10,6 @@ import UIKit
 
 class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NovaOneObjectDetail {
     
-    
     // MARK: Properties
     var objectDetailItems: [ObjectDetailItem] = []
     @IBOutlet weak var titleLabel: UILabel!
@@ -43,6 +42,7 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
         // Set up the table view
         self.objectDetailTableView.delegate = self
         self.objectDetailTableView.dataSource = self
+        self.objectDetailTableView.rowHeight = 44;
     }
     
     func convert(appointment date: Date) -> String {

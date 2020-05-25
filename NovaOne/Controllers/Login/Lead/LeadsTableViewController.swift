@@ -52,6 +52,19 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
     func setupTableView() {
         // Setup the table view
         
+        // Show first object details in the detail view controller
+        guard
+            let detailNavigationController = self.splitViewController?.viewControllers.last as? UINavigationController,
+            let detailViewController = detailNavigationController.viewControllers.first as? LeadDetailViewController,
+            let lead = self.filteredObjects.first as? Lead
+        else { return }
+        
+        detailViewController.lead = lead
+        detailViewController.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
+        detailViewController.navigationItem.leftItemsSupplementBackButton = true
+        
+        self.splitViewController?.showDetailViewController(detailNavigationController, sender: nil)
+        
         // Set seperator color for table view
         self.tableView.separatorColor = UIColor(white: 0.95, alpha: 1)
         self.tableView.delegate = self

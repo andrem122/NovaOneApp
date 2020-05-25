@@ -1240,6 +1240,12 @@ and you have 4 leads.</string>
                     </tableView>
                     <navigationItem key="navigationItem" title="Appointments" id="2zW-Kg-LlL">
                         <barButtonItem key="backBarButtonItem" title=" " id="XMF-aC-69Q"/>
+                        <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="9mK-6J-t3G" userLabel="Add Button">
+                            <color key="tintColor" red="0.32549019610000002" green="0.42352941179999998" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="addButtonTapped:" destination="s5c-wR-YrO" id="fAr-vp-V3V"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yka-Pf-jGL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1251,7 +1257,7 @@ and you have 4 leads.</string>
             <objects>
                 <navigationController id="0VL-BP-MUo" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PYh-sr-kkz">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" red="0.32549019610000002" green="0.42352941179999998" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -5311,7 +5317,7 @@ the appointment below.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KzL-IL-xZX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="835" y="4392"/>
+            <point key="canvasLocation" x="3390" y="4825"/>
         </scene>
         <!--Add Appointment Phone-->
         <scene sceneID="2gu-ne-28R">
@@ -5398,7 +5404,7 @@ with the appointment below.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="scq-Jr-u2s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="835" y="5163"/>
+            <point key="canvasLocation" x="3390" y="5610"/>
         </scene>
         <!--Add Appointment Time-->
         <scene sceneID="6rP-xQ-R37">
@@ -5467,7 +5473,7 @@ with the appointment below.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QlN-JR-fXI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="835" y="5992"/>
+            <point key="canvasLocation" x="3390" y="6535"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DjK-dg-yem">
@@ -5478,6 +5484,8 @@ with the appointment below.</string>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cXW-mU-hPt">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="0.32549019610000002" green="0.42352941179999998" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -5486,7 +5494,7 @@ with the appointment below.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dm3-QV-Odx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1831.875" y="2878.75"/>
+            <point key="canvasLocation" x="3390" y="3149"/>
         </scene>
         <!--Add Appointment Unit Type-->
         <scene sceneID="ODG-hh-XcK">
@@ -5557,7 +5565,7 @@ Type</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nN3-yf-l4j" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1952" y="5992"/>
+            <point key="canvasLocation" x="4519" y="6535"/>
         </scene>
         <!--Add Appointment Unit Type-->
         <scene sceneID="mGB-7S-AgN">
@@ -5631,7 +5639,7 @@ Type</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tvG-GZ-fI9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3048" y="5992"/>
+            <point key="canvasLocation" x="-422" y="6535"/>
         </scene>
         <!--Add Appointment Address-->
         <scene sceneID="qfx-9O-H4T">
@@ -5718,7 +5726,7 @@ with the appointment below.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="isG-YF-TaM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1100" y="5992"/>
+            <point key="canvasLocation" x="1410" y="6535"/>
         </scene>
         <!--Add Appointment Address-->
         <scene sceneID="3oi-U5-neE">
@@ -5805,7 +5813,7 @@ with the appointment below.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3CM-kr-YH8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-114" y="5992"/>
+            <point key="canvasLocation" x="2404" y="6535"/>
         </scene>
         <!--Add Appointment Date Of Birth-->
         <scene sceneID="pdj-LP-TVX">
@@ -5879,7 +5887,7 @@ with the appointment below.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ug4-jb-KSD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2070" y="5992"/>
+            <point key="canvasLocation" x="465" y="6535"/>
         </scene>
         <!--Add Appointment Gender-->
         <scene sceneID="b1X-JS-BWq">
@@ -5948,7 +5956,7 @@ with the appointment below.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jL5-pg-Qvg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4009" y="5992"/>
+            <point key="canvasLocation" x="-1374" y="6535"/>
         </scene>
         <!--Add Appointment Gender-->
         <scene sceneID="6Pz-zQ-XO8">
@@ -6366,7 +6374,7 @@ with the appointment below.</string>
                 <navigationController storyboardIdentifier="addLeadNavigationController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WhH-0Z-LD5" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="fjj-iP-imE"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hJO-tO-2hG">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.32549019610000002" green="0.42352941179999998" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
@@ -7371,7 +7379,7 @@ make an appointment for.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AkT-fE-aZL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="835" y="3676"/>
+            <point key="canvasLocation" x="3390" y="3969"/>
         </scene>
         <!--Help Table View-->
         <scene sceneID="m5v-Yi-xHo">
@@ -7986,8 +7994,8 @@ the lead below.</string>
     </scenes>
     <resources>
         <image name="account" width="42.666667938232422" height="42.666667938232422"/>
-        <image name="calendar" width="42.5" height="42.5"/>
         <image name="calendar" catalog="system" width="64" height="52"/>
+        <image name="calendar" width="42.5" height="42.5"/>
         <image name="calendarBlue" width="27" height="27"/>
         <image name="callBlue" width="27" height="27"/>
         <image name="cancelButtonBlue" width="33.5" height="33.5"/>
