@@ -8,15 +8,15 @@
 
 import UIKit
 
-class AddCompanyNameViewController: UIViewController {
+class AddCompanyNameViewController: BaseLoginViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupNavigationBar()
+        self.setupNavigationBar(for: self, navigationBar: nil, navigationItem: nil)
     }
     
-    func setupNavigationBar() {
-        // Set navigation bar style
-        UIHelper.setupNavigationBarStyle(for: self.navigationController)
+    
+    @IBAction func cancelButtonTapped(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
 }

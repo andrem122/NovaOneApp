@@ -52,6 +52,7 @@ class UpdateCompanyHoursEnabledViewController: UIViewController, UITableViewDele
     
     func setupTableView() {
         // Set delegate and datasource for table view
+        self.updateCompanyHoursEnabledTableView.rowHeight = 44
         self.updateCompanyHoursEnabledTableView.delegate = self
         self.updateCompanyHoursEnabledTableView.dataSource = self
     }

@@ -65,8 +65,8 @@ class AppointmentsTableViewController: UITableViewController, NovaOneTableView {
         
         self.splitViewController?.showDetailViewController(detailNavigationController, sender: nil)
 
-        // Set seperator color for table view
-        self.tableView.separatorColor = UIColor(white: 0.95, alpha: 1)
+        // Set seperatorstyle for table view
+        self.tableView.separatorStyle = .none
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.clearsSelectionOnViewWillAppear = false

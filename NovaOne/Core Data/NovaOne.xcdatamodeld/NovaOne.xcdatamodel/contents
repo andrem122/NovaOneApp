@@ -31,9 +31,9 @@
         <attribute name="shortenedAddress" attributeType="String"/>
         <attribute name="state" attributeType="String"/>
         <attribute name="zip" attributeType="String"/>
-        <relationship name="appointments" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Appointment" inverseName="company" inverseEntity="Appointment"/>
+        <relationship name="appointments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Appointment" inverseName="company" inverseEntity="Appointment"/>
         <relationship name="customer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Customer" inverseName="companies" inverseEntity="Customer"/>
-        <relationship name="lead" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Lead" inverseName="company" inverseEntity="Lead"/>
+        <relationship name="leads" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Lead" inverseName="company" inverseEntity="Lead"/>
     </entity>
     <entity name="Customer" representedClassName="Customer" syncable="YES">
         <attribute name="customerType" attributeType="String"/>
@@ -63,7 +63,7 @@
         <attribute name="renterBrand" attributeType="String"/>
         <attribute name="sentEmailDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="sentTextDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <relationship name="company" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Company" inverseName="lead" inverseEntity="Company"/>
+        <relationship name="company" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Company" inverseName="leads" inverseEntity="Company"/>
     </entity>
     <elements>
         <element name="Appointment" positionX="-54" positionY="135" width="128" height="28"/>

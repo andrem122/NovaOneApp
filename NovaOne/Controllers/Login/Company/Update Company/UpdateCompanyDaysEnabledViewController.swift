@@ -31,6 +31,7 @@ class UpdateCompanyDaysEnabledViewController: UIViewController, UITableViewDeleg
     
     func setup() {
         // Set delegates and datasource for table view
+        self.updateCompanyDaysEnabledTableView.rowHeight = 44
         self.updateCompanyDaysEnabledTableView.delegate = self
         self.updateCompanyDaysEnabledTableView.dataSource = self
     }
