@@ -6605,7 +6605,7 @@ the appointment.</string>
                         <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="rHt-Un-zpH" userLabel="Add Button">
                             <color key="tintColor" red="0.32549019610000002" green="0.42352941179999998" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <action selector="addButtonTapped:" destination="FvE-Rn-LHl" id="35T-qs-JkB"/>
+                                <action selector="addButtonTapped:" destination="FvE-Rn-LHl" id="JAr-Q7-dJA"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -8024,7 +8024,7 @@ the lead below.</string>
                 <navigationController storyboardIdentifier="addCompanyNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9oj-78-Fq6" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="CDj-Fp-T95">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" red="0.32549019610000002" green="0.42352941179999998" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -8047,7 +8047,7 @@ the lead below.</string>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ixQ-qR-Ay0">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

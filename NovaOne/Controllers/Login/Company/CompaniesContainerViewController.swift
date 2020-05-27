@@ -62,14 +62,18 @@ class CompaniesContainerViewController: UIViewController, NovaOneObjectContainer
                     coreDataCompany.customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first
                     
                     // Add appointments
-                    var predicate = NSPredicate(format: "companyId == %@", String(company.id))
-                    let appointments = NSSet(object: PersistenceService.fetchEntity(Appointment.self, filter: predicate, sort: nil))
-                    coreDataCompany.addToAppointments(appointments)
+                    if PersistenceService.fetchCount(for: Defaults.CoreDataEntities.appointment.rawValue) > 0 {
+                        let predicate = NSPredicate(format: "companyId == %@", String(company.id))
+                        let appointments = NSSet(array: PersistenceService.fetchEntity(Appointment.self, filter: predicate, sort: nil))
+                        coreDataCompany.addToAppointments(appointments)
+                    }
                     
                     // Add leads
-                    predicate = NSPredicate(format: "companyId == %@", String(company.id))
-                    let leads = NSSet(object: PersistenceService.fetchEntity(Lead.self, filter: predicate, sort: nil))
-                    coreDataCompany.addToLeads(leads)
+                    if PersistenceService.fetchCount(for: Defaults.CoreDataEntities.lead.rawValue) > 0 {
+                        let predicate = NSPredicate(format: "companyId == %@", String(company.id))
+                        let leads = NSSet(array: PersistenceService.fetchEntity(Lead.self, filter: predicate, sort: nil))
+                        coreDataCompany.addToLeads(leads)
+                    }
                 }
             }
         
