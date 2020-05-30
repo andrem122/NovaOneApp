@@ -80,11 +80,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             // Set text fields to have credentials on successful authentication
                             self.userNameTextField.text = keychainEmail
                             self.passwordTextField.text = keychainPassword
-                            
-                            self.formDataLogin(email: keychainEmail, password: keychainPassword) {
-                                [weak self] in
-                                self?.getCompanies()
-                            }
+                            self.formDataLogin(email: keychainEmail, password: keychainPassword)
                             
                         }
                         
@@ -130,7 +126,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    func navigateToLoginScreenAndSaveData(customer: CustomerModel, success: (() -> Void)?) {
+    func navigateToLoginScreenAndSaveData(customer: CustomerModel) {
         // Navigate to login screen and save data to CoreData
         
         // Go to container view controller
@@ -150,57 +146,31 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             let password = customer.password
             let lastLoginDate = customer.lastLoginDate
             
-            // If there are no customer CoreData objects, save the new customer object
-            let customerCount = PersistenceService.fetchCount(for: Defaults.CoreDataEntities.customer.rawValue)
-            if customerCount == 0 { // New users to the app logging in for first time
-                print("New user to the app!")
-                guard let coreDataCustomerObject = NSEntityDescription.insertNewObject(forEntityName: Defaults.CoreDataEntities.customer.rawValue, into: PersistenceService.context) as? Customer else { return }
-                
-                coreDataCustomerObject.addCustomer(customerType: customerType, dateJoined: dateJoinedDate, email: email, firstName: firstName, id: id, isPaying: isPaying, lastName: lastName, phoneNumber: phoneNumber, wantsSms: wantsSms, password: password, username: username, lastLogin: lastLoginDate, companies: nil)
-                
-                PersistenceService.saveContext()
-                
-            } else if (customerCount > 0) && (username != self.coreDataCustomerEmail) {
-                // If the email that was typed into the email text field matches the email attribute value
-                // of the customer object we have stored in CoreData, do nothing. Otherwise,
-                // delete ALL data from CoreData and update the customer object
-                
-                print("Existing user with new login information!")
-                // Delete all CoreData data from previous logins
-                PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.customer.rawValue)
-                PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.company.rawValue)
-                PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.lead.rawValue)
-                
-                // Create new customer object in CoreData for new login information
-                guard let coreDataCustomerObject = NSEntityDescription.insertNewObject(forEntityName: Defaults.CoreDataEntities.customer.rawValue, into: PersistenceService.context) as? Customer else { return }
-                
-                coreDataCustomerObject.addCustomer(customerType: customerType, dateJoined: dateJoinedDate, email: email, firstName: firstName, id: id, isPaying: isPaying, lastName: lastName, phoneNumber: phoneNumber, wantsSms: wantsSms, password: password, username: username, lastLogin: lastLoginDate, companies: nil)
-                
-                PersistenceService.saveContext()
-                
-            }
+            guard let coreDataCustomerObject = NSEntityDescription.insertNewObject(forEntityName: Defaults.CoreDataEntities.customer.rawValue, into: PersistenceService.context) as? Customer else { return }
             
+            coreDataCustomerObject.addCustomer(customerType: customerType, dateJoined: dateJoinedDate, email: email, firstName: firstName, id: id, isPaying: isPaying, lastName: lastName, phoneNumber: phoneNumber, wantsSms: wantsSms, password: password, username: username, lastLogin: lastLoginDate, companies: nil)
+            
+            PersistenceService.saveContext()
+            
+            self.removeSpinner()
             containerViewController.modalPresentationStyle = .fullScreen // Set presentaion style of view to full screen
             self.present(containerViewController, animated: true, completion: nil)
             
-            guard let unwrappedSuccess = success else { return }
-            unwrappedSuccess()
         }
     }
     
     // Sends a post request using url encoded string
-    func formDataLogin(email: String, password: String, success: (() -> Void)?) {
+    func formDataLogin(email: String, password: String) {
         
         let httpRequest = HTTPRequests()
         let parameters: [String: Any] = ["email": email, "password": password]
-        httpRequest.request(endpoint: "/login.php", dataModel: CustomerModel.self, parameters: parameters) { [weak self] (result) in
+        httpRequest.request(endpoint: "/login.php", dataModel: CustomerModel.self, parameters: parameters) {
+            [weak self] (result) in
             
             // Use a switch statement to go through the cases of the Result eumeration
             // and to access the associated values for each enumeration case
             switch result {
                 
-                // If the result is successful, we will get the customer object we passed into the
-                // result enum and move on to the next view
                 case .success(let customer):
                     
                     // Add username and password to keychain if not already in Keychain
@@ -215,15 +185,22 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             KeychainWrapper.standard.set(email, forKey: Defaults.KeychainKeys.email.rawValue)
                             KeychainWrapper.standard.set(password, forKey: Defaults.KeychainKeys.password.rawValue)
                             
-                            self?.navigateToLoginScreenAndSaveData(customer: customer, success: success)
+                            self?.getCompanies(customer: customer) {
+                                self?.navigateToLoginScreenAndSaveData(customer: customer)
+                            }
+                            
                         }, cancelHandler: {
-                            self?.navigateToLoginScreenAndSaveData(customer: customer, success: success)
+                            self?.getCompanies(customer: customer) {
+                                self?.navigateToLoginScreenAndSaveData(customer: customer)
+                            }
                         }) else { return }
 
                         self?.present(popUpActionViewController, animated: true, completion: nil)
                         
                     } else {
-                        self?.navigateToLoginScreenAndSaveData(customer: customer, success: success)
+                        self?.getCompanies(customer: customer) {
+                            self?.navigateToLoginScreenAndSaveData(customer: customer)
+                        }
                     }
                    
                 
@@ -248,55 +225,61 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    func getCompanies() {
+    func getCompanies(customer: CustomerModel, success: @escaping () -> Void) {
         // Gets company data belonging to the customer
-        let companyCount = PersistenceService.fetchCount(for: Defaults.CoreDataEntities.company.rawValue)
         
-        if companyCount == 0 {
-            let httpRequest = HTTPRequests()
-            guard
-                let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
-                let email = customer.email,
-                let password = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue)
-            else { return }
-            let customerUserId = customer.id
+        // Show spinner
+        self.showSpinner(for: self.view, textForLabel: "Logging in...")
+        
+        // Delete all old companies from Core Data
+        PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.customer.rawValue) // Need to delete customer object first because Core Data won't let us delete customer objects since they share a relationship
+        PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.company.rawValue)
+        
+        let httpRequest = HTTPRequests()
+        guard
+            let password = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue)
+        else { return }
+        let email = customer.email
+        let customerUserId = customer.id
+        
+        let parameters: [String: Any] = ["email": email as Any, "password": password as Any, "customerUserId": customerUserId as Any]
+        httpRequest.request(endpoint: "/companies.php", dataModel: [CompanyModel].self, parameters: parameters) {
+            (result) in
             
-            let parameters: [String: Any] = ["email": email as Any, "password": password as Any, "customerUserId": customerUserId as Any]
-            httpRequest.request(endpoint: "/companies.php", dataModel: [CompanyModel].self, parameters: parameters) { (result) in
-                
-                switch result {
-                    case .success(let companies):
-                        print("SAVING COMPANIES TO COREDATA")
-                        for company in companies {
-                            
-                            // Save to CoreData
-                            guard let entity = NSEntityDescription.entity(forEntityName: Defaults.CoreDataEntities.company.rawValue, in: PersistenceService.context) else { return }
-                            
-                            if let coreDataCompany = NSManagedObject(entity: entity, insertInto: PersistenceService.context) as? Company {
-                                coreDataCompany.address = company.address
-                                coreDataCompany.city = company.city
-                                coreDataCompany.state = company.state
-                                coreDataCompany.zip = company.zip
-                                coreDataCompany.created = company.createdDate
-                                coreDataCompany.daysOfTheWeekEnabled = company.daysOfTheWeekEnabled
-                                coreDataCompany.email = company.email
-                                coreDataCompany.hoursOfTheDayEnabled = company.hoursOfTheDayEnabled
-                                coreDataCompany.id = Int32(company.id)
-                                coreDataCompany.name = company.name
-                                coreDataCompany.phoneNumber = company.phoneNumber
-                                coreDataCompany.shortenedAddress = company.shortenedAddress
-                                coreDataCompany.customer = PersistenceService.fetchCustomerEntity()
-                            }
-                            
+            switch result {
+                case .success(let companies):
+                    print("SAVING COMPANIES TO COREDATA")
+                    for company in companies {
+                        
+                        // Save to CoreData
+                        guard let entity = NSEntityDescription.entity(forEntityName: Defaults.CoreDataEntities.company.rawValue, in: PersistenceService.context) else { return }
+                        
+                        if let coreDataCompany = NSManagedObject(entity: entity, insertInto: PersistenceService.context) as? Company {
+                            coreDataCompany.address = company.address
+                            coreDataCompany.city = company.city
+                            coreDataCompany.state = company.state
+                            coreDataCompany.zip = company.zip
+                            coreDataCompany.created = company.createdDate
+                            coreDataCompany.daysOfTheWeekEnabled = company.daysOfTheWeekEnabled
+                            coreDataCompany.email = company.email
+                            coreDataCompany.hoursOfTheDayEnabled = company.hoursOfTheDayEnabled
+                            coreDataCompany.id = Int32(company.id)
+                            coreDataCompany.name = company.name
+                            coreDataCompany.phoneNumber = company.phoneNumber
+                            coreDataCompany.shortenedAddress = company.shortenedAddress
+                            coreDataCompany.customer = PersistenceService.fetchCustomerEntity()
                         }
-                    
-                    PersistenceService.saveContext()
-                    
-                    case .failure(let error):
-                        print(error.localizedDescription)
-                }
+                        
+                    }
                 
+                    PersistenceService.saveContext()
+                    success()
+                
+                case .failure(let error):
+                    print("FAILED TO GET COMPANY DATA")
+                    print(error.localizedDescription)
             }
+            
         }
     }
     
@@ -322,10 +305,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.loginButton.backgroundColor = Defaults.novaOneColorDisabledColor
         
         // Proceed with logging the user in if text fields are not empty
-        self.formDataLogin(email: email, password: password) {
-            [weak self] in
-            self?.getCompanies()
-        }
+        self.formDataLogin(email: email, password: password)
         
     }
     

@@ -37,6 +37,7 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
         self.setupNavigationBar()
         self.setupSearch()
         self.setupTableView()
+        self.removeSpinner()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,38 +53,40 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
     func setupTableView() {
         // Setup the table view
         
-        // Show first object details in the detail view controller
-        guard
-            let detailNavigationController = self.splitViewController?.viewControllers.last as? UINavigationController,
-            let detailViewController = detailNavigationController.viewControllers.first as? LeadDetailViewController,
-            let lead = self.filteredObjects.first as? Lead
-        else { return }
-        
-        detailViewController.lead = lead
-        detailViewController.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
-        detailViewController.navigationItem.leftItemsSupplementBackButton = true
-        
-        self.splitViewController?.showDetailViewController(detailNavigationController, sender: nil)
-        
-        // Set seperator color for table view
-        self.tableView.separatorStyle = .none
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        self.clearsSelectionOnViewWillAppear = false
-        
-        // Refresh control
-        if #available(iOS 10.0, *) {
-            self.tableView.refreshControl = self.refresher
-        } else {
-            self.tableView.addSubview(self.refresher)
+        DispatchQueue.main.async {
+            [weak self] in
+            // Show first object details in the detail view controller
+            guard
+                let detailNavigationController = self?.storyboard?.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.leadDetail.rawValue) as? UINavigationController,
+                let detailViewController = detailNavigationController.viewControllers.first as? LeadDetailViewController,
+                let lead = self?.filteredObjects.first as? Lead
+            else { return }
+            
+            detailViewController.lead = lead
+            detailViewController.navigationItem.leftBarButtonItem = self?.splitViewController?.displayModeButtonItem
+            detailViewController.navigationItem.leftItemsSupplementBackButton = true
+            
+            self?.splitViewController?.showDetailViewController(detailNavigationController, sender: nil)
+            
+            // Set seperator color for table view
+            self?.tableView.separatorStyle = .none
+            self?.tableView.delegate = self
+            self?.tableView.dataSource = self
+            self?.clearsSelectionOnViewWillAppear = false
+            
+            // Refresh control
+            if #available(iOS 10.0, *) {
+                self?.tableView.refreshControl = self?.refresher
+            } else {
+                guard let refresher = self?.refresher else { return }
+                self?.tableView.addSubview(refresher)
+            }
         }
         
     }
     
     func setupSearch() {
         // Setup the search bar and other things needed for the search bar to work
-        
-        self.filteredObjects = self.objects
         
         // Initializing with searchResultsController set to nil means that
         // searchController will use this view controller to display the search results
@@ -106,10 +109,16 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
     }
     
     func getCoreData() {
-        // Gets data from CoreData and sorts by dateOfInquiry field
-        let sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
-        self.objects = PersistenceService.fetchEntity(Lead.self, filter: nil, sort: sortDescriptors)
-        self.filteredObjects = self.objects
+        // Gets data from CoreData and sorts by id field
+        DispatchQueue.main.async { // Run on main thread so we dont grab core data before it is saved into the device
+            [weak self] in
+            print("Getting core data")
+            let sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
+            let objects = PersistenceService.fetchEntity(Lead.self, filter: nil, sort: sortDescriptors)
+            self?.objects = objects
+            self?.filteredObjects = objects
+            self?.tableView.reloadData()
+        }
     }
     
     func hideTableLoadingAnimations() {
@@ -117,7 +126,6 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
         self.refresher.endRefreshing()
         self.bottomTableViewSpinner?.stopAnimating()
         self.view.hideSkeleton()
-        self.tableView.reloadData()
     }
     
     func setTimerForTableRefresh() {
@@ -192,7 +200,6 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
                                         
                                         // Save new data to CoreData and then set the data array (self.leads) to the new data and reload table
                                         self?.saveObjectsToCoreData(objects: leads)
-                                        self?.getCoreData()
                                         
                                         // Stop the refresh control 700 miliseconds after the data is retrieved to make it look more natrual when loading
                                         DispatchQueue.main.asyncAfter(deadline: deadline) {
@@ -262,6 +269,7 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
             self.getData(endpoint: "/refreshLeads.php", append: false, lastObjectId: lastObject.id) {
                 [weak self] in
                 self?.tableIsRefreshing = false
+                self?.getCoreData()
             }
             
         } else {
@@ -285,6 +293,7 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
             self.getData(endpoint: "/refreshLeads.php", append: false, lastObjectId: lastObject.id) {
                 [weak self] in
                 self?.tableIsRefreshing = false
+                self?.getCoreData()
             }
             
         } else {
@@ -296,10 +305,11 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
     // MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Defaults.SegueIdentifiers.leadDetail.rawValue {
+            
             guard
-                let indexPath = self.tableView.indexPathForSelectedRow,
                 let leadDetailNavigationController = segue.destination as? UINavigationController,
                 let leadDetailViewController = leadDetailNavigationController.viewControllers.first as? LeadDetailViewController,
+                let indexPath = self.tableView.indexPathForSelectedRow,
                 let lead = self.filteredObjects[indexPath.row] as? Lead
             else { return }
             
@@ -374,6 +384,7 @@ extension LeadsTableViewController: UISearchResultsUpdating, SkeletonTableViewDa
             self.getData(endpoint: "/moreLeads.php", append: true, lastObjectId: lastObject.id) {
                 [weak self] in
                 self?.appendingDataToTable = false
+                self?.getCoreData()
             }
             
             // Make loading icon

@@ -18,6 +18,12 @@ class PersistenceService {
         return self.persistentContainer.viewContext
     }
     
+    static var persistentContainerQueue: OperationQueue {
+        let containerQueue = OperationQueue()
+        containerQueue.maxConcurrentOperationCount = 1
+        return containerQueue
+    }
+    
     // MARK: - Core Data stack
     static var persistentContainer: NSPersistentContainer = {
         /*
@@ -47,20 +53,24 @@ class PersistenceService {
     }()
 
     // MARK: - Core Data Saving support
-    static func saveContext () {
+    static func saveContext() {
         // Create or update object into CoreData
-        let context = self.persistentContainer.viewContext
-        if context.hasChanges {
-            do {
-                try context.save()
-                print("Object saved to CoreData successfully!")
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        persistentContainerQueue.addOperation() {
+            let context = self.persistentContainer.viewContext
+            if context.hasChanges {
+                context.performAndWait {
+                    do {
+                        try context.save()
+                        print("Object saved to CoreData successfully!")
+                    } catch {
+                        // Replace this implementation with code to handle the error appropriately.
+                        // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                        let nserror = error as NSError
+                        fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+                    }
+                    context.reset() // Reset the context to clean up the cache and low the memory footprint.
+                }
             }
-            context.reset() // Reset the context to clean up the cache and low the memory footprint.
         }
     }
     

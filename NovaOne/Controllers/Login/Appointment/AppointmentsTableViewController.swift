@@ -123,7 +123,7 @@ class AppointmentsTableViewController: UITableViewController, NovaOneTableView {
         // Saves objects data to CoreData
         guard let entity = NSEntityDescription.entity(forEntityName: Defaults.CoreDataEntities.appointment.rawValue, in: PersistenceService.context) else { return }
             
-            guard let appointments = objects as? [AppointmentModel] else { return }
+        guard let appointments = objects as? [AppointmentModel] else { return }
             for appointment in appointments {
                 if let coreDataAppointment = NSManagedObject(entity: entity, insertInto: PersistenceService.context) as? Appointment {
                     
@@ -181,14 +181,13 @@ class AppointmentsTableViewController: UITableViewController, NovaOneTableView {
                                 switch result {
                                     
                                     case .success(let appointments):
-                                        // Delete old data if not refreshing table
+                                        // Delete old data if not appending to table
                                         if append == false {
                                             PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.appointment.rawValue)
                                         }
                                         
                                         // Save new data to CoreData and then set the data array (self.objects) to the new data and reload table
                                         self?.saveObjectsToCoreData(objects: appointments)
-                                        self?.getCoreData()
                                         
                                         // Stop the refresh control 700 miliseconds after the data is retrieved to make it look more natrual when loading
                                         DispatchQueue.main.asyncAfter(deadline: deadline) {
@@ -264,6 +263,7 @@ class AppointmentsTableViewController: UITableViewController, NovaOneTableView {
             self.getData(endpoint: "/refreshAppointments.php", append: false, lastObjectId: lastObject.id) {
                 [weak self] in
                 self?.tableIsRefreshing = false
+                self?.getCoreData()
             }
             
         } else {
@@ -286,6 +286,7 @@ class AppointmentsTableViewController: UITableViewController, NovaOneTableView {
             self.getData(endpoint: "/refreshAppointments.php", append: false, lastObjectId: lastObject.id) {
                 [weak self] in
                 self?.tableIsRefreshing = false
+                self?.getCoreData()
             }
             
         } else {
@@ -308,6 +309,10 @@ class AppointmentsTableViewController: UITableViewController, NovaOneTableView {
                 let appointmentDetailViewController = appointmentDetailNavigationController.viewControllers.first as? AppointmentDetailViewController,
                 let appointment = self.filteredObjects[indexPath.row] as? Appointment
             else { return }
+            print(indexPath.row)
+            
+            let id = appointment.id
+            print("Appointment Id: \(id)")
             
             appointmentDetailViewController.appointment = appointment
             
@@ -374,6 +379,7 @@ extension AppointmentsTableViewController: UISearchResultsUpdating, SkeletonTabl
             self.getData(endpoint: "/moreAppointments.php", append: true, lastObjectId: lastObject.id) {
                 [weak self] in
                 self?.appendingDataToTable = false
+                self?.getCoreData()
             }
             
             // Make loading icon

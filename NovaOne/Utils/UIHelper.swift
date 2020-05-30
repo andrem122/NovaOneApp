@@ -142,29 +142,26 @@ class UIHelper {
     static func showSuccessContainer<T: UIViewController>(for currentViewController: UIViewController?, successContainerViewIdentifier: String,containerView: UIView, objectType: T.Type, completion: ((UIViewController) -> Void)?) {
         // Shows the table with items for the container view
         
-        if let successContainerViewController = currentViewController?.storyboard?.instantiateViewController(identifier: successContainerViewIdentifier) as? T {
-            
-            // Embed appointments view controller into container view so it will show
-            currentViewController?.addChild(successContainerViewController)
-            successContainerViewController.view.translatesAutoresizingMaskIntoConstraints = false
-            containerView.addSubview(successContainerViewController.view)
-            
-            // Set constraints for embedded view so it shows correctly
-            NSLayoutConstraint.activate([
-                successContainerViewController.view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-                successContainerViewController.view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-                successContainerViewController.view.topAnchor.constraint(equalTo: containerView.topAnchor),
-                successContainerViewController.view.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
-            ])
-            
-            successContainerViewController.didMove(toParent: currentViewController)
-            
-            // Plug the success container view controller into the completion function
-            if let completion = completion {
-                completion(successContainerViewController)
-            }
+        guard let successContainerViewController = currentViewController?.storyboard?.instantiateViewController(identifier: successContainerViewIdentifier) as? T else { return }
 
-        }
+        // Embed appointments view controller into container view so it will show
+        currentViewController?.addChild(successContainerViewController)
+        successContainerViewController.view.translatesAutoresizingMaskIntoConstraints = false
+        containerView.addSubview(successContainerViewController.view)
+        
+        // Set constraints for embedded view so it shows correctly
+        NSLayoutConstraint.activate([
+            successContainerViewController.view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            successContainerViewController.view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            successContainerViewController.view.topAnchor.constraint(equalTo: containerView.topAnchor),
+            successContainerViewController.view.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
+        ])
+        
+        successContainerViewController.didMove(toParent: currentViewController)
+        
+        // Plug the success container view controller into the completion function
+        guard let completion = completion else { return }
+        completion(successContainerViewController)
     }
     
 }

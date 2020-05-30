@@ -27,7 +27,7 @@ class LeadsContainerViewController: UIViewController, NovaOneObjectContainer {
         if self.objectCount > 0 {
             // Get CoreData objects and pass to the next view
             print("Showing objects from Core Data")
-            UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.SplitViewControllerIdentifiers.leads.rawValue, containerView: self.containerView ?? UIView(), objectType: UISplitViewController.self, completion: nil)
+            UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.SplitViewControllerIdentifiers.leads.rawValue, containerView: self.containerView, objectType: UISplitViewController.self, completion: nil)
             
         } else {
             // Get data via an HTTP request and save to coredata for the next view
@@ -37,7 +37,7 @@ class LeadsContainerViewController: UIViewController, NovaOneObjectContainer {
         
     }
     
-    func saveObjectsToCoreDataAndSend(to objectsTableViewController: UITableViewController, objects: [Decodable]) {
+    func saveToCoreData(objects: [Decodable]) {
         // Saves leads data to CoreData and sends them to leads view for display
         
         guard let entity = NSEntityDescription.entity(forEntityName: Defaults.CoreDataEntities.lead.rawValue, in: PersistenceService.context) else { return }
@@ -69,14 +69,6 @@ class LeadsContainerViewController: UIViewController, NovaOneObjectContainer {
         // Save objects to CoreData once they have been inserted into the context container
         PersistenceService.saveContext()
         
-        // Send the data to the leads view controller
-        let sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
-        let coreDataLeads = PersistenceService.fetchEntity(Lead.self, filter: nil, sort: sortDescriptors)
-        
-        guard let leadsTableViewController = objectsTableViewController as? LeadsTableViewController else { return }
-        leadsTableViewController.objects = coreDataLeads
-        leadsTableViewController.filteredObjects = coreDataLeads
-        
     }
     
     func getData() {
@@ -104,20 +96,12 @@ class LeadsContainerViewController: UIViewController, NovaOneObjectContainer {
                                 switch result {
                                     
                                     case .success(let leads):
+                                        // Save data in CoreData
+                                        self?.saveToCoreData(objects: leads)
                                         
-                                        UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.SplitViewControllerIdentifiers.leads.rawValue, containerView: self?.containerView ?? UIView(), objectType: UISplitViewController.self) {
-                                            [weak self] (leadsSplitViewController) in
-                                            
-                                            guard
-                                                let leadsSplitViewController = leadsSplitViewController as? UISplitViewController,
-                                                let leadsNavigationController = leadsSplitViewController.viewControllers.first as? UINavigationController,
-                                                let leadsTableViewController = leadsNavigationController.viewControllers.first as? LeadsTableViewController
-                                            else { return }
-                                            
-                                            // Save data in CoreData
-                                            self?.saveObjectsToCoreDataAndSend(to: leadsTableViewController, objects: leads)
-                                            
-                                    }
+                                        // Show success screen
+                                        UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.SplitViewControllerIdentifiers.leads.rawValue, containerView: self?.containerView ?? UIView(), objectType: UISplitViewController.self, completion: nil)
+                                        
                                     
                                     case .failure(let error):
                                         print(error.localizedDescription)
@@ -132,8 +116,6 @@ class LeadsContainerViewController: UIViewController, NovaOneObjectContainer {
                                     }
                                     
                                 }
-                self?.removeSpinner() // Call inside the closure because the request is asynchronous and if called outside
-                                      // the closure, the spinner will be removed too fast before it can show
         }
         
     }

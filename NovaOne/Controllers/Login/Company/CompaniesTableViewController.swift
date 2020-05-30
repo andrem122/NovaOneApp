@@ -200,7 +200,6 @@ class CompaniesTableViewController: UITableViewController, NovaOneTableView {
                                         
                                         // Save new data to CoreData and then set the data array (self.objects) to the new data and reload table
                                         self?.saveObjectsToCoreData(objects: companies)
-                                        self?.getCoreData()
                                         
                                         // Stop the refresh control 700 miliseconds after the data is retrieved to make it look more natrual when loading
                                         DispatchQueue.main.asyncAfter(deadline: deadline) {
@@ -276,6 +275,7 @@ class CompaniesTableViewController: UITableViewController, NovaOneTableView {
             self.getData(endpoint: "/refreshCompanies.php", append: false, lastObjectId: lastObject.id) {
                 [weak self] in
                 self?.tableIsRefreshing = false
+                self?.getCoreData()
             }
             
         } else {
@@ -298,6 +298,7 @@ class CompaniesTableViewController: UITableViewController, NovaOneTableView {
             self.getData(endpoint: "/refreshCompanies.php", append: false, lastObjectId: lastObject.id) {
                 [weak self] in
                 self?.tableIsRefreshing = false
+                self?.getCoreData()
             }
             
         } else {
@@ -388,6 +389,7 @@ extension CompaniesTableViewController: UISearchResultsUpdating, SkeletonTableVi
             self.getData(endpoint: "/moreCompanies.php", append: true, lastObjectId: lastObject.id) {
                 [weak self] in
                 self?.appendingDataToTable = false
+                self?.getCoreData()
             }
             
             // Make loading icon

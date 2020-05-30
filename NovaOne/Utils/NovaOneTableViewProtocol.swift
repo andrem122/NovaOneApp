@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import SkeletonView
 
-protocol NovaOneTableView {
+protocol NovaOneTableView: class {
     // MARK: Properties
     var timer: Timer? { get set }
     var parentViewContainerController: UIViewController? { get set }

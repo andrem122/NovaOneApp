@@ -17,6 +17,6 @@ protocol NovaOneObjectContainer {
     
     // MARK: Methods
     func showCoreDataOrRequestData()
-    func saveObjectsToCoreDataAndSend(to objectsTableViewController: UITableViewController, objects: [Decodable])
+    func saveToCoreData(objects: [Decodable])
     func getData()
 }
