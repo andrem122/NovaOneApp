@@ -23,24 +23,27 @@ class AppointmentsTableViewController: UITableViewController, NovaOneTableView {
     var filteredObjects: [NSManagedObject] = []
     var searchController: UISearchController!
     var alertService = AlertService()
+    var didSetFirstItem: Bool = false
     lazy var refresher: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.tintColor = .lightGray
         refreshControl.addTarget(self, action: #selector(self.refreshDataOnPullDown), for: .valueChanged)
         return refreshControl
     }()
-    
+        
     // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.getCoreData()
         self.setupNavigationBar()
         self.setupSearch()
         self.setupTableView()
+        self.removeSpinner()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.getCoreData()
+        self.setFirstItemForDetailView()
         self.setTimerForTableRefresh()
     }
     
@@ -49,23 +52,33 @@ class AppointmentsTableViewController: UITableViewController, NovaOneTableView {
         self.timer?.invalidate() // Invalidate timer when view disapears
     }
     
+    func setFirstItemForDetailView() {
+        // Show first object details in the detail view controller
+        
+        DispatchQueue.main.async {
+            [weak self] in
+            if self?.didSetFirstItem == false {
+                print("Showing detail for first item")
+                guard
+                    let detailNavigationController = self?.storyboard?.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.appointmentDetail.rawValue) as? UINavigationController,
+                    let detailViewController = detailNavigationController.viewControllers.first as? AppointmentDetailViewController,
+                    let appointment = self?.filteredObjects.first as? Appointment
+                else { return }
+                
+                detailViewController.appointment = appointment
+                detailViewController.navigationItem.leftBarButtonItem = self?.splitViewController?.displayModeButtonItem
+                detailViewController.navigationItem.leftItemsSupplementBackButton = true
+                
+                self?.splitViewController?.showDetailViewController(detailNavigationController, sender: nil)
+                self?.didSetFirstItem = true // Set to true so it does not run again in viewDidAppear
+            }
+        }
+    }
+    
     func setupTableView() {
         // Setup the table view
         
-        // Show first object details in the detail view controller
-        guard
-            let detailNavigationController = self.splitViewController?.viewControllers.last as? UINavigationController,
-            let detailViewController = detailNavigationController.viewControllers.first as? AppointmentDetailViewController,
-            let appointment = self.filteredObjects.first as? Appointment
-        else { return }
-        
-        detailViewController.appointment = appointment
-        detailViewController.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
-        detailViewController.navigationItem.leftItemsSupplementBackButton = true
-        
-        self.splitViewController?.showDetailViewController(detailNavigationController, sender: nil)
-
-        // Set seperatorstyle for table view
+        // Set seperator color for table view
         self.tableView.separatorStyle = .none
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -79,36 +92,40 @@ class AppointmentsTableViewController: UITableViewController, NovaOneTableView {
         }
     }
     
+    func setupSearch() {
+        // Setup the search bar and other things needed for the search bar to work
+        
+        // Initializing with searchResultsController set to nil means that
+        // searchController will use this view controller to display the search results
+        self.searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        self.searchController.searchBar.sizeToFit()
+        self.searchController.obscuresBackgroundDuringPresentation = false
+        
+        // Set the header of the table view to the search bar
+        self.tableView.tableHeaderView = self.searchController.searchBar
+        
+        // Sets this view controller as presenting view controller for the search interface
+        self.definesPresentationContext = true
+    }
+    
     func setupNavigationBar() {
         // Setup the navigation bar
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
     }
     
-    func setupSearch() {
-        // Setup the search bar and other things needed for the search bar to work
-               
-       self.filteredObjects = self.objects
-       
-       // Initializing with searchResultsController set to nil means that
-       // searchController will use this view controller to display the search results
-       self.searchController = UISearchController(searchResultsController: nil)
-       searchController.searchResultsUpdater = self
-       self.searchController.searchBar.sizeToFit()
-       self.searchController.obscuresBackgroundDuringPresentation = false
-       
-       // Set the header of the table view to the search bar
-       self.tableView.tableHeaderView = self.searchController.searchBar
-       
-       // Sets this view controller as presenting view controller for the search interface
-       self.definesPresentationContext = true
-    }
-    
     func getCoreData() {
-        // Gets data from CoreData and sorts by dateOfInquiry field
-        let sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
-        self.objects = PersistenceService.fetchEntity(Appointment.self, filter: nil, sort: sortDescriptors)
-        self.filteredObjects = self.objects
+        // Gets data from CoreData and sorts by id field
+        DispatchQueue.main.async { // Run on main thread so we dont grab core data before it is saved into the device
+            [weak self] in
+            print("Getting core data...")
+            let sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
+            let objects = PersistenceService.fetchEntity(Appointment.self, filter: nil, sort: sortDescriptors)
+            self?.objects = objects
+            self?.filteredObjects = objects
+            self?.tableView.reloadData()
+        }
     }
     
     func hideTableLoadingAnimations() {
@@ -116,7 +133,11 @@ class AppointmentsTableViewController: UITableViewController, NovaOneTableView {
         self.refresher.endRefreshing()
         self.bottomTableViewSpinner?.stopAnimating()
         self.view.hideSkeleton()
-        self.tableView.reloadData()
+    }
+    
+    func setTimerForTableRefresh() {
+        // Setup the timer for automatic refresh of table data
+        self.timer = Timer.scheduledTimer(timeInterval: 80.0, target: self, selector: #selector(self.refreshDataAutomatically), userInfo: nil, repeats: true)
     }
     
     func saveObjectsToCoreData(objects: [Decodable]) {
@@ -141,10 +162,6 @@ class AppointmentsTableViewController: UITableViewController, NovaOneTableView {
                     coreDataAppointment.time = appointment.timeDate
                     coreDataAppointment.timeZone = appointment.timeZone
                     coreDataAppointment.unitType = appointment.unitType
-                    
-                    let predicate = NSPredicate(format: "id == %@", String(appointment.companyId))
-                    coreDataAppointment.company = PersistenceService.fetchEntity(Company.self, filter: predicate, sort: nil).first
-                    
                     
                 }
             }
@@ -181,12 +198,12 @@ class AppointmentsTableViewController: UITableViewController, NovaOneTableView {
                                 switch result {
                                     
                                     case .success(let appointments):
-                                        // Delete old data if not appending to table
+                                        // Delete old data if not refreshing table
                                         if append == false {
                                             PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.appointment.rawValue)
                                         }
                                         
-                                        // Save new data to CoreData and then set the data array (self.objects) to the new data and reload table
+                                        // Save new data to CoreData and then set the data array (self.appointments) to the new data and reload table
                                         self?.saveObjectsToCoreData(objects: appointments)
                                         
                                         // Stop the refresh control 700 miliseconds after the data is retrieved to make it look more natrual when loading
@@ -210,14 +227,13 @@ class AppointmentsTableViewController: UITableViewController, NovaOneTableView {
                                         
                                         
                                         // If no rows were found, delete all
-                                        // objects from core data. This means the user could have added a object online through the
+                                        // appointments from core data. This means the user could have added a appointment online through the
                                         // website and deleted online. Our app needs to delete all data to reflect the changes
                                         // made online.
                                         if self?.appendingDataToTable == false && error.localizedDescription == Defaults.ErrorResponseReasons.noData.rawValue {
                                             
                                             PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.appointment.rawValue)
                                             
-                                            // Remove table view from container view
                                             guard let appointmentsContainerViewController = self?.parentViewContainerController as? AppointmentsContainerViewController else { return }
                                             appointmentsContainerViewController.containerView.subviews[0].removeFromSuperview()
                                             
@@ -242,14 +258,9 @@ class AppointmentsTableViewController: UITableViewController, NovaOneTableView {
         }
     }
     
-    func setTimerForTableRefresh() {
-        // Setup the timer for automatic refresh of table data
-        self.timer = Timer.scheduledTimer(timeInterval: 80.0, target: self, selector: #selector(self.refreshDataAutomatically), userInfo: nil, repeats: true)
-    }
-    
-    // Refresh data
     @objc func refreshDataAutomatically() {
         // Refresh data of the table view if the user is not scrolling
+        
         if self.appendingDataToTable == false && self.tableIsRefreshing == false && self.filteredObjects.count > 0 && self.tableView.isDecelerating == false && self.tableView.isDragging == false && self.searchController.isActive == false {
             
             self.tableIsRefreshing = true
@@ -269,6 +280,7 @@ class AppointmentsTableViewController: UITableViewController, NovaOneTableView {
         } else {
             self.hideTableLoadingAnimations()
         }
+        
     }
     
     @objc func refreshDataOnPullDown() {
@@ -292,6 +304,26 @@ class AppointmentsTableViewController: UITableViewController, NovaOneTableView {
         } else {
             self.hideTableLoadingAnimations()
         }
+        
+    }
+    
+    // MARK: Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Defaults.SegueIdentifiers.appointmentDetail.rawValue {
+            
+            guard
+                let detailNavigationController = segue.destination as? UINavigationController,
+                let detailViewController = detailNavigationController.viewControllers.first as? AppointmentDetailViewController,
+                let indexPath = self.tableView.indexPathForSelectedRow,
+                let appointment = self.filteredObjects[indexPath.row] as? Appointment
+            else { return }
+            
+            detailViewController.appointment = appointment
+            
+            detailViewController.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
+            detailViewController.navigationItem.leftItemsSupplementBackButton = true
+            
+        }
     }
     
     // MARK: Actions
@@ -299,68 +331,45 @@ class AppointmentsTableViewController: UITableViewController, NovaOneTableView {
         guard let addAppointmentNavigationController = self.storyboard?.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addAppointment.rawValue) as? UINavigationController else { return }
         self.present(addAppointmentNavigationController, animated: true, completion: nil)
     }
-    
-    // MARK: Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == Defaults.SegueIdentifiers.appointmentDetail.rawValue {
-            guard
-                let indexPath = self.tableView.indexPathForSelectedRow,
-                let appointmentDetailNavigationController = segue.destination as? UINavigationController,
-                let appointmentDetailViewController = appointmentDetailNavigationController.viewControllers.first as? AppointmentDetailViewController,
-                let appointment = self.filteredObjects[indexPath.row] as? Appointment
-            else { return }
-            print(indexPath.row)
-            
-            let id = appointment.id
-            print("Appointment Id: \(id)")
-            
-            appointmentDetailViewController.appointment = appointment
-            
-            appointmentDetailViewController.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
-            appointmentDetailViewController.navigationItem.leftItemsSupplementBackButton = true
-        }
-    }
 
 }
 
 extension AppointmentsTableViewController: UISearchResultsUpdating, SkeletonTableViewDataSource {
     
     // Shows how many rows our table view should show
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.filteredObjects.count
-    }
+       override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+           return self.filteredObjects.count
+       }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cellIdentifier: String = Defaults.TableViewCellIdentifiers.novaOne.rawValue
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! NovaOneTableViewCell // Get cell with identifier so we can use the custom cell we made
+           
+       let cellIdentifier: String = Defaults.TableViewCellIdentifiers.novaOne.rawValue
+       let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! NovaOneTableViewCell // Get cell with identifier so we can use the custom cell we made
         
         if self.tableIsRefreshing == false {
-            // Set up cell with values if we have objects in the objects array
+            // Set up cell with values if we have objects in the appointments array
             guard let appointment = self.filteredObjects[indexPath.row] as? Appointment else { return cell } // Get the object based on the row number each cell is in
+            guard
+                let name = appointment.name,
+                let appointmentCreatedDate = appointment.created,
+                let appointmentTimeDate = appointment.time
+            else { return cell }
             
-            // Get data from object for cell display
-            guard let appointmentTimeDate: Date = appointment.time else { return cell }
             let format = "MMM d, yyyy | h:mm a"
-            let appointmentTime: String = DateHelper.createString(from: appointmentTimeDate, format: format)
+            let appointmentTime = DateHelper.createString(from: appointmentTimeDate, format: format)
+            let dateCreated = DateHelper.createString(from: appointmentCreatedDate, format: format)
+            let confirmed = appointment.confirmed ? "Confirmed" : "Not Confirmed"
             
-            guard let appointmentCreatedDate: Date = appointment.created else { return cell }
-            let appointmentCreated: String = DateHelper.createString(from: appointmentCreatedDate, format: format)
-            
-            guard let title = appointment.name else { return cell }
-            let subTitleOne = appointment.address != nil ? appointment.address! : appointmentCreated
-            let subTitleTwo = appointment.unitType != nil ? appointment.unitType! : appointment.testType!
-            
-            cell.setup(title: title, subTitleOne: subTitleOne, subTitleTwo: subTitleTwo, subTitleThree: appointmentTime)
-            
+            cell.setup(title: name, subTitleOne: dateCreated, subTitleTwo: confirmed, subTitleThree: appointmentTime)
         }
-        
-        return cell
-    }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true) // Deselect the row after it is tapped on
+       
+       return cell
     }
+       
+       override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+           tableView.deselectRow(at: indexPath, animated: true) // Deselect the row after it is tapped on
+       }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
@@ -395,23 +404,24 @@ extension AppointmentsTableViewController: UISearchResultsUpdating, SkeletonTabl
 
     }
     
-    
-    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
-        return Defaults.TableViewCellIdentifiers.novaOne.rawValue
-    }
-    
     func updateSearchResults(for searchController: UISearchController) {
         guard
             let searchText = searchController.searchBar.text,
             let objects = self.objects as? [Appointment]
         else { return }
-        self.filteredObjects = searchText.isEmpty ? self.objects : objects.filter({ (appointmentObject: Appointment) -> Bool in
+        
+        self.filteredObjects = searchText.isEmpty ? self.objects : objects.filter({ (object: Appointment) -> Bool in
             
-            // Appointments can be serached via name, company name, and test type
+            // Objects search criteria
             return
-                appointmentObject.name?.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
+                object.name?.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil ||
+                object.company?.name?.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
         })
         
         self.tableView.reloadData()
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return Defaults.TableViewCellIdentifiers.novaOne.rawValue
     }
 }

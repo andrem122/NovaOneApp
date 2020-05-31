@@ -23,6 +23,7 @@ class CompaniesTableViewController: UITableViewController, NovaOneTableView {
     var filteredObjects: [NSManagedObject] = []
     var searchController: UISearchController!
     var alertService = AlertService()
+    var didSetFirstItem: Bool = false
     lazy var refresher: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.tintColor = .lightGray
@@ -47,6 +48,10 @@ class CompaniesTableViewController: UITableViewController, NovaOneTableView {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         self.timer?.invalidate() // Invalidate timer when view disapears
+    }
+    
+    func setFirstItemForDetailView() {
+        print("")
     }
     
     func setupTableView() {

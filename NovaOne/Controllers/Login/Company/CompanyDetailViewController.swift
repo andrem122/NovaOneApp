@@ -21,6 +21,7 @@ class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITabl
     
     // MARK: Methods
     func setupTableView() {
+        self.objectDetailTableView.rowHeight = 44
         self.objectDetailTableView.delegate = self
         self.objectDetailTableView.dataSource = self
     }

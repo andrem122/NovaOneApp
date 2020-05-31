@@ -23,6 +23,7 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
     var filteredObjects: [NSManagedObject] = []
     var searchController: UISearchController!
     var alertService = AlertService()
+    var didSetFirstItem: Bool = false
     lazy var refresher: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.tintColor = .lightGray
@@ -33,7 +34,6 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
     // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.getCoreData()
         self.setupNavigationBar()
         self.setupSearch()
         self.setupTableView()
@@ -42,6 +42,8 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.getCoreData()
+        self.setFirstItemForDetailView()
         self.setTimerForTableRefresh()
     }
     
@@ -50,37 +52,42 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
         self.timer?.invalidate() // Invalidate timer when view disapears
     }
     
-    func setupTableView() {
-        // Setup the table view
+    func setFirstItemForDetailView() {
+        // Show first object details in the detail view controller
         
         DispatchQueue.main.async {
             [weak self] in
-            // Show first object details in the detail view controller
-            guard
-                let detailNavigationController = self?.storyboard?.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.leadDetail.rawValue) as? UINavigationController,
-                let detailViewController = detailNavigationController.viewControllers.first as? LeadDetailViewController,
-                let lead = self?.filteredObjects.first as? Lead
-            else { return }
-            
-            detailViewController.lead = lead
-            detailViewController.navigationItem.leftBarButtonItem = self?.splitViewController?.displayModeButtonItem
-            detailViewController.navigationItem.leftItemsSupplementBackButton = true
-            
-            self?.splitViewController?.showDetailViewController(detailNavigationController, sender: nil)
-            
-            // Set seperator color for table view
-            self?.tableView.separatorStyle = .none
-            self?.tableView.delegate = self
-            self?.tableView.dataSource = self
-            self?.clearsSelectionOnViewWillAppear = false
-            
-            // Refresh control
-            if #available(iOS 10.0, *) {
-                self?.tableView.refreshControl = self?.refresher
-            } else {
-                guard let refresher = self?.refresher else { return }
-                self?.tableView.addSubview(refresher)
+            if self?.didSetFirstItem == false {
+                print("Showing detail for first item")
+                guard
+                    let detailNavigationController = self?.storyboard?.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.leadDetail.rawValue) as? UINavigationController,
+                    let detailViewController = detailNavigationController.viewControllers.first as? LeadDetailViewController,
+                    let lead = self?.filteredObjects.first as? Lead
+                else { return }
+                
+                detailViewController.lead = lead
+                detailViewController.navigationItem.leftBarButtonItem = self?.splitViewController?.displayModeButtonItem
+                detailViewController.navigationItem.leftItemsSupplementBackButton = true
+                
+                self?.splitViewController?.showDetailViewController(detailNavigationController, sender: nil)
+                self?.didSetFirstItem = true // Set to true so it does not run again in viewDidAppear
             }
+        }
+    }
+    
+    func setupTableView() {
+        // Setup the table view
+        // Set seperator color for table view
+        self.tableView.separatorStyle = .none
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.clearsSelectionOnViewWillAppear = false
+        
+        // Refresh control
+        if #available(iOS 10.0, *) {
+            self.tableView.refreshControl = self.refresher
+        } else {
+            self.tableView.addSubview(self.refresher)
         }
         
     }
@@ -112,7 +119,6 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
         // Gets data from CoreData and sorts by id field
         DispatchQueue.main.async { // Run on main thread so we dont grab core data before it is saved into the device
             [weak self] in
-            print("Getting core data")
             let sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
             let objects = PersistenceService.fetchEntity(Lead.self, filter: nil, sort: sortDescriptors)
             self?.objects = objects
@@ -153,10 +159,6 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
                     coreDataLead.filledOutForm = lead.filledOutForm
                     coreDataLead.madeAppointment = lead.madeAppointment
                     coreDataLead.companyName = lead.companyName
-                    
-                    let predicate = NSPredicate(format: "id == %@", String(lead.companyId))
-                    coreDataLead.company = PersistenceService.fetchEntity(Company.self, filter: predicate, sort: nil).first
-                    
                     
                 }
             }
@@ -307,16 +309,17 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
         if segue.identifier == Defaults.SegueIdentifiers.leadDetail.rawValue {
             
             guard
-                let leadDetailNavigationController = segue.destination as? UINavigationController,
-                let leadDetailViewController = leadDetailNavigationController.viewControllers.first as? LeadDetailViewController,
+                let detailNavigationController = segue.destination as? UINavigationController,
+                let detailViewController = detailNavigationController.viewControllers.first as? LeadDetailViewController,
                 let indexPath = self.tableView.indexPathForSelectedRow,
                 let lead = self.filteredObjects[indexPath.row] as? Lead
             else { return }
             
-            leadDetailViewController.lead = lead
+            detailViewController.lead = lead
             
-            leadDetailViewController.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
-            leadDetailViewController.navigationItem.leftItemsSupplementBackButton = true
+            detailViewController.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
+            detailViewController.navigationItem.leftItemsSupplementBackButton = true
+            
         }
     }
     
@@ -334,8 +337,6 @@ extension LeadsTableViewController: UISearchResultsUpdating, SkeletonTableViewDa
         return self.filteredObjects.count
     }
     
-    // This is where we configure each cell in our table view
-    // Paramater 'indexPath' represents the row number that each table view cell is contained in (Example: first appointment object has indexPath of zero)
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cellIdentifier: String = Defaults.TableViewCellIdentifiers.novaOne.rawValue

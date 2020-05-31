@@ -24,6 +24,7 @@ class AddAppointmentCompanyViewController: UIViewController, UITableViewDelegate
     }
     
     func setupTableView() {
+        self.tableView.rowHeight = 44
         self.tableView.delegate = self
         self.tableView.dataSource = self
     }
@@ -34,79 +35,14 @@ class AddAppointmentCompanyViewController: UIViewController, UITableViewDelegate
     }
     
     func getCompanies() {
-        // Get customer companies from CoreData or an HTTP request
-        
-        // For CoreData
-        if PersistenceService.customerHasCompanies() {
+        // Get customer companies from CoreData
+        // Set up attributes for options array
+        let companies = PersistenceService.fetchEntity(Company.self, filter: nil, sort: nil)
+        for company in companies {
             
-            guard let companies = PersistenceService.fetchCustomerCompanies() as? [Company] else { return }
-            
-            // Set up attributes for options array
-            for company in companies {
-                
-                guard let companyName = company.name else { return }
-                
-                let option = EnableOption(option: companyName, selected: false, id: Int(company.id))
-                
-                self.options.append(option)
-                
-            }
-            
-        } else { // For HTTP request
-            
-            guard
-                let customer = PersistenceService.fetchCustomerEntity(),
-                let email = customer.email,
-                let password = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue)
-            else {
-                print("Failed to obtain variables for POST request")
-                return
-            }
-            let customerUserId = customer.id
-            
-            let parameters: [String: Any] = ["customerUserId": customerUserId as Any,
-                                             "email": email as Any,
-                                             "password": password as Any]
-            let httpRequest = HTTPRequests()
-            httpRequest.request(endpoint: "/companies.php", dataModel: [CompanyModel].self, parameters: parameters) { (result) in
-                
-                switch result {
-                    case .success(let companies):
-                        
-                        for company in companies {
-                            let option = EnableOption(option: company.name, selected: false, id: Int(company.id))
-                            self.options.append(option)
-                            
-                            // Save to CoreData
-                            guard let entity = NSEntityDescription.entity(forEntityName: "Company", in: PersistenceService.context) else { return }
-                            
-                            if let coreDataCompany = NSManagedObject(entity: entity, insertInto: PersistenceService.context) as? Company {
-                                coreDataCompany.address = company.address
-                                coreDataCompany.city = company.city
-                                coreDataCompany.state = company.state
-                                coreDataCompany.zip = company.zip
-                                coreDataCompany.created = company.createdDate
-                                coreDataCompany.daysOfTheWeekEnabled = company.daysOfTheWeekEnabled
-                                coreDataCompany.email = company.email
-                                coreDataCompany.hoursOfTheDayEnabled = company.hoursOfTheDayEnabled
-                                coreDataCompany.id = Int32(company.id)
-                                coreDataCompany.name = company.name
-                                coreDataCompany.phoneNumber = company.phoneNumber
-                                coreDataCompany.shortenedAddress = company.shortenedAddress
-                                coreDataCompany.customer = PersistenceService.fetchCustomerEntity()
-                            }
-                            
-                        }
-                        
-                        PersistenceService.saveContext()
-                        self.tableView.reloadData()
-                        
-                    
-                    case .failure(let error):
-                        print(error.localizedDescription)
-                }
-                
-            }
+            guard let companyName = company.name else { return }
+            let option = EnableOption(option: companyName, selected: false, id: Int(company.id))
+            self.options.append(option)
             
         }
     }

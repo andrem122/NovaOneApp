@@ -20,6 +20,7 @@ protocol NovaOneTableView: class {
     var appendingDataToTable: Bool { get set }
     var objects: [NSManagedObject] { get set }
     var filteredObjects: [NSManagedObject] { get set }
+    var didSetFirstItem: Bool { get set }
     var searchController: UISearchController! { get set }
     var alertService: AlertService { get set }
     var refresher: UIRefreshControl { get set }
@@ -34,6 +35,7 @@ protocol NovaOneTableView: class {
     func setupTableView()
     func setupSearch()
     func getCoreData()
+    func setFirstItemForDetailView()
     
     // Animation functions
     func hideTableLoadingAnimations()

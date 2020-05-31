@@ -59,10 +59,6 @@ class LeadsContainerViewController: UIViewController, NovaOneObjectContainer {
                     coreDataLead.madeAppointment = lead.madeAppointment
                     coreDataLead.companyName = lead.companyName
                     
-                    let predicate = NSPredicate(format: "id == %@", String(lead.companyId))
-                    coreDataLead.company = PersistenceService.fetchEntity(Company.self, filter: predicate, sort: nil).first
-    
-                    
                 }
             }
         
