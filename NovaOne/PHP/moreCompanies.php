@@ -1,9 +1,10 @@
 <?php
 
     require 'utils.php';
-
+    
     // user data
     $customer_user_id = $_POST['customerUserId'];
+    $last_object_id = $_POST['lastObjectId'];
     $email = $_POST['email'];
     $password = $_POST['password'];
     $php_authentication_username_f = $_POST['PHPAuthenticationUsername'];
@@ -12,7 +13,7 @@
     
     // get and return json data if user is verified
     $user_is_verified = verify_user($email, $password, $php_authentication_username_f, $php_authentication_password_f, $request_method);
-    
+
     $query = "
     SELECT
         co.id,
@@ -30,15 +31,15 @@
     FROM
         property_company co
     WHERE customer_user_id = :customer_user_id
+    AND co.id < :last_object_id
     ORDER BY co.id DESC
     LIMIT 15;
     ";
-
-    // query the database and echo results
-    $parameters = array(':customer_user_id' => $customer_user_id);
+    
+    $parameters = array(':customer_user_id' => $customer_user_id, 'last_object_id' => $last_object_id);
     query_db_login($query, $user_is_verified, $parameters);
     
-    
 ?>
+
 
 

@@ -11,7 +11,6 @@ import CoreData
 
 class AppointmentsContainerViewController: UIViewController {
     
-    
     // MARK: Properties
     @IBOutlet weak var containerView: UIView!
     var objectCount: Int = PersistenceService.fetchCount(for: Defaults.CoreDataEntities.appointment.rawValue)

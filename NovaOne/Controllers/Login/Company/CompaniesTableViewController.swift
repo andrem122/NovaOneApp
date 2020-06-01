@@ -12,7 +12,7 @@ import CoreData
 
 class CompaniesTableViewController: UITableViewController, NovaOneTableView {
     
-    // MARK: Properties
+        // MARK: Properties
     var timer: Timer?
     var parentViewContainerController: UIViewController?
     var customer: CustomerModel?
@@ -30,18 +30,20 @@ class CompaniesTableViewController: UITableViewController, NovaOneTableView {
         refreshControl.addTarget(self, action: #selector(self.refreshDataOnPullDown), for: .valueChanged)
         return refreshControl
     }()
-    
+        
     // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.getCoreData()
         self.setupNavigationBar()
         self.setupSearch()
         self.setupTableView()
+        self.removeSpinner()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.getCoreData()
+        self.setFirstItemForDetailView()
         self.setTimerForTableRefresh()
     }
     
@@ -51,25 +53,31 @@ class CompaniesTableViewController: UITableViewController, NovaOneTableView {
     }
     
     func setFirstItemForDetailView() {
-        print("")
+        // Show first object details in the detail view controller
+        
+        DispatchQueue.main.async {
+            [weak self] in
+            if self?.didSetFirstItem == false {
+                print("Showing detail for first item")
+                guard
+                    let detailNavigationController = self?.storyboard?.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.companyDetail.rawValue) as? UINavigationController,
+                    let detailViewController = detailNavigationController.viewControllers.first as? CompanyDetailViewController,
+                    let company = self?.filteredObjects.first as? Company
+                else { return }
+                
+                detailViewController.company = company
+                detailViewController.navigationItem.leftBarButtonItem = self?.splitViewController?.displayModeButtonItem
+                detailViewController.navigationItem.leftItemsSupplementBackButton = true
+                
+                self?.splitViewController?.showDetailViewController(detailNavigationController, sender: nil)
+                self?.didSetFirstItem = true // Set to true so it does not run again in viewDidAppear
+            }
+        }
     }
     
     func setupTableView() {
         // Setup the table view
         
-        // Show first object details in the detail view controller
-        guard
-            let detailNavigationController = self.splitViewController?.viewControllers.last as? UINavigationController,
-            let detailViewController = detailNavigationController.viewControllers.first as? CompanyDetailViewController,
-            let company = self.filteredObjects.first as? Company
-        else { return }
-        
-        detailViewController.company = company
-        detailViewController.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
-        detailViewController.navigationItem.leftItemsSupplementBackButton = true
-        
-        self.splitViewController?.showDetailViewController(detailNavigationController, sender: nil)
-
         // Set seperator color for table view
         self.tableView.separatorStyle = .none
         self.tableView.delegate = self
@@ -84,36 +92,40 @@ class CompaniesTableViewController: UITableViewController, NovaOneTableView {
         }
     }
     
+    func setupSearch() {
+        // Setup the search bar and other things needed for the search bar to work
+        
+        // Initializing with searchResultsController set to nil means that
+        // searchController will use this view controller to display the search results
+        self.searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        self.searchController.searchBar.sizeToFit()
+        self.searchController.obscuresBackgroundDuringPresentation = false
+        
+        // Set the header of the table view to the search bar
+        self.tableView.tableHeaderView = self.searchController.searchBar
+        
+        // Sets this view controller as presenting view controller for the search interface
+        self.definesPresentationContext = true
+    }
+    
     func setupNavigationBar() {
         // Setup the navigation bar
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
     }
     
-    func setupSearch() {
-        // Setup the search bar and other things needed for the search bar to work
-               
-       self.filteredObjects = self.objects
-       
-       // Initializing with searchResultsController set to nil means that
-       // searchController will use this view controller to display the search results
-       self.searchController = UISearchController(searchResultsController: nil)
-       searchController.searchResultsUpdater = self
-       self.searchController.searchBar.sizeToFit()
-       self.searchController.obscuresBackgroundDuringPresentation = false
-       
-       // Set the header of the table view to the search bar
-       self.tableView.tableHeaderView = self.searchController.searchBar
-       
-       // Sets this view controller as presenting view controller for the search interface
-       self.definesPresentationContext = true
-    }
-    
     func getCoreData() {
-        // Gets data from CoreData and sorts by dateOfInquiry field
-        let sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
-        self.objects = PersistenceService.fetchEntity(Company.self, filter: nil, sort: sortDescriptors)
-        self.filteredObjects = self.objects
+        // Gets data from CoreData and sorts by id field
+        DispatchQueue.main.async { // Run on main thread so we dont grab core data before it is saved into the device
+            [weak self] in
+            print("Getting core data...")
+            let sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
+            let objects = PersistenceService.fetchEntity(Company.self, filter: nil, sort: sortDescriptors)
+            self?.objects = objects
+            self?.filteredObjects = objects
+            self?.tableView.reloadData()
+        }
     }
     
     func hideTableLoadingAnimations() {
@@ -121,7 +133,11 @@ class CompaniesTableViewController: UITableViewController, NovaOneTableView {
         self.refresher.endRefreshing()
         self.bottomTableViewSpinner?.stopAnimating()
         self.view.hideSkeleton()
-        self.tableView.reloadData()
+    }
+    
+    func setTimerForTableRefresh() {
+        // Setup the timer for automatic refresh of table data
+        self.timer = Timer.scheduledTimer(timeInterval: 80.0, target: self, selector: #selector(self.refreshDataAutomatically), userInfo: nil, repeats: true)
     }
     
     func saveObjectsToCoreData(objects: [Decodable]) {
@@ -145,8 +161,6 @@ class CompaniesTableViewController: UITableViewController, NovaOneTableView {
                     coreDataCompany.shortenedAddress = company.shortenedAddress
                     coreDataCompany.state = company.state
                     coreDataCompany.zip = company.zip
-                    
-                    coreDataCompany.customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first
                     
                     // Add appointments
                     if PersistenceService.fetchCount(for: Defaults.CoreDataEntities.appointment.rawValue) > 0 {
@@ -203,7 +217,7 @@ class CompaniesTableViewController: UITableViewController, NovaOneTableView {
                                             PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.company.rawValue)
                                         }
                                         
-                                        // Save new data to CoreData and then set the data array (self.objects) to the new data and reload table
+                                        // Save new data to CoreData and then set the data array to the new data and reload table
                                         self?.saveObjectsToCoreData(objects: companies)
                                         
                                         // Stop the refresh control 700 miliseconds after the data is retrieved to make it look more natrual when loading
@@ -227,14 +241,13 @@ class CompaniesTableViewController: UITableViewController, NovaOneTableView {
                                         
                                         
                                         // If no rows were found, delete all
-                                        // objects from core data. This means the user could have added a object online through the
+                                        // objects from core data. This means the user could have added an object online through the
                                         // website and deleted online. Our app needs to delete all data to reflect the changes
                                         // made online.
                                         if self?.appendingDataToTable == false && error.localizedDescription == Defaults.ErrorResponseReasons.noData.rawValue {
                                             
                                             PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.company.rawValue)
                                             
-                                            // Remove table view from container view
                                             guard let companiesContainerViewController = self?.parentViewContainerController as? CompaniesContainerViewController else { return }
                                             companiesContainerViewController.containerView.subviews[0].removeFromSuperview()
                                             
@@ -259,14 +272,9 @@ class CompaniesTableViewController: UITableViewController, NovaOneTableView {
         }
     }
     
-    func setTimerForTableRefresh() {
-        // Setup the timer for automatic refresh of table data
-        self.timer = Timer.scheduledTimer(timeInterval: 80.0, target: self, selector: #selector(self.refreshDataAutomatically), userInfo: nil, repeats: true)
-    }
-    
-    // Refresh data
     @objc func refreshDataAutomatically() {
         // Refresh data of the table view if the user is not scrolling
+        
         if self.appendingDataToTable == false && self.tableIsRefreshing == false && self.filteredObjects.count > 0 && self.tableView.isDecelerating == false && self.tableView.isDragging == false && self.searchController.isActive == false {
             
             self.tableIsRefreshing = true
@@ -286,6 +294,7 @@ class CompaniesTableViewController: UITableViewController, NovaOneTableView {
         } else {
             self.hideTableLoadingAnimations()
         }
+        
     }
     
     @objc func refreshDataOnPullDown() {
@@ -309,22 +318,17 @@ class CompaniesTableViewController: UITableViewController, NovaOneTableView {
         } else {
             self.hideTableLoadingAnimations()
         }
-    }
-    
-    // MARK: Actions
-    @IBAction func addButtonTapped(_ sender: Any) {
-        guard let addCompanyNavigationController = self.storyboard?.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addCompany.rawValue) as? UINavigationController else { return }
-        addCompanyNavigationController.modalPresentationStyle = .fullScreen
-        self.present(addCompanyNavigationController, animated: true, completion: nil)
+        
     }
     
     // MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Defaults.SegueIdentifiers.companyDetail.rawValue {
+            
             guard
-                let indexPath = self.tableView.indexPathForSelectedRow,
                 let detailNavigationController = segue.destination as? UINavigationController,
                 let detailViewController = detailNavigationController.viewControllers.first as? CompanyDetailViewController,
+                let indexPath = self.tableView.indexPathForSelectedRow,
                 let company = self.filteredObjects[indexPath.row] as? Company
             else { return }
             
@@ -332,7 +336,14 @@ class CompaniesTableViewController: UITableViewController, NovaOneTableView {
             
             detailViewController.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
             detailViewController.navigationItem.leftItemsSupplementBackButton = true
+            
         }
+    }
+    
+    // MARK: Actions
+    @IBAction func addButtonTapped(_ sender: Any) {
+        guard let addCompanyNavigationController = self.storyboard?.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addCompany.rawValue) as? UINavigationController else { return }
+        self.present(addCompanyNavigationController, animated: true, completion: nil)
     }
 
 }

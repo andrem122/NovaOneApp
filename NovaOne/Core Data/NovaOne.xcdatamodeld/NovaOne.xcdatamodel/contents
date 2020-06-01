@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19E287" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19E287" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Appointment" representedClassName="Appointment" syncable="YES" codeGenerationType="class">
         <attribute name="address" optional="YES" attributeType="String"/>
         <attribute name="companyId" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
@@ -32,7 +32,6 @@
         <attribute name="state" attributeType="String"/>
         <attribute name="zip" attributeType="String"/>
         <relationship name="appointments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Appointment" inverseName="company" inverseEntity="Appointment"/>
-        <relationship name="customer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Customer" inverseName="companies" inverseEntity="Customer"/>
         <relationship name="leads" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Lead" inverseName="company" inverseEntity="Lead"/>
     </entity>
     <entity name="Customer" representedClassName="Customer" syncable="YES">
@@ -48,7 +47,6 @@
         <attribute name="phoneNumber" attributeType="String"/>
         <attribute name="username" attributeType="String"/>
         <attribute name="wantsSms" attributeType="Boolean" usesScalarValueType="YES"/>
-        <relationship name="companies" toMany="YES" deletionRule="Nullify" destinationEntity="Company" inverseName="customer" inverseEntity="Company"/>
     </entity>
     <entity name="Lead" representedClassName="Lead" syncable="YES">
         <attribute name="companyId" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
@@ -67,8 +65,8 @@
     </entity>
     <elements>
         <element name="Appointment" positionX="-54" positionY="135" width="128" height="28"/>
-        <element name="Company" positionX="-63" positionY="99" width="128" height="283"/>
-        <element name="Customer" positionX="-63" positionY="-18" width="128" height="238"/>
+        <element name="Company" positionX="-63" positionY="99" width="128" height="268"/>
+        <element name="Customer" positionX="-63" positionY="-18" width="128" height="223"/>
         <element name="Lead" positionX="-54" positionY="135" width="128" height="238"/>
     </elements>
 </model>

@@ -1,9 +1,8 @@
 //
 //  Customer+CoreDataProperties.swift
-//  NovaOne
+//  
 //
-//  Created by Andre Mashraghi on 4/9/20.
-//  Copyright © 2020 Andre Mashraghi. All rights reserved.
+//  Created by Andre Mashraghi on 6/1/20.
 //
 //
 
@@ -16,21 +15,19 @@ extension Customer {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Customer> {
         return NSFetchRequest<Customer>(entityName: "Customer")
     }
-    
-    // MARK: Properties
+
     @NSManaged public var customerType: String?
     @NSManaged public var dateJoined: Date?
     @NSManaged public var email: String?
     @NSManaged public var firstName: String?
     @NSManaged public var id: Int32
     @NSManaged public var isPaying: Bool
-    @NSManaged public var lastName: String?
-    @NSManaged public var phoneNumber: String?
-    @NSManaged public var wantsSms: Bool
-    @NSManaged public var password: String?
-    @NSManaged public var username: String?
     @NSManaged public var lastLogin: Date?
-    @NSManaged public var companies: NSSet?
+    @NSManaged public var lastName: String?
+    @NSManaged public var password: String?
+    @NSManaged public var phoneNumber: String?
+    @NSManaged public var username: String?
+    @NSManaged public var wantsSms: Bool
     var fullName: String {
         guard
             let firstName = self.firstName,
@@ -69,25 +66,7 @@ extension Customer {
         self.password = password
         self.username = username
         self.lastLogin = lastLogin
-        self.companies = companies
         
     }
-
-}
-
-// MARK: Generated accessors for companies
-extension Customer {
-
-    @objc(addCompaniesObject:)
-    @NSManaged public func addToCompanies(_ value: Company)
-
-    @objc(removeCompaniesObject:)
-    @NSManaged public func removeFromCompanies(_ value: Company)
-
-    @objc(addCompanies:)
-    @NSManaged public func addToCompanies(_ values: NSSet)
-
-    @objc(removeCompanies:)
-    @NSManaged public func removeFromCompanies(_ values: NSSet)
 
 }

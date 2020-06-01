@@ -1,9 +1,8 @@
 //
 //  Customer+CoreDataClass.swift
-//  NovaOne
+//  
 //
-//  Created by Andre Mashraghi on 4/9/20.
-//  Copyright © 2020 Andre Mashraghi. All rights reserved.
+//  Created by Andre Mashraghi on 6/1/20.
 //
 //
 

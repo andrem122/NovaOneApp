@@ -267,7 +267,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             coreDataCompany.name = company.name
                             coreDataCompany.phoneNumber = company.phoneNumber
                             coreDataCompany.shortenedAddress = company.shortenedAddress
-                            coreDataCompany.customer = PersistenceService.fetchCustomerEntity()
                         }
                         
                     }
@@ -356,17 +355,12 @@ extension LoginViewController {
     
     // This function is called every time the return key is pressed on the keyboard if delegates are set for each UITextField
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
         if textField == self.passwordTextField {
-            
             // Send touch event to the login button so that our data validation logic can be used
             self.loginButton.sendActions(for: .touchUpInside)
-            
         } else {
-            
             // Set keyboard for password text field when the return key ('go' key in our case) is pressed
             self.passwordTextField.becomeFirstResponder()
-            
         }
         
         return true

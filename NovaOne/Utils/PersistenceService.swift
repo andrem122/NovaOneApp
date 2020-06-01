@@ -106,52 +106,6 @@ class PersistenceService {
         }
     }
     
-    static func fetchCustomerCompanies() -> [Any]? {
-        // Fetches all company entities stored in CoreData filtered by customer
-        
-        let fetchRequest: NSFetchRequest<Customer> = Customer.fetchRequest()
-        do {
-            let customer = try self.context.fetch(fetchRequest).first // Returns customer object
-            return customer?.companies?.allObjects // return as an Array type instead of NSSet
-        } catch {
-            fatalError("Failed to fetch CoreData company objects: \(error)")
-        }
-    }
-    
-    static func customerHasCompanies() -> Bool {
-        // Checks whether or not a customer has companies in the CoreData database
-        let fetchRequest: NSFetchRequest<Customer> = Customer.fetchRequest()
-        do {
-            guard
-                let customer = try self.context.fetch(fetchRequest).first,
-                let companiesSet = customer.companies
-            else { return false }
-            
-            if let firstName = customer.firstName {
-                print("Customer Name: \(firstName)")
-            }
-            
-            return !companiesSet.allObjects.isEmpty
-        } catch {
-            fatalError("Failed to return a Boolean value for customer companies: \(error)")
-        }
-    }
-    
-    static func customerCompaniesCount() -> Int {
-        // Returns the count of customer companies from the CoreData database
-        let fetchRequest: NSFetchRequest<Customer> = Customer.fetchRequest()
-        do {
-            guard
-                let customer = try self.context.fetch(fetchRequest).first,
-                let companiesSet = customer.companies
-            else { return 0 }
-            
-            return companiesSet.count
-        } catch {
-            fatalError("Failed to return a count for customer companies: \(error)")
-        }
-    }
-    
     static func fetchCount(for entityName: String) -> Int {
         // Gets a count of how many objects a given entity has saved to CoreData
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)

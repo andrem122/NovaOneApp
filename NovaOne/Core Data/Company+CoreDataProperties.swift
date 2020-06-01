@@ -2,7 +2,7 @@
 //  Company+CoreDataProperties.swift
 //  
 //
-//  Created by Andre Mashraghi on 5/25/20.
+//  Created by Andre Mashraghi on 6/1/20.
 //
 //
 
@@ -30,7 +30,6 @@ extension Company {
     @NSManaged public var state: String?
     @NSManaged public var zip: String?
     @NSManaged public var appointments: NSSet?
-    @NSManaged public var customer: Customer?
     @NSManaged public var leads: NSSet?
     
     // MARK: Methods
@@ -62,8 +61,8 @@ extension Company {
         self.customerUserId = customerUserId
         self.state = state
         self.zip = zip
-        self.customer = customer
     }
+
 
 }
 
