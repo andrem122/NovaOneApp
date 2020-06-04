@@ -27,7 +27,8 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
     var lineChart = LineChartView()
     var barChartEntries = [BarChartDataEntry]()
     var lineChartEntries  = [ChartDataEntry]()
-    var xLabels = [String]()
+    var barChartXLabels = [String]()
+    var lineChartXLabels = [String]()
     
     // MARK: Methods
     override func viewDidLoad() {
@@ -41,13 +42,17 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
             self?.setupGreetingLabel()
             self?.setupNumberLabels()
         }
-        self.getWeeklyChartData() {
+        self.getWeeklyChartData {
             [weak self] in
-            self?.setupChart()
+            self?.setupBarChart()
+        }
+        self.getMonthChartData {
+            [weak self] in
+            self?.setupLineChart()
         }
     }
     
-    func setupChartForIpad() {
+    func setupLineChart() {
         // Add charts view to chart container views
         self.ipadChartContainerView.addSubview(self.lineChart)
         
@@ -91,11 +96,13 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         self.lineChart.animate(xAxisDuration: 2.0, yAxisDuration: 2.0)
         
         // Setup x axis values to have a date string as the x-axis
-        let xValuesNumberFormatter = ChartXAxisFormatter(xLabels: self.xLabels) // Plug in x values into our custom XAxisFormatter class
+        let xValuesNumberFormatter = ChartXAxisFormatter(xLabels: self.lineChartXLabels) // Plug in x values into our custom XAxisFormatter class
         self.lineChart.xAxis.valueFormatter = xValuesNumberFormatter
         
         // Create data set from entries
         let set = LineChartDataSet(entries: self.lineChartEntries)
+        set.circleColors = colors
+        set.lineWidth = 2
         set.colors = colors
         set.label = "Appointments" // The title next to the data set
         
@@ -110,7 +117,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         self.lineChart.notifyDataSetChanged()
     }
     
-    func setupChart() {
+    func setupBarChart() {
         // Add charts view to chart container views
         self.chartContainerView.addSubview(self.barChart)
         
@@ -154,7 +161,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         self.barChart.animate(xAxisDuration: 2.0, yAxisDuration: 2.0)
         
         // Setup x axis values to have a date string as the x-axis
-        let xValuesNumberFormatter = ChartXAxisFormatter(xLabels: self.xLabels) // Plug in x values into our custom XAxisFormatter class
+        let xValuesNumberFormatter = ChartXAxisFormatter(xLabels: self.barChartXLabels) // Plug in x values into our custom XAxisFormatter class
         self.barChart.xAxis.valueFormatter = xValuesNumberFormatter
         
         // Create data set from entries
@@ -186,7 +193,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         
         guard let firstName = customer.firstName else { return }
         let leadCount = UserDefaults.standard.integer(forKey: Defaults.UserDefaults.leadCount.rawValue)
-        let greetingString = "Hello \(firstName), it's \(weekDay),\nand you have \(leadCount) leads."
+        let greetingString = "Hello \(firstName), it's \(weekDay), and you have \(leadCount) leads."
         self.greetingLabel.text = greetingString
         
     }
@@ -236,7 +243,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
                 case .success(let chartData):
                     // Remove all previous data from the entries and x labels array
                     self?.barChartEntries.removeAll()
-                    self?.xLabels.removeAll()
+                    self?.barChartXLabels.removeAll()
                     
                     guard let startDate = (chartData.map {$0.dateDate}).min() else { return }
                     let dateFormatter = DateFormatter()
@@ -264,7 +271,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
                         
                         // Add to x labels array
                         let dateString = dateFormatter.string(from: date)
-                        self?.xLabels.append(dateString)
+                        self?.barChartXLabels.append(dateString)
                         
                         let chartEntry = BarChartDataEntry(x: Double(number), y: count)
                         self?.barChartEntries.append(chartEntry)
@@ -302,7 +309,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
                 case .success(let chartData):
                     // Remove all previous data from the entries and x labels array
                     self?.barChartEntries.removeAll()
-                    self?.xLabels.removeAll()
+                    self?.barChartXLabels.removeAll()
                     
                     let dateFormatter = DateFormatter()
                     let calendar = Calendar.current
@@ -337,7 +344,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
                         }
                         
                         // Add to x labels array
-                        self?.xLabels.append(dateString)
+                        self?.barChartXLabels.append(dateString)
                         
                         let chartEntry = BarChartDataEntry(x: Double(number), y: count)
                         self?.barChartEntries.append(chartEntry)
@@ -371,58 +378,30 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         let customerUserId = customer.id
         
         let parameters: [String: Any] = ["email": email as Any, "password": password as Any, "customerUserId": customerUserId as Any]
-        httpRequest.request(endpoint: "/chartDataMonth.php", dataModel: [ChartDataMonthlyModel].self, parameters: parameters) {
+        httpRequest.request(endpoint: "/chartDataMonth.php", dataModel: [ChartDataMonthModel].self, parameters: parameters) {
             [weak self] (result) in
             
             switch result {
                 case .success(let chartData):
                     // Remove all previous data from the entries and x labels array
-                    self?.barChartEntries.removeAll()
-                    self?.xLabels.removeAll()
-                    
-                    let dateFormatter = DateFormatter()
-                    let calendar = Calendar.current
-                    
-                    let currentDate = Date()
-                    guard let startDate = calendar.date(byAdding: .year, value: -1, to: currentDate) else { return } // Get date from one year ago as starting point and add 1 month during each loop
+                    self?.lineChartEntries.removeAll()
+                    self?.lineChartXLabels.removeAll()
                     
                     // Bind data to a variables
-                    for number in 0..<12 { // We want 12 months of data points to represent a year of data
-                        
-                        var count = 0.0 // Set count to zero for the month as default
-                        guard let date = calendar.date(byAdding: .month, value: number, to: startDate) else { return }
-                        
-                        dateFormatter.dateFormat = "MMM"
-                        let monthFromDate = dateFormatter.string(from: date) // Returns shorthand of month Ex: 'Apr'
-                        
-                        dateFormatter.dateFormat = "yyyy"
-                        let yearFromDate = dateFormatter.string(from: date) // Returns year as yyyy Ex: '2020'
-                        
-                        let dateString = "\(monthFromDate)\n\(yearFromDate)" // Returns with month then year Ex: 'Apr 2020'
-                        
-                        for data in chartData {
-                            
-                            let monthFromData = data.month
-                            let yearFromData = data.year
-                            
-                            if monthFromData == monthFromDate && yearFromDate == yearFromData {
-                                count = Double(data.count) // Change count from zero to the number in the data
-                            }
-                            
-                            
-                        }
-                        
+                    for (index, data) in chartData.enumerated() {
+                        let dateString = DateHelper.createString(from: data.dateDate, format: "MMM\ndd") // Returns with month then day Ex: 'Apr 21'
+
                         // Add to x labels array
-                        self?.xLabels.append(dateString)
-                        
-                        let chartEntry = BarChartDataEntry(x: Double(number), y: count)
-                        self?.barChartEntries.append(chartEntry)
+                        self?.lineChartXLabels.append(dateString)
+
+                        let chartEntry = ChartDataEntry(x: Double(index), y: Double(data.count))
+                        self?.lineChartEntries.append(chartEntry)
                     }
                     
                 case .failure(let error):
                     // Update chart data
-                    self?.barChart.data = nil
-                    self?.barChart.notifyDataSetChanged()
+                    self?.lineChart.data = nil
+                    self?.lineChart.notifyDataSetChanged()
                     self?.showPopUpOk(error: error)
             }
             
@@ -506,13 +485,13 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
             self.chartTitle.text = "Leads Per Month"
             self.getMonthlyChartData() {
                 [weak self] in
-                self?.setupChart()
+                self?.setupBarChart()
             }
         } else {
             self.chartTitle.text = "Leads Per Week"
             self.getWeeklyChartData() {
                 [weak self] in
-                self?.setupChart()
+                self?.setupBarChart()
             }
         }
     }
