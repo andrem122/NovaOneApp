@@ -19,11 +19,14 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
     @IBOutlet weak var numberOfAppointmentsLabel: UILabel!
     @IBOutlet weak var numberOfCompaniesLabel: UILabel!
     @IBOutlet weak var chartContainerView: UIView!
+    @IBOutlet weak var ipadChartContainerView: UIView!
     @IBOutlet weak var segmentControl: UISegmentedControl!
     @IBOutlet weak var chartTitle: UILabel!
     let alertService = AlertService()
     var barChart = BarChartView()
-    var chartEntries = [BarChartDataEntry]()
+    var lineChart = LineChartView()
+    var barChartEntries = [BarChartDataEntry]()
+    var lineChartEntries  = [ChartDataEntry]()
     var xLabels = [String]()
     
     // MARK: Methods
@@ -44,11 +47,75 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         }
     }
     
-    func setupChart() {
-        // Add chart view to chart container view
-        self.chartContainerView.addSubview(barChart)
+    func setupChartForIpad() {
+        // Add charts view to chart container views
+        self.ipadChartContainerView.addSubview(self.lineChart)
         
-        self.barChart.noDataText = "No data available"
+        let noDataText = "No data available"
+        self.lineChart.noDataText = noDataText
+        self.lineChart.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Set constraints
+        NSLayoutConstraint.activate([
+            self.lineChart.leftAnchor.constraint(equalTo: self.ipadChartContainerView.leftAnchor),
+            self.lineChart.rightAnchor.constraint(equalTo: self.ipadChartContainerView.rightAnchor),
+            self.lineChart.topAnchor.constraint(equalTo: self.ipadChartContainerView.topAnchor),
+            self.lineChart.bottomAnchor.constraint(equalTo: self.ipadChartContainerView.bottomAnchor)
+        ])
+        
+        // Set colors
+        let colors = [Defaults.novaOneColor]
+        self.lineChart.gridBackgroundColor = .white
+        
+        // Set grid style
+        // For X axis
+        self.lineChart.xAxis.labelPosition = .bottom
+        self.lineChart.xAxis.drawGridLinesEnabled = false // remove x grid lines behind data
+        self.lineChart.xAxis.drawAxisLineEnabled = false // remove axis line and leave only numbers
+        self.lineChart.leftAxis.enabled = false // remove the left x axis
+        self.lineChart.xAxis.granularityEnabled = true
+        self.lineChart.xAxis.granularity = 1.0
+        self.lineChart.xAxis.labelCount = self.lineChartEntries.count
+        
+        // For Y axis
+        self.lineChart.rightAxis.labelPosition = .outsideChart
+        self.lineChart.rightAxis.drawGridLinesEnabled = false
+        self.lineChart.rightAxis.drawAxisLineEnabled = false
+        
+        // Disable zooming
+        self.lineChart.scaleYEnabled = false
+        self.lineChart.scaleXEnabled = false
+        self.lineChart.setScaleEnabled(false)
+        
+        // Animation
+        self.lineChart.animate(xAxisDuration: 2.0, yAxisDuration: 2.0)
+        
+        // Setup x axis values to have a date string as the x-axis
+        let xValuesNumberFormatter = ChartXAxisFormatter(xLabels: self.xLabels) // Plug in x values into our custom XAxisFormatter class
+        self.lineChart.xAxis.valueFormatter = xValuesNumberFormatter
+        
+        // Create data set from entries
+        let set = LineChartDataSet(entries: self.lineChartEntries)
+        set.colors = colors
+        set.label = "Appointments" // The title next to the data set
+        
+        let data = LineChartData(dataSet: set)
+        
+        if !self.lineChartEntries.isEmpty {
+            lineChart.data = data
+        } else {
+            lineChart.data = nil
+        }
+        
+        self.lineChart.notifyDataSetChanged()
+    }
+    
+    func setupChart() {
+        // Add charts view to chart container views
+        self.chartContainerView.addSubview(self.barChart)
+        
+        let noDataText = "No data available"
+        self.barChart.noDataText = noDataText
         self.barChart.translatesAutoresizingMaskIntoConstraints = false
         
         // Set constraints
@@ -71,7 +138,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         self.barChart.leftAxis.enabled = false // remove the left x axis
         self.barChart.xAxis.granularityEnabled = true
         self.barChart.xAxis.granularity = 1.0
-        self.barChart.xAxis.labelCount = self.chartEntries.count
+        self.barChart.xAxis.labelCount = self.barChartEntries.count
         
         // For Y axis
         self.barChart.rightAxis.labelPosition = .outsideChart
@@ -91,13 +158,13 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         self.barChart.xAxis.valueFormatter = xValuesNumberFormatter
         
         // Create data set from entries
-        let set = BarChartDataSet(entries: self.chartEntries)
+        let set = BarChartDataSet(entries: self.barChartEntries)
         set.colors = colors
         set.label = "Leads" // The title next to the data set
         
         let data = BarChartData(dataSet: set)
         
-        if !self.chartEntries.isEmpty {
+        if !self.barChartEntries.isEmpty {
             barChart.data = data
         } else {
             barChart.data = nil
@@ -168,7 +235,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
             switch result {
                 case .success(let chartData):
                     // Remove all previous data from the entries and x labels array
-                    self?.chartEntries.removeAll()
+                    self?.barChartEntries.removeAll()
                     self?.xLabels.removeAll()
                     
                     guard let startDate = (chartData.map {$0.dateDate}).min() else { return }
@@ -200,7 +267,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
                         self?.xLabels.append(dateString)
                         
                         let chartEntry = BarChartDataEntry(x: Double(number), y: count)
-                        self?.chartEntries.append(chartEntry)
+                        self?.barChartEntries.append(chartEntry)
                     }
             
                 case .failure(let error):
@@ -234,7 +301,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
             switch result {
                 case .success(let chartData):
                     // Remove all previous data from the entries and x labels array
-                    self?.chartEntries.removeAll()
+                    self?.barChartEntries.removeAll()
                     self?.xLabels.removeAll()
                     
                     let dateFormatter = DateFormatter()
@@ -273,7 +340,83 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
                         self?.xLabels.append(dateString)
                         
                         let chartEntry = BarChartDataEntry(x: Double(number), y: count)
-                        self?.chartEntries.append(chartEntry)
+                        self?.barChartEntries.append(chartEntry)
+                    }
+                    
+                case .failure(let error):
+                    // Update chart data
+                    self?.barChart.data = nil
+                    self?.barChart.notifyDataSetChanged()
+                    self?.showPopUpOk(error: error)
+            }
+            
+            guard let unwrappedCompletion = completion else { return }
+            unwrappedCompletion()
+            self?.removeSpinner()
+            
+        }
+    }
+    
+    func getMonthChartData(completion: (() -> Void)?) {
+        // Gets chart data from the database
+        
+        self.showSpinner(for: self.ipadChartContainerView, textForLabel: nil)
+        
+        let httpRequest = HTTPRequests()
+        guard
+            let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
+            let email = customer.email,
+            let password = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue)
+        else { return }
+        let customerUserId = customer.id
+        
+        let parameters: [String: Any] = ["email": email as Any, "password": password as Any, "customerUserId": customerUserId as Any]
+        httpRequest.request(endpoint: "/chartDataMonth.php", dataModel: [ChartDataMonthlyModel].self, parameters: parameters) {
+            [weak self] (result) in
+            
+            switch result {
+                case .success(let chartData):
+                    // Remove all previous data from the entries and x labels array
+                    self?.barChartEntries.removeAll()
+                    self?.xLabels.removeAll()
+                    
+                    let dateFormatter = DateFormatter()
+                    let calendar = Calendar.current
+                    
+                    let currentDate = Date()
+                    guard let startDate = calendar.date(byAdding: .year, value: -1, to: currentDate) else { return } // Get date from one year ago as starting point and add 1 month during each loop
+                    
+                    // Bind data to a variables
+                    for number in 0..<12 { // We want 12 months of data points to represent a year of data
+                        
+                        var count = 0.0 // Set count to zero for the month as default
+                        guard let date = calendar.date(byAdding: .month, value: number, to: startDate) else { return }
+                        
+                        dateFormatter.dateFormat = "MMM"
+                        let monthFromDate = dateFormatter.string(from: date) // Returns shorthand of month Ex: 'Apr'
+                        
+                        dateFormatter.dateFormat = "yyyy"
+                        let yearFromDate = dateFormatter.string(from: date) // Returns year as yyyy Ex: '2020'
+                        
+                        let dateString = "\(monthFromDate)\n\(yearFromDate)" // Returns with month then year Ex: 'Apr 2020'
+                        
+                        for data in chartData {
+                            
+                            let monthFromData = data.month
+                            let yearFromData = data.year
+                            
+                            if monthFromData == monthFromDate && yearFromDate == yearFromData {
+                                count = Double(data.count) // Change count from zero to the number in the data
+                            }
+                            
+                            
+                        }
+                        
+                        // Add to x labels array
+                        self?.xLabels.append(dateString)
+                        
+                        let chartEntry = BarChartDataEntry(x: Double(number), y: count)
+                        self?.barChartEntries.append(chartEntry)
                     }
                     
                 case .failure(let error):
