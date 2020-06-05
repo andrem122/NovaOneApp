@@ -18,7 +18,6 @@ class SignUpCompanyAddressViewController: BaseSignUpViewController, GMSAutocompl
     @IBOutlet weak var mapView: MKMapView!
     var resultsViewController: GMSAutocompleteResultsViewController?
     var searchController: UISearchController?
-    var resultView: UITextView?
     
     // MARK: Methods
     override func viewDidLoad() {
@@ -49,10 +48,12 @@ class SignUpCompanyAddressViewController: BaseSignUpViewController, GMSAutocompl
         
         // Setup results view controller
         self.resultsViewController = GMSAutocompleteResultsViewController()
+        //self.resultsViewController?.view.backgroundColor = UIColor(named: "googleSearchBackgroundColor")
         self.resultsViewController?.delegate = self
         
         // Setup search controller
         self.searchController = UISearchController()
+        //self.searchController?.view.backgroundColor = UIColor(named: "googleSearchBackgroundColor")
         self.searchController?.searchResultsUpdater = self.resultsViewController
         
         // Add the search bar to the right of the nav bar,
