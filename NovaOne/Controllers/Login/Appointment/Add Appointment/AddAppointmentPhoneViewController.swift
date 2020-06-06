@@ -8,23 +8,29 @@
 
 import UIKit
 
-class AddAppointmentPhoneViewController: UIViewController {
-
+class AddAppointmentPhoneViewController: AddAppointmentBaseViewController {
+    
+    // MARK: Properties
+    @IBOutlet weak var appointmentPhoneTextField: NovaOneTextField!
+    @IBOutlet weak var continueButton: NovaOneButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // MARK: Actions
+    @IBAction func appointmentPhoneTextFieldChanged(_ sender: Any) {
+        UIHelper.toggle(button: self.continueButton, textField: self.appointmentPhoneTextField, enabledColor: Defaults.novaOneColor, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false, closure: nil)
     }
-    */
-
+    
+    @IBAction func continueButtonTapped(_ sender: Any) {
+        guard let addAppointmentTimeViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addAppointmentTime.rawValue) as? AddAppointmentTimeViewController else { return }
+        
+        guard let phoneNumber = self.appointmentPhoneTextField.text else { return }
+        self.appointment?.phoneNumber = phoneNumber
+        addAppointmentTimeViewController.appointment = self.appointment
+        
+        self.navigationController?.pushViewController(addAppointmentTimeViewController, animated: true)
+    }
 }

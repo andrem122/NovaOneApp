@@ -155,7 +155,8 @@ class AppointmentsTableViewController: UITableViewController, NovaOneTableView {
                     coreDataAppointment.dateOfBirth = appointment.dateOfBirthDate
                     coreDataAppointment.email = appointment.email
                     coreDataAppointment.gender = appointment.gender
-                    coreDataAppointment.id = Int32(appointment.id)
+                    guard let id = appointment.id else { return }
+                    coreDataAppointment.id = Int32(id)
                     coreDataAppointment.name = appointment.name
                     coreDataAppointment.phoneNumber = appointment.phoneNumber
                     coreDataAppointment.testType = appointment.testType
@@ -190,7 +191,7 @@ class AppointmentsTableViewController: UITableViewController, NovaOneTableView {
                                          "password": password as Any,
                                          "lastObjectId": unwrappedLastObjectId as Any]
         
-        httpRequest.request(endpoint: endpoint,
+        httpRequest.request(url: Defaults.apiUrl + endpoint,
                             dataModel: [AppointmentModel].self,
                             parameters: parameters) { [weak self] (result) in
                                 

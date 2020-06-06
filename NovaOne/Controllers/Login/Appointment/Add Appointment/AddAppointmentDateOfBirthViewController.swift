@@ -8,10 +8,16 @@
 
 import UIKit
 
-class AddAppointmentDateOfBirthViewController: UIViewController {
-
+class AddAppointmentDateOfBirthViewController: AddAppointmentBaseViewController {
+    
+    // MARK: Properties
+    @IBOutlet weak var continueButton: NovaOneButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
+    // MARK: Actions
+    @IBAction func continueButtonTapped(_ sender: Any) {
+    }
 }

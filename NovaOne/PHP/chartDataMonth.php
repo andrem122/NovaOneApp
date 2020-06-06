@@ -22,7 +22,7 @@
     ON a.company_id IN (SELECT id FROM property_company WHERE customer_user_id = :customer_user_id)
     AND d.date = TO_CHAR(DATE_TRUNC('day', a.created), 'YYYY-MM-DD')
     GROUP BY d.date
-    ORDER BY d.date DESC;
+    ORDER BY d.date ASC;
     ";
     
     // query the database and echo results

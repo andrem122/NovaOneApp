@@ -110,7 +110,7 @@ class AddCompanyHoursEnabledViewController: UIViewController, UITableViewDataSou
                                             "companyZip": companyZip]
         
         let httpRequest = HTTPRequests()
-        httpRequest.request(endpoint: "/signup.php", dataModel: SuccessResponse.self, parameters: parameters) {
+        httpRequest.request(url: Defaults.apiUrl + "/signup.php", dataModel: SuccessResponse.self, parameters: parameters) {
             [weak self] (result) in
             
             switch result {
@@ -130,7 +130,7 @@ class AddCompanyHoursEnabledViewController: UIViewController, UITableViewDataSou
         
             let httpRequest = HTTPRequests()
             let parameters: [String: Any] = ["email": email, "password": password]
-            httpRequest.request(endpoint: "/login.php", dataModel: CustomerModel.self, parameters: parameters) { [weak self] (result) in
+            httpRequest.request(url: Defaults.apiUrl + "/login.php", dataModel: CustomerModel.self, parameters: parameters) { [weak self] (result) in
                 
                 switch result {
                     case .success(let customer):
@@ -202,13 +202,13 @@ class AddCompanyHoursEnabledViewController: UIViewController, UITableViewDataSou
     // MARK: Actions
     @IBAction func addCompanyButtonTapped(_ sender: Any) {
         
-        let didSelectHours = AddCompanyHelper.optionIsSelected(options: self.hoursOfTheDayAM + self.hoursOfTheDayPM)
+        let didSelectHours = EnableOptionHelper.optionIsSelected(options: self.hoursOfTheDayAM + self.hoursOfTheDayPM)
         if didSelectHours {
             
             if self.userIsSigningUp {
                 // Make POST request with customer data to API
                 self.showSpinner(for: view, textForLabel: "Signing Up")
-                let selectedOptionsString = AddCompanyHelper.getSelectedOptions(options: self.hoursOfTheDayAM + self.hoursOfTheDayPM)
+                let selectedOptionsString = EnableOptionHelper.getSelectedOptions(options: self.hoursOfTheDayAM + self.hoursOfTheDayPM)
                 self.company?.hoursOfTheDayEnabled = selectedOptionsString
                 
                 // Sign up user

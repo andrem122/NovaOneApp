@@ -1,5 +1,5 @@
 //
-//  AddCompanyTableViewUtils.swift
+//  EnableOptionHelper.swift
 //  NovaOne
 //
 //  Created by Andre Mashraghi on 5/15/20.
@@ -7,7 +7,7 @@
 //
 
 import Foundation
-struct AddCompanyHelper {
+struct EnableOptionHelper {
     // A collection of useful functions used for add company table views
     
     static func optionIsSelected(options: [EnableOption]) -> Bool {

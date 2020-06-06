@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddAppointmentNameViewController: UIViewController {
+class AddAppointmentNameViewController: AddAppointmentBaseViewController, UITextFieldDelegate {
     
     // MARK: Properties
     @IBOutlet weak var appointmentNameTextField: NovaOneTextField!
@@ -17,11 +17,32 @@ class AddAppointmentNameViewController: UIViewController {
     // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.appointmentNameTextField.delegate = self
+        UIHelper.disable(button: continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
     }
     
     // MARK: Actions
-    @IBAction func cancelButtonTapped(_ sender: Any) {
-        self.presentingViewController?.dismiss(animated: true, completion: nil)
+    @IBAction func continueButtonTapped(_ sender: Any) {
+        guard let addPhoneViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addAppointmentPhone.rawValue) as? AddAppointmentPhoneViewController else { return }
+        
+        guard let name = self.appointmentNameTextField.text else { return }
+        self.appointment?.name = name
+        addPhoneViewController.appointment = self.appointment
+        
+        self.navigationController?.pushViewController(addPhoneViewController, animated: true)
     }
     
+    
+    @IBAction func appointmentNameTextFieldChanged(_ sender: Any) {
+        UIHelper.toggle(button: self.continueButton, textField: self.appointmentNameTextField, enabledColor: Defaults.novaOneColor, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false, closure: nil)
+    }
+    
+    
+}
+
+extension AddAppointmentNameViewController {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.continueButton.sendActions(for: .touchUpInside)
+        return true
+    }
 }

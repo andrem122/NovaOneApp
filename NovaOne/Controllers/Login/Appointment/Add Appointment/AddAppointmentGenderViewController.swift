@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddAppointmentGenderViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class AddAppointmentGenderViewController: AddAppointmentBaseViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     // MARK: Properties
     @IBOutlet weak var genderPicker: UIPickerView!
@@ -23,7 +23,11 @@ class AddAppointmentGenderViewController: UIViewController, UIPickerViewDelegate
         self.genderPicker.delegate = self
         self.genderPicker.dataSource = self
     }
-
+    
+    // MARK: Actions
+    @IBAction func addAppointmentButtonTapped(_ sender: Any) {
+    }
+    
 }
 
 extension AddAppointmentGenderViewController {

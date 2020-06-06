@@ -22,6 +22,9 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
     @IBOutlet weak var ipadChartContainerView: UIView!
     @IBOutlet weak var segmentControl: UISegmentedControl!
     @IBOutlet weak var chartTitle: UILabel!
+    @IBOutlet weak var leadsStackView: UIStackView!
+    @IBOutlet weak var companiesStackView: UIStackView!
+    @IBOutlet weak var appointmentsStackView: UIStackView!
     let alertService = AlertService()
     var barChart = BarChartView()
     var lineChart = LineChartView()
@@ -46,10 +49,54 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
             [weak self] in
             self?.setupBarChart()
         }
-        self.getMonthChartData {
-            [weak self] in
-            self?.setupLineChart()
+        
+        // For iPad - only set up the line chart if we are in the regular width and regular height size class
+        switch self.getSizeClass() {
+            case (.unspecified, .unspecified):
+                print("Unknown")
+            case (.unspecified, .compact):
+                print("Unknown width, compact height")
+            case (.unspecified, .regular):
+                print("Unknown width, regular height")
+            case (.compact, .unspecified):
+                print("Compact width, unknown height")
+            case (.regular, .unspecified):
+                print("Regular width, unknown height")
+            case (.regular, .compact):
+                print("Regular width, compact height")
+            case (.compact, .compact):
+                print("Compact width, compact height")
+            case (.regular, .regular):
+                print("Regular width, regular height")
+                self.getMonthChartData {
+                    [weak self] in
+                    self?.setupLineChart()
+                }
+            case (.compact, .regular):
+                print("Compact width, regular height")
+            case (_, _):
+                print("All sizes")
         }
+    }
+    
+    func createSpinnerForIpadChart() -> UIView {
+        // Shows a spinner for the ipad chart because we cant have two spinners at a time in one view
+        let spinnerView = UIView.init(frame: self.ipadChartContainerView.bounds)
+        self.ipadChartContainerView.addSubview(spinnerView)
+        spinnerView.backgroundColor = UIColor(named: Defaults.Colors.view.rawValue)
+        
+        // Create the spinner that goes in the center of the spinner view
+        let spinner = UIActivityIndicatorView(style: .medium)
+        spinnerView.addSubview(spinner)
+        spinner.startAnimating()
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        spinner.color = UIColor(named: Defaults.Colors.textField.rawValue)
+        
+        // Add constraints
+        let xConstraint = NSLayoutConstraint(item: spinner, attribute: .centerX, relatedBy: .equal, toItem: spinnerView, attribute: .centerX, multiplier: 1, constant: 0)
+        let yConstraint = NSLayoutConstraint(item: spinner, attribute: .centerY, relatedBy: .equal, toItem: spinnerView, attribute: .centerY, multiplier: 1, constant: 0)
+        NSLayoutConstraint.activate([xConstraint, yConstraint])
+        return spinnerView
     }
     
     func setupLineChart() {
@@ -99,11 +146,16 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         let xValuesNumberFormatter = ChartXAxisFormatter(xLabels: self.lineChartXLabels) // Plug in x values into our custom XAxisFormatter class
         self.lineChart.xAxis.valueFormatter = xValuesNumberFormatter
         
+        // Font size
+        self.lineChart.xAxis.labelFont = UIFont.systemFont(ofSize: 11)
+        self.lineChart.rightAxis.labelFont = UIFont.systemFont(ofSize: 11)
+        
         // Create data set from entries
         let set = LineChartDataSet(entries: self.lineChartEntries)
         set.circleColors = colors
         set.lineWidth = 2
         set.colors = colors
+        set.valueFont = UIFont.systemFont(ofSize: 10)
         set.label = "Appointments" // The title next to the data set
         
         let data = LineChartData(dataSet: set)
@@ -164,9 +216,13 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         let xValuesNumberFormatter = ChartXAxisFormatter(xLabels: self.barChartXLabels) // Plug in x values into our custom XAxisFormatter class
         self.barChart.xAxis.valueFormatter = xValuesNumberFormatter
         
+        self.barChart.xAxis.labelFont = UIFont.systemFont(ofSize: 11)
+        self.barChart.rightAxis.labelFont = UIFont.systemFont(ofSize: 11)
+        
         // Create data set from entries
         let set = BarChartDataSet(entries: self.barChartEntries)
         set.colors = colors
+        set.valueFont = UIFont.systemFont(ofSize: 11)
         set.label = "Leads" // The title next to the data set
         
         let data = BarChartData(dataSet: set)
@@ -198,10 +254,10 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         
     }
     
-    func addGestureRecognizer(to label: UILabel, selector: Selector) {
+    func addGestureRecognizer(to stackView: UIStackView, selector: Selector) {
         let tap = UITapGestureRecognizer(target: self, action: selector)
-        label.isUserInteractionEnabled = true
-        label.addGestureRecognizer(tap)
+        stackView.isUserInteractionEnabled = true
+        stackView.addGestureRecognizer(tap)
     }
     
     func setupNumberLabels() {
@@ -216,9 +272,9 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         self.numberOfCompaniesLabel.text = String(companyCount)
         
         // Add gesture recognizers, so that when the labels are tapped, something happens
-        self.addGestureRecognizer(to: self.numberOfLeadsLabel, selector: #selector(HomeViewController.numberOfLeadsLabelTapped))
-        self.addGestureRecognizer(to: self.numberOfAppointmentsLabel, selector: #selector(HomeViewController.numberOfAppointmentsLabelTapped))
-        self.addGestureRecognizer(to: self.numberOfCompaniesLabel, selector: #selector(HomeViewController.numberOfCompaniesLabelTapped))
+        self.addGestureRecognizer(to: self.leadsStackView, selector: #selector(HomeViewController.numberOfLeadsLabelTapped))
+        self.addGestureRecognizer(to: self.appointmentsStackView, selector: #selector(HomeViewController.numberOfAppointmentsLabelTapped))
+        self.addGestureRecognizer(to: self.companiesStackView, selector: #selector(HomeViewController.numberOfCompaniesLabelTapped))
         
     }
     
@@ -236,7 +292,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         let customerUserId = customer.id
         
         let parameters: [String: Any] = ["email": email as Any, "password": password as Any, "customerUserId": customerUserId as Any]
-        httpRequest.request(endpoint: "/chartDataWeekly.php", dataModel: [ChartDataWeeklyModel].self, parameters: parameters) {
+        httpRequest.request(url: Defaults.apiUrl + "/chartDataWeekly.php", dataModel: [ChartDataWeeklyModel].self, parameters: parameters) {
             [weak self] (result) in
             
             switch result {
@@ -302,7 +358,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         let customerUserId = customer.id
         
         let parameters: [String: Any] = ["email": email as Any, "password": password as Any, "customerUserId": customerUserId as Any]
-        httpRequest.request(endpoint: "/chartDataMonthly.php", dataModel: [ChartDataMonthlyModel].self, parameters: parameters) {
+        httpRequest.request(url: Defaults.apiUrl + "/chartDataMonthly.php", dataModel: [ChartDataMonthlyModel].self, parameters: parameters) {
             [weak self] (result) in
             
             switch result {
@@ -367,8 +423,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
     func getMonthChartData(completion: (() -> Void)?) {
         // Gets chart data from the database
         
-        self.showSpinner(for: self.ipadChartContainerView, textForLabel: nil)
-        
+        let spinnerView = createSpinnerForIpadChart()
         let httpRequest = HTTPRequests()
         guard
             let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
@@ -378,7 +433,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         let customerUserId = customer.id
         
         let parameters: [String: Any] = ["email": email as Any, "password": password as Any, "customerUserId": customerUserId as Any]
-        httpRequest.request(endpoint: "/chartDataMonth.php", dataModel: [ChartDataMonthModel].self, parameters: parameters) {
+        httpRequest.request(url: Defaults.apiUrl + "/chartDataMonth.php", dataModel: [ChartDataMonthModel].self, parameters: parameters) {
             [weak self] (result) in
             
             switch result {
@@ -407,7 +462,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
             
             guard let unwrappedCompletion = completion else { return }
             unwrappedCompletion()
-            self?.removeSpinner()
+            spinnerView.removeFromSuperview()
             
         }
     }
@@ -424,7 +479,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         let customerUserId = customer.id
         
         let parameters: [String: Any] = ["email": email as Any, "password": password as Any, "customerUserId": customerUserId as Any]
-        httpRequest.request(endpoint: "/objectCounts.php", dataModel: [ObjectCountModel].self, parameters: parameters) {
+        httpRequest.request(url: Defaults.apiUrl + "/objectCounts.php", dataModel: [ObjectCountModel].self, parameters: parameters) {
             [weak self] (result) in
             
             switch result {
@@ -467,13 +522,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
     }
     
     @IBAction func numberOfCompaniesLabelTapped(sender: UITapGestureRecognizer) {
-        
-        self.tabBarController?.selectedIndex = 3 // Account view
-        guard let accountTableViewController = self.tabBarController?.viewControllers?[3] as? UITableViewController else { return }
-        guard let companiesContainerViewController = self.storyboard?.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.companiesContainer.rawValue) as? CompaniesContainerViewController else { return }
-
-        accountTableViewController.navigationController?.pushViewController(companiesContainerViewController, animated: true)
-        
+        self.tabBarController?.selectedIndex = 4 // Companies view
     }
     
     

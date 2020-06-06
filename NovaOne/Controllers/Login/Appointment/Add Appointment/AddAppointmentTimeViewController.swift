@@ -8,21 +8,13 @@
 
 import UIKit
 
-class AddAppointmentTimeViewController: UIViewController {
-
+class AddAppointmentTimeViewController: AddAppointmentBaseViewController {
+    
+    // MARK: Properties
+    @IBOutlet weak var appointmentTimePicker: UIDatePicker!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    func navigate<T: UIViewController>(to viewController: String, viewControllerType: T.Type) {
-        // Navigates to a view controller by pushing it onto the navigation controller stack
-        if let viewController = self.storyboard?.instantiateViewController(identifier: viewController) as? T {
-            
-            // Need to access the navigation controller because we want to push the view controller
-            // onto the navigation stack because it is not connected in the storyboard
-            self.navigationController?.pushViewController(viewController, animated: true)
-            
-        }
     }
     
     // MARK: Actions
@@ -32,16 +24,25 @@ class AddAppointmentTimeViewController: UIViewController {
             let customer = PersistenceService.fetchCustomerEntity(),
             let customerType = customer.customerType
         else { return }
+        let appointmentTime = DateHelper.createString(from: self.appointmentTimePicker.date, format: "yyyy-MM-dd HH:mm:ss zzz")
+        self.appointment?.time = appointmentTime
         
         // For property managers
         if customerType == Defaults.CustomerTypes.propertyManager.rawValue {
             
             // Navigate to add appointment unit type view controller
-            self.navigate(to: Defaults.ViewControllerIdentifiers.addAppointmentUnitType.rawValue, viewControllerType: AddAppointmentUnitTypeViewController.self)
+            guard let addAppointmentUnitTypeViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addAppointmentUnitType.rawValue) as? AddAppointmentUnitTypeViewController else { return }
+            addAppointmentUnitTypeViewController.appointment = self.appointment
+            self.navigationController?.pushViewController(addAppointmentUnitTypeViewController, animated: true)
+            
             
         } else if customerType == Defaults.CustomerTypes.medicalWorker.rawValue {
+            
             // Navigate to add appointment email view controller
-            self.navigate(to: Defaults.ViewControllerIdentifiers.addAppointmentEmail.rawValue, viewControllerType: AddAppointmentEmailViewController.self)
+            guard let addAppointmentEmailViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addAppointmentEmail.rawValue) as? AddAppointmentEmailViewController else { return }
+            addAppointmentEmailViewController.appointment = self.appointment
+            self.navigationController?.pushViewController(addAppointmentEmailViewController, animated: true)
+            
         }
         
     }

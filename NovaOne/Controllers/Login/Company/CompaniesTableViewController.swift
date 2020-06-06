@@ -204,7 +204,7 @@ class CompaniesTableViewController: UITableViewController, NovaOneTableView {
                                          "password": password as Any,
                                          "lastObjectId": unwrappedLastObjectId as Any]
         
-        httpRequest.request(endpoint: endpoint,
+        httpRequest.request(url: Defaults.apiUrl + endpoint,
                             dataModel: [CompanyModel].self,
                             parameters: parameters) { [weak self] (result) in
                                 

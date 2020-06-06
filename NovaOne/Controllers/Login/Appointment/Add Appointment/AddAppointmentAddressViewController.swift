@@ -8,10 +8,21 @@
 
 import UIKit
 
-class AddAppointmentAddressViewController: UIViewController {
-
+class AddAppointmentAddressViewController: AddAppointmentBaseViewController {
+    
+    // MARK: Properties
+    @IBOutlet weak var addressTextField: NovaOneTextField!
+    @IBOutlet weak var continueButton: NovaOneButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
+    // MARK: Actions
+    
+    @IBAction func addressTextFieldChanged(_ sender: Any) {
+    }
+    @IBAction func continueButtonTapped(_ sender: Any) {
+    }
+    
 }

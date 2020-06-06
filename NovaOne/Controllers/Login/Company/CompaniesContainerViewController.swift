@@ -98,7 +98,7 @@ class CompaniesContainerViewController: UIViewController {
                                          "email": email as Any,
                                          "password": password as Any]
         
-        httpRequest.request(endpoint: "/companies.php",
+        httpRequest.request(url: Defaults.apiUrl + "/companies.php",
                             dataModel: [CompanyModel].self,
                             parameters: parameters) {
                                 [weak self] (result) in

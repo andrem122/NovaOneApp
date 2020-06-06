@@ -11,11 +11,11 @@ import UIKit
 struct AppointmentModel: Decodable {
 
     // MARK: Properties
-    var id: Int
+    var id: Int?
     var name: String
     var phoneNumber: String
     var time: String
-    var created: String
+    var created: String?
     var timeZone: String
     var confirmed: Bool
     var companyId: Int
@@ -36,7 +36,8 @@ struct AppointmentModel: Decodable {
     
     var createdDate: Date {
         get {
-            return DateHelper.createDate(from: self.created, format: "yyyy-MM-dd HH:mm:ss zzz")
+            guard let created = self.created else { return Date() }
+            return DateHelper.createDate(from: created, format: "yyyy-MM-dd HH:mm:ss zzz")
         }
 
     }

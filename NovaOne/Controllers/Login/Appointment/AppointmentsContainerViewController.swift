@@ -53,7 +53,8 @@ class AppointmentsContainerViewController: UIViewController {
                     coreDataAppointment.dateOfBirth = appointment.dateOfBirthDate
                     coreDataAppointment.email = appointment.email
                     coreDataAppointment.gender = appointment.gender
-                    coreDataAppointment.id = Int32(appointment.id)
+                    guard let id = appointment.id else { return }
+                    coreDataAppointment.id = Int32(id)
                     coreDataAppointment.name = appointment.name
                     coreDataAppointment.phoneNumber = appointment.phoneNumber
                     coreDataAppointment.testType = appointment.testType
@@ -86,7 +87,7 @@ class AppointmentsContainerViewController: UIViewController {
                                          "email": email as Any,
                                          "password": password as Any]
         
-        httpRequest.request(endpoint: "/appointments.php",
+        httpRequest.request(url: Defaults.apiUrl + "/appointments.php",
                             dataModel: [AppointmentModel].self,
                             parameters: parameters) {
                                 [weak self] (result) in

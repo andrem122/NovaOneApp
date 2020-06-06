@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddAppointmentUnitTypeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class AddAppointmentUnitTypeViewController: AddAppointmentBaseViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     // MARK: Properties
     @IBOutlet weak var unitTypePicker: UIPickerView!
@@ -17,12 +17,44 @@ class AddAppointmentUnitTypeViewController: UIViewController, UIPickerViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupPicker()
-        //self.setupBackButton()
+        self.setUnitTypeDefaultValue()
+    }
+    
+    func setUnitTypeDefaultValue() {
+        // Sets the default value for unit type if the user does not pick from the picker
+        self.appointment?.unitType = self.unitTypes.first
     }
     
     func setupPicker() {
         self.unitTypePicker.delegate = self
         self.unitTypePicker.dataSource = self
+    }
+    
+    // MARK: Actions
+    @IBAction func addAppointmentButtonTapped(_ sender: Any) {
+        self.showSpinner(for: self.view, textForLabel: "Adding Appointment...")
+        print(self.appointment as Any)
+        guard
+            let companyId = self.appointment?.companyId,
+            let name = self.appointment?.name,
+            let phoneNumber = self.appointment?.phoneNumber,
+            let unitType = self.appointment?.unitType,
+            let time = self.appointment?.time
+        else { return }
+        let url = "https://www.novaonesoftware.com/appointments/new?c=\(companyId)"
+        print(url)
+        
+        let httpRequest = HTTPRequests()
+        let parameters = ["name": name, "unit_type": unitType, "phone_number": phoneNumber, "time": time]
+        httpRequest.request(url: url, dataModel: AppointmentResponse.self, parameters: parameters) {
+            (result) in
+            switch result {
+            case .success(let appointmentResponse):
+                print(appointmentResponse.reason)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
     
 }
@@ -42,5 +74,9 @@ extension AddAppointmentUnitTypeViewController {
     // The value to show for each row in the picker
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return self.unitTypes[row] // Get the string in the unitTypes array and display it for each row in the picker
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.appointment?.unitType = self.unitTypes[row]
     }
 }

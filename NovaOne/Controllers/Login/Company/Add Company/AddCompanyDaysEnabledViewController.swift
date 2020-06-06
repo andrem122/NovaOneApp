@@ -42,11 +42,11 @@ class AddCompanyDaysEnabledViewController: UIViewController, UITableViewDelegate
     
     // MARK: Actions
     @IBAction func continueButtonTapped(_ sender: Any) {
-        if AddCompanyHelper.optionIsSelected(options: self.daysOfTheWeek) == true {
+        if EnableOptionHelper.optionIsSelected(options: self.daysOfTheWeek) == true {
             guard let addCompanyHoursEnabledViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addCompanyHoursEnabled.rawValue) as? AddCompanyHoursEnabledViewController else { return }
             
             // Get selected options and pass objects
-            let selectedOptionsString = AddCompanyHelper.getSelectedOptions(options: self.daysOfTheWeek)
+            let selectedOptionsString = EnableOptionHelper.getSelectedOptions(options: self.daysOfTheWeek)
             self.company?.daysOfTheWeekEnabled = selectedOptionsString
             addCompanyHoursEnabledViewController.userIsSigningUp = true
             addCompanyHoursEnabledViewController.company = self.company

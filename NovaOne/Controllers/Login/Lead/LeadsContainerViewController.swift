@@ -84,7 +84,7 @@ class LeadsContainerViewController: UIViewController, NovaOneObjectContainer {
                                          "email": email as Any,
                                          "password": password as Any]
         
-        httpRequest.request(endpoint: "/leads.php",
+        httpRequest.request(url: Defaults.apiUrl + "/leads.php",
                             dataModel: [LeadModel].self,
                             parameters: parameters) {
                                 [weak self] (result) in

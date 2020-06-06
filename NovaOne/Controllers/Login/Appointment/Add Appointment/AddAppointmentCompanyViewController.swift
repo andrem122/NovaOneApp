@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class AddAppointmentCompanyViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class AddAppointmentCompanyViewController: AddAppointmentBaseViewController, UITableViewDelegate, UITableViewDataSource {
     
     // MARK: Properties
     @IBOutlet weak var tableView: UITableView!
@@ -39,17 +39,35 @@ class AddAppointmentCompanyViewController: UIViewController, UITableViewDelegate
         // Set up attributes for options array
         let companies = PersistenceService.fetchEntity(Company.self, filter: nil, sort: nil)
         for company in companies {
-            
             guard let companyName = company.name else { return }
             let option = EnableOption(option: companyName, selected: false, id: Int(company.id))
             self.options.append(option)
-            
         }
     }
     
     // MARK: Actions
     @IBAction func cancelButtonTapped(_ sender: Any) {
         self.presentingViewController?.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func continueButtonTapped(_ sender: Any) {
+        // Check if item was selected in table
+        if EnableOptionHelper.optionIsSelected(options: self.options) == true {
+            guard let addAppointmentNameViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addAppointmentName.rawValue) as? AddAppointmentNameViewController else { return }
+            
+            // Get selected options and pass objects
+            let selectedOption = self.options.filter({ $0.selected == true }).first
+            guard let companyId = selectedOption?.id else { return }
+            
+            // Create appointment model object and pass company id to it
+            self.appointment = AppointmentModel(id: nil, name: "", phoneNumber: "", time: "", created: nil, timeZone: "US/Eastern", confirmed: false, companyId: companyId, unitType: "", email: "", dateOfBirth: "", testType: "", gender: "", address: "")
+            addAppointmentNameViewController.appointment = self.appointment
+            
+            self.navigationController?.pushViewController(addAppointmentNameViewController, animated: true)
+        } else {
+            let popUpOkViewController = self.alertService.popUpOk(title: "Select A Company", body: "Please select a company.")
+            self.present(popUpOkViewController, animated: true, completion: nil)
+        }
     }
     
 }

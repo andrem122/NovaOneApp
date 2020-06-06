@@ -164,7 +164,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         let httpRequest = HTTPRequests()
         let parameters: [String: Any] = ["email": email, "password": password]
-        httpRequest.request(endpoint: "/login.php", dataModel: CustomerModel.self, parameters: parameters) {
+        httpRequest.request(url: Defaults.apiUrl + "/login.php", dataModel: CustomerModel.self, parameters: parameters) {
             [weak self] (result) in
             
             // Use a switch statement to go through the cases of the Result eumeration
@@ -243,7 +243,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let customerUserId = customer.id
         
         let parameters: [String: Any] = ["email": email as Any, "password": password as Any, "customerUserId": customerUserId as Any]
-        httpRequest.request(endpoint: "/companies.php", dataModel: [CompanyModel].self, parameters: parameters) {
+        httpRequest.request(url: Defaults.apiUrl + "/companies.php", dataModel: [CompanyModel].self, parameters: parameters) {
             (result) in
             
             switch result {

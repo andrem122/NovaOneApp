@@ -187,7 +187,7 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
                                          "password": password as Any,
                                          "lastObjectId": unwrappedLastObjectId as Any]
         
-        httpRequest.request(endpoint: endpoint,
+        httpRequest.request(url: Defaults.apiUrl + endpoint,
                             dataModel: [LeadModel].self,
                             parameters: parameters) { [weak self] (result) in
                                 

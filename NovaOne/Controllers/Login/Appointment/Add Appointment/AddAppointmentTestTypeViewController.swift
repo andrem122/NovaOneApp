@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddAppointmentTestTypeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class AddAppointmentTestTypeViewController: AddAppointmentBaseViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     // MARK: Properties
     @IBOutlet weak var testTypePicker: UIPickerView!
@@ -32,14 +32,17 @@ class AddAppointmentTestTypeViewController: UIViewController, UIPickerViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupPicker()
-        //self.setupBackButton()
     }
     
     func setupPicker() {
         self.testTypePicker.delegate = self
         self.testTypePicker.dataSource = self
     }
-
+    
+    // MARK: Actions
+    @IBAction func continueButtonTapped(_ sender: Any) {
+    }
+    
 }
 
 extension AddAppointmentTestTypeViewController {

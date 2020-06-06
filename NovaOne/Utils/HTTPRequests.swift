@@ -12,10 +12,6 @@ import Foundation
 // Send HTTP requests to given url
 class HTTPRequests {
     
-    
-    // MARK: Properties
-    let url: String = Defaults.apiUrl
-    
     func handleResponse<DataModel: Decodable>(for request: URLRequest,
                                               dataModel: DataModel.Type,
                                    completion: @escaping (Result<DataModel, Error>) -> Void) -> Void {
@@ -98,7 +94,7 @@ class HTTPRequests {
     
     // Make HTTP request
     // DataModel could be and data model that confroms to the Decodable protocol
-    func request<DataModel: Decodable>(endpoint: String,
+    func request<DataModel: Decodable>(url: String,
                                        dataModel: DataModel.Type,
                             parameters: [String: Any],
                             completion: @escaping (Result<DataModel, Error>) -> Void) {
@@ -109,7 +105,7 @@ class HTTPRequests {
         mutatedParamaters["PHPAuthenticationPassword"] = Defaults.PHPAuthenticationPassword
         
         // Convert url string to URL type
-        guard let url: URL = URL(string: self.url + endpoint) else {
+        guard let url: URL = URL(string: url) else {
             completion(.failure(NetworkingError.badUrl))
             return
         }
@@ -125,6 +121,7 @@ class HTTPRequests {
         }
         
         components.queryItems = queryItems
+        request.setValue("https://www.novaonesoftware.com", forHTTPHeaderField: "Referer")
         
         // Convert query property string (a string that looks like name=Tom&password=266631Asd&height=fiveseven) to Data type
         let queryItemData: Data? = components.query?.data(using: .utf8)
