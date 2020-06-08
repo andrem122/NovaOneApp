@@ -11,8 +11,7 @@ import Foundation
 // Handles the errors from our custom PHP api script
 struct SuccessResponse: Decodable {
     
-    let success: Int
-    let reason: String
+    let successReason: String
     
 }
 

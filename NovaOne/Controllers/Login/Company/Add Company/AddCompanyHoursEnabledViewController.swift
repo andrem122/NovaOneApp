@@ -115,7 +115,7 @@ class AddCompanyHoursEnabledViewController: UIViewController, UITableViewDataSou
             
             switch result {
                 case .success(let successResponse):
-                    print(successResponse.reason)
+                    print(successResponse.successReason)
                     success(email, password)
                 case .failure(let error):
                     guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }

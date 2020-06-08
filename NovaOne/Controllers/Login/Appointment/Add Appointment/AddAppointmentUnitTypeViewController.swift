@@ -41,18 +41,19 @@ class AddAppointmentUnitTypeViewController: AddAppointmentBaseViewController, UI
             let unitType = self.appointment?.unitType,
             let time = self.appointment?.time
         else { return }
-        let url = "https://www.novaonesoftware.com/appointments/new?c=\(companyId)"
+        let url = "https://34df826bce5b.ngrok.io/appointments/new?c=13"
         print(url)
         
         let httpRequest = HTTPRequests()
         let parameters = ["name": name, "unit_type": unitType, "phone_number": phoneNumber, "time": time]
-        httpRequest.request(url: url, dataModel: AppointmentResponse.self, parameters: parameters) {
-            (result) in
+        httpRequest.request(url: url, dataModel: SuccessResponse.self, parameters: parameters) {
+            [weak self] (result) in
             switch result {
-            case .success(let appointmentResponse):
-                print(appointmentResponse.reason)
+            case .success(let success):
+                print(success.successReason)
             case .failure(let error):
-                print(error.localizedDescription)
+                guard let popUpOk = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
+                self?.present(popUpOk, animated: true, completion: nil)
             }
         }
     }

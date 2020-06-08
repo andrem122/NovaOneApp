@@ -53,7 +53,7 @@ class SignUpPhoneViewController: BaseSignUpViewController, UITextFieldDelegate {
                 switch result {
                 case .success(let success):
                     
-                    print(success.reason)
+                    print(success.successReason)
                     guard
                         let customerTypeViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.signUpCustomerType.rawValue) as? SignUpCustomerTypeViewController
                     else { return }

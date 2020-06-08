@@ -64,7 +64,7 @@ class SignUpCompanyPhoneViewController: BaseSignUpViewController, UITextFieldDel
                 switch result {
                 case .success(let success):
                     
-                    print(success.reason)
+                    print(success.successReason)
                     guard
                         let addCompanyDaysEnabledViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addCompanyDaysEnabled.rawValue) as? AddCompanyDaysEnabledViewController
                     else { return }

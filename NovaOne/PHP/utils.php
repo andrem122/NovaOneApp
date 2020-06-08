@@ -185,7 +185,7 @@
                     if ($stmt->rowCount() > 0) {
                         $response_array = array('error' => 8, 'reason' => $column_name_formatted . ' has already been registered. Please use a different ' . strtolower($column_name_formatted) . '.');
                     } else {
-                        $response_array = array('success' => 2, 'reason' => $column_name_formatted . ' not found in database.');
+                        $response_array = array('successReason' => $column_name_formatted . ' not found in database.');
                     }
                 }
                 
