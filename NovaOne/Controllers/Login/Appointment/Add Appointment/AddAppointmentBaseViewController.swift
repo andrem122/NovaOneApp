@@ -12,6 +12,7 @@ class AddAppointmentBaseViewController: UIViewController {
     
     // MARK: Properties
     var appointment: AppointmentModel?
+    var appointmentsTableViewController: AppointmentsTableViewController?
     let alertService = AlertService()
 
     override func viewDidLoad() {

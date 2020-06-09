@@ -28,6 +28,7 @@ class AddAppointmentNameViewController: AddAppointmentBaseViewController, UIText
         guard let name = self.appointmentNameTextField.text else { return }
         self.appointment?.name = name
         addPhoneViewController.appointment = self.appointment
+        addPhoneViewController.appointmentsTableViewController = self.appointmentsTableViewController
         
         self.navigationController?.pushViewController(addPhoneViewController, animated: true)
     }

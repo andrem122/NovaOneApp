@@ -330,6 +330,12 @@ class AppointmentsTableViewController: UITableViewController, NovaOneTableView {
     // MARK: Actions
     @IBAction func addButtonTapped(_ sender: Any) {
         guard let addAppointmentNavigationController = self.storyboard?.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addAppointment.rawValue) as? UINavigationController else { return }
+        
+        // Pass the instance of appointments table view controller to the last view controller in the navigation stack
+        // so we can refresh the appointments table after successful object creation
+        guard let addAppointmentCompanyViewController = addAppointmentNavigationController.viewControllers.first as? AddAppointmentCompanyViewController else { print("could not get add appointment company controller"); return }
+        addAppointmentCompanyViewController.appointmentsTableViewController = self
+        
         self.present(addAppointmentNavigationController, animated: true, completion: nil)
     }
 

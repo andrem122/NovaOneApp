@@ -41,20 +41,36 @@ class AddAppointmentUnitTypeViewController: AddAppointmentBaseViewController, UI
             let unitType = self.appointment?.unitType,
             let time = self.appointment?.time
         else { return }
-        let url = "https://34df826bce5b.ngrok.io/appointments/new?c=13"
-        print(url)
+        let url = Defaults.Urls.novaOneWebsite.rawValue + "/appointments/new?c=\(companyId)"
         
+        // Make HTTP request to create an appointment
         let httpRequest = HTTPRequests()
         let parameters = ["name": name, "unit_type": unitType, "phone_number": phoneNumber, "time": time]
         httpRequest.request(url: url, dataModel: SuccessResponse.self, parameters: parameters) {
             [weak self] (result) in
+            
             switch result {
             case .success(let success):
-                print(success.successReason)
+                // Redirect to success screen
+                
+                self?.removeSpinner()
+                
+                guard let successViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.success.rawValue) as? SuccessViewController else { return }
+                successViewController.subtitleText = success.successReason
+                successViewController.titleLabelText = "Appointment Created!"
+                successViewController.doneHandler = {
+                    [weak self] in
+                    // Return to the appointments view and refresh appointments
+                    self?.presentingViewController?.dismiss(animated: true, completion: nil)
+                    self?.appointmentsTableViewController?.refreshDataOnPullDown()
+                }
+                self?.present(successViewController, animated: true, completion: nil)
             case .failure(let error):
+                self?.removeSpinner()
                 guard let popUpOk = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
                 self?.present(popUpOk, animated: true, completion: nil)
             }
+            
         }
     }
     

@@ -15,6 +15,7 @@ class SuccessViewController: UIViewController {
     @IBOutlet weak var subtitleLabel: UILabel!
     var titleLabelText: String?
     var subtitleText: String?
+    var doneHandler: (() -> Void)?
     
     // MARK: Methods
     override func viewDidLoad() {
@@ -30,12 +31,8 @@ class SuccessViewController: UIViewController {
     
     // MARK: Actions
     @IBAction func doneButtonTapped(_ sender: Any) {
-        // Navigate to the home screen on the home tab bar controller
-        if let homeTabBarViewController = self.storyboard?.instantiateViewController(identifier: Defaults.TabBarControllerIdentifiers.home.rawValue) as? HomeTabBarController {
-            
-            self.present(homeTabBarViewController, animated: true, completion: nil)
-            
-        }
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
+        self.doneHandler?()
     }
     
 }

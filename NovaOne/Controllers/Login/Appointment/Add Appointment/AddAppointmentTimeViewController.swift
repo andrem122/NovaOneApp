@@ -66,29 +66,6 @@ class AddAppointmentTimeViewController: AddAppointmentBaseViewController {
     
     // MARK: Actions
     @IBAction func continueButtonTapped(_ sender: Any) {
-        
-        // Get hour and day selected from the datetime picker to see if day and hour selected is available
-        let dateSelected = self.appointmentTimePicker.date
-        let selectedweekDay = Calendar.current.component(.weekday, from: dateSelected) - 1
-        let selectedhour = Calendar.current.component(.hour, from: dateSelected)
-        print("WEEK DAY: \(selectedweekDay), HOUR: \(selectedhour)")
-        
-        guard
-            let hoursEnabled = self.hoursEnabled,
-            let daysEnabled = self.daysEnabled
-        else { return }
-        
-        // If the day or hour selected is NOT in the days or hours enabled array, pop up an error
-        let popUpOkViewController = self.alertService.popUpOk(title: "Unavailable Day", body: "The day selected for this company is unavailable. Please choose a different day.")
-        if !daysEnabled.contains(selectedweekDay) {
-            self.present(popUpOkViewController, animated: true, completion: nil)
-            return
-        } else if !hoursEnabled.contains(selectedhour) {
-            popUpOkViewController.popUpTitle = "Unavailable Hour"
-            popUpOkViewController.popUpBody = "The hour selected for this company is unavailable. Please choose a different hour."
-            self.present(popUpOkViewController, animated: true, completion: nil)
-            return
-        }
 
         // Get customer object to get customer type
         guard
@@ -106,7 +83,10 @@ class AddAppointmentTimeViewController: AddAppointmentBaseViewController {
             
             // Navigate to add appointment unit type view controller
             guard let addAppointmentUnitTypeViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addAppointmentUnitType.rawValue) as? AddAppointmentUnitTypeViewController else { return }
+            
             addAppointmentUnitTypeViewController.appointment = self.appointment
+            addAppointmentUnitTypeViewController.appointmentsTableViewController = self.appointmentsTableViewController
+            
             self.navigationController?.pushViewController(addAppointmentUnitTypeViewController, animated: true)
             
             
@@ -114,7 +94,9 @@ class AddAppointmentTimeViewController: AddAppointmentBaseViewController {
             
             // Navigate to add appointment email view controller
             guard let addAppointmentEmailViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addAppointmentEmail.rawValue) as? AddAppointmentEmailViewController else { return }
+            
             addAppointmentEmailViewController.appointment = self.appointment
+            
             self.navigationController?.pushViewController(addAppointmentEmailViewController, animated: true)
             
         }
