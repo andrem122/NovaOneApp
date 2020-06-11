@@ -122,6 +122,14 @@ class CompaniesContainerViewController: UIViewController {
                                             
                                             // Tell the empty state view controller what its parent view controller is
                                             emptyViewController.parentViewContainerController = self
+                                            
+                                            // Pass the addObjectHandler function and button title to the empty view controller
+                                            emptyViewController.addObjectButtonHandler = {
+                                                [weak self] in
+                                                // Go to the add object screen
+                                                guard let addCompanyNavigationController = self?.storyboard?.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addCompany.rawValue) as? UINavigationController else { return }
+                                                self?.present(addCompanyNavigationController, animated: true, completion: nil)
+                                            }
                                         
                                     }
                                     

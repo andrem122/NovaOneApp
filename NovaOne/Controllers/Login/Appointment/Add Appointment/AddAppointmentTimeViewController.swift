@@ -79,9 +79,16 @@ class AddAppointmentTimeViewController: AddAppointmentBaseViewController {
                         }
                     }
                 case .failure(let error):
-                    guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
-                    self?.present(popUpOkViewController, animated: true, completion: nil)
-                    self?.appointmentTimeIsAvailable = false
+                    
+                    // If there are no appointments, make appointmentTimeIsAvailable equal to true and do NOT show a pop up
+                    if error.localizedDescription == Defaults.ErrorResponseReasons.noData.rawValue {
+                        self?.appointmentTimeIsAvailable = true
+                    } else {
+                        guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
+                        self?.present(popUpOkViewController, animated: true, completion: nil)
+                       self?.appointmentTimeIsAvailable = false
+                    }
+                    
             }
             
             self?.removeSpinner()

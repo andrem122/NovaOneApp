@@ -161,10 +161,8 @@ class UIHelper {
         successContainerViewController.didMove(toParent: currentViewController)
         
         // Plug the success container view controller into the completion function
-        DispatchQueue.main.async {
-            guard let completion = completion else { return }
-            completion(successContainerViewController)
-        }
+        guard let completion = completion else { return }
+        completion(successContainerViewController)
     }
     
 }

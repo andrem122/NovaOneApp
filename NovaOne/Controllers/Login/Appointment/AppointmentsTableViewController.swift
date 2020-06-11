@@ -244,6 +244,14 @@ class AppointmentsTableViewController: UITableViewController, NovaOneTableView {
                                             UIHelper.showEmptyStateContainerViewController(for: appointmentsContainerViewController, containerView: containerView ?? UIView(), title: title, addObjectButtonTitle: "Add Appointment") {
                                                 (emptyViewController) in
                                                 emptyViewController.parentViewContainerController = appointmentsContainerViewController
+                                                
+                                                // Pass the addObjectHandler function and button title to the empty view controller
+                                                emptyViewController.addObjectButtonHandler = {
+                                                    [weak self] in
+                                                    // Go to the add object screen
+                                                    guard let addAppointmentNavigationController = self?.storyboard?.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addAppointment.rawValue) as? UINavigationController else { return }
+                                                    self?.present(addAppointmentNavigationController, animated: true, completion: nil)
+                                                }
                                             }
                                             
                                         }

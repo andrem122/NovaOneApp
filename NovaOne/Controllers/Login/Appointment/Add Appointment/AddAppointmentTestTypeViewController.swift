@@ -28,6 +28,10 @@ class AddAppointmentTestTypeViewController: AddAppointmentBaseViewController, UI
                                "MetLyte Plus CRP",
                                "Biochemistry Panel Plus",
                                "MetLac 12 Panel",]
+    lazy var testType: String = {
+        guard let firstTestType = self.testTypes.first else { return "" }
+        return firstTestType
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +45,13 @@ class AddAppointmentTestTypeViewController: AddAppointmentBaseViewController, UI
     
     // MARK: Actions
     @IBAction func continueButtonTapped(_ sender: Any) {
+        self.appointment?.testType = self.testType
+        
+        guard let addAppointmentGenderViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addAppointmentGender.rawValue) as? AddAppointmentGenderViewController else { return }
+        
+        addAppointmentGenderViewController.appointment = self.appointment
+        
+        self.navigationController?.pushViewController(addAppointmentGenderViewController, animated: true)
     }
     
 }
@@ -60,5 +71,9 @@ extension AddAppointmentTestTypeViewController {
     // The value to show for each row in the picker
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return self.testTypes[row] // Get the string in the testTypes array and display it for each row in the picker
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.testType = self.testTypes[row]
     }
 }

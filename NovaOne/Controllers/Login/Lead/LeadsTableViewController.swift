@@ -238,7 +238,16 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
                                             let containerView = leadsContainerViewController.containerView
                                             let title = "No Leads"
                                             UIHelper.showEmptyStateContainerViewController(for: leadsContainerViewController, containerView: containerView ?? UIView(), title: title, addObjectButtonTitle: "Add Lead") { (emptyViewController) in
+                                                
                                                 emptyViewController.parentViewContainerController = leadsContainerViewController
+                                                
+                                                // Pass the addObjectHandler function and button title to the empty view controller
+                                                emptyViewController.addObjectButtonHandler = {
+                                                    [weak self] in
+                                                    // Go to the add object screen
+                                                    guard let addLeadNavigationController = self?.storyboard?.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addLead.rawValue) as? UINavigationController else { return }
+                                                    self?.present(addLeadNavigationController, animated: true, completion: nil)
+                                                }
                                             }
                                             
                                         }

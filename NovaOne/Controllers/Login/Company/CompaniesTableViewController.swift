@@ -256,6 +256,14 @@ class CompaniesTableViewController: UITableViewController, NovaOneTableView {
                                             let title = "No Companies"
                                             UIHelper.showEmptyStateContainerViewController(for: companiesContainerViewController, containerView: containerView ?? UIView(), title: title, addObjectButtonTitle: "Add Company") { (emptyViewController) in
                                                 emptyViewController.parentViewContainerController = companiesContainerViewController
+                                                
+                                                // Pass the addObjectHandler function and button title to the empty view controller
+                                                emptyViewController.addObjectButtonHandler = {
+                                                    [weak self] in
+                                                    // Go to the add object screen
+                                                    guard let addCompanyNavigationController = self?.storyboard?.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addCompany.rawValue) as? UINavigationController else { return }
+                                                    self?.present(addCompanyNavigationController, animated: true, completion: nil)
+                                                }
                                             }
                                             
                                         }

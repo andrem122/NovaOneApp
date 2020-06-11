@@ -24,6 +24,9 @@ class AddAppointmentPhoneViewController: AddAppointmentBaseViewController, UITex
         self.appointmentPhoneTextField.becomeFirstResponder()
     }
     
+    func setupContinueButton() {
+        UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
+    }
 
     // MARK: Actions
     @IBAction func appointmentPhoneTextFieldChanged(_ sender: Any) {

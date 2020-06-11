@@ -36,6 +36,8 @@ class AddAppointmentEmailViewController: AddAppointmentBaseViewController {
             guard let addAppointmentAddressViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addAppointmentAddress.rawValue) as? AddAppointmentAddressViewController else { return }
             
             self.appointment?.email = email
+            addAppointmentAddressViewController.appointment = self.appointment
+            
             self.navigationController?.pushViewController(addAppointmentAddressViewController, animated: true)
         } else {
             // Email is not valid, so present pop up
