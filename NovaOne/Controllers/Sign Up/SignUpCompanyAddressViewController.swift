@@ -10,7 +10,7 @@ import UIKit
 import GooglePlaces
 import MapKit
 
-class SignUpCompanyAddressViewController: BaseSignUpViewController, GMSAutocompleteResultsViewControllerDelegate, UITextFieldDelegate, MKMapViewDelegate {
+class SignUpCompanyAddressViewController: BaseSignUpViewController, AddAddress {
     
     // MARK: Properties
     @IBOutlet weak var addressTextField: NovaOneTextField!
@@ -22,7 +22,7 @@ class SignUpCompanyAddressViewController: BaseSignUpViewController, GMSAutocompl
     // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupButton()
+        self.setupContinueButton()
         self.setupTextField()
         self.setupMapView()
     }
@@ -86,7 +86,7 @@ class SignUpCompanyAddressViewController: BaseSignUpViewController, GMSAutocompl
         self.addressTextField.delegate = self
     }
     
-    func setupButton() {
+    func setupContinueButton() {
         UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil)
     }
     

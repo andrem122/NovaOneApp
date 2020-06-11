@@ -164,7 +164,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         let httpRequest = HTTPRequests()
         let parameters: [String: Any] = ["email": email, "password": password]
-        httpRequest.request(url: Defaults.apiUrl + "/login.php", dataModel: CustomerModel.self, parameters: parameters) {
+        httpRequest.request(url: Defaults.Urls.api.rawValue + "/login.php", dataModel: CustomerModel.self, parameters: parameters) {
             [weak self] (result) in
             
             // Use a switch statement to go through the cases of the Result eumeration
@@ -173,10 +173,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 
                 case .success(let customer):
                     
-                    // Add username and password to keychain if not already in Keychain
-                    let keychainEmail = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.email.rawValue)
-                    let keychainPassword = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue)
-                    if keychainEmail == nil || keychainPassword == nil {
+                    // Add username and password to keychain if not already in Keychain and if there is a new email used for logging in
+                    let keychainEmail = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.email.rawValue) != nil ? KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.email.rawValue)! : ""
+                    let keychainPassword = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue) != nil ? KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue)! : ""
+                    
+                    if keychainEmail.isEmpty || keychainPassword.isEmpty || email != keychainEmail {
                         let title = "Add To Keychain"
                         let body = "Would you like to add your email and password to Keychain for easier sign in?"
                         guard let popUpActionViewController = self?.alertService.popUp(title: title, body: body, buttonTitle: "Yes", actionHandler: {
@@ -243,7 +244,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let customerUserId = customer.id
         
         let parameters: [String: Any] = ["email": email as Any, "password": password as Any, "customerUserId": customerUserId as Any]
-        httpRequest.request(url: Defaults.apiUrl + "/companies.php", dataModel: [CompanyModel].self, parameters: parameters) {
+        httpRequest.request(url: Defaults.Urls.api.rawValue + "/companies.php", dataModel: [CompanyModel].self, parameters: parameters) {
             (result) in
             
             switch result {
@@ -275,9 +276,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     success()
                 
                 case .failure(let error):
-                    print("FAILED TO GET COMPANY DATA")
+                    let popUpOkViewController = self.alertService.popUpOk(title: "Data Failure", body: "Failed to obtain company data.")
+                    self.present(popUpOkViewController, animated: true, completion: nil)
                     print(error.localizedDescription)
             }
+            
+            self.removeSpinner()
             
         }
     }

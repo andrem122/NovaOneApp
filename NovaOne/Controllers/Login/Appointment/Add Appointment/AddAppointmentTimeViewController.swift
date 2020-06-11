@@ -68,7 +68,7 @@ class AddAppointmentTimeViewController: AddAppointmentBaseViewController {
                             return
                         }
                         
-                        let fallsBetween = (appointmentDateTime..<thirtyMinutesAfterApppointmentTime).contains(selectedDateTime)
+                        let fallsBetween = (appointmentDateTime..<thirtyMinutesAfterApppointmentTime).contains(selectedDateTime) // Include the start (lower bounds of the range) date and time but NOT the end (upper bound of the range) date and time in the range
                         if fallsBetween {
                             guard let popUpOkViewController = self?.alertService.popUpOk(title: "Time Unavailable", body: "An appointment has already been made for this time. Please select a different time.") else { return }
                             self?.present(popUpOkViewController, animated: true, completion: nil)

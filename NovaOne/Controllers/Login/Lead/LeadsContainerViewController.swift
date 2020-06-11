@@ -84,7 +84,7 @@ class LeadsContainerViewController: UIViewController, NovaOneObjectContainer {
                                          "email": email as Any,
                                          "password": password as Any]
         
-        httpRequest.request(url: Defaults.apiUrl + "/leads.php",
+        httpRequest.request(url: Defaults.Urls.api.rawValue + "/leads.php",
                             dataModel: [LeadModel].self,
                             parameters: parameters) {
                                 [weak self] (result) in
@@ -103,7 +103,7 @@ class LeadsContainerViewController: UIViewController, NovaOneObjectContainer {
                                         print(error.localizedDescription)
                                         // No leads were found or an error occurred so show/embed the empty
                                         // view controller
-                                        UIHelper.showEmptyStateContainerViewController(for: self, containerView: self?.containerView ?? UIView(), title: "No Leads") {
+                                        UIHelper.showEmptyStateContainerViewController(for: self, containerView: self?.containerView ?? UIView(), title: "No Leads", addObjectButtonTitle: "Add Lead") {
                                             (emptyViewController) in
                                             
                                             // Tell the empty state view controller what its parent view controller is
@@ -112,6 +112,7 @@ class LeadsContainerViewController: UIViewController, NovaOneObjectContainer {
                                     }
                                     
                                 }
+                                self?.removeSpinner()
         }
         
     }

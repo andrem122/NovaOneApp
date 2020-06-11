@@ -54,7 +54,7 @@ class SignUpEmailViewController: BaseSignUpViewController, UITextFieldDelegate {
             
             let httpRequest = HTTPRequests()
             let parameters: [String: String] = ["valueToCheckInDatabase": email, "tableName": "auth_user", "columnName": "email"]
-            httpRequest.request(url: Defaults.apiUrl + "/signupInputCheck.php", dataModel: SuccessResponse.self, parameters: parameters) { [weak self] (result) in
+            httpRequest.request(url: Defaults.Urls.api.rawValue + "/signupInputCheck.php", dataModel: SuccessResponse.self, parameters: parameters) { [weak self] (result) in
                 switch result {
                 case .success(let success):
                     

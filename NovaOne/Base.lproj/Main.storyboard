@@ -3628,43 +3628,67 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EXu-Np-aAf" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
-                                <rect key="frame" x="30" y="602" width="315" height="45"/>
-                                <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="eY1-4m-hKS"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                                <state key="normal" title="Refresh">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="20"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                </variation>
-                                <connections>
-                                    <action selector="refreshButtonTapped:" destination="6h4-rM-fOO" eventType="touchUpInside" id="BML-MA-M9I"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ycs-Ez-3W1" userLabel="Button Stack View">
+                                <rect key="frame" x="30" y="537" width="315" height="110"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L07-8z-g0m" userLabel="Add Button" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="315" height="45"/>
+                                        <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="CEf-7N-0rQ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                        <state key="normal" title="Add Object">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        </variation>
+                                        <connections>
+                                            <action selector="addObjectButtonTapped:" destination="6h4-rM-fOO" eventType="touchUpInside" id="lJd-eP-tqS"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EXu-Np-aAf" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="65" width="315" height="45"/>
+                                        <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="eY1-4m-hKS"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                        <state key="normal" title="Refresh">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        </variation>
+                                        <connections>
+                                            <action selector="refreshButtonTapped:" destination="6h4-rM-fOO" eventType="touchUpInside" id="BML-MA-M9I"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="pKi-zF-uQ3" firstAttribute="width" secondItem="1re-eQ-YAy" secondAttribute="width" multiplier="0.78" id="5P5-Qf-PrT"/>
-                            <constraint firstItem="EXu-Np-aAf" firstAttribute="leading" secondItem="yoe-kN-rAb" secondAttribute="leading" constant="30" id="8Uc-J0-GQr">
-                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
-                            </constraint>
-                            <constraint firstItem="yoe-kN-rAb" firstAttribute="trailing" secondItem="EXu-Np-aAf" secondAttribute="trailing" constant="30" id="Bf9-1b-P0Y">
-                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
-                            </constraint>
+                            <constraint firstItem="Ycs-Ez-3W1" firstAttribute="leading" secondItem="yoe-kN-rAb" secondAttribute="leading" constant="30" id="CBx-qP-nHe"/>
                             <constraint firstItem="W2R-7a-5M2" firstAttribute="centerX" secondItem="1re-eQ-YAy" secondAttribute="centerX" id="EYK-LS-5vQ"/>
+                            <constraint firstItem="yoe-kN-rAb" firstAttribute="trailing" secondItem="Ycs-Ez-3W1" secondAttribute="trailing" constant="30" id="IVL-xs-oGs"/>
                             <constraint firstItem="pKi-zF-uQ3" firstAttribute="width" secondItem="1re-eQ-YAy" secondAttribute="width" multiplier="0.5" id="bQZ-du-pWj"/>
                             <constraint firstItem="W2R-7a-5M2" firstAttribute="centerY" secondItem="1re-eQ-YAy" secondAttribute="centerY" id="luJ-Q4-SOx"/>
-                            <constraint firstItem="yoe-kN-rAb" firstAttribute="bottom" secondItem="EXu-Np-aAf" secondAttribute="bottom" constant="20" id="vfq-R7-USM"/>
+                            <constraint firstItem="yoe-kN-rAb" firstAttribute="bottom" secondItem="Ycs-Ez-3W1" secondAttribute="bottom" constant="20" id="nE4-FI-Dkn"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="yoe-kN-rAb"/>
                         <variation key="default">
@@ -3680,6 +3704,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="addObjectButton" destination="L07-8z-g0m" id="RHz-3t-tV1"/>
                         <outlet property="titleLabel" destination="HSm-kb-QqU" id="nBF-9w-k8I"/>
                     </connections>
                 </viewController>
@@ -6037,9 +6062,14 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="rgc-aE-Cu3">
+                                <rect key="frame" x="0.0" y="272.5" width="375" height="394.5"/>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="rgc-aE-Cu3" firstAttribute="leading" secondItem="7l2-8M-M4G" secondAttribute="leading" id="1HC-yH-b9O"/>
+                            <constraint firstItem="rgc-aE-Cu3" firstAttribute="trailing" secondItem="7l2-8M-M4G" secondAttribute="trailing" id="4UK-ct-TBc"/>
                             <constraint firstItem="7l2-8M-M4G" firstAttribute="trailing" secondItem="t4r-SV-Gmy" secondAttribute="trailing" constant="30" id="BHH-om-dlP">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                             </constraint>
@@ -6051,6 +6081,7 @@
                             <constraint firstItem="7l2-8M-M4G" firstAttribute="trailing" secondItem="Vek-cG-Yay" secondAttribute="trailing" constant="30" id="Nsm-tn-vEF">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                             </constraint>
+                            <constraint firstItem="rgc-aE-Cu3" firstAttribute="top" secondItem="Vek-cG-Yay" secondAttribute="bottom" constant="8" id="QPX-Ob-Ixl"/>
                             <constraint firstItem="18x-az-GmK" firstAttribute="leading" secondItem="7l2-8M-M4G" secondAttribute="leading" constant="30" id="SFy-8f-4Rg">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                             </constraint>
@@ -6061,6 +6092,7 @@
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                             </constraint>
                             <constraint firstItem="18x-az-GmK" firstAttribute="top" secondItem="7l2-8M-M4G" secondAttribute="top" constant="30" id="msg-va-tS8"/>
+                            <constraint firstItem="rgc-aE-Cu3" firstAttribute="bottom" secondItem="7l2-8M-M4G" secondAttribute="bottom" id="nSv-Oq-jt8"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7l2-8M-M4G"/>
                     </view>
@@ -6070,11 +6102,12 @@
                     <connections>
                         <outlet property="addressTextField" destination="lv8-hO-sWd" id="tG7-Zf-cb7"/>
                         <outlet property="continueButton" destination="SJr-6x-bTH" id="A26-mJ-VQL"/>
+                        <outlet property="mapView" destination="rgc-aE-Cu3" id="3i7-ZN-p0h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="isG-YF-TaM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1410" y="6535"/>
+            <point key="canvasLocation" x="1408.8" y="6534.7826086956529"/>
         </scene>
         <!--Add Appointment Address-->
         <scene sceneID="3oi-U5-neE">
@@ -9065,8 +9098,8 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="account" width="42.666667938232422" height="42.666667938232422"/>
-        <image name="calendar" width="42.5" height="42.5"/>
         <image name="calendar" catalog="system" width="128" height="106"/>
+        <image name="calendar" width="42.5" height="42.5"/>
         <image name="callBlue" width="27" height="27"/>
         <image name="cancelButtonBlue" width="33.5" height="33.5"/>
         <image name="clipboard" width="42.666667938232422" height="42.666667938232422"/>

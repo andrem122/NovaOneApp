@@ -98,7 +98,7 @@ class CompaniesContainerViewController: UIViewController {
                                          "email": email as Any,
                                          "password": password as Any]
         
-        httpRequest.request(url: Defaults.apiUrl + "/companies.php",
+        httpRequest.request(url: Defaults.Urls.api.rawValue + "/companies.php",
                             dataModel: [CompanyModel].self,
                             parameters: parameters) {
                                 [weak self] (result) in
@@ -117,7 +117,7 @@ class CompaniesContainerViewController: UIViewController {
                                         print(error.localizedDescription)
                                         // No objects were found or an error occurred so show/embed the empty
                                         // view controller
-                                        UIHelper.showEmptyStateContainerViewController(for: self, containerView: self?.containerView ?? UIView(), title: "No Companies") {
+                                        UIHelper.showEmptyStateContainerViewController(for: self, containerView: self?.containerView ?? UIView(), title: "No Companies", addObjectButtonTitle: "Add Company") {
                                             (emptyViewController) in
                                             
                                             // Tell the empty state view controller what its parent view controller is
@@ -126,6 +126,8 @@ class CompaniesContainerViewController: UIViewController {
                                     }
                                     
                                 }
+                                
+                                self?.removeSpinner()
         }
         
     }

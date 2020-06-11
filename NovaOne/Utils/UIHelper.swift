@@ -110,12 +110,13 @@ class UIHelper {
         
     }
     
-    static func showEmptyStateContainerViewController(for currentViewController: UIViewController?, containerView: UIView, title: String, completion: ((EmptyViewController) -> Void)?) {
+    static func showEmptyStateContainerViewController(for currentViewController: UIViewController?, containerView: UIView, title: String, addObjectButtonTitle: String, completion: ((EmptyViewController) -> Void)?) {
         // Shows the empty state view controller for a container view
         
         if let emptyViewController = currentViewController?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.empty.rawValue) as? EmptyViewController {
             
             emptyViewController.titleLabelText = title
+            emptyViewController.addObjectButtonTitle = addObjectButtonTitle
             
             currentViewController?.addChild(emptyViewController)
             emptyViewController.view.translatesAutoresizingMaskIntoConstraints = false
@@ -139,7 +140,7 @@ class UIHelper {
         }
     }
     
-    static func showSuccessContainer<T: UIViewController>(for currentViewController: UIViewController?, successContainerViewIdentifier: String,containerView: UIView, objectType: T.Type, completion: ((UIViewController) -> Void)?) {
+    static func showSuccessContainer<T: UIViewController>(for currentViewController: UIViewController?, successContainerViewIdentifier: String, containerView: UIView, objectType: T.Type, completion: ((UIViewController) -> Void)?) {
         // Shows the table with items for the container view
         
         guard let successContainerViewController = currentViewController?.storyboard?.instantiateViewController(identifier: successContainerViewIdentifier) as? T else { return }
@@ -160,8 +161,10 @@ class UIHelper {
         successContainerViewController.didMove(toParent: currentViewController)
         
         // Plug the success container view controller into the completion function
-        guard let completion = completion else { return }
-        completion(successContainerViewController)
+        DispatchQueue.main.async {
+            guard let completion = completion else { return }
+            completion(successContainerViewController)
+        }
     }
     
 }

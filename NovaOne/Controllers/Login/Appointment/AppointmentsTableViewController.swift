@@ -191,7 +191,7 @@ class AppointmentsTableViewController: UITableViewController, NovaOneTableView {
                                          "password": password as Any,
                                          "lastObjectId": unwrappedLastObjectId as Any]
         
-        httpRequest.request(url: Defaults.apiUrl + endpoint,
+        httpRequest.request(url: Defaults.Urls.api.rawValue + endpoint,
                             dataModel: [AppointmentModel].self,
                             parameters: parameters) { [weak self] (result) in
                                 
@@ -241,7 +241,8 @@ class AppointmentsTableViewController: UITableViewController, NovaOneTableView {
                                             // Show empty state view controller
                                             let containerView = appointmentsContainerViewController.containerView
                                             let title = "No Appointments"
-                                            UIHelper.showEmptyStateContainerViewController(for: appointmentsContainerViewController, containerView: containerView ?? UIView(), title: title) { (emptyViewController) in
+                                            UIHelper.showEmptyStateContainerViewController(for: appointmentsContainerViewController, containerView: containerView ?? UIView(), title: title, addObjectButtonTitle: "Add Appointment") {
+                                                (emptyViewController) in
                                                 emptyViewController.parentViewContainerController = appointmentsContainerViewController
                                             }
                                             

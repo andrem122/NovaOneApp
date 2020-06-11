@@ -19,6 +19,11 @@ class AddAppointmentPhoneViewController: AddAppointmentBaseViewController, UITex
         self.appointmentPhoneTextField.delegate = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.appointmentPhoneTextField.becomeFirstResponder()
+    }
+    
 
     // MARK: Actions
     @IBAction func appointmentPhoneTextFieldChanged(_ sender: Any) {

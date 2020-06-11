@@ -33,7 +33,7 @@ class AddAppointmentUnitTypeViewController: AddAppointmentBaseViewController, UI
     // MARK: Actions
     @IBAction func addAppointmentButtonTapped(_ sender: Any) {
         self.showSpinner(for: self.view, textForLabel: "Adding Appointment...")
-        print(self.appointment as Any)
+        
         guard
             let companyId = self.appointment?.companyId,
             let name = self.appointment?.name,

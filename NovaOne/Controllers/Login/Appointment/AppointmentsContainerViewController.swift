@@ -87,7 +87,7 @@ class AppointmentsContainerViewController: UIViewController {
                                          "email": email as Any,
                                          "password": password as Any]
         
-        httpRequest.request(url: Defaults.apiUrl + "/appointments.php",
+        httpRequest.request(url: Defaults.Urls.api.rawValue + "/appointments.php",
                             dataModel: [AppointmentModel].self,
                             parameters: parameters) {
                                 [weak self] (result) in
@@ -106,15 +106,24 @@ class AppointmentsContainerViewController: UIViewController {
                                         print(error.localizedDescription)
                                         // No appointments were found or an error occurred so show/embed the empty
                                         // view controller
-                                        UIHelper.showEmptyStateContainerViewController(for: self, containerView: self?.containerView ?? UIView(), title: "No Appointments") {
+                                        UIHelper.showEmptyStateContainerViewController(for: self, containerView: self?.containerView ?? UIView(), title: "No Appointments", addObjectButtonTitle: "Add Appointment") {
                                             (emptyViewController) in
                                             
                                             // Tell the empty state view controller what its parent view controller is
                                             emptyViewController.parentViewContainerController = self
+                                            
+                                            // Pass the addObjectHandler function and button title to the empty view controller
+                                            emptyViewController.addObjectButtonHandler = {
+                                                [weak self] in
+                                                // Go to the add object screen
+                                                guard let addAppointmentNavigationController = self?.storyboard?.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addAppointment.rawValue) as? UINavigationController else { return }
+                                                self?.present(addAppointmentNavigationController, animated: true, completion: nil)
+                                            }
                                         
                                     }
                                     
                                 }
+                                self?.removeSpinner()
         }
         
     }

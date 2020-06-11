@@ -90,11 +90,12 @@ struct AppointmentModel: Decodable {
     var description: String {
         
         get {
-            let id = self.id
             guard
-                let address = self.address
+                let address = self.address,
+                let id = self.id
             else { return "" }
-            return "Id: \(id), Name: \(self.name) \(self.phoneNumber), Email: \(address)"
+            
+            return "Id: \(id), Name: \(self.name) \(self.phoneNumber), Address: \(address)"
         }
         
     }

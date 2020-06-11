@@ -21,6 +21,11 @@ class AddAppointmentNameViewController: AddAppointmentBaseViewController, UIText
         UIHelper.disable(button: continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.appointmentNameTextField.becomeFirstResponder()
+    }
+    
     // MARK: Actions
     @IBAction func continueButtonTapped(_ sender: Any) {
         guard let addPhoneViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addAppointmentPhone.rawValue) as? AddAppointmentPhoneViewController else { return }

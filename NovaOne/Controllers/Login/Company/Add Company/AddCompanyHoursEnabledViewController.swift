@@ -110,7 +110,7 @@ class AddCompanyHoursEnabledViewController: UIViewController, UITableViewDataSou
                                             "companyZip": companyZip]
         
         let httpRequest = HTTPRequests()
-        httpRequest.request(url: Defaults.apiUrl + "/signup.php", dataModel: SuccessResponse.self, parameters: parameters) {
+        httpRequest.request(url: Defaults.Urls.api.rawValue + "/signup.php", dataModel: SuccessResponse.self, parameters: parameters) {
             [weak self] (result) in
             
             switch result {
@@ -130,7 +130,7 @@ class AddCompanyHoursEnabledViewController: UIViewController, UITableViewDataSou
         
             let httpRequest = HTTPRequests()
             let parameters: [String: Any] = ["email": email, "password": password]
-            httpRequest.request(url: Defaults.apiUrl + "/login.php", dataModel: CustomerModel.self, parameters: parameters) { [weak self] (result) in
+            httpRequest.request(url: Defaults.Urls.api.rawValue + "/login.php", dataModel: CustomerModel.self, parameters: parameters) { [weak self] (result) in
                 
                 switch result {
                     case .success(let customer):

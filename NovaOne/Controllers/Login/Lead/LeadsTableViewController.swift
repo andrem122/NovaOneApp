@@ -187,7 +187,7 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
                                          "password": password as Any,
                                          "lastObjectId": unwrappedLastObjectId as Any]
         
-        httpRequest.request(url: Defaults.apiUrl + endpoint,
+        httpRequest.request(url: Defaults.Urls.api.rawValue + endpoint,
                             dataModel: [LeadModel].self,
                             parameters: parameters) { [weak self] (result) in
                                 
@@ -237,7 +237,7 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
                                             // Show empty state view controller
                                             let containerView = leadsContainerViewController.containerView
                                             let title = "No Leads"
-                                            UIHelper.showEmptyStateContainerViewController(for: leadsContainerViewController, containerView: containerView ?? UIView(), title: title) { (emptyViewController) in
+                                            UIHelper.showEmptyStateContainerViewController(for: leadsContainerViewController, containerView: containerView ?? UIView(), title: title, addObjectButtonTitle: "Add Lead") { (emptyViewController) in
                                                 emptyViewController.parentViewContainerController = leadsContainerViewController
                                             }
                                             

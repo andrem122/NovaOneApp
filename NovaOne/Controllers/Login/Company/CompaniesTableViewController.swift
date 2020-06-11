@@ -204,7 +204,7 @@ class CompaniesTableViewController: UITableViewController, NovaOneTableView {
                                          "password": password as Any,
                                          "lastObjectId": unwrappedLastObjectId as Any]
         
-        httpRequest.request(url: Defaults.apiUrl + endpoint,
+        httpRequest.request(url: Defaults.Urls.api.rawValue + endpoint,
                             dataModel: [CompanyModel].self,
                             parameters: parameters) { [weak self] (result) in
                                 
@@ -254,7 +254,7 @@ class CompaniesTableViewController: UITableViewController, NovaOneTableView {
                                             // Show empty state view controller
                                             let containerView = companiesContainerViewController.containerView
                                             let title = "No Companies"
-                                            UIHelper.showEmptyStateContainerViewController(for: companiesContainerViewController, containerView: containerView ?? UIView(), title: title) { (emptyViewController) in
+                                            UIHelper.showEmptyStateContainerViewController(for: companiesContainerViewController, containerView: containerView ?? UIView(), title: title, addObjectButtonTitle: "Add Company") { (emptyViewController) in
                                                 emptyViewController.parentViewContainerController = companiesContainerViewController
                                             }
                                             

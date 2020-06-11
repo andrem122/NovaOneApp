@@ -292,7 +292,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         let customerUserId = customer.id
         
         let parameters: [String: Any] = ["email": email as Any, "password": password as Any, "customerUserId": customerUserId as Any]
-        httpRequest.request(url: Defaults.apiUrl + "/chartDataWeekly.php", dataModel: [ChartDataWeeklyModel].self, parameters: parameters) {
+        httpRequest.request(url: Defaults.Urls.api.rawValue + "/chartDataWeekly.php", dataModel: [ChartDataWeeklyModel].self, parameters: parameters) {
             [weak self] (result) in
             
             switch result {
@@ -358,7 +358,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         let customerUserId = customer.id
         
         let parameters: [String: Any] = ["email": email as Any, "password": password as Any, "customerUserId": customerUserId as Any]
-        httpRequest.request(url: Defaults.apiUrl + "/chartDataMonthly.php", dataModel: [ChartDataMonthlyModel].self, parameters: parameters) {
+        httpRequest.request(url: Defaults.Urls.api.rawValue + "/chartDataMonthly.php", dataModel: [ChartDataMonthlyModel].self, parameters: parameters) {
             [weak self] (result) in
             
             switch result {
@@ -433,7 +433,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         let customerUserId = customer.id
         
         let parameters: [String: Any] = ["email": email as Any, "password": password as Any, "customerUserId": customerUserId as Any]
-        httpRequest.request(url: Defaults.apiUrl + "/chartDataMonth.php", dataModel: [ChartDataMonthModel].self, parameters: parameters) {
+        httpRequest.request(url: Defaults.Urls.api.rawValue + "/chartDataMonth.php", dataModel: [ChartDataMonthModel].self, parameters: parameters) {
             [weak self] (result) in
             
             switch result {
@@ -479,7 +479,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         let customerUserId = customer.id
         
         let parameters: [String: Any] = ["email": email as Any, "password": password as Any, "customerUserId": customerUserId as Any]
-        httpRequest.request(url: Defaults.apiUrl + "/objectCounts.php", dataModel: [ObjectCountModel].self, parameters: parameters) {
+        httpRequest.request(url: Defaults.Urls.api.rawValue + "/objectCounts.php", dataModel: [ObjectCountModel].self, parameters: parameters) {
             [weak self] (result) in
             
             switch result {
