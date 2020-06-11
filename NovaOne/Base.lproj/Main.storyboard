@@ -1404,7 +1404,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PYh-sr-kkz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="viewBackgroundColor"/>
                         <color key="tintColor" red="0.32549019610000002" green="0.42352941179999998" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
@@ -1500,7 +1500,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Please describe your concerns here..." translatesAutoresizingMaskIntoConstraints="NO" id="VVh-Cd-8Z0" customClass="NovaOneTextView" customModule="NovaOne" customModuleProvider="target">
                                 <rect key="frame" x="30" y="72" width="315" height="233.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" name="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="go"/>
                                 <userDefinedRuntimeAttributes>
@@ -1511,7 +1511,7 @@
                                         <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="value" name="textFieldColor"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <variation key="heightClass=regular-widthClass=regular">
@@ -2607,7 +2607,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" name="viewBackgroundColor"/>
                         <color key="selectedImageTintColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -2823,7 +2823,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="K79-BW-K2r">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="viewBackgroundColor"/>
                         <color key="tintColor" red="0.32549019610000002" green="0.42352941179999998" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
@@ -2865,9 +2865,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WWa-VB-X6F">
-                                                    <rect key="frame" x="26" y="10" width="45" height="20.5"/>
+                                                    <rect key="frame" x="30" y="10" width="45" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="textColor" name="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=regular">
                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
@@ -2876,7 +2876,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amanda Taylor" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="waM-9h-XE1" userLabel="Name Value">
                                                     <rect key="frame" x="232" y="10" width="112" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" name="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=regular">
                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
@@ -2897,7 +2897,7 @@
                                                 <constraint firstItem="gUr-ED-k0J" firstAttribute="leading" secondItem="waM-9h-XE1" secondAttribute="trailing" constant="6" id="HqP-cY-fm0"/>
                                                 <constraint firstItem="waM-9h-XE1" firstAttribute="centerY" secondItem="HS1-D4-Uhh" secondAttribute="centerY" id="Ll1-nj-oZB"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="WWa-VB-X6F" secondAttribute="trailing" id="MjV-Mm-mWf"/>
-                                                <constraint firstItem="WWa-VB-X6F" firstAttribute="leading" secondItem="HS1-D4-Uhh" secondAttribute="leadingMargin" constant="10" id="T5P-G6-cJe"/>
+                                                <constraint firstItem="WWa-VB-X6F" firstAttribute="leading" secondItem="HS1-D4-Uhh" secondAttribute="leading" constant="30" id="Wf5-wp-ZJs"/>
                                                 <constraint firstItem="WWa-VB-X6F" firstAttribute="centerY" secondItem="HS1-D4-Uhh" secondAttribute="centerY" id="bj1-pB-VZP"/>
                                                 <constraint firstAttribute="trailing" secondItem="gUr-ED-k0J" secondAttribute="trailing" constant="5" id="mpd-o1-kcm"/>
                                                 <constraint firstItem="gUr-ED-k0J" firstAttribute="centerY" secondItem="HS1-D4-Uhh" secondAttribute="centerY" id="tYn-Uj-aah"/>
@@ -2915,18 +2915,18 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customer Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="hIW-p1-Uzp">
-                                                    <rect key="frame" x="26" y="10" width="140" height="20.5"/>
+                                                    <rect key="frame" x="30" y="10" width="140" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="textColor" name="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=regular">
                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
                                                     </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="47" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="Zdt-f1-zvg" userLabel="Customer Number Value">
-                                                    <rect key="frame" x="352" y="10" width="13" height="20.5"/>
+                                                    <rect key="frame" x="345" y="10" width="20" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" name="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=regular">
                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
@@ -2934,9 +2934,9 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Zdt-f1-zvg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="A19-IS-nQt" secondAttribute="leading" constant="352" id="N9R-yV-cK3"/>
+                                                <constraint firstItem="Zdt-f1-zvg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="hIW-p1-Uzp" secondAttribute="trailing" constant="20" id="2Xy-ys-Rma"/>
                                                 <constraint firstItem="Zdt-f1-zvg" firstAttribute="centerY" secondItem="A19-IS-nQt" secondAttribute="centerY" id="Sru-fy-TCV"/>
-                                                <constraint firstItem="hIW-p1-Uzp" firstAttribute="leading" secondItem="A19-IS-nQt" secondAttribute="leadingMargin" constant="10" id="gOI-sD-6ly"/>
+                                                <constraint firstItem="hIW-p1-Uzp" firstAttribute="leading" secondItem="A19-IS-nQt" secondAttribute="leading" constant="30" id="fhz-fV-ijC"/>
                                                 <constraint firstItem="hIW-p1-Uzp" firstAttribute="centerY" secondItem="A19-IS-nQt" secondAttribute="centerY" id="qjx-Da-Sfh"/>
                                                 <constraint firstAttribute="trailing" secondItem="Zdt-f1-zvg" secondAttribute="trailing" constant="10" id="sop-X5-7pi"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="hIW-p1-Uzp" secondAttribute="trailing" id="vb1-2V-gJo"/>
@@ -2951,9 +2951,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Help" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="DKU-we-EzJ">
-                                                    <rect key="frame" x="26" y="10" width="35" height="20.5"/>
+                                                    <rect key="frame" x="30" y="10" width="35" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="textColor" name="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=regular">
                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
@@ -2970,8 +2970,8 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="DKU-we-EzJ" firstAttribute="centerY" secondItem="igt-1a-QRe" secondAttribute="centerY" id="Hcd-84-IPq"/>
+                                                <constraint firstItem="DKU-we-EzJ" firstAttribute="leading" secondItem="igt-1a-QRe" secondAttribute="leading" constant="30" id="O95-3l-cAC"/>
                                                 <constraint firstAttribute="trailing" secondItem="8WZ-sR-Zxu" secondAttribute="trailing" constant="5" id="dpL-3i-icQ"/>
-                                                <constraint firstItem="DKU-we-EzJ" firstAttribute="leading" secondItem="igt-1a-QRe" secondAttribute="leadingMargin" constant="10" id="h73-U3-SaI"/>
                                                 <constraint firstItem="8WZ-sR-Zxu" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="igt-1a-QRe" secondAttribute="leading" id="iDV-Yq-JOC"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="DKU-we-EzJ" secondAttribute="trailing" id="jkW-bc-6ia"/>
                                                 <constraint firstItem="8WZ-sR-Zxu" firstAttribute="centerY" secondItem="igt-1a-QRe" secondAttribute="centerY" id="nFD-2r-me8"/>
@@ -2989,9 +2989,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="nxp-TN-rre">
-                                                    <rect key="frame" x="26" y="10" width="132.5" height="20.5"/>
+                                                    <rect key="frame" x="30" y="10" width="132.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="textColor" name="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=regular">
                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
@@ -3007,12 +3007,12 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="nxp-TN-rre" firstAttribute="leading" secondItem="DkD-Yk-QYp" secondAttribute="leading" constant="30" id="6wW-t5-sD4"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="nxp-TN-rre" secondAttribute="trailing" id="AYj-zO-gEN"/>
                                                 <constraint firstItem="nxp-TN-rre" firstAttribute="centerY" secondItem="DkD-Yk-QYp" secondAttribute="centerY" id="HEL-Og-eUD"/>
                                                 <constraint firstItem="bQF-kD-f7o" firstAttribute="centerY" secondItem="DkD-Yk-QYp" secondAttribute="centerY" id="YHB-I8-mDd"/>
                                                 <constraint firstAttribute="trailing" secondItem="bQF-kD-f7o" secondAttribute="trailing" constant="5" id="Z6C-j7-8yh"/>
                                                 <constraint firstItem="bQF-kD-f7o" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="DkD-Yk-QYp" secondAttribute="leading" id="nSz-wm-xij"/>
-                                                <constraint firstItem="nxp-TN-rre" firstAttribute="leading" secondItem="DkD-Yk-QYp" secondAttribute="leadingMargin" constant="10" id="wGZ-sv-FQQ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -3030,19 +3030,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="4Mj-f5-XtM">
-                                                    <rect key="frame" x="26" y="10" width="106.5" height="20.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mail@gmail.com" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="YEy-Um-pYw">
+                                                    <rect key="frame" x="220.5" y="9.5" width="123.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=regular-widthClass=regular">
-                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
-                                                    </variation>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="andre.mashraghi@gmail.com" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="YEy-Um-pYw">
-                                                    <rect key="frame" x="124" y="10" width="220" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" name="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=regular">
                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
@@ -3056,17 +3047,26 @@
                                                     </constraints>
                                                     <state key="normal" title="Button" image="rightAngleBlue"/>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Email Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="4Mj-f5-XtM">
+                                                    <rect key="frame" x="30" y="10" width="106.5" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                                    <color key="textColor" name="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=regular">
+                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
+                                                    </variation>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="YEy-Um-pYw" firstAttribute="centerY" secondItem="pfs-8d-kLs" secondAttribute="centerY" id="4pQ-Sw-gLs"/>
+                                                <constraint firstItem="apW-7G-FBp" firstAttribute="leading" secondItem="YEy-Um-pYw" secondAttribute="trailing" constant="6" id="Hso-qO-Te3"/>
                                                 <constraint firstItem="apW-7G-FBp" firstAttribute="centerY" secondItem="pfs-8d-kLs" secondAttribute="centerY" id="IFM-NN-acT"/>
-                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4Mj-f5-XtM" secondAttribute="trailing" id="Ndw-ad-CMz"/>
-                                                <constraint firstItem="apW-7G-FBp" firstAttribute="leading" secondItem="YEy-Um-pYw" secondAttribute="trailing" constant="6" id="QOd-40-Mkq"/>
-                                                <constraint firstItem="4Mj-f5-XtM" firstAttribute="centerY" secondItem="pfs-8d-kLs" secondAttribute="centerY" id="UaZ-rA-gWM"/>
+                                                <constraint firstItem="4Mj-f5-XtM" firstAttribute="leading" secondItem="pfs-8d-kLs" secondAttribute="leading" constant="30" id="JvI-kq-C37"/>
                                                 <constraint firstItem="apW-7G-FBp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="pfs-8d-kLs" secondAttribute="leading" id="Yf6-uH-C5K"/>
-                                                <constraint firstItem="YEy-Um-pYw" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="pfs-8d-kLs" secondAttribute="leading" id="i7z-IM-wmp"/>
-                                                <constraint firstItem="4Mj-f5-XtM" firstAttribute="leading" secondItem="pfs-8d-kLs" secondAttribute="leadingMargin" constant="10" id="lav-7q-wSx"/>
+                                                <constraint firstItem="4Mj-f5-XtM" firstAttribute="centerY" secondItem="pfs-8d-kLs" secondAttribute="centerY" id="dfw-gh-mzR"/>
+                                                <constraint firstItem="YEy-Um-pYw" firstAttribute="centerY" secondItem="pfs-8d-kLs" secondAttribute="centerY" id="s14-v9-dTm"/>
                                                 <constraint firstAttribute="trailing" secondItem="apW-7G-FBp" secondAttribute="trailing" constant="5" id="y9T-3n-pas"/>
+                                                <constraint firstItem="YEy-Um-pYw" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4Mj-f5-XtM" secondAttribute="trailing" constant="20" id="yb4-i5-srm"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4Mj-f5-XtM" secondAttribute="trailing" id="zif-rs-ugY"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -3081,9 +3081,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone Number" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="eaC-sR-3cR">
-                                                    <rect key="frame" x="26" y="10" width="113.5" height="20.5"/>
+                                                    <rect key="frame" x="30" y="10" width="113.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="textColor" name="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=regular">
                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
@@ -3092,7 +3092,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="561-246-5571" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="7IP-w7-3n5">
                                                     <rect key="frame" x="234.5" y="10" width="109.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" name="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=regular">
                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
@@ -3107,12 +3107,12 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="eaC-sR-3cR" firstAttribute="leading" secondItem="F2E-m7-QQB" secondAttribute="leading" constant="30" id="2LC-XA-spP"/>
                                                 <constraint firstItem="RnR-vl-Ocx" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="F2E-m7-QQB" secondAttribute="leading" id="7sg-iV-Bmv"/>
-                                                <constraint firstItem="eaC-sR-3cR" firstAttribute="leading" secondItem="F2E-m7-QQB" secondAttribute="leadingMargin" constant="10" id="Ddc-1u-s20"/>
+                                                <constraint firstItem="7IP-w7-3n5" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="eaC-sR-3cR" secondAttribute="trailing" constant="20" id="NQS-ro-sYL"/>
                                                 <constraint firstAttribute="trailing" secondItem="RnR-vl-Ocx" secondAttribute="trailing" constant="5" id="RJz-4g-E8C"/>
                                                 <constraint firstItem="RnR-vl-Ocx" firstAttribute="width" secondItem="RnR-vl-Ocx" secondAttribute="height" multiplier="1:1" id="Ucc-5B-13X"/>
                                                 <constraint firstItem="eaC-sR-3cR" firstAttribute="centerY" secondItem="F2E-m7-QQB" secondAttribute="centerY" id="aYs-LY-Eeb"/>
-                                                <constraint firstItem="7IP-w7-3n5" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="F2E-m7-QQB" secondAttribute="leading" id="azp-YV-UY5"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="eaC-sR-3cR" secondAttribute="trailing" id="d83-Ld-ia5"/>
                                                 <constraint firstItem="RnR-vl-Ocx" firstAttribute="centerY" secondItem="F2E-m7-QQB" secondAttribute="centerY" id="gJG-Es-C8m"/>
                                                 <constraint firstItem="RnR-vl-Ocx" firstAttribute="leading" secondItem="7IP-w7-3n5" secondAttribute="trailing" constant="6" id="pSd-fN-2FH"/>
@@ -3143,7 +3143,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IDT-yF-7Js" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="12631.875" y="700"/>
+            <point key="canvasLocation" x="12631.200000000001" y="699.40029985007504"/>
         </scene>
         <!--Update Password-->
         <scene sceneID="hbo-Qa-brT">
@@ -3156,7 +3156,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Password" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DGW-e0-dA3">
                                 <rect key="frame" x="30" y="74" width="315" height="33.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="45"/>
@@ -3165,7 +3165,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in your current and new password below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Q1-zq-8Yb">
                                 <rect key="frame" x="30" y="127.5" width="315" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -3179,6 +3179,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="KYS-H9-fcr"/>
                                         </constraints>
+                                        <color key="textColor" name="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES" textContentType="password"/>
                                         <userDefinedRuntimeAttributes>
@@ -3189,7 +3190,7 @@
                                                 <real key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="value" name="textFieldColor"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <variation key="heightClass=regular-widthClass=regular">
@@ -3201,6 +3202,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="ew5-SL-srM"/>
                                         </constraints>
+                                        <color key="textColor" name="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="go" secureTextEntry="YES" textContentType="password"/>
                                         <userDefinedRuntimeAttributes>
@@ -3211,7 +3213,7 @@
                                                 <real key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="value" name="textFieldColor"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <variation key="heightClass=regular-widthClass=regular">
@@ -3284,7 +3286,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Email" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9qy-Rz-qE2">
                                 <rect key="frame" x="30" y="74" width="315" height="33.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="45"/>
@@ -3293,7 +3295,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in your new email below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n7I-Tw-brW">
                                 <rect key="frame" x="30" y="127.5" width="315" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -3307,6 +3309,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="V5Q-gq-NOh"/>
                                         </constraints>
+                                        <color key="textColor" name="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="go" textContentType="email"/>
                                         <userDefinedRuntimeAttributes>
@@ -3317,7 +3320,7 @@
                                                 <real key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="value" name="textFieldColor"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <variation key="heightClass=regular-widthClass=regular">
@@ -3390,7 +3393,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Phone" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AzO-Cg-dp3">
                                 <rect key="frame" x="30" y="74" width="315" height="33.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="45"/>
@@ -3399,7 +3402,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in your new phone number below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N7P-yh-xnL">
                                 <rect key="frame" x="30" y="127.5" width="315" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -3413,6 +3416,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="W3W-ds-4fv"/>
                                         </constraints>
+                                        <color key="textColor" name="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="go" textContentType="tel"/>
                                         <userDefinedRuntimeAttributes>
@@ -3423,7 +3427,7 @@
                                                 <real key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="value" name="textFieldColor"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <variation key="heightClass=regular-widthClass=regular">
@@ -3496,7 +3500,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Company Address" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YDq-Jj-8ui">
                                 <rect key="frame" x="30" y="30" width="315" height="33.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="45"/>
@@ -3505,7 +3509,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in your new company address below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Srw-iu-ySn">
                                 <rect key="frame" x="30" y="83.5" width="315" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -3529,7 +3533,7 @@
                                                 <real key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="value" name="textFieldColor"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <variation key="heightClass=regular-widthClass=regular">
@@ -3723,7 +3727,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Company Phone" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yrj-Me-Zap" userLabel="Title">
                                 <rect key="frame" x="30" y="30" width="315" height="33.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
-                                <color key="textColor" name="Text Color"/>
+                                <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="45"/>
@@ -3732,7 +3736,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in your new company phone below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J3P-tU-FrN" userLabel="Subtitle">
                                 <rect key="frame" x="30" y="83.5" width="315" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" name="Text Color"/>
+                                <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -3746,6 +3750,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="e99-M5-voL"/>
                                         </constraints>
+                                        <color key="textColor" name="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="go" textContentType="tel"/>
                                         <userDefinedRuntimeAttributes>
@@ -3756,7 +3761,7 @@
                                                 <real key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="value" name="textFieldColor"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <variation key="heightClass=regular-widthClass=regular">
@@ -3861,20 +3866,15 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="0BI-ia-ssz">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Street" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iAZ-xE-2AZ" userLabel="Cell Title">
                                                     <rect key="frame" x="30" y="40.5" width="47" height="19.5"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Street" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iAZ-xE-2AZ" userLabel="Cell Title">
-                                                            <rect key="frame" x="0.0" y="0.0" width="47" height="19.5"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <nil key="highlightedColor"/>
-                                                            <variation key="heightClass=regular-widthClass=regular">
-                                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                                            </variation>
-                                                        </label>
-                                                    </subviews>
-                                                </stackView>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=regular">
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                                    </variation>
+                                                </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xcx-GK-hvI">
                                                     <rect key="frame" x="325" y="40" width="20" height="20"/>
                                                     <constraints>
@@ -3886,7 +3886,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1800 Nebaska Avenue" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Jl-aC-2e8" userLabel="Cell Title Value">
                                                     <rect key="frame" x="149.5" y="40" width="170.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.3619593579" green="0.3619593579" blue="0.3619593579" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" name="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=regular">
                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -3894,12 +3894,13 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="0Jl-aC-2e8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vlF-e2-KKd" secondAttribute="leading" id="0aG-yP-gbd"/>
+                                                <constraint firstItem="iAZ-xE-2AZ" firstAttribute="centerY" secondItem="vlF-e2-KKd" secondAttribute="centerY" id="0f5-mC-k8F"/>
                                                 <constraint firstItem="Xcx-GK-hvI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vlF-e2-KKd" secondAttribute="leading" id="4fq-9q-heX"/>
-                                                <constraint firstItem="0BI-ia-ssz" firstAttribute="centerY" secondItem="vlF-e2-KKd" secondAttribute="centerY" id="K83-Vb-Xj6"/>
+                                                <constraint firstItem="iAZ-xE-2AZ" firstAttribute="leading" secondItem="vlF-e2-KKd" secondAttribute="leading" constant="30" id="Ir7-lP-0Gy"/>
+                                                <constraint firstItem="0Jl-aC-2e8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iAZ-xE-2AZ" secondAttribute="trailing" constant="20" id="Q6I-eq-s6L"/>
                                                 <constraint firstItem="Xcx-GK-hvI" firstAttribute="leading" secondItem="0Jl-aC-2e8" secondAttribute="trailing" constant="5" id="QL1-yX-RcP"/>
                                                 <constraint firstAttribute="trailing" secondItem="Xcx-GK-hvI" secondAttribute="trailing" constant="30" id="UDL-2j-fSS"/>
-                                                <constraint firstItem="0BI-ia-ssz" firstAttribute="leading" secondItem="vlF-e2-KKd" secondAttribute="leading" constant="30" id="aBk-Ko-lGw"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="iAZ-xE-2AZ" secondAttribute="trailing" id="ak4-rK-ONS"/>
                                                 <constraint firstItem="Xcx-GK-hvI" firstAttribute="centerY" secondItem="vlF-e2-KKd" secondAttribute="centerY" id="eSS-wm-O8X"/>
                                                 <constraint firstItem="0Jl-aC-2e8" firstAttribute="centerY" secondItem="vlF-e2-KKd" secondAttribute="centerY" id="hYm-2M-KEH"/>
                                             </constraints>
@@ -3914,7 +3915,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1800 Nebraska Avenue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fxX-Yl-SA9" userLabel="Title">
                                 <rect key="frame" x="30" y="236.5" width="247.5" height="30"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="25"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="35"/>
@@ -3989,7 +3990,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Company Email" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4D-l9-41O" userLabel="Title">
                                 <rect key="frame" x="30" y="30" width="315" height="33.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="45"/>
@@ -3998,7 +3999,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in your new company email below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yg3-do-Bex" userLabel="Subtitle">
                                 <rect key="frame" x="30" y="83.5" width="315" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -4012,6 +4013,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="7pF-QV-Ufq"/>
                                         </constraints>
+                                        <color key="textColor" name="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="go" textContentType="email"/>
                                         <userDefinedRuntimeAttributes>
@@ -4022,7 +4024,7 @@
                                                 <real key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="value" name="textFieldColor"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <variation key="heightClass=regular-widthClass=regular">
@@ -4125,7 +4127,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sunday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p8q-31-mhI" userLabel="Option Label">
                                                     <rect key="frame" x="20" y="12" width="57" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" name="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=regular">
                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
@@ -4192,7 +4194,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Company Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dd2-SP-iIl" userLabel="Title">
                                 <rect key="frame" x="30" y="30" width="315" height="33.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="45"/>
@@ -4201,7 +4203,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in your new company name below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yjn-sc-Wnu" userLabel="Subtitle">
                                 <rect key="frame" x="30" y="83.5" width="315" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -4215,6 +4217,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="scJ-Rn-cVt"/>
                                         </constraints>
+                                        <color key="textColor" name="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="go" textContentType="name"/>
                                         <userDefinedRuntimeAttributes>
@@ -4225,7 +4228,7 @@
                                                 <real key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="value" name="textFieldColor"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <variation key="heightClass=regular-widthClass=regular">
@@ -4297,7 +4300,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfv-ys-GlS">
                                 <rect key="frame" x="30" y="74" width="315" height="33.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="45"/>
@@ -4306,7 +4309,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in your name below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R43-Cp-ZYd">
                                 <rect key="frame" x="30" y="127.5" width="315" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -4320,6 +4323,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="wf1-xk-V8P"/>
                                         </constraints>
+                                        <color key="textColor" name="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="name"/>
                                         <userDefinedRuntimeAttributes>
@@ -4330,7 +4334,7 @@
                                                 <real key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="value" name="textFieldColor"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <variation key="heightClass=regular-widthClass=regular">
@@ -4342,6 +4346,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="d9z-yT-clC"/>
                                         </constraints>
+                                        <color key="textColor" name="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="go" textContentType="name"/>
                                         <userDefinedRuntimeAttributes>
@@ -4352,7 +4357,7 @@
                                                 <real key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="value" name="textFieldColor"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <variation key="heightClass=regular-widthClass=regular">
@@ -4459,7 +4464,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SKy-xw-bWY" userLabel="Option Label">
                                                     <rect key="frame" x="20" y="12" width="42" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" name="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=regular">
                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
@@ -6699,6 +6704,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tMJ-IR-ULJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" name="viewBackgroundColor"/>
                     </navigationBar>
                     <connections>
                         <segue destination="FU6-a7-uzH" kind="relationship" relationship="rootViewController" id="S3z-7a-dvm"/>
@@ -6752,20 +6758,15 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="6lp-A1-8yH">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Street" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OqY-mK-Wny" userLabel="Cell Title">
                                                     <rect key="frame" x="30" y="40.5" width="47" height="19.5"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Street" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OqY-mK-Wny" userLabel="Cell Title">
-                                                            <rect key="frame" x="0.0" y="0.0" width="47" height="19.5"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <nil key="highlightedColor"/>
-                                                            <variation key="heightClass=regular-widthClass=regular">
-                                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                                            </variation>
-                                                        </label>
-                                                    </subviews>
-                                                </stackView>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=regular">
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                                    </variation>
+                                                </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Mw-Ro-FlY">
                                                     <rect key="frame" x="325" y="40" width="20" height="20"/>
                                                     <constraints>
@@ -6785,14 +6786,15 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="6lp-A1-8yH" firstAttribute="centerY" secondItem="tR7-J5-rVs" secondAttribute="centerY" id="1IS-Ie-vQz"/>
+                                                <constraint firstItem="5fm-LD-Azd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="OqY-mK-Wny" secondAttribute="trailing" constant="20" id="Aei-4L-AEN"/>
+                                                <constraint firstItem="OqY-mK-Wny" firstAttribute="leading" secondItem="tR7-J5-rVs" secondAttribute="leading" constant="30" id="Ccp-sD-PXG"/>
                                                 <constraint firstItem="6Mw-Ro-FlY" firstAttribute="leading" secondItem="5fm-LD-Azd" secondAttribute="trailing" constant="5" id="GPP-Pi-8wV"/>
-                                                <constraint firstItem="6lp-A1-8yH" firstAttribute="leading" secondItem="tR7-J5-rVs" secondAttribute="leading" constant="30" id="PSR-xB-cEr"/>
                                                 <constraint firstAttribute="trailing" secondItem="6Mw-Ro-FlY" secondAttribute="trailing" constant="30" id="RNo-9w-506"/>
                                                 <constraint firstItem="6Mw-Ro-FlY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tR7-J5-rVs" secondAttribute="leading" id="VK0-FA-yak"/>
                                                 <constraint firstItem="5fm-LD-Azd" firstAttribute="centerY" secondItem="tR7-J5-rVs" secondAttribute="centerY" id="a2r-dO-a7R"/>
                                                 <constraint firstItem="6Mw-Ro-FlY" firstAttribute="centerY" secondItem="tR7-J5-rVs" secondAttribute="centerY" id="ev2-3m-q8e"/>
-                                                <constraint firstItem="5fm-LD-Azd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tR7-J5-rVs" secondAttribute="leading" id="u9m-KC-nZe"/>
+                                                <constraint firstItem="OqY-mK-Wny" firstAttribute="centerY" secondItem="tR7-J5-rVs" secondAttribute="centerY" id="oCQ-39-tfR"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="OqY-mK-Wny" secondAttribute="trailing" id="snT-c0-eJq"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -6933,35 +6935,31 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="THg-FJ-XI5">
-                                                    <rect key="frame" x="30" y="40.5" width="47" height="19.5"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Street" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bw4-fx-QSI" userLabel="Cell Title">
-                                                            <rect key="frame" x="0.0" y="0.0" width="47" height="19.5"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <nil key="highlightedColor"/>
-                                                            <variation key="heightClass=regular-widthClass=regular">
-                                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                                            </variation>
-                                                        </label>
-                                                    </subviews>
-                                                </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1800 Nebaska Avenue" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EIq-uP-O2T" userLabel="Cell Title Value">
                                                     <rect key="frame" x="174.5" y="40" width="170.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.3619593579" green="0.3619593579" blue="0.3619593579" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" name="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=regular">
                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     </variation>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Street" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bw4-fx-QSI" userLabel="Cell Title">
+                                                    <rect key="frame" x="30" y="40.5" width="47" height="19.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=regular">
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                                    </variation>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="THg-FJ-XI5" firstAttribute="centerY" secondItem="KgX-PH-c2U" secondAttribute="centerY" id="Cs1-IB-3Jh"/>
-                                                <constraint firstItem="EIq-uP-O2T" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="KgX-PH-c2U" secondAttribute="leading" id="NWc-7L-dhY"/>
-                                                <constraint firstItem="THg-FJ-XI5" firstAttribute="leading" secondItem="KgX-PH-c2U" secondAttribute="leading" constant="30" id="apD-hL-UkB"/>
+                                                <constraint firstItem="bw4-fx-QSI" firstAttribute="centerY" secondItem="KgX-PH-c2U" secondAttribute="centerY" id="AfE-ZS-frg"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bw4-fx-QSI" secondAttribute="trailing" id="SxW-7o-4NX"/>
+                                                <constraint firstItem="bw4-fx-QSI" firstAttribute="leading" secondItem="KgX-PH-c2U" secondAttribute="leading" constant="30" id="fuf-mB-Gvd"/>
                                                 <constraint firstAttribute="trailing" secondItem="EIq-uP-O2T" secondAttribute="trailing" constant="30" id="lPP-jF-FUC"/>
+                                                <constraint firstItem="EIq-uP-O2T" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="bw4-fx-QSI" secondAttribute="trailing" constant="20" id="m1C-X9-oKL"/>
                                                 <constraint firstItem="EIq-uP-O2T" firstAttribute="centerY" secondItem="KgX-PH-c2U" secondAttribute="centerY" id="v7S-1s-EMp"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -6975,7 +6973,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1800 Nebraska Avenue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KLD-Df-pjV" userLabel="Title">
                                 <rect key="frame" x="30" y="236.5" width="247.5" height="30"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="25"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="35"/>
@@ -8290,7 +8288,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Us" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="0Cr-Nd-ZBR">
                                                     <rect key="frame" x="26" y="10" width="85" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="textColor" name="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=regular">
                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
@@ -8332,7 +8330,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NovaOne Terms" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="4Xe-Kx-7Tc">
                                                     <rect key="frame" x="26" y="10" width="121" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="textColor" name="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=regular">
                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
@@ -8367,7 +8365,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Privacy" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="oQA-Hv-GFW">
                                                     <rect key="frame" x="26" y="10" width="55" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="textColor" name="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=regular">
                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
@@ -8998,6 +8996,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="eeW-nd-O1T">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" name="viewBackgroundColor"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -9016,7 +9015,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="UD9-7v-Xoz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="viewBackgroundColor"/>
                         <color key="tintColor" red="0.32549019610000002" green="0.42352941179999998" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -9036,7 +9035,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="TcQ-fg-r1O">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="viewBackgroundColor"/>
                         <color key="tintColor" red="0.32549019610000002" green="0.42352941179999998" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -9079,6 +9078,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ixQ-qR-Ay0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" name="viewBackgroundColor"/>
                         <color key="tintColor" red="0.32549019610000002" green="0.42352941179999998" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -9094,13 +9094,13 @@
     <inferredMetricsTieBreakers>
         <segue reference="B8e-n8-RKh"/>
         <segue reference="VWl-eF-DbJ"/>
-        <segue reference="9Tt-mk-7bN"/>
+        <segue reference="S3z-7a-dvm"/>
         <segue reference="wIw-gS-eqi"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="account" width="42.666667938232422" height="42.666667938232422"/>
-        <image name="calendar" catalog="system" width="128" height="106"/>
         <image name="calendar" width="42.5" height="42.5"/>
+        <image name="calendar" catalog="system" width="128" height="106"/>
         <image name="callBlue" width="27" height="27"/>
         <image name="cancelButtonBlue" width="33.5" height="33.5"/>
         <image name="clipboard" width="42.666667938232422" height="42.666667938232422"/>
@@ -9119,9 +9119,6 @@
         <image name="rightAngleBlue" width="42.5" height="42.5"/>
         <image name="success" width="170.5" height="170.5"/>
         <image name="tick" width="26.5" height="26.5"/>
-        <namedColor name="Text Color">
-            <color red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="textColor">
             <color red="0.2669999897480011" green="0.2669999897480011" blue="0.2669999897480011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
