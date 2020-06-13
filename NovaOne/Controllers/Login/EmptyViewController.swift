@@ -13,6 +13,7 @@ class EmptyViewController: UIViewController {
     // MARK: Properties
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var addObjectButton: NovaOneButton!
+    @IBOutlet weak var refreshButton: NovaOneButton!
     var addObjectButtonTitle: String?
     var addObjectButtonHandler: (() -> Void)?
     var titleLabelText: String?

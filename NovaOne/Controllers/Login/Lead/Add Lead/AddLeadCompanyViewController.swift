@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class AddLeadCompanyViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class AddLeadCompanyViewController: AddLeadBaseViewController, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: Properties
     @IBOutlet weak var tableView: UITableView!
@@ -47,9 +47,29 @@ class AddLeadCompanyViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     // MARK: Actions
-    
     @IBAction func cancelButtonTapped(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func continueButtonTapped(_ sender: Any) {
+        // Check if item was selected in table
+        if EnableOptionHelper.optionIsSelected(options: self.options) == true {
+            guard let addLeadNameViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addLeadName.rawValue) as? AddLeadNameViewController else { return }
+            
+            // Get selected options and pass objects
+            let selectedOption = self.options.filter({ $0.selected == true }).first
+            guard let companyId = selectedOption?.id else { return }
+            
+            // Create appointment model object and pass company id to it
+            self.lead = LeadModel(id: nil, name: "", phoneNumber: "", email: "", dateOfInquiry: "", renterBrand: "", companyId: companyId, sentTextDate: nil, sentEmailDate: nil, filledOutForm: false, madeAppointment: false, companyName: "")
+            addLeadNameViewController.lead = self.lead
+            addLeadNameViewController.embeddedViewController = self.embeddedViewController
+            
+            self.navigationController?.pushViewController(addLeadNameViewController, animated: true)
+        } else {
+            let popUpOkViewController = self.alertService.popUpOk(title: "Select A Company", body: "Please select a company.")
+            self.present(popUpOkViewController, animated: true, completion: nil)
+        }
     }
     
 }

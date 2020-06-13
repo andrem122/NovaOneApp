@@ -12,6 +12,7 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     // MARK: Properties
     var objectDetailItems: [ObjectDetailItem] = []
+    let customer: Customer? = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first
     var lead: Lead?
     @IBOutlet weak var objectDetailTableView: UITableView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -53,10 +54,10 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         guard
             let lead = self.lead,
             let name = lead.name,
-            let renterBrand = lead.renterBrand,
             let companyName = lead.companyName,
             let dateOfInquiryDate = lead.dateOfInquiry
         else { return }
+        let contactedLead = lead.sentTextDate != nil || lead.sentEmailDate != nil ? "Contacted" : "Not Contacted"
         
         // Set default values for optional types
         let phoneNumber = lead.phoneNumber != nil ? lead.phoneNumber! : "No phone"
@@ -68,7 +69,7 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         // Create dictionaries for cells
         let phoneNumberItem = ObjectDetailItem(title: "Phone", titleValue: phoneNumber)
         let emailItem = ObjectDetailItem(title: "Email", titleValue: email)
-        let renterBrandItem = ObjectDetailItem(title: "Renter Brand", titleValue: renterBrand)
+        let contactedItem = ObjectDetailItem(title: "Contacted", titleValue: contactedLead)
         let addressItem = ObjectDetailItem(title: "Company", titleValue: companyName)
         let dateOfInquiryItem = ObjectDetailItem(title: "Date Of Inquiry", titleValue: dateOfInquiry)
         
@@ -76,9 +77,16 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         self.objectDetailItems = [
             phoneNumberItem,
             emailItem,
-            renterBrandItem,
+            contactedItem,
             dateOfInquiryItem,
             addressItem]
+        
+        guard let customerType = self.customer?.customerType else { return }
+        if customerType == Defaults.CustomerTypes.propertyManager.rawValue {
+            guard let renterBrand = self.lead?.renterBrand else { return }
+            let renterBrandItem = ObjectDetailItem(title: "Renter Brand", titleValue: renterBrand)
+            self.objectDetailItems.append(renterBrandItem)
+        }
         
     }
 

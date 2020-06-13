@@ -16,7 +16,8 @@ class AddAppointmentPhoneViewController: AddAppointmentBaseViewController, UITex
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.appointmentPhoneTextField.delegate = self
+        self.setupContinueButton()
+        self.setupTextField()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -24,7 +25,13 @@ class AddAppointmentPhoneViewController: AddAppointmentBaseViewController, UITex
         self.appointmentPhoneTextField.becomeFirstResponder()
     }
     
+    func setupTextField() {
+        // Set up the text field
+        self.appointmentPhoneTextField.delegate = self
+    }
+    
     func setupContinueButton() {
+        // Setup the continue button
         UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
     }
 

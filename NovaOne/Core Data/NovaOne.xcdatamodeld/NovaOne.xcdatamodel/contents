@@ -58,7 +58,7 @@
         <attribute name="madeAppointment" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="phoneNumber" optional="YES" attributeType="String"/>
-        <attribute name="renterBrand" attributeType="String"/>
+        <attribute name="renterBrand" optional="YES" attributeType="String"/>
         <attribute name="sentEmailDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="sentTextDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="company" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Company" inverseName="leads" inverseEntity="Company"/>

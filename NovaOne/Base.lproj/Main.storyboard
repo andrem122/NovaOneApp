@@ -1205,7 +1205,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amanda Taylor" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4uU-yg-Qn6" userLabel="Title Label">
                                                     <rect key="frame" x="8" y="15" width="112.5" height="19.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                                    <color key="textColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" name="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
@@ -1220,7 +1220,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="March 30, 2020 | 6:30 PM" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rTo-Ow-ER6" userLabel="Sub Title Label 3">
                                                     <rect key="frame" x="169" y="70" width="156" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
-                                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="textColor" name="textFieldColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
@@ -1271,7 +1271,7 @@
                                                                 <constraint firstAttribute="height" constant="16" id="k9Z-2c-NWB"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
-                                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="textColor" name="textFieldColor"/>
                                                             <nil key="highlightedColor"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
@@ -1283,7 +1283,7 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 Beds" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mEO-vX-pGi" userLabel="Sub title label 2">
                                                             <rect key="frame" x="0.0" y="20" width="42" height="16"/>
                                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
-                                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="textColor" name="textFieldColor"/>
                                                             <nil key="highlightedColor"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
@@ -1317,7 +1317,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </button>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" name="viewForegroundColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="GMs-e1-dsp" secondAttribute="bottom" constant="19.329999999999998" id="3eT-Pg-Fb4"/>
                                                 <constraint firstItem="plE-ZT-72k" firstAttribute="centerY" secondItem="4uU-yg-Qn6" secondAttribute="centerY" id="6fY-mr-YLm"/>
@@ -1346,9 +1346,12 @@
                                                     <size key="value" width="0.0" height="1"/>
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                    <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="value" name="shadowColor"/>
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                    <color key="value" name="shadowColor"/>
+                                                </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                     </subviews>
@@ -1825,6 +1828,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bMv-Nt-raQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" name="viewBackgroundColor"/>
                         <color key="barTintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -2004,7 +2008,7 @@
                                         </constraints>
                                         <color key="textColor" name="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="continue" textContentType="tel"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="go" textContentType="tel"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="20"/>
@@ -2656,7 +2660,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amanda Taylor" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sey-lk-6d3" userLabel="Title Label">
                                                     <rect key="frame" x="8" y="15" width="115.5" height="19.5"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                                    <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" name="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
@@ -2668,7 +2672,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="March 30, 2020 | 6:30 PM" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I49-UB-iBd" userLabel="Sub Title Label 3">
                                                     <rect key="frame" x="169" y="70" width="156" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
-                                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="textColor" name="textFieldColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
@@ -2698,7 +2702,7 @@
                                                                 <constraint firstAttribute="height" constant="16" id="zhI-VY-pRK"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
-                                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="textColor" name="textFieldColor"/>
                                                             <nil key="highlightedColor"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
@@ -2710,7 +2714,7 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zillow" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Bd-8j-Y1d" userLabel="Sub title label 2">
                                                             <rect key="frame" x="0.0" y="20" width="35" height="16"/>
                                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
-                                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="textColor" name="textFieldColor"/>
                                                             <nil key="highlightedColor"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
@@ -2739,7 +2743,7 @@
                                                     <state key="normal" image="rightAngleBlue"/>
                                                 </button>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" name="viewForegroundColor"/>
                                             <constraints>
                                                 <constraint firstItem="sey-lk-6d3" firstAttribute="top" secondItem="Fwe-Af-EfP" secondAttribute="top" constant="15" id="01w-nF-dQv"/>
                                                 <constraint firstAttribute="bottom" secondItem="fUy-Av-uAS" secondAttribute="bottom" constant="19.329999999999998" id="Bi3-Nl-p84"/>
@@ -2768,9 +2772,12 @@
                                                     <size key="value" width="0.0" height="1"/>
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                    <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="value" name="shadowColor"/>
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                    <color key="value" name="shadowColor"/>
+                                                </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                     </subviews>
@@ -3031,7 +3038,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mail@gmail.com" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="YEy-Um-pYw">
-                                                    <rect key="frame" x="220.5" y="9.5" width="123.5" height="21"/>
+                                                    <rect key="frame" x="220.5" y="10" width="123.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" name="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -3709,6 +3716,7 @@
                     </view>
                     <connections>
                         <outlet property="addObjectButton" destination="L07-8z-g0m" id="RHz-3t-tV1"/>
+                        <outlet property="refreshButton" destination="EXu-Np-aAf" id="5yg-8N-lCo"/>
                         <outlet property="titleLabel" destination="HSm-kb-QqU" id="nBF-9w-k8I"/>
                     </connections>
                 </viewController>
@@ -5411,7 +5419,7 @@
                                         </variation>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" name="viewForegroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="g8m-k1-Npb" secondAttribute="trailing" constant="15" id="6oc-fA-07Y"/>
                                     <constraint firstItem="g8m-k1-Npb" firstAttribute="leading" secondItem="54c-81-Tu9" secondAttribute="leading" constant="15" id="H9E-5g-0g0"/>
@@ -5485,7 +5493,7 @@
                                         </constraints>
                                         <color key="textColor" name="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="name"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="go" textContentType="name"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="20"/>
@@ -5604,7 +5612,7 @@
                                         </constraints>
                                         <color key="textColor" name="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next" textContentType="tel"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="go" textContentType="tel"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="20"/>
@@ -6023,7 +6031,7 @@
                                         </constraints>
                                         <color key="textColor" name="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="street-address"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="go" textContentType="street-address"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="20"/>
@@ -6150,7 +6158,7 @@
                                         </constraints>
                                         <color key="textColor" name="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="go" textContentType="email"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="20"/>
@@ -6567,7 +6575,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" name="viewForegroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="wp0-tY-K5B" secondAttribute="trailing" id="0nU-mZ-uWh"/>
                                     <constraint firstItem="RKP-J9-JOL" firstAttribute="leading" secondItem="1G9-48-Gbn" secondAttribute="leading" constant="15" id="4Y8-yp-bEA"/>
@@ -6881,6 +6889,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hJO-tO-2hG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" name="viewBackgroundColor"/>
                         <color key="tintColor" red="0.32549019610000002" green="0.42352941179999998" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
@@ -7173,7 +7182,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amanda Taylor" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hnh-Ex-J1Z" userLabel="Title Label">
                                                     <rect key="frame" x="8" y="15" width="115.5" height="19.5"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                                    <color key="textColor" red="0.26664003730000002" green="0.2666836977" blue="0.26663050059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" name="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
@@ -7185,7 +7194,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="March 30, 2020 | 6:30 PM" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NaR-X1-JXT" userLabel="Sub Title Label 3">
                                                     <rect key="frame" x="169" y="70" width="156" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
-                                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="textColor" name="textFieldColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
@@ -7203,7 +7212,7 @@
                                                                 <constraint firstAttribute="height" constant="16" id="fMV-gh-ysI"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
-                                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="textColor" name="textFieldColor"/>
                                                             <nil key="highlightedColor"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
@@ -7215,7 +7224,7 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zillow" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RTi-fj-LmJ" userLabel="Sub title label 2">
                                                             <rect key="frame" x="0.0" y="20" width="35" height="16"/>
                                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
-                                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="textColor" name="textFieldColor"/>
                                                             <nil key="highlightedColor"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
@@ -7244,7 +7253,7 @@
                                                     <state key="normal" image="rightAngleBlue"/>
                                                 </button>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" name="viewForegroundColor"/>
                                             <constraints>
                                                 <constraint firstItem="NaR-X1-JXT" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2uk-oI-7DC" secondAttribute="leading" id="1nH-8m-fjV"/>
                                                 <constraint firstAttribute="bottom" secondItem="4B8-k7-IRh" secondAttribute="bottom" constant="19.329999999999998" id="BrQ-cX-xWi"/>
@@ -7269,9 +7278,12 @@
                                                     <size key="value" width="0.0" height="1"/>
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                    <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="value" name="shadowColor"/>
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                    <color key="value" name="shadowColor"/>
+                                                </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                     </subviews>
@@ -8415,33 +8427,34 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Lead" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2u9-7J-SXL">
-                                <rect key="frame" x="30" y="74" width="315" height="33.5"/>
+                                <rect key="frame" x="30" y="30" width="315" height="33.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="45"/>
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in the name of the lead below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JLG-9Z-Mx2">
-                                <rect key="frame" x="30" y="127.5" width="315" height="20.5"/>
+                                <rect key="frame" x="30" y="83.5" width="315" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 </variation>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="8ZC-3h-KCD">
-                                <rect key="frame" x="30" y="178" width="315" height="110"/>
+                                <rect key="frame" x="30" y="134" width="315" height="110"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="FMR-Kl-jeH" customClass="NovaOneTextField" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="315" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="d4X-YV-GSt"/>
                                         </constraints>
+                                        <color key="textColor" name="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="name"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="go" textContentType="name"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="20"/>
@@ -8450,12 +8463,15 @@
                                                 <real key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="value" name="textFieldColor"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         </variation>
+                                        <connections>
+                                            <action selector="nameTextFieldChanged:" destination="44k-r7-hbx" eventType="editingChanged" id="d8f-fs-wGW"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sEG-wV-WPV" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="65" width="315" height="45"/>
@@ -8477,7 +8493,7 @@
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         </variation>
                                         <connections>
-                                            <segue destination="4gz-FX-5RM" kind="show" id="3CK-Kb-cmj"/>
+                                            <action selector="continueButtonTapped:" destination="44k-r7-hbx" eventType="touchUpInside" id="hNg-EU-Xg9"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -8512,6 +8528,10 @@
                     <navigationItem key="navigationItem" id="LNP-GS-6sB">
                         <barButtonItem key="backBarButtonItem" title=" " id="Mh7-gf-zUh"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="continueButton" destination="sEG-wV-WPV" id="GbB-QY-o3s"/>
+                        <outlet property="nameTextField" destination="FMR-Kl-jeH" id="M3K-mg-aev"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lrs-HQ-jge" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -8545,7 +8565,7 @@
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 </variation>
                                 <connections>
-                                    <segue destination="44k-r7-hbx" kind="show" id="ph0-3g-bqg"/>
+                                    <action selector="continueButtonTapped:" destination="AiO-n8-JYl" eventType="touchUpInside" id="9pw-pJ-t20"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5bX-Cw-QI7">
@@ -8562,7 +8582,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sh2-7k-Pyd" userLabel="Option Label">
                                                     <rect key="frame" x="20" y="12" width="72.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="textColor" name="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=regular">
                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="21"/>
@@ -8596,7 +8616,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Lead" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X5b-M8-cHB">
                                 <rect key="frame" x="30" y="77" width="315" height="33.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="45"/>
@@ -8605,7 +8625,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select the company you want to add the lead to." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ohD-81-3aN">
                                 <rect key="frame" x="30" y="130.5" width="315" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -8667,33 +8687,34 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Lead Email" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y16-aw-oWJ">
-                                <rect key="frame" x="30" y="74" width="315" height="33.5"/>
+                                <rect key="frame" x="30" y="30" width="315" height="33.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="45"/>
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in the email of the lead below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uxo-ss-Ubj">
-                                <rect key="frame" x="30" y="127.5" width="315" height="20.5"/>
+                                <rect key="frame" x="30" y="83.5" width="315" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 </variation>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="AxM-Cp-Bq5">
-                                <rect key="frame" x="30" y="178" width="315" height="110"/>
+                                <rect key="frame" x="30" y="134" width="315" height="110"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="RDd-vI-Ru1" customClass="NovaOneTextField" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="315" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="XEh-WQ-xTg"/>
                                         </constraints>
+                                        <color key="textColor" name="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="go" textContentType="email"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="20"/>
@@ -8702,12 +8723,15 @@
                                                 <real key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="value" name="textFieldColor"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         </variation>
+                                        <connections>
+                                            <action selector="emailAddressTextFieldChanged:" destination="4gz-FX-5RM" eventType="editingChanged" id="fKa-Ms-yRw"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nr4-3F-mPU" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="65" width="315" height="45"/>
@@ -8729,7 +8753,7 @@
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         </variation>
                                         <connections>
-                                            <segue destination="zHY-pD-5U5" kind="show" id="tsw-md-SgY"/>
+                                            <action selector="continueButtonTapped:" destination="4gz-FX-5RM" eventType="touchUpInside" id="sGs-bb-7Q9"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -8764,10 +8788,126 @@
                     <navigationItem key="navigationItem" id="0hA-6f-m2X">
                         <barButtonItem key="backBarButtonItem" title=" " id="TrR-ef-ThS"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="continueButton" destination="Nr4-3F-mPU" id="flY-eh-tmA"/>
+                        <outlet property="emailAddressTextField" destination="RDd-vI-Ru1" id="vSK-8h-snw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3d3-cN-u5b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9081" y="4883"/>
+            <point key="canvasLocation" x="9081" y="5493"/>
+        </scene>
+        <!--Add Lead Email-->
+        <scene sceneID="z00-4p-I2Q">
+            <objects>
+                <viewController storyboardIdentifier="addLeadEmailCheckViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Wfh-yT-nBY" userLabel="Add Lead Email" customClass="AddLeadEmailCheckViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fZL-55-efB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lead Email" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4vK-hN-EMe">
+                                <rect key="frame" x="30" y="30" width="315" height="33.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
+                                <color key="textColor" name="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="45"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Does this lead have an email?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Jt-9k-Flg">
+                                <rect key="frame" x="30" y="83.5" width="315" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                </variation>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="8h2-l9-NNL">
+                                <rect key="frame" x="30" y="134" width="315" height="45"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ODJ-G0-hyV" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="147.5" height="45"/>
+                                        <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="7h6-TD-QfB"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                        <state key="normal" title="Yes">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        </variation>
+                                        <connections>
+                                            <action selector="yesButtonTapped:" destination="Wfh-yT-nBY" eventType="touchUpInside" id="YE2-IL-8sc"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Elo-cI-dcd" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
+                                        <rect key="frame" x="167.5" y="0.0" width="147.5" height="45"/>
+                                        <color key="backgroundColor" red="0.55332022910000001" green="0.75976693630000003" blue="0.97779995200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="cca-fv-ct7"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                        <state key="normal" title="No">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        </variation>
+                                        <connections>
+                                            <action selector="noButtonTapped:" destination="Wfh-yT-nBY" eventType="touchUpInside" id="kPQ-fj-2cz"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="4vK-hN-EMe" firstAttribute="leading" secondItem="dbk-TW-WWU" secondAttribute="leading" constant="30" id="Aji-Ge-7eT">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="8h2-l9-NNL" firstAttribute="top" secondItem="9Jt-9k-Flg" secondAttribute="bottom" constant="30" id="Asa-gU-ME9"/>
+                            <constraint firstItem="8h2-l9-NNL" firstAttribute="leading" secondItem="dbk-TW-WWU" secondAttribute="leading" constant="30" id="JGh-Ks-Mwf">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="dbk-TW-WWU" firstAttribute="trailing" secondItem="8h2-l9-NNL" secondAttribute="trailing" constant="30" id="dNd-y9-Cw4">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="9Jt-9k-Flg" firstAttribute="top" secondItem="4vK-hN-EMe" secondAttribute="bottom" constant="20" id="eom-M2-V3S"/>
+                            <constraint firstItem="dbk-TW-WWU" firstAttribute="trailing" secondItem="4vK-hN-EMe" secondAttribute="trailing" constant="30" id="ieB-Rb-lJm">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="dbk-TW-WWU" firstAttribute="trailing" secondItem="9Jt-9k-Flg" secondAttribute="trailing" constant="30" id="sQD-A7-pNd">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="4vK-hN-EMe" firstAttribute="top" secondItem="dbk-TW-WWU" secondAttribute="top" constant="30" id="wSh-Rd-g8J"/>
+                            <constraint firstItem="9Jt-9k-Flg" firstAttribute="leading" secondItem="dbk-TW-WWU" secondAttribute="leading" constant="30" id="xYM-Pr-5Yq">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="dbk-TW-WWU"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="84M-CH-ePE">
+                        <barButtonItem key="backBarButtonItem" title=" " id="WrK-fd-KqA"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q5q-DL-TDq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="9081" y="4772"/>
         </scene>
         <!--Add Lead Phone-->
         <scene sceneID="3PT-Nw-L6F">
@@ -8778,33 +8918,34 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Lead Phone" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lna-td-zJT">
-                                <rect key="frame" x="30" y="74" width="315" height="33.5"/>
+                                <rect key="frame" x="30" y="30" width="315" height="33.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="45"/>
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in the phone number of the lead below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hsr-qm-L8F">
-                                <rect key="frame" x="30" y="127.5" width="315" height="41"/>
+                                <rect key="frame" x="30" y="83.5" width="315" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 </variation>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="r8l-6c-z8r">
-                                <rect key="frame" x="30" y="198.5" width="315" height="110"/>
+                                <rect key="frame" x="30" y="154.5" width="315" height="110"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone Number" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="iDa-si-r5f" customClass="NovaOneTextField" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="315" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="wwp-5r-F6d"/>
                                         </constraints>
+                                        <color key="textColor" name="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next" textContentType="tel"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="go" textContentType="tel"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="20"/>
@@ -8813,12 +8954,15 @@
                                                 <real key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="value" name="textFieldColor"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         </variation>
+                                        <connections>
+                                            <action selector="phoneNumberTextFieldChanged:" destination="zHY-pD-5U5" eventType="editingChanged" id="6t2-XF-iet"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wCA-7R-S3q" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="65" width="315" height="45"/>
@@ -8840,7 +8984,7 @@
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         </variation>
                                         <connections>
-                                            <segue destination="WR0-3y-yYe" kind="show" id="uiE-3U-PZZ"/>
+                                            <action selector="continueButtonTapped:" destination="zHY-pD-5U5" eventType="touchUpInside" id="rUk-mC-LyG"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -8875,10 +9019,126 @@
                     <navigationItem key="navigationItem" id="1G7-9i-6vI">
                         <barButtonItem key="backBarButtonItem" title=" " id="Cga-yp-xFQ"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="continueButton" destination="wCA-7R-S3q" id="nAg-jl-T8f"/>
+                        <outlet property="phoneNumberTextField" destination="iDa-si-r5f" id="fPa-tz-7Eo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4y3-Y3-Qzm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9081" y="5694"/>
+            <point key="canvasLocation" x="9081" y="6949"/>
+        </scene>
+        <!--Add Lead Phone-->
+        <scene sceneID="JmG-cu-OrK">
+            <objects>
+                <viewController storyboardIdentifier="addLeadPhoneCheckViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="L3S-kg-gZa" userLabel="Add Lead Phone" customClass="AddLeadPhoneCheckViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ODc-wz-KjG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lead Phone Number" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uOL-1C-OPT">
+                                <rect key="frame" x="30" y="30" width="315" height="33.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
+                                <color key="textColor" name="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="45"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Does this lead have a phone number?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="79B-tM-sBs">
+                                <rect key="frame" x="30" y="83.5" width="315" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                </variation>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="WiA-nM-Lo7">
+                                <rect key="frame" x="30" y="134" width="315" height="45"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZWb-LU-hmi" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="147.5" height="45"/>
+                                        <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="Zi7-NS-5TB"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                        <state key="normal" title="Yes">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        </variation>
+                                        <connections>
+                                            <action selector="yesButtonTapped:" destination="L3S-kg-gZa" eventType="touchUpInside" id="h5L-JM-XOz"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Kv-ry-KXf" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
+                                        <rect key="frame" x="167.5" y="0.0" width="147.5" height="45"/>
+                                        <color key="backgroundColor" red="0.55332022910000001" green="0.75976693630000003" blue="0.97779995200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="D6m-Mk-MyL"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                        <state key="normal" title="No">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        </variation>
+                                        <connections>
+                                            <action selector="noButtonTapped:" destination="L3S-kg-gZa" eventType="touchUpInside" id="P4U-mg-K3M"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="uOL-1C-OPT" firstAttribute="top" secondItem="IT4-jv-kL9" secondAttribute="top" constant="30" id="2XX-ro-rMi"/>
+                            <constraint firstItem="uOL-1C-OPT" firstAttribute="leading" secondItem="IT4-jv-kL9" secondAttribute="leading" constant="30" id="52b-np-Jd4">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="79B-tM-sBs" firstAttribute="leading" secondItem="IT4-jv-kL9" secondAttribute="leading" constant="30" id="873-gb-mDz">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="WiA-nM-Lo7" firstAttribute="leading" secondItem="IT4-jv-kL9" secondAttribute="leading" constant="30" id="90t-h4-FV6">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="79B-tM-sBs" firstAttribute="top" secondItem="uOL-1C-OPT" secondAttribute="bottom" constant="20" id="9SD-Z4-X8X"/>
+                            <constraint firstItem="IT4-jv-kL9" firstAttribute="trailing" secondItem="WiA-nM-Lo7" secondAttribute="trailing" constant="30" id="D0X-gg-6K8">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="WiA-nM-Lo7" firstAttribute="top" secondItem="79B-tM-sBs" secondAttribute="bottom" constant="30" id="M6S-fJ-06a"/>
+                            <constraint firstItem="IT4-jv-kL9" firstAttribute="trailing" secondItem="uOL-1C-OPT" secondAttribute="trailing" constant="30" id="ehP-xH-paV">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="IT4-jv-kL9" firstAttribute="trailing" secondItem="79B-tM-sBs" secondAttribute="trailing" constant="30" id="hvi-B4-7sR">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="IT4-jv-kL9"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="gNM-lS-7lu">
+                        <barButtonItem key="backBarButtonItem" title=" " id="t2A-ir-SUP"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Phl-4s-wLm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="9081" y="6227"/>
         </scene>
         <!--Add Lead Renter Brand-->
         <scene sceneID="gak-Xm-fU2">
@@ -8889,25 +9149,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Lead Renter Brand" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hH1-TG-Sfa">
-                                <rect key="frame" x="30" y="74" width="315" height="33.5"/>
+                                <rect key="frame" x="30" y="30" width="315" height="33.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="45"/>
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose the renter brand of the lead below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pFb-Wj-lb9">
-                                <rect key="frame" x="30" y="127.5" width="315" height="41"/>
+                                <rect key="frame" x="30" y="83.5" width="315" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wOU-Hs-316" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
-                                <rect key="frame" x="30" y="424.5" width="315" height="45"/>
+                                <rect key="frame" x="30" y="380.5" width="315" height="45"/>
                                 <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="AGR-dR-OFx"/>
@@ -8925,9 +9185,12 @@
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 </variation>
+                                <connections>
+                                    <action selector="addLeadButtonTapped:" destination="WR0-3y-yYe" eventType="touchUpInside" id="5rf-hY-GFU"/>
+                                </connections>
                             </button>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hZs-AE-coc" userLabel="Renter Brand Picker">
-                                <rect key="frame" x="0.0" y="198.5" width="374" height="216"/>
+                                <rect key="frame" x="0.0" y="154.5" width="374" height="216"/>
                             </pickerView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -8968,7 +9231,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WxO-Ds-yTb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9081" y="6536"/>
+            <point key="canvasLocation" x="9081" y="7664"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="XDv-0W-rDi">
@@ -9099,8 +9362,8 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="account" width="42.666667938232422" height="42.666667938232422"/>
-        <image name="calendar" width="42.5" height="42.5"/>
         <image name="calendar" catalog="system" width="128" height="106"/>
+        <image name="calendar" width="42.5" height="42.5"/>
         <image name="callBlue" width="27" height="27"/>
         <image name="cancelButtonBlue" width="33.5" height="33.5"/>
         <image name="clipboard" width="42.666667938232422" height="42.666667938232422"/>
@@ -9119,6 +9382,9 @@
         <image name="rightAngleBlue" width="42.5" height="42.5"/>
         <image name="success" width="170.5" height="170.5"/>
         <image name="tick" width="26.5" height="26.5"/>
+        <namedColor name="shadowColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="textColor">
             <color red="0.2669999897480011" green="0.2669999897480011" blue="0.2669999897480011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -9126,6 +9392,9 @@
             <color red="0.66699999570846558" green="0.66699999570846558" blue="0.66699999570846558" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="viewBackgroundColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="viewForegroundColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>

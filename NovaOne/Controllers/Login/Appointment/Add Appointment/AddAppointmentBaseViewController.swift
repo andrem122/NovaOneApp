@@ -15,8 +15,4 @@ class AddAppointmentBaseViewController: UIViewController {
     var appointmentsTableViewController: AppointmentsTableViewController?
     let alertService = AlertService()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
 }

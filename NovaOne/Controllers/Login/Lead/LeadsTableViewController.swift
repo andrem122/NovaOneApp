@@ -119,6 +119,7 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
         // Gets data from CoreData and sorts by id field
         DispatchQueue.main.async { // Run on main thread so we dont grab core data before it is saved into the device
             [weak self] in
+            print("Getting core data...")
             let sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
             let objects = PersistenceService.fetchEntity(Lead.self, filter: nil, sort: sortDescriptors)
             self?.objects = objects
@@ -147,7 +148,8 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
             for lead in leads {
                 if let coreDataLead = NSManagedObject(entity: entity, insertInto: PersistenceService.context) as? Lead {
                     
-                    coreDataLead.id = Int32(lead.id)
+                    guard let id = lead.id else { return }
+                    coreDataLead.id = Int32(id)
                     coreDataLead.name = lead.name
                     coreDataLead.phoneNumber = lead.phoneNumber
                     coreDataLead.email = lead.email
@@ -335,6 +337,12 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
     // MARK: Actions
     @IBAction func addButtonTapped(_ sender: Any) {
         guard let addLeadNavigationController = self.storyboard?.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addLead.rawValue) as? UINavigationController else { return }
+        
+        // Pass the instance of appointments table view controller to the last view controller in the navigation stack
+        // so we can refresh the appointments table after successful object creation
+        guard let addLeadCompanyViewController = addLeadNavigationController.viewControllers.first as? AddLeadCompanyViewController else { return }
+        addLeadCompanyViewController.embeddedViewController = self
+        
         self.present(addLeadNavigationController, animated: true, completion: nil)
     }
 }
@@ -357,16 +365,17 @@ extension LeadsTableViewController: UISearchResultsUpdating, SkeletonTableViewDa
             guard
                 let name = lead.name,
                 let companyName = lead.companyName,
-                let leadBrand = lead.renterBrand,
                 let dateOfInquiry = lead.dateOfInquiry
             else { return cell }
+            
+            let contactedLead = lead.sentTextDate != nil || lead.sentEmailDate != nil ? "Contacted" : "Not Contacted"
             
             // Get date of lead as a string
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MMM d, yyyy | h:mm a"
             let dateContacted: String = dateFormatter.string(from: dateOfInquiry)
             
-            cell.setup(title: name, subTitleOne: companyName, subTitleTwo: leadBrand, subTitleThree: dateContacted)
+            cell.setup(title: name, subTitleOne: companyName, subTitleTwo: contactedLead, subTitleThree: dateContacted)
             
         }
         
@@ -420,8 +429,7 @@ extension LeadsTableViewController: UISearchResultsUpdating, SkeletonTableViewDa
             // Leads can be serached via name, company name, and renter brand
             return
                 leadObject.name?.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil ||
-                leadObject.companyName?.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil ||
-                leadObject.renterBrand?.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
+                leadObject.companyName?.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
         })
         
         self.tableView.reloadData()

@@ -50,25 +50,25 @@ class AddAppointmentUnitTypeViewController: AddAppointmentBaseViewController, UI
             [weak self] (result) in
             
             switch result {
-            case .success(let success):
-                // Redirect to success screen
-                
-                self?.removeSpinner()
-                
-                guard let successViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.success.rawValue) as? SuccessViewController else { return }
-                successViewController.subtitleText = success.successReason
-                successViewController.titleLabelText = "Appointment Created!"
-                successViewController.doneHandler = {
-                    [weak self] in
-                    // Return to the appointments view and refresh appointments
-                    self?.presentingViewController?.dismiss(animated: true, completion: nil)
-                    self?.appointmentsTableViewController?.refreshDataOnPullDown()
-                }
-                self?.present(successViewController, animated: true, completion: nil)
-            case .failure(let error):
-                self?.removeSpinner()
-                guard let popUpOk = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
-                self?.present(popUpOk, animated: true, completion: nil)
+                case .success(let success):
+                    // Redirect to success screen
+                    
+                    self?.removeSpinner()
+                    
+                    guard let successViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.success.rawValue) as? SuccessViewController else { return }
+                    successViewController.subtitleText = success.successReason
+                    successViewController.titleLabelText = "Appointment Created!"
+                    successViewController.doneHandler = {
+                        [weak self] in
+                        // Return to the appointments view and refresh appointments
+                        self?.presentingViewController?.dismiss(animated: true, completion: nil)
+                        self?.appointmentsTableViewController?.refreshDataOnPullDown()
+                    }
+                    self?.present(successViewController, animated: true, completion: nil)
+                case .failure(let error):
+                    self?.removeSpinner()
+                    guard let popUpOk = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
+                    self?.present(popUpOk, animated: true, completion: nil)
             }
             
         }

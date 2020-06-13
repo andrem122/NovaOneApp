@@ -46,7 +46,8 @@ class LeadsContainerViewController: UIViewController, NovaOneObjectContainer {
             for lead in leads {
                 if let coreDataLead = NSManagedObject(entity: entity, insertInto: PersistenceService.context) as? Lead {
                     
-                    coreDataLead.id = Int32(lead.id)
+                    guard let id = lead.id else { return }
+                    coreDataLead.id = Int32(id)
                     coreDataLead.name = lead.name
                     coreDataLead.phoneNumber = lead.phoneNumber
                     coreDataLead.email = lead.email
@@ -113,7 +114,13 @@ class LeadsContainerViewController: UIViewController, NovaOneObjectContainer {
                                             emptyViewController.addObjectButtonHandler = {
                                                 [weak self] in
                                                 // Go to the add object screen
-                                                guard let addLeadNavigationController = self?.storyboard?.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addLead.rawValue) as? UINavigationController else { return }
+                                                guard
+                                                    let addLeadNavigationController = self?.storyboard?.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addLead.rawValue) as? UINavigationController,
+                                                    let addLeadCompanyViewController = addLeadNavigationController.viewControllers.first as? AddLeadCompanyViewController
+                                                else { return }
+                                                
+                                                addLeadCompanyViewController.embeddedViewController = emptyViewController
+                                                
                                                 self?.present(addLeadNavigationController, animated: true, completion: nil)
                                             }
                                         

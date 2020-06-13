@@ -8,23 +8,53 @@
 
 import UIKit
 
-class AddLeadNameViewController: UIViewController {
-
+class AddLeadNameViewController: AddLeadBaseViewController, UITextFieldDelegate {
+    
+    // MARK: Properties
+    @IBOutlet weak var continueButton: NovaOneButton!
+    @IBOutlet weak var nameTextField: NovaOneTextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.setupContinueButton()
+        self.setupTextField()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func setupTextField() {
+        self.nameTextField.delegate = self
     }
-    */
+    
+    func setupContinueButton() {
+        UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.nameTextField.becomeFirstResponder()
+    }
 
+    // MARK: Actions
+    @IBAction func nameTextFieldChanged(_ sender: Any) {
+        UIHelper.toggle(button: self.continueButton, textField: self.nameTextField, enabledColor: Defaults.novaOneColor, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false, closure: nil)
+    }
+    
+    @IBAction func continueButtonTapped(_ sender: Any) {
+        // Go to addLeadEmailCheckViewController
+        guard let addLeadEmailCheckViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addLeadEmailCheck.rawValue) as? AddLeadEmailCheckViewController else { return }
+        
+        guard let name = self.nameTextField.text else { return }
+        self.lead?.name = name
+        addLeadEmailCheckViewController.lead = self.lead
+        addLeadEmailCheckViewController.embeddedViewController = self.embeddedViewController
+        
+        self.navigationController?.pushViewController(addLeadEmailCheckViewController, animated: true)
+    }
+    
+}
+
+extension AddLeadNameViewController {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.continueButton.sendActions(for: .touchUpInside)
+        return true
+    }
 }

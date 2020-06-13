@@ -11,12 +11,12 @@ import UIKit
 struct LeadModel: Decodable {
 
     // MARK: Properties
-    var id: Int
+    var id: Int?
     var name: String
     var phoneNumber: String?
     var email: String?
     var dateOfInquiry: String
-    var renterBrand: String
+    var renterBrand: String?
     var companyId: Int
     var sentTextDate: String?
     var sentEmailDate: String?
@@ -30,16 +30,16 @@ struct LeadModel: Decodable {
         }
     }
     
-    var sentTextDateDate: Date {
+    var sentTextDateDate: Date? {
         get {
-            guard let sentTextDate = self.sentTextDate else { return Date() }
+            guard let sentTextDate = self.sentTextDate else { return nil }
             return DateHelper.createDate(from: sentTextDate, format: "yyyy-MM-dd HH:mm:ssZ")
         }
     }
     
-    var sentEmailDateDate: Date {
+    var sentEmailDateDate: Date? {
         get {
-            guard let sentEmailDate = self.sentEmailDate else { return Date() }
+            guard let sentEmailDate = self.sentEmailDate else { return nil }
             return DateHelper.createDate(from: sentEmailDate, format: "yyyy-MM-dd HH:mm:ssZ")
         }
     }
@@ -48,8 +48,8 @@ struct LeadModel: Decodable {
     var description: String {
         
         get {
-            let id = self.id
             guard
+                let id = self.id,
                 let phoneNumber = self.phoneNumber,
                 let email = self.email
             else { return "" }

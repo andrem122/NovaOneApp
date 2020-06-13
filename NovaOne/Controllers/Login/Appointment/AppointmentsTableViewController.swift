@@ -342,7 +342,7 @@ class AppointmentsTableViewController: UITableViewController, NovaOneTableView {
         
         // Pass the instance of appointments table view controller to the last view controller in the navigation stack
         // so we can refresh the appointments table after successful object creation
-        guard let addAppointmentCompanyViewController = addAppointmentNavigationController.viewControllers.first as? AddAppointmentCompanyViewController else { print("could not get add appointment company controller"); return }
+        guard let addAppointmentCompanyViewController = addAppointmentNavigationController.viewControllers.first as? AddAppointmentCompanyViewController else { return }
         addAppointmentCompanyViewController.appointmentsTableViewController = self
         
         self.present(addAppointmentNavigationController, animated: true, completion: nil)

@@ -99,7 +99,7 @@
         
     }
     
-    function query_db_login($query, $user_is_verified = false, $parameters = array('' => '')) {
+    function query_db_login($query, $user_is_verified = false, $parameters = array('' => ''), $success_message_needed = false) {
         if ($user_is_verified) {
             // queries the database for the users who are logged in
             $db_object = new Database();
@@ -116,8 +116,13 @@
                 // If we get a result from the database
                 if($stmt->rowCount() > 0) {
                     
-                    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                    echo json_encode($result);
+                    if($success_message_needed == false) {
+                        $response_array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    } else {
+                        $response_array = array('successReason' => 'Lead successfully added.');
+                    }
+                    
+                    echo json_encode($response_array);
                     exit();
                     
                 } else {
@@ -202,5 +207,14 @@
         }
         
         return $response_array;
+    }
+    
+    function get_parameter($param) {
+        // converts a value to null if it is an empty string
+        if (empty($param)) {
+            return null;
+        } else {
+            return $param;
+        }
     }
 

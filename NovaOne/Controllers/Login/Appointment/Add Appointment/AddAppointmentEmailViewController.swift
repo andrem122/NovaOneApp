@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddAppointmentEmailViewController: AddAppointmentBaseViewController {
+class AddAppointmentEmailViewController: AddAppointmentBaseViewController, UITextFieldDelegate {
     
     // MARK: Properties
     @IBOutlet weak var emailAddressTextField: NovaOneTextField!
@@ -16,11 +16,22 @@ class AddAppointmentEmailViewController: AddAppointmentBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupContinueButton()
+        self.setupTextField()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.emailAddressTextField.becomeFirstResponder()
+    }
+    
+    func setupTextField() {
+        self.emailAddressTextField.delegate = self
+    }
+    
+    func setupContinueButton() {
+        // Setup the continue button
+        UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
     }
     
     // MARK: Actions
@@ -44,5 +55,12 @@ class AddAppointmentEmailViewController: AddAppointmentBaseViewController {
             let popUpOkViewController = self.alertService.popUpOk(title: "Invalid Email", body: "Please enter a valid email.")
             self.present(popUpOkViewController, animated: true, completion: nil)
         }
+    }
+}
+
+extension AddAppointmentEmailViewController {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.continueButton.sendActions(for: .touchUpInside)
+        return true
     }
 }
