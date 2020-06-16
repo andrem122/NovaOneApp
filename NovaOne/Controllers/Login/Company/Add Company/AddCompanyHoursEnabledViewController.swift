@@ -122,7 +122,6 @@ class AddCompanyHoursEnabledViewController: UIViewController, UITableViewDataSou
                     self?.present(popUpOkViewController, animated: true, completion: nil)
             }
             
-            self?.removeSpinner()
         }
     }
     
@@ -207,7 +206,7 @@ class AddCompanyHoursEnabledViewController: UIViewController, UITableViewDataSou
             
             if self.userIsSigningUp {
                 // Make POST request with customer data to API
-                self.showSpinner(for: view, textForLabel: "Signing Up")
+                self.showSpinner(for: view, textForLabel: "Signing Up...")
                 let selectedOptionsString = EnableOptionHelper.getSelectedOptions(options: self.hoursOfTheDayAM + self.hoursOfTheDayPM)
                 self.company?.hoursOfTheDayEnabled = selectedOptionsString
                 
@@ -218,6 +217,7 @@ class AddCompanyHoursEnabledViewController: UIViewController, UITableViewDataSou
                     // Login user and navigate to container view controller
                     self?.loginUser(email: email, password: password) {
                         [weak self] (containerViewController) in
+                        self?.removeSpinner()
                         
                         // Add username and password to keychain if user wants to
                         let title = "Add To Keychain"

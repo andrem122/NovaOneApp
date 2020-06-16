@@ -9,7 +9,7 @@
 import MapKit
 import GooglePlaces
 
-protocol AddAddress: GMSAutocompleteResultsViewControllerDelegate, MKMapViewDelegate, UITextFieldDelegate {
+protocol AddAddress: GMSAutocompleteResultsViewControllerDelegate, MKMapViewDelegate, UITextFieldDelegate, CLLocationManagerDelegate {
     // A protocol for views that have a street address field populated with Google Places Autocomplete
     
     // MARK: Properties

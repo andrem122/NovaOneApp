@@ -18,6 +18,13 @@ class SignUpCompanyAddressViewController: BaseSignUpViewController, AddAddress {
     @IBOutlet weak var mapView: MKMapView!
     var resultsViewController: GMSAutocompleteResultsViewController?
     var searchController: UISearchController?
+    var currentLocation: CLLocation?
+    lazy var filter: GMSAutocompleteFilter = {
+        let filter = GMSAutocompleteFilter()
+        filter.type = .address
+        filter.country = "US"
+        return filter
+    }()
     
     // MARK: Methods
     override func viewDidLoad() {
@@ -50,6 +57,10 @@ class SignUpCompanyAddressViewController: BaseSignUpViewController, AddAddress {
         self.resultsViewController = GMSAutocompleteResultsViewController()
         //self.resultsViewController?.view.backgroundColor = UIColor(named: "googleSearchBackgroundColor")
         self.resultsViewController?.delegate = self
+        
+        // Bias search results with a filter
+        print("setting up filter")
+        self.resultsViewController?.autocompleteFilter = self.filter
         
         // Setup search controller
         self.searchController = UISearchController()
@@ -84,6 +95,7 @@ class SignUpCompanyAddressViewController: BaseSignUpViewController, AddAddress {
     
     func setupTextField() {
         self.addressTextField.delegate = self
+        self.addressTextField.clearButtonMode = .always
     }
     
     func setupContinueButton() {
@@ -108,6 +120,11 @@ class SignUpCompanyAddressViewController: BaseSignUpViewController, AddAddress {
         }
     }
     
+    
+    @IBAction func addressTextFieldChanged(_ sender: Any) {
+        UIHelper.toggle(button: self.continueButton, textField: self.addressTextField, enabledColor: Defaults.novaOneColor, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false, closure: nil)
+    }
+    
 }
 
 extension SignUpCompanyAddressViewController {
@@ -124,10 +141,12 @@ extension SignUpCompanyAddressViewController {
                 let continueButton = self?.continueButton
             else { return }
             
+            // Enable button
+            UIHelper.enable(button: continueButton, enabledColor: Defaults.novaOneColor, borderedButton: false)
+            
             // Set text for address field
             self?.addressTextField.text = address
             self?.addressTextField.resignFirstResponder()
-            UIHelper.toggle(button: continueButton, textField: self?.addressTextField, enabledColor: Defaults.novaOneColor, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil, closure: nil)
             
             // Set location for map view
             let latitude = place.coordinate.latitude

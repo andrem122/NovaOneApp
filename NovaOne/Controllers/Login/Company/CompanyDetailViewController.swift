@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NovaOneObjectDetail {
     
@@ -16,7 +17,7 @@ class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var objectDetailTableView: UITableView!
     @IBOutlet weak var topView: NovaOneView!
-    var company: Any?
+    var company: Company?
     let alertService = AlertService()
     
     // MARK: Methods
@@ -43,6 +44,7 @@ class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITabl
         let addressItem = ObjectDetailItem(title: "Address", titleValue: address)
         let phoneNumberItem = ObjectDetailItem(title: "Phone", titleValue: phoneNumber)
         let emailItem = ObjectDetailItem(title: "Email", titleValue: email)
+        let appointmentLinkItem = ObjectDetailItem(title: "Appointment Link", titleValue: "")
         let daysOfTheWeekItem = ObjectDetailItem(title: "Showing Days", titleValue: "")
         let hoursOfTheDayItem = ObjectDetailItem(title: "Showing Hours", titleValue: "")
         
@@ -50,6 +52,7 @@ class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITabl
                                   addressItem,
                                   phoneNumberItem,
                                   emailItem,
+                                  appointmentLinkItem,
                                   daysOfTheWeekItem,
                                   hoursOfTheDayItem]
     }
@@ -65,22 +68,15 @@ class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITabl
         self.setupNavigationBackButton()
         
         // Setup table cell based on which object was passed to self.company
-        if let company = self.company as? Company { // self.company is a CoreData object
-            guard
-                let name = company.name,
-                let phoneNumber = company.phoneNumber,
-                let email = company.email,
-                let address = company.shortenedAddress
-            else { return }
-            
-            // Plug into setupCompanyCells method
-            self.setupCompanyCellsAndTitle(name: name, phoneNumber: phoneNumber, email: email, address: address)
-            
-        } else if let company = self.company as? CompanyModel { // self.company is a CompanyModel object
-            
-            // Plug into setupCompanyCells method
-            self.setupCompanyCellsAndTitle(name: company.name, phoneNumber: company.phoneNumber, email: company.email, address: company.shortenedAddress)
-        }
+        guard
+            let name = company?.name,
+            let phoneNumber = company?.phoneNumber,
+            let email = company?.email,
+            let address = company?.shortenedAddress
+        else { return }
+        
+        // Plug into setupCompanyCells method
+        self.setupCompanyCellsAndTitle(name: name, phoneNumber: phoneNumber, email: email, address: address)
         
     }
     
@@ -169,6 +165,15 @@ extension CompanyDetailViewController {
                 self.navigationController?.pushViewController(updateCompanyHoursEnabledViewController, animated: true)
                 
             }
+        case "Appointment Link":
+            guard
+                let companyId = self.company?.id
+            else { return }
+            UIPasteboard.general.string = Defaults.Urls.novaOneWebsite.rawValue + "/appointments/new?c=\(companyId)"
+            
+            // Show popup confirming that text has been copied
+            let popUpOkViewController = self.alertService.popUpOk(title: "Text Copied!", body: "Appointment link has been copied to clipboard successfully.")
+            self.present(popUpOkViewController, animated: true, completion: nil)
             default:
                 print("No cases matched")
         }

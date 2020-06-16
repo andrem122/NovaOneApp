@@ -138,7 +138,7 @@
                                       
                                       if($stmt->rowCount() > 0) {
                                           http_response_code(200);
-                                          $response_array = array('success' => 1, 'reason' => 'User and company successfully added to the database!');
+                                          $response_array = array('successReason' => 'User and company successfully added to the database!');
                                       }
                                       
                                   } else {
