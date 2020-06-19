@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddCompanyDaysEnabledViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class AddCompanyDaysEnabledViewController: AddCompanyBaseViewController, UITableViewDelegate, UITableViewDataSource {
     
     // MARK: Properties
     @IBOutlet weak var addCompanyDaysEnabledTableView: UITableView!
@@ -23,11 +23,9 @@ class AddCompanyDaysEnabledViewController: UIViewController, UITableViewDelegate
         EnableOption(option: "Friday", selected: false, id: 5),
         EnableOption(option: "Saturday", selected: false, id: 6),
     ]
-    let alertService = AlertService()
     
     // For sign up process
-    var company: CompanySignUpModel?
-    var customer: CustomerSignUpModel?
+    var customer: CustomerModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,12 +41,17 @@ class AddCompanyDaysEnabledViewController: UIViewController, UITableViewDelegate
     // MARK: Actions
     @IBAction func continueButtonTapped(_ sender: Any) {
         if EnableOptionHelper.optionIsSelected(options: self.daysOfTheWeek) == true {
+            
             guard let addCompanyHoursEnabledViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addCompanyHoursEnabled.rawValue) as? AddCompanyHoursEnabledViewController else { return }
             
             // Get selected options and pass objects
             let selectedOptionsString = EnableOptionHelper.getSelectedOptions(options: self.daysOfTheWeek)
             self.company?.daysOfTheWeekEnabled = selectedOptionsString
-            addCompanyHoursEnabledViewController.userIsSigningUp = true
+            
+            if userIsSigningUp == true {
+                addCompanyHoursEnabledViewController.userIsSigningUp = true
+            }
+            
             addCompanyHoursEnabledViewController.company = self.company
             addCompanyHoursEnabledViewController.customer = self.customer
             

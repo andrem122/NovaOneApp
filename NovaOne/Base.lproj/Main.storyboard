@@ -2593,7 +2593,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="weN-jm-kJr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6315" y="120"/>
+            <point key="canvasLocation" x="6314.3999999999996" y="119.1904047976012"/>
         </scene>
         <!--Home Tab Bar Controller-->
         <scene sceneID="HJu-Nb-egT">
@@ -4583,6 +4583,9 @@
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         </variation>
+                                        <connections>
+                                            <action selector="companyNameTextFieldChanged:" destination="fu3-xP-iSX" eventType="editingChanged" id="ZKc-F4-Y6T"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QEx-Qu-sob" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="65" width="315" height="45"/>
@@ -4603,6 +4606,9 @@
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         </variation>
+                                        <connections>
+                                            <action selector="continueButtonTapped:" destination="fu3-xP-iSX" eventType="touchUpInside" id="OtK-Ok-LlQ"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -4641,20 +4647,24 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="companyNameTextField" destination="Wl9-3A-4FI" id="9ek-2v-ncL"/>
+                        <outlet property="continueButton" destination="QEx-Qu-sob" id="Lle-ur-t1Q"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PTf-YO-iLK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="13378.125" y="3830"/>
         </scene>
-        <!--Add Company Street-->
+        <!--Add Company Address-->
         <scene sceneID="fSO-Y3-P7p">
             <objects>
-                <viewController storyboardIdentifier="addCompanyStreetViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2zA-7R-eTs" userLabel="Add Company Street" customClass="AddCompanyStreetViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="addCompanyAddressViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2zA-7R-eTs" userLabel="Add Company Address" customClass="AddCompanyAddressViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AsO-fn-u1R">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company Street" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p8l-QC-4lL">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company Address" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p8l-QC-4lL">
                                 <rect key="frame" x="30" y="30" width="315" height="33.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
                                 <color key="textColor" name="textColor"/>
@@ -4663,8 +4673,8 @@
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="45"/>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in your company street address below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9w5-Mt-Gfk">
-                                <rect key="frame" x="30" y="83.5" width="315" height="41"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in your company address below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9w5-Mt-Gfk">
+                                <rect key="frame" x="30" y="83.5" width="315" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -4673,9 +4683,9 @@
                                 </variation>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="dvA-xP-Wdw">
-                                <rect key="frame" x="30" y="154.5" width="315" height="110"/>
+                                <rect key="frame" x="30" y="134" width="315" height="110"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Street Address" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="Oap-JG-mcu" customClass="NovaOneTextField" customModule="NovaOne" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Address" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="Oap-JG-mcu" customClass="NovaOneTextField" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="315" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="yF1-gw-rre"/>
@@ -4697,6 +4707,9 @@
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         </variation>
+                                        <connections>
+                                            <action selector="addressTextFieldChanged:" destination="2zA-7R-eTs" eventType="editingChanged" id="iPS-yf-xbS"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WSc-BO-XoV" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="65" width="315" height="45"/>
@@ -4717,9 +4730,15 @@
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         </variation>
+                                        <connections>
+                                            <action selector="continueButtonTapped:" destination="2zA-7R-eTs" eventType="touchUpInside" id="vKQ-s4-4Pt"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ThE-MB-w5A">
+                                <rect key="frame" x="0.0" y="252" width="375" height="415"/>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -4734,12 +4753,16 @@
                             <constraint firstItem="ziN-ix-eCy" firstAttribute="trailing" secondItem="dvA-xP-Wdw" secondAttribute="trailing" constant="30" id="YQu-y2-gcw">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                             </constraint>
+                            <constraint firstItem="ThE-MB-w5A" firstAttribute="leading" secondItem="ziN-ix-eCy" secondAttribute="leading" id="e8u-ac-C7X"/>
                             <constraint firstItem="dvA-xP-Wdw" firstAttribute="leading" secondItem="ziN-ix-eCy" secondAttribute="leading" constant="30" id="feb-YL-kqD">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                             </constraint>
+                            <constraint firstItem="ThE-MB-w5A" firstAttribute="top" secondItem="dvA-xP-Wdw" secondAttribute="bottom" constant="8" id="jCj-1k-LrR"/>
                             <constraint firstItem="p8l-QC-4lL" firstAttribute="leading" secondItem="ziN-ix-eCy" secondAttribute="leading" constant="30" id="mPg-5d-l50">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                             </constraint>
+                            <constraint firstItem="ThE-MB-w5A" firstAttribute="bottom" secondItem="ziN-ix-eCy" secondAttribute="bottom" id="syx-BA-tIa"/>
+                            <constraint firstItem="ThE-MB-w5A" firstAttribute="trailing" secondItem="ziN-ix-eCy" secondAttribute="trailing" id="uPN-QW-ZYH"/>
                             <constraint firstItem="9w5-Mt-Gfk" firstAttribute="top" secondItem="p8l-QC-4lL" secondAttribute="bottom" constant="20" id="y9z-ZU-Irc"/>
                             <constraint firstItem="9w5-Mt-Gfk" firstAttribute="leading" secondItem="ziN-ix-eCy" secondAttribute="leading" constant="30" id="zW4-vI-7S7">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
@@ -4750,10 +4773,15 @@
                     <navigationItem key="navigationItem" id="Yxg-GS-L9b">
                         <barButtonItem key="backBarButtonItem" title=" " id="y1u-uA-M92"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="addressTextField" destination="Oap-JG-mcu" id="fFu-bo-oL2"/>
+                        <outlet property="continueButton" destination="WSc-BO-XoV" id="P5g-r9-bDz"/>
+                        <outlet property="mapView" destination="ThE-MB-w5A" id="PrX-RO-eEh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="88w-Nc-ucj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="14358.75" y="3830"/>
+            <point key="canvasLocation" x="14288.799999999999" y="3829.835082458771"/>
         </scene>
         <!--Add Company Phone-->
         <scene sceneID="iBZ-aL-9CP">
@@ -4806,6 +4834,9 @@
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         </variation>
+                                        <connections>
+                                            <action selector="phoneNumberTextFieldChanged:" destination="7MF-JH-W1a" eventType="editingChanged" id="4mF-8C-XhD"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XzH-xu-7ej" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="65" width="315" height="45"/>
@@ -4826,6 +4857,9 @@
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         </variation>
+                                        <connections>
+                                            <action selector="continueButtonTapped:" destination="7MF-JH-W1a" eventType="touchUpInside" id="hqF-le-lVL"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -4859,10 +4893,14 @@
                     <navigationItem key="navigationItem" id="ycz-Zc-zYL">
                         <barButtonItem key="backBarButtonItem" title=" " id="sJa-X6-scH"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="continueButton" destination="XzH-xu-7ej" id="aBx-FJ-R2y"/>
+                        <outlet property="phoneNumberTextField" destination="Xd0-nK-Yb3" id="4vE-iX-xm1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fxy-pY-NbF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="15212" y="3830"/>
+            <point key="canvasLocation" x="16081" y="3830"/>
         </scene>
         <!--Add Company Email-->
         <scene sceneID="sHS-3t-eET">
@@ -4881,7 +4919,7 @@
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="45"/>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in your company email  below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tgw-lq-SXR">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in your company email below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tgw-lq-SXR">
                                 <rect key="frame" x="30" y="83.5" width="315" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" name="textColor"/>
@@ -4981,7 +5019,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h3V-cm-PvK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="16109" y="3830"/>
+            <point key="canvasLocation" x="15193" y="3830"/>
         </scene>
         <!--Add Company Days Enabled-->
         <scene sceneID="Twf-fB-PLM">

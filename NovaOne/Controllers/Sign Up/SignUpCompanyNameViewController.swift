@@ -43,7 +43,7 @@ class SignUpCompanyNameViewController: BaseSignUpViewController, UITextFieldDele
             let companyName = self.propertyNameTextField.text
         else { return }
         
-        self.company = CompanySignUpModel(address: "", name: companyName, phoneNumber: "", email: "", city: "", state: "", zip: "", daysOfTheWeekEnabled: "", hoursOfTheDayEnabled: "")
+        self.company = CompanyModel(id: 0, name: companyName, address: "", phoneNumber: "", autoRespondNumber: nil, autoRespondText: nil, email: "", created: "", daysOfTheWeekEnabled: "", hoursOfTheDayEnabled: "", city: "", customerUserId: 0, state: "", zip: "")
         signUpCompanyAddressViewController.company = self.company
         signUpCompanyAddressViewController.customer = self.customer
         

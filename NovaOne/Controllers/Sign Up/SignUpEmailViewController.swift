@@ -54,12 +54,12 @@ class SignUpEmailViewController: BaseSignUpViewController, UITextFieldDelegate {
             
             let httpRequest = HTTPRequests()
             let parameters: [String: String] = ["valueToCheckInDatabase": email, "tableName": "auth_user", "columnName": "email"]
-            httpRequest.request(url: Defaults.Urls.api.rawValue + "/signupInputCheck.php", dataModel: SuccessResponse.self, parameters: parameters) { [weak self] (result) in
+            httpRequest.request(url: Defaults.Urls.api.rawValue + "/inputCheck.php", dataModel: SuccessResponse.self, parameters: parameters) { [weak self] (result) in
                 switch result {
                 case .success(let success):
                     
                     print(success.successReason)
-                    self?.customer = CustomerSignUpModel(email: email, password: "", phoneNumber: "", firstName: "", lastName: "", customerType: "")
+                    self?.customer = CustomerModel(id: 0, password: "", lastLogin: "", username: email, firstName: "", lastName: "", email: email, dateJoined: "", isPaying: false, wantsSms: false, phoneNumber: "", customerType: "")
                     guard let signUpPasswordViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.signUpPassword.rawValue) as? SignUpPasswordViewController else { return }
                     signUpPasswordViewController.customer = self?.customer
                     self?.navigationController?.pushViewController(signUpPasswordViewController, animated: true)

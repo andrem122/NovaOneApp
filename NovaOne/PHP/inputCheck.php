@@ -12,7 +12,7 @@
     $php_authentication_password_f = $_POST['PHPAuthenticationPassword'];
     $request_method = $_SERVER['REQUEST_METHOD'];
     
-    $response_array = signup_input_check($value_to_check_in_database, $table_name, $column_name, $request_method, $php_authentication_username_f, $php_authentication_password_f);
+    $response_array = input_check($value_to_check_in_database, $table_name, $column_name, $request_method, $php_authentication_username_f, $php_authentication_password_f);
     
     echo json_encode($response_array);
 ?>

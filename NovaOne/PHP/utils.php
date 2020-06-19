@@ -119,7 +119,7 @@
                     if($success_message_needed == false) {
                         $response_array = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     } else {
-                        $response_array = array('successReason' => 'Lead successfully added.');
+                        $response_array = array('successReason' => 'Successfully added.');
                     }
                     
                     echo json_encode($response_array);
@@ -162,7 +162,7 @@
         
     }
     
-    function signup_input_check($value_to_check_in_database, $table_name, $column_name, $request_method, $php_authentication_username_f, $php_authentication_password_f) {
+    function input_check($value_to_check_in_database, $table_name, $column_name, $request_method, $php_authentication_username_f, $php_authentication_password_f) {
         // checks the input of a field for an existing value in the database
         
         // Connect to database

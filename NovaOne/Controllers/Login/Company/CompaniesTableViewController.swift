@@ -350,7 +350,13 @@ class CompaniesTableViewController: UITableViewController, NovaOneTableView {
     
     // MARK: Actions
     @IBAction func addButtonTapped(_ sender: Any) {
-        guard let addCompanyNavigationController = self.storyboard?.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addCompany.rawValue) as? UINavigationController else { return }
+        guard
+            let addCompanyNavigationController = self.storyboard?.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addCompany.rawValue) as? UINavigationController,
+            let addCompanyNameViewController = addCompanyNavigationController.viewControllers.first as? AddCompanyNameViewController
+        else { return }
+        
+        addCompanyNameViewController.embeddedViewController = self
+        
         self.present(addCompanyNavigationController, animated: true, completion: nil)
     }
 

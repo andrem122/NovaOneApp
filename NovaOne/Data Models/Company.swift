@@ -17,6 +17,8 @@ struct CompanyModel: Decodable {
     var name: String
     var address: String
     var phoneNumber: String
+    var autoRespondNumber: String?
+    var autoRespondText: String?
     var email: String
     var created: String
     var daysOfTheWeekEnabled: String

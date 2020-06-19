@@ -9,12 +9,11 @@
 import UIKit
 import CoreData
 
-class AddCompanyHoursEnabledViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class AddCompanyHoursEnabledViewController: AddCompanyBaseViewController, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: Properties
     @IBOutlet weak var addCompanyEnabledHoursTableView: UITableView!
     @IBOutlet weak var appointmentHoursButton: NovaOneButton!
-    let alertService = AlertService()
     let coreDataCustomerEmail: String? = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first?.email
     var userIsSigningUp: Bool = false // A Boolean that indicates whether or not the current user is new and signing up
     
@@ -49,8 +48,7 @@ class AddCompanyHoursEnabledViewController: UIViewController, UITableViewDataSou
     ]
     
     // For sign up process
-    var company: CompanySignUpModel?
-    var customer: CustomerSignUpModel?
+    var customer: CustomerModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +66,65 @@ class AddCompanyHoursEnabledViewController: UIViewController, UITableViewDataSou
         // Set the title for the appointment hours button
         if self.userIsSigningUp {
             self.appointmentHoursButton.setTitle("Finish Sign Up", for: .normal)
+        }
+    }
+    
+    func addCompany() {
+        // Adds the company information to the database
+        
+        self.showSpinner(for: self.view, textForLabel: "Adding Company...")
+        // Unwrap needed POST data from object
+        guard
+            let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
+            let customerEmail = customer.email,
+            let customerPassword = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue),
+            let companyName = self.company?.name,
+            let companyEmail = self.company?.email,
+            let address = self.company?.address,
+            let city = self.company?.city,
+            let state = self.company?.state,
+            let zip = self.company?.zip,
+            let phoneNumber = self.company?.phoneNumber,
+            let daysOfTheWeekenabled = self.company?.daysOfTheWeekEnabled,
+            let hoursOfTheDayEnabled = self.company?.hoursOfTheDayEnabled
+        else { return }
+        let customerUserId = String(customer.id)
+        
+        let parameters: [String: String] = ["customerUserId": customerUserId, "email": customerEmail, "password": customerPassword, "companyName": companyName, "companyEmail": companyEmail, "companyAddress": address, "companyCity": city, "companyState": state, "companyZip": zip, "companyPhoneNumber": phoneNumber, "daysOfTheWeekEnabled": daysOfTheWeekenabled, "hoursOfTheDayEnabled": hoursOfTheDayEnabled]
+        
+        print(parameters)
+        let httpRequest = HTTPRequests()
+        httpRequest.request(url: Defaults.Urls.api.rawValue + "/addCompany.php", dataModel: SuccessResponse.self, parameters: parameters) {
+            [weak self] (result) in
+            
+            switch result {
+                case .success(_):
+                    // Navigate to success screen once the company has been sucessfully added
+                    guard let successViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.success.rawValue) as? SuccessViewController else { return }
+                    successViewController.subtitleText = "Company successfully added."
+                    successViewController.titleLabelText = "Company Added!"
+                    successViewController.doneHandler = {
+                        [weak self] in
+                        // Return to the appointments view and refresh appointments
+                        self?.presentingViewController?.dismiss(animated: true, completion: nil)
+                        
+                        // The embedded view controller in the container view controller is either
+                        // the empty view controller or the table view controller
+                        if let emptyViewController = self?.embeddedViewController as? EmptyViewController {
+                            emptyViewController.refreshButton.sendActions(for: .touchUpInside)
+                        } else {
+                            guard let companiesTableViewController = self?.embeddedViewController as? CompaniesTableViewController else { return }
+                            companiesTableViewController.refreshDataOnPullDown()
+                        }
+                    }
+                    self?.present(successViewController, animated: true, completion: nil)
+
+                case .failure(let error):
+                    guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
+                    self?.present(popUpOkViewController, animated: true, completion: nil)
+            }
+            self?.removeSpinner()
+            
         }
     }
     
@@ -204,10 +261,13 @@ class AddCompanyHoursEnabledViewController: UIViewController, UITableViewDataSou
         let didSelectHours = EnableOptionHelper.optionIsSelected(options: self.hoursOfTheDayAM + self.hoursOfTheDayPM)
         if didSelectHours {
             
+            // Get the hours that were selected
+            let selectedOptionsString = EnableOptionHelper.getSelectedOptions(options: self.hoursOfTheDayAM + self.hoursOfTheDayPM)
+            self.company?.hoursOfTheDayEnabled = selectedOptionsString
+            
             if self.userIsSigningUp {
                 // Make POST request with customer data to API
                 self.showSpinner(for: view, textForLabel: "Signing Up...")
-                let selectedOptionsString = EnableOptionHelper.getSelectedOptions(options: self.hoursOfTheDayAM + self.hoursOfTheDayPM)
                 self.company?.hoursOfTheDayEnabled = selectedOptionsString
                 
                 // Sign up user
@@ -234,14 +294,7 @@ class AddCompanyHoursEnabledViewController: UIViewController, UITableViewDataSou
                     
                 }
             } else {
-                // Navigate to success screen once the company has been sucessfully added
-                if let successViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.success.rawValue) as? SuccessViewController {
-                    
-                    successViewController.titleLabelText = "Company Added!"
-                    successViewController.subtitleText = "The company has been successfully added."
-                    self.present(successViewController, animated: true, completion: nil)
-                    
-                }
+                self.addCompany()
             }
             
         } else {

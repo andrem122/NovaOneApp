@@ -1,8 +1,8 @@
 //
-//  SignUpAddressViewController.swift
+//  AddCompanyStreetViewController.swift
 //  NovaOne
 //
-//  Created by Andre Mashraghi on 3/2/20.
+//  Created by Andre Mashraghi on 3/30/20.
 //  Copyright © 2020 Andre Mashraghi. All rights reserved.
 //
 
@@ -10,11 +10,11 @@ import UIKit
 import GooglePlaces
 import MapKit
 
-class SignUpCompanyAddressViewController: BaseSignUpViewController, AddAddress {
+class AddCompanyAddressViewController: AddCompanyBaseViewController, AddAddress {
     
     // MARK: Properties
-    @IBOutlet weak var addressTextField: NovaOneTextField!
     @IBOutlet weak var continueButton: NovaOneButton!
+    @IBOutlet weak var addressTextField: NovaOneTextField!
     @IBOutlet weak var mapView: MKMapView!
     var resultsViewController: GMSAutocompleteResultsViewController?
     var searchController: UISearchController?
@@ -24,21 +24,6 @@ class SignUpCompanyAddressViewController: BaseSignUpViewController, AddAddress {
         filter.country = "US"
         return filter
     }()
-    
-    // MARK: Methods
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.setupContinueButton()
-        self.setupTextField()
-        self.setupMapView()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        // Make text field become first responder
-        self.addressTextField.becomeFirstResponder()
-    }
     
     func setupMapView() {
         self.mapView.delegate = self
@@ -101,34 +86,42 @@ class SignUpCompanyAddressViewController: BaseSignUpViewController, AddAddress {
         UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil)
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.setupContinueButton()
+        self.setupTextField()
+        self.setupMapView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.addressTextField.becomeFirstResponder()
+    }
+    
+    
     // MARK: Actions
+    @IBAction func addressTextFieldChanged(_ sender: Any) {
+        UIHelper.toggle(button: self.continueButton, textField: self.addressTextField, enabledColor: Defaults.novaOneColor, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false, closure: nil)
+    }
+    
     @IBAction func continueButtonTapped(_ sender: Any) {
-        
         guard let address = self.addressTextField.text else { return }
         if address.isEmpty {
             let popUpOkViewController = self.alertService.popUpOk(title: "Address Required", body: "Please type in an address.")
             self.present(popUpOkViewController, animated: true, completion: nil)
         } else {
-            guard let signUpCompanyEmailViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.signUpCompanyEmail.rawValue) as? SignUpCompanyEmailViewController else { return }
+            guard let addCompanyEmailViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addCompanyEmail.rawValue) as? AddCompanyEmailViewController else { return }
             
-            // Pass customer and company object to next view controller
-            signUpCompanyEmailViewController.customer = self.customer
-            signUpCompanyEmailViewController.company = self.company
+            // Pass company object to next view controller
+            addCompanyEmailViewController.company = self.company
             
-            self.navigationController?.pushViewController(signUpCompanyEmailViewController, animated: true)
+            self.navigationController?.pushViewController(addCompanyEmailViewController, animated: true)
         }
-    }
-    
-    
-    @IBAction func addressTextFieldChanged(_ sender: Any) {
-        UIHelper.toggle(button: self.continueButton, textField: self.addressTextField, enabledColor: Defaults.novaOneColor, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false, closure: nil)
     }
     
 }
 
-extension SignUpCompanyAddressViewController {
-    
-    // Google Places
+extension AddCompanyAddressViewController {
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController, didAutocompleteWith place: GMSPlace) {
         
         self.dismiss(animated: true) {
@@ -177,8 +170,6 @@ extension SignUpCompanyAddressViewController {
         print("Error: ", error.localizedDescription)
     }
     
-    
-    // Textfields
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if !string.isEmpty {
             self.presentAutocomplete(textForSearchBar: string)
@@ -186,8 +177,8 @@ extension SignUpCompanyAddressViewController {
         return true
     }
     
-    // Maps
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
         // Set a view for each annotation
         guard annotation is MKPointAnnotation else { return nil }
         
@@ -202,5 +193,6 @@ extension SignUpCompanyAddressViewController {
         }
         
         return annotationView
+        
     }
 }
