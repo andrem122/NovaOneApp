@@ -18,6 +18,7 @@ class AddCompanyNameViewController: AddCompanyBaseViewController, UITextFieldDel
     // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupNavigationBar()
         self.setupTextField()
         self.setupContinueButton()
     }
@@ -58,6 +59,8 @@ class AddCompanyNameViewController: AddCompanyBaseViewController, UITextFieldDel
             else { print("could not get variables"); return }
         
         addCompanyAddressViewController.company = CompanyModel(id: 0, name: companyName, address: "", phoneNumber: "", autoRespondNumber: nil, autoRespondText: nil, email: "", created: "", daysOfTheWeekEnabled: "", hoursOfTheDayEnabled: "", city: "", customerUserId: Int(customerUserId), state: "", zip: "")
+        addCompanyAddressViewController.embeddedViewController = self.embeddedViewController
+        
         self.navigationController?.pushViewController(addCompanyAddressViewController, animated: true)
     }
     

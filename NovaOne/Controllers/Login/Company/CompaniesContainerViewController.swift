@@ -51,6 +51,8 @@ class CompaniesContainerViewController: UIViewController {
                 coreDataCompany.customerUserId = Int32(company.customerUserId)
                 coreDataCompany.daysOfTheWeekEnabled = company.daysOfTheWeekEnabled
                 coreDataCompany.email = company.email
+                coreDataCompany.autoRespondNumber = company.autoRespondNumber
+                coreDataCompany.autoRespondText = company.autoRespondText
                 coreDataCompany.hoursOfTheDayEnabled = company.hoursOfTheDayEnabled
                 coreDataCompany.id = Int32(company.id)
                 coreDataCompany.name = company.name

@@ -64,6 +64,7 @@ class AddCompanyPhoneViewController: AddCompanyBaseViewController, UITextFieldDe
                         
                         self?.company?.phoneNumber = "%2B1" + unformattedPhoneNumber
                         addCompanyDaysEnabledViewController.company = self?.company
+                        addCompanyDaysEnabledViewController.embeddedViewController = self?.embeddedViewController
                         
                         self?.navigationController?.pushViewController(addCompanyDaysEnabledViewController, animated: true)
                         

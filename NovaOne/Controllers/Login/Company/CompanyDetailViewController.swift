@@ -34,10 +34,19 @@ class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITabl
         self.topView.layer.maskedCorners = [.layerMinXMaxYCorner]
     }
     
-    func setupCompanyCellsAndTitle(name: String, phoneNumber: String, email: String, address: String) {
+    func setupCompanyCellsAndTitle() {
         // Sets up the cell properties for each company cell and title for the view
         // Title
+        
+        guard
+            let company = self.company,
+            let name = company.name,
+            let phoneNumber = company.phoneNumber,
+            let email = company.email,
+            let address = company.shortenedAddress
+        else { return }
         self.titleLabel.text = name
+        let autoRespondNumber = company.autoRespondNumber != nil ? company.autoRespondNumber! : "No Auto Respond"
         
         // Cells
         let nameItem = ObjectDetailItem(title: "Name", titleValue: name)
@@ -47,6 +56,8 @@ class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITabl
         let appointmentLinkItem = ObjectDetailItem(title: "Appointment Link", titleValue: "")
         let daysOfTheWeekItem = ObjectDetailItem(title: "Showing Days", titleValue: "")
         let hoursOfTheDayItem = ObjectDetailItem(title: "Showing Hours", titleValue: "")
+        let autoRespondNumberItem = ObjectDetailItem(title: "Auto Respond Number", titleValue: autoRespondNumber)
+        let autoRespondTextItem = ObjectDetailItem(title: "Auto Respond Text", titleValue: "")
         
         self.objectDetailItems = [nameItem,
                                   addressItem,
@@ -54,7 +65,9 @@ class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITabl
                                   emailItem,
                                   appointmentLinkItem,
                                   daysOfTheWeekItem,
-                                  hoursOfTheDayItem]
+                                  hoursOfTheDayItem,
+                                  autoRespondNumberItem,
+                                  autoRespondTextItem]
     }
     
     func setupNavigationBackButton() {
@@ -66,18 +79,7 @@ class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITabl
         self.setupTableView()
         self.setupTopView()
         self.setupNavigationBackButton()
-        
-        // Setup table cell based on which object was passed to self.company
-        guard
-            let name = company?.name,
-            let phoneNumber = company?.phoneNumber,
-            let email = company?.email,
-            let address = company?.shortenedAddress
-        else { return }
-        
-        // Plug into setupCompanyCells method
-        self.setupCompanyCellsAndTitle(name: name, phoneNumber: phoneNumber, email: email, address: address)
-        
+        self.setupCompanyCellsAndTitle()
     }
     
     // MARK: Actions
@@ -174,8 +176,28 @@ extension CompanyDetailViewController {
             // Show popup confirming that text has been copied
             let popUpOkViewController = self.alertService.popUpOk(title: "Text Copied!", body: "Appointment link has been copied to clipboard successfully.")
             self.present(popUpOkViewController, animated: true, completion: nil)
+        case "Auto Respond Number":
+            guard
+                let autoRespondNumber = self.company?.autoRespondNumber
+            else { return }
+            UIPasteboard.general.string = autoRespondNumber
+            
+            // Show popup confirming that text has been copied
+            let popUpOkViewController = self.alertService.popUpOk(title: "Text Copied!", body: "Auto respond number has been copied to clipboard successfully.")
+            self.present(popUpOkViewController, animated: true, completion: nil)
+        case "Auto Respond Text":
+            if let updateCompanyAutoRespondTextViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateCompanyAutoRespondText.rawValue) as? UpdateCompanyAutoRespondTextViewController {
+                
+                guard let company = self.company else { return }
+                
+                let autoRespondText = company.autoRespondText != nil ? company.autoRespondText! : "Update auto respond text..."
+                updateCompanyAutoRespondTextViewController.autoRespondText = autoRespondText
+                self.navigationController?.pushViewController(updateCompanyAutoRespondTextViewController, animated: true)
+                
+            }
             default:
                 print("No cases matched")
+            
         }
         
     }

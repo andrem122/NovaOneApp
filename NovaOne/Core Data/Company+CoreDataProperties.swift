@@ -2,7 +2,7 @@
 //  Company+CoreDataProperties.swift
 //  
 //
-//  Created by Andre Mashraghi on 6/1/20.
+//  Created by Andre Mashraghi on 6/19/20.
 //
 //
 
@@ -29,6 +29,8 @@ extension Company {
     @NSManaged public var shortenedAddress: String?
     @NSManaged public var state: String?
     @NSManaged public var zip: String?
+    @NSManaged public var autoRespondNumber: String?
+    @NSManaged public var autoRespondText: String?
     @NSManaged public var appointments: NSSet?
     @NSManaged public var leads: NSSet?
     
@@ -46,6 +48,8 @@ extension Company {
                     customerUserId: Int32,
                     state: String,
                     zip: String,
+                    autoRespondNumber: String,
+                    autoRespondText: String,
                     customer: Customer) {
         
         self.address = address
@@ -61,8 +65,9 @@ extension Company {
         self.customerUserId = customerUserId
         self.state = state
         self.zip = zip
+        self.autoRespondText = autoRespondText
+        self.autoRespondNumber = autoRespondNumber
     }
-
 
 }
 

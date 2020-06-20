@@ -46,6 +46,7 @@ class AddCompanyEmailViewController: AddCompanyBaseViewController, UITextFieldDe
             
             self.company?.email = email
             addCompanyPhoneViewController.company = self.company
+            addCompanyPhoneViewController.embeddedViewController = self.embeddedViewController
             
             self.navigationController?.pushViewController(addCompanyPhoneViewController, animated: true)
         } else {

@@ -261,6 +261,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             coreDataCompany.state = company.state
                             coreDataCompany.zip = company.zip
                             coreDataCompany.created = company.createdDate
+                            coreDataCompany.autoRespondNumber = company.autoRespondNumber
+                            coreDataCompany.autoRespondText = company.autoRespondText
                             coreDataCompany.daysOfTheWeekEnabled = company.daysOfTheWeekEnabled
                             coreDataCompany.email = company.email
                             coreDataCompany.hoursOfTheDayEnabled = company.hoursOfTheDayEnabled

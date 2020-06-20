@@ -1551,6 +1551,101 @@
             </objects>
             <point key="canvasLocation" x="14291" y="2548"/>
         </scene>
+        <!--Update Company Auto Respond Text-->
+        <scene sceneID="vZB-6q-01a">
+            <objects>
+                <viewController storyboardIdentifier="updateCompanyAutoRespondTextViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2Cp-nq-VYE" userLabel="Update Company Auto Respond Text" customClass="UpdateCompanyAutoRespondTextViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SGP-Nn-yjF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j2y-jT-2da" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
+                                <rect key="frame" x="30" y="346.5" width="315" height="45"/>
+                                <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="XQg-ko-UHU"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                </variation>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Update Auto respond text here..." translatesAutoresizingMaskIntoConstraints="NO" id="fzf-2a-BhQ" userLabel="Text View" customClass="NovaOneTextView" customModule="NovaOne" customModuleProvider="target">
+                                <rect key="frame" x="30" y="100" width="315" height="233.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="textColor" name="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="go"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" name="textFieldColor"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                </variation>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Auto Respond Text" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dlw-Gd-KNm" userLabel="Title">
+                                <rect key="frame" x="30" y="30" width="315" height="33.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
+                                <color key="textColor" name="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="45"/>
+                                </variation>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="fzf-2a-BhQ" firstAttribute="leading" secondItem="2Vk-We-9BQ" secondAttribute="leading" constant="30" id="1G7-rq-VRz">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="j2y-jT-2da" firstAttribute="top" secondItem="fzf-2a-BhQ" secondAttribute="bottom" constant="13" id="6Nh-iF-7rf"/>
+                            <constraint firstItem="2Vk-We-9BQ" firstAttribute="trailing" secondItem="Dlw-Gd-KNm" secondAttribute="trailing" constant="30" id="J8a-Jh-Qi0">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="Dlw-Gd-KNm" firstAttribute="top" secondItem="2Vk-We-9BQ" secondAttribute="top" constant="30" id="JCF-F1-N15"/>
+                            <constraint firstItem="fzf-2a-BhQ" firstAttribute="height" secondItem="SGP-Nn-yjF" secondAttribute="height" multiplier="0.35" id="R6y-aH-efD"/>
+                            <constraint firstItem="fzf-2a-BhQ" firstAttribute="top" secondItem="2Vk-We-9BQ" secondAttribute="top" constant="100" id="WUQ-WP-bal"/>
+                            <constraint firstItem="j2y-jT-2da" firstAttribute="leading" secondItem="2Vk-We-9BQ" secondAttribute="leading" constant="30" id="cuP-lh-CpP">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="2Vk-We-9BQ" firstAttribute="trailing" secondItem="fzf-2a-BhQ" secondAttribute="trailing" constant="30" id="gRm-PH-dBd">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="Dlw-Gd-KNm" firstAttribute="leading" secondItem="2Vk-We-9BQ" secondAttribute="leading" constant="30" id="nSe-Ys-DiD">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="2Vk-We-9BQ" firstAttribute="trailing" secondItem="j2y-jT-2da" secondAttribute="trailing" constant="30" id="ocH-Ot-mFY">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="2Vk-We-9BQ"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Contact Us" id="Dgh-mU-I63"/>
+                    <connections>
+                        <outlet property="textView" destination="fzf-2a-BhQ" id="cmh-YF-4fF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZNz-yp-WNB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="16705" y="1391"/>
+        </scene>
         <!--Container View Controller-->
         <scene sceneID="VNd-R5-UeX">
             <objects>
@@ -3831,7 +3926,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gdh-Cc-F2k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="18697.5" y="1362.5"/>
+            <point key="canvasLocation" x="17537" y="1390"/>
         </scene>
         <!--Company Detail-->
         <scene sceneID="u4g-95-3Eo">
@@ -4094,7 +4189,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hZO-PY-4pr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="19531.875" y="1362.5"/>
+            <point key="canvasLocation" x="18313" y="1390"/>
         </scene>
         <!--Update Company Days Enabled-->
         <scene sceneID="YlH-mQ-qNW">
@@ -4192,7 +4287,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pMg-LG-VES" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="20304.375" y="1362.5"/>
+            <point key="canvasLocation" x="19137" y="2105"/>
         </scene>
         <!--Update Company Email-->
         <scene sceneID="lyk-9H-hpI">

@@ -19,6 +19,8 @@
     </entity>
     <entity name="Company" representedClassName="Company" syncable="YES">
         <attribute name="address" attributeType="String"/>
+        <attribute name="autoRespondNumber" optional="YES" attributeType="String"/>
+        <attribute name="autoRespondText" optional="YES" attributeType="String"/>
         <attribute name="city" attributeType="String"/>
         <attribute name="created" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="customerUserId" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
@@ -65,7 +67,7 @@
     </entity>
     <elements>
         <element name="Appointment" positionX="-54" positionY="135" width="128" height="28"/>
-        <element name="Company" positionX="-63" positionY="99" width="128" height="268"/>
+        <element name="Company" positionX="-63" positionY="99" width="128" height="298"/>
         <element name="Customer" positionX="-63" positionY="-18" width="128" height="223"/>
         <element name="Lead" positionX="-54" positionY="135" width="128" height="238"/>
     </elements>

@@ -14,5 +14,11 @@ class AddCompanyBaseViewController: UIViewController {
     let alertService = AlertService()
     var embeddedViewController: UIViewController?
     var company: CompanyModel?
+    
+    func setupNavigationBar() {
+        // Setup the navigation bar
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+    }
 
 }

@@ -54,6 +54,7 @@ class AddCompanyDaysEnabledViewController: AddCompanyBaseViewController, UITable
             
             addCompanyHoursEnabledViewController.company = self.company
             addCompanyHoursEnabledViewController.customer = self.customer
+            addCompanyHoursEnabledViewController.embeddedViewController = self.embeddedViewController
             
             self.navigationController?.pushViewController(addCompanyHoursEnabledViewController, animated: true)
         } else {

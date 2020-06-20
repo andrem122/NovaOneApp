@@ -114,6 +114,7 @@ class AddCompanyAddressViewController: AddCompanyBaseViewController, AddAddress 
             
             // Pass company object to next view controller
             addCompanyEmailViewController.company = self.company
+            addCompanyEmailViewController.embeddedViewController = self.embeddedViewController
             
             self.navigationController?.pushViewController(addCompanyEmailViewController, animated: true)
         }

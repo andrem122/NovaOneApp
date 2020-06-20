@@ -153,6 +153,8 @@ class CompaniesTableViewController: UITableViewController, NovaOneTableView {
                     coreDataCompany.created = company.createdDate
                     coreDataCompany.customerUserId = Int32(company.customerUserId)
                     coreDataCompany.daysOfTheWeekEnabled = company.daysOfTheWeekEnabled
+                    coreDataCompany.autoRespondNumber = company.autoRespondNumber
+                    coreDataCompany.autoRespondText = company.autoRespondText
                     coreDataCompany.email = company.email
                     coreDataCompany.hoursOfTheDayEnabled = company.hoursOfTheDayEnabled
                     coreDataCompany.id = Int32(company.id)
