@@ -67,11 +67,11 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         let dateOfInquiry: String = self.convert(lead: dateOfInquiryDate)
         
         // Create dictionaries for cells
-        let phoneNumberItem = ObjectDetailItem(title: "Phone", titleValue: phoneNumber)
-        let emailItem = ObjectDetailItem(title: "Email", titleValue: email)
-        let contactedItem = ObjectDetailItem(title: "Contacted", titleValue: contactedLead)
-        let addressItem = ObjectDetailItem(title: "Company", titleValue: companyName)
-        let dateOfInquiryItem = ObjectDetailItem(title: "Date Of Inquiry", titleValue: dateOfInquiry)
+        let phoneNumberItem = ObjectDetailItem(titleValue: phoneNumber, titleItem: .phoneNumber)
+        let emailItem = ObjectDetailItem(titleValue: email, titleItem: .email)
+        let contactedItem = ObjectDetailItem(titleValue: contactedLead, titleItem: .contacted)
+        let companyNameItem = ObjectDetailItem(titleValue: companyName, titleItem: .companyName)
+        let dateOfInquiryItem = ObjectDetailItem(titleValue: dateOfInquiry, titleItem: .dateOfInquiry)
         
         self.titleLabel.text = name
         self.objectDetailItems = [
@@ -79,12 +79,12 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             emailItem,
             contactedItem,
             dateOfInquiryItem,
-            addressItem]
+            companyNameItem]
         
         guard let customerType = self.customer?.customerType else { return }
         if customerType == Defaults.CustomerTypes.propertyManager.rawValue {
             guard let renterBrand = self.lead?.renterBrand else { return }
-            let renterBrandItem = ObjectDetailItem(title: "Renter Brand", titleValue: renterBrand)
+            let renterBrandItem = ObjectDetailItem(titleValue: renterBrand, titleItem: .renterBrand)
             self.objectDetailItems.append(renterBrandItem)
         }
         

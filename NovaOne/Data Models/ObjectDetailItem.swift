@@ -8,14 +8,39 @@
 
 import Foundation
 
+enum TitleItem: String {
+    // An enumeration containing all titles for object detail items in each detail view controller
+    case name = "Name"
+    case address = "Address"
+    case phoneNumber = "Phone Number"
+    case email = "Email"
+    case appointmentLink = "Appointment Link"
+    case showingDays = "Showing Days"
+    case showingHours = "Showing Hours"
+    case autoRespondNumber = "Auto Respond Number"
+    case autoRespondText = "Auto Respond Text"
+    case appointmentTime = "Time"
+    case confirmed = "Confirmed"
+    case unitType = "Unit Type"
+    case dateOfBirth = "Date Of Birth"
+    case testType = "Test Type"
+    case gender = "Gender"
+    case contacted = "Contacted"
+    case companyName = "Company"
+    case dateOfInquiry = "Date Of Inquiry"
+    case renterBrand = "Renter Brand"
+}
+
 class ObjectDetailItem: NSObject {
     // A model class to represent the data for the items for each ObjectDetailTableViewCell
     
     let title: String
     let titleValue: String
+    let titleItem: TitleItem
     
-    init(title: String, titleValue: String) {
-        self.title = title
+    init(titleValue: String, titleItem: TitleItem) {
+        self.title = titleItem.rawValue
         self.titleValue = titleValue
+        self.titleItem = titleItem
     }
 }

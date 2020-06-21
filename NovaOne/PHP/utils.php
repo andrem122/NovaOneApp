@@ -119,7 +119,7 @@
                     if($success_message_needed == false) {
                         $response_array = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     } else {
-                        $response_array = array('successReason' => 'Successfully added.');
+                        $response_array = array('successReason' => 'Successful operation.');
                     }
                     
                     echo json_encode($response_array);

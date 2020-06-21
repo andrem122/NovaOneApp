@@ -8,10 +8,11 @@
 
 import UIKit
 
-class UpdateCompanyAutoRespondTextViewController: UIViewController {
+class UpdateCompanyAutoRespondTextViewController: UpdateBaseViewController {
     
     var autoRespondText: String?
     @IBOutlet weak var textView: NovaOneTextView!
+    @IBOutlet weak var updateButton: NovaOneButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,5 +29,10 @@ class UpdateCompanyAutoRespondTextViewController: UIViewController {
         guard let autoRespondText = self.autoRespondText else { return }
         self.textView.text = autoRespondText
     }
-
+    
+    // MARK: Actions
+    @IBAction func updateButtonTapped(_ sender: Any) {
+    }
+    
+    
 }

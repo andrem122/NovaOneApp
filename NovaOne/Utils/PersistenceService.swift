@@ -76,6 +76,7 @@ class PersistenceService {
     
     // MARK: - Core Data Fetching
     static func fetchEntity<T: NSManagedObject>(_ objectType: T.Type, filter with: NSPredicate?, sort by: [NSSortDescriptor]?) -> [T] {
+        
         // Gets filtered objects from an entity type in CoreData
         let entityName = String(describing: objectType)
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)

@@ -23,8 +23,6 @@ protocol AddAddress: GMSAutocompleteResultsViewControllerDelegate, MKMapViewDele
     func setupMapView()
     func presentAutocomplete(textForSearchBar: String)
     func setupTextField()
-    func setupContinueButton()
-    func continueButtonTapped(_ sender: Any)
     
     // For class extension
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController, didAutocompleteWith place: GMSPlace)

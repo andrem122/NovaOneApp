@@ -123,6 +123,8 @@
 		659D487923F375F0007AC005 /* appointments.php in Resources */ = {isa = PBXBuildFile; fileRef = 659D487723F375F0007AC005 /* appointments.php */; };
 		65A18DCE2410454A00F16565 /* NovaOneTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A18DCD2410454A00F16565 /* NovaOneTextView.swift */; };
 		65A4CD882445065E00EE4AAA /* HelpTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A4CD872445065E00EE4AAA /* HelpTableViewController.swift */; };
+		65A6EF9E249E75D500DE12E7 /* updateObject.php in Resources */ = {isa = PBXBuildFile; fileRef = 65A6EF9D249E75D500DE12E7 /* updateObject.php */; };
+		65A6EFA0249E7D4D00DE12E7 /* UpdateBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A6EF9F249E7D4D00DE12E7 /* UpdateBaseViewController.swift */; };
 		65AA3E662432722D005C2319 /* AddCompanyNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AA3E652432722D005C2319 /* AddCompanyNameViewController.swift */; };
 		65AA3E6824327245005C2319 /* AddCompanyPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AA3E6724327245005C2319 /* AddCompanyPhoneViewController.swift */; };
 		65AA3E6A24327254005C2319 /* AddCompanyEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AA3E6924327254005C2319 /* AddCompanyEmailViewController.swift */; };
@@ -338,6 +340,8 @@
 		659D487D23F38C01007AC005 /* NovaOne.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NovaOne.xcdatamodel; sourceTree = "<group>"; };
 		65A18DCD2410454A00F16565 /* NovaOneTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovaOneTextView.swift; sourceTree = "<group>"; };
 		65A4CD872445065E00EE4AAA /* HelpTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpTableViewController.swift; sourceTree = "<group>"; };
+		65A6EF9D249E75D500DE12E7 /* updateObject.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = updateObject.php; sourceTree = "<group>"; };
+		65A6EF9F249E7D4D00DE12E7 /* UpdateBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateBaseViewController.swift; sourceTree = "<group>"; };
 		65AA3E652432722D005C2319 /* AddCompanyNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCompanyNameViewController.swift; sourceTree = "<group>"; };
 		65AA3E6724327245005C2319 /* AddCompanyPhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCompanyPhoneViewController.swift; sourceTree = "<group>"; };
 		65AA3E6924327254005C2319 /* AddCompanyEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCompanyEmailViewController.swift; sourceTree = "<group>"; };
@@ -745,6 +749,7 @@
 				65AA3E7724328CAE005C2319 /* SuccessViewController.swift */,
 				65AD1BBC24576059007C4444 /* BaseLoginViewController.swift */,
 				659883E8245A00A800379F7A /* ContainerViewController.swift */,
+				65A6EF9F249E7D4D00DE12E7 /* UpdateBaseViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -816,6 +821,7 @@
 				6506CD4524886C8F00194C92 /* chartDataMonth.php */,
 				6534326F2493BE0B00483505 /* addLead.php */,
 				6584C6EA2499186D00FFD1D3 /* addCompany.php */,
+				65A6EF9D249E75D500DE12E7 /* updateObject.php */,
 			);
 			path = PHP;
 			sourceTree = "<group>";
@@ -991,6 +997,7 @@
 				656A8F81244F52260028ABAE /* objectCounts.php in Resources */,
 				659D487823F375F0007AC005 /* leads.php in Resources */,
 				65074FB12470622F008AC4B2 /* signup.php in Resources */,
+				65A6EF9E249E75D500DE12E7 /* updateObject.php in Resources */,
 				6591C3A123DA78F900535C46 /* Main.storyboard in Resources */,
 				6578D9F12415AD06002E94BF /* companies.php in Resources */,
 				65316D5524465E5D0072F78A /* moreLeads.php in Resources */,
@@ -1179,6 +1186,7 @@
 				6575F62E242EC7F500332729 /* EnabledOptionTableViewCell.swift in Sources */,
 				65C14C332434DAA500848606 /* PopUpOkViewController.swift in Sources */,
 				65D169AD245DDFE6006219C8 /* Defaults.swift in Sources */,
+				65A6EFA0249E7D4D00DE12E7 /* UpdateBaseViewController.swift in Sources */,
 				65695AB5244CC80900D35E55 /* AddLeadNameViewController.swift in Sources */,
 				657881E02493C8B100E3E556 /* AddLeadPhoneCheckViewController.swift in Sources */,
 				658EC6C823F4B1310042827E /* NovaOneView.swift in Sources */,

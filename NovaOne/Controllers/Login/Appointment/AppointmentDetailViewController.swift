@@ -68,9 +68,9 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
         let confirmedString = appointment.confirmed ? "Yes" : "No"
         
         // Create dictionaries for cells
-        let phoneNumberItem = ObjectDetailItem(title: "Phone Number", titleValue: phoneNumber)
-        let appointmentTimeItem = ObjectDetailItem(title: "Time", titleValue: appointmentTime)
-        let appointmentConfirmedItem = ObjectDetailItem(title: "Confirmed", titleValue: confirmedString)
+        let phoneNumberItem = ObjectDetailItem(titleValue: phoneNumber, titleItem: .phoneNumber)
+        let appointmentTimeItem = ObjectDetailItem(titleValue: appointmentTime, titleItem: .appointmentTime)
+        let appointmentConfirmedItem = ObjectDetailItem(titleValue: confirmedString, titleItem: .confirmed)
         
         self.titleLabel.text = appointment.name
         self.objectDetailItems = [
@@ -87,7 +87,7 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
         if customerType == Defaults.CustomerTypes.propertyManager.rawValue {
             
             guard let unitType = appointment.unitType else { return }
-            let unitTypeItem = ObjectDetailItem(title: "Unit Type", titleValue: unitType)
+            let unitTypeItem = ObjectDetailItem(titleValue: unitType, titleItem: .unitType)
             self.objectDetailItems.append(unitTypeItem)
             
         } else if customerType == Defaults.CustomerTypes.medicalWorker.rawValue {
@@ -101,11 +101,11 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
             else { return }
             let dateOfBirth = DateHelper.createString(from: dateOfBirthDate, format: "MM/DD/yyyy")
             
-            let emailItem = ObjectDetailItem(title: "Email", titleValue: email)
-            let dateOfBirthItem = ObjectDetailItem(title: "Date Of Birth", titleValue: dateOfBirth)
-            let testTypeItem = ObjectDetailItem(title: "Test Type", titleValue: testType)
-            let genderItem = ObjectDetailItem(title: "Gender", titleValue: gender)
-            let addressItem = ObjectDetailItem(title: "Address", titleValue: address)
+            let emailItem = ObjectDetailItem(titleValue: email, titleItem: .email)
+            let dateOfBirthItem = ObjectDetailItem(titleValue: dateOfBirth, titleItem: .dateOfBirth)
+            let testTypeItem = ObjectDetailItem(titleValue: testType, titleItem: .testType)
+            let genderItem = ObjectDetailItem(titleValue: gender, titleItem: .gender)
+            let addressItem = ObjectDetailItem(titleValue: address, titleItem: .address)
             
             let items = [emailItem, dateOfBirthItem, testTypeItem, genderItem, addressItem]
             self.objectDetailItems.append(contentsOf: items)
@@ -167,75 +167,76 @@ extension AppointmentDetailViewController {
             tableView.deselectRow(at: indexPath, animated: true) // Deselect the row after it is tapped on
             
             // Get company title based on which row the user taps on
-        let cellTitle = self.objectDetailItems[indexPath.row].title
+        let titleItem = self.objectDetailItems[indexPath.row].titleItem
         
             // Get update view controller based on which cell the user clicked on
-            switch cellTitle {
-                case "Email":
-                    if let updateAppointmentEmailViewController = self.storyboard?.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentEmail.rawValue) as? UpdateAppointmentEmailViewController {
-                        
-                        self.navigationController?.pushViewController(updateAppointmentEmailViewController, animated: true)
-                        
-                    }
+            switch titleItem {
                 
-                case "Phone Number":
-                    if let updateAppointmentPhoneViewController = self.storyboard?.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentPhone.rawValue) as? UpdateAppointmentPhoneViewController {
-                        
-                        self.navigationController?.pushViewController(updateAppointmentPhoneViewController, animated: true)
-                        
-                    }
-                
-                case "Time":
-                    if let updateAppointmentTimeViewController = self.storyboard?.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentTime.rawValue) as? UpdateAppointmentTimeViewController {
-                        
-                        self.navigationController?.pushViewController(updateAppointmentTimeViewController, animated: true)
-                        
-                    }
-                
-                case "Confirmed":
-                    if let updateAppointmentStatusViewController = self.storyboard?.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentStatus.rawValue) as? UpdateAppointmentStatusViewController {
-                        
-                        self.navigationController?.pushViewController(updateAppointmentStatusViewController, animated: true)
-                        
-                    }
-                
-                case "Date Of Birth":
-                    if let updateAppointmentDateOfBirthViewController = self.storyboard?.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentDateOfBirth.rawValue) as? UpdateAppointmentDateOfBirthViewController {
-                        
-                        self.navigationController?.pushViewController(updateAppointmentDateOfBirthViewController, animated: true)
-                        
-                    }
-                
-                case "Unit Type":
-                    if let updateAppointmentUnitTypeViewController = self.storyboard?.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentUnitType.rawValue) as? UpdateAppointmentUnitTypeViewController {
-                        
-                        self.navigationController?.pushViewController(updateAppointmentUnitTypeViewController, animated: true)
-                        
-                    }
-                
-                case "Test Type":
-                    if let updateAppointmentTestTypeViewController = self.storyboard?.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentTestType.rawValue) as? UpdateAppointmentTestTypeViewController {
-                        
-                        self.navigationController?.pushViewController(updateAppointmentTestTypeViewController, animated: true)
-                        
-                    }
-                
-                case "Gender":
-                    if let updateAppointmentGenderViewController = self.storyboard?.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentGender.rawValue) as? UpdateAppointmentGenderViewController {
-                        
-                        self.navigationController?.pushViewController(updateAppointmentGenderViewController, animated: true)
-                        
-                    }
-                
-                case "Address":
-                    if let updateAppointmentAddressViewController = self.storyboard?.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentAddress.rawValue) as? UpdateAppointmentAddressViewController {
-                        
-                        self.navigationController?.pushViewController(updateAppointmentAddressViewController, animated: true)
-                        
-                    }
-                
-                default:
-                    print("No cases matched")
+                case .email:
+                        if let updateAppointmentEmailViewController = self.storyboard?.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentEmail.rawValue) as? UpdateAppointmentEmailViewController {
+                            
+                            self.navigationController?.pushViewController(updateAppointmentEmailViewController, animated: true)
+                            
+                        }
+                    
+                case .phoneNumber:
+                        if let updateAppointmentPhoneViewController = self.storyboard?.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentPhone.rawValue) as? UpdateAppointmentPhoneViewController {
+                            
+                            self.navigationController?.pushViewController(updateAppointmentPhoneViewController, animated: true)
+                            
+                        }
+                    
+                case .appointmentTime:
+                        if let updateAppointmentTimeViewController = self.storyboard?.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentTime.rawValue) as? UpdateAppointmentTimeViewController {
+                            
+                            self.navigationController?.pushViewController(updateAppointmentTimeViewController, animated: true)
+                            
+                        }
+                    
+                case .confirmed:
+                        if let updateAppointmentStatusViewController = self.storyboard?.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentStatus.rawValue) as? UpdateAppointmentStatusViewController {
+                            
+                            self.navigationController?.pushViewController(updateAppointmentStatusViewController, animated: true)
+                            
+                        }
+                    
+                case .dateOfBirth:
+                        if let updateAppointmentDateOfBirthViewController = self.storyboard?.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentDateOfBirth.rawValue) as? UpdateAppointmentDateOfBirthViewController {
+                            
+                            self.navigationController?.pushViewController(updateAppointmentDateOfBirthViewController, animated: true)
+                            
+                        }
+                    
+                case .unitType:
+                        if let updateAppointmentUnitTypeViewController = self.storyboard?.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentUnitType.rawValue) as? UpdateAppointmentUnitTypeViewController {
+                            
+                            self.navigationController?.pushViewController(updateAppointmentUnitTypeViewController, animated: true)
+                            
+                        }
+                    
+                case .testType:
+                        if let updateAppointmentTestTypeViewController = self.storyboard?.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentTestType.rawValue) as? UpdateAppointmentTestTypeViewController {
+                            
+                            self.navigationController?.pushViewController(updateAppointmentTestTypeViewController, animated: true)
+                            
+                        }
+                    
+                case .gender:
+                        if let updateAppointmentGenderViewController = self.storyboard?.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentGender.rawValue) as? UpdateAppointmentGenderViewController {
+                            
+                            self.navigationController?.pushViewController(updateAppointmentGenderViewController, animated: true)
+                            
+                        }
+                    
+                case .address:
+                        if let updateAppointmentAddressViewController = self.storyboard?.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentAddress.rawValue) as? UpdateAppointmentAddressViewController {
+                            
+                            self.navigationController?.pushViewController(updateAppointmentAddressViewController, animated: true)
+                            
+                        }
+                    
+                    default:
+                        print("No cases matched")
             }
 
     }

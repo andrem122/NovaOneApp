@@ -8,12 +8,22 @@
 
 import UIKit
 
-class UpdateCompanyAddressViewController: UIViewController {
+class UpdateCompanyAddressViewController: UpdateBaseViewController {
     
     // MARK: Properties
+    @IBOutlet weak var updateButton: NovaOneButton!
+    @IBOutlet weak var addressTextField: NovaOneTextField!
     
+    
+    // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
+    // MARK: Actions
+    @IBAction func updateButtonTapped(_ sender: Any) {
+    }
+    
+    @IBAction func addressTextFieldChanged(_ sender: Any) {
+    }
 }

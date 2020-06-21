@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UpdateCompanyHoursEnabledViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class UpdateCompanyHoursEnabledViewController: UpdateBaseViewController, UITableViewDelegate, UITableViewDataSource {
     
     // MARK: Properties
     @IBOutlet weak var updateCompanyHoursEnabledTableView: UITableView!
@@ -41,7 +41,6 @@ class UpdateCompanyHoursEnabledViewController: UIViewController, UITableViewDele
         EnableOption(option: "10:00", selected: false, id: nil),
         EnableOption(option: "11:00", selected: false, id: nil),
     ]
-    let alertService = AlertService()
     var company: Any?
     
     override func viewDidLoad() {
@@ -134,7 +133,7 @@ class UpdateCompanyHoursEnabledViewController: UIViewController, UITableViewDele
         let body = "Are you sure you want to update company hours?"
         let buttonTitle = "Update"
         
-        let popUpViewController = alertService.popUp(title: title, body: body, buttonTitle: buttonTitle, actionHandler: {
+        let popUpViewController = self.alertService.popUp(title: title, body: body, buttonTitle: buttonTitle, actionHandler: {
             [weak self] in
                        // Update CoreData
                        

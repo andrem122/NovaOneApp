@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UpdateCompanyDaysEnabledViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class UpdateCompanyDaysEnabledViewController: UpdateBaseViewController, UITableViewDelegate, UITableViewDataSource {
     
     // MARK: Properties
     @IBOutlet weak var updateCompanyDaysEnabledTableView: UITableView!
