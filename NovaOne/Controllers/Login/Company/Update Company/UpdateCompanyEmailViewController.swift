@@ -71,7 +71,7 @@ class UpdateCompanyEmailViewController: UpdateBaseViewController, UITextFieldDel
                
            }
            
-           self.updateObject(for: "property_company", at: "email", with: updateValue, objectId: Int(objectId), objectType: Company.self, updateClosure: updateClosure, successSubtitle: "Company email has been successfully updated.", successDoneHandler: successDoneHandler)
+           self.updateObject(for: "property_company", at: ["email": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Company.self, updateClosure: updateClosure, successSubtitle: "Company email has been successfully updated.", successDoneHandler: successDoneHandler)
         } else {
             // Email is not valid, so present pop up
             let popUpOkViewController = self.alertService.popUpOk(title: "Invalid Email", body: "Please enter a valid email.")

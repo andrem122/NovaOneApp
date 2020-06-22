@@ -13,13 +13,13 @@ class UpdateCompanyDaysEnabledViewController: UpdateBaseViewController, UITableV
     // MARK: Properties
     @IBOutlet weak var updateCompanyDaysEnabledTableView: UITableView!
     var daysOfTheWeek: [EnableOption] = [
-        EnableOption(option: "Sunday", selected: false, id: nil),
-        EnableOption(option: "Monday", selected: false, id: nil),
-        EnableOption(option: "Tuesday", selected: false, id: nil),
-        EnableOption(option: "Wednesday", selected: false, id: nil),
-        EnableOption(option: "Thursday", selected: false, id: nil),
-        EnableOption(option: "Friday", selected: false, id: nil),
-        EnableOption(option: "Saturday", selected: false, id: nil),
+        EnableOption(option: "Sunday", selected: false, id: 0),
+        EnableOption(option: "Monday", selected: false, id: 1),
+        EnableOption(option: "Tuesday", selected: false, id: 2),
+        EnableOption(option: "Wednesday", selected: false, id: 3),
+        EnableOption(option: "Thursday", selected: false, id: 4),
+        EnableOption(option: "Friday", selected: false, id: 5),
+        EnableOption(option: "Saturday", selected: false, id: 6),
     ]
     var company: Any?
     
@@ -76,6 +76,44 @@ class UpdateCompanyDaysEnabledViewController: UpdateBaseViewController, UITableV
         }
     }
     
+    // MARK: Actions
+    @IBAction func updateButtonTapped(_ sender: Any) {
+        // Check if an option has been selected before updating
+        let optionSelected = EnableOptionHelper.optionIsSelected(options: self.daysOfTheWeek)
+        if optionSelected {
+            
+            guard
+                let objectId = (self.updateObject as? Company)?.id,
+                let detailViewController = self.detailViewController as? CompanyDetailViewController
+            else { print("error getting detail view controller and object id"); return }
+            let updateValue = EnableOptionHelper.getSelectedOptions(options: self.daysOfTheWeek)
+            
+            let updateClosure = {
+                (company: Company) in
+                company.daysOfTheWeekEnabled = updateValue
+            }
+            
+            let successDoneHandler = {
+                [weak self] in
+                
+                let predicate = NSPredicate(format: "id == %@", String(objectId))
+                guard let updatedCompany = PersistenceService.fetchEntity(Company.self, filter: predicate, sort: nil).first else { print("error getting updated company"); return }
+                
+                detailViewController.company = updatedCompany
+                detailViewController.setupCompanyCellsAndTitle()
+                detailViewController.objectDetailTableView.reloadData()
+                
+                self?.removeSpinner()
+                
+            }
+            
+            self.updateObject(for: "property_company", at: ["days_of_the_week_enabled": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Company.self, updateClosure: updateClosure, successSubtitle: "Company showing days have been successfully updated.", successDoneHandler: successDoneHandler)
+            
+        } else {
+            let popUpOkViewController = self.alertService.popUpOk(title: "Select A Day", body: "Please select at least one day.")
+            self.present(popUpOkViewController, animated: true, completion: nil)
+        }
+    }
 }
 
 extension UpdateCompanyDaysEnabledViewController {

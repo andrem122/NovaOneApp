@@ -63,7 +63,7 @@ class UpdateCompanyPhoneViewController: UpdateBaseViewController, UITextFieldDel
             
         }
         
-        self.updateObject(for: "property_company", at: "phone_number", with: updateValue, objectId: Int(objectId), objectType: Company.self, updateClosure: updateClosure, successSubtitle: "Company phone number has been successfully updated.", successDoneHandler: successDoneHandler)
+        self.updateObject(for: "property_company", at: ["phone_number": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Company.self, updateClosure: updateClosure, successSubtitle: "Company phone number has been successfully updated.", successDoneHandler: successDoneHandler)
     }
     
 }

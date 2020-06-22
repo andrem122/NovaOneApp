@@ -13,33 +13,33 @@ class UpdateCompanyHoursEnabledViewController: UpdateBaseViewController, UITable
     // MARK: Properties
     @IBOutlet weak var updateCompanyHoursEnabledTableView: UITableView!
     var hoursOfTheDayAM: [EnableOption] = [
-        EnableOption(option: "12:00", selected: false, id: nil),
-        EnableOption(option: "1:00", selected: false, id: nil),
-        EnableOption(option: "2:00", selected: false, id: nil),
-        EnableOption(option: "3:00", selected: false, id: nil),
-        EnableOption(option: "4:00", selected: false, id: nil),
-        EnableOption(option: "5:00", selected: false, id: nil),
-        EnableOption(option: "6:00", selected: false, id: nil),
-        EnableOption(option: "7:00", selected: false, id: nil),
-        EnableOption(option: "8:00", selected: false, id: nil),
-        EnableOption(option: "9:00", selected: false, id: nil),
-        EnableOption(option: "10:00", selected: false, id: nil),
-        EnableOption(option: "11:00", selected: false, id: nil),
+        EnableOption(option: "12:00", selected: false, id: 0),
+        EnableOption(option: "1:00", selected: false, id: 1),
+        EnableOption(option: "2:00", selected: false, id: 2),
+        EnableOption(option: "3:00", selected: false, id: 3),
+        EnableOption(option: "4:00", selected: false, id: 4),
+        EnableOption(option: "5:00", selected: false, id: 5),
+        EnableOption(option: "6:00", selected: false, id: 6),
+        EnableOption(option: "7:00", selected: false, id: 7),
+        EnableOption(option: "8:00", selected: false, id: 8),
+        EnableOption(option: "9:00", selected: false, id: 9),
+        EnableOption(option: "10:00", selected: false, id: 10),
+        EnableOption(option: "11:00", selected: false, id: 11)
     ]
     
     var hoursOfTheDayPM: [EnableOption] = [
-        EnableOption(option: "12:00", selected: false, id: nil),
-        EnableOption(option: "1:00", selected: false, id: nil),
-        EnableOption(option: "2:00", selected: false, id: nil),
-        EnableOption(option: "3:00", selected: false, id: nil),
-        EnableOption(option: "4:00", selected: false, id: nil),
-        EnableOption(option: "5:00", selected: false, id: nil),
-        EnableOption(option: "6:00", selected: false, id: nil),
-        EnableOption(option: "7:00", selected: false, id: nil),
-        EnableOption(option: "8:00", selected: false, id: nil),
-        EnableOption(option: "9:00", selected: false, id: nil),
-        EnableOption(option: "10:00", selected: false, id: nil),
-        EnableOption(option: "11:00", selected: false, id: nil),
+        EnableOption(option: "12:00", selected: false, id: 12),
+        EnableOption(option: "1:00", selected: false, id: 13),
+        EnableOption(option: "2:00", selected: false, id: 14),
+        EnableOption(option: "3:00", selected: false, id: 15),
+        EnableOption(option: "4:00", selected: false, id: 16),
+        EnableOption(option: "5:00", selected: false, id: 17),
+        EnableOption(option: "6:00", selected: false, id: 18),
+        EnableOption(option: "7:00", selected: false, id: 19),
+        EnableOption(option: "8:00", selected: false, id: 20),
+        EnableOption(option: "9:00", selected: false, id: 21),
+        EnableOption(option: "10:00", selected: false, id: 22),
+        EnableOption(option: "11:00", selected: false, id: 23)
     ]
     var company: Any?
     
@@ -129,25 +129,41 @@ class UpdateCompanyHoursEnabledViewController: UpdateBaseViewController, UITable
     
     // MARK: Actions
     @IBAction func updateButtonTapped(_ sender: Any) {
-        let title = "Update Hours"
-        let body = "Are you sure you want to update company hours?"
-        let buttonTitle = "Update"
-        
-        let popUpViewController = self.alertService.popUp(title: title, body: body, buttonTitle: buttonTitle, actionHandler: {
-            [weak self] in
-                       // Update CoreData
-                       
-                       // Update database
-                       
-                       // Navigate to company detail view controller
-                       self?.navigationController?.popViewController(animated: true)
-                       
-                       // Refresh company detail view to reflect data changes made by user
-            }, cancelHandler: {
-                print("Action canceled")
-        })
-        self.present(popUpViewController, animated: true, completion: nil)
-        
+        // Check if an option has been selected before updating
+        let optionSelected = EnableOptionHelper.optionIsSelected(options: self.hoursOfTheDayAM + self.hoursOfTheDayPM)
+        if optionSelected {
+            
+            guard
+                let objectId = (self.updateObject as? Company)?.id,
+                let detailViewController = self.detailViewController as? CompanyDetailViewController
+            else { return }
+            let updateValue = EnableOptionHelper.getSelectedOptions(options: self.hoursOfTheDayAM + self.hoursOfTheDayPM)
+            
+            let updateClosure = {
+                (company: Company) in
+                company.hoursOfTheDayEnabled = updateValue
+            }
+            
+            let successDoneHandler = {
+                [weak self] in
+                
+                let predicate = NSPredicate(format: "id == %@", String(objectId))
+                guard let updatedCompany = PersistenceService.fetchEntity(Company.self, filter: predicate, sort: nil).first else { return }
+                
+                detailViewController.company = updatedCompany
+                detailViewController.setupCompanyCellsAndTitle()
+                detailViewController.objectDetailTableView.reloadData()
+                
+                self?.removeSpinner()
+                
+            }
+            
+            self.updateObject(for: "property_company", at: ["hours_of_the_day_enabled": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Company.self, updateClosure: updateClosure, successSubtitle: "Company showing hours have been successfully updated.", successDoneHandler: successDoneHandler)
+            
+        } else {
+            let popUpOkViewController = self.alertService.popUpOk(title: "Select An Hour", body: "Please select at least one hour.")
+            self.present(popUpOkViewController, animated: true, completion: nil)
+        }
     }
     
 }

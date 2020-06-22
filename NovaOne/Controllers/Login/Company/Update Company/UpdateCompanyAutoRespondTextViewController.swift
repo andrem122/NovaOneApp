@@ -32,6 +32,39 @@ class UpdateCompanyAutoRespondTextViewController: UpdateBaseViewController {
     
     // MARK: Actions
     @IBAction func updateButtonTapped(_ sender: Any) {
+        guard let updateValue = self.textView.text else { return }
+        
+        if updateValue.isEmpty {
+            let popUpOkViewController = self.alertService.popUpOk(title: "Auto Respond Text", body: "Please enter some text for the auto respond.")
+            self.present(popUpOkViewController, animated: true, completion: nil)
+        } else {
+            guard
+                let objectId = (self.updateObject as? Company)?.id,
+                let detailViewController = self.detailViewController as? CompanyDetailViewController
+            else { return }
+            
+            let updateClosure = {
+                (company: Company) in
+                company.autoRespondText = updateValue
+            }
+            
+            let successDoneHandler = {
+                [weak self] in
+                
+                let predicate = NSPredicate(format: "id == %@", String(objectId))
+                guard let updatedCompany = PersistenceService.fetchEntity(Company.self, filter: predicate, sort: nil).first else { return }
+                
+                detailViewController.company = updatedCompany
+                detailViewController.setupCompanyCellsAndTitle()
+                detailViewController.objectDetailTableView.reloadData()
+                
+                self?.removeSpinner()
+                
+            }
+            
+            self.updateObject(for: "property_company", at: ["auto_respond_text": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Company.self, updateClosure: updateClosure, successSubtitle: "Company auto respond text has been successfully updated.", successDoneHandler: successDoneHandler)
+        }
+        
     }
     
     

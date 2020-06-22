@@ -62,7 +62,7 @@ class UpdateCompanyNameViewController: UpdateBaseViewController {
             
         }
         
-        self.updateObject(for: "property_company", at: "name", with: updateValue, objectId: Int(objectId), objectType: Company.self, updateClosure: updateClosure, successSubtitle: "Company name has been successfully updated.", successDoneHandler: successDoneHandler)
+        self.updateObject(for: "property_company", at: ["name": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Company.self, updateClosure: updateClosure, successSubtitle: "Company name has been successfully updated.", successDoneHandler: successDoneHandler)
     }
     
 }

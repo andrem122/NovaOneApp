@@ -22,8 +22,8 @@ class UpdateBaseViewController: UIViewController {
     }
     
     func updateObject<T: NSManagedObject>(for tableName: String,
-                                          at columnName: String,
-                                          with newValue: String,
+                                          at columns: [String: String],
+                                          endpoint: String,
                                           objectId: Int,
                                           objectType: T.Type,
                                           updateClosure: @escaping (T) -> Void,
@@ -38,9 +38,13 @@ class UpdateBaseViewController: UIViewController {
             let customerPassword = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue)
         else { return }
         
-        let parameters: [String: Any] = ["email": customerEmail, "password": customerPassword, "tableName": tableName, "columnName": columnName, "newValue": newValue, "objectId": objectId]
+        // Convert dictionary to json string
+        guard let jsonData = try? JSONSerialization.data(withJSONObject: columns) else { print("Unable to encode columns to JSON data object"); return }
+        guard let jsonString = String(data: jsonData, encoding: .utf8) else { print("unable to get string from json data"); return }
+        
+        let parameters: [String: Any] = ["email": customerEmail, "password": customerPassword, "tableName": tableName, "columns": jsonString as Any, "objectId": objectId]
         let httpRequest = HTTPRequests()
-        httpRequest.request(url: Defaults.Urls.api.rawValue + "/updateObject.php", dataModel: SuccessResponse.self, parameters: parameters) {
+        httpRequest.request(url: Defaults.Urls.api.rawValue + endpoint, dataModel: SuccessResponse.self, parameters: parameters) {
             [weak self] (result) in
             
             switch result {

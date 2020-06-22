@@ -14,7 +14,6 @@ protocol AddAddress: GMSAutocompleteResultsViewControllerDelegate, MKMapViewDele
     
     // MARK: Properties
     var addressTextField: NovaOneTextField! { get set }
-    var continueButton: NovaOneButton! { get set }
     var mapView: MKMapView! { get set }
     var resultsViewController: GMSAutocompleteResultsViewController? { get set }
     var searchController: UISearchController? { get set }
