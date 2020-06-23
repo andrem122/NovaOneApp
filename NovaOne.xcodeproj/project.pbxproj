@@ -163,6 +163,7 @@
 		65B2B1D62433B25500014820 /* AddAppointmentDateOfBirthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B2B1D52433B25500014820 /* AddAppointmentDateOfBirthViewController.swift */; };
 		65B2B1D82433B26D00014820 /* AddAppointmentGenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B2B1D72433B26D00014820 /* AddAppointmentGenderViewController.swift */; };
 		65B2B1DA2434028D00014820 /* PopUpActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B2B1D92434028D00014820 /* PopUpActionViewController.swift */; };
+		65B3536324A2439500F15D23 /* updateCompanyAddress.php in Resources */ = {isa = PBXBuildFile; fileRef = 65B3536224A2439500F15D23 /* updateCompanyAddress.php */; };
 		65B99787245C932900F55381 /* MenuLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B99786245C932900F55381 /* MenuLauncher.swift */; };
 		65BA98B72430FD3500CFAA9F /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BA98B62430FD3500CFAA9F /* EmptyViewController.swift */; };
 		65BA98B92431224C00CFAA9F /* AppointmentsContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BA98B82431224C00CFAA9F /* AppointmentsContainerViewController.swift */; };
@@ -378,6 +379,7 @@
 		65B2B1D52433B25500014820 /* AddAppointmentDateOfBirthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAppointmentDateOfBirthViewController.swift; sourceTree = "<group>"; };
 		65B2B1D72433B26D00014820 /* AddAppointmentGenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAppointmentGenderViewController.swift; sourceTree = "<group>"; };
 		65B2B1D92434028D00014820 /* PopUpActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpActionViewController.swift; sourceTree = "<group>"; };
+		65B3536224A2439500F15D23 /* updateCompanyAddress.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = updateCompanyAddress.php; sourceTree = "<group>"; };
 		65B99786245C932900F55381 /* MenuLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuLauncher.swift; sourceTree = "<group>"; };
 		65BA98B62430FD3500CFAA9F /* EmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewController.swift; sourceTree = "<group>"; };
 		65BA98B82431224C00CFAA9F /* AppointmentsContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentsContainerViewController.swift; sourceTree = "<group>"; };
@@ -822,6 +824,7 @@
 				6534326F2493BE0B00483505 /* addLead.php */,
 				6584C6EA2499186D00FFD1D3 /* addCompany.php */,
 				65A6EF9D249E75D500DE12E7 /* updateObject.php */,
+				65B3536224A2439500F15D23 /* updateCompanyAddress.php */,
 			);
 			path = PHP;
 			sourceTree = "<group>";
@@ -978,6 +981,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65793B9324854D8B0093D5A7 /* refreshCompanies.php in Resources */,
+				65B3536324A2439500F15D23 /* updateCompanyAddress.php in Resources */,
 				6583195523F2209C001D378D /* login.php in Resources */,
 				65D75F7423FB495900C7988E /* utils.php in Resources */,
 				65ADE2E123E1C84E003D3215 /* Feature.xib in Resources */,

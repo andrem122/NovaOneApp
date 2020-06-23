@@ -51,7 +51,7 @@ class UpdateBaseViewController: UIViewController {
                 case .success(_):
                     
                     // Update core data object
-                    guard let updateObject = self?.updateObject as? T else { print("could not convert to company");return }
+                    guard let updateObject = self?.updateObject as? T else { return }
                     updateClosure(updateObject)
                     PersistenceService.saveContext()
                     

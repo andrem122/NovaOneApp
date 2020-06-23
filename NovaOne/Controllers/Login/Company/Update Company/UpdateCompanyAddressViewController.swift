@@ -109,11 +109,13 @@ class UpdateCompanyAddressViewController: UpdateBaseViewController, AddAddress {
                 let zip = self.zip,
                 let objectId = (self.updateObject as? Company)?.id,
                 let detailViewController = self.detailViewController as? CompanyDetailViewController
-                else { print("error getting detail view controller"); return }
+            else { print("error getting detail view controller"); return }
             
             let updateClosure = {
                 (company: Company) in
                 company.address = address
+                let shortenedAddress = address.components(separatedBy: ",")[0]
+                company.shortenedAddress = shortenedAddress
                 company.city = city
                 company.state = state
                 company.zip = zip
@@ -123,7 +125,7 @@ class UpdateCompanyAddressViewController: UpdateBaseViewController, AddAddress {
                 [weak self] in
                 
                 let predicate = NSPredicate(format: "id == %@", String(objectId))
-                guard let updatedCompany = PersistenceService.fetchEntity(Company.self, filter: predicate, sort: nil).first else { print("error getting updated company"); return }
+                guard let updatedCompany = PersistenceService.fetchEntity(Company.self, filter: predicate, sort: nil).first else { return }
                 
                 detailViewController.company = updatedCompany
                 detailViewController.setupCompanyCellsAndTitle()
@@ -132,6 +134,8 @@ class UpdateCompanyAddressViewController: UpdateBaseViewController, AddAddress {
                 self?.removeSpinner()
                 
             }
+            
+            self.updateObject(for: "property_company", at: ["address": address, "city": city, "state": state, "zip": zip], endpoint: "/updateCompanyAddress.php", objectId: Int(objectId), objectType: Company.self, updateClosure: updateClosure, successSubtitle: "Company address has been successfully updated.", successDoneHandler: successDoneHandler)
             
             
         }

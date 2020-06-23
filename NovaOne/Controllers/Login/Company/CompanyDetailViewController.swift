@@ -46,7 +46,7 @@ class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITabl
             let address = company.shortenedAddress
         else { return }
         
-        print("COMPANY NAME: \(name)")
+        print("COMPANY ADDRESS: \(address)")
         
         self.titleLabel.text = name
         let autoRespondNumber = company.autoRespondNumber != nil ? company.autoRespondNumber! : "No Auto Respond"
