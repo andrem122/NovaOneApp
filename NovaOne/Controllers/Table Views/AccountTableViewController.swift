@@ -15,29 +15,31 @@ class AccountTableViewController: UITableViewController {
     @IBOutlet weak var customerIdValueLabel: UILabel!
     @IBOutlet weak var emailAddressValueLabel: UILabel!
     @IBOutlet weak var phoneNumberValueLabel: UILabel!
+    var customer: Customer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setup()
+        self.customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first
+        self.setLabelValues()
     }
     
-    func setup() {
-        
-        // Set values for each label
+    func setLabelValues() {
+       // Set values for each label
+        print("SETTING LABEL VALUES")
         guard
-            let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
-            let emailAddress = customer.email,
-            let phoneNumber = customer.phoneNumber
+            let emailAddress = self.customer?.email,
+            let phoneNumber = self.customer?.phoneNumber,
+            let fullName = self.customer?.fullName,
+            let customerId = self.customer?.id
         else { return }
         
-        self.nameValueLabel.text = customer.fullName
-        self.customerIdValueLabel.text = String(customer.id)
+        self.nameValueLabel.text = fullName
+        self.customerIdValueLabel.text = String(customerId)
         self.emailAddressValueLabel.text = emailAddress
         self.phoneNumberValueLabel.text = phoneNumber
         
         // Setup navigation bar style
         UIHelper.setupNavigationBarStyle(for: self.navigationController)
-        
     }
     
     // MARK: Navigation
@@ -47,6 +49,10 @@ class AccountTableViewController: UITableViewController {
         let backItem = UIBarButtonItem()
         backItem.title = ""
         self.navigationItem.backBarButtonItem = backItem // This will show in the next view controller being pushed
+        
+        guard let updateViewController = segue.destination as? UpdateBaseViewController else { return }
+        updateViewController.updateObject = self.customer
+        updateViewController.previousViewController = self
         
     }
     

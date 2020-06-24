@@ -135,7 +135,7 @@ class UpdateCompanyHoursEnabledViewController: UpdateBaseViewController, UITable
             
             guard
                 let objectId = (self.updateObject as? Company)?.id,
-                let detailViewController = self.detailViewController as? CompanyDetailViewController
+                let detailViewController = self.previousViewController as? CompanyDetailViewController
             else { return }
             let updateValue = EnableOptionHelper.getSelectedOptions(options: self.hoursOfTheDayAM + self.hoursOfTheDayPM)
             

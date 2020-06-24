@@ -25,6 +25,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
           $query = "
           SELECT
               c.id,
+              c.user_id as \"userId\",
               a.password,
               a.last_login as \"lastLogin\",
               a.username,

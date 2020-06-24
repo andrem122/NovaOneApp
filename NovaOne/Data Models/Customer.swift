@@ -11,6 +11,7 @@ struct CustomerModel: Decodable {
 
     // MARK: Properties
     var id: Int
+    var userId: Int
     var password: String
     var lastLogin: String
     var username: String

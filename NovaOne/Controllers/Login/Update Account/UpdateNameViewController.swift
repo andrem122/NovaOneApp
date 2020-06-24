@@ -8,23 +8,121 @@
 
 import UIKit
 
-class UpdateNameViewController: UIViewController {
-
+class UpdateNameViewController: UpdateBaseViewController, UITextFieldDelegate {
+    
+    // MARK: Properties
+    @IBOutlet weak var firstNameTextField: NovaOneTextField!
+    @IBOutlet weak var lastNameTextField: NovaOneTextField!
+    @IBOutlet weak var updateButton: NovaOneButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.setupUpdateButton()
+        self.setupTextFields()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.firstNameTextField.becomeFirstResponder()
+    }
+    
+    func setupUpdateButton() {
+        // Setup the update button
+        UIHelper.disable(button: self.updateButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
+    }
+    
+    func setupTextFields() {
+        // Setup text fields
+        self.firstNameTextField.delegate = self
+        self.lastNameTextField.delegate = self
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // MARK: Actions
+    @IBAction func updateButtonTapped(_ sender: Any) {
+        
+        guard
+            let firstName = self.firstNameTextField.text,
+            let lastName = self.lastNameTextField.text,
+            let objectId = (self.updateObject as? Customer)?.userId,
+            let previousViewController = self.previousViewController as? AccountTableViewController
+            else { print("could not get previous view controller"); return }
+        
+        let updateClosure = {
+            (customer: Customer) in
+            customer.firstName = firstName
+            customer.lastName = lastName
+        }
+        
+        let successDoneHandler = {
+            [weak self] in
+            
+            let predicate = NSPredicate(format: "userId == %@", String(objectId))
+            guard let updatedCustomer = PersistenceService.fetchEntity(Customer.self, filter: predicate, sort: nil).first else { return }
+            
+            previousViewController.customer = updatedCustomer
+            previousViewController.setLabelValues()
+            previousViewController.tableView.reloadData()
+            
+            self?.removeSpinner()
+            
+        }
+        
+        self.updateObject(for: "auth_user", at: ["first_name": firstName, "last_name": lastName], endpoint: "/updateName.php", objectId: Int(objectId), objectType: Customer.self, updateClosure: updateClosure, successSubtitle: "Name has been successfully updated.", successDoneHandler: successDoneHandler)
     }
-    */
+    
+    @IBAction func firstNameTextFieldChanged(_ sender: Any) {
+        UIHelper.toggle(button: self.updateButton, textField: nil, enabledColor: Defaults.novaOneColor, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false) { () -> Bool in
+            
+            guard
+                let firstName = self.firstNameTextField.text,
+                let lastName = self.lastNameTextField.text
+            else { return false }
+            
+            if firstName.isEmpty {
+                return false
+            }
+            
+            if lastName.isEmpty {
+                return false
+            }
+            
+            return true
+            
+        }
+    }
+    
+    @IBAction func lastNameTextFieldChanged(_ sender: Any) {
+        UIHelper.toggle(button: self.updateButton, textField: nil, enabledColor: Defaults.novaOneColor, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false) { () -> Bool in
+            
+            guard
+                let firstName = self.firstNameTextField.text,
+                let lastName = self.lastNameTextField.text
+            else { return false }
+            
+            if firstName.isEmpty {
+                return false
+            }
+            
+            if lastName.isEmpty {
+                return false
+            }
+            
+            return true
+            
+        }
+    }
+}
 
+extension UpdateNameViewController {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == self.firstNameTextField {
+            self.lastNameTextField.becomeFirstResponder()
+        } else {
+            self.updateButton.sendActions(for: .touchUpInside)
+        }
+        return true
+    }
+    
 }

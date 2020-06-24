@@ -84,7 +84,7 @@ class UpdateCompanyDaysEnabledViewController: UpdateBaseViewController, UITableV
             
             guard
                 let objectId = (self.updateObject as? Company)?.id,
-                let detailViewController = self.detailViewController as? CompanyDetailViewController
+                let detailViewController = self.previousViewController as? CompanyDetailViewController
             else { print("error getting detail view controller and object id"); return }
             let updateValue = EnableOptionHelper.getSelectedOptions(options: self.daysOfTheWeek)
             

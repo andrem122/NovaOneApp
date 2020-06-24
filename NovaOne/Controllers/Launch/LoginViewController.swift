@@ -135,6 +135,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             // Get non optionals from CustomerModel instance
             let dateJoinedDate = customer.dateJoinedDate
             let id = Int32(customer.id)
+            let userId = Int32(customer.userId)
             let customerType = customer.customerType
             let email = customer.email
             let firstName = customer.firstName
@@ -148,7 +149,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             
             guard let coreDataCustomerObject = NSEntityDescription.insertNewObject(forEntityName: Defaults.CoreDataEntities.customer.rawValue, into: PersistenceService.context) as? Customer else { return }
             
-            coreDataCustomerObject.addCustomer(customerType: customerType, dateJoined: dateJoinedDate, email: email, firstName: firstName, id: id, isPaying: isPaying, lastName: lastName, phoneNumber: phoneNumber, wantsSms: wantsSms, password: password, username: username, lastLogin: lastLoginDate, companies: nil)
+            coreDataCustomerObject.addCustomer(customerType: customerType, dateJoined: dateJoinedDate, email: email, firstName: firstName, id: id, userId: userId, isPaying: isPaying, lastName: lastName, phoneNumber: phoneNumber, wantsSms: wantsSms, password: password, username: username, lastLogin: lastLoginDate, companies: nil)
             
             PersistenceService.saveContext()
             
@@ -177,7 +178,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     let keychainEmail = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.email.rawValue) != nil ? KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.email.rawValue)! : ""
                     let keychainPassword = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue) != nil ? KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue)! : ""
                     
-                    if keychainEmail.isEmpty || keychainPassword.isEmpty || email != keychainEmail {
+                    if keychainEmail.isEmpty || keychainPassword.isEmpty || email != keychainEmail || password != keychainPassword {
                         let title = "Add To Keychain"
                         let body = "Would you like to add your email and password to Keychain for easier sign in?"
                         guard let popUpActionViewController = self?.alertService.popUp(title: title, body: body, buttonTitle: "Yes", actionHandler: {
@@ -249,7 +250,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             
             switch result {
                 case .success(let companies):
-                    print("SAVING COMPANIES TO COREDATA")
                     for company in companies {
                         
                         // Save to CoreData

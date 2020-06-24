@@ -59,7 +59,7 @@ class SignUpEmailViewController: BaseSignUpViewController, UITextFieldDelegate {
                 case .success(let success):
                     
                     print(success.successReason)
-                    self?.customer = CustomerModel(id: 0, password: "", lastLogin: "", username: email, firstName: "", lastName: "", email: email, dateJoined: "", isPaying: false, wantsSms: false, phoneNumber: "", customerType: "")
+                    self?.customer = CustomerModel(id: 0, userId: 0, password: "", lastLogin: "", username: email, firstName: "", lastName: "", email: email, dateJoined: "", isPaying: false, wantsSms: false, phoneNumber: "", customerType: "")
                     guard let signUpPasswordViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.signUpPassword.rawValue) as? SignUpPasswordViewController else { return }
                     signUpPasswordViewController.customer = self?.customer
                     self?.navigationController?.pushViewController(signUpPasswordViewController, animated: true)

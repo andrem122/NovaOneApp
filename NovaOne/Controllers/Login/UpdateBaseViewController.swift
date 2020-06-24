@@ -12,7 +12,7 @@ import CoreData
 class UpdateBaseViewController: UIViewController {
     
     // MARK: Properties
-    var detailViewController: NovaOneObjectDetail?
+    var previousViewController: UIViewController?
     var updateObject: NSManagedObject?
     let alertService = AlertService()
     let customer: Customer? = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first
@@ -43,6 +43,8 @@ class UpdateBaseViewController: UIViewController {
         guard let jsonString = String(data: jsonData, encoding: .utf8) else { print("unable to get string from json data"); return }
         
         let parameters: [String: Any] = ["email": customerEmail, "password": customerPassword, "tableName": tableName, "columns": jsonString as Any, "objectId": objectId]
+        print(parameters)
+        
         let httpRequest = HTTPRequests()
         httpRequest.request(url: Defaults.Urls.api.rawValue + endpoint, dataModel: SuccessResponse.self, parameters: parameters) {
             [weak self] (result) in

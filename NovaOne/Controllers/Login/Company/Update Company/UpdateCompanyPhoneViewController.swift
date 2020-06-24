@@ -41,7 +41,7 @@ class UpdateCompanyPhoneViewController: UpdateBaseViewController, UITextFieldDel
         guard
             let updateValue = self.phoneNumberTextField.text,
             let objectId = (self.updateObject as? Company)?.id,
-            let detailViewController = self.detailViewController as? CompanyDetailViewController
+            let detailViewController = self.previousViewController as? CompanyDetailViewController
             else { return }
         
         let updateClosure = {

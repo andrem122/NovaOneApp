@@ -1546,6 +1546,7 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="Q9b-qG-SHo"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="submitButton" destination="GYO-3S-7SY" id="CJR-e2-O7e"/>
                         <outlet property="supportTextView" destination="VVh-Cd-8Z0" id="Lz3-fh-2Tr"/>
                     </connections>
                 </viewController>
@@ -3015,7 +3016,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="5oO-PI-ub3" kind="show" id="RrA-BH-S53"/>
+                                            <segue destination="5oO-PI-ub3" kind="show" identifier="updateNameSegue" id="RrA-BH-S53"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="40" id="5S3-gX-zCK">
@@ -3127,7 +3128,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="voA-mM-uQ3" kind="show" id="l7P-RS-Grq"/>
+                                            <segue destination="voA-mM-uQ3" kind="show" identifier="updatePasswordSegue" id="l7P-RS-Grq"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -3181,7 +3182,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="DTL-Cb-M0t" kind="show" id="PaR-bS-eeE"/>
+                                            <segue destination="DTL-Cb-M0t" kind="show" identifier="updateEmailSegue" id="PaR-bS-eeE"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="40" id="rDl-vh-XRY">
@@ -3231,7 +3232,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="99Y-vi-jRR" kind="show" id="88P-h7-pRF"/>
+                                            <segue destination="99Y-vi-jRR" kind="show" identifier="updatePhoneSegue" id="88P-h7-pRF"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -3307,6 +3308,9 @@
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         </variation>
+                                        <connections>
+                                            <action selector="currentPasswordTextFieldChanged:" destination="voA-mM-uQ3" eventType="editingChanged" id="VyY-L0-uvq"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New Password" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="Wln-0D-ovM" customClass="NovaOneTextField" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="65" width="315" height="45"/>
@@ -3330,6 +3334,9 @@
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         </variation>
+                                        <connections>
+                                            <action selector="newPasswordTextFieldChanged:" destination="voA-mM-uQ3" eventType="editingChanged" id="O22-b5-bXN"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fLb-ce-Owt" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="130" width="315" height="45"/>
@@ -3350,6 +3357,9 @@
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         </variation>
+                                        <connections>
+                                            <action selector="updateButtonTapped:" destination="voA-mM-uQ3" eventType="touchUpInside" id="Xh3-Uu-V06"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -3381,6 +3391,11 @@
                         <viewLayoutGuide key="safeArea" id="WMT-DW-cI4"/>
                     </view>
                     <navigationItem key="navigationItem" id="rAG-05-Go9"/>
+                    <connections>
+                        <outlet property="currentPasswordTextField" destination="JKN-3n-iYQ" id="1vT-zE-Qz1"/>
+                        <outlet property="newPasswordTextField" destination="Wln-0D-ovM" id="Wqw-oe-S09"/>
+                        <outlet property="updateButton" destination="fLb-ce-Owt" id="wYo-LM-clF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E6x-HI-62r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -3437,6 +3452,9 @@
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         </variation>
+                                        <connections>
+                                            <action selector="emailTextFieldChanged:" destination="DTL-Cb-M0t" eventType="editingChanged" id="yIw-2k-ffs"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ea5-2W-Xsx" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="65" width="315" height="45"/>
@@ -3457,6 +3475,9 @@
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         </variation>
+                                        <connections>
+                                            <action selector="updateButtonTapped:" destination="DTL-Cb-M0t" eventType="touchUpInside" id="hbx-Kz-4Jk"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -3488,6 +3509,10 @@
                         <viewLayoutGuide key="safeArea" id="egZ-3d-8UV"/>
                     </view>
                     <navigationItem key="navigationItem" id="uuf-Ql-uYd"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="ckl-Dc-5JO" id="27b-LY-FVz"/>
+                        <outlet property="updateButton" destination="Ea5-2W-Xsx" id="RHg-5p-hL1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="amg-a5-gi8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -3544,6 +3569,9 @@
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         </variation>
+                                        <connections>
+                                            <action selector="phoneNumberTextFieldChanged:" destination="99Y-vi-jRR" eventType="editingChanged" id="61D-eo-qvZ"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="390-g0-920" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="65" width="315" height="45"/>
@@ -3564,6 +3592,9 @@
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         </variation>
+                                        <connections>
+                                            <action selector="updateButtonTapped:" destination="99Y-vi-jRR" eventType="touchUpInside" id="ngS-aJ-J5o"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -3595,6 +3626,10 @@
                         <viewLayoutGuide key="safeArea" id="HA9-Vi-fMR"/>
                     </view>
                     <navigationItem key="navigationItem" id="ADa-AS-UE4"/>
+                    <connections>
+                        <outlet property="phoneNumberTextField" destination="8Mx-9j-KyF" id="ylx-OQ-KHd"/>
+                        <outlet property="updateButton" destination="390-g0-920" id="Kpl-7A-ltW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hno-Gy-Efg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -4504,6 +4539,9 @@
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         </variation>
+                                        <connections>
+                                            <action selector="firstNameTextFieldChanged:" destination="5oO-PI-ub3" eventType="editingChanged" id="0Kg-pI-yqd"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="OdU-ZR-LKb" customClass="NovaOneTextField" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="65" width="315" height="45"/>
@@ -4527,6 +4565,9 @@
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         </variation>
+                                        <connections>
+                                            <action selector="lastNameTextFieldChanged:" destination="5oO-PI-ub3" eventType="editingChanged" id="Znp-Qy-RNb"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8bC-VL-mY6" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="130" width="315" height="45"/>
@@ -4547,6 +4588,9 @@
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         </variation>
+                                        <connections>
+                                            <action selector="updateButtonTapped:" destination="5oO-PI-ub3" eventType="touchUpInside" id="dGT-ol-sTO"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -4578,6 +4622,11 @@
                         <viewLayoutGuide key="safeArea" id="iDh-gO-cbo"/>
                     </view>
                     <navigationItem key="navigationItem" id="IRk-NU-G5P"/>
+                    <connections>
+                        <outlet property="firstNameTextField" destination="Bcc-E1-Dc2" id="V1A-HY-694"/>
+                        <outlet property="lastNameTextField" destination="OdU-ZR-LKb" id="sFh-e7-Kpa"/>
+                        <outlet property="updateButton" destination="8bC-VL-mY6" id="k8u-9F-Vct"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xEW-AG-vQe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -9557,8 +9606,8 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="account" width="42.666667938232422" height="42.666667938232422"/>
-        <image name="calendar" catalog="system" width="128" height="106"/>
         <image name="calendar" width="42.5" height="42.5"/>
+        <image name="calendar" catalog="system" width="128" height="106"/>
         <image name="callBlue" width="27" height="27"/>
         <image name="cancelButtonBlue" width="33.5" height="33.5"/>
         <image name="clipboard" width="42.666667938232422" height="42.666667938232422"/>

@@ -40,7 +40,7 @@ class UpdateCompanyAutoRespondTextViewController: UpdateBaseViewController {
         } else {
             guard
                 let objectId = (self.updateObject as? Company)?.id,
-                let detailViewController = self.detailViewController as? CompanyDetailViewController
+                let detailViewController = self.previousViewController as? CompanyDetailViewController
             else { return }
             
             let updateClosure = {

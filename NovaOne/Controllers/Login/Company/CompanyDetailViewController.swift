@@ -137,7 +137,7 @@ extension CompanyDetailViewController {
                 if let updateCompanyAddressViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateCompanyAddress.rawValue) as? UpdateCompanyAddressViewController {
                     
                     updateCompanyAddressViewController.updateObject = self.company
-                    updateCompanyAddressViewController.detailViewController = self
+                    updateCompanyAddressViewController.previousViewController = self
                     
                     self.navigationController?.pushViewController(updateCompanyAddressViewController, animated: true)
                     
@@ -147,7 +147,7 @@ extension CompanyDetailViewController {
                     if let updateCompanyPhoneViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateCompanyPhone.rawValue) as? UpdateCompanyPhoneViewController {
                         
                         updateCompanyPhoneViewController.updateObject = self.company
-                        updateCompanyPhoneViewController.detailViewController = self
+                        updateCompanyPhoneViewController.previousViewController = self
                         
                         self.navigationController?.pushViewController(updateCompanyPhoneViewController, animated: true)
                         
@@ -157,7 +157,7 @@ extension CompanyDetailViewController {
                     if let updateCompanyNameViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateCompanyName.rawValue) as? UpdateCompanyNameViewController {
                         
                         updateCompanyNameViewController.updateObject = self.company
-                        updateCompanyNameViewController.detailViewController = self
+                        updateCompanyNameViewController.previousViewController = self
                         
                         self.navigationController?.pushViewController(updateCompanyNameViewController, animated: true)
                         
@@ -167,7 +167,7 @@ extension CompanyDetailViewController {
                     if let updateCompanyEmailViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateCompanyEmail.rawValue) as? UpdateCompanyEmailViewController {
                         
                         updateCompanyEmailViewController.updateObject = self.company
-                        updateCompanyEmailViewController.detailViewController = self
+                        updateCompanyEmailViewController.previousViewController = self
                         
                         self.navigationController?.pushViewController(updateCompanyEmailViewController, animated: true)
                         
@@ -178,7 +178,7 @@ extension CompanyDetailViewController {
                         
                         updateCompanyDaysEnabledViewController.company = company
                         updateCompanyDaysEnabledViewController.updateObject = self.company
-                        updateCompanyDaysEnabledViewController.detailViewController = self
+                        updateCompanyDaysEnabledViewController.previousViewController = self
                         
                         self.navigationController?.pushViewController(updateCompanyDaysEnabledViewController, animated: true)
                         
@@ -188,7 +188,7 @@ extension CompanyDetailViewController {
                     if let updateCompanyHoursEnabledViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateCompanyHoursEnabled.rawValue) as? UpdateCompanyHoursEnabledViewController {
                         
                         updateCompanyHoursEnabledViewController.updateObject = self.company
-                        updateCompanyHoursEnabledViewController.detailViewController = self
+                        updateCompanyHoursEnabledViewController.previousViewController = self
                         updateCompanyHoursEnabledViewController.company = self.company
                         
                         self.navigationController?.pushViewController(updateCompanyHoursEnabledViewController, animated: true)
@@ -222,7 +222,7 @@ extension CompanyDetailViewController {
                         let autoRespondText = company.autoRespondText != nil ? company.autoRespondText! : "Update auto respond text..."
                         
                         updateCompanyAutoRespondTextViewController.updateObject = self.company
-                        updateCompanyAutoRespondTextViewController.detailViewController = self
+                        updateCompanyAutoRespondTextViewController.previousViewController = self
                         updateCompanyAutoRespondTextViewController.autoRespondText = autoRespondText
                         
                         self.navigationController?.pushViewController(updateCompanyAutoRespondTextViewController, animated: true)

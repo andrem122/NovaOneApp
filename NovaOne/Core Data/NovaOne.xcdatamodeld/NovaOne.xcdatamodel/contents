@@ -47,6 +47,7 @@
         <attribute name="lastName" attributeType="String"/>
         <attribute name="password" attributeType="String"/>
         <attribute name="phoneNumber" attributeType="String"/>
+        <attribute name="userId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="username" attributeType="String"/>
         <attribute name="wantsSms" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
@@ -68,7 +69,7 @@
     <elements>
         <element name="Appointment" positionX="-54" positionY="135" width="128" height="28"/>
         <element name="Company" positionX="-63" positionY="99" width="128" height="298"/>
-        <element name="Customer" positionX="-63" positionY="-18" width="128" height="223"/>
+        <element name="Customer" positionX="-63" positionY="-18" width="128" height="238"/>
         <element name="Lead" positionX="-54" positionY="135" width="128" height="238"/>
     </elements>
 </model>

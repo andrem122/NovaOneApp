@@ -108,7 +108,7 @@ class UpdateCompanyAddressViewController: UpdateBaseViewController, AddAddress {
                 let state = self.state,
                 let zip = self.zip,
                 let objectId = (self.updateObject as? Company)?.id,
-                let detailViewController = self.detailViewController as? CompanyDetailViewController
+                let detailViewController = self.previousViewController as? CompanyDetailViewController
             else { print("error getting detail view controller"); return }
             
             let updateClosure = {
