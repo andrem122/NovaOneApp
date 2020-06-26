@@ -42,33 +42,41 @@ class UpdateNameViewController: UpdateBaseViewController, UITextFieldDelegate {
     @IBAction func updateButtonTapped(_ sender: Any) {
         
         guard
-            let firstName = self.firstNameTextField.text,
-            let lastName = self.lastNameTextField.text,
-            let objectId = (self.updateObject as? Customer)?.userId,
-            let previousViewController = self.previousViewController as? AccountTableViewController
-            else { print("could not get previous view controller"); return }
+            let firstName = self.firstNameTextField.text?.trim(),
+            let lastName = self.lastNameTextField.text?.trim()
+        else { return }
         
-        let updateClosure = {
-            (customer: Customer) in
-            customer.firstName = firstName
-            customer.lastName = lastName
+        if firstName.isEmpty || lastName.isEmpty {
+            let popUpOkViewController = self.alertService.popUpOk(title: "Enter Name", body: "Please enter your first and last name.")
+            self.present(popUpOkViewController, animated: true, completion: nil)
+        } else {
+            guard
+                let objectId = (self.updateObject as? Customer)?.userId,
+                let previousViewController = self.previousViewController as? AccountTableViewController
+            else { return }
+            
+            let updateClosure = {
+                (customer: Customer) in
+                customer.firstName = firstName
+                customer.lastName = lastName
+            }
+            
+            let successDoneHandler = {
+                [weak self] in
+                
+                let predicate = NSPredicate(format: "userId == %@", String(objectId))
+                guard let updatedCustomer = PersistenceService.fetchEntity(Customer.self, filter: predicate, sort: nil).first else { return }
+                
+                previousViewController.customer = updatedCustomer
+                previousViewController.setLabelValues()
+                previousViewController.tableView.reloadData()
+                
+                self?.removeSpinner()
+                
+            }
+            
+            self.updateObject(for: "auth_user", at: ["first_name": firstName, "last_name": lastName], endpoint: "/updateName.php", objectId: Int(objectId), objectType: Customer.self, updateClosure: updateClosure, successSubtitle: "Name has been successfully updated.", successDoneHandler: successDoneHandler)
         }
-        
-        let successDoneHandler = {
-            [weak self] in
-            
-            let predicate = NSPredicate(format: "userId == %@", String(objectId))
-            guard let updatedCustomer = PersistenceService.fetchEntity(Customer.self, filter: predicate, sort: nil).first else { return }
-            
-            previousViewController.customer = updatedCustomer
-            previousViewController.setLabelValues()
-            previousViewController.tableView.reloadData()
-            
-            self?.removeSpinner()
-            
-        }
-        
-        self.updateObject(for: "auth_user", at: ["first_name": firstName, "last_name": lastName], endpoint: "/updateName.php", objectId: Int(objectId), objectType: Customer.self, updateClosure: updateClosure, successSubtitle: "Name has been successfully updated.", successDoneHandler: successDoneHandler)
     }
     
     @IBAction func firstNameTextFieldChanged(_ sender: Any) {

@@ -3437,7 +3437,7 @@
                                         </constraints>
                                         <color key="textColor" name="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="go" textContentType="email"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="go" textContentType="email"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="20"/>
@@ -3554,7 +3554,7 @@
                                         </constraints>
                                         <color key="textColor" name="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="go" textContentType="tel"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="go" textContentType="tel"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="20"/>
@@ -9606,8 +9606,8 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="account" width="42.666667938232422" height="42.666667938232422"/>
-        <image name="calendar" width="42.5" height="42.5"/>
         <image name="calendar" catalog="system" width="128" height="106"/>
+        <image name="calendar" width="42.5" height="42.5"/>
         <image name="callBlue" width="27" height="27"/>
         <image name="cancelButtonBlue" width="33.5" height="33.5"/>
         <image name="clipboard" width="42.666667938232422" height="42.666667938232422"/>
