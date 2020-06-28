@@ -1590,7 +1590,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="textColor" name="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="go"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="20"/>
@@ -2977,7 +2977,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WWa-VB-X6F">
-                                                    <rect key="frame" x="30" y="10" width="45" height="20.5"/>
+                                                    <rect key="frame" x="30" y="9.5" width="45" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" name="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -2986,7 +2986,7 @@
                                                     </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amanda Taylor" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="waM-9h-XE1" userLabel="Name Value">
-                                                    <rect key="frame" x="232" y="10" width="112" height="20.5"/>
+                                                    <rect key="frame" x="232" y="9.5" width="112" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" name="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -3027,7 +3027,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customer Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="hIW-p1-Uzp">
-                                                    <rect key="frame" x="30" y="10" width="140" height="20.5"/>
+                                                    <rect key="frame" x="30" y="9.5" width="140" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" name="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -3036,7 +3036,7 @@
                                                     </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="47" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="Zdt-f1-zvg" userLabel="Customer Number Value">
-                                                    <rect key="frame" x="345" y="10" width="20" height="20.5"/>
+                                                    <rect key="frame" x="345" y="9.5" width="20" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" name="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -3063,7 +3063,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Help" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="DKU-we-EzJ">
-                                                    <rect key="frame" x="30" y="10" width="35" height="20.5"/>
+                                                    <rect key="frame" x="30" y="9.5" width="35" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" name="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -3101,7 +3101,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="nxp-TN-rre">
-                                                    <rect key="frame" x="30" y="10" width="132.5" height="20.5"/>
+                                                    <rect key="frame" x="30" y="9.5" width="132.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" name="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -3143,7 +3143,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mail@gmail.com" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="YEy-Um-pYw">
-                                                    <rect key="frame" x="220.5" y="10" width="123.5" height="20.5"/>
+                                                    <rect key="frame" x="220.5" y="9.5" width="123.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" name="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -3160,7 +3160,7 @@
                                                     <state key="normal" title="Button" image="rightAngleBlue"/>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Email Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="4Mj-f5-XtM">
-                                                    <rect key="frame" x="30" y="10" width="106.5" height="20.5"/>
+                                                    <rect key="frame" x="30" y="9.5" width="106.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" name="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -3193,7 +3193,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone Number" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="eaC-sR-3cR">
-                                                    <rect key="frame" x="30" y="10" width="113.5" height="20.5"/>
+                                                    <rect key="frame" x="30" y="9.5" width="113.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" name="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -3202,7 +3202,7 @@
                                                     </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="561-246-5571" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="7IP-w7-3n5">
-                                                    <rect key="frame" x="234.5" y="10" width="109.5" height="20.5"/>
+                                                    <rect key="frame" x="234.5" y="9.5" width="109.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" name="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -6720,6 +6720,9 @@
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 </variation>
+                                <connections>
+                                    <action selector="updateButtonTapped:" destination="Z6b-Vq-nOu" eventType="touchUpInside" id="Z4g-MT-ucj"/>
+                                </connections>
                             </button>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PdJ-8f-skf" userLabel="Gender Picker">
                                 <rect key="frame" x="0.0" y="154.5" width="374" height="216"/>
@@ -6759,6 +6762,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="genderPicker" destination="PdJ-8f-skf" id="gsx-h9-wB2"/>
+                        <outlet property="updateButton" destination="lDY-Tp-GLe" id="Yg8-4Y-xET"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2cB-zm-8TB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -7311,6 +7315,9 @@
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         </variation>
+                                        <connections>
+                                            <action selector="phoneNumberTextChanged:" destination="wCm-p0-kiV" eventType="editingChanged" id="pa1-Sj-WGQ"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K7m-Rh-fqd" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="65" width="315" height="45"/>
@@ -7331,6 +7338,9 @@
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         </variation>
+                                        <connections>
+                                            <action selector="updateButtonTapped:" destination="wCm-p0-kiV" eventType="touchUpInside" id="CfI-oV-5gc"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -7364,6 +7374,10 @@
                     <navigationItem key="navigationItem" id="d9y-69-hIw">
                         <barButtonItem key="backBarButtonItem" title=" " id="ThB-x6-2T2"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="phoneNumberTextField" destination="a2P-Vy-eDH" id="rZd-dd-pnK"/>
+                        <outlet property="updateButton" destination="K7m-Rh-fqd" id="Mx2-9E-vt8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z13-qk-xvx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -7638,6 +7652,9 @@
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 </variation>
+                                <connections>
+                                    <action selector="updateButtonTapped:" destination="Pyi-Zt-pCG" eventType="touchUpInside" id="JOE-5I-Qj4"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -7674,6 +7691,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="timeDatePicker" destination="t5C-lV-1MB" id="TPf-td-H07"/>
+                        <outlet property="updateButton" destination="QJa-h0-2eh" id="iaU-Wv-dqo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AxA-MT-MGb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -7725,6 +7743,9 @@
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 </variation>
+                                <connections>
+                                    <action selector="updateButtonTapped:" destination="bxO-DU-IMW" eventType="touchUpInside" id="Llp-Fd-IKB"/>
+                                </connections>
                             </button>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sOs-iA-W9k" userLabel="Status Type Picker">
                                 <rect key="frame" x="0.0" y="154.5" width="374" height="216"/>
@@ -7764,6 +7785,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="statusPicker" destination="sOs-iA-W9k" id="o87-Vt-MGx"/>
+                        <outlet property="updateButton" destination="v8I-vn-wq5" id="onn-V5-uO9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Kh-On-PBy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -7820,6 +7842,9 @@
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         </variation>
+                                        <connections>
+                                            <action selector="emailAddressTextFieldChanged:" destination="tGH-a8-mR9" eventType="editingChanged" id="Svo-Hw-IdQ"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AYN-NC-W3M" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="65" width="315" height="45"/>
@@ -7840,6 +7865,9 @@
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         </variation>
+                                        <connections>
+                                            <action selector="updateButtonTapped:" destination="tGH-a8-mR9" eventType="touchUpInside" id="2h0-6v-Mhv"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -7873,6 +7901,10 @@
                     <navigationItem key="navigationItem" id="Nrh-M3-Bgk">
                         <barButtonItem key="backBarButtonItem" title=" " id="OTJ-OO-x1E"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="emailAddressTextField" destination="2R2-LB-S5s" id="20W-N0-RQ1"/>
+                        <outlet property="updateButton" destination="AYN-NC-W3M" id="fGi-ww-4Co"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5xX-Hp-TJp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -7929,6 +7961,9 @@
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 </variation>
+                                <connections>
+                                    <action selector="updateButtonTapped:" destination="LF0-mZ-JRc" eventType="touchUpInside" id="Fj7-mb-P87"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -7965,6 +8000,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="dateOfBirthPicker" destination="yEx-oy-Hjq" id="Itb-dh-aDf"/>
+                        <outlet property="updateButton" destination="sqq-Ki-Yds" id="216-aL-a8h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="coz-Eg-Iie" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -8016,6 +8052,9 @@
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 </variation>
+                                <connections>
+                                    <action selector="updateButtonTapped:" destination="QN6-ie-ETa" eventType="touchUpInside" id="8xu-zS-vZZ"/>
+                                </connections>
                             </button>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SW0-AS-OIo" userLabel="Test Type Picker">
                                 <rect key="frame" x="0.0" y="154.5" width="374" height="216"/>
@@ -8055,6 +8094,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="testTypePicker" destination="SW0-AS-OIo" id="k66-iK-GNr"/>
+                        <outlet property="updateButton" destination="rhT-FV-PoS" id="FGv-qg-wwm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5KY-K8-b2F" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -8111,6 +8151,9 @@
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         </variation>
+                                        <connections>
+                                            <action selector="addressTextFieldChanged:" destination="yNJ-xT-syE" eventType="editingChanged" id="Y5I-jt-YeM"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hf1-3b-GPa" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="65" width="315" height="45"/>
@@ -8164,6 +8207,10 @@
                     <navigationItem key="navigationItem" id="QzL-PJ-m5i">
                         <barButtonItem key="backBarButtonItem" title=" " id="bSU-ft-wBg"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="addressTextField" destination="0SH-bg-Fh1" id="Ijb-Aw-TKp"/>
+                        <outlet property="updateButton" destination="Hf1-3b-GPa" id="LVr-i9-XwP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b2N-oT-yzB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -8214,6 +8261,9 @@
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 </variation>
+                                <connections>
+                                    <action selector="updateButtonTapped:" destination="jxQ-jt-t72" eventType="touchUpInside" id="Xg8-fE-qB0"/>
+                                </connections>
                             </button>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OEA-EI-IVP" userLabel="Unit Type Picker">
                                 <rect key="frame" x="0.0" y="154.5" width="374" height="216"/>
@@ -8253,6 +8303,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="unitTypePicker" destination="OEA-EI-IVP" id="wP7-h2-Cg6"/>
+                        <outlet property="updateButton" destination="MVO-sA-P0o" id="zdK-mA-eAX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mVR-li-LCz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -8270,7 +8321,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7WV-YS-MsT">
                                 <rect key="frame" x="30" y="30" width="315" height="33.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="45"/>
@@ -8279,7 +8330,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update the name of the person with the appointment." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u9v-vA-KdP">
                                 <rect key="frame" x="30" y="83.5" width="315" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -8293,8 +8344,9 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="vMs-ew-sKG"/>
                                         </constraints>
+                                        <color key="textColor" name="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done" textContentType="name"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="go" textContentType="name"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="20"/>
@@ -8303,12 +8355,15 @@
                                                 <real key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="value" name="textFieldColor"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         </variation>
+                                        <connections>
+                                            <action selector="nameTextFieldChanged:" destination="8Fv-SF-xIz" eventType="editingChanged" id="sUi-ie-wsg"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iJj-BY-bge" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="65" width="315" height="45"/>
@@ -8329,6 +8384,9 @@
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         </variation>
+                                        <connections>
+                                            <action selector="updateButtonTapped:" destination="8Fv-SF-xIz" eventType="touchUpInside" id="bau-EM-LhR"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -8362,6 +8420,10 @@
                     <navigationItem key="navigationItem" id="Wff-r5-LT1">
                         <barButtonItem key="backBarButtonItem" title=" " id="owX-YN-hRz"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="nameTextField" destination="g2Y-cR-pAl" id="v3g-dm-V0c"/>
+                        <outlet property="updateButton" destination="iJj-BY-bge" id="L3c-iS-AUX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OoN-5F-CE6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -8542,7 +8604,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Us" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="0Cr-Nd-ZBR">
-                                                    <rect key="frame" x="26" y="10" width="85" height="20.5"/>
+                                                    <rect key="frame" x="26" y="9.5" width="85" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" name="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -8584,7 +8646,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NovaOne Terms" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="4Xe-Kx-7Tc">
-                                                    <rect key="frame" x="26" y="10" width="121" height="20.5"/>
+                                                    <rect key="frame" x="26" y="9.5" width="121" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" name="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -8619,7 +8681,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Privacy" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="oQA-Hv-GFW">
-                                                    <rect key="frame" x="26" y="10" width="55" height="20.5"/>
+                                                    <rect key="frame" x="26" y="9.5" width="55" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" name="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -9606,8 +9668,8 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="account" width="42.666667938232422" height="42.666667938232422"/>
-        <image name="calendar" catalog="system" width="128" height="106"/>
         <image name="calendar" width="42.5" height="42.5"/>
+        <image name="calendar" catalog="system" width="128" height="106"/>
         <image name="callBlue" width="27" height="27"/>
         <image name="cancelButtonBlue" width="33.5" height="33.5"/>
         <image name="clipboard" width="42.666667938232422" height="42.666667938232422"/>

@@ -9,17 +9,13 @@
 import UIKit
 import CoreData
 
-class UpdateBaseViewController: UIViewController {
+class UpdateBaseViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: Properties
     var previousViewController: UIViewController?
     var updateObject: NSManagedObject?
     let alertService = AlertService()
     let customer: Customer? = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
     
     func updateObject<T: NSManagedObject>(for tableName: String,
                                           at columns: [String: String],
@@ -31,7 +27,7 @@ class UpdateBaseViewController: UIViewController {
                                           successDoneHandler: @escaping () -> Void) {
         // Update the object's value in the database
         
-        self.showSpinner(for: self.view, textForLabel: "Updating...")
+        self.showSpinner(for: self.view, textForLabel: "Updating")
         
         guard
             let customerEmail = self.customer?.email,
@@ -72,10 +68,21 @@ class UpdateBaseViewController: UIViewController {
                 case .failure(let error):
                     guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
                     self?.present(popUpOkViewController, animated: true, completion: nil)
+                    self?.removeSpinner()
                 
             }
             
         }
+    }
+    
+    func setupUpdateButton(button: UIButton) {
+        // Setup the update button
+        UIHelper.disable(button: button, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
+    }
+    
+    func setupTextField(textField: UITextField) {
+        // Setup the text field
+        textField.delegate = self
     }
 
 }

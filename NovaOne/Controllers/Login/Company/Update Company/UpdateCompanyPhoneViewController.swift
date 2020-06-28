@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UpdateCompanyPhoneViewController: UpdateBaseViewController, UITextFieldDelegate {
+class UpdateCompanyPhoneViewController: UpdateBaseViewController {
     
     // MARK: Properties
     @IBOutlet weak var phoneNumberTextField: NovaOneTextField!
@@ -16,8 +16,8 @@ class UpdateCompanyPhoneViewController: UpdateBaseViewController, UITextFieldDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupTextField()
-        self.setupUpdateButton()
+        self.setupUpdateButton(button: self.updateButton)
+        self.setupTextField(textField: self.phoneNumberTextField)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -25,45 +25,60 @@ class UpdateCompanyPhoneViewController: UpdateBaseViewController, UITextFieldDel
         self.phoneNumberTextField.becomeFirstResponder()
     }
     
-    func setupTextField() {
-        self.phoneNumberTextField.delegate = self
-    }
-    
-    func setupUpdateButton() {
-        UIHelper.disable(button: self.updateButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
-    }
-    
     // MARK: Actions
     @IBAction func phoneNumberTextFieldChanged(_ sender: Any) {
     }
     
     @IBAction func updateButtonTapped(_ sender: Any) {
-        guard
-            let updateValue = self.phoneNumberTextField.text,
-            let objectId = (self.updateObject as? Company)?.id,
-            let detailViewController = self.previousViewController as? CompanyDetailViewController
-            else { return }
+        // Parameter values
+        guard let phoneNumber = self.phoneNumberTextField.text else { return }
+        let unformattedPhoneNumber = phoneNumber.replacingOccurrences(of: "[\\(\\)\\s-]", with: "", options: .regularExpression, range: nil)
         
-        let updateClosure = {
-            (company: Company) in
-            company.phoneNumber = updateValue
+        if !unformattedPhoneNumber.isNumeric {
+            let popUpOkViewController = self.alertService.popUpOk(title: "Invalid Number", body: "Please enter only numbers.")
+            self.present(popUpOkViewController, animated: true, completion: nil)
+        } else {
+            // Disable button while doing HTTP request
+            UIHelper.disable(button: self.updateButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
+            self.showSpinner(for: self.view, textForLabel: "Updating")
+            
+            let httpRequest = HTTPRequests()
+            let parameters: [String: String] = ["valueToCheckInDatabase": "%2B1" + unformattedPhoneNumber, "tableName": "property_company", "columnName": "phone_number"]
+            httpRequest.request(url: Defaults.Urls.api.rawValue + "/inputCheck.php", dataModel: SuccessResponse.self, parameters: parameters) { [weak self] (result) in
+                switch result {
+                    case .success(_):
+                        guard
+                            let objectId = (self?.updateObject as? Company)?.id,
+                            let detailViewController = self?.previousViewController as? CompanyDetailViewController
+                            else { return }
+
+                        let updateClosure = {
+                            (company: Company) in
+                            company.phoneNumber = "+1" + unformattedPhoneNumber
+                        }
+
+                        let successDoneHandler = {
+                            let predicate = NSPredicate(format: "id == %@", String(objectId))
+                            guard let updatedCompany = PersistenceService.fetchEntity(Company.self, filter: predicate, sort: nil).first else { return }
+
+                            detailViewController.company = updatedCompany
+                            detailViewController.setupCompanyCellsAndTitle()
+                            detailViewController.objectDetailTableView.reloadData()
+
+                        }
+
+                        self?.updateObject(for: "property_company", at: ["phone_number": "%2B1" + unformattedPhoneNumber], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Company.self, updateClosure: updateClosure, successSubtitle: "Company phone number has been successfully updated.", successDoneHandler: successDoneHandler)
+                    case .failure(let error):
+                        guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
+                        self?.present(popUpOkViewController, animated: true, completion: nil)
+                }
+                
+                guard let updateButton = self?.updateButton else { return }
+                UIHelper.enable(button: updateButton, enabledColor: Defaults.novaOneColor, borderedButton: false)
+                
+                self?.removeSpinner()
+            }
         }
-        
-        let successDoneHandler = {
-            [weak self] in
-            
-            let predicate = NSPredicate(format: "id == %@", String(objectId))
-            guard let updatedCompany = PersistenceService.fetchEntity(Company.self, filter: predicate, sort: nil).first else { return }
-            
-            detailViewController.company = updatedCompany
-            detailViewController.setupCompanyCellsAndTitle()
-            detailViewController.objectDetailTableView.reloadData()
-            
-            self?.removeSpinner()
-            
-        }
-        
-        self.updateObject(for: "property_company", at: ["phone_number": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Company.self, updateClosure: updateClosure, successSubtitle: "Company phone number has been successfully updated.", successDoneHandler: successDoneHandler)
     }
     
 }

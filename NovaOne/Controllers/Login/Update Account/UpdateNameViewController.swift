@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UpdateNameViewController: UpdateBaseViewController, UITextFieldDelegate {
+class UpdateNameViewController: UpdateBaseViewController {
     
     // MARK: Properties
     @IBOutlet weak var firstNameTextField: NovaOneTextField!
@@ -17,18 +17,13 @@ class UpdateNameViewController: UpdateBaseViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupUpdateButton()
+        self.setupUpdateButton(button: self.updateButton)
         self.setupTextFields()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.firstNameTextField.becomeFirstResponder()
-    }
-    
-    func setupUpdateButton() {
-        // Setup the update button
-        UIHelper.disable(button: self.updateButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
     }
     
     func setupTextFields() {

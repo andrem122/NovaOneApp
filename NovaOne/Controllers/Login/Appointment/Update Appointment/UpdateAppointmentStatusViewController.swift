@@ -8,12 +8,15 @@
 
 import UIKit
 
-class UpdateAppointmentStatusViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class UpdateAppointmentStatusViewController: UpdateBaseViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     // MARK: Properties
     @IBOutlet weak var statusPicker: UIPickerView!
+    @IBOutlet weak var updateButton: NovaOneButton!
     let statusChoices = ["Confirmed", "Not Confirmed"]
     
+    
+    // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupPicker()
@@ -23,7 +26,11 @@ class UpdateAppointmentStatusViewController: UIViewController, UIPickerViewDeleg
         self.statusPicker.delegate = self
         self.statusPicker.dataSource = self
     }
-
+    
+    // MARK: Actions
+    @IBAction func updateButtonTapped(_ sender: Any) {
+    }
+    
 }
 
 extension UpdateAppointmentStatusViewController {

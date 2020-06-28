@@ -17,17 +17,13 @@ class UpdateCompanyNameViewController: UpdateBaseViewController {
     // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupUpdateButton()
+        self.setupUpdateButton(button: self.updateButton)
+        self.setupTextField(textField: self.companyNameTextField)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.companyNameTextField.becomeFirstResponder()
-    }
-    
-    func setupUpdateButton() {
-        // Setup update button
-        UIHelper.disable(button: self.updateButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
     }
     
     // MARK: Actions
@@ -37,32 +33,45 @@ class UpdateCompanyNameViewController: UpdateBaseViewController {
     
     
     @IBAction func updateButtonTapped(_ sender: Any) {
-        guard
-            let updateValue = self.companyNameTextField.text,
-            let objectId = (self.updateObject as? Company)?.id,
-            let detailViewController = self.previousViewController as? CompanyDetailViewController
-            else { print("error getting detail view controller"); return }
-        
-        let updateClosure = {
-            (company: Company) in
-            company.name = updateValue
+        let updateValue = self.companyNameTextField.text != nil ? self.companyNameTextField.text!.trim() : ""
+        if updateValue.isEmpty {
+            let popUpOkViewController = self.alertService.popUpOk(title: "Enter Name", body: "Enter a company name.")
+            self.present(popUpOkViewController, animated: true, completion: nil)
+        } else {
+            guard
+                let objectId = (self.updateObject as? Company)?.id,
+                let detailViewController = self.previousViewController as? CompanyDetailViewController
+            else { return }
+            
+            let updateClosure = {
+                (company: Company) in
+                company.name = updateValue
+            }
+            
+            let successDoneHandler = {
+                [weak self] in
+                
+                let predicate = NSPredicate(format: "id == %@", String(objectId))
+                guard let updatedCompany = PersistenceService.fetchEntity(Company.self, filter: predicate, sort: nil).first else { print("error getting updated company"); return }
+                
+                detailViewController.company = updatedCompany
+                detailViewController.setupCompanyCellsAndTitle()
+                detailViewController.objectDetailTableView.reloadData()
+                
+                self?.removeSpinner()
+                
+            }
+            
+            self.updateObject(for: "property_company", at: ["name": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Company.self, updateClosure: updateClosure, successSubtitle: "Company name has been successfully updated.", successDoneHandler: successDoneHandler)
         }
         
-        let successDoneHandler = {
-            [weak self] in
-            
-            let predicate = NSPredicate(format: "id == %@", String(objectId))
-            guard let updatedCompany = PersistenceService.fetchEntity(Company.self, filter: predicate, sort: nil).first else { print("error getting updated company"); return }
-            
-            detailViewController.company = updatedCompany
-            detailViewController.setupCompanyCellsAndTitle()
-            detailViewController.objectDetailTableView.reloadData()
-            
-            self?.removeSpinner()
-            
-        }
-        
-        self.updateObject(for: "property_company", at: ["name": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Company.self, updateClosure: updateClosure, successSubtitle: "Company name has been successfully updated.", successDoneHandler: successDoneHandler)
     }
     
+}
+
+extension UpdateCompanyNameViewController {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.updateButton.sendActions(for: .touchUpInside)
+        return true
+    }
 }

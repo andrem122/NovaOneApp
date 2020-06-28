@@ -8,12 +8,15 @@
 
 import UIKit
 
-class UpdateAppointmentUnitTypeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class UpdateAppointmentUnitTypeViewController: UpdateBaseViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     // MARK: Properties
     @IBOutlet weak var unitTypePicker: UIPickerView!
+    @IBOutlet weak var updateButton: NovaOneButton!
     let unitTypes = ["1 Bedroom", "2 Bedrooms", "3 Bedrooms"]
     
+    
+    // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupPicker()
@@ -22,6 +25,10 @@ class UpdateAppointmentUnitTypeViewController: UIViewController, UIPickerViewDel
     func setupPicker() {
         self.unitTypePicker.delegate = self
         self.unitTypePicker.dataSource = self
+    }
+    
+    // MARK: Actions
+    @IBAction func updateButtonTapped(_ sender: Any) {
     }
 }
 

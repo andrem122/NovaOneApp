@@ -51,31 +51,11 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         }
         
         // For iPad - only set up the line chart if we are in the regular width and regular height size class
-        switch self.getSizeClass() {
-            case (.unspecified, .unspecified):
-                print("Unknown")
-            case (.unspecified, .compact):
-                print("Unknown width, compact height")
-            case (.unspecified, .regular):
-                print("Unknown width, regular height")
-            case (.compact, .unspecified):
-                print("Compact width, unknown height")
-            case (.regular, .unspecified):
-                print("Regular width, unknown height")
-            case (.regular, .compact):
-                print("Regular width, compact height")
-            case (.compact, .compact):
-                print("Compact width, compact height")
-            case (.regular, .regular):
-                print("Regular width, regular height")
-                self.getMonthChartData {
-                    [weak self] in
-                    self?.setupLineChart()
-                }
-            case (.compact, .regular):
-                print("Compact width, regular height")
-            case (_, _):
-                print("All sizes")
+        if self.getSizeClass() == (.regular, .regular) {
+            self.getMonthChartData {
+                [weak self] in
+                self?.setupLineChart()
+            }
         }
     }
     

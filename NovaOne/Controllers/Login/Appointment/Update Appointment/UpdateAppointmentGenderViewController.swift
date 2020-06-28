@@ -8,12 +8,15 @@
 
 import UIKit
 
-class UpdateAppointmentGenderViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class UpdateAppointmentGenderViewController: UpdateBaseViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     // MARK: Properties
     @IBOutlet weak var genderPicker: UIPickerView!
+    @IBOutlet weak var updateButton: NovaOneButton!
     let genders = ["Male", "Female"]
     
+    
+    // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupPicker()
@@ -23,7 +26,11 @@ class UpdateAppointmentGenderViewController: UIViewController, UIPickerViewDeleg
         self.genderPicker.delegate = self
         self.genderPicker.dataSource = self
     }
-
+    
+    // MARK: Actions
+    @IBAction func updateButtonTapped(_ sender: Any) {
+    }
+    
 }
 
 extension UpdateAppointmentGenderViewController {

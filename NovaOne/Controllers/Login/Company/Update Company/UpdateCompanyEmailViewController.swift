@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UpdateCompanyEmailViewController: UpdateBaseViewController, UITextFieldDelegate {
+class UpdateCompanyEmailViewController: UpdateBaseViewController {
     
     // MARK: Properties
     @IBOutlet weak var emailTextField: NovaOneTextField!
@@ -18,23 +18,13 @@ class UpdateCompanyEmailViewController: UpdateBaseViewController, UITextFieldDel
     // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupUpdateButton()
-        self.setupTextField()
+        self.setupUpdateButton(button: self.updateButton)
+        self.setupTextField(textField: self.emailTextField)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.emailTextField.becomeFirstResponder()
-    }
-    
-    func setupUpdateButton() {
-        // Setup update button
-        UIHelper.disable(button: self.updateButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
-    }
-    
-    func setupTextField() {
-        // Setup the text field
-        self.emailTextField.delegate = self
     }
     
     // MARK: Actions
@@ -43,7 +33,7 @@ class UpdateCompanyEmailViewController: UpdateBaseViewController, UITextFieldDel
     }
     
     @IBAction func updateButtonTapped(_ sender: Any) {
-        guard let updateValue = emailTextField.text else { return }
+        guard let updateValue = emailTextField.text?.trim() else { return }
         
         // If email is valid, proceed to the next view
         if InputValidators.isValidEmail(email: updateValue) {

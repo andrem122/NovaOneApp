@@ -43,7 +43,13 @@ class AppointmentsTableViewController: UITableViewController, NovaOneTableView {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.getCoreData()
-        self.setFirstItemForDetailView()
+        
+        // Set the first item if the size class is of the following
+        let sizeClass = self.getSizeClass()
+        if sizeClass == (.regular, .compact) || sizeClass == (.regular, .regular) || sizeClass == (.regular, .unspecified) {
+            self.setFirstItemForDetailView()
+        }
+        
         self.setTimerForTableRefresh()
     }
     
@@ -52,13 +58,20 @@ class AppointmentsTableViewController: UITableViewController, NovaOneTableView {
         self.timer?.invalidate() // Invalidate timer when view disapears
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        // Set the detail view when device is rotated if it has not been set already
+        let sizeClass = self.getSizeClass()
+        if self.didSetFirstItem == false && sizeClass == (.compact, .regular) {
+            self.setFirstItemForDetailView()
+        }
+    }
+    
     func setFirstItemForDetailView() {
         // Show first object details in the detail view controller
-        
         DispatchQueue.main.async {
             [weak self] in
             if self?.didSetFirstItem == false {
-                print("Showing detail for first item")
                 guard
                     let detailNavigationController = self?.storyboard?.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.appointmentDetail.rawValue) as? UINavigationController,
                     let detailViewController = detailNavigationController.viewControllers.first as? AppointmentDetailViewController,

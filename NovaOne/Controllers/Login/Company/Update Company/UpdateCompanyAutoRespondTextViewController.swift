@@ -26,6 +26,7 @@ class UpdateCompanyAutoRespondTextViewController: UpdateBaseViewController {
     
     func setupTextField() {
         // Sets up the text field
+        self.textView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 0)
         guard let autoRespondText = self.autoRespondText else { return }
         self.textView.text = autoRespondText
     }

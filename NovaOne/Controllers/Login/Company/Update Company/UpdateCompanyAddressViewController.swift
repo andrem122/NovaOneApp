@@ -27,18 +27,14 @@ class UpdateCompanyAddressViewController: UpdateBaseViewController, AddAddress {
     // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupUpdateButton()
-        self.setupTextField()
+        self.setupUpdateButton(button: self.updateButton)
+        self.setupTextField(textField: self.addressTextField)
         self.setupMapView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.addressTextField.becomeFirstResponder()
-    }
-    
-    func setupUpdateButton() {
-        UIHelper.disable(button: self.updateButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil)
     }
     
     func setupMapView() {
@@ -87,10 +83,6 @@ class UpdateCompanyAddressViewController: UpdateBaseViewController, AddAddress {
                 self?.searchController?.searchBar.becomeFirstResponder()
             }
         }
-    }
-    
-    func setupTextField() {
-        self.addressTextField.delegate = self
     }
     
     // MARK: Actions

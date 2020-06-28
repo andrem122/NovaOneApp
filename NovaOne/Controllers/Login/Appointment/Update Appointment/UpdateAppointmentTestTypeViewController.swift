@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UpdateAppointmentTestTypeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class UpdateAppointmentTestTypeViewController: UpdateBaseViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     // MARK: Properties
     @IBOutlet weak var testTypePicker: UIPickerView!
@@ -29,6 +29,9 @@ class UpdateAppointmentTestTypeViewController: UIViewController, UIPickerViewDel
                                "Biochemistry Panel Plus",
                                "MetLac 12 Panel"]
     
+    @IBOutlet weak var updateButton: NovaOneButton!
+    
+    // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupPicker()
@@ -39,7 +42,11 @@ class UpdateAppointmentTestTypeViewController: UIViewController, UIPickerViewDel
         self.testTypePicker.delegate = self
         self.testTypePicker.dataSource = self
     }
-
+    
+    // MARK: Actions
+    @IBAction func updateButtonTapped(_ sender: Any) {
+    }
+    
 }
 
 extension UpdateAppointmentTestTypeViewController {

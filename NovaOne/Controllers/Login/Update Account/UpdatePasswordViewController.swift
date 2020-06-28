@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UpdatePasswordViewController: UpdateBaseViewController, UITextFieldDelegate {
+class UpdatePasswordViewController: UpdateBaseViewController {
     
     // MARK: Properties
     @IBOutlet weak var updateButton: NovaOneButton!
@@ -17,18 +17,13 @@ class UpdatePasswordViewController: UpdateBaseViewController, UITextFieldDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupUpdateButton()
+        self.setupUpdateButton(button: self.updateButton)
         self.setupTextFields()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.currentPasswordTextField.becomeFirstResponder()
-    }
-    
-    func setupUpdateButton() {
-        // Setup the update button
-        UIHelper.disable(button: self.updateButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
     }
     
     func setupTextFields() {
@@ -48,7 +43,7 @@ class UpdatePasswordViewController: UpdateBaseViewController, UITextFieldDelegat
                 let newPassword = self.newPasswordTextField.text,
                 let objectId = (self.updateObject as? Customer)?.userId,
                 let previousViewController = self.previousViewController as? AccountTableViewController
-            else { print("could not get previous view controller"); return }
+            else { return }
             
             if newPassword.count < 10 {
                 let popUpOkViewController = self.alertService.popUpOk(title: "Password Length", body: "Password must be at least ten characters long.")

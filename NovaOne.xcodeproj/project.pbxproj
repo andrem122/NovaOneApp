@@ -63,6 +63,7 @@
 		6575F626242EA21100332729 /* UpdateNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6575F625242EA21100332729 /* UpdateNameViewController.swift */; };
 		6575F62C242EC3A400332729 /* UpdateCompanyDaysEnabledViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6575F62B242EC3A400332729 /* UpdateCompanyDaysEnabledViewController.swift */; };
 		6575F62E242EC7F500332729 /* EnabledOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6575F62D242EC7F500332729 /* EnabledOptionTableViewCell.swift */; };
+		6576A93624A67FE5008F756B /* updateEmail.php in Resources */ = {isa = PBXBuildFile; fileRef = 6576A93524A67FE5008F756B /* updateEmail.php */; };
 		657881DE2493C89800E3E556 /* AddLeadEmailCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657881DD2493C89800E3E556 /* AddLeadEmailCheckViewController.swift */; };
 		657881E02493C8B100E3E556 /* AddLeadPhoneCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657881DF2493C8B100E3E556 /* AddLeadPhoneCheckViewController.swift */; };
 		657881E22493C9E500E3E556 /* AddLeadBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657881E12493C9E500E3E556 /* AddLeadBaseViewController.swift */; };
@@ -277,6 +278,7 @@
 		6575F625242EA21100332729 /* UpdateNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateNameViewController.swift; sourceTree = "<group>"; };
 		6575F62B242EC3A400332729 /* UpdateCompanyDaysEnabledViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCompanyDaysEnabledViewController.swift; sourceTree = "<group>"; };
 		6575F62D242EC7F500332729 /* EnabledOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnabledOptionTableViewCell.swift; sourceTree = "<group>"; };
+		6576A93524A67FE5008F756B /* updateEmail.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = updateEmail.php; sourceTree = "<group>"; };
 		657881DD2493C89800E3E556 /* AddLeadEmailCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLeadEmailCheckViewController.swift; sourceTree = "<group>"; };
 		657881DF2493C8B100E3E556 /* AddLeadPhoneCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLeadPhoneCheckViewController.swift; sourceTree = "<group>"; };
 		657881E12493C9E500E3E556 /* AddLeadBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLeadBaseViewController.swift; sourceTree = "<group>"; };
@@ -532,10 +534,10 @@
 		656760562443866100EF4388 /* Lead */ = {
 			isa = PBXGroup;
 			children = (
-				65695AB3244CC7D900D35E55 /* Add Lead */,
-				6593CFAC2436A9DC0026C5D7 /* LeadDetailViewController.swift */,
 				65BA98BA243166C700CFAA9F /* LeadsContainerViewController.swift */,
+				6593CFAC2436A9DC0026C5D7 /* LeadDetailViewController.swift */,
 				65C4C6FA2474A8E600E143C5 /* LeadsTableViewController.swift */,
+				65695AB3244CC7D900D35E55 /* Add Lead */,
 			);
 			path = Lead;
 			sourceTree = "<group>";
@@ -834,6 +836,7 @@
 				65B3536424A2545A00F15D23 /* support.php */,
 				65B3536A24A3CA8100F15D23 /* updateName.php */,
 				65B3536C24A3D01C00F15D23 /* updatePassword.php */,
+				6576A93524A67FE5008F756B /* updateEmail.php */,
 			);
 			path = PHP;
 			sourceTree = "<group>";
@@ -998,6 +1001,7 @@
 				65AC9BFE2454B42B001E61A0 /* chartDataMonthly.php in Resources */,
 				6506CD4624886C8F00194C92 /* chartDataMonth.php in Resources */,
 				6591C3A623DA78FB00535C46 /* LaunchScreen.storyboard in Resources */,
+				6576A93624A67FE5008F756B /* updateEmail.php in Resources */,
 				6516A845245255E7003B974A /* chartDataWeekly.php in Resources */,
 				659D487923F375F0007AC005 /* appointments.php in Resources */,
 				6583195323F2209C001D378D /* settings.php in Resources */,
