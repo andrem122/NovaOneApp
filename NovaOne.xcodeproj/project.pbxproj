@@ -180,6 +180,7 @@
 		65C5467B23ECAB2400A198F3 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C5467823ECAB2300A198F3 /* AppUtility.swift */; };
 		65C9A74C245CF1E5009651B4 /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C9A74B245CF1E5009651B4 /* MenuCollectionViewCell.swift */; };
 		65C9A74E245CF28A009651B4 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C9A74D245CF28A009651B4 /* BaseCell.swift */; };
+		65CF919524ABFD7900093008 /* updateAppointmentMedicalAndRealEstate.php in Resources */ = {isa = PBXBuildFile; fileRef = 65CF919424ABFD7900093008 /* updateAppointmentMedicalAndRealEstate.php */; };
 		65D169AD245DDFE6006219C8 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D169AC245DDFE6006219C8 /* Defaults.swift */; };
 		65D169AF245F598C006219C8 /* SliderLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D169AE245F598C006219C8 /* SliderLauncher.swift */; };
 		65D311A12475BF0B00F290F8 /* GlobalSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D311A02475BF0B00F290F8 /* GlobalSplitViewController.swift */; };
@@ -398,6 +399,7 @@
 		65C5467823ECAB2300A198F3 /* AppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
 		65C9A74B245CF1E5009651B4 /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		65C9A74D245CF28A009651B4 /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
+		65CF919424ABFD7900093008 /* updateAppointmentMedicalAndRealEstate.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = updateAppointmentMedicalAndRealEstate.php; sourceTree = "<group>"; };
 		65D169AC245DDFE6006219C8 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		65D169AE245F598C006219C8 /* SliderLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderLauncher.swift; sourceTree = "<group>"; };
 		65D311A02475BF0B00F290F8 /* GlobalSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSplitViewController.swift; sourceTree = "<group>"; };
@@ -837,6 +839,7 @@
 				65B3536A24A3CA8100F15D23 /* updateName.php */,
 				65B3536C24A3D01C00F15D23 /* updatePassword.php */,
 				6576A93524A67FE5008F756B /* updateEmail.php */,
+				65CF919424ABFD7900093008 /* updateAppointmentMedicalAndRealEstate.php */,
 			);
 			path = PHP;
 			sourceTree = "<group>";
@@ -1003,6 +1006,7 @@
 				6591C3A623DA78FB00535C46 /* LaunchScreen.storyboard in Resources */,
 				6576A93624A67FE5008F756B /* updateEmail.php in Resources */,
 				6516A845245255E7003B974A /* chartDataWeekly.php in Resources */,
+				65CF919524ABFD7900093008 /* updateAppointmentMedicalAndRealEstate.php in Resources */,
 				659D487923F375F0007AC005 /* appointments.php in Resources */,
 				6583195323F2209C001D378D /* settings.php in Resources */,
 				653432702493BE0B00483505 /* addLead.php in Resources */,
