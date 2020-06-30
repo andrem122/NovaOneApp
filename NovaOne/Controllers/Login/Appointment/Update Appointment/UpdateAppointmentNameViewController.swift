@@ -29,7 +29,6 @@ class UpdateAppointmentNameViewController: UpdateBaseViewController {
     
     // MARK: Actions
     @IBAction func updateButtonTapped(_ sender: Any) {
-        print("update button tapped!")
         let updateValue = self.nameTextField.text != nil ? self.nameTextField.text!.trim() : ""
         if updateValue.isEmpty {
             let popUpOkViewController = self.alertService.popUpOk(title: "Enter Name", body: "Enter a name for the person with the appointment.")
@@ -49,7 +48,7 @@ class UpdateAppointmentNameViewController: UpdateBaseViewController {
                 [weak self] in
                 
                 let predicate = NSPredicate(format: "id == %@", String(objectId))
-                guard let updatedAppointment = PersistenceService.fetchEntity(Appointment.self, filter: predicate, sort: nil).first else { print("error getting updated appointment"); return }
+                guard let updatedAppointment = PersistenceService.fetchEntity(Appointment.self, filter: predicate, sort: nil).first else { return }
                 
                 detailViewController.appointment = updatedAppointment
                 detailViewController.setupObjectDetailCellsAndTitle()

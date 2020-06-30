@@ -14,6 +14,7 @@ class UpdateAppointmentStatusViewController: UpdateBaseViewController, UIPickerV
     @IBOutlet weak var statusPicker: UIPickerView!
     @IBOutlet weak var updateButton: NovaOneButton!
     let statusChoices = ["Confirmed", "Not Confirmed"]
+    var selectedChoice: String = "t" // postgres database takes values of "t" and "f" as boolean values
     
     
     // MARK: Methods
@@ -29,6 +30,31 @@ class UpdateAppointmentStatusViewController: UpdateBaseViewController, UIPickerV
     
     // MARK: Actions
     @IBAction func updateButtonTapped(_ sender: Any) {
+        guard
+            let objectId = (self.updateObject as? Appointment)?.id,
+            let detailViewController = self.previousViewController as? AppointmentDetailViewController
+        else { return }
+        
+        let updateClosure = {
+            (appointment: Appointment) in
+            appointment.confirmed = self.selectedChoice == "t" ? true : false
+        }
+        
+        let successDoneHandler = {
+            [weak self] in
+            
+            let predicate = NSPredicate(format: "id == %@", String(objectId))
+            guard let updatedAppointment = PersistenceService.fetchEntity(Appointment.self, filter: predicate, sort: nil).first else { return }
+            
+            detailViewController.appointment = updatedAppointment
+            detailViewController.setupObjectDetailCellsAndTitle()
+            detailViewController.objectDetailTableView.reloadData()
+            
+            self?.removeSpinner()
+            
+        }
+        
+        self.updateObject(for: "appointments_appointment_base", at: ["confirmed": self.selectedChoice], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Appointment.self, updateClosure: updateClosure, successSubtitle: "Appointment status has been successfully updated.", successDoneHandler: successDoneHandler)
     }
     
 }
@@ -44,5 +70,9 @@ extension UpdateAppointmentStatusViewController {
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return self.statusChoices[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.selectedChoice = self.statusChoices[row] == self.statusChoices[0] ? "t" : "f"
     }
 }

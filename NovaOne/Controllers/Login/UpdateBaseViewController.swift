@@ -18,7 +18,7 @@ class UpdateBaseViewController: UIViewController, UITextFieldDelegate {
     let customer: Customer? = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first
     
     func updateObject<T: NSManagedObject>(for tableName: String,
-                                          at columns: [String: String],
+                                          at columns: [String: Any],
                                           endpoint: String,
                                           objectId: Int,
                                           objectType: T.Type,
