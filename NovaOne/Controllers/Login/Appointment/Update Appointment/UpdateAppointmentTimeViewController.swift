@@ -91,13 +91,13 @@ class UpdateAppointmentTimeViewController: UpdateBaseViewController {
                     
             }
             
-            self?.removeSpinner()
             self?.dispatchGroup.leave() // Indicate that the network request has ended
         }
     }
     
     func delete(appointment: Appointment) {
         // Deletes the old appointment from the database
+        print("Deleteing appointment")
         self.dispatchGroup.enter()
         guard
             let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
@@ -129,19 +129,20 @@ class UpdateAppointmentTimeViewController: UpdateBaseViewController {
     func create(appointment: Appointment, for time: Date, detailViewController: AppointmentDetailViewController) {
         // Create a new appointment in the database based on customer type
         print("Creating appointment")
-        guard let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first else { print("could not get customer object to create appointment"); return }
-        print(appointment.name as Any)
-        guard let name = appointment.name else { print("could not get appointment name"); return }
-        guard let phoneNumber = appointment.phoneNumber else { print("could not get appointment phone number"); return }
-        guard let time = appointment.time else { print("could not get appointment time"); return }
+        guard
+            let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
+            let name = appointment.name,
+            let phoneNumber = appointment.phoneNumber
+        else { return }
+        let updatedAppointmentTime = DateHelper.createString(from: time, format: "MM/dd/yyyy h:mm a")
         let companyId = appointment.companyId
         let url = Defaults.Urls.novaOneWebsite.rawValue + "/appointments/new?c=\(companyId)"
-        var parameters: [String: Any] = ["name": name, "phone_number": phoneNumber, "time": time]
+        var parameters: [String: Any] = ["name": name, "phone_number": phoneNumber, "time": updatedAppointmentTime]
         
         // Add necessary parameters based on the customer
         if customer.customerType == Defaults.CustomerTypes.propertyManager.rawValue {
             // Property managers
-            guard let unitType = appointment.unitType else { print("could not create real estate appointment");return }
+            guard let unitType = appointment.unitType else { return }
             parameters["unit_type"] = unitType
             
         } else {
@@ -152,11 +153,12 @@ class UpdateAppointmentTimeViewController: UpdateBaseViewController {
                 let dateOfBirth = appointment.dateOfBirth,
                 let address = appointment.address,
                 let email = appointment.email
-                else { print("could not create medical appointment");return }
+            else { return }
+            let dateOfBirthString = DateHelper.createString(from: dateOfBirth, format: "MM/dd/yyyy")
             
             parameters["test_type"] = testType
             parameters["gender"] = gender
-            parameters["date_of_birth"] = dateOfBirth
+            parameters["date_of_birth"] = dateOfBirthString
             parameters["address"] = address
             parameters["email"] = email
         }
@@ -169,13 +171,19 @@ class UpdateAppointmentTimeViewController: UpdateBaseViewController {
             switch result {
                 case .success(_):
                     // Redirect to success screen
+                    print("APPOINTMENT SUCCESSFULLY CREATED!")
+                    // Update appointment object
+                    let newAppointmentId = appointment.id + 1
+                    appointment.time = time
+                    appointment.id = newAppointmentId
+                    PersistenceService.saveContext()
                     
                     guard let successViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.success.rawValue) as? SuccessViewController else { return }
                     successViewController.subtitleText = "Appointment successfully updated."
                     successViewController.titleLabelText = "Appointment Updated!"
                     successViewController.doneHandler = {
                         [weak self] in
-                        let predicate = NSPredicate(format: "id == %@", String(appointment.id))
+                        let predicate = NSPredicate(format: "id == %@", String(newAppointmentId))
                         guard let updatedAppointment = PersistenceService.fetchEntity(Appointment.self, filter: predicate, sort: nil).first else { return }
                         
                         detailViewController.appointment = updatedAppointment
@@ -185,6 +193,7 @@ class UpdateAppointmentTimeViewController: UpdateBaseViewController {
                         self?.removeSpinner()
                     }
                     self?.present(successViewController, animated: true, completion: nil)
+                    self?.navigationController?.popViewController(animated: true)
                 case .failure(let error):
                     self?.removeSpinner()
                     guard let popUpOk = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
@@ -200,24 +209,14 @@ class UpdateAppointmentTimeViewController: UpdateBaseViewController {
         
         self.dispatchGroup.notify(queue: .main) { // Only go forward after the network request has finished
             [weak self] in
-            guard let appointmentTimeIsAvailable = self?.appointmentTimeIsAvailable else { print("appointment time unavailable"); return }
+            guard let appointmentTimeIsAvailable = self?.appointmentTimeIsAvailable else { return }
             if appointmentTimeIsAvailable {
-                // Update the appointment time
-                // Steps:
-                // 1. Update the core data appointment object with the new time
-                // 2. Delete the old appointment from the database
-                // 3. Create a new appointment in the database with coredata information
                 guard
                     let selectedDateTime = self?.timeDatePicker.date,
                     let appointment = self?.updateObject as? Appointment,
                     let detailViewController = self?.previousViewController as? AppointmentDetailViewController
                 else { return }
                 
-                // Step 1 completed
-                appointment.time = selectedDateTime
-                PersistenceService.saveContext()
-                
-                // Step 2 completed
                 self?.delete(appointment: appointment)
                 
                 self?.dispatchGroup.notify(queue: .main) {

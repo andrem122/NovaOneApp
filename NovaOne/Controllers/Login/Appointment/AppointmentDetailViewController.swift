@@ -45,16 +45,6 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
         self.objectDetailTableView.rowHeight = 44;
     }
     
-    func convert(appointment date: Date) -> String {
-        // Convert date object to a string in a date format
-        
-        // Get dates as strings
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM d, yyyy | h:mm a"
-        let formattedDate: String = dateFormatter.string(from: date)
-        return formattedDate
-    }
-    
     func setupObjectDetailCellsAndTitle() {
         // Set cells up for the table view
         
@@ -65,7 +55,7 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
             let phoneNumber = appointment.phoneNumber
         else { return }
         
-        let appointmentTime: String = self.convert(appointment: time)
+        let appointmentTime: String = DateHelper.createString(from: time, format: "MMM d, yyyy | h:mm a")
         let confirmedString = appointment.confirmed ? "Yes" : "No"
         
         // Create items for cells
@@ -102,7 +92,7 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
                 let gender = appointment.gender,
                 let address = appointment.address
             else { return }
-            let dateOfBirth = DateHelper.createString(from: dateOfBirthDate, format: "MM/DD/yyyy")
+            let dateOfBirth = DateHelper.createString(from: dateOfBirthDate, format: "MM/dd/yyyy")
             
             let emailItem = ObjectDetailItem(titleValue: email, titleItem: .email)
             let dateOfBirthItem = ObjectDetailItem(titleValue: dateOfBirth, titleItem: .dateOfBirth)

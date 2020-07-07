@@ -30,7 +30,7 @@
     
     // query the database and echo results
     $parameters = array(':company_name' => $company_name, ':company_address' => $company_address, ':company_phone_number' => $company_phone_number, ':company_email' => $company_email, ':company_days_of_the_week_enabled' => $company_days_of_the_week_enabled, ':company_hours_of_the_day_enabled' => $company_hours_of_the_day_enabled, ':company_city' => $company_city, ':customer_user_id' => $customer_user_id, ':company_state' => $company_state, ':company_zip' => $company_zip);
-    query_db_login($query, $user_is_verified, $parameters, true);
+    echo query_db_login($query, $user_is_verified, $parameters, true);
     
 ?>
 

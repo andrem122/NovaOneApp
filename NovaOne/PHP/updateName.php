@@ -25,7 +25,7 @@
     
     // query the database and echo results
     $parameters = array(':first_name' => $first_name, ':last_name' => $last_name, ':object_id' => $object_id);
-    query_db_login($query, $user_is_verified, $parameters, true);
+    echo query_db_login($query, $user_is_verified, $parameters, true);
     
 ?>
 

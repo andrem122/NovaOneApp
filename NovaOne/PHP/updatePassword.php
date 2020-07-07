@@ -27,7 +27,7 @@
     
     // query the database and echo results
     $parameters = array(':encrypted_password' => $encrypted_password, ':object_id' => $object_id);
-    query_db_login($query, $user_is_verified, $parameters, true);
+    echo query_db_login($query, $user_is_verified, $parameters, true);
     
 ?>
 
