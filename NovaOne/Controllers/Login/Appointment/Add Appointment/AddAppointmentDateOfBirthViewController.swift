@@ -28,6 +28,7 @@ class AddAppointmentDateOfBirthViewController: AddAppointmentBaseViewController 
         guard let addAppointmentTestTypeViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addAppointmentTestType.rawValue) as? AddAppointmentTestTypeViewController else { return }
         
         addAppointmentTestTypeViewController.appointment = self.appointment
+        addAppointmentTestTypeViewController.appointmentsTableViewController = self.appointmentsTableViewController
         
         self.navigationController?.pushViewController(addAppointmentTestTypeViewController, animated: true)
     }

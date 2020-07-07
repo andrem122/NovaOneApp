@@ -137,6 +137,7 @@ class AddAppointmentTimeViewController: AddAppointmentBaseViewController {
                     guard let addAppointmentEmailViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addAppointmentEmail.rawValue) as? AddAppointmentEmailViewController else { return }
                     
                     addAppointmentEmailViewController.appointment = self?.appointment
+                    addAppointmentEmailViewController.appointmentsTableViewController = self?.appointmentsTableViewController
                     
                     self?.navigationController?.pushViewController(addAppointmentEmailViewController, animated: true)
                     

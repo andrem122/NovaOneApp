@@ -48,6 +48,7 @@ class AddAppointmentEmailViewController: AddAppointmentBaseViewController, UITex
             
             self.appointment?.email = email
             addAppointmentAddressViewController.appointment = self.appointment
+            addAppointmentAddressViewController.appointmentsTableViewController = self.appointmentsTableViewController
             
             self.navigationController?.pushViewController(addAppointmentAddressViewController, animated: true)
         } else {

@@ -50,6 +50,7 @@ class AddAppointmentTestTypeViewController: AddAppointmentBaseViewController, UI
         guard let addAppointmentGenderViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addAppointmentGender.rawValue) as? AddAppointmentGenderViewController else { return }
         
         addAppointmentGenderViewController.appointment = self.appointment
+        addAppointmentGenderViewController.appointmentsTableViewController = self.appointmentsTableViewController
         
         self.navigationController?.pushViewController(addAppointmentGenderViewController, animated: true)
     }

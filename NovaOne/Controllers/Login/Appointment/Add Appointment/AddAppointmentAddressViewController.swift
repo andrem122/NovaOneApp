@@ -102,6 +102,7 @@ class AddAppointmentAddressViewController: AddAppointmentBaseViewController, Add
             
             // Pass appointment object to next view controller
             addAppointmentDateofBirthViewController.appointment = self.appointment
+            addAppointmentDateofBirthViewController.appointmentsTableViewController = self.appointmentsTableViewController
             
             self.navigationController?.pushViewController(addAppointmentDateofBirthViewController, animated: true)
         }
