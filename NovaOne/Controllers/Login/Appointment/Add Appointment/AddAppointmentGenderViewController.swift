@@ -34,7 +34,7 @@ class AddAppointmentGenderViewController: AddAppointmentBaseViewController, UIPi
     
     // MARK: Actions
     @IBAction func addAppointmentButtonTapped(_ sender: Any) {
-        self.showSpinner(for: self.view, textForLabel: "Adding Appointment...")
+        self.showSpinner(for: self.view, textForLabel: "Adding Appointment")
         
         guard
             let companyId = self.appointment?.companyId,

@@ -98,6 +98,8 @@
 		6584C6F5249D751D00FFD1D3 /* Company+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6584C6F3249D751C00FFD1D3 /* Company+CoreDataClass.swift */; };
 		6584C6F7249D797E00FFD1D3 /* UpdateCompanyAutoRespondTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6584C6F6249D797E00FFD1D3 /* UpdateCompanyAutoRespondTextViewController.swift */; };
 		6584FAC324089BA900A06125 /* Lead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6584FAC224089BA900A06125 /* Lead.swift */; };
+		65866FE624AD021C0029847E /* deleteObject.php in Resources */ = {isa = PBXBuildFile; fileRef = 65866FE524AD021C0029847E /* deleteObject.php */; };
+		65898E2B24AF833300613515 /* deleteAppointmentMedical.php in Resources */ = {isa = PBXBuildFile; fileRef = 65898E2A24AF833300613515 /* deleteAppointmentMedical.php */; };
 		658AF5FC240DA66800577446 /* SignUpCompanyAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658AF5FB240DA66800577446 /* SignUpCompanyAddressViewController.swift */; };
 		658EC6C623F4870D0042827E /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658EC6C523F4870D0042827E /* Appointment.swift */; };
 		658EC6C823F4B1310042827E /* NovaOneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658EC6C723F4B1310042827E /* NovaOneView.swift */; };
@@ -314,6 +316,8 @@
 		6584C6F3249D751C00FFD1D3 /* Company+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Company+CoreDataClass.swift"; path = "/Users/andre/Desktop/NovaOne/NovaOne/Core Data/Company+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		6584C6F6249D797E00FFD1D3 /* UpdateCompanyAutoRespondTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCompanyAutoRespondTextViewController.swift; sourceTree = "<group>"; };
 		6584FAC224089BA900A06125 /* Lead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lead.swift; sourceTree = "<group>"; };
+		65866FE524AD021C0029847E /* deleteObject.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = deleteObject.php; sourceTree = "<group>"; };
+		65898E2A24AF833300613515 /* deleteAppointmentMedical.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = deleteAppointmentMedical.php; sourceTree = "<group>"; };
 		658AF5FB240DA66800577446 /* SignUpCompanyAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompanyAddressViewController.swift; sourceTree = "<group>"; };
 		658EC6C523F4870D0042827E /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
 		658EC6C723F4B1310042827E /* NovaOneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovaOneView.swift; sourceTree = "<group>"; };
@@ -840,6 +844,8 @@
 				65B3536C24A3D01C00F15D23 /* updatePassword.php */,
 				6576A93524A67FE5008F756B /* updateEmail.php */,
 				65CF919424ABFD7900093008 /* updateAppointmentMedicalAndRealEstate.php */,
+				65866FE524AD021C0029847E /* deleteObject.php */,
+				65898E2A24AF833300613515 /* deleteAppointmentMedical.php */,
 			);
 			path = PHP;
 			sourceTree = "<group>";
@@ -1006,6 +1012,7 @@
 				6591C3A623DA78FB00535C46 /* LaunchScreen.storyboard in Resources */,
 				6576A93624A67FE5008F756B /* updateEmail.php in Resources */,
 				6516A845245255E7003B974A /* chartDataWeekly.php in Resources */,
+				65898E2B24AF833300613515 /* deleteAppointmentMedical.php in Resources */,
 				65CF919524ABFD7900093008 /* updateAppointmentMedicalAndRealEstate.php in Resources */,
 				659D487923F375F0007AC005 /* appointments.php in Resources */,
 				6583195323F2209C001D378D /* settings.php in Resources */,
@@ -1017,6 +1024,7 @@
 				65EEF8EB247AD014004B64C1 /* refreshAppointments.php in Resources */,
 				656A8F81244F52260028ABAE /* objectCounts.php in Resources */,
 				659D487823F375F0007AC005 /* leads.php in Resources */,
+				65866FE624AD021C0029847E /* deleteObject.php in Resources */,
 				65074FB12470622F008AC4B2 /* signup.php in Resources */,
 				65A6EF9E249E75D500DE12E7 /* updateObject.php in Resources */,
 				6591C3A123DA78F900535C46 /* Main.storyboard in Resources */,

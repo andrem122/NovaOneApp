@@ -123,7 +123,6 @@
                     }
                     
                     echo json_encode($response_array);
-                    exit();
                     
                 } else {
                     
@@ -131,7 +130,6 @@
                     http_response_code(400);
                     $response_array = array('error' => 2, 'reason' => 'No data available.');
                     echo json_encode($response_array);
-                    exit();
                     
                 }
                 
