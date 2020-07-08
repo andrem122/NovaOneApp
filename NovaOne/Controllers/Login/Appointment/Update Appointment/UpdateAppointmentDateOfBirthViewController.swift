@@ -21,6 +21,34 @@ class UpdateAppointmentDateOfBirthViewController: UpdateBaseViewController {
     
     // MARK: Actions
     @IBAction func updateButtonTapped(_ sender: Any) {
+        // Get the selected date from the picker
+        let updateValue = DateHelper.createString(from: self.dateOfBirthPicker.date, format: "yyyy-MM-dd")
+        guard
+            let objectId = (self.updateObject as? Appointment)?.id,
+            let detailViewController = self.previousViewController as? AppointmentDetailViewController
+        else { return }
+        
+        let updateClosure = {
+            (appointment: Appointment) in
+            appointment.dateOfBirth = self.dateOfBirthPicker.date
+        }
+        
+        let successDoneHandler = {
+            [weak self] in
+            
+            let predicate = NSPredicate(format: "id == %@", String(objectId))
+            guard let updatedAppointment = PersistenceService.fetchEntity(Appointment.self, filter: predicate, sort: nil).first else { return }
+            
+            detailViewController.appointment = updatedAppointment
+            detailViewController.setupObjectDetailCellsAndTitle()
+            detailViewController.objectDetailTableView.reloadData()
+            
+            self?.removeSpinner()
+            
+        }
+        
+        self.updateObject(for: "appointments_appointment_medical", at: ["date_of_birth": updateValue], endpoint: "/updateAppointmentMedicalAndRealEstate.php", objectId: Int(objectId), objectType: Appointment.self, updateClosure: updateClosure, successSubtitle: "Appointment date of birth has been successfully updated.", successDoneHandler: successDoneHandler)
+        
     }
     
 }

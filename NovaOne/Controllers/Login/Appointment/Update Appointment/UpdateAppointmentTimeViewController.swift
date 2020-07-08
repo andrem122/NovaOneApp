@@ -33,7 +33,7 @@ class UpdateAppointmentTimeViewController: UpdateBaseViewController {
         print("Checking appointment availability")
         self.dispatchGroup.enter() // Indicate that the network request has begun
         self.appointmentTimeIsAvailable = true // Reset the value of self.appointmentTimeIsAvailable because it may have been set to false before
-        self.showSpinner(for: self.view, textForLabel: "Updating Appointment")
+        self.showSpinner(for: self.view, textForLabel: "Updating")
         
         guard
             let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
@@ -97,7 +97,6 @@ class UpdateAppointmentTimeViewController: UpdateBaseViewController {
     
     func delete(appointment: Appointment) {
         // Deletes the old appointment from the database
-        print("Deleteing appointment")
         self.dispatchGroup.enter()
         guard
             let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
@@ -128,7 +127,6 @@ class UpdateAppointmentTimeViewController: UpdateBaseViewController {
     
     func create(appointment: Appointment, for time: Date, detailViewController: AppointmentDetailViewController) {
         // Create a new appointment in the database based on customer type
-        print("Creating appointment")
         guard
             let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
             let name = appointment.name,
@@ -171,7 +169,6 @@ class UpdateAppointmentTimeViewController: UpdateBaseViewController {
             switch result {
                 case .success(_):
                     // Redirect to success screen
-                    print("APPOINTMENT SUCCESSFULLY CREATED!")
                     // Update appointment object
                     let newAppointmentId = appointment.id + 1
                     appointment.time = time
@@ -179,8 +176,8 @@ class UpdateAppointmentTimeViewController: UpdateBaseViewController {
                     PersistenceService.saveContext()
                     
                     guard let successViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.success.rawValue) as? SuccessViewController else { return }
-                    successViewController.subtitleText = "Appointment successfully updated."
-                    successViewController.titleLabelText = "Appointment Updated!"
+                    successViewController.subtitleText = "Appointment time has been successfully updated."
+                    successViewController.titleLabelText = "Update Complete!"
                     successViewController.doneHandler = {
                         [weak self] in
                         let predicate = NSPredicate(format: "id == %@", String(newAppointmentId))
