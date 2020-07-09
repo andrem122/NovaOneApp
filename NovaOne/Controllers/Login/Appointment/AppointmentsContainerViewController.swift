@@ -116,7 +116,8 @@ class AppointmentsContainerViewController: UIViewController {
                                             emptyViewController.addObjectButtonHandler = {
                                                 [weak self] in
                                                 // Go to the add object screen
-                                                guard let addAppointmentNavigationController = self?.storyboard?.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addAppointment.rawValue) as? UINavigationController else { return }
+                                                let addAppointmentStoryboard = UIStoryboard(name: Defaults.StoryBoards.addAppointment.rawValue, bundle: .main)
+                                                guard let addAppointmentNavigationController = addAppointmentStoryboard.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addAppointment.rawValue) as? UINavigationController else { return }
                                                 self?.present(addAppointmentNavigationController, animated: true, completion: nil)
                                             }
                                         

@@ -99,7 +99,8 @@ class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITabl
             // Delete the company from the database
             
             // Navigate back to the companies view
-            guard let companiesViewController = self?.storyboard?.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.companies.rawValue) else { return }
+            let companiesStoryboard = UIStoryboard(name: Defaults.StoryBoards.companies.rawValue, bundle: .main)
+            let companiesViewController = companiesStoryboard.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.companies.rawValue)
             self?.present(companiesViewController, animated: true, completion: nil)
         }, cancelHandler: {
             print("Action canceled")
@@ -129,12 +130,13 @@ extension CompanyDetailViewController {
         
         // Get company title based on which row the user taps on
         let titleItem = self.objectDetailItems[indexPath.row].titleItem
+        let updateCompanyStoryboard = UIStoryboard(name: Defaults.StoryBoards.updateCompany.rawValue, bundle: .main)
         
         // Get update view controller based on which cell the user clicked on
         switch titleItem {
             
             case .address:
-                if let updateCompanyAddressViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateCompanyAddress.rawValue) as? UpdateCompanyAddressViewController {
+                if let updateCompanyAddressViewController = updateCompanyStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateCompanyAddress.rawValue) as? UpdateCompanyAddressViewController {
                     
                     updateCompanyAddressViewController.updateObject = self.company
                     updateCompanyAddressViewController.previousViewController = self
@@ -144,7 +146,7 @@ extension CompanyDetailViewController {
                 }
                     
                 case .phoneNumber:
-                    if let updateCompanyPhoneViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateCompanyPhone.rawValue) as? UpdateCompanyPhoneViewController {
+                    if let updateCompanyPhoneViewController = updateCompanyStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateCompanyPhone.rawValue) as? UpdateCompanyPhoneViewController {
                         
                         updateCompanyPhoneViewController.updateObject = self.company
                         updateCompanyPhoneViewController.previousViewController = self
@@ -154,7 +156,7 @@ extension CompanyDetailViewController {
                     }
                     
                 case .name:
-                    if let updateCompanyNameViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateCompanyName.rawValue) as? UpdateCompanyNameViewController {
+                    if let updateCompanyNameViewController = updateCompanyStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateCompanyName.rawValue) as? UpdateCompanyNameViewController {
                         
                         updateCompanyNameViewController.updateObject = self.company
                         updateCompanyNameViewController.previousViewController = self
@@ -164,7 +166,7 @@ extension CompanyDetailViewController {
                     }
                     
                 case .email:
-                    if let updateCompanyEmailViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateCompanyEmail.rawValue) as? UpdateCompanyEmailViewController {
+                    if let updateCompanyEmailViewController = updateCompanyStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateCompanyEmail.rawValue) as? UpdateCompanyEmailViewController {
                         
                         updateCompanyEmailViewController.updateObject = self.company
                         updateCompanyEmailViewController.previousViewController = self
@@ -174,7 +176,7 @@ extension CompanyDetailViewController {
                     }
                     
                 case .showingDays:
-                    if let updateCompanyDaysEnabledViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateCompanyDaysEnabled.rawValue) as? UpdateCompanyDaysEnabledViewController {
+                    if let updateCompanyDaysEnabledViewController = updateCompanyStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateCompanyDaysEnabled.rawValue) as? UpdateCompanyDaysEnabledViewController {
                         
                         updateCompanyDaysEnabledViewController.company = company
                         updateCompanyDaysEnabledViewController.updateObject = self.company
@@ -185,7 +187,7 @@ extension CompanyDetailViewController {
                     }
                     
                 case .showingHours:
-                    if let updateCompanyHoursEnabledViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateCompanyHoursEnabled.rawValue) as? UpdateCompanyHoursEnabledViewController {
+                    if let updateCompanyHoursEnabledViewController = updateCompanyStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateCompanyHoursEnabled.rawValue) as? UpdateCompanyHoursEnabledViewController {
                         
                         updateCompanyHoursEnabledViewController.updateObject = self.company
                         updateCompanyHoursEnabledViewController.previousViewController = self
@@ -216,7 +218,7 @@ extension CompanyDetailViewController {
                     self.present(popUpOkViewController, animated: true, completion: nil)
                     
                 case .autoRespondText:
-                    if let updateCompanyAutoRespondTextViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateCompanyAutoRespondText.rawValue) as? UpdateCompanyAutoRespondTextViewController {
+                    if let updateCompanyAutoRespondTextViewController = updateCompanyStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateCompanyAutoRespondText.rawValue) as? UpdateCompanyAutoRespondTextViewController {
                         
                         guard let company = self.company else { return }
                         let autoRespondText = company.autoRespondText != nil ? company.autoRespondText! : "Update auto respond text..."

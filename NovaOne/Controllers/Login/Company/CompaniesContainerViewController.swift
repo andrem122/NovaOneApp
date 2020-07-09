@@ -129,7 +129,9 @@ class CompaniesContainerViewController: UIViewController {
                                             emptyViewController.addObjectButtonHandler = {
                                                 [weak self] in
                                                 // Go to the add object screen
-                                                guard let addCompanyNavigationController = self?.storyboard?.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addCompany.rawValue) as? UINavigationController else { return }
+                                                
+                                                let addCompanyStoryboard = UIStoryboard(name: Defaults.StoryBoards.addCompany.rawValue, bundle: .main)
+                                                guard let addCompanyNavigationController = addCompanyStoryboard.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addCompany.rawValue) as? UINavigationController else { return }
                                                 self?.present(addCompanyNavigationController, animated: true, completion: nil)
                                             }
                                         

@@ -276,7 +276,8 @@ class CompaniesTableViewController: UITableViewController, NovaOneTableView {
                                                 emptyViewController.addObjectButtonHandler = {
                                                     [weak self] in
                                                     // Go to the add object screen
-                                                    guard let addCompanyNavigationController = self?.storyboard?.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addCompany.rawValue) as? UINavigationController else { return }
+                                                    let addCompanyStoryboard = UIStoryboard(name: Defaults.StoryBoards.addCompany.rawValue, bundle: .main)
+                                                    guard let addCompanyNavigationController = addCompanyStoryboard.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addCompany.rawValue) as? UINavigationController else { return }
                                                     self?.present(addCompanyNavigationController, animated: true, completion: nil)
                                                 }
                                             }
@@ -365,8 +366,10 @@ class CompaniesTableViewController: UITableViewController, NovaOneTableView {
     
     // MARK: Actions
     @IBAction func addButtonTapped(_ sender: Any) {
+        
+        let addCompanyStoryboard = UIStoryboard(name: Defaults.StoryBoards.addCompany.rawValue, bundle: .main)
         guard
-            let addCompanyNavigationController = self.storyboard?.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addCompany.rawValue) as? UINavigationController,
+            let addCompanyNavigationController = addCompanyStoryboard.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addCompany.rawValue) as? UINavigationController,
             let addCompanyNameViewController = addCompanyNavigationController.viewControllers.first as? AddCompanyNameViewController
         else { return }
         

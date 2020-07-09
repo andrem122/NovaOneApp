@@ -260,7 +260,9 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
                                                 emptyViewController.addObjectButtonHandler = {
                                                     [weak self] in
                                                     // Go to the add object screen
-                                                    guard let addLeadNavigationController = self?.storyboard?.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addLead.rawValue) as? UINavigationController else { return }
+                                                    
+                                                    let addLeadStoryboard = UIStoryboard(name: Defaults.StoryBoards.addLead.rawValue, bundle: .main)
+                                                    guard let addLeadNavigationController = addLeadStoryboard.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addLead.rawValue) as? UINavigationController else { return }
                                                     self?.present(addLeadNavigationController, animated: true, completion: nil)
                                                 }
                                             }
@@ -349,7 +351,8 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
     
     // MARK: Actions
     @IBAction func addButtonTapped(_ sender: Any) {
-        guard let addLeadNavigationController = self.storyboard?.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addLead.rawValue) as? UINavigationController else { return }
+        let addLeadStoryboard = UIStoryboard(name: Defaults.StoryBoards.addLead.rawValue, bundle: .main)
+        guard let addLeadNavigationController = addLeadStoryboard.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addLead.rawValue) as? UINavigationController else { return }
         
         // Pass the instance of appointments table view controller to the last view controller in the navigation stack
         // so we can refresh the appointments table after successful object creation

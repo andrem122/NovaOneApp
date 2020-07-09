@@ -175,7 +175,8 @@ class UpdateAppointmentTimeViewController: UpdateBaseViewController {
                     appointment.id = newAppointmentId
                     PersistenceService.saveContext()
                     
-                    guard let successViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.success.rawValue) as? SuccessViewController else { return }
+                    let popupStoryboard = UIStoryboard(name: Defaults.StoryBoards.popups.rawValue, bundle: .main)
+                    guard let successViewController = popupStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.success.rawValue) as? SuccessViewController else { return }
                     successViewController.subtitleText = "Appointment time has been successfully updated."
                     successViewController.titleLabelText = "Update Complete!"
                     successViewController.doneHandler = {

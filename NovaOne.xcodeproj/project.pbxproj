@@ -92,6 +92,7 @@
 		65802590240F4A7600A74DCD /* SignUpCompanyPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6580258F240F4A7600A74DCD /* SignUpCompanyPhoneViewController.swift */; };
 		65802592240F4A8B00A74DCD /* SignUpCompanyEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65802591240F4A8B00A74DCD /* SignUpCompanyEmailViewController.swift */; };
 		6580FBE324113D0700695DB6 /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6580FBE224113D0700695DB6 /* UIHelper.swift */; };
+		65810A5124B7699F0049B4A4 /* Popups.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65810A5024B769640049B4A4 /* Popups.storyboard */; };
 		6581E5D42479F5F400F8AF9F /* AppointmentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6581E5D32479F5F400F8AF9F /* AppointmentsTableViewController.swift */; };
 		6583194B23F2206E001D378D /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6583194923F2206E001D378D /* KeychainItemAccessibility.swift */; };
 		6583194C23F2206E001D378D /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6583194A23F2206E001D378D /* KeychainWrapper.swift */; };
@@ -133,6 +134,17 @@
 		65A4CD882445065E00EE4AAA /* HelpTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A4CD872445065E00EE4AAA /* HelpTableViewController.swift */; };
 		65A6EF9E249E75D500DE12E7 /* updateObject.php in Resources */ = {isa = PBXBuildFile; fileRef = 65A6EF9D249E75D500DE12E7 /* updateObject.php */; };
 		65A6EFA0249E7D4D00DE12E7 /* UpdateBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A6EF9F249E7D4D00DE12E7 /* UpdateBaseViewController.swift */; };
+		65A7423724B76D270092DF0C /* UpdateLead.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65A7423624B76D160092DF0C /* UpdateLead.storyboard */; };
+		65A7423924B76EEC0092DF0C /* UpdateAppointment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65A7423824B76ED30092DF0C /* UpdateAppointment.storyboard */; };
+		65A7423B24B76F820092DF0C /* AddCompany.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65A7423A24B76F740092DF0C /* AddCompany.storyboard */; };
+		65A7423D24B770330092DF0C /* UpdateAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65A7423C24B7701F0092DF0C /* UpdateAccount.storyboard */; };
+		65A7423F24B770880092DF0C /* Support.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65A7423E24B7707A0092DF0C /* Support.storyboard */; };
+		65A7424124B7712C0092DF0C /* Companies.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65A7424024B7711D0092DF0C /* Companies.storyboard */; };
+		65A7424324B771A00092DF0C /* Leads.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65A7424224B771960092DF0C /* Leads.storyboard */; };
+		65A7424524B771EB0092DF0C /* Account.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65A7424424B771E70092DF0C /* Account.storyboard */; };
+		65A7424724B772530092DF0C /* Appointments.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65A7424624B772460092DF0C /* Appointments.storyboard */; };
+		65A7424924B772BC0092DF0C /* UpdateCompany.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65A7424824B772A90092DF0C /* UpdateCompany.storyboard */; };
+		65A7424B24B773370092DF0C /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65A7424A24B773290092DF0C /* Home.storyboard */; };
 		65A9E30B24B6979D000110AB /* AddAppointment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65FE6FB024B68D8B0055AF70 /* AddAppointment.storyboard */; };
 		65A9E30D24B69899000110AB /* AddLead.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65A9E30C24B69886000110AB /* AddLead.storyboard */; };
 		65AA3E662432722D005C2319 /* AddCompanyNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AA3E652432722D005C2319 /* AddCompanyNameViewController.swift */; };
@@ -320,6 +332,7 @@
 		6580258F240F4A7600A74DCD /* SignUpCompanyPhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompanyPhoneViewController.swift; sourceTree = "<group>"; };
 		65802591240F4A8B00A74DCD /* SignUpCompanyEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompanyEmailViewController.swift; sourceTree = "<group>"; };
 		6580FBE224113D0700695DB6 /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
+		65810A5024B769640049B4A4 /* Popups.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Popups.storyboard; path = /Users/andre/Desktop/NovaOne/NovaOne/Storyboards/Popups.storyboard; sourceTree = "<absolute>"; };
 		6581E5D32479F5F400F8AF9F /* AppointmentsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentsTableViewController.swift; sourceTree = "<group>"; };
 		6583194923F2206E001D378D /* KeychainItemAccessibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItemAccessibility.swift; sourceTree = "<group>"; };
 		6583194A23F2206E001D378D /* KeychainWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
@@ -368,6 +381,17 @@
 		65A4CD872445065E00EE4AAA /* HelpTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpTableViewController.swift; sourceTree = "<group>"; };
 		65A6EF9D249E75D500DE12E7 /* updateObject.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = updateObject.php; sourceTree = "<group>"; };
 		65A6EF9F249E7D4D00DE12E7 /* UpdateBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateBaseViewController.swift; sourceTree = "<group>"; };
+		65A7423624B76D160092DF0C /* UpdateLead.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = UpdateLead.storyboard; path = /Users/andre/Desktop/NovaOne/NovaOne/Storyboards/UpdateLead.storyboard; sourceTree = "<absolute>"; };
+		65A7423824B76ED30092DF0C /* UpdateAppointment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = UpdateAppointment.storyboard; path = /Users/andre/Desktop/NovaOne/NovaOne/Storyboards/UpdateAppointment.storyboard; sourceTree = "<absolute>"; };
+		65A7423A24B76F740092DF0C /* AddCompany.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = AddCompany.storyboard; path = /Users/andre/Desktop/NovaOne/NovaOne/Storyboards/AddCompany.storyboard; sourceTree = "<absolute>"; };
+		65A7423C24B7701F0092DF0C /* UpdateAccount.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = UpdateAccount.storyboard; path = /Users/andre/Desktop/NovaOne/NovaOne/Storyboards/UpdateAccount.storyboard; sourceTree = "<absolute>"; };
+		65A7423E24B7707A0092DF0C /* Support.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Support.storyboard; path = /Users/andre/Desktop/NovaOne/NovaOne/Storyboards/Support.storyboard; sourceTree = "<absolute>"; };
+		65A7424024B7711D0092DF0C /* Companies.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Companies.storyboard; path = /Users/andre/Desktop/NovaOne/NovaOne/Storyboards/Companies.storyboard; sourceTree = "<absolute>"; };
+		65A7424224B771960092DF0C /* Leads.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Leads.storyboard; path = /Users/andre/Desktop/NovaOne/NovaOne/Storyboards/Leads.storyboard; sourceTree = "<absolute>"; };
+		65A7424424B771E70092DF0C /* Account.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Account.storyboard; path = /Users/andre/Desktop/NovaOne/NovaOne/Storyboards/Account.storyboard; sourceTree = "<absolute>"; };
+		65A7424624B772460092DF0C /* Appointments.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Appointments.storyboard; path = /Users/andre/Desktop/NovaOne/NovaOne/Storyboards/Appointments.storyboard; sourceTree = "<absolute>"; };
+		65A7424824B772A90092DF0C /* UpdateCompany.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = UpdateCompany.storyboard; path = /Users/andre/Desktop/NovaOne/NovaOne/Storyboards/UpdateCompany.storyboard; sourceTree = "<absolute>"; };
+		65A7424A24B773290092DF0C /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Home.storyboard; path = /Users/andre/Desktop/NovaOne/NovaOne/Storyboards/Home.storyboard; sourceTree = "<absolute>"; };
 		65A9E30C24B69886000110AB /* AddLead.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = AddLead.storyboard; path = /Users/andre/Desktop/NovaOne/NovaOne/Storyboards/AddLead.storyboard; sourceTree = "<absolute>"; };
 		65AA3E652432722D005C2319 /* AddCompanyNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCompanyNameViewController.swift; sourceTree = "<group>"; };
 		65AA3E6724327245005C2319 /* AddCompanyPhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCompanyPhoneViewController.swift; sourceTree = "<group>"; };
@@ -928,6 +952,18 @@
 		65FE6FAD24B68B920055AF70 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				65A7424A24B773290092DF0C /* Home.storyboard */,
+				65A7424824B772A90092DF0C /* UpdateCompany.storyboard */,
+				65A7424624B772460092DF0C /* Appointments.storyboard */,
+				65A7424424B771E70092DF0C /* Account.storyboard */,
+				65A7424224B771960092DF0C /* Leads.storyboard */,
+				65A7424024B7711D0092DF0C /* Companies.storyboard */,
+				65A7423E24B7707A0092DF0C /* Support.storyboard */,
+				65A7423C24B7701F0092DF0C /* UpdateAccount.storyboard */,
+				65A7423A24B76F740092DF0C /* AddCompany.storyboard */,
+				65A7423824B76ED30092DF0C /* UpdateAppointment.storyboard */,
+				65A7423624B76D160092DF0C /* UpdateLead.storyboard */,
+				65810A5024B769640049B4A4 /* Popups.storyboard */,
 				65A9E30C24B69886000110AB /* AddLead.storyboard */,
 				65FE6FB024B68D8B0055AF70 /* AddAppointment.storyboard */,
 				65FE6FAE24B68C040055AF70 /* Signup.storyboard */,
@@ -1049,13 +1085,16 @@
 			files = (
 				65793B9324854D8B0093D5A7 /* refreshCompanies.php in Resources */,
 				65B3536324A2439500F15D23 /* updateCompanyAddress.php in Resources */,
+				65A7423724B76D270092DF0C /* UpdateLead.storyboard in Resources */,
 				6583195523F2209C001D378D /* login.php in Resources */,
 				65D75F7423FB495900C7988E /* utils.php in Resources */,
 				65ADE2E123E1C84E003D3215 /* Feature.xib in Resources */,
 				6583195223F2209C001D378D /* database.php in Resources */,
 				65AC9BFE2454B42B001E61A0 /* chartDataMonthly.php in Resources */,
+				65810A5124B7699F0049B4A4 /* Popups.storyboard in Resources */,
 				6506CD4624886C8F00194C92 /* chartDataMonth.php in Resources */,
 				6591C3A623DA78FB00535C46 /* LaunchScreen.storyboard in Resources */,
+				65A7424924B772BC0092DF0C /* UpdateCompany.storyboard in Resources */,
 				6576A93624A67FE5008F756B /* updateEmail.php in Resources */,
 				6516A845245255E7003B974A /* chartDataWeekly.php in Resources */,
 				65898E2B24AF833300613515 /* deleteAppointmentMedical.php in Resources */,
@@ -1064,16 +1103,23 @@
 				6583195323F2209C001D378D /* settings.php in Resources */,
 				653432702493BE0B00483505 /* addLead.php in Resources */,
 				6583195623F2209C001D378D /* django_password.php in Resources */,
+				65A7423D24B770330092DF0C /* UpdateAccount.storyboard in Resources */,
+				65A7424B24B773370092DF0C /* Home.storyboard in Resources */,
 				653D2184244523C5009DA68E /* credentials.php in Resources */,
 				65793B9124854C7A0093D5A7 /* moreCompanies.php in Resources */,
+				65A7424524B771EB0092DF0C /* Account.storyboard in Resources */,
+				65A7424124B7712C0092DF0C /* Companies.storyboard in Resources */,
 				6591C3A323DA78FB00535C46 /* Assets.xcassets in Resources */,
 				65A9E30D24B69899000110AB /* AddLead.storyboard in Resources */,
 				65EEF8EB247AD014004B64C1 /* refreshAppointments.php in Resources */,
 				656A8F81244F52260028ABAE /* objectCounts.php in Resources */,
+				65A7424724B772530092DF0C /* Appointments.storyboard in Resources */,
 				659D487823F375F0007AC005 /* leads.php in Resources */,
 				65866FE624AD021C0029847E /* deleteObject.php in Resources */,
 				65074FB12470622F008AC4B2 /* signup.php in Resources */,
 				65A9E30B24B6979D000110AB /* AddAppointment.storyboard in Resources */,
+				65A7423924B76EEC0092DF0C /* UpdateAppointment.storyboard in Resources */,
+				65A7423F24B770880092DF0C /* Support.storyboard in Resources */,
 				65A6EF9E249E75D500DE12E7 /* updateObject.php in Resources */,
 				6591C3A123DA78F900535C46 /* Main.storyboard in Resources */,
 				6578D9F12415AD06002E94BF /* companies.php in Resources */,
@@ -1083,6 +1129,8 @@
 				6584C6EB2499186D00FFD1D3 /* addCompany.php in Resources */,
 				6560F004244A30FE0097792D /* refreshLeads.php in Resources */,
 				6569539B24477F6300CF86B7 /* moreAppointments.php in Resources */,
+				65A7423B24B76F820092DF0C /* AddCompany.storyboard in Resources */,
+				65A7424324B771A00092DF0C /* Leads.storyboard in Resources */,
 				65FE6FAF24B68C040055AF70 /* Signup.storyboard in Resources */,
 				65B3536D24A3D01C00F15D23 /* updatePassword.php in Resources */,
 				65B3536B24A3CA8100F15D23 /* updateName.php in Resources */,

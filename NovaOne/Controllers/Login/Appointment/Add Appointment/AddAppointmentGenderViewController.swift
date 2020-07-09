@@ -65,8 +65,8 @@ class AddAppointmentGenderViewController: AddAppointmentBaseViewController, UIPi
             switch result {
                 case .success(let success):
                     // Redirect to success screen
-                    let mainStoryboard = UIStoryboard(name: Defaults.StoryBoards.main.rawValue, bundle: .main)
-                    guard let successViewController = mainStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.success.rawValue) as? SuccessViewController else { return }
+                    let popupStoryboard = UIStoryboard(name: Defaults.StoryBoards.popups.rawValue, bundle: .main)
+                    guard let successViewController = popupStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.success.rawValue) as? SuccessViewController else { return }
                     successViewController.subtitleText = success.successReason
                     successViewController.titleLabelText = "Appointment Created!"
                     successViewController.doneHandler = {

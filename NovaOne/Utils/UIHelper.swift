@@ -113,7 +113,8 @@ class UIHelper {
     static func showEmptyStateContainerViewController(for currentViewController: UIViewController?, containerView: UIView, title: String, addObjectButtonTitle: String, completion: ((EmptyViewController) -> Void)?) {
         // Shows the empty state view controller for a container view
         
-        if let emptyViewController = currentViewController?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.empty.rawValue) as? EmptyViewController {
+        let popupStoryboard = UIStoryboard(name: Defaults.StoryBoards.popups.rawValue, bundle: .main)
+        if let emptyViewController = popupStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.empty.rawValue) as? EmptyViewController {
             
             emptyViewController.titleLabelText = title
             emptyViewController.addObjectButtonTitle = addObjectButtonTitle

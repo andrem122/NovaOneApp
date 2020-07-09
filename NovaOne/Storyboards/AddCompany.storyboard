@@ -1,0 +1,798 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Add Company Name-->
+        <scene sceneID="hzd-yW-KIf">
+            <objects>
+                <viewController storyboardIdentifier="addCompanyNameViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fu3-xP-iSX" userLabel="Add Company Name" customClass="AddCompanyNameViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Z9Y-c6-7ox">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Company" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pWZ-86-3gL">
+                                <rect key="frame" x="30" y="118" width="354" height="33.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
+                                <color key="textColor" name="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="45"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in your company name below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K6N-pM-Sxi">
+                                <rect key="frame" x="30" y="171.5" width="354" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                </variation>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="qHJ-4j-jLr">
+                                <rect key="frame" x="30" y="222" width="354" height="110"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Company Name" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="Wl9-3A-4FI" customClass="NovaOneTextField" customModule="NovaOne" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="354" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="Pa2-6a-rex"/>
+                                        </constraints>
+                                        <color key="textColor" name="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="name"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" name="textFieldColor"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        </variation>
+                                        <connections>
+                                            <action selector="companyNameTextFieldChanged:" destination="fu3-xP-iSX" eventType="editingChanged" id="ZKc-F4-Y6T"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QEx-Qu-sob" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="65" width="354" height="45"/>
+                                        <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="sdF-qq-rcZ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                        <state key="normal" title="Continue">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        </variation>
+                                        <connections>
+                                            <action selector="continueButtonTapped:" destination="fu3-xP-iSX" eventType="touchUpInside" id="OtK-Ok-LlQ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="K6N-pM-Sxi" firstAttribute="top" secondItem="pWZ-86-3gL" secondAttribute="bottom" constant="20" id="2Q7-od-bc0"/>
+                            <constraint firstItem="qHJ-4j-jLr" firstAttribute="top" secondItem="K6N-pM-Sxi" secondAttribute="bottom" constant="30" id="74a-pt-2pY"/>
+                            <constraint firstItem="K6N-pM-Sxi" firstAttribute="leading" secondItem="I6n-8Y-xVH" secondAttribute="leading" constant="30" id="APg-Eq-Z22">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="qHJ-4j-jLr" firstAttribute="leading" secondItem="I6n-8Y-xVH" secondAttribute="leading" constant="30" id="Gco-hG-tId">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="pWZ-86-3gL" firstAttribute="leading" secondItem="I6n-8Y-xVH" secondAttribute="leading" constant="30" id="SDo-q8-ZZK">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="I6n-8Y-xVH" firstAttribute="trailing" secondItem="pWZ-86-3gL" secondAttribute="trailing" constant="30" id="aQJ-D3-nzU">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="I6n-8Y-xVH" firstAttribute="trailing" secondItem="K6N-pM-Sxi" secondAttribute="trailing" constant="30" id="lpn-cX-k83">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="pWZ-86-3gL" firstAttribute="top" secondItem="I6n-8Y-xVH" secondAttribute="top" constant="30" id="nIs-KC-7md"/>
+                            <constraint firstItem="I6n-8Y-xVH" firstAttribute="trailing" secondItem="qHJ-4j-jLr" secondAttribute="trailing" constant="30" id="thT-L8-13a">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="I6n-8Y-xVH"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="PbN-ZK-e3V">
+                        <barButtonItem key="backBarButtonItem" title=" " id="lgY-Wz-R3G"/>
+                        <barButtonItem key="leftBarButtonItem" image="cancelButtonBlue" id="Df8-gH-Bks" userLabel="Cancel Button">
+                            <connections>
+                                <action selector="cancelButtonTapped:" destination="fu3-xP-iSX" id="8ap-Nt-KVe"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="companyNameTextField" destination="Wl9-3A-4FI" id="9ek-2v-ncL"/>
+                        <outlet property="continueButton" destination="QEx-Qu-sob" id="Lle-ur-t1Q"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PTf-YO-iLK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="13378.125" y="3830"/>
+        </scene>
+        <!--Add Company Address-->
+        <scene sceneID="fSO-Y3-P7p">
+            <objects>
+                <viewController storyboardIdentifier="addCompanyAddressViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2zA-7R-eTs" userLabel="Add Company Address" customClass="AddCompanyAddressViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AsO-fn-u1R">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company Address" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p8l-QC-4lL">
+                                <rect key="frame" x="30" y="74" width="354" height="33.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
+                                <color key="textColor" name="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="45"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in your company address below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9w5-Mt-Gfk">
+                                <rect key="frame" x="30" y="127.5" width="354" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                </variation>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="dvA-xP-Wdw">
+                                <rect key="frame" x="30" y="178" width="354" height="110"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Address" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="Oap-JG-mcu" customClass="NovaOneTextField" customModule="NovaOne" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="354" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="yF1-gw-rre"/>
+                                        </constraints>
+                                        <color key="textColor" name="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="address-line1"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" name="textFieldColor"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        </variation>
+                                        <connections>
+                                            <action selector="addressTextFieldChanged:" destination="2zA-7R-eTs" eventType="editingChanged" id="iPS-yf-xbS"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WSc-BO-XoV" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="65" width="354" height="45"/>
+                                        <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="qC2-Ie-A7F"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                        <state key="normal" title="Continue">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        </variation>
+                                        <connections>
+                                            <action selector="continueButtonTapped:" destination="2zA-7R-eTs" eventType="touchUpInside" id="vKQ-s4-4Pt"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ThE-MB-w5A">
+                                <rect key="frame" x="0.0" y="296" width="414" height="566"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="dvA-xP-Wdw" firstAttribute="top" secondItem="9w5-Mt-Gfk" secondAttribute="bottom" constant="30" id="8PN-YJ-uZA"/>
+                            <constraint firstItem="ziN-ix-eCy" firstAttribute="trailing" secondItem="9w5-Mt-Gfk" secondAttribute="trailing" constant="30" id="JI5-A8-qfe">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="ziN-ix-eCy" firstAttribute="trailing" secondItem="p8l-QC-4lL" secondAttribute="trailing" constant="30" id="Skq-75-e0v">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="p8l-QC-4lL" firstAttribute="top" secondItem="ziN-ix-eCy" secondAttribute="top" constant="30" id="SlB-Mw-FLy"/>
+                            <constraint firstItem="ziN-ix-eCy" firstAttribute="trailing" secondItem="dvA-xP-Wdw" secondAttribute="trailing" constant="30" id="YQu-y2-gcw">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="ThE-MB-w5A" firstAttribute="leading" secondItem="ziN-ix-eCy" secondAttribute="leading" id="e8u-ac-C7X"/>
+                            <constraint firstItem="dvA-xP-Wdw" firstAttribute="leading" secondItem="ziN-ix-eCy" secondAttribute="leading" constant="30" id="feb-YL-kqD">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="ThE-MB-w5A" firstAttribute="top" secondItem="dvA-xP-Wdw" secondAttribute="bottom" constant="8" id="jCj-1k-LrR"/>
+                            <constraint firstItem="p8l-QC-4lL" firstAttribute="leading" secondItem="ziN-ix-eCy" secondAttribute="leading" constant="30" id="mPg-5d-l50">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="ThE-MB-w5A" firstAttribute="bottom" secondItem="ziN-ix-eCy" secondAttribute="bottom" id="syx-BA-tIa"/>
+                            <constraint firstItem="ThE-MB-w5A" firstAttribute="trailing" secondItem="ziN-ix-eCy" secondAttribute="trailing" id="uPN-QW-ZYH"/>
+                            <constraint firstItem="9w5-Mt-Gfk" firstAttribute="top" secondItem="p8l-QC-4lL" secondAttribute="bottom" constant="20" id="y9z-ZU-Irc"/>
+                            <constraint firstItem="9w5-Mt-Gfk" firstAttribute="leading" secondItem="ziN-ix-eCy" secondAttribute="leading" constant="30" id="zW4-vI-7S7">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ziN-ix-eCy"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Yxg-GS-L9b">
+                        <barButtonItem key="backBarButtonItem" title=" " id="y1u-uA-M92"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="addressTextField" destination="Oap-JG-mcu" id="fFu-bo-oL2"/>
+                        <outlet property="continueButton" destination="WSc-BO-XoV" id="P5g-r9-bDz"/>
+                        <outlet property="mapView" destination="ThE-MB-w5A" id="PrX-RO-eEh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="88w-Nc-ucj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="14288.799999999999" y="3829.835082458771"/>
+        </scene>
+        <!--Add Company Phone-->
+        <scene sceneID="iBZ-aL-9CP">
+            <objects>
+                <viewController storyboardIdentifier="addCompanyPhoneViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="7MF-JH-W1a" userLabel="Add Company Phone" customClass="AddCompanyPhoneViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TQL-Tn-ADh">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company Phone" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zlh-C6-GWV">
+                                <rect key="frame" x="30" y="74" width="354" height="33.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
+                                <color key="textColor" name="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="45"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in your company phone number below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B89-WQ-0RT">
+                                <rect key="frame" x="30" y="127.5" width="354" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                </variation>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="bsz-Kb-bPK">
+                                <rect key="frame" x="30" y="178" width="354" height="110"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone Number" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="Xd0-nK-Yb3" customClass="NovaOneTextField" customModule="NovaOne" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="354" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="uq4-h3-0tV"/>
+                                        </constraints>
+                                        <color key="textColor" name="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next" textContentType="tel"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" name="textFieldColor"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        </variation>
+                                        <connections>
+                                            <action selector="phoneNumberTextFieldChanged:" destination="7MF-JH-W1a" eventType="editingChanged" id="4mF-8C-XhD"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XzH-xu-7ej" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="65" width="354" height="45"/>
+                                        <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="DIS-uh-JQM"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                        <state key="normal" title="Continue">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        </variation>
+                                        <connections>
+                                            <action selector="continueButtonTapped:" destination="7MF-JH-W1a" eventType="touchUpInside" id="hqF-le-lVL"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="zlh-C6-GWV" firstAttribute="top" secondItem="Gxx-WK-S1L" secondAttribute="top" constant="30" id="0k2-h6-Q7i"/>
+                            <constraint firstItem="bsz-Kb-bPK" firstAttribute="leading" secondItem="Gxx-WK-S1L" secondAttribute="leading" constant="30" id="Dbe-dc-t8G">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="Gxx-WK-S1L" firstAttribute="trailing" secondItem="zlh-C6-GWV" secondAttribute="trailing" constant="30" id="HDF-BP-MSx">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="Gxx-WK-S1L" firstAttribute="trailing" secondItem="B89-WQ-0RT" secondAttribute="trailing" constant="30" id="Rgk-HN-lKT">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="B89-WQ-0RT" firstAttribute="leading" secondItem="Gxx-WK-S1L" secondAttribute="leading" constant="30" id="Ztn-iG-ykJ">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="B89-WQ-0RT" firstAttribute="top" secondItem="zlh-C6-GWV" secondAttribute="bottom" constant="20" id="gFd-Qs-kzs"/>
+                            <constraint firstItem="Gxx-WK-S1L" firstAttribute="trailing" secondItem="bsz-Kb-bPK" secondAttribute="trailing" constant="30" id="hEM-9C-Cx7">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="bsz-Kb-bPK" firstAttribute="top" secondItem="B89-WQ-0RT" secondAttribute="bottom" constant="30" id="izn-dt-9vi"/>
+                            <constraint firstItem="zlh-C6-GWV" firstAttribute="leading" secondItem="Gxx-WK-S1L" secondAttribute="leading" constant="30" id="tU1-ic-8F8">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Gxx-WK-S1L"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ycz-Zc-zYL">
+                        <barButtonItem key="backBarButtonItem" title=" " id="sJa-X6-scH"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="continueButton" destination="XzH-xu-7ej" id="aBx-FJ-R2y"/>
+                        <outlet property="phoneNumberTextField" destination="Xd0-nK-Yb3" id="4vE-iX-xm1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fxy-pY-NbF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="16081" y="3830"/>
+        </scene>
+        <!--Add Company Email-->
+        <scene sceneID="sHS-3t-eET">
+            <objects>
+                <viewController storyboardIdentifier="addCompanyEmailViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fJp-nK-DaG" userLabel="Add Company Email" customClass="AddCompanyEmailViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HJw-VF-dcR">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company Email" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B41-VA-qp8">
+                                <rect key="frame" x="30" y="74" width="354" height="33.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
+                                <color key="textColor" name="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="45"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in your company email below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tgw-lq-SXR">
+                                <rect key="frame" x="30" y="127.5" width="354" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                </variation>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="psM-F4-mIo">
+                                <rect key="frame" x="30" y="178" width="354" height="110"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="OM2-sY-ccX" customClass="NovaOneTextField" customModule="NovaOne" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="354" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="l5X-dL-VoM"/>
+                                        </constraints>
+                                        <color key="textColor" name="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" name="textFieldColor"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        </variation>
+                                        <connections>
+                                            <action selector="companyEmailFieldChanged:" destination="fJp-nK-DaG" eventType="editingChanged" id="IFB-R6-2CR"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YuR-Ol-E2o" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="65" width="354" height="45"/>
+                                        <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="da8-a2-kHp"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                        <state key="normal" title="Continue">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        </variation>
+                                        <connections>
+                                            <action selector="continueButtonTapped:" destination="fJp-nK-DaG" eventType="touchUpInside" id="bCe-QJ-QCs"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Ylq-sl-uPv" firstAttribute="trailing" secondItem="B41-VA-qp8" secondAttribute="trailing" constant="30" id="7Sp-wE-voc">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="B41-VA-qp8" firstAttribute="leading" secondItem="Ylq-sl-uPv" secondAttribute="leading" constant="30" id="FnE-4x-rhL">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="psM-F4-mIo" firstAttribute="top" secondItem="Tgw-lq-SXR" secondAttribute="bottom" constant="30" id="RbC-kk-KOV"/>
+                            <constraint firstItem="psM-F4-mIo" firstAttribute="leading" secondItem="Ylq-sl-uPv" secondAttribute="leading" constant="30" id="Rc1-kt-LDf">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="Tgw-lq-SXR" firstAttribute="leading" secondItem="Ylq-sl-uPv" secondAttribute="leading" constant="30" id="U3P-O9-0xl">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="Ylq-sl-uPv" firstAttribute="trailing" secondItem="psM-F4-mIo" secondAttribute="trailing" constant="30" id="dEa-xx-U3h">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="B41-VA-qp8" firstAttribute="top" secondItem="Ylq-sl-uPv" secondAttribute="top" constant="30" id="q7E-XV-jcB"/>
+                            <constraint firstItem="Ylq-sl-uPv" firstAttribute="trailing" secondItem="Tgw-lq-SXR" secondAttribute="trailing" constant="30" id="rcJ-bZ-eKZ">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="Tgw-lq-SXR" firstAttribute="top" secondItem="B41-VA-qp8" secondAttribute="bottom" constant="20" id="uMr-49-teY"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Ylq-sl-uPv"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="1fn-4k-gVK">
+                        <barButtonItem key="backBarButtonItem" title=" " id="R42-yx-cKA"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="companyEmailTextField" destination="OM2-sY-ccX" id="xkt-1A-ZuL"/>
+                        <outlet property="continueButton" destination="YuR-Ol-E2o" id="5Zt-s0-Iaa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h3V-cm-PvK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="15193" y="3830"/>
+        </scene>
+        <!--Add Company Days Enabled-->
+        <scene sceneID="Twf-fB-PLM">
+            <objects>
+                <viewController storyboardIdentifier="addCompanyDaysEnabledViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tcm-BF-RZ0" userLabel="Add Company Days Enabled" customClass="AddCompanyDaysEnabledViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CYo-r6-8iu">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ptv-EM-g1c" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
+                                <rect key="frame" x="30" y="797" width="354" height="45"/>
+                                <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="uaX-zC-Rtx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                <state key="normal" title="Continue">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                </variation>
+                                <connections>
+                                    <action selector="continueButtonTapped:" destination="tcm-BF-RZ0" eventType="touchUpInside" id="yAc-Bf-gkr"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LK0-F5-0Or">
+                                <rect key="frame" x="0.0" y="192" width="414" height="570"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="enableOptionTableViewCell" id="FO7-AQ-JAO" customClass="EnableOptionTableViewCell" customModule="NovaOne" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FO7-AQ-JAO" id="H4H-yf-c5O">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sunday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ozh-3Z-ipQ" userLabel="Option Label">
+                                                    <rect key="frame" x="20" y="12" width="57" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                                    <color key="textColor" name="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=regular">
+                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
+                                                    </variation>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tick" translatesAutoresizingMaskIntoConstraints="NO" id="zVF-f0-L4A">
+                                                    <rect key="frame" x="368" y="9" width="26" height="26"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="zVF-f0-L4A" secondAttribute="height" multiplier="1:1" id="7Wv-Yg-vsV"/>
+                                                        <constraint firstAttribute="height" constant="26" id="amq-IF-TRh"/>
+                                                        <constraint firstAttribute="width" constant="26" id="fc8-zN-B1n"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="zVF-f0-L4A" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="H4H-yf-c5O" secondAttribute="leading" id="EAi-F0-njm"/>
+                                                <constraint firstItem="Ozh-3Z-ipQ" firstAttribute="centerY" secondItem="H4H-yf-c5O" secondAttribute="centerY" id="PCb-eo-axr"/>
+                                                <constraint firstItem="zVF-f0-L4A" firstAttribute="centerY" secondItem="H4H-yf-c5O" secondAttribute="centerY" id="fsM-Lm-77U"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Ozh-3Z-ipQ" secondAttribute="trailing" id="gB0-pY-RbG"/>
+                                                <constraint firstItem="Ozh-3Z-ipQ" firstAttribute="leading" secondItem="H4H-yf-c5O" secondAttribute="leading" constant="20" id="pJf-5f-CnB"/>
+                                                <constraint firstAttribute="trailing" secondItem="zVF-f0-L4A" secondAttribute="trailing" constant="20" id="qBe-za-ylc"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="checkMarkImage" destination="zVF-f0-L4A" id="MJf-qb-FKu"/>
+                                            <outlet property="optionLabel" destination="Ozh-3Z-ipQ" id="W58-L5-Nzp"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Appointment Days" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NSN-Of-0xX">
+                                <rect key="frame" x="30" y="74" width="354" height="37"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="31"/>
+                                <color key="textColor" name="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="45"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose your company appointment days below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wXS-vF-is5">
+                                <rect key="frame" x="30" y="131" width="354" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                </variation>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="wXS-vF-is5" firstAttribute="top" secondItem="NSN-Of-0xX" secondAttribute="bottom" constant="20" id="1LA-b8-uCh"/>
+                            <constraint firstItem="c0E-Kx-JKx" firstAttribute="trailing" secondItem="NSN-Of-0xX" secondAttribute="trailing" constant="30" id="31I-OO-qRW">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="NSN-Of-0xX" firstAttribute="leading" secondItem="c0E-Kx-JKx" secondAttribute="leading" constant="30" id="3rv-2H-nuk">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="wXS-vF-is5" firstAttribute="leading" secondItem="c0E-Kx-JKx" secondAttribute="leading" constant="30" id="5a5-qY-FHU">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="NSN-Of-0xX" firstAttribute="top" secondItem="c0E-Kx-JKx" secondAttribute="top" constant="30" id="AgH-cs-0bc"/>
+                            <constraint firstItem="c0E-Kx-JKx" firstAttribute="bottom" secondItem="ptv-EM-g1c" secondAttribute="bottom" constant="20" id="IfC-2F-X1V"/>
+                            <constraint firstItem="LK0-F5-0Or" firstAttribute="trailing" secondItem="c0E-Kx-JKx" secondAttribute="trailing" id="Lq5-wY-GL1"/>
+                            <constraint firstItem="ptv-EM-g1c" firstAttribute="top" secondItem="LK0-F5-0Or" secondAttribute="bottom" constant="35" id="OjR-Ck-hm0"/>
+                            <constraint firstItem="c0E-Kx-JKx" firstAttribute="trailing" secondItem="wXS-vF-is5" secondAttribute="trailing" constant="30" id="TUC-cU-sEC">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="LK0-F5-0Or" firstAttribute="top" secondItem="wXS-vF-is5" secondAttribute="bottom" constant="20" id="WXF-r9-Rv2"/>
+                            <constraint firstItem="LK0-F5-0Or" firstAttribute="leading" secondItem="c0E-Kx-JKx" secondAttribute="leading" id="Xmb-14-1vw"/>
+                            <constraint firstItem="c0E-Kx-JKx" firstAttribute="trailing" secondItem="ptv-EM-g1c" secondAttribute="trailing" constant="30" id="YXm-FT-BrN"/>
+                            <constraint firstItem="ptv-EM-g1c" firstAttribute="leading" secondItem="c0E-Kx-JKx" secondAttribute="leading" constant="30" id="fVa-XR-D4l"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="c0E-Kx-JKx"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="2uP-dq-N0d">
+                        <barButtonItem key="backBarButtonItem" title=" " id="S2c-Zh-zPo"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="addCompanyDaysEnabledTableView" destination="LK0-F5-0Or" id="Uq7-5G-cmD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lSm-jL-DUW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="16955" y="3830"/>
+        </scene>
+        <!--Add Company Hours Enabled-->
+        <scene sceneID="HSi-rB-UEf">
+            <objects>
+                <viewController storyboardIdentifier="addCompanyHoursEnabledViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="K9c-gb-sDl" userLabel="Add Company Hours Enabled" customClass="AddCompanyHoursEnabledViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="f91-fR-vau">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="80N-gk-zGT" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
+                                <rect key="frame" x="30" y="797" width="354" height="45"/>
+                                <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="kva-lJ-CZA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                <state key="normal" title="Add Company">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                </variation>
+                                <connections>
+                                    <action selector="addCompanyButtonTapped:" destination="K9c-gb-sDl" eventType="touchUpInside" id="PCW-4Z-7Mj"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oCb-38-YOv">
+                                <rect key="frame" x="0.0" y="202" width="414" height="560"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="enableOptionTableViewCell" id="jRw-4b-Ps8" customClass="EnableOptionTableViewCell" customModule="NovaOne" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jRw-4b-Ps8" id="jiQ-Gd-K1y">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IJB-Zc-bF5" userLabel="Option Label">
+                                                    <rect key="frame" x="20" y="12" width="42" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                                    <color key="textColor" name="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=regular">
+                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
+                                                    </variation>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tick" translatesAutoresizingMaskIntoConstraints="NO" id="iio-zG-anr">
+                                                    <rect key="frame" x="368" y="9" width="26" height="26"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="iio-zG-anr" secondAttribute="height" multiplier="1:1" id="2lo-Kb-w1A"/>
+                                                        <constraint firstAttribute="width" constant="26" id="LZg-yH-y0d"/>
+                                                        <constraint firstAttribute="height" constant="26" id="j8v-h8-I8R"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="IJB-Zc-bF5" firstAttribute="centerY" secondItem="jiQ-Gd-K1y" secondAttribute="centerY" id="AZu-Eo-CeL"/>
+                                                <constraint firstItem="iio-zG-anr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="jiQ-Gd-K1y" secondAttribute="leading" id="U81-Rq-fLh"/>
+                                                <constraint firstAttribute="trailing" secondItem="iio-zG-anr" secondAttribute="trailing" constant="20" id="cvq-u1-kx1"/>
+                                                <constraint firstItem="IJB-Zc-bF5" firstAttribute="leading" secondItem="jiQ-Gd-K1y" secondAttribute="leading" constant="20" id="rbh-M9-HFn"/>
+                                                <constraint firstItem="iio-zG-anr" firstAttribute="centerY" secondItem="jiQ-Gd-K1y" secondAttribute="centerY" id="s50-90-XWV"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="IJB-Zc-bF5" secondAttribute="trailing" id="xXg-FR-Cf2"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="checkMarkImage" destination="iio-zG-anr" id="8pL-ed-bLY"/>
+                                            <outlet property="optionLabel" destination="IJB-Zc-bF5" id="y0E-hv-V23"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Appointment Hours" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lxj-A1-JtO">
+                                <rect key="frame" x="30" y="84" width="354" height="37"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="31"/>
+                                <color key="textColor" name="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="45"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose your company appointment hours below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rrX-wn-l38">
+                                <rect key="frame" x="30" y="141" width="354" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                </variation>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="80N-gk-zGT" firstAttribute="leading" secondItem="nW2-Cc-XT1" secondAttribute="leading" constant="30" id="3ll-fc-1pe"/>
+                            <constraint firstItem="rrX-wn-l38" firstAttribute="leading" secondItem="nW2-Cc-XT1" secondAttribute="leading" constant="30" id="6Jl-hK-56f">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="80N-gk-zGT" firstAttribute="top" secondItem="oCb-38-YOv" secondAttribute="bottom" constant="35" id="BRh-RR-ZfK"/>
+                            <constraint firstItem="nW2-Cc-XT1" firstAttribute="trailing" secondItem="rrX-wn-l38" secondAttribute="trailing" constant="30" id="EaU-gt-4oW">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="nW2-Cc-XT1" firstAttribute="trailing" secondItem="Lxj-A1-JtO" secondAttribute="trailing" constant="30" id="Mts-dm-zqr">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="rrX-wn-l38" firstAttribute="top" secondItem="Lxj-A1-JtO" secondAttribute="bottom" constant="20" id="NgY-jR-Uo2"/>
+                            <constraint firstItem="oCb-38-YOv" firstAttribute="leading" secondItem="nW2-Cc-XT1" secondAttribute="leading" id="TDT-bo-yPm"/>
+                            <constraint firstItem="nW2-Cc-XT1" firstAttribute="trailing" secondItem="80N-gk-zGT" secondAttribute="trailing" constant="30" id="X9Z-qd-hd0"/>
+                            <constraint firstItem="oCb-38-YOv" firstAttribute="top" secondItem="rrX-wn-l38" secondAttribute="bottom" constant="20" id="Xzx-S9-bsE"/>
+                            <constraint firstItem="Lxj-A1-JtO" firstAttribute="leading" secondItem="nW2-Cc-XT1" secondAttribute="leading" constant="30" id="asp-eV-4Up">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
+                            <constraint firstItem="nW2-Cc-XT1" firstAttribute="bottom" secondItem="80N-gk-zGT" secondAttribute="bottom" constant="20" id="f9P-db-vzu"/>
+                            <constraint firstItem="oCb-38-YOv" firstAttribute="trailing" secondItem="nW2-Cc-XT1" secondAttribute="trailing" id="gvh-0B-uRC"/>
+                            <constraint firstItem="Lxj-A1-JtO" firstAttribute="top" secondItem="nW2-Cc-XT1" secondAttribute="top" constant="40" id="woG-AM-KMg"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="nW2-Cc-XT1"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="QSs-Pn-y4K"/>
+                    <connections>
+                        <outlet property="addCompanyEnabledHoursTableView" destination="oCb-38-YOv" id="9Cp-9y-rhD"/>
+                        <outlet property="appointmentHoursButton" destination="80N-gk-zGT" id="pKj-yH-MpR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lJh-6W-4ZS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="17823" y="3830"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ckO-hd-4JZ">
+            <objects>
+                <navigationController storyboardIdentifier="addCompanyNavigationController" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9oj-78-Fq6" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="CDj-Fp-T95">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" name="viewBackgroundColor"/>
+                        <color key="tintColor" red="0.32549019610000002" green="0.42352941179999998" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="fu3-xP-iSX" kind="relationship" relationship="rootViewController" id="npJ-Nh-ppS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0s1-Ts-fhs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="12380.625" y="3830"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="cancelButtonBlue" width="33.5" height="33.5"/>
+        <image name="tick" width="26.5" height="26.5"/>
+        <namedColor name="textColor">
+            <color red="0.2669999897480011" green="0.2669999897480011" blue="0.2669999897480011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="textFieldColor">
+            <color red="0.66699999570846558" green="0.66699999570846558" blue="0.66699999570846558" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="viewBackgroundColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

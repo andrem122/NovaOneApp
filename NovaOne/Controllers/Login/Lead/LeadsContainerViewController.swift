@@ -114,8 +114,9 @@ class LeadsContainerViewController: UIViewController, NovaOneObjectContainer {
                                             emptyViewController.addObjectButtonHandler = {
                                                 [weak self] in
                                                 // Go to the add object screen
+                                                let addLeadStoryboard = UIStoryboard(name: Defaults.StoryBoards.addLead.rawValue, bundle: .main)
                                                 guard
-                                                    let addLeadNavigationController = self?.storyboard?.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addLead.rawValue) as? UINavigationController,
+                                                    let addLeadNavigationController = addLeadStoryboard.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addLead.rawValue) as? UINavigationController,
                                                     let addLeadCompanyViewController = addLeadNavigationController.viewControllers.first as? AddLeadCompanyViewController
                                                 else { return }
                                                 

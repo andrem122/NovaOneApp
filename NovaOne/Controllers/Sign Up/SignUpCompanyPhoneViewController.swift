@@ -62,11 +62,11 @@ class SignUpCompanyPhoneViewController: BaseSignUpViewController, UITextFieldDel
             let parameters: [String: String] = ["valueToCheckInDatabase": "%2B1" + unformattedPhoneNumber, "tableName": Defaults.DataBaseTableNames.company.rawValue, "columnName": "phone_number"]
             httpRequest.request(url: Defaults.Urls.api.rawValue + "/inputCheck.php", dataModel: SuccessResponse.self, parameters: parameters) { [weak self] (result) in
                 switch result {
-                case .success(let success):
+                case .success(_):
                     
-                    print(success.successReason)
+                    let addCompanyStoryboard = UIStoryboard(name: Defaults.StoryBoards.addCompany.rawValue, bundle: .main)
                     guard
-                        let addCompanyDaysEnabledViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addCompanyDaysEnabled.rawValue) as? AddCompanyDaysEnabledViewController
+                        let addCompanyDaysEnabledViewController = addCompanyStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addCompanyDaysEnabled.rawValue) as? AddCompanyDaysEnabledViewController
                     else { return }
                     
                     self?.company?.phoneNumber = unformattedPhoneNumber
