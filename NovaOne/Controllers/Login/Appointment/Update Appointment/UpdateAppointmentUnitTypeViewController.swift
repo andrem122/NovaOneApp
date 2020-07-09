@@ -59,7 +59,7 @@ class UpdateAppointmentUnitTypeViewController: UpdateBaseViewController, UIPicke
             
         }
         
-        self.updateObject(for: "appointments_appointment_real_estate", at: ["unit_type": self.selectedChoice], endpoint: "/updateAppointmentMedicalAndRealEstate.php", objectId: Int(objectId), objectType: Appointment.self, updateClosure: updateClosure, successSubtitle: "Appointment unit type has been successfully updated.", successDoneHandler: successDoneHandler)
+        self.updateObject(for: Defaults.DataBaseTableNames.appointmentsRealEstate.rawValue, at: ["unit_type": self.selectedChoice], endpoint: "/updateAppointmentMedicalAndRealEstate.php", objectId: Int(objectId), objectType: Appointment.self, updateClosure: updateClosure, successSubtitle: "Appointment unit type has been successfully updated.", successDoneHandler: successDoneHandler)
     }
 }
 

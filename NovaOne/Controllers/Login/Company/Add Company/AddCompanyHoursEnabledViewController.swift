@@ -192,7 +192,8 @@ class AddCompanyHoursEnabledViewController: AddCompanyBaseViewController, UITabl
                     case .success(let customer):
                         
                         // Go to container view controller
-                        if let containerViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.container.rawValue) as? ContainerViewController  {
+                        let mainStoryboard = UIStoryboard(name: Defaults.StoryBoards.main.rawValue, bundle: .main)
+                        if let containerViewController = mainStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.container.rawValue) as? ContainerViewController  {
                             
                             // Get non optionals from CustomerModel instance
                             let dateJoinedDate = customer.dateJoinedDate

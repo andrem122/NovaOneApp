@@ -70,7 +70,8 @@ class AddLeadPhoneCheckViewController: AddLeadBaseViewController {
                         
                         self?.removeSpinner()
                         
-                        guard let successViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.success.rawValue) as? SuccessViewController else { return }
+                        let mainStoryboard = UIStoryboard(name: Defaults.StoryBoards.main.rawValue, bundle: .main)
+                        guard let successViewController = mainStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.success.rawValue) as? SuccessViewController else { return }
                         successViewController.subtitleText = success.successReason
                         successViewController.titleLabelText = "Lead Added!"
                         successViewController.doneHandler = {

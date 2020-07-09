@@ -43,7 +43,7 @@ class UpdatePhoneViewController: UpdateBaseViewController {
             self.showSpinner(for: self.view, textForLabel: "Updating")
             
             let httpRequest = HTTPRequests()
-            let parameters: [String: String] = ["valueToCheckInDatabase": "%2B1" + unformattedPhoneNumber, "tableName": "customer_register_customer_user", "columnName": "phone_number"]
+            let parameters: [String: String] = ["valueToCheckInDatabase": "%2B1" + unformattedPhoneNumber, "tableName": Defaults.DataBaseTableNames.customer.rawValue, "columnName": "phone_number"]
             httpRequest.request(url: Defaults.Urls.api.rawValue + "/inputCheck.php", dataModel: SuccessResponse.self, parameters: parameters) { [weak self] (result) in
                 switch result {
                 case .success(_):
@@ -72,7 +72,7 @@ class UpdatePhoneViewController: UpdateBaseViewController {
                         
                     }
                     
-                    self?.updateObject(for: "customer_register_customer_user", at: ["phone_number": "%2B1" + unformattedPhoneNumber], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Customer.self, updateClosure: updateClosure, successSubtitle: "Phone number successfully updated.", successDoneHandler: successDoneHandler)
+                    self?.updateObject(for: Defaults.DataBaseTableNames.customer.rawValue, at: ["phone_number": "%2B1" + unformattedPhoneNumber], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Customer.self, updateClosure: updateClosure, successSubtitle: "Phone number successfully updated.", successDoneHandler: successDoneHandler)
                     
                 case .failure(let error):
                     guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }

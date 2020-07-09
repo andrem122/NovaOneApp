@@ -56,7 +56,7 @@ class UpdateAppointmentEmailViewController: UpdateBaseViewController {
                
            }
            
-           self.updateObject(for: "appointments_appointment_medical", at: ["email": updateValue], endpoint: "/updateAppointmentMedicalAndRealEstate.php", objectId: Int(objectId), objectType: Appointment.self, updateClosure: updateClosure, successSubtitle: "Appointment email has been successfully updated.", successDoneHandler: successDoneHandler)
+           self.updateObject(for: Defaults.DataBaseTableNames.appointmentsMedical.rawValue, at: ["email": updateValue], endpoint: "/updateAppointmentMedicalAndRealEstate.php", objectId: Int(objectId), objectType: Appointment.self, updateClosure: updateClosure, successSubtitle: "Appointment email has been successfully updated.", successDoneHandler: successDoneHandler)
         } else {
             // Email is not valid, so present pop up
             let popUpOkViewController = self.alertService.popUpOk(title: "Invalid Email", body: "Please enter a valid email.")

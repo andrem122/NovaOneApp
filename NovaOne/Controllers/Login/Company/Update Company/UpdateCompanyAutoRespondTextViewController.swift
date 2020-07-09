@@ -63,7 +63,7 @@ class UpdateCompanyAutoRespondTextViewController: UpdateBaseViewController {
                 
             }
             
-            self.updateObject(for: "property_company", at: ["auto_respond_text": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Company.self, updateClosure: updateClosure, successSubtitle: "Company auto respond text has been successfully updated.", successDoneHandler: successDoneHandler)
+            self.updateObject(for: Defaults.DataBaseTableNames.company.rawValue, at: ["auto_respond_text": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Company.self, updateClosure: updateClosure, successSubtitle: "Company auto respond text has been successfully updated.", successDoneHandler: successDoneHandler)
         }
         
     }

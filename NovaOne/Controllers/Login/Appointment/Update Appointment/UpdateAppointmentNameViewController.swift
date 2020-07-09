@@ -58,7 +58,7 @@ class UpdateAppointmentNameViewController: UpdateBaseViewController {
                 
             }
             
-            self.updateObject(for: "appointments_appointment_base", at: ["name": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Appointment.self, updateClosure: updateClosure, successSubtitle: "Appointment name has been successfully updated.", successDoneHandler: successDoneHandler)
+            self.updateObject(for: Defaults.DataBaseTableNames.appointmentsBase.rawValue, at: ["name": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Appointment.self, updateClosure: updateClosure, successSubtitle: "Appointment name has been successfully updated.", successDoneHandler: successDoneHandler)
         }
     }
     

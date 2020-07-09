@@ -110,7 +110,7 @@ class UpdateAppointmentTimeViewController: UpdateBaseViewController {
                                          "password": password,
                                          "columnName": "id",
                                          "objectId": appointment.id,
-                                         "tableName": "appointments_appointment_base"]
+                                         "tableName": Defaults.DataBaseTableNames.appointmentsBase.rawValue]
         
         let httpRequest = HTTPRequests()
         httpRequest.request(url: Defaults.Urls.api.rawValue + "/deleteAppointmentMedical.php", dataModel: SuccessResponse.self, parameters: parameters) { [weak self] (result) in

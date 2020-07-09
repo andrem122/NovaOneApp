@@ -41,7 +41,7 @@ class UpdateEmailViewController: UpdateBaseViewController {
             self.showSpinner(for: self.view, textForLabel: "Updating")
             
             let httpRequest = HTTPRequests()
-            let parameters: [String: String] = ["valueToCheckInDatabase": updateValue, "tableName": "auth_user", "columnName": "email"]
+            let parameters: [String: String] = ["valueToCheckInDatabase": updateValue, "tableName": Defaults.DataBaseTableNames.authUser.rawValue, "columnName": "email"]
             httpRequest.request(url: Defaults.Urls.api.rawValue + "/inputCheck.php", dataModel: SuccessResponse.self, parameters: parameters) { [weak self] (result) in
                 switch result {
                     case .success(_):
@@ -72,7 +72,7 @@ class UpdateEmailViewController: UpdateBaseViewController {
                         
                     }
                     
-                    self?.updateObject(for: "auth_user", at: ["email": updateValue], endpoint: "/updateEmail.php", objectId: Int(objectId), objectType: Customer.self, updateClosure: updateClosure, successSubtitle: "Email successfully updated.", successDoneHandler: successDoneHandler)
+                    self?.updateObject(for: Defaults.DataBaseTableNames.authUser.rawValue, at: ["email": updateValue], endpoint: "/updateEmail.php", objectId: Int(objectId), objectType: Customer.self, updateClosure: updateClosure, successSubtitle: "Email successfully updated.", successDoneHandler: successDoneHandler)
                         
                         
                     case .failure(let error):

@@ -20,6 +20,13 @@
 		6516A845245255E7003B974A /* chartDataWeekly.php in Resources */ = {isa = PBXBuildFile; fileRef = 6516A844245255E7003B974A /* chartDataWeekly.php */; };
 		6516A84724525F5A003B974A /* ChartDataWeekly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6516A84624525F5A003B974A /* ChartDataWeekly.swift */; };
 		6519A6C7248AE75200BFBDF7 /* AddAppointmentBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6519A6C6248AE75200BFBDF7 /* AddAppointmentBaseViewController.swift */; };
+		6519B45F24B600B4003AA1D6 /* UpdateLeadNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6519B45E24B600B4003AA1D6 /* UpdateLeadNameViewController.swift */; };
+		6519B46124B60154003AA1D6 /* UpdateLeadPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6519B46024B60154003AA1D6 /* UpdateLeadPhoneViewController.swift */; };
+		6519B46324B60174003AA1D6 /* UpdateLeadEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6519B46224B60174003AA1D6 /* UpdateLeadEmailViewController.swift */; };
+		6519B46524B601B8003AA1D6 /* UpdateLeadContactedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6519B46424B601B8003AA1D6 /* UpdateLeadContactedViewController.swift */; };
+		6519B46724B601D5003AA1D6 /* UpdateLeadDateOfInquiryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6519B46624B601D5003AA1D6 /* UpdateLeadDateOfInquiryViewController.swift */; };
+		6519B46924B60203003AA1D6 /* UpdateLeadCompanyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6519B46824B60203003AA1D6 /* UpdateLeadCompanyViewController.swift */; };
+		6519B46B24B6021A003AA1D6 /* UpdateLeadRenterBrandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6519B46A24B6021A003AA1D6 /* UpdateLeadRenterBrandViewController.swift */; };
 		65230463242FFD900025FE07 /* EnableOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65230462242FFD900025FE07 /* EnableOption.swift */; };
 		6528135923E79D3F005A1B1F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65446CEB23E0F4370052DEBE /* LoginViewController.swift */; };
 		6528135A23E79D3F005A1B1F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65446CEB23E0F4370052DEBE /* LoginViewController.swift */; };
@@ -126,6 +133,8 @@
 		65A4CD882445065E00EE4AAA /* HelpTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A4CD872445065E00EE4AAA /* HelpTableViewController.swift */; };
 		65A6EF9E249E75D500DE12E7 /* updateObject.php in Resources */ = {isa = PBXBuildFile; fileRef = 65A6EF9D249E75D500DE12E7 /* updateObject.php */; };
 		65A6EFA0249E7D4D00DE12E7 /* UpdateBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A6EF9F249E7D4D00DE12E7 /* UpdateBaseViewController.swift */; };
+		65A9E30B24B6979D000110AB /* AddAppointment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65FE6FB024B68D8B0055AF70 /* AddAppointment.storyboard */; };
+		65A9E30D24B69899000110AB /* AddLead.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65A9E30C24B69886000110AB /* AddLead.storyboard */; };
 		65AA3E662432722D005C2319 /* AddCompanyNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AA3E652432722D005C2319 /* AddCompanyNameViewController.swift */; };
 		65AA3E6824327245005C2319 /* AddCompanyPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AA3E6724327245005C2319 /* AddCompanyPhoneViewController.swift */; };
 		65AA3E6A24327254005C2319 /* AddCompanyEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AA3E6924327254005C2319 /* AddCompanyEmailViewController.swift */; };
@@ -196,6 +205,7 @@
 		65FA42C224181A430040C915 /* UpdateCompanyEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FA42C124181A430040C915 /* UpdateCompanyEmailViewController.swift */; };
 		65FA42C424181B6C0040C915 /* UpdateCompanyNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FA42C324181B6C0040C915 /* UpdateCompanyNameViewController.swift */; };
 		65FAC249247C4B4900E40EBA /* CompaniesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FAC248247C4B4900E40EBA /* CompaniesTableViewController.swift */; };
+		65FE6FAF24B68C040055AF70 /* Signup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65FE6FAE24B68C040055AF70 /* Signup.storyboard */; };
 		D6555FF552868046CF9D634A /* libPods-NovaOneTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8687C03649CC91286147822C /* libPods-NovaOneTests.a */; };
 /* End PBXBuildFile section */
 
@@ -246,6 +256,13 @@
 		6516A844245255E7003B974A /* chartDataWeekly.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = chartDataWeekly.php; sourceTree = "<group>"; };
 		6516A84624525F5A003B974A /* ChartDataWeekly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartDataWeekly.swift; sourceTree = "<group>"; };
 		6519A6C6248AE75200BFBDF7 /* AddAppointmentBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAppointmentBaseViewController.swift; sourceTree = "<group>"; };
+		6519B45E24B600B4003AA1D6 /* UpdateLeadNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateLeadNameViewController.swift; sourceTree = "<group>"; };
+		6519B46024B60154003AA1D6 /* UpdateLeadPhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateLeadPhoneViewController.swift; sourceTree = "<group>"; };
+		6519B46224B60174003AA1D6 /* UpdateLeadEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateLeadEmailViewController.swift; sourceTree = "<group>"; };
+		6519B46424B601B8003AA1D6 /* UpdateLeadContactedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateLeadContactedViewController.swift; sourceTree = "<group>"; };
+		6519B46624B601D5003AA1D6 /* UpdateLeadDateOfInquiryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateLeadDateOfInquiryViewController.swift; sourceTree = "<group>"; };
+		6519B46824B60203003AA1D6 /* UpdateLeadCompanyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateLeadCompanyViewController.swift; sourceTree = "<group>"; };
+		6519B46A24B6021A003AA1D6 /* UpdateLeadRenterBrandViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateLeadRenterBrandViewController.swift; sourceTree = "<group>"; };
 		65230462242FFD900025FE07 /* EnableOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnableOption.swift; sourceTree = "<group>"; };
 		652F8ED6245CF6C6008FAF38 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		65316D522445F8A90072F78A /* libSkeletonView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libSkeletonView.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -351,6 +368,7 @@
 		65A4CD872445065E00EE4AAA /* HelpTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpTableViewController.swift; sourceTree = "<group>"; };
 		65A6EF9D249E75D500DE12E7 /* updateObject.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = updateObject.php; sourceTree = "<group>"; };
 		65A6EF9F249E7D4D00DE12E7 /* UpdateBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateBaseViewController.swift; sourceTree = "<group>"; };
+		65A9E30C24B69886000110AB /* AddLead.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = AddLead.storyboard; path = /Users/andre/Desktop/NovaOne/NovaOne/Storyboards/AddLead.storyboard; sourceTree = "<absolute>"; };
 		65AA3E652432722D005C2319 /* AddCompanyNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCompanyNameViewController.swift; sourceTree = "<group>"; };
 		65AA3E6724327245005C2319 /* AddCompanyPhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCompanyPhoneViewController.swift; sourceTree = "<group>"; };
 		65AA3E6924327254005C2319 /* AddCompanyEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCompanyEmailViewController.swift; sourceTree = "<group>"; };
@@ -416,6 +434,8 @@
 		65FA42C124181A430040C915 /* UpdateCompanyEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCompanyEmailViewController.swift; sourceTree = "<group>"; };
 		65FA42C324181B6C0040C915 /* UpdateCompanyNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCompanyNameViewController.swift; sourceTree = "<group>"; };
 		65FAC248247C4B4900E40EBA /* CompaniesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompaniesTableViewController.swift; sourceTree = "<group>"; };
+		65FE6FAE24B68C040055AF70 /* Signup.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Signup.storyboard; sourceTree = "<group>"; };
+		65FE6FB024B68D8B0055AF70 /* AddAppointment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = AddAppointment.storyboard; path = /Users/andre/Desktop/NovaOne/NovaOne/Storyboards/AddAppointment.storyboard; sourceTree = "<absolute>"; };
 		8687C03649CC91286147822C /* libPods-NovaOneTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NovaOneTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C165A958EC1B46D1F527F2E2 /* Pods-NovaOne.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NovaOne.debug.xcconfig"; path = "Target Support Files/Pods-NovaOne/Pods-NovaOne.debug.xcconfig"; sourceTree = "<group>"; };
 		C691C7C649829426F16AF263 /* Pods-NovaOneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NovaOneTests.release.xcconfig"; path = "Target Support Files/Pods-NovaOneTests/Pods-NovaOneTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -475,6 +495,20 @@
 				8687C03649CC91286147822C /* libPods-NovaOneTests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6519B45D24B60060003AA1D6 /* Update Lead */ = {
+			isa = PBXGroup;
+			children = (
+				6519B45E24B600B4003AA1D6 /* UpdateLeadNameViewController.swift */,
+				6519B46024B60154003AA1D6 /* UpdateLeadPhoneViewController.swift */,
+				6519B46224B60174003AA1D6 /* UpdateLeadEmailViewController.swift */,
+				6519B46424B601B8003AA1D6 /* UpdateLeadContactedViewController.swift */,
+				6519B46624B601D5003AA1D6 /* UpdateLeadDateOfInquiryViewController.swift */,
+				6519B46824B60203003AA1D6 /* UpdateLeadCompanyViewController.swift */,
+				6519B46A24B6021A003AA1D6 /* UpdateLeadRenterBrandViewController.swift */,
+			);
+			path = "Update Lead";
 			sourceTree = "<group>";
 		};
 		65446CED23E0F7860052DEBE /* IBDesignables */ = {
@@ -543,6 +577,7 @@
 				65BA98BA243166C700CFAA9F /* LeadsContainerViewController.swift */,
 				6593CFAC2436A9DC0026C5D7 /* LeadDetailViewController.swift */,
 				65C4C6FA2474A8E600E143C5 /* LeadsTableViewController.swift */,
+				6519B45D24B60060003AA1D6 /* Update Lead */,
 				65695AB3244CC7D900D35E55 /* Add Lead */,
 			);
 			path = Lead;
@@ -681,6 +716,7 @@
 		6591C39823DA78F900535C46 /* NovaOne */ = {
 			isa = PBXGroup;
 			children = (
+				65FE6FAD24B68B920055AF70 /* Storyboards */,
 				65BCE1822429327100E5040E /* Core Data */,
 				658EC6C423F484F50042827E /* Cells */,
 				65AB289C23F21CC800075889 /* Keychain */,
@@ -692,9 +728,7 @@
 				657AC33D23DCFC8E00DA6096 /* Views */,
 				6591C39923DA78F900535C46 /* AppDelegate.swift */,
 				6591C39B23DA78F900535C46 /* SceneDelegate.swift */,
-				6591C39F23DA78F900535C46 /* Main.storyboard */,
 				6591C3A223DA78FB00535C46 /* Assets.xcassets */,
-				6591C3A423DA78FB00535C46 /* LaunchScreen.storyboard */,
 				6591C3A723DA78FB00535C46 /* Info.plist */,
 			);
 			path = NovaOne;
@@ -891,6 +925,18 @@
 			path = "Split View Controllers";
 			sourceTree = "<group>";
 		};
+		65FE6FAD24B68B920055AF70 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				65A9E30C24B69886000110AB /* AddLead.storyboard */,
+				65FE6FB024B68D8B0055AF70 /* AddAppointment.storyboard */,
+				65FE6FAE24B68C040055AF70 /* Signup.storyboard */,
+				6591C3A423DA78FB00535C46 /* LaunchScreen.storyboard */,
+				6591C39F23DA78F900535C46 /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1021,11 +1067,13 @@
 				653D2184244523C5009DA68E /* credentials.php in Resources */,
 				65793B9124854C7A0093D5A7 /* moreCompanies.php in Resources */,
 				6591C3A323DA78FB00535C46 /* Assets.xcassets in Resources */,
+				65A9E30D24B69899000110AB /* AddLead.storyboard in Resources */,
 				65EEF8EB247AD014004B64C1 /* refreshAppointments.php in Resources */,
 				656A8F81244F52260028ABAE /* objectCounts.php in Resources */,
 				659D487823F375F0007AC005 /* leads.php in Resources */,
 				65866FE624AD021C0029847E /* deleteObject.php in Resources */,
 				65074FB12470622F008AC4B2 /* signup.php in Resources */,
+				65A9E30B24B6979D000110AB /* AddAppointment.storyboard in Resources */,
 				65A6EF9E249E75D500DE12E7 /* updateObject.php in Resources */,
 				6591C3A123DA78F900535C46 /* Main.storyboard in Resources */,
 				6578D9F12415AD06002E94BF /* companies.php in Resources */,
@@ -1035,6 +1083,7 @@
 				6584C6EB2499186D00FFD1D3 /* addCompany.php in Resources */,
 				6560F004244A30FE0097792D /* refreshLeads.php in Resources */,
 				6569539B24477F6300CF86B7 /* moreAppointments.php in Resources */,
+				65FE6FAF24B68C040055AF70 /* Signup.storyboard in Resources */,
 				65B3536D24A3D01C00F15D23 /* updatePassword.php in Resources */,
 				65B3536B24A3CA8100F15D23 /* updateName.php in Resources */,
 			);
@@ -1175,10 +1224,12 @@
 				65AF80EE2442495A00167C8D /* UpdateAppointmentAddressViewController.swift in Sources */,
 				657FF25F249164B3007C6E2F /* AddAddressProtocol.swift in Sources */,
 				656A1347246B68E10002A176 /* SignUpCustomerTypeViewController.swift in Sources */,
+				6519B46B24B6021A003AA1D6 /* UpdateLeadRenterBrandViewController.swift in Sources */,
 				655D0B23240B43E800D0E329 /* UpdatePhoneViewController.swift in Sources */,
 				65AF80E42442490600167C8D /* UpdateAppointmentPhoneViewController.swift in Sources */,
 				658AF5FC240DA66800577446 /* SignUpCompanyAddressViewController.swift in Sources */,
 				658EC6C623F4870D0042827E /* Appointment.swift in Sources */,
+				6519B46524B601B8003AA1D6 /* UpdateLeadContactedViewController.swift in Sources */,
 				6578D9EF24158E55002E94BF /* Company.swift in Sources */,
 				655D0B27240B443700D0E329 /* UpdatePasswordViewController.swift in Sources */,
 				65E0970D24511C3E00D2CC00 /* ChartHelper.swift in Sources */,
@@ -1214,11 +1265,13 @@
 				65802590240F4A7600A74DCD /* SignUpCompanyPhoneViewController.swift in Sources */,
 				65AA3E7B2432C2C2005C2319 /* AddAppointmentNameViewController.swift in Sources */,
 				65BA98BB243166C700CFAA9F /* LeadsContainerViewController.swift in Sources */,
+				6519B46924B60203003AA1D6 /* UpdateLeadCompanyViewController.swift in Sources */,
 				659CCD3623EE46260066C9CB /* ErrorResponse.swift in Sources */,
 				65695ABD244CC8C600D35E55 /* AddLeadCompanyViewController.swift in Sources */,
 				6575F62E242EC7F500332729 /* EnabledOptionTableViewCell.swift in Sources */,
 				65C14C332434DAA500848606 /* PopUpOkViewController.swift in Sources */,
 				65D169AD245DDFE6006219C8 /* Defaults.swift in Sources */,
+				6519B46324B60174003AA1D6 /* UpdateLeadEmailViewController.swift in Sources */,
 				65A6EFA0249E7D4D00DE12E7 /* UpdateBaseViewController.swift in Sources */,
 				65695AB5244CC80900D35E55 /* AddLeadNameViewController.swift in Sources */,
 				657881E02493C8B100E3E556 /* AddLeadPhoneCheckViewController.swift in Sources */,
@@ -1269,6 +1322,7 @@
 				65C5467923ECAB2300A198F3 /* AppUtility.swift in Sources */,
 				6591C39C23DA78F900535C46 /* SceneDelegate.swift in Sources */,
 				655D763B2469E6F400804D98 /* BaseSignUpViewController.swift in Sources */,
+				6519B46724B601D5003AA1D6 /* UpdateLeadDateOfInquiryViewController.swift in Sources */,
 				65AF80E62442491800167C8D /* UpdateAppointmentStatusViewController.swift in Sources */,
 				65B2B1D82433B26D00014820 /* AddAppointmentGenderViewController.swift in Sources */,
 				65B2B1D02433B21000014820 /* AddAppointmentTestTypeViewController.swift in Sources */,
@@ -1279,6 +1333,7 @@
 				65B2B1D42433B23900014820 /* AddAppointmentEmailViewController.swift in Sources */,
 				6581E5D42479F5F400F8AF9F /* AppointmentsTableViewController.swift in Sources */,
 				65AF80F22442498800167C8D /* UpdateAppointmentTimeViewController.swift in Sources */,
+				6519B45F24B600B4003AA1D6 /* UpdateLeadNameViewController.swift in Sources */,
 				65B3536924A39FB600F15D23 /* Customer+CoreDataProperties.swift in Sources */,
 				650547DD247990250036DF3E /* NovaOneTableViewProtocol.swift in Sources */,
 				65AD1BBD24576059007C4444 /* BaseLoginViewController.swift in Sources */,
@@ -1299,6 +1354,7 @@
 				6584FAC324089BA900A06125 /* Lead.swift in Sources */,
 				6567D457246F3D5B008823E5 /* InputValidators.swift in Sources */,
 				65AD3926243652AC00005370 /* LaunchScreenViewController.swift in Sources */,
+				6519B46124B60154003AA1D6 /* UpdateLeadPhoneViewController.swift in Sources */,
 				65446CEC23E0F4370052DEBE /* LoginViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

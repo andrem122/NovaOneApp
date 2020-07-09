@@ -158,7 +158,7 @@ class UpdateCompanyHoursEnabledViewController: UpdateBaseViewController, UITable
                 
             }
             
-            self.updateObject(for: "property_company", at: ["hours_of_the_day_enabled": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Company.self, updateClosure: updateClosure, successSubtitle: "Company showing hours have been successfully updated.", successDoneHandler: successDoneHandler)
+            self.updateObject(for: Defaults.DataBaseTableNames.company.rawValue, at: ["hours_of_the_day_enabled": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Company.self, updateClosure: updateClosure, successSubtitle: "Company showing hours have been successfully updated.", successDoneHandler: successDoneHandler)
             
         } else {
             let popUpOkViewController = self.alertService.popUpOk(title: "Select An Hour", body: "Please select at least one hour.")

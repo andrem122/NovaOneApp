@@ -75,7 +75,7 @@ class UpdateAppointmentTestTypeViewController: UpdateBaseViewController, UIPicke
             
         }
         
-        self.updateObject(for: "appointments_appointment_medical", at: ["test_type": self.selectedChoice], endpoint: "/updateAppointmentMedicalAndRealEstate.php", objectId: Int(objectId), objectType: Appointment.self, updateClosure: updateClosure, successSubtitle: "Appointment test type has been successfully updated.", successDoneHandler: successDoneHandler)
+        self.updateObject(for: Defaults.DataBaseTableNames.appointmentsMedical.rawValue, at: ["test_type": self.selectedChoice], endpoint: "/updateAppointmentMedicalAndRealEstate.php", objectId: Int(objectId), objectType: Appointment.self, updateClosure: updateClosure, successSubtitle: "Appointment test type has been successfully updated.", successDoneHandler: successDoneHandler)
     }
     
 }

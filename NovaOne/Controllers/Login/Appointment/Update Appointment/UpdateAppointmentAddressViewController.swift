@@ -116,7 +116,7 @@ class UpdateAppointmentAddressViewController: UpdateBaseViewController, AddAddre
                 
             }
             
-            self.updateObject(for: "appointments_appointment_medical", at: ["address": address], endpoint: "/updateAppointmentMedicalAndRealEstate.php", objectId: Int(objectId), objectType: Appointment.self, updateClosure: updateClosure, successSubtitle: "Appointment address has been successfully updated.", successDoneHandler: successDoneHandler)
+            self.updateObject(for: Defaults.DataBaseTableNames.appointmentsMedical.rawValue, at: ["address": address], endpoint: "/updateAppointmentMedicalAndRealEstate.php", objectId: Int(objectId), objectType: Appointment.self, updateClosure: updateClosure, successSubtitle: "Appointment address has been successfully updated.", successDoneHandler: successDoneHandler)
             
             
         }

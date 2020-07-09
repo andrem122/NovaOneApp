@@ -53,7 +53,8 @@ class AddAppointmentUnitTypeViewController: AddAppointmentBaseViewController, UI
                 case .success(let success):
                     // Redirect to success screen
                     
-                    guard let successViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.success.rawValue) as? SuccessViewController else { return }
+                    let mainStoryboard = UIStoryboard(name: Defaults.StoryBoards.main.rawValue, bundle: .main)
+                    guard let successViewController = mainStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.success.rawValue) as? SuccessViewController else { return }
                     successViewController.subtitleText = success.successReason
                     successViewController.titleLabelText = "Appointment Created!"
                     successViewController.doneHandler = {

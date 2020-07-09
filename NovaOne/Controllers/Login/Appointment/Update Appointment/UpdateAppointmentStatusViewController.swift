@@ -54,7 +54,7 @@ class UpdateAppointmentStatusViewController: UpdateBaseViewController, UIPickerV
             
         }
         
-        self.updateObject(for: "appointments_appointment_base", at: ["confirmed": self.selectedChoice], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Appointment.self, updateClosure: updateClosure, successSubtitle: "Appointment status has been successfully updated.", successDoneHandler: successDoneHandler)
+        self.updateObject(for: Defaults.DataBaseTableNames.appointmentsBase.rawValue, at: ["confirmed": self.selectedChoice], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Appointment.self, updateClosure: updateClosure, successSubtitle: "Appointment status has been successfully updated.", successDoneHandler: successDoneHandler)
     }
     
 }

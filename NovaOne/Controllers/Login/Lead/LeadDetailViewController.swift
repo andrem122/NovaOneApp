@@ -67,6 +67,7 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         let dateOfInquiry: String = self.convert(lead: dateOfInquiryDate)
         
         // Create dictionaries for cells
+        let nameItem = ObjectDetailItem(titleValue: name, titleItem: .name)
         let phoneNumberItem = ObjectDetailItem(titleValue: phoneNumber, titleItem: .phoneNumber)
         let emailItem = ObjectDetailItem(titleValue: email, titleItem: .email)
         let contactedItem = ObjectDetailItem(titleValue: contactedLead, titleItem: .contacted)
@@ -75,6 +76,7 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         
         self.titleLabel.text = name
         self.objectDetailItems = [
+            nameItem,
             phoneNumberItem,
             emailItem,
             contactedItem,
@@ -112,6 +114,54 @@ extension LeadDetailViewController {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        let titleItem = self.objectDetailItems[indexPath.row].titleItem
+        switch titleItem {
+            case .name:
+                guard let updateLeadNameViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateLeadName.rawValue) as? UpdateLeadNameViewController else { return }
+                
+                updateLeadNameViewController.updateObject = self.lead
+                updateLeadNameViewController.previousViewController = self
+                
+                self.navigationController?.pushViewController(updateLeadNameViewController, animated: true)
+            case .email:
+                guard let updateLeadEmailViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateLeadEmail.rawValue) as? UpdateLeadEmailViewController else { return }
+                
+                updateLeadEmailViewController.updateObject = self.lead
+                updateLeadEmailViewController.previousViewController = self
+                
+                self.navigationController?.pushViewController(updateLeadEmailViewController, animated: true)
+            case .phoneNumber:
+                guard let updateLeadPhoneViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateLeadPhone.rawValue) as? UpdateLeadPhoneViewController else { return }
+                
+                updateLeadPhoneViewController.updateObject = self.lead
+                updateLeadPhoneViewController.previousViewController = self
+                
+                self.navigationController?.pushViewController(updateLeadPhoneViewController, animated: true)
+            case .contacted:
+                guard let updateLeadContactedViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateLeadContacted.rawValue) as? UpdateLeadContactedViewController else { return }
+                
+                updateLeadContactedViewController.updateObject = self.lead
+                updateLeadContactedViewController.previousViewController = self
+                
+                self.navigationController?.pushViewController(updateLeadContactedViewController, animated: true)
+            case .dateOfInquiry:
+                guard let updateLeadDateOfInquiryViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateLeadDateOfInquiry.rawValue) as? UpdateLeadDateOfInquiryViewController else { return }
+                
+                updateLeadDateOfInquiryViewController.updateObject = self.lead
+                updateLeadDateOfInquiryViewController.previousViewController = self
+                
+                self.navigationController?.pushViewController(updateLeadDateOfInquiryViewController, animated: true)
+            case .companyName:
+                guard let updateLeadCompanyViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateLeadCompany.rawValue) as? UpdateLeadCompanyViewController else { return }
+                
+                updateLeadCompanyViewController.updateObject = self.lead
+                updateLeadCompanyViewController.previousViewController = self
+                
+                self.navigationController?.pushViewController(updateLeadCompanyViewController, animated: true)
+            default:
+                print("No cases matched")
+        }
     }
 
 }

@@ -53,7 +53,7 @@ class SignUpEmailViewController: BaseSignUpViewController, UITextFieldDelegate {
             self.showSpinner(for: self.view, textForLabel: "Validating Email")
             
             let httpRequest = HTTPRequests()
-            let parameters: [String: String] = ["valueToCheckInDatabase": email, "tableName": "auth_user", "columnName": "email"]
+            let parameters: [String: String] = ["valueToCheckInDatabase": email, "tableName": Defaults.DataBaseTableNames.authUser.rawValue, "columnName": "email"]
             httpRequest.request(url: Defaults.Urls.api.rawValue + "/inputCheck.php", dataModel: SuccessResponse.self, parameters: parameters) { [weak self] (result) in
                 switch result {
                 case .success(let success):

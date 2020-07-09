@@ -57,7 +57,7 @@ class UpdateAppointmentPhoneViewController: UpdateBaseViewController {
 
             }
 
-            self.updateObject(for: "appointments_appointment_base", at: ["phone_number": "%2B1" + unformattedPhoneNumber], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Appointment.self, updateClosure: updateClosure, successSubtitle: "Appointment phone number has been successfully updated.", successDoneHandler: successDoneHandler)
+            self.updateObject(for: Defaults.DataBaseTableNames.appointmentsBase.rawValue, at: ["phone_number": "%2B1" + unformattedPhoneNumber], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Appointment.self, updateClosure: updateClosure, successSubtitle: "Appointment phone number has been successfully updated.", successDoneHandler: successDoneHandler)
         }
     }
     

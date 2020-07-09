@@ -157,9 +157,9 @@ extension AppointmentDetailViewController {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-            tableView.deselectRow(at: indexPath, animated: true) // Deselect the row after it is tapped on
+        tableView.deselectRow(at: indexPath, animated: true) // Deselect the row after it is tapped on
             
-            // Get company title based on which row the user taps on
+        // Get company title based on which row the user taps on
         let titleItem = self.objectDetailItems[indexPath.row].titleItem
         
             // Get update view controller based on which cell the user clicked on

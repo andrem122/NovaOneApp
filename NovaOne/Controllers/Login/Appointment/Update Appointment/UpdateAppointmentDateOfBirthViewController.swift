@@ -47,7 +47,7 @@ class UpdateAppointmentDateOfBirthViewController: UpdateBaseViewController {
             
         }
         
-        self.updateObject(for: "appointments_appointment_medical", at: ["date_of_birth": updateValue], endpoint: "/updateAppointmentMedicalAndRealEstate.php", objectId: Int(objectId), objectType: Appointment.self, updateClosure: updateClosure, successSubtitle: "Appointment date of birth has been successfully updated.", successDoneHandler: successDoneHandler)
+        self.updateObject(for: Defaults.DataBaseTableNames.appointmentsMedical.rawValue, at: ["date_of_birth": updateValue], endpoint: "/updateAppointmentMedicalAndRealEstate.php", objectId: Int(objectId), objectType: Appointment.self, updateClosure: updateClosure, successSubtitle: "Appointment date of birth has been successfully updated.", successDoneHandler: successDoneHandler)
         
     }
     

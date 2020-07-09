@@ -52,7 +52,7 @@ class AddCompanyPhoneViewController: AddCompanyBaseViewController, UITextFieldDe
             self.showSpinner(for: self.view, textForLabel: "Validating Phone Number")
             
             let httpRequest = HTTPRequests()
-            let parameters: [String: String] = ["valueToCheckInDatabase": "%2B1" + unformattedPhoneNumber, "tableName": "property_company", "columnName": "phone_number"]
+            let parameters: [String: String] = ["valueToCheckInDatabase": "%2B1" + unformattedPhoneNumber, "tableName": Defaults.DataBaseTableNames.company.rawValue, "columnName": "phone_number"]
             httpRequest.request(url: Defaults.Urls.api.rawValue + "/inputCheck.php", dataModel: SuccessResponse.self, parameters: parameters) { [weak self] (result) in
                 switch result {
                     case .success(let success):

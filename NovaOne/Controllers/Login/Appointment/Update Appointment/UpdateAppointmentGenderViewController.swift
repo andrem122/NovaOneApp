@@ -60,7 +60,7 @@ class UpdateAppointmentGenderViewController: UpdateBaseViewController, UIPickerV
             
         }
         
-        self.updateObject(for: "appointments_appointment_medical", at: ["gender": self.selectedChoice], endpoint: "/updateAppointmentMedicalAndRealEstate.php", objectId: Int(objectId), objectType: Appointment.self, updateClosure: updateClosure, successSubtitle: "Appointment gender has been successfully updated.", successDoneHandler: successDoneHandler)
+        self.updateObject(for: Defaults.DataBaseTableNames.appointmentsMedical.rawValue, at: ["gender": self.selectedChoice], endpoint: "/updateAppointmentMedicalAndRealEstate.php", objectId: Int(objectId), objectType: Appointment.self, updateClosure: updateClosure, successSubtitle: "Appointment gender has been successfully updated.", successDoneHandler: successDoneHandler)
     }
     
 }

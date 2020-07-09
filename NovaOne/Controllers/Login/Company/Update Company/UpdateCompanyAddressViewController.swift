@@ -127,7 +127,7 @@ class UpdateCompanyAddressViewController: UpdateBaseViewController, AddAddress {
                 
             }
             
-            self.updateObject(for: "property_company", at: ["address": address, "city": city, "state": state, "zip": zip], endpoint: "/updateCompanyAddress.php", objectId: Int(objectId), objectType: Company.self, updateClosure: updateClosure, successSubtitle: "Company address has been successfully updated.", successDoneHandler: successDoneHandler)
+            self.updateObject(for: Defaults.DataBaseTableNames.company.rawValue, at: ["address": address, "city": city, "state": state, "zip": zip], endpoint: "/updateCompanyAddress.php", objectId: Int(objectId), objectType: Company.self, updateClosure: updateClosure, successSubtitle: "Company address has been successfully updated.", successDoneHandler: successDoneHandler)
             
             
         }

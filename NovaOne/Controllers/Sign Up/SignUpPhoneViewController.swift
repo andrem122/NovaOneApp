@@ -48,7 +48,7 @@ class SignUpPhoneViewController: BaseSignUpViewController, UITextFieldDelegate {
             self.showSpinner(for: self.view, textForLabel: "Validating Phone Number")
             
             let httpRequest = HTTPRequests()
-            let parameters: [String: String] = ["valueToCheckInDatabase": "%2B1" + unformattedPhoneNumber, "tableName": "customer_register_customer_user", "columnName": "phone_number"]
+            let parameters: [String: String] = ["valueToCheckInDatabase": "%2B1" + unformattedPhoneNumber, "tableName": Defaults.DataBaseTableNames.customer.rawValue, "columnName": "phone_number"]
             httpRequest.request(url: Defaults.Urls.api.rawValue + "/inputCheck.php", dataModel: SuccessResponse.self, parameters: parameters) { [weak self] (result) in
                 switch result {
                 case .success(let success):

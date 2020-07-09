@@ -73,7 +73,7 @@ class UpdatePasswordViewController: UpdateBaseViewController {
                 
             }
             
-            self.updateObject(for: "auth_user", at: ["password": newPassword], endpoint: "/updatePassword.php", objectId: Int(objectId), objectType: Customer.self, updateClosure: updateClosure, successSubtitle: "Password has been successfully updated.", successDoneHandler: successDoneHandler)
+            self.updateObject(for: Defaults.DataBaseTableNames.authUser.rawValue, at: ["password": newPassword], endpoint: "/updatePassword.php", objectId: Int(objectId), objectType: Customer.self, updateClosure: updateClosure, successSubtitle: "Password has been successfully updated.", successDoneHandler: successDoneHandler)
         } else {
             let popUpOkViewController = self.alertService.popUpOk(title: "Incorrect Password", body: "Password entered does not match current password.")
             self.present(popUpOkViewController, animated: true, completion: nil)
