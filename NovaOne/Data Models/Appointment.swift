@@ -29,7 +29,7 @@ struct AppointmentModel: Decodable {
     // Computed Properties
     var timeDate: Date {
         get {
-            return DateHelper.createDate(from: self.time, format: "yyyy-MM-dd HH:mm:ssZ")
+            return DateHelper.createDate(from: self.time, format: "yyyy-MM-dd HH:mm:ss zzz")
         }
 
     }

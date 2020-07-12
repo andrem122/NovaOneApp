@@ -46,9 +46,9 @@ class UpdateLeadNameViewController: UpdateBaseViewController {
                 [weak self] in
                 
                 let predicate = NSPredicate(format: "id == %@", String(objectId))
-                guard let updatedCustomer = PersistenceService.fetchEntity(Lead.self, filter: predicate, sort: nil).first else { return }
+                guard let updatedLead = PersistenceService.fetchEntity(Lead.self, filter: predicate, sort: nil).first else { return }
                 
-                previousViewController.lead = updatedCustomer
+                previousViewController.lead = updatedLead
                 previousViewController.setupObjectDetailCellsAndTitle()
                 previousViewController.objectDetailTableView.reloadData()
                 

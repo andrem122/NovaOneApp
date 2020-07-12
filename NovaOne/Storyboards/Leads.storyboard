@@ -376,7 +376,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="KRb-Po-lg3"/>
                     </view>
-                    <navigationItem key="navigationItem" id="lM7-1F-3g6"/>
+                    <navigationItem key="navigationItem" id="lM7-1F-3g6">
+                        <barButtonItem key="backBarButtonItem" title=" " id="a1k-xN-qWi"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="objectDetailTableView" destination="4tI-rC-SI1" id="GUs-ac-Y3Y"/>
                         <outlet property="titleLabel" destination="KLD-Df-pjV" id="7ev-S0-0ck"/>
@@ -408,7 +410,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="kMv-K9-TLZ"/>
+        <segue reference="VWl-eF-DbJ"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="callBlue" width="27" height="27"/>

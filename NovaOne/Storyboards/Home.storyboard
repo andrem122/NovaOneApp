@@ -700,10 +700,10 @@
             </objects>
             <point key="canvasLocation" x="6521" y="960"/>
         </scene>
-        <!--UINavigationController-9jN-7h-vSf-->
+        <!--accountNavigationController-->
         <scene sceneID="lf5-jt-2k2">
             <objects>
-                <viewControllerPlaceholder storyboardName="Account" referencedIdentifier="UINavigationController-9jN-7h-vSf" id="iyl-HO-PsK" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Account" referencedIdentifier="accountNavigationController" id="iyl-HO-PsK" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="n9i-nZ-fTE"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JwP-s9-NV2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -723,8 +723,8 @@
     </scenes>
     <resources>
         <image name="account" width="42.666667938232422" height="42.666667938232422"/>
-        <image name="calendar" width="42.5" height="42.5"/>
         <image name="calendar" catalog="system" width="128" height="106"/>
+        <image name="calendar" width="42.5" height="42.5"/>
         <image name="clipboard" width="42.666667938232422" height="42.666667938232422"/>
         <image name="house" catalog="system" width="128" height="110"/>
         <image name="list.dash" catalog="system" width="128" height="85"/>

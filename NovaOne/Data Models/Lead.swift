@@ -26,21 +26,21 @@ struct LeadModel: Decodable {
     
     var dateOfInquiryDate: Date {
         get {
-            return DateHelper.createDate(from: self.dateOfInquiry, format: "yyyy-MM-dd HH:mm:ssZ")
+            return DateHelper.createDate(from: self.dateOfInquiry, format:  "yyyy-MM-dd HH:mm:ss zzz")
         }
     }
     
     var sentTextDateDate: Date? {
         get {
             guard let sentTextDate = self.sentTextDate else { return nil }
-            return DateHelper.createDate(from: sentTextDate, format: "yyyy-MM-dd HH:mm:ssZ")
+            return DateHelper.createDate(from: sentTextDate, format: "yyyy-MM-dd HH:mm:ss zzz")
         }
     }
     
     var sentEmailDateDate: Date? {
         get {
             guard let sentEmailDate = self.sentEmailDate else { return nil }
-            return DateHelper.createDate(from: sentEmailDate, format: "yyyy-MM-dd HH:mm:ssZ")
+            return DateHelper.createDate(from: sentEmailDate, format: "yyyy-MM-dd HH:mm:ss zzz")
         }
     }
     

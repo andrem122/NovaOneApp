@@ -58,3 +58,10 @@ class AddLeadEmailViewController: AddLeadBaseViewController, UITextFieldDelegate
     }
     
 }
+
+extension AddLeadEmailViewController {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.continueButton.sendActions(for: .touchUpInside)
+        return true
+    }
+}

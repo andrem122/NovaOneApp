@@ -1,27 +1,26 @@
 //
-//  UpdateLeadDateOfInquiryViewController.swift
+//  UpdateLeadSentEmailDateViewController.swift
 //  NovaOne
 //
-//  Created by Andre Mashraghi on 7/8/20.
+//  Created by Andre Mashraghi on 7/11/20.
 //  Copyright © 2020 Andre Mashraghi. All rights reserved.
 //
 
 import UIKit
 
-class UpdateLeadDateOfInquiryViewController: UpdateBaseViewController {
-    
+class UpdateLeadSentEmailDateViewController: UpdateBaseViewController {
     // MARK: Properties
-    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var dateTimePicker: UIDatePicker!
     @IBOutlet weak var updateButton: NovaOneButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-
-   // MARK: Actions
+    // MARK: Actions
     @IBAction func updateButtonTapped(_ sender: Any) {
-        let updateValue = DateHelper.createString(from: self.datePicker.date, format: "yyyy-MM-dd HH:mm:ssZ")
+        let updateValue = DateHelper.createString(from: self.dateTimePicker.date, format: "yyyy-MM-dd HH:mm:ssZ")
         guard
             let objectId = (self.updateObject as? Lead)?.id,
             let previousViewController = self.previousViewController as? LeadDetailViewController
@@ -29,7 +28,7 @@ class UpdateLeadDateOfInquiryViewController: UpdateBaseViewController {
         
         let updateClosure = {
             (lead: Lead) in
-            lead.dateOfInquiry = self.datePicker.date
+            lead.sentEmailDate = self.dateTimePicker.date
         }
         
         let successDoneHandler = {
@@ -46,7 +45,7 @@ class UpdateLeadDateOfInquiryViewController: UpdateBaseViewController {
             
         }
         
-        self.updateObject(for: Defaults.DataBaseTableNames.leads.rawValue, at: ["date_of_inquiry": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Lead.self, updateClosure: updateClosure, successSubtitle: "Date of inquiry has been successfully updated.", successDoneHandler: successDoneHandler)
+        self.updateObject(for: Defaults.DataBaseTableNames.leads.rawValue, at: ["sent_email_date": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Lead.self, updateClosure: updateClosure, successSubtitle: "Sent email date has been successfully updated.", successDoneHandler: successDoneHandler)
     }
     
 }

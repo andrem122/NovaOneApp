@@ -308,7 +308,7 @@
         <!--Navigation Controller-->
         <scene sceneID="1Wf-m3-RnE">
             <objects>
-                <navigationController storyboardIdentifier="UINavigationController-9jN-7h-vSf" automaticallyAdjustsScrollViewInsets="NO" id="9jN-7h-vSf" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="accountNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9jN-7h-vSf" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="gear" catalog="system" id="kd9-8A-Xkb">
                         <color key="badgeColor" red="0.32549019610000002" green="0.42352941179999998" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBarItem>
