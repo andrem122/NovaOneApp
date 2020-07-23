@@ -11,14 +11,14 @@ import SafariServices
 
 class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NovaOneObjectDetail {
     
-    
     // MARK: Properties
     var objectDetailItems: [ObjectDetailItem] = []
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var objectDetailTableView: UITableView!
     @IBOutlet weak var topView: NovaOneView!
     var company: Company?
-    let alertService = AlertService()
+    var alertService = AlertService()
+    var previousViewController: UIViewController?
     
     // MARK: Methods
     func setupTableView() {

@@ -231,10 +231,11 @@
             </objects>
             <point key="canvasLocation" x="8936" y="889"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Leads Table Navigation Controller-->
         <scene sceneID="ZAI-Yx-PWO">
             <objects>
-                <navigationController storyboardIdentifier="leadsNavigationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Lx2-Hk-MfY" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="leadsNavigationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Lx2-Hk-MfY" customClass="LeadsTableNavigationController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="yYj-Hh-r9q"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="K79-BW-K2r">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -296,7 +297,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4tI-rC-SI1">
-                                <rect key="frame" x="0.0" y="349.5" width="414" height="492.5"/>
+                                <rect key="frame" x="0.0" y="349.5" width="414" height="432.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="objectDetailTableViewCell" rowHeight="100" id="7gb-6y-Pi6" customClass="ObjectDetailTableViewCell" customModule="NovaOne" customModuleProvider="target">
@@ -359,17 +360,46 @@
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="35"/>
                                 </variation>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dhr-mC-JNV" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
+                                <rect key="frame" x="30" y="797" width="354" height="45"/>
+                                <color key="backgroundColor" red="0.32549019610000002" green="0.42352941179999998" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="edc-gY-KfN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <state key="normal" title="Delete">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                </variation>
+                                <connections>
+                                    <action selector="deleteButtonTapped:" destination="HI0-eL-hxu" eventType="touchUpInside" id="BMl-it-XAa"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="Dhr-mC-JNV" firstAttribute="top" secondItem="4tI-rC-SI1" secondAttribute="bottom" constant="15" id="6Nz-sT-f0B"/>
                             <constraint firstItem="4tI-rC-SI1" firstAttribute="leading" secondItem="KRb-Po-lg3" secondAttribute="leading" id="Dga-Yv-Rzh"/>
-                            <constraint firstItem="KRb-Po-lg3" firstAttribute="bottom" secondItem="4tI-rC-SI1" secondAttribute="bottom" constant="20" id="HYe-gW-tbv"/>
+                            <constraint firstItem="KRb-Po-lg3" firstAttribute="bottom" secondItem="Dhr-mC-JNV" secondAttribute="bottom" constant="20" id="Ede-Sk-8xZ"/>
                             <constraint firstItem="KLD-Df-pjV" firstAttribute="leading" secondItem="KRb-Po-lg3" secondAttribute="leading" constant="30" id="LnO-f7-NSh"/>
                             <constraint firstItem="4tI-rC-SI1" firstAttribute="top" secondItem="KLD-Df-pjV" secondAttribute="bottom" constant="8" id="NJO-hg-0pZ"/>
                             <constraint firstItem="KLD-Df-pjV" firstAttribute="top" secondItem="jAf-8E-HeQ" secondAttribute="bottom" constant="18.329999999999998" id="OQ8-at-d9P"/>
                             <constraint firstItem="jAf-8E-HeQ" firstAttribute="leading" secondItem="as1-74-vu0" secondAttribute="leading" id="P5I-lF-sTY"/>
+                            <constraint firstItem="Dhr-mC-JNV" firstAttribute="leading" secondItem="KRb-Po-lg3" secondAttribute="leading" constant="30" id="ap6-HJ-yPw">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
                             <constraint firstAttribute="trailing" secondItem="jAf-8E-HeQ" secondAttribute="trailing" id="dwn-nh-lyF"/>
                             <constraint firstItem="jAf-8E-HeQ" firstAttribute="top" secondItem="as1-74-vu0" secondAttribute="top" id="esn-Ci-AQt"/>
+                            <constraint firstItem="KRb-Po-lg3" firstAttribute="trailing" secondItem="Dhr-mC-JNV" secondAttribute="trailing" constant="30" id="hSK-o8-4kb">
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                            </constraint>
                             <constraint firstItem="KRb-Po-lg3" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="KLD-Df-pjV" secondAttribute="trailing" id="iRX-dq-Nwd"/>
                             <constraint firstItem="jAf-8E-HeQ" firstAttribute="height" secondItem="as1-74-vu0" secondAttribute="height" multiplier="0.327009" id="keQ-3Z-aAH"/>
                             <constraint firstItem="KRb-Po-lg3" firstAttribute="trailing" secondItem="4tI-rC-SI1" secondAttribute="trailing" id="wrt-kM-jch"/>
@@ -383,11 +413,13 @@
                         <outlet property="objectDetailTableView" destination="4tI-rC-SI1" id="GUs-ac-Y3Y"/>
                         <outlet property="titleLabel" destination="KLD-Df-pjV" id="7ev-S0-0ck"/>
                         <outlet property="topView" destination="jAf-8E-HeQ" id="1Dx-Rv-hha"/>
+                        <segue destination="PhZ-Yj-U9y" kind="unwind" identifier="unwindToLeadsTableController" unwindAction="unwindToLeadsTableControllerWithUnwindSegue:" id="NBP-x7-leq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v4O-QL-SDI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="PhZ-Yj-U9y" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="8933.6000000000004" y="1642.128935532234"/>
+            <point key="canvasLocation" x="8933.3333333333339" y="1641.9642857142856"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="VSJ-77-1Fb">

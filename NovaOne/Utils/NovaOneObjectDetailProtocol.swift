@@ -13,4 +13,6 @@ protocol NovaOneObjectDetail {
     var objectDetailItems: [ObjectDetailItem] { get set } // Can read ('get' keyword) and edit the property ('set' keyword)
     var titleLabel: UILabel! { get }
     var objectDetailTableView: UITableView! { get }
+    var alertService: AlertService { get set }
+    var previousViewController: UIViewController? { get set }
 }

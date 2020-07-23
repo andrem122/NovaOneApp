@@ -38,6 +38,8 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
         self.setupSearch()
         self.setupTableView()
         self.removeSpinner()
+        print("CONTAINER VIEW CONTROLLER")
+        print(self.parentViewContainerController as Any)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -79,6 +81,7 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
                 else { return }
                 
                 detailViewController.lead = lead
+                detailViewController.previousViewController = self
                 detailViewController.navigationItem.leftBarButtonItem = self?.splitViewController?.displayModeButtonItem
                 detailViewController.navigationItem.leftItemsSupplementBackButton = true
                 
@@ -342,6 +345,8 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
             else { return }
             
             detailViewController.lead = lead
+            detailViewController.segue = segue
+            detailViewController.previousViewController = self
             
             detailViewController.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
             detailViewController.navigationItem.leftItemsSupplementBackButton = true
@@ -360,6 +365,10 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
         addLeadCompanyViewController.embeddedViewController = self
         
         self.present(addLeadNavigationController, animated: true, completion: nil)
+    }
+    
+    @IBAction func unwindToLeadsTableController(unwindSegue: UIStoryboardSegue) {
+        
     }
 }
 

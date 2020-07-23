@@ -26,12 +26,17 @@ class LeadsContainerViewController: UIViewController, NovaOneObjectContainer {
         
         if self.objectCount > 0 {
             // Get CoreData objects and pass to the next view
-            print("Showing objects from Core Data")
-            UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.SplitViewControllerIdentifiers.leads.rawValue, containerView: self.containerView, objectType: UISplitViewController.self, completion: nil)
+            UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.SplitViewControllerIdentifiers.leads.rawValue, containerView: self.containerView, objectType: UISplitViewController.self ) {
+                [weak self] (viewController) in
+                
+                guard let splitViewController = viewController as? UISplitViewController else { print("could not convert view controller to UISplitViewController"); return }
+                guard let objectsTableNavigationController = splitViewController.viewControllers.first as? UINavigationController else { print("could not convert to UINavigationController"); return }
+                guard let objectsTableController = objectsTableNavigationController.viewControllers.first as? NovaOneTableView else { print("could not convert to NovaOneTableView"); return }
+                objectsTableController.parentViewContainerController = self
+            }
             
         } else {
             // Get data via an HTTP request and save to coredata for the next view
-            print("No Core Data. Getting objects via an HTTP request")
             self.getData()
         }
         
@@ -97,15 +102,21 @@ class LeadsContainerViewController: UIViewController, NovaOneObjectContainer {
                                         self?.saveToCoreData(objects: leads)
                                         
                                         // Show success screen
-                                        UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.SplitViewControllerIdentifiers.leads.rawValue, containerView: self?.containerView ?? UIView(), objectType: UISplitViewController.self, completion: nil)
+                                        UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.SplitViewControllerIdentifiers.leads.rawValue, containerView: self?.containerView ?? UIView(), objectType: UISplitViewController.self) {
+                                            [weak self] (viewController) in
+                                            
+                                            guard let splitViewController = viewController as? UISplitViewController else { print("could not convert view controller to UISplitViewController"); return }
+                                            guard let objectsTableNavigationController = splitViewController.viewControllers.first as? UINavigationController else { print("could not convert to UINavigationController"); return }
+                                            guard let objectsTableController = objectsTableNavigationController.viewControllers.first as? NovaOneTableView else { print("could not convert to NovaOneTableView"); return }
+                                            objectsTableController.parentViewContainerController = self
+                                        }
                                         
                                     
-                                    case .failure(let error):
-                                        print(error.localizedDescription)
+                                    case .failure(_):
                                         // No leads were found or an error occurred so show/embed the empty
                                         // view controller
                                         UIHelper.showEmptyStateContainerViewController(for: self, containerView: self?.containerView ?? UIView(), title: "No Leads", addObjectButtonTitle: "Add Lead") {
-                                            (emptyViewController) in
+                                            [weak self] (emptyViewController) in
                                             
                                             // Tell the empty state view controller what its parent view controller is
                                             emptyViewController.parentViewContainerController = self
@@ -132,5 +143,8 @@ class LeadsContainerViewController: UIViewController, NovaOneObjectContainer {
         }
         
     }
+    
+    // MARK: Actions
+    
     
 }

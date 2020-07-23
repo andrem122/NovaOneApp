@@ -15,7 +15,8 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var objectDetailTableView: UITableView!
     @IBOutlet weak var topView: NovaOneView!
-    let alertService: AlertService = AlertService()
+    var alertService: AlertService = AlertService()
+    var previousViewController: UIViewController?
     var appointment: Appointment?
     
     override func viewDidLoad() {

@@ -13,6 +13,9 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     // MARK: Properties
     var objectDetailItems: [ObjectDetailItem] = []
     var lead: Lead?
+    var alertService: AlertService = AlertService()
+    var previousViewController: UIViewController?
+    var segue: UIStoryboardSegue?
     @IBOutlet weak var objectDetailTableView: UITableView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var topView: NovaOneView!
@@ -94,7 +97,97 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         
     }
-
+    
+    // MARK: Actions
+    @IBAction func deleteButtonTapped(_ sender: Any) {
+        // Set text for pop up view controller
+        let title = "Delete Lead"
+        let body = "Are you sure you want to delete the lead?"
+        let buttonTitle = "Delete"
+        
+        let popUpViewController = alertService.popUp(title: title, body: body, buttonTitle: buttonTitle, actionHandler: {
+            [weak self] in
+            
+            guard
+                let view = self?.view,
+                let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
+                let email = customer.email,
+                let password = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue),
+                let objectId = self?.lead?.id,
+                let lead = self?.lead
+            else { return }
+            
+            self?.showSpinner(for: view, textForLabel: "Deleting")
+            self?.performSegue(withIdentifier: Defaults.SegueIdentifiers.unwindToLeads.rawValue, sender: self)
+            
+            // Delete from CoreData
+            PersistenceService.context.delete(lead)
+            
+            // Delete from NovaOne database
+            let parameters: [String: Any] = ["email": email,
+                                             "password": password,
+                                             "columnName": "id",
+                                             "objectId": objectId,
+                                             "tableName": Defaults.DataBaseTableNames.leads.rawValue]
+            
+            let httpRequest = HTTPRequests()
+            httpRequest.request(url: Defaults.Urls.api.rawValue + "/deleteObject.php", dataModel: SuccessResponse.self, parameters: parameters) { [weak self] (result) in
+                switch result {
+                    case .success(_):
+                        // If no more objects exist, go to empty view controller else go to table view controller and reload data
+                        let count = PersistenceService.fetchCount(for: Defaults.CoreDataEntities.lead.rawValue)
+                        if count > 0 {
+                            
+                            print("COUNT IS GREATER THAN ZERO")
+                            // Return to the objects view and refresh objects
+                            guard let objectsTableViewController = self?.previousViewController as? NovaOneTableView else { print("could not convert to NovaOneTableView - lead detail"); return }
+                            objectsTableViewController.refreshDataOnPullDown()
+                            
+                        } else {
+                            
+                            print("COUNT IS ZERO")
+                            guard let objectsTableViewController = self?.previousViewController as? NovaOneTableView else { print("could not convert to NovaOneTableView - lead detail"); return }
+                            guard let containerViewController = objectsTableViewController.parentViewContainerController as? NovaOneObjectContainer else { print("could not convert to NovaOneObjectContainer - lead detail"); return }
+                            
+                            UIHelper.showEmptyStateContainerViewController(for: containerViewController as? UIViewController, containerView: containerViewController.containerView ?? UIView(), title: "No Leads", addObjectButtonTitle: "Add Lead") {
+                                    (emptyViewController) in
+                                    
+                                    // Tell the empty state view controller what its parent view controller is
+                                    emptyViewController.parentViewContainerController = containerViewController as? UIViewController
+                                    
+                                    // Pass the addObjectHandler function and button title to the empty view controller
+                                    emptyViewController.addObjectButtonHandler = {
+                                        // Go to the add object screen
+                                        let addLeadStoryboard = UIStoryboard(name: Defaults.StoryBoards.addLead.rawValue, bundle: .main)
+                                        guard
+                                            let addLeadNavigationController = addLeadStoryboard.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addLead.rawValue) as? UINavigationController,
+                                            let addLeadCompanyViewController = addLeadNavigationController.viewControllers.first as? AddLeadCompanyViewController
+                                        else { return }
+                                        
+                                        addLeadCompanyViewController.embeddedViewController = emptyViewController
+                                        
+                                        // Do NOT present from self (leadDetailViewController in this case) because we are dismissing it and it will no longer be available, so we can't call any methods on a nil object
+                                        (containerViewController as? UIViewController)?.present(addLeadNavigationController, animated: true, completion: nil)
+                                    }
+                                
+                            }
+                            self?.navigationController?.dismiss(animated: true, completion: nil)
+                            
+                        }
+                    case .failure(let error):
+                        guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
+                        self?.present(popUpOkViewController, animated: true, completion: nil)
+                }
+                
+                self?.removeSpinner()
+            }
+        }, cancelHandler: {
+            print("Action canceled")
+        })
+        
+        self.present(popUpViewController, animated: true, completion: nil)
+    }
+    
 }
 
 extension LeadDetailViewController {

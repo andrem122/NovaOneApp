@@ -39,6 +39,7 @@
 		65316D532445F8A90072F78A /* libSkeletonView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65316D522445F8A90072F78A /* libSkeletonView.a */; };
 		65316D5524465E5D0072F78A /* moreLeads.php in Resources */ = {isa = PBXBuildFile; fileRef = 65316D5424465E5D0072F78A /* moreLeads.php */; };
 		653432702493BE0B00483505 /* addLead.php in Resources */ = {isa = PBXBuildFile; fileRef = 6534326F2493BE0B00483505 /* addLead.php */; };
+		6536036C24BF46C200CA0241 /* LeadsTableNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6536036B24BF46C200CA0241 /* LeadsTableNavigationController.swift */; };
 		653D2184244523C5009DA68E /* credentials.php in Resources */ = {isa = PBXBuildFile; fileRef = 653D2183244523C5009DA68E /* credentials.php */; };
 		65446CEC23E0F4370052DEBE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65446CEB23E0F4370052DEBE /* LoginViewController.swift */; };
 		65446CEF23E0F7DF0052DEBE /* NovaOneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65446CEE23E0F7DF0052DEBE /* NovaOneButton.swift */; };
@@ -280,6 +281,7 @@
 		65316D522445F8A90072F78A /* libSkeletonView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libSkeletonView.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		65316D5424465E5D0072F78A /* moreLeads.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = moreLeads.php; sourceTree = "<group>"; };
 		6534326F2493BE0B00483505 /* addLead.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = addLead.php; sourceTree = "<group>"; };
+		6536036B24BF46C200CA0241 /* LeadsTableNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadsTableNavigationController.swift; sourceTree = "<group>"; };
 		653D2183244523C5009DA68E /* credentials.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = credentials.php; sourceTree = "<group>"; };
 		65446CEB23E0F4370052DEBE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		65446CEE23E0F7DF0052DEBE /* NovaOneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovaOneButton.swift; sourceTree = "<group>"; };
@@ -601,6 +603,7 @@
 		656760562443866100EF4388 /* Lead */ = {
 			isa = PBXGroup;
 			children = (
+				6536036B24BF46C200CA0241 /* LeadsTableNavigationController.swift */,
 				65BA98BA243166C700CFAA9F /* LeadsContainerViewController.swift */,
 				6593CFAC2436A9DC0026C5D7 /* LeadDetailViewController.swift */,
 				65C4C6FA2474A8E600E143C5 /* LeadsTableViewController.swift */,
@@ -1352,6 +1355,7 @@
 				6580FBE324113D0700695DB6 /* UIHelper.swift in Sources */,
 				65AA3E7824328CAE005C2319 /* SuccessViewController.swift in Sources */,
 				657C5F9A241406EA00D52E27 /* CompanyDetailViewController.swift in Sources */,
+				6536036C24BF46C200CA0241 /* LeadsTableNavigationController.swift in Sources */,
 				659883E9245A00A800379F7A /* ContainerViewController.swift in Sources */,
 				65AA3E7F2432C2EA005C2319 /* AddAppointmentTimeViewController.swift in Sources */,
 				6516A84724525F5A003B974A /* ChartDataWeekly.swift in Sources */,
