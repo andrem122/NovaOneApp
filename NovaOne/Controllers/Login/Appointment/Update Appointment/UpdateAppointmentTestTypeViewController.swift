@@ -12,22 +12,7 @@ class UpdateAppointmentTestTypeViewController: UpdateBaseViewController, UIPicke
     
     // MARK: Properties
     @IBOutlet weak var testTypePicker: UIPickerView!
-    let testTypes: [String] = ["Comprehensive Metabolic Panel",
-                               "Basic Metabolic Panel",
-                               "Lipid Panel",
-                               "Lipid Panel Plus",
-                               "Liver Panel Plus",
-                               "General Chemistry 6",
-                               "General Chemistry 13",
-                               "Electrolyte Panel",
-                               "Kidney Check",
-                               "Renal Function Panel",
-                               "MetLyte 8 Panel",
-                               "Hepatic Function Panel",
-                               "Basic Metabolic Panel Plus",
-                               "MetLyte Plus CRP",
-                               "Biochemistry Panel Plus",
-                               "MetLac 12 Panel"]
+    let testTypes: [String] = Defaults.testTypes
     
     @IBOutlet weak var updateButton: NovaOneButton!
     lazy var selectedChoice: String = {

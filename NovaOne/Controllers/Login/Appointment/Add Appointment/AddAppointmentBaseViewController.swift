@@ -12,7 +12,7 @@ class AddAppointmentBaseViewController: UIViewController {
     
     // MARK: Properties
     var appointment: AppointmentModel?
-    var appointmentsTableViewController: AppointmentsTableViewController?
+    var embeddedViewController: UIViewController?
     let alertService = AlertService()
 
 }

@@ -13,7 +13,6 @@ class AppointmentsContainerViewController: UIViewController {
     
     // MARK: Properties
     @IBOutlet weak var containerView: UIView!
-    var objectCount: Int = PersistenceService.fetchCount(for: Defaults.CoreDataEntities.appointment.rawValue)
     
     // MARK: Methods
     override func viewDidLoad() {
@@ -23,15 +22,20 @@ class AppointmentsContainerViewController: UIViewController {
     
     func showCoreDataOrRequestData() {
         // Gets CoreData and passes it to table view OR makes a request for data if no CoreData exists
-        
-        if self.objectCount > 0 {
+        let objectCount: Int = PersistenceService.fetchCount(for: Defaults.CoreDataEntities.appointment.rawValue)
+        if objectCount > 0 {
             // Get CoreData objects and pass to the next view
-            print("Showing objects from Core Data")
-            UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.SplitViewControllerIdentifiers.appointments.rawValue, containerView: self.containerView, objectType: UISplitViewController.self, completion: nil)
+            UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.SplitViewControllerIdentifiers.appointments.rawValue, containerView: self.containerView, objectType: UISplitViewController.self) {
+                [weak self] (viewController) in
+                
+                guard let splitViewController = viewController as? UISplitViewController else { return }
+                guard let objectsTableNavigationController = splitViewController.viewControllers.first as? UINavigationController else { return }
+                guard let objectsTableController = objectsTableNavigationController.viewControllers.first as? NovaOneTableView else { return }
+                objectsTableController.parentViewContainerController = self
+            }
             
         } else {
             // Get data via an HTTP request and save to coredata for the next view
-            print("No Core Data. Getting objects via an HTTP request")
             self.getData()
         }
         
@@ -99,7 +103,14 @@ class AppointmentsContainerViewController: UIViewController {
                                         self?.saveToCoreData(objects: appointments)
                                         
                                         // Show success screen
-                                        UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.SplitViewControllerIdentifiers.appointments.rawValue, containerView: self?.containerView ?? UIView(), objectType: UISplitViewController.self, completion: nil)
+                                        UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.SplitViewControllerIdentifiers.appointments.rawValue, containerView: self?.containerView ?? UIView(), objectType: UISplitViewController.self) {
+                                            [weak self] (viewController) in
+                                            
+                                            guard let splitViewController = viewController as? UISplitViewController else { return }
+                                            guard let objectsTableNavigationController = splitViewController.viewControllers.first as? UINavigationController else { return }
+                                            guard let objectsTableController = objectsTableNavigationController.viewControllers.first as? NovaOneTableView else { return }
+                                            objectsTableController.parentViewContainerController = self
+                                        }
                                         
                                     
                                     case .failure(let error):

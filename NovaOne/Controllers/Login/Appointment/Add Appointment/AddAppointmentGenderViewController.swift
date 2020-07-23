@@ -73,7 +73,7 @@ class AddAppointmentGenderViewController: AddAppointmentBaseViewController, UIPi
                         [weak self] in
                         // Return to the appointments view and refresh appointments
                         self?.presentingViewController?.dismiss(animated: true, completion: nil)
-                        self?.appointmentsTableViewController?.refreshDataOnPullDown()
+                        (self?.embeddedViewController as? AppointmentsTableViewController)?.refreshDataOnPullDown()
                         self?.removeSpinner()
                     }
                     self?.present(successViewController, animated: true, completion: nil)

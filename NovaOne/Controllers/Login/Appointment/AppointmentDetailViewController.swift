@@ -116,18 +116,76 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
         
         let popUpViewController = alertService.popUp(title: title, body: body, buttonTitle: buttonTitle, actionHandler: {
             [weak self] in
+            
+            guard
+                let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
+                let email = customer.email,
+                let password = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue),
+                let objectId = self?.appointment?.id,
+                let appointment = self?.appointment
+            else { return }
+            
+            // Remove the detail view controller from view
+            guard let objectsTableViewController = self?.previousViewController as? NovaOneTableView else { print("could not get objectsTableViewController - appointment detail view"); return }
+            guard let containerViewControllerView = objectsTableViewController.parentViewContainerController?.view else { print("could not get containerViewControllerView - appointment detail view"); return }
+            objectsTableViewController.parentViewContainerController?.showSpinner(for: containerViewControllerView, textForLabel: "Deleting")
+            self?.performSegue(withIdentifier: Defaults.SegueIdentifiers.unwindToAppointments.rawValue, sender: self)
+            
             // Delete from CoreData
+            PersistenceService.context.delete(appointment)
+            PersistenceService.saveContext()
             
             // Delete from NovaOne database
+            let parameters: [String: Any] = ["email": email,
+                                             "password": password,
+                                             "columnName": "id",
+                                             "objectId": objectId,]
             
-            
-            // Navigate to appointments container screen on tab bar controller and reload table to reflect changes
-            if let homeTabBarController = self?.storyboard?.instantiateViewController(identifier: Defaults.TabBarControllerIdentifiers.home.rawValue) as? HomeTabBarController {
-                
-                homeTabBarController.modalPresentationStyle = .fullScreen
-                homeTabBarController.selectedIndex = 1 // Select the appointments tab on the tab bar controller
-                self?.present(homeTabBarController, animated: true, completion: nil)
-                
+            let httpRequest = HTTPRequests()
+            let endpoint = customer.customerType == "MW" ? "/deleteAppointmentMedical.php" : "/deleteAppointmentRealEstate.php"
+            httpRequest.request(url: Defaults.Urls.api.rawValue + endpoint, dataModel: SuccessResponse.self, parameters: parameters) { [weak self] (result) in
+                switch result {
+                    case .success(_):
+                        // If no more objects exist, go to empty view controller else go to table view controller and reload data
+                        let count = PersistenceService.fetchCount(for: Defaults.CoreDataEntities.appointment.rawValue)
+                        if count > 0 {
+                            
+                            // Return to the objects view and refresh objects
+                            objectsTableViewController.refreshDataOnPullDown()
+                            objectsTableViewController.parentViewContainerController?.removeSpinner()
+                            
+                        } else {
+                            
+                            guard let containerViewController = objectsTableViewController.parentViewContainerController as? NovaOneObjectContainer else { return }
+                            
+                            UIHelper.showEmptyStateContainerViewController(for: containerViewController as? UIViewController, containerView: containerViewController.containerView ?? UIView(), title: "No Appointments", addObjectButtonTitle: "Add Appointment") {
+                                (emptyViewController) in
+                                
+                                objectsTableViewController.parentViewContainerController?.removeSpinner()
+                                // Tell the empty state view controller what its parent view controller is
+                                emptyViewController.parentViewContainerController = containerViewController as? UIViewController
+                                
+                                // Pass the addObjectHandler function and button title to the empty view controller
+                                emptyViewController.addObjectButtonHandler = {
+                                    // Go to the add object screen
+                                    let addAppointmentStoryboard = UIStoryboard(name: Defaults.StoryBoards.addAppointment.rawValue, bundle: .main)
+                                    guard
+                                        let addAppointmentNavigationController = addAppointmentStoryboard.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addAppointment.rawValue) as? UINavigationController,
+                                        let addAppointmentCompanyViewController = addAppointmentNavigationController.viewControllers.first as? AddAppointmentCompanyViewController
+                                    else { return }
+                                    
+                                    addAppointmentCompanyViewController.embeddedViewController = emptyViewController
+                                    
+                                    (containerViewController as? UIViewController)?.present(addAppointmentNavigationController, animated: true, completion: nil)
+                                }
+                                
+                            }
+                            
+                        }
+                    case .failure(let error):
+                        guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
+                        self?.present(popUpOkViewController, animated: true, completion: nil)
+                }
             }
         }, cancelHandler: {
             print("Action canceled")

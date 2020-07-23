@@ -48,7 +48,7 @@ class AddAppointmentPhoneViewController: AddAppointmentBaseViewController, UITex
         
         self.appointment?.phoneNumber = "%2B1" + unformattedPhoneNumber
         addAppointmentTimeViewController.appointment = self.appointment
-        addAppointmentTimeViewController.appointmentsTableViewController = self.appointmentsTableViewController
+        addAppointmentTimeViewController.embeddedViewController = self.embeddedViewController
         
         self.navigationController?.pushViewController(addAppointmentTimeViewController, animated: true)
     }

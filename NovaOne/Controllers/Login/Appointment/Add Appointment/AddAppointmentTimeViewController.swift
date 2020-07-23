@@ -126,7 +126,7 @@ class AddAppointmentTimeViewController: AddAppointmentBaseViewController {
                     guard let addAppointmentUnitTypeViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addAppointmentUnitType.rawValue) as? AddAppointmentUnitTypeViewController else { return }
                     
                     addAppointmentUnitTypeViewController.appointment = self?.appointment
-                    addAppointmentUnitTypeViewController.appointmentsTableViewController = self?.appointmentsTableViewController
+                    addAppointmentUnitTypeViewController.embeddedViewController = self?.embeddedViewController
                     
                     self?.navigationController?.pushViewController(addAppointmentUnitTypeViewController, animated: true)
                     
@@ -137,7 +137,7 @@ class AddAppointmentTimeViewController: AddAppointmentBaseViewController {
                     guard let addAppointmentEmailViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addAppointmentEmail.rawValue) as? AddAppointmentEmailViewController else { return }
                     
                     addAppointmentEmailViewController.appointment = self?.appointment
-                    addAppointmentEmailViewController.appointmentsTableViewController = self?.appointmentsTableViewController
+                    addAppointmentEmailViewController.embeddedViewController = self?.embeddedViewController
                     
                     self?.navigationController?.pushViewController(addAppointmentEmailViewController, animated: true)
                     

@@ -62,7 +62,7 @@ class AddAppointmentCompanyViewController: AddAppointmentBaseViewController, UIT
             // Create appointment model object and pass company id to it
             self.appointment = AppointmentModel(id: nil, name: "", phoneNumber: "", time: "", created: nil, timeZone: "US/Eastern", confirmed: false, companyId: companyId, unitType: "", email: "", dateOfBirth: "", testType: "", gender: "", address: "")
             addAppointmentNameViewController.appointment = self.appointment
-            addAppointmentNameViewController.appointmentsTableViewController = self.appointmentsTableViewController
+            addAppointmentNameViewController.embeddedViewController = self.embeddedViewController
             
             self.navigationController?.pushViewController(addAppointmentNameViewController, animated: true)
         } else {

@@ -17,7 +17,7 @@
     $user_is_verified = verify_user($email, $password, $php_authentication_username_f, $php_authentication_password_f, $request_method);
 
     $query_one = "
-    DELETE FROM appointments_appointment_medical WHERE appointment_base_ptr_id = :object_id;
+    DELETE FROM appointments_appointment_real_estate WHERE appointment_base_ptr_id = :object_id;
     ";
     
     $query_two = "
@@ -30,6 +30,7 @@
     echo query_db_login($query_two, $user_is_verified, $parameters, true);
     
 ?>
+
 
 
 

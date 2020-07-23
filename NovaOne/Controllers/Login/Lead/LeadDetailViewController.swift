@@ -15,7 +15,6 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     var lead: Lead?
     var alertService: AlertService = AlertService()
     var previousViewController: UIViewController?
-    var segue: UIStoryboardSegue?
     @IBOutlet weak var objectDetailTableView: UITableView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var topView: NovaOneView!
@@ -109,7 +108,6 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             [weak self] in
             
             guard
-                let view = self?.view,
                 let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
                 let email = customer.email,
                 let password = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue),
@@ -117,11 +115,15 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
                 let lead = self?.lead
             else { return }
             
-            self?.showSpinner(for: view, textForLabel: "Deleting")
+            // Remove the detail view controller from view
+            guard let objectsTableViewController = self?.previousViewController as? NovaOneTableView else { return }
+            guard let containerViewControllerView = objectsTableViewController.parentViewContainerController?.view else { return }
+            objectsTableViewController.parentViewContainerController?.showSpinner(for: containerViewControllerView, textForLabel: "Deleting")
             self?.performSegue(withIdentifier: Defaults.SegueIdentifiers.unwindToLeads.rawValue, sender: self)
             
             // Delete from CoreData
             PersistenceService.context.delete(lead)
+            PersistenceService.saveContext()
             
             // Delete from NovaOne database
             let parameters: [String: Any] = ["email": email,
@@ -138,48 +140,44 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
                         let count = PersistenceService.fetchCount(for: Defaults.CoreDataEntities.lead.rawValue)
                         if count > 0 {
                             
-                            print("COUNT IS GREATER THAN ZERO")
                             // Return to the objects view and refresh objects
-                            guard let objectsTableViewController = self?.previousViewController as? NovaOneTableView else { print("could not convert to NovaOneTableView - lead detail"); return }
                             objectsTableViewController.refreshDataOnPullDown()
+                            objectsTableViewController.parentViewContainerController?.removeSpinner()
                             
                         } else {
                             
-                            print("COUNT IS ZERO")
-                            guard let objectsTableViewController = self?.previousViewController as? NovaOneTableView else { print("could not convert to NovaOneTableView - lead detail"); return }
-                            guard let containerViewController = objectsTableViewController.parentViewContainerController as? NovaOneObjectContainer else { print("could not convert to NovaOneObjectContainer - lead detail"); return }
+                            print("COUNT IS ZERO - lead detail view controller")
+                            guard let containerViewController = objectsTableViewController.parentViewContainerController as? NovaOneObjectContainer else { print("could not get containerViewController - lead detail view controller"); return }
                             
                             UIHelper.showEmptyStateContainerViewController(for: containerViewController as? UIViewController, containerView: containerViewController.containerView ?? UIView(), title: "No Leads", addObjectButtonTitle: "Add Lead") {
-                                    (emptyViewController) in
+                                (emptyViewController) in
+                                
+                                objectsTableViewController.parentViewContainerController?.removeSpinner()
+                                // Tell the empty state view controller what its parent view controller is
+                                emptyViewController.parentViewContainerController = containerViewController as? UIViewController
+                                
+                                // Pass the addObjectHandler function and button title to the empty view controller
+                                emptyViewController.addObjectButtonHandler = {
+                                    // Go to the add object screen
+                                    let addLeadStoryboard = UIStoryboard(name: Defaults.StoryBoards.addLead.rawValue, bundle: .main)
+                                    guard
+                                        let addLeadNavigationController = addLeadStoryboard.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addLead.rawValue) as? UINavigationController,
+                                        let addLeadCompanyViewController = addLeadNavigationController.viewControllers.first as? AddLeadCompanyViewController
+                                    else { return }
                                     
-                                    // Tell the empty state view controller what its parent view controller is
-                                    emptyViewController.parentViewContainerController = containerViewController as? UIViewController
+                                    addLeadCompanyViewController.embeddedViewController = emptyViewController
                                     
-                                    // Pass the addObjectHandler function and button title to the empty view controller
-                                    emptyViewController.addObjectButtonHandler = {
-                                        // Go to the add object screen
-                                        let addLeadStoryboard = UIStoryboard(name: Defaults.StoryBoards.addLead.rawValue, bundle: .main)
-                                        guard
-                                            let addLeadNavigationController = addLeadStoryboard.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addLead.rawValue) as? UINavigationController,
-                                            let addLeadCompanyViewController = addLeadNavigationController.viewControllers.first as? AddLeadCompanyViewController
-                                        else { return }
-                                        
-                                        addLeadCompanyViewController.embeddedViewController = emptyViewController
-                                        
-                                        // Do NOT present from self (leadDetailViewController in this case) because we are dismissing it and it will no longer be available, so we can't call any methods on a nil object
-                                        (containerViewController as? UIViewController)?.present(addLeadNavigationController, animated: true, completion: nil)
-                                    }
+                                    // Do NOT present from self (leadDetailViewController in this case) because we are dismissing it and it will no longer be available, so we can't call any methods on a nil object
+                                    (containerViewController as? UIViewController)?.present(addLeadNavigationController, animated: true, completion: nil)
+                                }
                                 
                             }
-                            self?.navigationController?.dismiss(animated: true, completion: nil)
                             
                         }
                     case .failure(let error):
                         guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
                         self?.present(popUpOkViewController, animated: true, completion: nil)
                 }
-                
-                self?.removeSpinner()
             }
         }, cancelHandler: {
             print("Action canceled")

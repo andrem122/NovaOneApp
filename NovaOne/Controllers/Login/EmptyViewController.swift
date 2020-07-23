@@ -30,7 +30,7 @@ class EmptyViewController: UIViewController {
         // Sets the text for the title label
         self.titleLabel.text = self.titleLabelText
         
-        guard let addObjectButtonTitle = self.addObjectButtonTitle else { print("unable to set button title"); return }
+        guard let addObjectButtonTitle = self.addObjectButtonTitle else { return }
         self.addObjectButton.setTitle(addObjectButtonTitle, for: .normal)
     }
     
@@ -38,14 +38,15 @@ class EmptyViewController: UIViewController {
     @IBAction func refreshButtonTapped(_ sender: Any) {
         
         if let leadsContainerViewController = self.parentViewContainerController as? LeadsContainerViewController {
+            print("leads container view controller block - empty view controller")
             leadsContainerViewController.containerView.subviews.first?.removeFromSuperview() // Remove empty state view controller from container view
-            leadsContainerViewController.viewDidLoad() // Reload view did load to check for new objects
+            leadsContainerViewController.showCoreDataOrRequestData() // Reload view did load to check for new objects
         } else if let appointmentsContainerViewController = self.parentViewContainerController as? AppointmentsContainerViewController {
             appointmentsContainerViewController.containerView.subviews.first?.removeFromSuperview()
-            appointmentsContainerViewController.viewDidLoad()
+            appointmentsContainerViewController.showCoreDataOrRequestData()
         } else if let companiesContainerViewController = self.parentViewContainerController as? CompaniesContainerViewController {
             companiesContainerViewController.containerView.subviews.first?.removeFromSuperview()
-            companiesContainerViewController.viewDidLoad()
+            companiesContainerViewController.showCoreDataOrRequestData()
         }
         
     }

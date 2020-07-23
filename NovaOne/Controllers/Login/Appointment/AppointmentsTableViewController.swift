@@ -79,6 +79,7 @@ class AppointmentsTableViewController: UITableViewController, NovaOneTableView {
                 else { return }
                 
                 detailViewController.appointment = appointment
+                detailViewController.previousViewController = self
                 detailViewController.navigationItem.leftBarButtonItem = self?.splitViewController?.displayModeButtonItem
                 detailViewController.navigationItem.leftItemsSupplementBackButton = true
                 
@@ -343,6 +344,7 @@ class AppointmentsTableViewController: UITableViewController, NovaOneTableView {
             else { return }
             
             detailViewController.appointment = appointment
+            detailViewController.previousViewController = self
             
             detailViewController.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
             detailViewController.navigationItem.leftItemsSupplementBackButton = true
@@ -358,10 +360,12 @@ class AppointmentsTableViewController: UITableViewController, NovaOneTableView {
         // Pass the instance of appointments table view controller to the last view controller in the navigation stack
         // so we can refresh the appointments table after successful object creation
         guard let addAppointmentCompanyViewController = addAppointmentNavigationController.viewControllers.first as? AddAppointmentCompanyViewController else { return }
-        addAppointmentCompanyViewController.appointmentsTableViewController = self
+        addAppointmentCompanyViewController.embeddedViewController = self
         
         self.present(addAppointmentNavigationController, animated: true, completion: nil)
     }
+    
+    @IBAction func unwindToAppointmentsTableController(unwindSegue: UIStoryboardSegue) {}
 
 }
 

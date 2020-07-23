@@ -43,6 +43,7 @@
 		653D2184244523C5009DA68E /* credentials.php in Resources */ = {isa = PBXBuildFile; fileRef = 653D2183244523C5009DA68E /* credentials.php */; };
 		65446CEC23E0F4370052DEBE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65446CEB23E0F4370052DEBE /* LoginViewController.swift */; };
 		65446CEF23E0F7DF0052DEBE /* NovaOneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65446CEE23E0F7DF0052DEBE /* NovaOneButton.swift */; };
+		6547416D24CA058C00575228 /* deleteAppointmentRealEstate.php in Resources */ = {isa = PBXBuildFile; fileRef = 6547416C24CA058C00575228 /* deleteAppointmentRealEstate.php */; };
 		6556D57C242FC91200E6B778 /* UpdateCompanyHoursEnabledViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6556D57B242FC91200E6B778 /* UpdateCompanyHoursEnabledViewController.swift */; };
 		655D0B21240B43D200D0E329 /* UpdateCompanyAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655D0B20240B43D200D0E329 /* UpdateCompanyAddressViewController.swift */; };
 		655D0B23240B43E800D0E329 /* UpdatePhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655D0B22240B43E800D0E329 /* UpdatePhoneViewController.swift */; };
@@ -285,6 +286,7 @@
 		653D2183244523C5009DA68E /* credentials.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = credentials.php; sourceTree = "<group>"; };
 		65446CEB23E0F4370052DEBE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		65446CEE23E0F7DF0052DEBE /* NovaOneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovaOneButton.swift; sourceTree = "<group>"; };
+		6547416C24CA058C00575228 /* deleteAppointmentRealEstate.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = deleteAppointmentRealEstate.php; sourceTree = "<group>"; };
 		6556D57B242FC91200E6B778 /* UpdateCompanyHoursEnabledViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCompanyHoursEnabledViewController.swift; sourceTree = "<group>"; };
 		655D0B20240B43D200D0E329 /* UpdateCompanyAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCompanyAddressViewController.swift; sourceTree = "<group>"; };
 		655D0B22240B43E800D0E329 /* UpdatePhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePhoneViewController.swift; sourceTree = "<group>"; };
@@ -910,6 +912,7 @@
 				65CF919424ABFD7900093008 /* updateAppointmentMedicalAndRealEstate.php */,
 				65866FE524AD021C0029847E /* deleteObject.php */,
 				65898E2A24AF833300613515 /* deleteAppointmentMedical.php */,
+				6547416C24CA058C00575228 /* deleteAppointmentRealEstate.php */,
 			);
 			path = PHP;
 			sourceTree = "<group>";
@@ -1126,6 +1129,7 @@
 				65A9E30B24B6979D000110AB /* AddAppointment.storyboard in Resources */,
 				65A7423924B76EEC0092DF0C /* UpdateAppointment.storyboard in Resources */,
 				65A7423F24B770880092DF0C /* Support.storyboard in Resources */,
+				6547416D24CA058C00575228 /* deleteAppointmentRealEstate.php in Resources */,
 				65A6EF9E249E75D500DE12E7 /* updateObject.php in Resources */,
 				6591C3A123DA78F900535C46 /* Main.storyboard in Resources */,
 				6578D9F12415AD06002E94BF /* companies.php in Resources */,

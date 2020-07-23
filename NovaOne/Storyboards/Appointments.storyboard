@@ -464,15 +464,17 @@
                         <outlet property="objectDetailTableView" destination="a1A-P5-hbv" id="92f-LB-oLG"/>
                         <outlet property="titleLabel" destination="Zbl-6A-Vnm" id="rqf-dl-0kJ"/>
                         <outlet property="topView" destination="UkD-3k-JhN" id="p0g-lr-uVs"/>
+                        <segue destination="cm3-Vo-kqn" kind="unwind" identifier="unwindToAppointmentsTableController" unwindAction="unwindToAppointmentsTableControllerWithUnwindSegue:" id="OGa-5A-pmz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VHx-W7-nq6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="cm3-Vo-kqn" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5441" y="1642"/>
+            <point key="canvasLocation" x="5438" y="1643"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="sqU-Nh-4hG"/>
+        <segue reference="wIw-gS-eqi"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="calendar" catalog="system" width="128" height="106"/>

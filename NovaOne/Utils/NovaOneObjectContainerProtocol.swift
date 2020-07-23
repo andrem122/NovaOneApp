@@ -13,7 +13,6 @@ protocol NovaOneObjectContainer {
     
     // MARK: Properties
     var containerView: UIView! { get set }
-    var objectCount: Int { get set }
     
     // MARK: Methods
     func showCoreDataOrRequestData()

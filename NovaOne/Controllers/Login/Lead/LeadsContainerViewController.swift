@@ -13,7 +13,6 @@ class LeadsContainerViewController: UIViewController, NovaOneObjectContainer {
     
     // MARK: Properties
     @IBOutlet weak var containerView: UIView!
-    var objectCount: Int = PersistenceService.fetchCount(for: Defaults.CoreDataEntities.lead.rawValue)
     
     // MARK: Methods
     override func viewDidLoad() {
@@ -23,15 +22,15 @@ class LeadsContainerViewController: UIViewController, NovaOneObjectContainer {
     
     func showCoreDataOrRequestData() {
         // Gets CoreData and passes it to table view OR makes a request for data if no CoreData exists
-        
-        if self.objectCount > 0 {
+        let objectCount: Int = PersistenceService.fetchCount(for: Defaults.CoreDataEntities.lead.rawValue)
+        if objectCount > 0 {
             // Get CoreData objects and pass to the next view
             UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.SplitViewControllerIdentifiers.leads.rawValue, containerView: self.containerView, objectType: UISplitViewController.self ) {
                 [weak self] (viewController) in
                 
-                guard let splitViewController = viewController as? UISplitViewController else { print("could not convert view controller to UISplitViewController"); return }
-                guard let objectsTableNavigationController = splitViewController.viewControllers.first as? UINavigationController else { print("could not convert to UINavigationController"); return }
-                guard let objectsTableController = objectsTableNavigationController.viewControllers.first as? NovaOneTableView else { print("could not convert to NovaOneTableView"); return }
+                guard let splitViewController = viewController as? UISplitViewController else { return }
+                guard let objectsTableNavigationController = splitViewController.viewControllers.first as? UINavigationController else { return }
+                guard let objectsTableController = objectsTableNavigationController.viewControllers.first as? NovaOneTableView else { return }
                 objectsTableController.parentViewContainerController = self
             }
             
@@ -105,9 +104,9 @@ class LeadsContainerViewController: UIViewController, NovaOneObjectContainer {
                                         UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.SplitViewControllerIdentifiers.leads.rawValue, containerView: self?.containerView ?? UIView(), objectType: UISplitViewController.self) {
                                             [weak self] (viewController) in
                                             
-                                            guard let splitViewController = viewController as? UISplitViewController else { print("could not convert view controller to UISplitViewController"); return }
-                                            guard let objectsTableNavigationController = splitViewController.viewControllers.first as? UINavigationController else { print("could not convert to UINavigationController"); return }
-                                            guard let objectsTableController = objectsTableNavigationController.viewControllers.first as? NovaOneTableView else { print("could not convert to NovaOneTableView"); return }
+                                            guard let splitViewController = viewController as? UISplitViewController else { return }
+                                            guard let objectsTableNavigationController = splitViewController.viewControllers.first as? UINavigationController else { return }
+                                            guard let objectsTableController = objectsTableNavigationController.viewControllers.first as? NovaOneTableView else { return }
                                             objectsTableController.parentViewContainerController = self
                                         }
                                         
