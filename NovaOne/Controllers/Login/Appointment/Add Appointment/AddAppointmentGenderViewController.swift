@@ -73,10 +73,20 @@ class AddAppointmentGenderViewController: AddAppointmentBaseViewController, UIPi
                         [weak self] in
                         // Return to the appointments view and refresh appointments
                         self?.presentingViewController?.dismiss(animated: true, completion: nil)
-                        (self?.embeddedViewController as? AppointmentsTableViewController)?.refreshDataOnPullDown()
-                        self?.removeSpinner()
+                        
+                        // The embedded view controller in the container view controller is either
+                        // the empty view controller or the table view controller
+                        if let emptyViewController = self?.embeddedViewController as? EmptyViewController {
+                            emptyViewController.refreshButton.sendActions(for: .touchUpInside)
+                        } else {
+                            print("appointments view controller")
+                            guard let appointmentsTableViewController = self?.embeddedViewController as? AppointmentsTableViewController else { return }
+                            appointmentsTableViewController.refreshDataOnPullDown()
+                        }
                     }
+                    
                     self?.present(successViewController, animated: true, completion: nil)
+                    self?.removeSpinner()
                 case .failure(let error):
                     guard let popUpOk = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
                     self?.present(popUpOk, animated: true, completion: nil)

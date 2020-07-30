@@ -79,6 +79,7 @@ class CompaniesTableViewController: UITableViewController, NovaOneTableView {
                 else { return }
                 
                 detailViewController.company = company
+                detailViewController.previousViewController = self
                 detailViewController.navigationItem.leftBarButtonItem = self?.splitViewController?.displayModeButtonItem
                 detailViewController.navigationItem.leftItemsSupplementBackButton = true
                 
@@ -167,6 +168,7 @@ class CompaniesTableViewController: UITableViewController, NovaOneTableView {
                     coreDataCompany.customerUserId = Int32(company.customerUserId)
                     coreDataCompany.daysOfTheWeekEnabled = company.daysOfTheWeekEnabled
                     coreDataCompany.autoRespondNumber = company.autoRespondNumber
+                    coreDataCompany.allowSameDayAppointments = company.allowSameDayAppointments
                     coreDataCompany.autoRespondText = company.autoRespondText
                     coreDataCompany.email = company.email
                     coreDataCompany.hoursOfTheDayEnabled = company.hoursOfTheDayEnabled
@@ -357,6 +359,7 @@ class CompaniesTableViewController: UITableViewController, NovaOneTableView {
             else { return }
             
             detailViewController.company = company
+            detailViewController.previousViewController = self
             
             detailViewController.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
             detailViewController.navigationItem.leftItemsSupplementBackButton = true
@@ -376,6 +379,10 @@ class CompaniesTableViewController: UITableViewController, NovaOneTableView {
         addCompanyNameViewController.embeddedViewController = self
         
         self.present(addCompanyNavigationController, animated: true, completion: nil)
+    }
+    
+    @IBAction func unwindToCompaniesTableController(unwindSegue: UIStoryboardSegue) {
+        
     }
 
 }

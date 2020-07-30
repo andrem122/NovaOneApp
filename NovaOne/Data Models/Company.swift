@@ -21,6 +21,7 @@ struct CompanyModel: Decodable {
     var autoRespondText: String?
     var email: String
     var created: String
+    var allowSameDayAppointments: Bool
     var daysOfTheWeekEnabled: String
     var hoursOfTheDayEnabled: String
     var city: String

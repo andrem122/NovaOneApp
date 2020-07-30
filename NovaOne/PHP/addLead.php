@@ -27,7 +27,7 @@
     
     // query the database and echo results
     $parameters = array(':lead_name' => $lead_name, ':lead_phone_number' => $lead_phone_number, ':lead_email' => $lead_email, ':lead_renter_brand' => $lead_renter_brand, ':lead_date_of_inquiry' => $date_of_inquiry, ':lead_company_id' => $lead_company_id);
-    echo query_db_login($query, $user_is_verified, $parameters, true);
+    echo query_db_login($query, $user_is_verified, $parameters, true, NULL);
     
 ?>
 

@@ -9,11 +9,11 @@
 import UIKit
 import CoreData
 
-class CompaniesContainerViewController: UIViewController {
+class CompaniesContainerViewController: UIViewController, NovaOneObjectContainer {
     
     // MARK: Properties
     @IBOutlet weak var containerView: UIView!
-    var objectCount: Int = PersistenceService.fetchCount(for: Defaults.CoreDataEntities.company.rawValue)
+    var alertService = AlertService()
     
     // MARK: Methods
     override func viewDidLoad() {
@@ -22,16 +22,21 @@ class CompaniesContainerViewController: UIViewController {
     }
     
     func showCoreDataOrRequestData() {
-        // Gets CoreData and passes it to table view OR makes a request for data if no CoreData exists
-        
-        if self.objectCount > 0 {
+               // Gets CoreData and passes it to table view OR makes a request for data if no CoreData exists
+        let objectCount: Int = PersistenceService.fetchCount(for: Defaults.CoreDataEntities.company.rawValue)
+        if objectCount > 0 {
             // Get CoreData objects and pass to the next view
-            print("Showing objects from Core Data")
-            UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.SplitViewControllerIdentifiers.companies.rawValue, containerView: self.containerView, objectType: UISplitViewController.self, completion: nil)
+            UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.SplitViewControllerIdentifiers.companies.rawValue, containerView: self.containerView, objectType: UISplitViewController.self) {
+                [weak self] (viewController) in
+                
+                guard let splitViewController = viewController as? UISplitViewController else { return }
+                guard let objectsTableNavigationController = splitViewController.viewControllers.first as? UINavigationController else { return }
+                guard let objectsTableController = objectsTableNavigationController.viewControllers.first as? NovaOneTableView else { return }
+                objectsTableController.parentViewContainerController = self
+            }
             
         } else {
             // Get data via an HTTP request and save to coredata for the next view
-            print("No Core Data. Getting objects via an HTTP request")
             self.getData()
         }
         
@@ -50,6 +55,7 @@ class CompaniesContainerViewController: UIViewController {
                 coreDataCompany.created = company.createdDate
                 coreDataCompany.customerUserId = Int32(company.customerUserId)
                 coreDataCompany.daysOfTheWeekEnabled = company.daysOfTheWeekEnabled
+                coreDataCompany.allowSameDayAppointments = company.allowSameDayAppointments
                 coreDataCompany.email = company.email
                 coreDataCompany.autoRespondNumber = company.autoRespondNumber
                 coreDataCompany.autoRespondText = company.autoRespondText
@@ -61,7 +67,7 @@ class CompaniesContainerViewController: UIViewController {
                 coreDataCompany.state = company.state
                 coreDataCompany.zip = company.zip
                 
-                // Add appointments
+                // Add appointments to company object
                 if PersistenceService.fetchCount(for: Defaults.CoreDataEntities.appointment.rawValue) > 0 {
                     let predicate = NSPredicate(format: "companyId == %@", String(company.id))
                     let appointments = NSSet(array: PersistenceService.fetchEntity(Appointment.self, filter: predicate, sort: nil))
@@ -90,7 +96,7 @@ class CompaniesContainerViewController: UIViewController {
         
         let httpRequest = HTTPRequests()
         guard
-            let customer = PersistenceService.fetchCustomerEntity(),
+            let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
             let email = customer.email,
             let password = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue)
         else { return }
@@ -112,7 +118,14 @@ class CompaniesContainerViewController: UIViewController {
                                         self?.saveToCoreData(objects: companies)
                                         
                                         // Show success screen
-                                        UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.SplitViewControllerIdentifiers.companies.rawValue, containerView: self?.containerView ?? UIView(), objectType: UISplitViewController.self, completion: nil)
+                                        UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.SplitViewControllerIdentifiers.companies.rawValue, containerView: self?.containerView ?? UIView(), objectType: UISplitViewController.self) {
+                                            [weak self] (viewController) in
+                                            
+                                            guard let splitViewController = viewController as? UISplitViewController else { return }
+                                            guard let objectsTableNavigationController = splitViewController.viewControllers.first as? UINavigationController else { return }
+                                            guard let objectsTableController = objectsTableNavigationController.viewControllers.first as? NovaOneTableView else { return }
+                                            objectsTableController.parentViewContainerController = self
+                                        }
                                         
                                     
                                     case .failure(let error):
@@ -129,19 +142,26 @@ class CompaniesContainerViewController: UIViewController {
                                             emptyViewController.addObjectButtonHandler = {
                                                 [weak self] in
                                                 // Go to the add object screen
-                                                
                                                 let addCompanyStoryboard = UIStoryboard(name: Defaults.StoryBoards.addCompany.rawValue, bundle: .main)
-                                                guard let addCompanyNavigationController = addCompanyStoryboard.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addCompany.rawValue) as? UINavigationController else { return }
+                                                guard
+                                                    let addCompanyNavigationController = addCompanyStoryboard.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addCompany.rawValue) as? UINavigationController
+                                                else { print("could not get add company navigation controller - CompaniesContainerViewController"); return }
+                                                
+                                                guard
+                                                    let addCompanyNameViewController = addCompanyNavigationController.viewControllers.first as? AddCompanyNameViewController
+                                                else { print("could not get addCompanyNameViewController view controller - CompaniesContainerViewController"); return }
+                                                
+                                                // Pass embedded view controller
+                                                addCompanyNameViewController.embeddedViewController = emptyViewController
+                                                
                                                 self?.present(addCompanyNavigationController, animated: true, completion: nil)
                                             }
                                         
                                     }
                                     
                                 }
-                                
                                 self?.removeSpinner()
         }
-        
     }
 
 }

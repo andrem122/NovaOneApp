@@ -116,9 +116,11 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             else { return }
             
             // Remove the detail view controller from view
-            guard let objectsTableViewController = self?.previousViewController as? NovaOneTableView else { return }
-            guard let containerViewControllerView = objectsTableViewController.parentViewContainerController?.view else { return }
-            objectsTableViewController.parentViewContainerController?.showSpinner(for: containerViewControllerView, textForLabel: "Deleting")
+            guard let objectsTableViewController = self?.previousViewController as? NovaOneTableView else { print("could not get objectsTableViewController - lead detail view"); return }
+            guard let containerViewControllerAsUIViewController = objectsTableViewController.parentViewContainerController else { print("could not get containerViewController - lead detail view"); return }
+            guard let containerViewControllerView = objectsTableViewController.parentViewContainerController?.view else { print("could not get containerViewControllerView - lead detail view"); return }
+            
+            containerViewControllerAsUIViewController.showSpinner(for: containerViewControllerView, textForLabel: "Deleting")
             self?.performSegue(withIdentifier: Defaults.SegueIdentifiers.unwindToLeads.rawValue, sender: self)
             
             // Delete from CoreData
@@ -133,7 +135,7 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
                                              "tableName": Defaults.DataBaseTableNames.leads.rawValue]
             
             let httpRequest = HTTPRequests()
-            httpRequest.request(url: Defaults.Urls.api.rawValue + "/deleteObject.php", dataModel: SuccessResponse.self, parameters: parameters) { [weak self] (result) in
+            httpRequest.request(url: Defaults.Urls.api.rawValue + "/deleteObject.php", dataModel: SuccessResponse.self, parameters: parameters) {(result) in
                 switch result {
                     case .success(_):
                         // If no more objects exist, go to empty view controller else go to table view controller and reload data
@@ -175,8 +177,9 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
                             
                         }
                     case .failure(let error):
-                        guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
-                        self?.present(popUpOkViewController, animated: true, completion: nil)
+                        guard let containerViewController = containerViewControllerAsUIViewController as? NovaOneObjectContainer else { return }
+                        let popUpOkViewController = containerViewController.alertService.popUpOk(title: "Error", body: error.localizedDescription)
+                        containerViewControllerAsUIViewController.present(popUpOkViewController, animated: true, completion: nil)
                 }
             }
         }, cancelHandler: {

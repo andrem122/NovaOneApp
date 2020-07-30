@@ -84,13 +84,14 @@ class AddCompanyHoursEnabledViewController: AddCompanyBaseViewController, UITabl
             let city = self.company?.city,
             let state = self.company?.state,
             let zip = self.company?.zip,
+            let allowSameDayAppointments = self.company?.allowSameDayAppointments,
             let phoneNumber = self.company?.phoneNumber,
             let daysOfTheWeekenabled = self.company?.daysOfTheWeekEnabled,
             let hoursOfTheDayEnabled = self.company?.hoursOfTheDayEnabled
         else { return }
         let customerUserId = String(customer.id)
         
-        let parameters: [String: String] = ["customerUserId": customerUserId, "email": customerEmail, "password": customerPassword, "companyName": companyName, "companyEmail": companyEmail, "companyAddress": address, "companyCity": city, "companyState": state, "companyZip": zip, "companyPhoneNumber": phoneNumber, "daysOfTheWeekEnabled": daysOfTheWeekenabled, "hoursOfTheDayEnabled": hoursOfTheDayEnabled]
+        let parameters: [String: Any] = ["customerUserId": customerUserId, "email": customerEmail, "password": customerPassword, "companyName": companyName, "companyEmail": companyEmail, "companyAddress": address, "companyCity": city, "companyState": state, "companyZip": zip, "companyPhoneNumber": phoneNumber, "daysOfTheWeekEnabled": daysOfTheWeekenabled, "hoursOfTheDayEnabled": hoursOfTheDayEnabled, "allowSameDayAppointments": allowSameDayAppointments]
         
         print(parameters)
         let httpRequest = HTTPRequests()

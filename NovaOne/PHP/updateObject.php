@@ -29,7 +29,7 @@
     
     // query the database and echo results
     $parameters = array(':column_value' => $column_value, ':object_id' => $object_id);
-    echo query_db_login($query, $user_is_verified, $parameters, true);
+    echo query_db_login($query, $user_is_verified, $parameters, true, NULL);
     
 ?>
 

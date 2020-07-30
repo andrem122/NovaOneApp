@@ -58,7 +58,7 @@ class AddCompanyNameViewController: AddCompanyBaseViewController, UITextFieldDel
             let customerUserId = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first?.id
             else { print("could not get variables"); return }
         
-        addCompanyAddressViewController.company = CompanyModel(id: 0, name: companyName, address: "", phoneNumber: "", autoRespondNumber: nil, autoRespondText: nil, email: "", created: "", daysOfTheWeekEnabled: "", hoursOfTheDayEnabled: "", city: "", customerUserId: Int(customerUserId), state: "", zip: "")
+        addCompanyAddressViewController.company = CompanyModel(id: 0, name: companyName, address: "", phoneNumber: "", autoRespondNumber: nil, autoRespondText: nil, email: "", created: "", allowSameDayAppointments: false, daysOfTheWeekEnabled: "", hoursOfTheDayEnabled: "", city: "", customerUserId: Int(customerUserId), state: "", zip: "")
         addCompanyAddressViewController.embeddedViewController = self.embeddedViewController
         
         self.navigationController?.pushViewController(addCompanyAddressViewController, animated: true)

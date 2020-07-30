@@ -59,14 +59,14 @@ class AddCompanyPhoneViewController: AddCompanyBaseViewController, UITextFieldDe
                         
                         print(success.successReason)
                         guard
-                            let addCompanyDaysEnabledViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addCompanyDaysEnabled.rawValue) as? AddCompanyDaysEnabledViewController
+                            let addCompanyAllowSameDayAppointmentsViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addCompanyAllowSameDayAppointments.rawValue) as? AddCompanyAllowSameDayAppointmentsViewController
                         else { return }
                         
                         self?.company?.phoneNumber = "%2B1" + unformattedPhoneNumber
-                        addCompanyDaysEnabledViewController.company = self?.company
-                        addCompanyDaysEnabledViewController.embeddedViewController = self?.embeddedViewController
+                        addCompanyAllowSameDayAppointmentsViewController.company = self?.company
+                        addCompanyAllowSameDayAppointmentsViewController.embeddedViewController = self?.embeddedViewController
                         
-                        self?.navigationController?.pushViewController(addCompanyDaysEnabledViewController, animated: true)
+                        self?.navigationController?.pushViewController(addCompanyAllowSameDayAppointmentsViewController, animated: true)
                         
                     case .failure(let error):
                         guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }

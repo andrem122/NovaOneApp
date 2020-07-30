@@ -27,7 +27,7 @@
     
     // query the database and echo results
     $parameters = array(':address' => $address, ':city' => $city, ':state' => $state, ':zip' => $zip, ':object_id' => $object_id);
-    echo query_db_login($query, $user_is_verified, $parameters, true);
+    echo query_db_login($query, $user_is_verified, $parameters, true, NULL);
     
 ?>
 

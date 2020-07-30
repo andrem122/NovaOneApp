@@ -99,7 +99,7 @@
         
     }
     
-    function query_db_login($query, $user_is_verified = false, $parameters = array('' => ''), $success_message_needed = false) {
+    function query_db_login($query, $user_is_verified = false, $parameters = array('' => ''), $success_message_needed = false, $success) {
         if ($user_is_verified) {
             // queries the database for the users who are logged in
             $db_object = new Database();
@@ -120,6 +120,11 @@
                         $response_array = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     } else {
                         $response_array = array('successReason' => 'Successful operation.');
+                    }
+                    
+                    // Run the success callback function
+                    if(!is_null($success)) {
+                     $success();
                     }
                     
                     return json_encode($response_array);

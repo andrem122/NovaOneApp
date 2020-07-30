@@ -159,9 +159,11 @@
                         <outlet property="objectDetailTableView" destination="Meg-ak-998" id="9BS-WO-yan"/>
                         <outlet property="titleLabel" destination="fxX-Yl-SA9" id="k7X-XV-95a"/>
                         <outlet property="topView" destination="39E-LM-H8x" id="ieN-QG-olK"/>
+                        <segue destination="pIh-5D-9Vc" kind="unwind" identifier="unwindToCompaniesTableController" unwindAction="unwindToCompaniesTableControllerWithUnwindSegue:" id="aBg-vl-XcO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GSK-UM-2HD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="pIh-5D-9Vc" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="18255" y="615"/>
         </scene>
@@ -428,7 +430,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="rXt-fy-fUQ"/>
+        <segue reference="B8e-n8-RKh"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="gpsMap" width="400" height="370.5"/>

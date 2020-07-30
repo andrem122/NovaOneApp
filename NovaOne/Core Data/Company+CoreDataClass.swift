@@ -2,7 +2,7 @@
 //  Company+CoreDataClass.swift
 //  
 //
-//  Created by Andre Mashraghi on 6/19/20.
+//  Created by Andre Mashraghi on 7/29/20.
 //
 //
 

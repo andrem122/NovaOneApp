@@ -13,6 +13,7 @@ protocol NovaOneObjectContainer {
     
     // MARK: Properties
     var containerView: UIView! { get set }
+    var alertService: AlertService { get set }
     
     // MARK: Methods
     func showCoreDataOrRequestData()

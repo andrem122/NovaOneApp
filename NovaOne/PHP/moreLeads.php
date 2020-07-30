@@ -39,7 +39,7 @@
     ";
     
     $parameters = array(':customer_user_id' => $customer_user_id, 'last_object_id' => $last_object_id);
-    echo query_db_login($query, $user_is_verified, $parameters, false);
+    echo query_db_login($query, $user_is_verified, $parameters, false, NULL);
     
 ?>
 

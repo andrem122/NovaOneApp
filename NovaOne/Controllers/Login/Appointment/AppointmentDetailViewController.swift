@@ -126,9 +126,12 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
             else { return }
             
             // Remove the detail view controller from view
-            guard let objectsTableViewController = self?.previousViewController as? NovaOneTableView else { print("could not get objectsTableViewController - appointment detail view"); return }
-            guard let containerViewControllerView = objectsTableViewController.parentViewContainerController?.view else { print("could not get containerViewControllerView - appointment detail view"); return }
-            objectsTableViewController.parentViewContainerController?.showSpinner(for: containerViewControllerView, textForLabel: "Deleting")
+            guard let objectsTableViewController = self?.previousViewController as? NovaOneTableView else { print("could not get objectsTableViewController - lead detail view"); return }
+            guard let containerViewControllerAsUIViewController = objectsTableViewController.parentViewContainerController else { print("could not get containerViewController - lead detail view"); return }
+            guard let containerViewControllerView = objectsTableViewController.parentViewContainerController?.view else { print("could not get containerViewControllerView - lead detail view"); return }
+            containerViewControllerAsUIViewController.showSpinner(for: containerViewControllerView, textForLabel: "Deleting")
+            
+            containerViewControllerAsUIViewController.showSpinner(for: containerViewControllerView, textForLabel: "Deleting")
             self?.performSegue(withIdentifier: Defaults.SegueIdentifiers.unwindToAppointments.rawValue, sender: self)
             
             // Delete from CoreData
@@ -144,6 +147,7 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
             let httpRequest = HTTPRequests()
             let endpoint = customer.customerType == "MW" ? "/deleteAppointmentMedical.php" : "/deleteAppointmentRealEstate.php"
             httpRequest.request(url: Defaults.Urls.api.rawValue + endpoint, dataModel: SuccessResponse.self, parameters: parameters) { [weak self] (result) in
+            
                 switch result {
                     case .success(_):
                         // If no more objects exist, go to empty view controller else go to table view controller and reload data
@@ -152,16 +156,15 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
                             
                             // Return to the objects view and refresh objects
                             objectsTableViewController.refreshDataOnPullDown()
-                            objectsTableViewController.parentViewContainerController?.removeSpinner()
                             
                         } else {
                             
-                            guard let containerViewController = objectsTableViewController.parentViewContainerController as? NovaOneObjectContainer else { return }
+                            // No more objects to show so go to the empty view controller screen
+                            guard let containerViewController = containerViewControllerAsUIViewController as? NovaOneObjectContainer else { return }
                             
                             UIHelper.showEmptyStateContainerViewController(for: containerViewController as? UIViewController, containerView: containerViewController.containerView ?? UIView(), title: "No Appointments", addObjectButtonTitle: "Add Appointment") {
                                 (emptyViewController) in
                                 
-                                objectsTableViewController.parentViewContainerController?.removeSpinner()
                                 // Tell the empty state view controller what its parent view controller is
                                 emptyViewController.parentViewContainerController = containerViewController as? UIViewController
                                 
@@ -183,9 +186,12 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
                             
                         }
                     case .failure(let error):
-                        guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
-                        self?.present(popUpOkViewController, animated: true, completion: nil)
+                        guard let containerViewController = containerViewControllerAsUIViewController as? NovaOneObjectContainer else { return }
+                        let popUpOkViewController = containerViewController.alertService.popUpOk(title: "Error", body: error.localizedDescription)
+                        containerViewControllerAsUIViewController.present(popUpOkViewController, animated: true, completion: nil)
                 }
+                
+                containerViewControllerAsUIViewController.removeSpinner()
             }
         }, cancelHandler: {
             print("Action canceled")

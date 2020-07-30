@@ -87,25 +87,103 @@ class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITabl
     
     // MARK: Actions
     @IBAction func deleteButtonTapped(_ sender: Any) {
-        // Set text for pop up view controller
-        let title = "Delete Company"
-        let body = "Are you sure you want to delete the company?"
-        let buttonTitle = "Delete"
-        
-        let popUpViewController = alertService.popUp(title: title, body: body, buttonTitle: buttonTitle, actionHandler: {
-            [weak self] in
-            // Delete the company from CoreData
+        // User must have at least one company and cannot delete the last one
+        let count = PersistenceService.fetchCount(for: Defaults.CoreDataEntities.company.rawValue)
+        if count == 1 {
+            // Popup a ok view controller telling the user they cannot delete the last company
+            let popUpOkViewController = self.alertService.popUpOk(title: "Cannot Delete", body: "You must have at least one company to operate on NovaOne.")
+            self.present(popUpOkViewController, animated: true, completion: nil)
+        } else {
+            // Set text for pop up view controller
+            let title = "Delete Company"
+            let body = "Are you sure you want to delete the company? This will delete all lead and appointment data with the company as well"
+            let buttonTitle = "Delete"
             
-            // Delete the company from the database
+            let popUpViewController = alertService.popUp(title: title, body: body, buttonTitle: buttonTitle, actionHandler: {
+                [weak self] in
+                
+                guard
+                    let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
+                    let email = customer.email,
+                    let password = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue),
+                    let objectId = self?.company?.id,
+                    let company = self?.company
+                else { return }
+                
+                // Remove the detail view controller from view
+                guard let objectsTableViewController = self?.previousViewController as? NovaOneTableView else { print("could not get objectsTableViewController - company detail view"); return }
+                guard let containerViewControllerAsUIViewController = objectsTableViewController.parentViewContainerController else { print("could not get containerViewController - company detail view"); return }
+                guard let containerViewControllerView = objectsTableViewController.parentViewContainerController?.view else { print("could not get containerViewControllerView - company detail view"); return }
+                
+                
+                containerViewControllerAsUIViewController.showSpinner(for: containerViewControllerView, textForLabel: "Deleting")
+                self?.performSegue(withIdentifier: Defaults.SegueIdentifiers.unwindToCompanies.rawValue, sender: self)
+                
+                // Delete from CoreData
+                PersistenceService.context.delete(company)
+                PersistenceService.saveContext()
+                
+                // Delete from NovaOne database
+                let parameters: [String: Any] = ["email": email,
+                                                 "password": password,
+                                                 "columnName": "id",
+                                                 "objectId": objectId,]
+                
+                let httpRequest = HTTPRequests()
+                httpRequest.request(url: Defaults.Urls.api.rawValue + "/deleteCompany.php", dataModel: SuccessResponse.self, parameters: parameters) {(result) in
+                
+                    switch result {
+                        case .success(_):
+                            // If no more objects exist, go to empty view controller else go to table view controller and reload data
+                            let count = PersistenceService.fetchCount(for: Defaults.CoreDataEntities.company.rawValue)
+                            if count > 0 {
+                                
+                                // Return to the objects view and refresh objects
+                                objectsTableViewController.refreshDataOnPullDown()
+                                
+                            } else {
+                                
+                                // No more objects to show so go to the empty view controller screen
+                                guard let containerViewController = containerViewControllerAsUIViewController as? NovaOneObjectContainer else { return }
+                                
+                                UIHelper.showEmptyStateContainerViewController(for: containerViewController as? UIViewController, containerView: containerViewController.containerView ?? UIView(), title: "No Companies", addObjectButtonTitle: "Add Company") {
+                                    (emptyViewController) in
+                                    
+                                    // Tell the empty state view controller what its parent view controller is
+                                    emptyViewController.parentViewContainerController = containerViewController as? UIViewController
+                                    
+                                    // Pass the addObjectHandler function and button title to the empty view controller
+                                    emptyViewController.addObjectButtonHandler = {
+                                        // Go to the add object screen
+                                        let addCompanyStoryboard = UIStoryboard(name: Defaults.StoryBoards.addCompany.rawValue, bundle: .main)
+                                        guard
+                                            let addCompanyNavigationController = addCompanyStoryboard.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addCompany.rawValue) as? UINavigationController,
+                                            let addCompanyCompanyViewController = addCompanyNavigationController.viewControllers.first as? AddCompanyNameViewController
+                                        else { return }
+                                        
+                                        addCompanyCompanyViewController.embeddedViewController = emptyViewController
+                                        
+                                        (containerViewController as? UIViewController)?.present(addCompanyNavigationController, animated: true, completion: nil)
+                                    }
+                                    
+                                }
+                                
+                            }
+                        case .failure(let error):
+                            guard let containerViewController = containerViewControllerAsUIViewController as? NovaOneObjectContainer else { return }
+                            let popUpOkViewController = containerViewController.alertService.popUpOk(title: "Error", body: error.localizedDescription)
+                            containerViewControllerAsUIViewController.present(popUpOkViewController, animated: true, completion: nil)
+                    }
+                    
+                    print("REMOVING SPINNER")
+                    containerViewControllerAsUIViewController.removeSpinner()
+                }
+            }, cancelHandler: {
+                print("Action canceled")
+            })
             
-            // Navigate back to the companies view
-            let companiesStoryboard = UIStoryboard(name: Defaults.StoryBoards.companies.rawValue, bundle: .main)
-            let companiesViewController = companiesStoryboard.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.companies.rawValue)
-            self?.present(companiesViewController, animated: true, completion: nil)
-        }, cancelHandler: {
-            print("Action canceled")
-        })
-        self.present(popUpViewController, animated: true, completion: nil)
+            self.present(popUpViewController, animated: true, completion: nil)
+        }
     }
 
 }

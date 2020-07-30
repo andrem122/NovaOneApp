@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19E287" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19F101" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Appointment" representedClassName="Appointment" syncable="YES" codeGenerationType="class">
         <attribute name="address" optional="YES" attributeType="String"/>
         <attribute name="companyId" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
@@ -19,6 +19,7 @@
     </entity>
     <entity name="Company" representedClassName="Company" syncable="YES">
         <attribute name="address" attributeType="String"/>
+        <attribute name="allowSameDayAppointments" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="autoRespondNumber" optional="YES" attributeType="String"/>
         <attribute name="autoRespondText" optional="YES" attributeType="String"/>
         <attribute name="city" attributeType="String"/>
@@ -68,7 +69,7 @@
     </entity>
     <elements>
         <element name="Appointment" positionX="-54" positionY="135" width="128" height="28"/>
-        <element name="Company" positionX="-63" positionY="99" width="128" height="298"/>
+        <element name="Company" positionX="-63" positionY="99" width="128" height="313"/>
         <element name="Customer" positionX="-63" positionY="-18" width="128" height="238"/>
         <element name="Lead" positionX="-54" positionY="135" width="128" height="238"/>
     </elements>

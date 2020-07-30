@@ -2,7 +2,7 @@
 //  Company+CoreDataProperties.swift
 //  
 //
-//  Created by Andre Mashraghi on 6/19/20.
+//  Created by Andre Mashraghi on 7/29/20.
 //
 //
 
@@ -17,6 +17,8 @@ extension Company {
     }
 
     @NSManaged public var address: String?
+    @NSManaged public var autoRespondNumber: String?
+    @NSManaged public var autoRespondText: String?
     @NSManaged public var city: String?
     @NSManaged public var created: Date?
     @NSManaged public var customerUserId: Int32
@@ -29,8 +31,7 @@ extension Company {
     @NSManaged public var shortenedAddress: String?
     @NSManaged public var state: String?
     @NSManaged public var zip: String?
-    @NSManaged public var autoRespondNumber: String?
-    @NSManaged public var autoRespondText: String?
+    @NSManaged public var allowSameDayAppointments: Bool
     @NSManaged public var appointments: NSSet?
     @NSManaged public var leads: NSSet?
     
@@ -50,10 +51,12 @@ extension Company {
                     zip: String,
                     autoRespondNumber: String,
                     autoRespondText: String,
-                    customer: Customer) {
+                    customer: Customer,
+                    allowSameDayAppointments: Bool) {
         
         self.address = address
         self.created = created
+        self.allowSameDayAppointments = allowSameDayAppointments
         self.daysOfTheWeekEnabled = daysOfTheWeekEnabled
         self.email = email
         self.hoursOfTheDayEnabled = hoursOfTheDayEnabled

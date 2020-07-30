@@ -27,6 +27,6 @@
     
     // query the database and echo results
     $parameters = array(':customer_user_id' => $customer_user_id);
-    echo query_db_login($query, $user_is_verified, $parameters, false);
+    echo query_db_login($query, $user_is_verified, $parameters, false, NULL);
     
 ?>

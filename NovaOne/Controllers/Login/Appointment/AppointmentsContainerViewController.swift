@@ -9,10 +9,11 @@
 import UIKit
 import CoreData
 
-class AppointmentsContainerViewController: UIViewController {
+class AppointmentsContainerViewController: UIViewController, NovaOneObjectContainer {
     
     // MARK: Properties
     @IBOutlet weak var containerView: UIView!
+    var alertService = AlertService()
     
     // MARK: Methods
     override func viewDidLoad() {
@@ -128,7 +129,17 @@ class AppointmentsContainerViewController: UIViewController {
                                                 [weak self] in
                                                 // Go to the add object screen
                                                 let addAppointmentStoryboard = UIStoryboard(name: Defaults.StoryBoards.addAppointment.rawValue, bundle: .main)
-                                                guard let addAppointmentNavigationController = addAppointmentStoryboard.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addAppointment.rawValue) as? UINavigationController else { return }
+                                                guard
+                                                    let addAppointmentNavigationController = addAppointmentStoryboard.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addAppointment.rawValue) as? UINavigationController
+                                                else { print("could not get add appointment navigation controller - AppointmentsContainerViewController"); return }
+                                                
+                                                guard
+                                                    let addAppointmentCompanyViewController = addAppointmentNavigationController.viewControllers.first as? AddAppointmentCompanyViewController
+                                                else { print("could not get add appointment company view controller - AppointmentsContainerViewController"); return }
+                                                
+                                                // Pass embedded view controller
+                                                addAppointmentCompanyViewController.embeddedViewController = emptyViewController
+                                                
                                                 self?.present(addAppointmentNavigationController, animated: true, completion: nil)
                                             }
                                         

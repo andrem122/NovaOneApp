@@ -46,7 +46,7 @@ class AddLeadPhoneCheckViewController: AddLeadBaseViewController {
             self.navigationController?.pushViewController(addLeadRenterBrandViewController, animated: true)
         } else {
             
-            self.showSpinner(for: self.view, textForLabel: "Adding Lead...")
+            self.showSpinner(for: self.view, textForLabel: "Adding Lead")
             // Get data for POST parameters
             guard
                 let name = self.lead?.name,
@@ -68,8 +68,6 @@ class AddLeadPhoneCheckViewController: AddLeadBaseViewController {
                     case .success(let success):
                         // Redirect to success screen
                         
-                        self?.removeSpinner()
-                        
                         let popupStoryboard = UIStoryboard(name: Defaults.StoryBoards.popups.rawValue, bundle: .main)
                         guard let successViewController = popupStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.success.rawValue) as? SuccessViewController else { return }
                         successViewController.subtitleText = success.successReason
@@ -90,10 +88,11 @@ class AddLeadPhoneCheckViewController: AddLeadBaseViewController {
                         }
                         self?.present(successViewController, animated: true, completion: nil)
                     case .failure(let error):
-                        self?.removeSpinner()
                         guard let popUpOk = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
                         self?.present(popUpOk, animated: true, completion: nil)
                 }
+                
+                self?.removeSpinner()
             }
             
         }

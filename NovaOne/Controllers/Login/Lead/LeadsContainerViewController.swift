@@ -13,6 +13,7 @@ class LeadsContainerViewController: UIViewController, NovaOneObjectContainer {
     
     // MARK: Properties
     @IBOutlet weak var containerView: UIView!
+    var alertService = AlertService()
     
     // MARK: Methods
     override func viewDidLoad() {
