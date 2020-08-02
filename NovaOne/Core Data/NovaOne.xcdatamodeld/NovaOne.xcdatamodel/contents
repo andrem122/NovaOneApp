@@ -2,6 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19F101" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Appointment" representedClassName="Appointment" syncable="YES" codeGenerationType="class">
         <attribute name="address" optional="YES" attributeType="String"/>
+        <attribute name="city" optional="YES" attributeType="String"/>
         <attribute name="companyId" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="confirmed" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="created" attributeType="Date" usesScalarValueType="NO"/>
@@ -11,6 +12,7 @@
         <attribute name="id" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="phoneNumber" attributeType="String"/>
+        <attribute name="state" optional="YES" attributeType="String"/>
         <attribute name="testType" optional="YES" attributeType="String"/>
         <attribute name="time" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="timeZone" attributeType="String"/>
@@ -38,6 +40,8 @@
         <relationship name="leads" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Lead" inverseName="company" inverseEntity="Lead"/>
     </entity>
     <entity name="Customer" representedClassName="Customer" syncable="YES">
+        <attribute name="appointmentCount" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="companyCount" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="customerType" attributeType="String"/>
         <attribute name="dateJoined" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="email" attributeType="String"/>
@@ -46,10 +50,12 @@
         <attribute name="isPaying" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="lastLogin" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="lastName" attributeType="String"/>
+        <attribute name="leadCount" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="password" attributeType="String"/>
         <attribute name="phoneNumber" attributeType="String"/>
         <attribute name="userId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="username" attributeType="String"/>
+        <attribute name="wantsEmailNotifications" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="wantsSms" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
     <entity name="Lead" representedClassName="Lead" syncable="YES">
@@ -68,9 +74,9 @@
         <relationship name="company" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Company" inverseName="leads" inverseEntity="Company"/>
     </entity>
     <elements>
-        <element name="Appointment" positionX="-54" positionY="135" width="128" height="28"/>
+        <element name="Appointment" positionX="-54" positionY="135" width="128" height="298"/>
         <element name="Company" positionX="-63" positionY="99" width="128" height="313"/>
-        <element name="Customer" positionX="-63" positionY="-18" width="128" height="238"/>
+        <element name="Customer" positionX="-63" positionY="-18" width="128" height="298"/>
         <element name="Lead" positionX="-54" positionY="135" width="128" height="238"/>
     </elements>
 </model>

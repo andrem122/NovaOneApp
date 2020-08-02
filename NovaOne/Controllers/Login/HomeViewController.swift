@@ -32,6 +32,31 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
     var lineChartEntries  = [ChartDataEntry]()
     var barChartXLabels = [String]()
     var lineChartXLabels = [String]()
+    weak var cachedCustomer: Customer?
+    var customer: Customer {
+        get {
+            objc_sync_enter(self)
+            defer {
+                objc_sync_exit(self)
+            }
+            
+            guard nil == self.cachedCustomer else {
+                return self.cachedCustomer!
+            }
+            
+            // If cachedCustomer is nil, then get the customer object throught managed context object
+            guard let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first else {
+                fatalError("Customer object does not exist")
+            }
+            self.cachedCustomer = customer
+            return self.cachedCustomer!
+            
+        }
+        
+        set {
+            self.cachedCustomer = newValue
+        }
+    }
     
     // MARK: Methods
     override func viewDidLoad() {
@@ -219,16 +244,13 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
     func setupGreetingLabel() {
         
         // Get current day of the week
-        let currentDate = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE"
-        let weekDay = dateFormatter.string(from: currentDate)
+        let weekDay = DateHelper.createString(from: Date(), format: "EEEE")
         
         // Set greeting label text
-        guard let customer = PersistenceService.fetchCustomerEntity() else { return }
+        let customer = self.customer
         
         guard let firstName = customer.firstName else { return }
-        let leadCount = UserDefaults.standard.integer(forKey: Defaults.UserDefaults.leadCount.rawValue)
+        let leadCount = customer.leadCount
         let greetingString = "Hello \(firstName), it's \(weekDay), and you have \(leadCount) leads."
         self.greetingLabel.text = greetingString
         
@@ -243,13 +265,11 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
     func setupNumberLabels() {
         // Setup labels
         
-        let leadCount = UserDefaults.standard.integer(forKey: Defaults.UserDefaults.leadCount.rawValue)
-        let appointmentCount = UserDefaults.standard.integer(forKey: Defaults.UserDefaults.appointmentCount.rawValue)
-        let companyCount = UserDefaults.standard.integer(forKey: Defaults.UserDefaults.companyCount.rawValue)
+        let customer = self.customer
         
-        self.numberOfLeadsLabel.text = String(leadCount)
-        self.numberOfAppointmentsLabel.text = String(appointmentCount)
-        self.numberOfCompaniesLabel.text = String(companyCount)
+        self.numberOfLeadsLabel.text = String(customer.leadCount)
+        self.numberOfAppointmentsLabel.text = String(customer.appointmentCount)
+        self.numberOfCompaniesLabel.text = String(customer.companyCount)
         
         // Add gesture recognizers, so that when the labels are tapped, something happens
         self.addGestureRecognizer(to: self.leadsStackView, selector: #selector(HomeViewController.numberOfLeadsLabelTapped))
@@ -264,8 +284,8 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         self.showSpinner(for: self.chartContainerView, textForLabel: nil)
         
         let httpRequest = HTTPRequests()
+        let customer = self.customer
         guard
-            let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
             let email = customer.email,
             let password = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue)
         else { return }
@@ -330,8 +350,8 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         self.showSpinner(for: self.chartContainerView, textForLabel: nil)
         
         let httpRequest = HTTPRequests()
+        let customer = self.customer
         guard
-            let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
             let email = customer.email,
             let password = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue)
         else { return }
@@ -405,8 +425,8 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         
         let spinnerView = createSpinnerForIpadChart()
         let httpRequest = HTTPRequests()
+        let customer = self.customer
         guard
-            let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
             let email = customer.email,
             let password = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue)
         else { return }
@@ -451,10 +471,10 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         // Gets the number of a chosen object from the database
         
         let httpRequest = HTTPRequests()
+        let customer = self.customer
         guard
-            let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
-            let email = customer.email,
-            let password = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue)
+            let password = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue),
+            let email = customer.email
         else { return }
         let customerUserId = customer.id
         
@@ -466,8 +486,22 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
                 case .success(let objectCounts):
                     for objectCount in objectCounts {
                         // Save to user defaults for later use
-                        UserDefaults.standard.set(objectCount.count, forKey: objectCount.name)
+                        switch objectCount.name {
+                            case "leadCount":
+                                // Set customer (NOT customer variable created above) attributes with self.customer instead
+                                // of customer varaible above because then we will get a context error saying that we are
+                                // changing an object that has been removed from its context
+                                self?.customer.leadCount = Int32(objectCount.count)
+                            case "appointmentCount":
+                                self?.customer.appointmentCount = Int32(objectCount.count)
+                            case "companyCount":
+                                self?.customer.companyCount = Int32(objectCount.count)
+                            default:
+                                print("No cases matched")
+                        }
                     }
+                    
+                    PersistenceService.saveContext()
                     
                     // Run the success completion handler
                     success()
@@ -523,6 +557,22 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
                 self?.setupBarChart()
             }
         }
+    }
+    
+    // MARK: State Restoration
+    override func encodeRestorableState(with coder: NSCoder) {
+        // Call encodeRestorableState so the rest of inherited state functionality will happen
+        super.encodeRestorableState(with: coder)
+    }
+    
+    override func decodeRestorableState(with coder: NSCoder) {
+        super.decodeRestorableState(with: coder)
+    }
+    
+    override func applicationFinishedRestoringState() {
+        print("Restoring Home View Controller...")
+        self.setupGreetingLabel()
+        self.setupNumberLabels()
     }
     
 }

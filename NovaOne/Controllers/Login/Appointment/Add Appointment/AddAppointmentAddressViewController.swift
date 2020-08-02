@@ -116,6 +116,7 @@ extension AddAppointmentAddressViewController {
             [weak self] in
             
             guard
+                let addressComponents = place.addressComponents,
                 let address = place.formattedAddress,
                 let continueButton = self?.continueButton
             else { return }
@@ -132,8 +133,18 @@ extension AddAppointmentAddressViewController {
             self?.mapView.centerToLocation(selectedLocation)
             self?.mapView.isHidden = false
             
-            // Get street address from the place the user selected
+            // Get street address, city, and zip from the place the user selected
             self?.appointment?.address = address
+            for component in addressComponents {
+                
+                let componentType = component.types[0]
+                if componentType == Defaults.GooglePlaceAddressComponents.city.rawValue { // City
+                    self?.appointment?.city = component.name
+                } else if componentType == Defaults.GooglePlaceAddressComponents.zip.rawValue { // Zip code
+                    self?.appointment?.zip = component.name
+                }
+                
+            }
         }
     }
     

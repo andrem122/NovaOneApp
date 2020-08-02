@@ -2,7 +2,7 @@
 //  Appointment+CoreDataProperties.swift
 //  
 //
-//  Created by Andre Mashraghi on 5/23/20.
+//  Created by Andre Mashraghi on 8/2/20.
 //
 //
 
@@ -30,6 +30,8 @@ extension Appointment {
     @NSManaged public var time: Date?
     @NSManaged public var timeZone: String?
     @NSManaged public var unitType: String?
+    @NSManaged public var city: String?
+    @NSManaged public var state: String?
     @NSManaged public var company: Company?
 
 }

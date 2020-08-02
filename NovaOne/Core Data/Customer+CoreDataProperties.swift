@@ -2,7 +2,7 @@
 //  Customer+CoreDataProperties.swift
 //  
 //
-//  Created by Andre Mashraghi on 6/24/20.
+//  Created by Andre Mashraghi on 7/30/20.
 //
 //
 
@@ -26,9 +26,13 @@ extension Customer {
     @NSManaged public var lastName: String?
     @NSManaged public var password: String?
     @NSManaged public var phoneNumber: String?
+    @NSManaged public var userId: Int32
     @NSManaged public var username: String?
     @NSManaged public var wantsSms: Bool
-    @NSManaged public var userId: Int32
+    @NSManaged public var wantsEmailNotifications: Bool
+    @NSManaged public var leadCount: Int32
+    @NSManaged public var appointmentCount: Int32
+    @NSManaged public var companyCount: Int32
     var fullName: String {
         guard
             let firstName = self.firstName,
@@ -49,6 +53,7 @@ extension Customer {
                      lastName: String,
                      phoneNumber: String,
                      wantsSms: Bool,
+                     wantsEmailNotifications: Bool,
                      password: String,
                      username: String,
                      lastLogin: Date,
@@ -66,10 +71,12 @@ extension Customer {
         self.lastName = lastName
         self.phoneNumber = phoneNumber
         self.wantsSms = wantsSms
+        self.wantsEmailNotifications = wantsEmailNotifications
         self.password = password
         self.username = username
         self.lastLogin = lastLogin
         
     }
+
 
 }

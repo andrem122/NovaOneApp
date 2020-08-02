@@ -25,6 +25,8 @@ struct AppointmentModel: Decodable {
     var testType: String?
     var gender: String?
     var address: String?
+    var city: String?
+    var zip: String?
     
     // Computed Properties
     var timeDate: Date {

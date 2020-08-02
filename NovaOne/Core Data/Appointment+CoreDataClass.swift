@@ -2,7 +2,7 @@
 //  Appointment+CoreDataClass.swift
 //  
 //
-//  Created by Andre Mashraghi on 5/23/20.
+//  Created by Andre Mashraghi on 8/2/20.
 //
 //
 

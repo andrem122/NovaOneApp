@@ -21,6 +21,7 @@ struct CustomerModel: Decodable {
     var dateJoined: String
     var isPaying: Bool
     var wantsSms: Bool
+    var wantsEmailNotifications: Bool
     var phoneNumber: String
     var customerType: String
     

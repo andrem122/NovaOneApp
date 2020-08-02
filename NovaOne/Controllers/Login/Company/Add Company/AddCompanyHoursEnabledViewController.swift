@@ -208,6 +208,7 @@ class AddCompanyHoursEnabledViewController: AddCompanyBaseViewController, UITabl
                             let lastName = customer.lastName
                             let phoneNumber = customer.phoneNumber
                             let wantsSms = customer.wantsSms
+                            let wantsEmailNotifications = customer.wantsEmailNotifications
                             let username = customer.username
                             let lastLoginDate = customer.lastLoginDate
                             
@@ -217,7 +218,7 @@ class AddCompanyHoursEnabledViewController: AddCompanyBaseViewController, UITabl
                                 print("New user to the app!")
                                 guard let coreDataCustomerObject = NSEntityDescription.insertNewObject(forEntityName: Defaults.CoreDataEntities.customer.rawValue, into: PersistenceService.context) as? Customer else { return }
                                 
-                                coreDataCustomerObject.addCustomer(customerType: customerType, dateJoined: dateJoinedDate, email: email, firstName: firstName, id: id, userId: userId, isPaying: isPaying, lastName: lastName, phoneNumber: phoneNumber, wantsSms: wantsSms, password: password, username: username, lastLogin: lastLoginDate, companies: nil)
+                                coreDataCustomerObject.addCustomer(customerType: customerType, dateJoined: dateJoinedDate, email: email, firstName: firstName, id: id, userId: userId, isPaying: isPaying, lastName: lastName, phoneNumber: phoneNumber, wantsSms: wantsSms, wantsEmailNotifications: wantsEmailNotifications, password: password, username: username, lastLogin: lastLoginDate, companies: nil)
                                 
                                 PersistenceService.saveContext()
                                 
@@ -235,7 +236,7 @@ class AddCompanyHoursEnabledViewController: AddCompanyBaseViewController, UITabl
                                 // Create new customer object in CoreData for new login information
                                 guard let coreDataCustomerObject = NSEntityDescription.insertNewObject(forEntityName: Defaults.CoreDataEntities.customer.rawValue, into: PersistenceService.context) as? Customer else { return }
                                 
-                                coreDataCustomerObject.addCustomer(customerType: customerType, dateJoined: dateJoinedDate, email: email, firstName: firstName, id: id, userId: userId, isPaying: isPaying, lastName: lastName, phoneNumber: phoneNumber, wantsSms: wantsSms, password: password, username: username, lastLogin: lastLoginDate, companies: nil)
+                                coreDataCustomerObject.addCustomer(customerType: customerType, dateJoined: dateJoinedDate, email: email, firstName: firstName, id: id, userId: userId, isPaying: isPaying, lastName: lastName, phoneNumber: phoneNumber, wantsSms: wantsSms, wantsEmailNotifications: wantsEmailNotifications, password: password, username: username, lastLogin: lastLoginDate, companies: nil)
                                 
                                 PersistenceService.saveContext()
                                 

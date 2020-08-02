@@ -28,8 +28,9 @@
     a_m.date_of_birth as \"dateOfBirth\",
     a_m.test_type as \"testType\",
     a_m.gender as \"gender\",
-    a_m.address
-
+    a_m.address,
+    a_m.city,
+    a_m.zip
 
     FROM appointments_appointment_base a
     LEFT JOIN appointments_appointment_real_estate a_re

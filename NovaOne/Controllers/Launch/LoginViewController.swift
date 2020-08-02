@@ -80,6 +80,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             // Set text fields to have credentials on successful authentication
                             self.userNameTextField.text = keychainEmail
                             self.passwordTextField.text = keychainPassword
+                            
+                            // Login
                             self.formDataLogin(email: keychainEmail, password: keychainPassword)
                             
                         }
@@ -129,39 +131,44 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     func navigateToLoginScreenAndSaveData(customer: CustomerModel) {
         // Navigate to login screen and save data to CoreData
         
-        // Go to container view controller
-        if let containerViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.container.rawValue) as? ContainerViewController  {
-            
-            // Get non optionals from CustomerModel instance
-            let dateJoinedDate = customer.dateJoinedDate
-            let id = Int32(customer.id)
-            let userId = Int32(customer.userId)
-            let customerType = customer.customerType
-            let email = customer.email
-            let firstName = customer.firstName
-            let isPaying = customer.isPaying
-            let lastName = customer.lastName
-            let phoneNumber = customer.phoneNumber
-            let wantsSms = customer.wantsSms
-            let username = customer.username
-            let password = customer.password
-            let lastLoginDate = customer.lastLoginDate
-            
-            guard let coreDataCustomerObject = NSEntityDescription.insertNewObject(forEntityName: Defaults.CoreDataEntities.customer.rawValue, into: PersistenceService.context) as? Customer else { return }
-            
-            coreDataCustomerObject.addCustomer(customerType: customerType, dateJoined: dateJoinedDate, email: email, firstName: firstName, id: id, userId: userId, isPaying: isPaying, lastName: lastName, phoneNumber: phoneNumber, wantsSms: wantsSms, password: password, username: username, lastLogin: lastLoginDate, companies: nil)
-            
-            PersistenceService.saveContext()
-            
+        // Get non optionals from CustomerModel instance
+        let dateJoinedDate = customer.dateJoinedDate
+        let id = Int32(customer.id)
+        let userId = Int32(customer.userId)
+        let customerType = customer.customerType
+        let email = customer.email
+        let firstName = customer.firstName
+        let isPaying = customer.isPaying
+        let lastName = customer.lastName
+        let phoneNumber = customer.phoneNumber
+        let wantsEmailNotifications = customer.wantsEmailNotifications
+        let wantsSms = customer.wantsSms
+        let username = customer.username
+        let password = customer.password
+        let lastLoginDate = customer.lastLoginDate
+        
+        guard let coreDataCustomerObject = NSEntityDescription.insertNewObject(forEntityName: Defaults.CoreDataEntities.customer.rawValue, into: PersistenceService.context) as? Customer else { return }
+        
+        coreDataCustomerObject.addCustomer(customerType: customerType, dateJoined: dateJoinedDate, email: email, firstName: firstName, id: id, userId: userId, isPaying: isPaying, lastName: lastName, phoneNumber: phoneNumber, wantsSms: wantsSms, wantsEmailNotifications: wantsEmailNotifications, password: password, username: username, lastLogin: lastLoginDate, companies: nil)
+        
+        // Save to CoreData
+        PersistenceService.saveContext()
+        
+        // Get container view controller
+        guard let containerViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.container.rawValue) as? ContainerViewController else { print("could not get container view controller - home view controller"); return }
+        
+        // Present container view controller
+        containerViewController.modalPresentationStyle = .fullScreen // Set presentaion style of view to full screen
+        self.present(containerViewController, animated: true, completion: {
             self.removeSpinner()
-            containerViewController.modalPresentationStyle = .fullScreen // Set presentaion style of view to full screen
-            self.present(containerViewController, animated: true, completion: nil)
-            
-        }
+        })
     }
     
     // Sends a post request using url encoded string
     func formDataLogin(email: String, password: String) {
+        
+        // Show spinner
+        self.showSpinner(for: self.view, textForLabel: nil)
         
         let httpRequest = HTTPRequests()
         let parameters: [String: Any] = ["email": email, "password": password]
@@ -210,6 +217,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     // Show error message with a pop up and enable continue button
                     
                     DispatchQueue.main.async {
+                        self?.removeSpinner()
                         // Set text for pop up ok view controller
                         let title = "Error"
                         let body = error.localizedDescription
@@ -229,9 +237,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     func getCompanies(customer: CustomerModel, success: @escaping () -> Void) {
         // Gets company data belonging to the customer
-        
-        // Show spinner
-        self.showSpinner(for: self.view, textForLabel: "Logging in...")
         
         // Delete all old companies from Core Data
         PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.customer.rawValue) // Need to delete customer object first because Core Data won't let us delete customer objects since they share a relationship
@@ -279,12 +284,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     success()
                 
                 case .failure(let error):
+                    self.removeSpinner()
                     let popUpOkViewController = self.alertService.popUpOk(title: "Data Failure", body: "Failed to obtain company data.")
                     self.present(popUpOkViewController, animated: true, completion: nil)
                     print(error.localizedDescription)
             }
-            
-            self.removeSpinner()
             
         }
     }
@@ -310,7 +314,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.loginButton.isEnabled = false
         self.loginButton.backgroundColor = Defaults.novaOneColorDisabledColor
         
-        // Proceed with logging the user in if text fields are not empty
         self.formDataLogin(email: email, password: password)
         
     }

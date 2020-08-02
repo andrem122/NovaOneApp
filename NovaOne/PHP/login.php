@@ -35,6 +35,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
               a.date_joined as \"dateJoined\",
               c.is_paying as \"isPaying\",
               c.wants_sms as \"wantsSms\",
+              c.wants_email_notifications as \"wantsEmailNotifications\",
               c.phone_number as \"phoneNumber\",
               c.customer_type as \"customerType\"
           FROM

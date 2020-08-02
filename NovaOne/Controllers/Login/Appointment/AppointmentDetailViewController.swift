@@ -146,7 +146,7 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
             
             let httpRequest = HTTPRequests()
             let endpoint = customer.customerType == "MW" ? "/deleteAppointmentMedical.php" : "/deleteAppointmentRealEstate.php"
-            httpRequest.request(url: Defaults.Urls.api.rawValue + endpoint, dataModel: SuccessResponse.self, parameters: parameters) { [weak self] (result) in
+            httpRequest.request(url: Defaults.Urls.api.rawValue + endpoint, dataModel: SuccessResponse.self, parameters: parameters) {(result) in
             
                 switch result {
                     case .success(_):
