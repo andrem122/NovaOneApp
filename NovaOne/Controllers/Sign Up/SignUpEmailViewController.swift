@@ -14,26 +14,58 @@ class SignUpEmailViewController: BaseSignUpViewController, UITextFieldDelegate {
     @IBOutlet weak var emailAddressTextField: NovaOneTextField!
     @IBOutlet weak var continueButton: NovaOneButton!
     var restoreText: String? // Text for state restoration
+    var restoreContinueButtonState: Bool? // For state restoration
     
     // For state restortation
     var continuationActivity: NSUserActivity {
-        let activity = NSUserActivity(activityType: AppState.activityTypeViewSignup)
-        activity.persistentIdentifier = "SignUpEmailViewController"
-        activity.addUserInfoEntries(from: [AppState.activitySignupKey: self.emailAddressTextField.text as Any])
+        let activity = NSUserActivity(activityType: AppState.UserActivities.signup.rawValue)
+        activity.persistentIdentifier = Defaults.ViewControllerIdentifiers.signUpEmail.rawValue
+        activity.isEligibleForHandoff = true
+        activity.title = Defaults.ViewControllerIdentifiers.signUpEmail.rawValue
+        
+        let textFieldText = self.emailAddressTextField.text
+        let continueButtonState = textFieldText?.isEmpty ?? false ? false : true
+        
+        let userInfo = [AppState.UserActivityKeys.signup.rawValue: self.emailAddressTextField.text as Any,
+                                       AppState.activityViewControllerIdentifierKey: Defaults.ViewControllerIdentifiers.signUpEmail.rawValue as Any, AppState.UserActivityKeys.signupButtonEnabled.rawValue: continueButtonState as Any]
+        
+        activity.addUserInfoEntries(from: userInfo)
+        activity.becomeCurrent()
         return activity
     }
     
     func continueFrom(activity: NSUserActivity) {
         // Restore the view controller to its previous state using the activity object plugged in from scene delegate method scene(_:willConnectTo:options:)
-        let restoreText = activity.userInfo?[AppState.activitySignupKey] as? String
+        let restoreText = activity.userInfo?[AppState.UserActivityKeys.signup.rawValue] as? String
+        let continueButtonIsEnabled = activity.userInfo?[AppState.UserActivityKeys.signupButtonEnabled.rawValue] as? Bool
         self.restoreText = restoreText
+        self.restoreContinueButtonState = continueButtonIsEnabled
     }
     
     // MARK: Methods
     func setup() {
-        self.emailAddressTextField.text = restoreText
+        
+        // Set delegates
         self.emailAddressTextField.delegate = self
-        UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil)
+        
+        // State restoration
+        
+        // Restore the text in the text field from last session
+        self.emailAddressTextField.text = self.restoreText
+        
+        // Restore the button state
+        if self.restoreContinueButtonState != nil {
+            guard let continueButtonState = self.restoreContinueButtonState else { return }
+            if continueButtonState == true {
+                UIHelper.enable(button: self.continueButton, enabledColor: Defaults.novaOneColor, borderedButton: false)
+            } else {
+                UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
+            }
+        } else {
+            // Default implementation
+            UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
+        }
+        
     }
     
     override func viewDidLoad() {

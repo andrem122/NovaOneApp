@@ -9,15 +9,17 @@
 import Foundation
 
 class AppState: ObservableObject {
-    var addObjectViewIsPresented = false
-    var textFieldText = ""
-}
-
-extension AppState {
-    // Activities
-    static let activityTypeViewLeads = "com.novaonesoftware.leads.views"
-    static let activityTypeViewSignup = "com.novaonesoftware.signup.views"
     
-    static let activityAddViewKeyLeads = "leads.views.add"
-    static let activitySignupKey = "signup.views.text"
+    static let activityViewControllerIdentifierKey = "activityViewControllerIdentifier"
+    
+    // Activities
+    enum UserActivities: String {
+        case signup = "com.novaonesoftware.signup.views"
+    }
+    
+    // Activity Keys for user activity object
+    enum UserActivityKeys: String {
+        case signup = "signup.views.text"
+        case signupButtonEnabled = "signup.views.buttonEnabled"
+    }
 }
