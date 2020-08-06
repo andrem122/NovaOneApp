@@ -559,20 +559,4 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         }
     }
     
-    // MARK: State Restoration
-    override func encodeRestorableState(with coder: NSCoder) {
-        // Call encodeRestorableState so the rest of inherited state functionality will happen
-        super.encodeRestorableState(with: coder)
-    }
-    
-    override func decodeRestorableState(with coder: NSCoder) {
-        super.decodeRestorableState(with: coder)
-    }
-    
-    override func applicationFinishedRestoringState() {
-        print("Restoring Home View Controller...")
-        self.setupGreetingLabel()
-        self.setupNumberLabels()
-    }
-    
 }

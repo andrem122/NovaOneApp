@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>NovaOne would like to use your current location</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>NovaOne would like to use your current location</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -29,10 +25,19 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>NovaOne would like to use your current location</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>NovaOne would like to use your current location</string>
+	<key>NSUserActivityTypes</key>
+	<array>
+		<string>com.novaonesoftware.signup.views</string>
+		<string>com.novaonesoftware.leads.views</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
-		<false/>
+		<true/>
 		<key>UISceneConfigurations</key>
 		<dict>
 			<key>UIWindowSceneSessionRoleApplication</key>

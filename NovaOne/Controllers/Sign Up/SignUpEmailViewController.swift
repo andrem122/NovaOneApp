@@ -13,9 +13,25 @@ class SignUpEmailViewController: BaseSignUpViewController, UITextFieldDelegate {
     // MARK: Properties
     @IBOutlet weak var emailAddressTextField: NovaOneTextField!
     @IBOutlet weak var continueButton: NovaOneButton!
+    var restoreText: String? // Text for state restoration
+    
+    // For state restortation
+    var continuationActivity: NSUserActivity {
+        let activity = NSUserActivity(activityType: AppState.activityTypeViewSignup)
+        activity.persistentIdentifier = "SignUpEmailViewController"
+        activity.addUserInfoEntries(from: [AppState.activitySignupKey: self.emailAddressTextField.text as Any])
+        return activity
+    }
+    
+    func continueFrom(activity: NSUserActivity) {
+        // Restore the view controller to its previous state using the activity object plugged in from scene delegate method scene(_:willConnectTo:options:)
+        let restoreText = activity.userInfo?[AppState.activitySignupKey] as? String
+        self.restoreText = restoreText
+    }
     
     // MARK: Methods
     func setup() {
+        self.emailAddressTextField.text = restoreText
         self.emailAddressTextField.delegate = self
         UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil)
     }
