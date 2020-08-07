@@ -14,10 +14,60 @@ class SignUpPhoneViewController: BaseSignUpViewController, UITextFieldDelegate {
     @IBOutlet weak var phoneTextField: NovaOneTextField!
     @IBOutlet weak var continueButton: NovaOneButton!
     
+    // For state restortation
+    var continuationActivity: NSUserActivity {
+        let activity = NSUserActivity(activityType: AppState.UserActivities.signup.rawValue)
+        activity.persistentIdentifier = Defaults.ViewControllerIdentifiers.signUpPhone.rawValue
+        activity.isEligibleForHandoff = true
+        activity.title = Defaults.ViewControllerIdentifiers.signUpPhone.rawValue
+        
+        let textFieldText = self.phoneTextField.text
+        let continueButtonState = textFieldText?.isEmpty ?? false ? false : true
+        
+        let userInfo = [AppState.UserActivityKeys.signup.rawValue: textFieldText as Any,
+                                       AppState.activityViewControllerIdentifierKey: Defaults.ViewControllerIdentifiers.signUpPhone.rawValue as Any, AppState.UserActivityKeys.signupButtonEnabled.rawValue: continueButtonState as Any]
+        
+        activity.addUserInfoEntries(from: userInfo)
+        activity.becomeCurrent()
+        return activity
+    }
+    
     // MARK: Methods
+    func continueFrom(activity: NSUserActivity) {
+        // Restore the view controller to its previous state using the activity object plugged in from scene delegate method scene(_:willConnectTo:options:)
+        let restoreText = activity.userInfo?[AppState.UserActivityKeys.signup.rawValue] as? String
+        let continueButtonIsEnabled = activity.userInfo?[AppState.UserActivityKeys.signupButtonEnabled.rawValue] as? Bool
+        self.restoreText = restoreText
+        self.restoreContinueButtonState = continueButtonIsEnabled
+    }
+    
     func setup() {
+        // Set delegates
         self.phoneTextField.delegate = self
-        UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil)
+        UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
+        
+        // State restoration
+        if self.restoreText != nil && self.restoreContinueButtonState != nil {
+            // Restore text
+            self.phoneTextField.text = self.restoreText
+            
+            // Restore button state
+            guard let continueButtonState = self.restoreContinueButtonState else { return }
+            if continueButtonState == true {
+                UIHelper.enable(button: self.continueButton, enabledColor: Defaults.novaOneColor, borderedButton: false)
+            } else {
+                UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
+            }
+        } else {
+            // Get data from coredata if it is available and fill in the field if no state restoration text exists
+            let filter = NSPredicate(format: "id == %@", "0")
+            guard let coreDataCustomerObject = PersistenceService.fetchEntity(Customer.self, filter: filter, sort: nil).first else { print("could not get coredata customer object - SignUpPhoneViewController"); return }
+            guard let phoneNumber = coreDataCustomerObject.phoneNumber else { print("could not get core data customer phone - SignUpPhoneViewController"); return }
+            self.phoneTextField.text = phoneNumber
+            
+            // Enable the continue button
+            UIHelper.enable(button: self.continueButton, enabledColor: Defaults.novaOneColor, borderedButton: false)
+        }
     }
     
     override func viewDidLoad() {
@@ -60,6 +110,12 @@ class SignUpPhoneViewController: BaseSignUpViewController, UITextFieldDelegate {
                     
                     self?.customer?.phoneNumber = unformattedPhoneNumber
                     customerTypeViewController.customer = self?.customer
+                    
+                    // Get existing core data object and update it
+                    let filter = NSPredicate(format: "id == %@", "0")
+                    guard let coreDataCustomerObject = PersistenceService.fetchEntity(Customer.self, filter: filter, sort: nil).first else { print("could not get coredata customer object - Sign Up Phone View Controller"); return }
+                    coreDataCustomerObject.phoneNumber = phoneNumber
+                    PersistenceService.saveContext()
                     
                     self?.navigationController?.pushViewController(customerTypeViewController, animated: true)
                     

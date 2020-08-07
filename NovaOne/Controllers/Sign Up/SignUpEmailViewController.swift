@@ -25,7 +25,7 @@ class SignUpEmailViewController: BaseSignUpViewController, UITextFieldDelegate {
         let textFieldText = self.emailAddressTextField.text
         let continueButtonState = textFieldText?.isEmpty ?? false ? false : true
         
-        let userInfo = [AppState.UserActivityKeys.signup.rawValue: self.emailAddressTextField.text as Any,
+        let userInfo = [AppState.UserActivityKeys.signup.rawValue: textFieldText as Any,
                                        AppState.activityViewControllerIdentifierKey: Defaults.ViewControllerIdentifiers.signUpEmail.rawValue as Any, AppState.UserActivityKeys.signupButtonEnabled.rawValue: continueButtonState as Any]
         
         activity.addUserInfoEntries(from: userInfo)
@@ -46,7 +46,6 @@ class SignUpEmailViewController: BaseSignUpViewController, UITextFieldDelegate {
         
         // Set delegates
         self.emailAddressTextField.delegate = self
-        UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
         
         // State restoration
         if self.restoreText != nil && self.restoreContinueButtonState != nil {
@@ -63,7 +62,11 @@ class SignUpEmailViewController: BaseSignUpViewController, UITextFieldDelegate {
         } else {
             // Get data from coredata if it is available and fill in email field if no state restoration text exists
             let filter = NSPredicate(format: "id == %@", "0")
-            guard let coreDataCustomerObject = PersistenceService.fetchEntity(Customer.self, filter: filter, sort: nil).first else { print("could not get coredata customer object - Sign Up Email View Controller"); return }
+            guard let coreDataCustomerObject = PersistenceService.fetchEntity(Customer.self, filter: filter, sort: nil).first else {
+                print("could not get coredata customer object - Sign Up Email View Controller")
+                UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
+                return
+            }
             guard let email = coreDataCustomerObject.email else { print("could not get core data customer email - - Sign Up Email View Controller"); return }
             self.emailAddressTextField.text = email
             

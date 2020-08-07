@@ -69,29 +69,37 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 signupNavigationController.modalPresentationStyle = .fullScreen
                 signupNavigationController.viewControllers = [signupEmailViewController, signupPasswordViewController, signupNameViewController, signupPhoneViewController]
                 
-                
                 // For the sign up email view controller
                 if viewControllerIdentifier == Defaults.ViewControllerIdentifiers.signUpEmail.rawValue {
-                    print("SIGN UP NAME EMAIL CONTROLLER")
                     // Continue from where the user left off
                     signupEmailViewController.continueFrom(activity: activity)
                     
                     // Present email view controller from navigation stack
                     startViewController.present(signupNavigationController, animated: true, completion: nil)
+                    signupNavigationController.popToViewController(signupEmailViewController, animated: true)
+                    
                 } else if viewControllerIdentifier == Defaults.ViewControllerIdentifiers.signUpPassword.rawValue {
-                    print("SIGN UP PASSWORD VIEW CONTROLLER")
                     // For the sign up password view controller
                     startViewController.present(signupNavigationController, animated: true, completion: nil)
                     signupNavigationController.popToViewController(signupPasswordViewController, animated: true)
                     
                 } else if viewControllerIdentifier == Defaults.ViewControllerIdentifiers.signUpName.rawValue {
-                    print("SIGN UP NAME VIEW CONTROLLER")
                     // For the sign up name view controller
                     // Continue from where the user left off
                     signupNameViewController.continueFrom(activity: activity)
                     
                     startViewController.present(signupNavigationController, animated: true, completion: nil)
                     signupNavigationController.popToViewController(signupNameViewController, animated: true)
+                    
+                }
+                
+                else if viewControllerIdentifier == Defaults.ViewControllerIdentifiers.signUpPhone.rawValue {
+                    // For the sign up name view controller
+                    // Continue from where the user left off
+                    signupPhoneViewController.continueFrom(activity: activity)
+                    
+                    startViewController.present(signupNavigationController, animated: true, completion: nil)
+                    signupNavigationController.popToViewController(signupPhoneViewController, animated: true)
                     
                 }
             }
@@ -141,19 +149,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let signupNavigationController = topController as? UINavigationController,
             (signupNavigationController.viewControllers.first as? SignUpEmailViewController) != nil {
             
+            // Signup email view controller
             if let signupEmailViewController = signupNavigationController.topViewController as? SignUpEmailViewController {
                 print("SignUpEmailViewController stateRestorationActivity")
                 return signupEmailViewController.continuationActivity
             }
-            
+            // Signup password view controller
             else if let signupPasswordViewController = signupNavigationController.topViewController as? SignUpPasswordViewController {
                 print("SignUpPasswordViewController stateRestorationActivity")
                 return signupPasswordViewController.continuationActivity
             }
             
+            // Signup name view controller
             else if let signupNameViewController = signupNavigationController.topViewController as? SignUpNameViewController {
                 print("SignUpNameViewController stateRestorationActivity")
                 return signupNameViewController.continuationActivity
+            }
+            
+            // Signup phone view controller
+            else if let signupPhoneViewController = signupNavigationController.topViewController as? SignUpPhoneViewController {
+                print("SignUpPhoneViewController stateRestorationActivity")
+                return signupPhoneViewController.continuationActivity
             }
             
         }

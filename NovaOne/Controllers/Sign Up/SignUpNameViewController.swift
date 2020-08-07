@@ -50,31 +50,17 @@ class SignUpNameViewController: BaseSignUpViewController, UITextFieldDelegate {
     func setup() {
         self.firstNameTextField.delegate = self
         self.lastNameTextField.delegate = self
-        // State restoration
+        self.firstNameTextField.placeholder = "First Name"
+        self.lastNameTextField.placeholder = "Last Name"
         
-        // Restore the text in the text field from last session
-        if self.restoreText != nil {
-            
+        // State restoration
+        if self.restoreText != nil && self.restoreContinueButtonState != nil {
+            // Restore text
             let nameArray = self.restoreText?.components(separatedBy: ",")
             self.firstNameTextField.text = nameArray?[0]
             self.lastNameTextField.text = nameArray?[1]
             
-        } else {
-            
-            // Get data from coredata if it is available and fill in text field if no state restoration text exists
-            let filter = NSPredicate(format: "id == %@", "0")
-            guard let coreDataCustomerObject = PersistenceService.fetchEntity(Customer.self, filter: filter, sort: nil).first else { print("could not get coredata customer object - SignUpNameViewController"); return }
-            
-            guard let firstName = coreDataCustomerObject.firstName else { print("could not get core data customer first name - SignUpNameViewController"); return }
-            guard let lastName = coreDataCustomerObject.lastName else { print("could not get core data customer last name - SignUpNameViewController"); return }
-            
-            self.firstNameTextField.text = firstName
-            self.lastNameTextField.text = lastName
-            
-        }
-        
-        // Restore the button state
-        if self.restoreContinueButtonState != nil {
+            // Restore button state
             guard let continueButtonState = self.restoreContinueButtonState else { return }
             if continueButtonState == true {
                 UIHelper.enable(button: self.continueButton, enabledColor: Defaults.novaOneColor, borderedButton: false)
@@ -82,8 +68,21 @@ class SignUpNameViewController: BaseSignUpViewController, UITextFieldDelegate {
                 UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
             }
         } else {
-            // Default implementation
-            UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
+            // Get data from coredata if it is available and fill in the text field if no state restoration text exists
+            let filter = NSPredicate(format: "id == %@", "0")
+            guard let coreDataCustomerObject = PersistenceService.fetchEntity(Customer.self, filter: filter, sort: nil).first else {
+                print("could not get coredata customer object - Sign Up Name View Controller")
+                UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
+                return
+            }
+            guard let firstName = coreDataCustomerObject.firstName else { print("could not get core data customer first name - Sign Up Name View Controller"); return }
+            guard let lastName = coreDataCustomerObject.lastName else { print("could not get core data customer last name - Sign Up Name View Controller"); return }
+            
+            self.firstNameTextField.text = firstName
+            self.lastNameTextField.text = lastName
+            
+            // Enable the continue button
+            UIHelper.enable(button: self.continueButton, enabledColor: Defaults.novaOneColor, borderedButton: false)
         }
     }
     
@@ -154,6 +153,14 @@ class SignUpNameViewController: BaseSignUpViewController, UITextFieldDelegate {
             self.customer?.firstName = firstName
             self.customer?.lastName = lastName
             signUpPhoneViewController.customer = self.customer
+            
+            // Get existing core data object and update it
+            let filter = NSPredicate(format: "id == %@", "0")
+            guard let coreDataCustomerObject = PersistenceService.fetchEntity(Customer.self, filter: filter, sort: nil).first else { print("could not get coredata customer object - Sign Up Name View Controller"); return }
+            coreDataCustomerObject.firstName = firstName
+            coreDataCustomerObject.lastName = lastName
+            
+            PersistenceService.saveContext()
             
             // Navigate to next view controller
             self.navigationController?.pushViewController(signUpPhoneViewController, animated: true)
