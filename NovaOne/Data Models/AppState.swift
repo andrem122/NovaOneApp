@@ -21,5 +21,6 @@ class AppState: ObservableObject {
     enum UserActivityKeys: String {
         case signup = "signup.views.text"
         case signupButtonEnabled = "signup.views.buttonEnabled"
+        case signupCustomerCoreDataObject = "signup.views.coreDataCustomerObject"
     }
 }

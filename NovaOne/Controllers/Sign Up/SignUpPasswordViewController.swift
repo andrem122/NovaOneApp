@@ -7,12 +7,26 @@
 //
 
 import UIKit
+import CoreData
 
 class SignUpPasswordViewController: BaseSignUpViewController, UITextFieldDelegate {
     
     // MARK: Properties
     @IBOutlet weak var passwordTextField: NovaOneTextField!
     @IBOutlet weak var continueButton: NovaOneButton!
+    // For state restortation
+    var continuationActivity: NSUserActivity {
+        let activity = NSUserActivity(activityType: AppState.UserActivities.signup.rawValue)
+        activity.persistentIdentifier = Defaults.ViewControllerIdentifiers.signUpPassword.rawValue
+        activity.isEligibleForHandoff = true
+        activity.title = Defaults.ViewControllerIdentifiers.signUpPassword.rawValue
+        
+        let userInfo = [AppState.activityViewControllerIdentifierKey: Defaults.ViewControllerIdentifiers.signUpPassword.rawValue as Any]
+        
+        activity.addUserInfoEntries(from: userInfo)
+        activity.becomeCurrent()
+        return activity
+    }
     
     // MARK: Methods
     func setup() {

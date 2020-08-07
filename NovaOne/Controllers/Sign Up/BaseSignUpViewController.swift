@@ -13,6 +13,7 @@ class BaseSignUpViewController: UIViewController {
     // MARK: Properties
     let alertService = AlertService()
     var customer: CustomerModel?
+    var coreDataCustomer: Customer?
     var company: CompanyModel?
 
     override func viewDidLoad() {

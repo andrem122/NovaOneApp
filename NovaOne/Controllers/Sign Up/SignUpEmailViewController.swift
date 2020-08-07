@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class SignUpEmailViewController: BaseSignUpViewController, UITextFieldDelegate {
     
@@ -51,7 +52,15 @@ class SignUpEmailViewController: BaseSignUpViewController, UITextFieldDelegate {
         // State restoration
         
         // Restore the text in the text field from last session
-        self.emailAddressTextField.text = self.restoreText
+        if self.restoreText != nil {
+            self.emailAddressTextField.text = self.restoreText
+        } else {
+            // Get data from coredata if it is available and fill in email field if no state restoration text exists
+            let filter = NSPredicate(format: "id == %@", "0")
+            guard let coreDataCustomerObject = PersistenceService.fetchEntity(Customer.self, filter: filter, sort: nil).first else { print("could not get coredata customer object - Sign Up Email View Controller"); return }
+            guard let email = coreDataCustomerObject.email else { print("could not get core data customer email - - Sign Up Email View Controller"); return }
+            self.emailAddressTextField.text = email
+        }
         
         // Restore the button state
         if self.restoreContinueButtonState != nil {
@@ -108,6 +117,23 @@ class SignUpEmailViewController: BaseSignUpViewController, UITextFieldDelegate {
                     
                     print(success.successReason)
                     self?.customer = CustomerModel(id: 0, userId: 0, password: "", lastLogin: "", username: email, firstName: "", lastName: "", email: email, dateJoined: "", isPaying: false, wantsSms: false, wantsEmailNotifications: true, phoneNumber: "", customerType: "")
+                    
+                    // Create core data customer object or get it if it already exists for state restoration
+                    let count = PersistenceService.fetchCount(for: Defaults.CoreDataEntities.customer.rawValue)
+                    if count == 0 {
+                        guard let coreDataCustomerObject = NSEntityDescription.insertNewObject(forEntityName: Defaults.CoreDataEntities.customer.rawValue, into: PersistenceService.context) as? Customer else { return }
+                        
+                        coreDataCustomerObject.addCustomer(customerType: "", dateJoined: Date(), email: email, firstName: "", id: 0, userId: 0, isPaying: false, lastName: "", phoneNumber: "", wantsSms: false, wantsEmailNotifications: false, password: "", username: email, lastLogin: Date(), companies: nil)
+                    } else {
+                        // Get existing core data object and update it
+                        let filter = NSPredicate(format: "id == %@", "0")
+                        guard let coreDataCustomerObject = PersistenceService.fetchEntity(Customer.self, filter: filter, sort: nil).first else { print("could not get coredata customer object - Sign Up Email View Controller"); return }
+                        coreDataCustomerObject.email = email
+                    }
+                    
+                    // Save to CoreData for state restoration
+                    PersistenceService.saveContext()
+                    
                     guard let signUpPasswordViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.signUpPassword.rawValue) as? SignUpPasswordViewController else { return }
                     signUpPasswordViewController.customer = self?.customer
                     self?.navigationController?.pushViewController(signUpPasswordViewController, animated: true)

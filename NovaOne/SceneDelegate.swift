@@ -39,25 +39,32 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     let startViewController = mainStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.start.rawValue) as? StartViewController
                 else { return }
                 
+                // Set root controller for the window
+                self.window?.rootViewController = startViewController
+                
+                // Make the window the key window and visible to the user after setting it up above
+                window?.makeKeyAndVisible()
+                
+                guard
+                    let signupEmailViewController = signupStoryboard.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.signUpEmail.rawValue) as? SignUpEmailViewController
+                else { return }
+                
+                // Setup sign up navigation controller
+                let signupNavigationController = UINavigationController(rootViewController: signupEmailViewController)
+                signupNavigationController.modalPresentationStyle = .fullScreen
+                
                 // For the sign up email view controller
                 if viewControllerIdentifier == Defaults.ViewControllerIdentifiers.signUpEmail.rawValue {
-                    guard
-                        let signupEmailViewController = signupStoryboard.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.signUpEmail.rawValue) as? SignUpEmailViewController
-                    else { return }
-                    
-                    // Set root controller for the window
-                    self.window?.rootViewController = startViewController
-                    
-                    // Make the window the key window and visible to the user after setting it up above
-                    window?.makeKeyAndVisible()
-                    
-                    // Setup sign up controllers
-                    let signupNavigationController = UINavigationController(rootViewController: signupEmailViewController)
                     signupEmailViewController.continueFrom(activity: activity)
-                    signupNavigationController.modalPresentationStyle = .fullScreen
                     
                     // Present email view controller from navigation stack
                     startViewController.present(signupNavigationController, animated: true, completion: nil)
+                } else if viewControllerIdentifier == Defaults.ViewControllerIdentifiers.signUpPassword.rawValue { // For the sign up password view controller
+                    guard
+                        let signupPasswordViewController = signupStoryboard.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.signUpPassword.rawValue) as? SignUpPasswordViewController
+                    else { return }
+                    startViewController.present(signupNavigationController, animated: true, completion: nil)
+                    signupNavigationController.pushViewController(signupPasswordViewController, animated: true)
                 }
             }
             
@@ -100,10 +107,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         print("Scene Delegate stateRestorationActivity")
         
         let topController = self.getTopViewController()
+        
+        // For the activity of signing up users
+        // Check the first view controller and see if it is sign up email view controller, if it is then we are on the sign up navigation stack
         if let signupNavigationController = topController as? UINavigationController,
-            let signupEmailViewController = signupNavigationController.viewControllers.first as? SignUpEmailViewController {
-            print("SignUpEmailViewController stateRestorationActivity")
-            return signupEmailViewController.continuationActivity
+            (signupNavigationController.viewControllers.first as? SignUpEmailViewController) != nil {
+            
+            if let signupEmailViewController = signupNavigationController.topViewController as? SignUpEmailViewController {
+                print("SignUpEmailViewController stateRestorationActivity")
+                return signupEmailViewController.continuationActivity
+            }
+            
+            if let signupPasswordViewController = signupNavigationController.topViewController as? SignUpPasswordViewController {
+                print("SignUpPasswordViewController stateRestorationActivity")
+                return signupPasswordViewController.continuationActivity
+            }
+            
         }
         
         return nil
