@@ -13,8 +13,9 @@ class BaseSignUpViewController: UIViewController {
     // MARK: Properties
     let alertService = AlertService()
     var customer: CustomerModel?
-    var coreDataCustomer: Customer?
     var company: CompanyModel?
+    var restoreText: String? // Text for state restoration
+    var restoreContinueButtonState: Bool? // For state restoration
 
     override func viewDidLoad() {
         super.viewDidLoad()

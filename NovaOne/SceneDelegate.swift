@@ -21,7 +21,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // If we have a NSUserActivity object from a previous opening of the app
         if let activity = connectionOptions.userActivities.first ?? session.stateRestorationActivity {
-            print("STATE RESTORATION ACTIVITY")
             // Get the window object to show the view to restore
             guard let windowScene = (scene as? UIWindowScene) else { return }
             self.window = UIWindow(windowScene: windowScene)
@@ -45,26 +44,55 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 // Make the window the key window and visible to the user after setting it up above
                 window?.makeKeyAndVisible()
                 
+                // Get view controllers to recreate navigation sign up stack
                 guard
                     let signupEmailViewController = signupStoryboard.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.signUpEmail.rawValue) as? SignUpEmailViewController
                 else { return }
                 
-                // Setup sign up navigation controller
+                guard
+                    let signupPasswordViewController = signupStoryboard.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.signUpPassword.rawValue) as? SignUpPasswordViewController
+                else { return }
+                
+                guard
+                    let signupNameViewController = signupStoryboard.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.signUpName.rawValue) as? SignUpNameViewController
+                else { return }
+                
+                guard
+                    let signupPhoneViewController = signupStoryboard.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.signUpPhone.rawValue) as? SignUpPhoneViewController
+                else { return }
+                
+                // Setup transparent navigation bar for sign up stack
+                signupEmailViewController.setupNavigationBar()
+                
+                // Setup sign up navigation controller stack
                 let signupNavigationController = UINavigationController(rootViewController: signupEmailViewController)
                 signupNavigationController.modalPresentationStyle = .fullScreen
+                signupNavigationController.viewControllers = [signupEmailViewController, signupPasswordViewController, signupNameViewController, signupPhoneViewController]
+                
                 
                 // For the sign up email view controller
                 if viewControllerIdentifier == Defaults.ViewControllerIdentifiers.signUpEmail.rawValue {
+                    print("SIGN UP NAME EMAIL CONTROLLER")
+                    // Continue from where the user left off
                     signupEmailViewController.continueFrom(activity: activity)
                     
                     // Present email view controller from navigation stack
                     startViewController.present(signupNavigationController, animated: true, completion: nil)
-                } else if viewControllerIdentifier == Defaults.ViewControllerIdentifiers.signUpPassword.rawValue { // For the sign up password view controller
-                    guard
-                        let signupPasswordViewController = signupStoryboard.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.signUpPassword.rawValue) as? SignUpPasswordViewController
-                    else { return }
+                } else if viewControllerIdentifier == Defaults.ViewControllerIdentifiers.signUpPassword.rawValue {
+                    print("SIGN UP PASSWORD VIEW CONTROLLER")
+                    // For the sign up password view controller
                     startViewController.present(signupNavigationController, animated: true, completion: nil)
-                    signupNavigationController.pushViewController(signupPasswordViewController, animated: true)
+                    signupNavigationController.popToViewController(signupPasswordViewController, animated: true)
+                    
+                } else if viewControllerIdentifier == Defaults.ViewControllerIdentifiers.signUpName.rawValue {
+                    print("SIGN UP NAME VIEW CONTROLLER")
+                    // For the sign up name view controller
+                    // Continue from where the user left off
+                    signupNameViewController.continueFrom(activity: activity)
+                    
+                    startViewController.present(signupNavigationController, animated: true, completion: nil)
+                    signupNavigationController.popToViewController(signupNameViewController, animated: true)
+                    
                 }
             }
             
@@ -118,9 +146,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 return signupEmailViewController.continuationActivity
             }
             
-            if let signupPasswordViewController = signupNavigationController.topViewController as? SignUpPasswordViewController {
+            else if let signupPasswordViewController = signupNavigationController.topViewController as? SignUpPasswordViewController {
                 print("SignUpPasswordViewController stateRestorationActivity")
                 return signupPasswordViewController.continuationActivity
+            }
+            
+            else if let signupNameViewController = signupNavigationController.topViewController as? SignUpNameViewController {
+                print("SignUpNameViewController stateRestorationActivity")
+                return signupNameViewController.continuationActivity
             }
             
         }

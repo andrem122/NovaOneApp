@@ -30,8 +30,23 @@ class SignUpPasswordViewController: BaseSignUpViewController, UITextFieldDelegat
     
     // MARK: Methods
     func setup() {
+        
         self.passwordTextField.delegate = self
-        UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil)
+        
+        // Get data from coredata if it is available and fill in password field if no state restoration text exists
+        let filter = NSPredicate(format: "id == %@", "0")
+        guard let coreDataCustomerObject = PersistenceService.fetchEntity(Customer.self, filter: filter, sort: nil).first else {
+            print("could not get coredata customer object - SignUpPasswordViewController")
+            UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
+            return
+        }
+        
+        guard let password = coreDataCustomerObject.password else {
+            print("could not get core data customer password - SignUpPasswordViewController")
+            return
+        }
+        
+        self.passwordTextField.text = password
     }
     
     override func viewDidLoad() {
@@ -61,6 +76,14 @@ class SignUpPasswordViewController: BaseSignUpViewController, UITextFieldDelegat
             guard let signUpNameViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.signUpName.rawValue) as? SignUpNameViewController else { return }
             self.customer?.password = password
             signUpNameViewController.customer = self.customer
+            
+            // Get existing core data object and update it
+            let filter = NSPredicate(format: "id == %@", "0")
+            guard let coreDataCustomerObject = PersistenceService.fetchEntity(Customer.self, filter: filter, sort: nil).first else { print("could not get coredata customer object - Sign Up Password View Controller"); return }
+            coreDataCustomerObject.password = password
+            
+            PersistenceService.saveContext()
+            
             self.navigationController?.pushViewController(signUpNameViewController, animated: true)
         }
     }

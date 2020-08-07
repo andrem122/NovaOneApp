@@ -14,8 +14,6 @@ class SignUpEmailViewController: BaseSignUpViewController, UITextFieldDelegate {
     // MARK: Properties
     @IBOutlet weak var emailAddressTextField: NovaOneTextField!
     @IBOutlet weak var continueButton: NovaOneButton!
-    var restoreText: String? // Text for state restoration
-    var restoreContinueButtonState: Bool? // For state restoration
     
     // For state restortation
     var continuationActivity: NSUserActivity {
@@ -48,22 +46,14 @@ class SignUpEmailViewController: BaseSignUpViewController, UITextFieldDelegate {
         
         // Set delegates
         self.emailAddressTextField.delegate = self
+        UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
         
         // State restoration
-        
-        // Restore the text in the text field from last session
-        if self.restoreText != nil {
+        if self.restoreText != nil && self.restoreContinueButtonState != nil {
+            // Restore text
             self.emailAddressTextField.text = self.restoreText
-        } else {
-            // Get data from coredata if it is available and fill in email field if no state restoration text exists
-            let filter = NSPredicate(format: "id == %@", "0")
-            guard let coreDataCustomerObject = PersistenceService.fetchEntity(Customer.self, filter: filter, sort: nil).first else { print("could not get coredata customer object - Sign Up Email View Controller"); return }
-            guard let email = coreDataCustomerObject.email else { print("could not get core data customer email - - Sign Up Email View Controller"); return }
-            self.emailAddressTextField.text = email
-        }
-        
-        // Restore the button state
-        if self.restoreContinueButtonState != nil {
+            
+            // Restore button state
             guard let continueButtonState = self.restoreContinueButtonState else { return }
             if continueButtonState == true {
                 UIHelper.enable(button: self.continueButton, enabledColor: Defaults.novaOneColor, borderedButton: false)
@@ -71,8 +61,14 @@ class SignUpEmailViewController: BaseSignUpViewController, UITextFieldDelegate {
                 UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
             }
         } else {
-            // Default implementation
-            UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
+            // Get data from coredata if it is available and fill in email field if no state restoration text exists
+            let filter = NSPredicate(format: "id == %@", "0")
+            guard let coreDataCustomerObject = PersistenceService.fetchEntity(Customer.self, filter: filter, sort: nil).first else { print("could not get coredata customer object - Sign Up Email View Controller"); return }
+            guard let email = coreDataCustomerObject.email else { print("could not get core data customer email - - Sign Up Email View Controller"); return }
+            self.emailAddressTextField.text = email
+            
+            // Enable the continue button
+            UIHelper.enable(button: self.continueButton, enabledColor: Defaults.novaOneColor, borderedButton: false)
         }
         
     }
@@ -97,6 +93,9 @@ class SignUpEmailViewController: BaseSignUpViewController, UITextFieldDelegate {
     @IBAction func cancelButtonTapped(_ sender: Any) {
         // Dismiss this view controller on tap of the cancel button
         self.presentingViewController?.dismiss(animated: true, completion: nil)
+        
+        // Delete all customer data from coredata
+        PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.customer.rawValue)
     }
     
     

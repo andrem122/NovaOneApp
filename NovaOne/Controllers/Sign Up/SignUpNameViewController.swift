@@ -15,11 +15,76 @@ class SignUpNameViewController: BaseSignUpViewController, UITextFieldDelegate {
     @IBOutlet weak var lastNameTextField: NovaOneTextField!
     @IBOutlet weak var continueButton: NovaOneButton!
     
+    // For state restortation
+    var continuationActivity: NSUserActivity {
+        let activity = NSUserActivity(activityType: AppState.UserActivities.signup.rawValue)
+        activity.persistentIdentifier = Defaults.ViewControllerIdentifiers.signUpName.rawValue
+        activity.isEligibleForHandoff = true
+        activity.title = Defaults.ViewControllerIdentifiers.signUpName.rawValue
+        
+        guard
+            let firstNameText = self.firstNameTextField.text,
+            let lastNameText = self.lastNameTextField.text
+        else { print("could not get first name and last name text - SignUpNameViewController"); return NSUserActivity(activityType: "None") }
+        
+        let textFieldText = "\(firstNameText), \(lastNameText)"
+        let continueButtonState = firstNameText.isEmpty || lastNameText.isEmpty ? false : true
+        
+        let userInfo = [AppState.UserActivityKeys.signup.rawValue: textFieldText as Any,
+                                       AppState.activityViewControllerIdentifierKey: Defaults.ViewControllerIdentifiers.signUpName.rawValue as Any, AppState.UserActivityKeys.signupButtonEnabled.rawValue: continueButtonState as Any]
+        
+        activity.addUserInfoEntries(from: userInfo)
+        activity.becomeCurrent()
+        return activity
+    }
+    
     // MARK: Methods
+    func continueFrom(activity: NSUserActivity) {
+        // Restore the view controller to its previous state using the activity object plugged in from scene delegate method scene(_:willConnectTo:options:)
+        let restoreText = activity.userInfo?[AppState.UserActivityKeys.signup.rawValue] as? String
+        let continueButtonIsEnabled = activity.userInfo?[AppState.UserActivityKeys.signupButtonEnabled.rawValue] as? Bool
+        self.restoreText = restoreText
+        self.restoreContinueButtonState = continueButtonIsEnabled
+    }
+    
     func setup() {
         self.firstNameTextField.delegate = self
         self.lastNameTextField.delegate = self
-        UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil)
+        // State restoration
+        
+        // Restore the text in the text field from last session
+        if self.restoreText != nil {
+            
+            let nameArray = self.restoreText?.components(separatedBy: ",")
+            self.firstNameTextField.text = nameArray?[0]
+            self.lastNameTextField.text = nameArray?[1]
+            
+        } else {
+            
+            // Get data from coredata if it is available and fill in text field if no state restoration text exists
+            let filter = NSPredicate(format: "id == %@", "0")
+            guard let coreDataCustomerObject = PersistenceService.fetchEntity(Customer.self, filter: filter, sort: nil).first else { print("could not get coredata customer object - SignUpNameViewController"); return }
+            
+            guard let firstName = coreDataCustomerObject.firstName else { print("could not get core data customer first name - SignUpNameViewController"); return }
+            guard let lastName = coreDataCustomerObject.lastName else { print("could not get core data customer last name - SignUpNameViewController"); return }
+            
+            self.firstNameTextField.text = firstName
+            self.lastNameTextField.text = lastName
+            
+        }
+        
+        // Restore the button state
+        if self.restoreContinueButtonState != nil {
+            guard let continueButtonState = self.restoreContinueButtonState else { return }
+            if continueButtonState == true {
+                UIHelper.enable(button: self.continueButton, enabledColor: Defaults.novaOneColor, borderedButton: false)
+            } else {
+                UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
+            }
+        } else {
+            // Default implementation
+            UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
+        }
     }
     
     override func viewDidLoad() {
