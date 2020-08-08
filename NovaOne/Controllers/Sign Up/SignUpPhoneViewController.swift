@@ -22,7 +22,7 @@ class SignUpPhoneViewController: BaseSignUpViewController, UITextFieldDelegate {
         activity.title = Defaults.ViewControllerIdentifiers.signUpPhone.rawValue
         
         let textFieldText = self.phoneTextField.text
-        let continueButtonState = textFieldText?.isEmpty ?? false ? false : true
+        let continueButtonState = textFieldText?.isEmpty ?? true ? false : true
         
         let userInfo = [AppState.UserActivityKeys.signup.rawValue: textFieldText as Any,
                                        AppState.activityViewControllerIdentifierKey: Defaults.ViewControllerIdentifiers.signUpPhone.rawValue as Any, AppState.UserActivityKeys.signupButtonEnabled.rawValue: continueButtonState as Any]
@@ -61,10 +61,14 @@ class SignUpPhoneViewController: BaseSignUpViewController, UITextFieldDelegate {
             // Get data from coredata if it is available and fill in the field if no state restoration text exists
             let filter = NSPredicate(format: "id == %@", "0")
             guard let coreDataCustomerObject = PersistenceService.fetchEntity(Customer.self, filter: filter, sort: nil).first else {
+                UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
                 print("could not get coredata customer object - SignUpPhoneViewController")
                 return
             }
-            guard let phoneNumber = coreDataCustomerObject.phoneNumber else { print("could not get core data customer phone - SignUpPhoneViewController"); return }
+            guard let phoneNumber = coreDataCustomerObject.phoneNumber else {
+                print("could not get core data customer phone - SignUpPhoneViewController")
+                return
+            }
             self.phoneTextField.text = phoneNumber
             
             // Enable the continue button
@@ -119,7 +123,11 @@ class SignUpPhoneViewController: BaseSignUpViewController, UITextFieldDelegate {
                         
                         // Get existing core data object and update it
                         let filter = NSPredicate(format: "id == %@", "0")
-                        guard let coreDataCustomerObject = PersistenceService.fetchEntity(Customer.self, filter: filter, sort: nil).first else { print("could not get coredata customer object - Sign Up Phone View Controller"); return }
+                        guard let coreDataCustomerObject = PersistenceService.fetchEntity(Customer.self, filter: filter, sort: nil).first else {
+                            print("could not get coredata customer object - Sign Up Phone View Controller")
+                            self?.removeSpinner()
+                            return
+                        }
                         coreDataCustomerObject.phoneNumber = phoneNumber
                         PersistenceService.saveContext()
                         

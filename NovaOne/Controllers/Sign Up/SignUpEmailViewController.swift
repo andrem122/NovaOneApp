@@ -23,7 +23,7 @@ class SignUpEmailViewController: BaseSignUpViewController, UITextFieldDelegate {
         activity.title = Defaults.ViewControllerIdentifiers.signUpEmail.rawValue
         
         let textFieldText = self.emailAddressTextField.text
-        let continueButtonState = textFieldText?.isEmpty ?? false ? false : true
+        let continueButtonState = textFieldText?.isEmpty ?? true ? false : true
         
         let userInfo = [AppState.UserActivityKeys.signup.rawValue: textFieldText as Any,
                                        AppState.activityViewControllerIdentifierKey: Defaults.ViewControllerIdentifiers.signUpEmail.rawValue as Any, AppState.UserActivityKeys.signupButtonEnabled.rawValue: continueButtonState as Any]
@@ -97,8 +97,9 @@ class SignUpEmailViewController: BaseSignUpViewController, UITextFieldDelegate {
         // Dismiss this view controller on tap of the cancel button
         self.presentingViewController?.dismiss(animated: true, completion: nil)
         
-        // Delete all customer data from coredata
+        // Delete all customer/company data from coredata
         PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.customer.rawValue)
+        PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.company.rawValue)
     }
     
     

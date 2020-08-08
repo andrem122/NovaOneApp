@@ -23,7 +23,7 @@ class SignUpCompanyNameViewController: BaseSignUpViewController, UITextFieldDele
         activity.title = Defaults.ViewControllerIdentifiers.signUpCompanyName.rawValue
         
         let textFieldText = self.propertyNameTextField.text
-        let continueButtonState = textFieldText?.isEmpty ?? false ? false : true
+        let continueButtonState = textFieldText?.isEmpty ?? true ? false : true
         
         let userInfo = [AppState.UserActivityKeys.signup.rawValue: textFieldText as Any,
                                        AppState.activityViewControllerIdentifierKey: Defaults.ViewControllerIdentifiers.signUpCompanyName.rawValue as Any, AppState.UserActivityKeys.signupButtonEnabled.rawValue: continueButtonState as Any]
@@ -60,12 +60,12 @@ class SignUpCompanyNameViewController: BaseSignUpViewController, UITextFieldDele
         } else {
             // Get data from coredata if it is available and fill in the field if no state restoration text exists
             let filter = NSPredicate(format: "id == %@", "0")
-            guard let coreDataCustomerObject = PersistenceService.fetchEntity(Company.self, filter: filter, sort: nil).first else {
+            guard let coreDataCompanyObject = PersistenceService.fetchEntity(Company.self, filter: filter, sort: nil).first else {
                 UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
-                print("could not get coredata company object - SignUpCompanyViewController")
+                print("could not get coredata company object - SignUpCompanyNameViewController")
                 return
             }
-            guard let companyName = coreDataCustomerObject.phoneNumber else { print("could not get core data company name - SignUpCompanyViewController"); return }
+            guard let companyName = coreDataCompanyObject.name else { print("could not get core data company name - SignUpCompanyNameViewController"); return }
             self.propertyNameTextField.text = companyName
             
             // Enable the continue button

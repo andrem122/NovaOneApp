@@ -25,10 +25,72 @@ class SignUpCompanyAddressViewController: BaseSignUpViewController, AddAddress {
         return filter
     }()
     
+    // For state restortation
+    var continuationActivity: NSUserActivity {
+        let activity = NSUserActivity(activityType: AppState.UserActivities.signup.rawValue)
+        activity.persistentIdentifier = Defaults.ViewControllerIdentifiers.signUpCompanyAddress.rawValue
+        activity.isEligibleForHandoff = true
+        activity.title = Defaults.ViewControllerIdentifiers.signUpCompanyAddress.rawValue
+        
+        let textFieldText = self.addressTextField.text
+        let continueButtonState = textFieldText?.isEmpty ?? true ? false : true
+        
+        let userInfo = [AppState.UserActivityKeys.signup.rawValue: textFieldText as Any,
+                                       AppState.activityViewControllerIdentifierKey: Defaults.ViewControllerIdentifiers.signUpCompanyAddress.rawValue as Any, AppState.UserActivityKeys.signupButtonEnabled.rawValue: continueButtonState as Any]
+        
+        activity.addUserInfoEntries(from: userInfo)
+        activity.becomeCurrent()
+        return activity
+    }
+    
     // MARK: Methods
+    func continueFrom(activity: NSUserActivity) {
+        // Restore the view controller to its previous state using the activity object plugged in from scene delegate method scene(_:willConnectTo:options:)
+        let restoreText = activity.userInfo?[AppState.UserActivityKeys.signup.rawValue] as? String
+        let continueButtonIsEnabled = activity.userInfo?[AppState.UserActivityKeys.signupButtonEnabled.rawValue] as? Bool
+        self.restoreText = restoreText
+        self.restoreContinueButtonState = continueButtonIsEnabled
+    }
+    
+    func setup() {
+        // General setup
+        
+        // State restoration
+        if self.restoreText != nil && self.restoreContinueButtonState != nil {
+            // Restore text
+            self.addressTextField.text = self.restoreText
+            
+            // Restore button state
+            guard let continueButtonState = self.restoreContinueButtonState else { return }
+            if continueButtonState == true {
+                UIHelper.enable(button: self.continueButton, enabledColor: Defaults.novaOneColor, borderedButton: false)
+            } else {
+                UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
+            }
+            
+        } else {
+            // Get data from coredata if it is available and fill in the field if no state restoration text exists
+            let filter = NSPredicate(format: "id == %@", "0")
+            guard let coreDataCustomerObject = PersistenceService.fetchEntity(Company.self, filter: filter, sort: nil).first else {
+                UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
+                print("could not get coredata company object - SignUpCompanyAddressViewController")
+                return
+            }
+            guard let address = coreDataCustomerObject.address else { print("could not get core data company address - SignUpCompanyAddressViewController"); return }
+            self.addressTextField.text = address
+            
+            // Enable the continue button
+            if address.isEmpty {
+                UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
+            } else {
+                UIHelper.enable(button: self.continueButton, enabledColor: Defaults.novaOneColor, borderedButton: false)
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupContinueButton()
+        self.setup()
         self.setupTextField()
         self.setupMapView()
     }
@@ -97,10 +159,6 @@ class SignUpCompanyAddressViewController: BaseSignUpViewController, AddAddress {
         self.addressTextField.clearButtonMode = .always
     }
     
-    func setupContinueButton() {
-        UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil)
-    }
-    
     // MARK: Actions
     @IBAction func continueButtonTapped(_ sender: Any) {
         
@@ -114,6 +172,11 @@ class SignUpCompanyAddressViewController: BaseSignUpViewController, AddAddress {
             // Pass customer and company object to next view controller
             signUpCompanyEmailViewController.customer = self.customer
             signUpCompanyEmailViewController.company = self.company
+            
+            // Get existing core data object and update it
+            let filter = NSPredicate(format: "id == %@", "0")
+            guard let coreDataCompanyObject = PersistenceService.fetchEntity(Company.self, filter: filter, sort: nil).first else { print("could not get coredata company object - Sign Up Company Name View Controller"); return }
+            coreDataCompanyObject.address = address
             
             self.navigationController?.pushViewController(signUpCompanyEmailViewController, animated: true)
         }

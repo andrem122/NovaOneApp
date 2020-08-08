@@ -71,10 +71,31 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     let signupCompanyNameViewController = signupStoryboard.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.signUpCompanyName.rawValue) as? SignUpCompanyNameViewController
                 else { return }
                 
+                guard
+                    let signupCompanyAddressViewController = signupStoryboard.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.signUpCompanyAddress.rawValue) as? SignUpCompanyAddressViewController
+                else { return }
+                
+                guard
+                    let signupCompanyEmailViewController = signupStoryboard.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.signUpCompanyEmail.rawValue) as? SignUpCompanyEmailViewController
+                else { return }
+                
+                guard
+                    let signupCompanyPhoneViewController = signupStoryboard.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.signUpCompanyPhone.rawValue) as? SignUpCompanyPhoneViewController
+                else { return }
+                
                 // Setup sign up navigation controller stack
                 let signupNavigationController = UINavigationController(rootViewController: signupEmailViewController)
                 signupNavigationController.modalPresentationStyle = .fullScreen
-                signupNavigationController.viewControllers = [signupEmailViewController, signupPasswordViewController, signupNameViewController, signupPhoneViewController, signupCustomerTypeViewController, signupCompanyNameViewController]
+                signupNavigationController.viewControllers = [
+                    signupEmailViewController,
+                    signupPasswordViewController,
+                    signupNameViewController,
+                    signupPhoneViewController,
+                    signupCustomerTypeViewController,
+                    signupCompanyNameViewController,
+                    signupCompanyAddressViewController,
+                    signupCompanyEmailViewController,
+                    signupCompanyPhoneViewController]
                 
                 // Setup transparent navigation bar for sign up stack
                 signupEmailViewController.setupNavigationBar()
@@ -126,6 +147,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     
                     startViewController.present(signupNavigationController, animated: true, completion: nil)
                     signupNavigationController.popToViewController(signupCompanyNameViewController, animated: true)
+                    
+                }
+                
+                else if viewControllerIdentifier == Defaults.ViewControllerIdentifiers.signUpCompanyAddress.rawValue {
+                    
+                    signupCompanyAddressViewController.continueFrom(activity: activity)
+                    
+                    startViewController.present(signupNavigationController, animated: true, completion: nil)
+                    signupNavigationController.popToViewController(signupCompanyAddressViewController, animated: true)
                     
                 }
             }
@@ -208,6 +238,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             else if let signupCompanyNameViewController = signupNavigationController.topViewController as? SignUpCompanyNameViewController {
                 print("SignUpCompanyNameViewController stateRestorationActivity")
                 return signupCompanyNameViewController.continuationActivity
+            }
+            
+            // Signup company address view controller
+            else if let signupCompanyAddressViewController = signupNavigationController.topViewController as? SignUpCompanyAddressViewController {
+                print("SignUpCompanyAddressViewController stateRestorationActivity")
+                return signupCompanyAddressViewController.continuationActivity
             }
             
         }

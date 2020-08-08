@@ -81,8 +81,12 @@ class SignUpNameViewController: BaseSignUpViewController, UITextFieldDelegate {
             self.firstNameTextField.text = firstName
             self.lastNameTextField.text = lastName
             
-            // Enable the continue button
-            UIHelper.enable(button: self.continueButton, enabledColor: Defaults.novaOneColor, borderedButton: false)
+            // Enable/Disable the continue button
+            if firstName.isEmpty || lastName.isEmpty {
+                UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
+            } else {
+                UIHelper.enable(button: self.continueButton, enabledColor: Defaults.novaOneColor, borderedButton: false)
+            }
         }
     }
     
