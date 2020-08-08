@@ -45,6 +45,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 window?.makeKeyAndVisible()
                 
                 // Get view controllers to recreate navigation sign up stack
+                // Customer
                 guard
                     let signupEmailViewController = signupStoryboard.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.signUpEmail.rawValue) as? SignUpEmailViewController
                 else { return }
@@ -61,13 +62,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     let signupPhoneViewController = signupStoryboard.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.signUpPhone.rawValue) as? SignUpPhoneViewController
                 else { return }
                 
-                // Setup transparent navigation bar for sign up stack
-                signupEmailViewController.setupNavigationBar()
+                guard
+                    let signupCustomerTypeViewController = signupStoryboard.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.signUpCustomerType.rawValue) as? SignUpCustomerTypeViewController
+                else { return }
+                
+                // Company
+                guard
+                    let signupCompanyNameViewController = signupStoryboard.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.signUpCompanyName.rawValue) as? SignUpCompanyNameViewController
+                else { return }
                 
                 // Setup sign up navigation controller stack
                 let signupNavigationController = UINavigationController(rootViewController: signupEmailViewController)
                 signupNavigationController.modalPresentationStyle = .fullScreen
-                signupNavigationController.viewControllers = [signupEmailViewController, signupPasswordViewController, signupNameViewController, signupPhoneViewController]
+                signupNavigationController.viewControllers = [signupEmailViewController, signupPasswordViewController, signupNameViewController, signupPhoneViewController, signupCustomerTypeViewController, signupCompanyNameViewController]
+                
+                // Setup transparent navigation bar for sign up stack
+                signupEmailViewController.setupNavigationBar()
                 
                 // For the sign up email view controller
                 if viewControllerIdentifier == Defaults.ViewControllerIdentifiers.signUpEmail.rawValue {
@@ -94,12 +104,28 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 }
                 
                 else if viewControllerIdentifier == Defaults.ViewControllerIdentifiers.signUpPhone.rawValue {
-                    // For the sign up name view controller
+                    // For the sign up phone view controller
                     // Continue from where the user left off
                     signupPhoneViewController.continueFrom(activity: activity)
                     
                     startViewController.present(signupNavigationController, animated: true, completion: nil)
                     signupNavigationController.popToViewController(signupPhoneViewController, animated: true)
+                    
+                }
+                
+                else if viewControllerIdentifier == Defaults.ViewControllerIdentifiers.signUpCustomerType.rawValue {
+                    
+                    startViewController.present(signupNavigationController, animated: true, completion: nil)
+                    signupNavigationController.popToViewController(signupCustomerTypeViewController, animated: true)
+                    
+                }
+                
+                else if viewControllerIdentifier == Defaults.ViewControllerIdentifiers.signUpCompanyName.rawValue {
+                    
+                    signupCompanyNameViewController.continueFrom(activity: activity)
+                    
+                    startViewController.present(signupNavigationController, animated: true, completion: nil)
+                    signupNavigationController.popToViewController(signupCompanyNameViewController, animated: true)
                     
                 }
             }
@@ -170,6 +196,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             else if let signupPhoneViewController = signupNavigationController.topViewController as? SignUpPhoneViewController {
                 print("SignUpPhoneViewController stateRestorationActivity")
                 return signupPhoneViewController.continuationActivity
+            }
+            
+            // Signup customer type view controller
+            else if let signupCustomerTypeViewController = signupNavigationController.topViewController as? SignUpCustomerTypeViewController {
+                print("SignUpCustomerTypeViewController stateRestorationActivity")
+                return signupCustomerTypeViewController.continuationActivity
+            }
+            
+            // Signup company name view controller
+            else if let signupCompanyNameViewController = signupNavigationController.topViewController as? SignUpCompanyNameViewController {
+                print("SignUpCompanyNameViewController stateRestorationActivity")
+                return signupCompanyNameViewController.continuationActivity
             }
             
         }

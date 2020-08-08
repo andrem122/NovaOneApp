@@ -44,7 +44,6 @@ class SignUpPhoneViewController: BaseSignUpViewController, UITextFieldDelegate {
     func setup() {
         // Set delegates
         self.phoneTextField.delegate = self
-        UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
         
         // State restoration
         if self.restoreText != nil && self.restoreContinueButtonState != nil {
@@ -61,12 +60,19 @@ class SignUpPhoneViewController: BaseSignUpViewController, UITextFieldDelegate {
         } else {
             // Get data from coredata if it is available and fill in the field if no state restoration text exists
             let filter = NSPredicate(format: "id == %@", "0")
-            guard let coreDataCustomerObject = PersistenceService.fetchEntity(Customer.self, filter: filter, sort: nil).first else { print("could not get coredata customer object - SignUpPhoneViewController"); return }
+            guard let coreDataCustomerObject = PersistenceService.fetchEntity(Customer.self, filter: filter, sort: nil).first else {
+                print("could not get coredata customer object - SignUpPhoneViewController")
+                return
+            }
             guard let phoneNumber = coreDataCustomerObject.phoneNumber else { print("could not get core data customer phone - SignUpPhoneViewController"); return }
             self.phoneTextField.text = phoneNumber
             
             // Enable the continue button
-            UIHelper.enable(button: self.continueButton, enabledColor: Defaults.novaOneColor, borderedButton: false)
+            if phoneNumber.isEmpty {
+                UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
+            } else {
+                UIHelper.enable(button: self.continueButton, enabledColor: Defaults.novaOneColor, borderedButton: false)
+            }
         }
     }
     
@@ -101,27 +107,27 @@ class SignUpPhoneViewController: BaseSignUpViewController, UITextFieldDelegate {
             let parameters: [String: String] = ["valueToCheckInDatabase": "%2B1" + unformattedPhoneNumber, "tableName": Defaults.DataBaseTableNames.customer.rawValue, "columnName": "phone_number"]
             httpRequest.request(url: Defaults.Urls.api.rawValue + "/inputCheck.php", dataModel: SuccessResponse.self, parameters: parameters) { [weak self] (result) in
                 switch result {
-                case .success(let success):
-                    
-                    print(success.successReason)
-                    guard
-                        let customerTypeViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.signUpCustomerType.rawValue) as? SignUpCustomerTypeViewController
-                    else { return }
-                    
-                    self?.customer?.phoneNumber = unformattedPhoneNumber
-                    customerTypeViewController.customer = self?.customer
-                    
-                    // Get existing core data object and update it
-                    let filter = NSPredicate(format: "id == %@", "0")
-                    guard let coreDataCustomerObject = PersistenceService.fetchEntity(Customer.self, filter: filter, sort: nil).first else { print("could not get coredata customer object - Sign Up Phone View Controller"); return }
-                    coreDataCustomerObject.phoneNumber = phoneNumber
-                    PersistenceService.saveContext()
-                    
-                    self?.navigationController?.pushViewController(customerTypeViewController, animated: true)
-                    
-                case .failure(let error):
-                    guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
-                    self?.present(popUpOkViewController, animated: true, completion: nil)
+                    case .success(let success):
+                        
+                        print(success.successReason)
+                        guard
+                            let customerTypeViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.signUpCustomerType.rawValue) as? SignUpCustomerTypeViewController
+                        else { return }
+                        
+                        self?.customer?.phoneNumber = unformattedPhoneNumber
+                        customerTypeViewController.customer = self?.customer
+                        
+                        // Get existing core data object and update it
+                        let filter = NSPredicate(format: "id == %@", "0")
+                        guard let coreDataCustomerObject = PersistenceService.fetchEntity(Customer.self, filter: filter, sort: nil).first else { print("could not get coredata customer object - Sign Up Phone View Controller"); return }
+                        coreDataCustomerObject.phoneNumber = phoneNumber
+                        PersistenceService.saveContext()
+                        
+                        self?.navigationController?.pushViewController(customerTypeViewController, animated: true)
+                        
+                    case .failure(let error):
+                        guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
+                        self?.present(popUpOkViewController, animated: true, completion: nil)
                 }
                 
                 guard let button = self?.continueButton else { return }

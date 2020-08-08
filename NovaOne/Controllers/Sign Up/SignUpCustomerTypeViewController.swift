@@ -15,6 +15,20 @@ class SignUpCustomerTypeViewController: BaseSignUpViewController, UIPickerViewDe
     let customerTypes = ["Property Manager", "Medical Worker"]
     var customerType: String = "PM"
     
+    // For state restortation
+    var continuationActivity: NSUserActivity {
+        let activity = NSUserActivity(activityType: AppState.UserActivities.signup.rawValue)
+        activity.persistentIdentifier = Defaults.ViewControllerIdentifiers.signUpCustomerType.rawValue
+        activity.isEligibleForHandoff = true
+        activity.title = Defaults.ViewControllerIdentifiers.signUpCustomerType.rawValue
+        
+        let userInfo = [AppState.activityViewControllerIdentifierKey: Defaults.ViewControllerIdentifiers.signUpCustomerType.rawValue as Any]
+        
+        activity.addUserInfoEntries(from: userInfo)
+        activity.becomeCurrent()
+        return activity
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupPickerView()
