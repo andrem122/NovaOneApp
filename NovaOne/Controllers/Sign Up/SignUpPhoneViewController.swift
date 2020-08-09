@@ -33,56 +33,19 @@ class SignUpPhoneViewController: BaseSignUpViewController, UITextFieldDelegate {
     }
     
     // MARK: Methods
-    func continueFrom(activity: NSUserActivity) {
-        // Restore the view controller to its previous state using the activity object plugged in from scene delegate method scene(_:willConnectTo:options:)
-        let restoreText = activity.userInfo?[AppState.UserActivityKeys.signup.rawValue] as? String
-        let continueButtonIsEnabled = activity.userInfo?[AppState.UserActivityKeys.signupButtonEnabled.rawValue] as? Bool
-        self.restoreText = restoreText
-        self.restoreContinueButtonState = continueButtonIsEnabled
-    }
-    
-    func setup() {
+    func setupTextField() {
         // Set delegates
         self.phoneTextField.delegate = self
-        
-        // State restoration
-        if self.restoreText != nil && self.restoreContinueButtonState != nil {
-            // Restore text
-            self.phoneTextField.text = self.restoreText
-            
-            // Restore button state
-            guard let continueButtonState = self.restoreContinueButtonState else { return }
-            if continueButtonState == true {
-                UIHelper.enable(button: self.continueButton, enabledColor: Defaults.novaOneColor, borderedButton: false)
-            } else {
-                UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
-            }
-        } else {
-            // Get data from coredata if it is available and fill in the field if no state restoration text exists
-            let filter = NSPredicate(format: "id == %@", "0")
-            guard let coreDataCustomerObject = PersistenceService.fetchEntity(Customer.self, filter: filter, sort: nil).first else {
-                UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
-                print("could not get coredata customer object - SignUpPhoneViewController")
-                return
-            }
-            guard let phoneNumber = coreDataCustomerObject.phoneNumber else {
-                print("could not get core data customer phone - SignUpPhoneViewController")
-                return
-            }
-            self.phoneTextField.text = phoneNumber
-            
-            // Enable the continue button
-            if phoneNumber.isEmpty {
-                UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
-            } else {
-                UIHelper.enable(button: self.continueButton, enabledColor: Defaults.novaOneColor, borderedButton: false)
-            }
-        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setup()
+        self.restore(textField: self.phoneTextField, continueButton: self.continueButton, coreDataEntity: Customer.self) { (customer) -> String in
+            guard let customer = customer as? Customer else { return "" }
+            guard let phoneNumber = customer.phoneNumber else { return "" }
+            return phoneNumber
+        }
+        self.setupTextField()
     }
     
     override func viewWillAppear(_ animated: Bool) {

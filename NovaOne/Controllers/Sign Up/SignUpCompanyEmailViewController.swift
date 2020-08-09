@@ -14,9 +14,32 @@ class SignUpCompanyEmailViewController: BaseSignUpViewController, UITextFieldDel
     @IBOutlet weak var emailAddressTextField: NovaOneTextField!
     @IBOutlet weak var continueButton: NovaOneButton!
     
+    // For state restortation
+    var continuationActivity: NSUserActivity {
+        let activity = NSUserActivity(activityType: AppState.UserActivities.signup.rawValue)
+        activity.persistentIdentifier = Defaults.ViewControllerIdentifiers.signUpCompanyEmail.rawValue
+        activity.isEligibleForHandoff = true
+        activity.title = Defaults.ViewControllerIdentifiers.signUpCompanyEmail.rawValue
+        
+        let textFieldText = self.emailAddressTextField.text
+        let continueButtonState = textFieldText?.isEmpty ?? true ? false : true
+        
+        let userInfo = [AppState.UserActivityKeys.signup.rawValue: textFieldText as Any,
+                                       AppState.activityViewControllerIdentifierKey: Defaults.ViewControllerIdentifiers.signUpCompanyEmail.rawValue as Any, AppState.UserActivityKeys.signupButtonEnabled.rawValue: continueButtonState as Any]
+        
+        activity.addUserInfoEntries(from: userInfo)
+        activity.becomeCurrent()
+        return activity
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setup()
+        self.restore(textField: self.emailAddressTextField, continueButton: self.continueButton, coreDataEntity: Company.self) { (company) -> String in
+            guard let company = company as? Company else { return "" }
+            guard let email = company.email else { return "" }
+            return email
+        }
+        self.setupTextField()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -24,9 +47,9 @@ class SignUpCompanyEmailViewController: BaseSignUpViewController, UITextFieldDel
         self.emailAddressTextField.becomeFirstResponder()
     }
     
-    func setup() {
+    func setupTextField() {
+        // General setup
         self.emailAddressTextField.delegate = self
-        UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
     }
     
     // MARK: Actions
@@ -45,6 +68,14 @@ class SignUpCompanyEmailViewController: BaseSignUpViewController, UITextFieldDel
             self.company?.email = email
             signUpCompanyPhoneViewController.customer = self.customer
             signUpCompanyPhoneViewController.company = self.company
+            
+            // Get existing core data object and update it
+            let filter = NSPredicate(format: "id == %@", "0")
+            guard let coreDataCompanyObject = PersistenceService.fetchEntity(Company.self, filter: filter, sort: nil).first else { print("could not get coredata company object - Sign Up Company Email View Controller"); return }
+            coreDataCompanyObject.email = email
+            
+            // Save to context
+            PersistenceService.saveContext()
             
             self.navigationController?.pushViewController(signUpCompanyPhoneViewController, animated: true)
         } else {

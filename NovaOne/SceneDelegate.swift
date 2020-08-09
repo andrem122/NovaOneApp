@@ -158,6 +158,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     signupNavigationController.popToViewController(signupCompanyAddressViewController, animated: true)
                     
                 }
+                
+                else if viewControllerIdentifier == Defaults.ViewControllerIdentifiers.signUpCompanyEmail.rawValue {
+                    
+                    signupCompanyEmailViewController.continueFrom(activity: activity)
+                    
+                    startViewController.present(signupNavigationController, animated: true, completion: nil)
+                    signupNavigationController.popToViewController(signupCompanyEmailViewController, animated: true)
+                    
+                }
+                
+                else if viewControllerIdentifier == Defaults.ViewControllerIdentifiers.signUpCompanyPhone.rawValue {
+                    
+                    signupCompanyPhoneViewController.continueFrom(activity: activity)
+                    
+                    startViewController.present(signupNavigationController, animated: true, completion: nil)
+                    signupNavigationController.popToViewController(signupCompanyPhoneViewController, animated: true)
+                    
+                }
             }
             
         }
@@ -244,6 +262,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             else if let signupCompanyAddressViewController = signupNavigationController.topViewController as? SignUpCompanyAddressViewController {
                 print("SignUpCompanyAddressViewController stateRestorationActivity")
                 return signupCompanyAddressViewController.continuationActivity
+            }
+            
+            // Signup company email view controller
+            else if let signupCompanyEmailViewController = signupNavigationController.topViewController as? SignUpCompanyEmailViewController {
+                print("SignUpCompanyEmailViewController stateRestorationActivity")
+                return signupCompanyEmailViewController.continuationActivity
+            }
+            
+            // Signup company phone view controller
+            else if let signupCompanyPhoneViewController = signupNavigationController.topViewController as? SignUpCompanyPhoneViewController {
+                print("SignUpCompanyPhoneViewController stateRestorationActivity")
+                return signupCompanyPhoneViewController.continuationActivity
             }
             
         }

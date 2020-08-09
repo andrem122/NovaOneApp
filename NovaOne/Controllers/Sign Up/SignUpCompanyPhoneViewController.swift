@@ -14,15 +14,37 @@ class SignUpCompanyPhoneViewController: BaseSignUpViewController, UITextFieldDel
     @IBOutlet weak var continueButton: NovaOneButton!
     @IBOutlet weak var propertyPhoneTextField: NovaOneTextField!
     
+    // For state restortation
+    var continuationActivity: NSUserActivity {
+        let activity = NSUserActivity(activityType: AppState.UserActivities.signup.rawValue)
+        activity.persistentIdentifier = Defaults.ViewControllerIdentifiers.signUpCompanyPhone.rawValue
+        activity.isEligibleForHandoff = true
+        activity.title = Defaults.ViewControllerIdentifiers.signUpCompanyPhone.rawValue
+        
+        let textFieldText = self.propertyPhoneTextField.text
+        let continueButtonState = textFieldText?.isEmpty ?? true ? false : true
+        
+        let userInfo = [AppState.UserActivityKeys.signup.rawValue: textFieldText as Any,
+                                       AppState.activityViewControllerIdentifierKey: Defaults.ViewControllerIdentifiers.signUpCompanyPhone.rawValue as Any, AppState.UserActivityKeys.signupButtonEnabled.rawValue: continueButtonState as Any]
+        
+        activity.addUserInfoEntries(from: userInfo)
+        activity.becomeCurrent()
+        return activity
+    }
+    
     // MARK: Methods
-    func setup() {
+    func setupTextField() {
         self.propertyPhoneTextField.delegate = self
-        UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setup()
+        self.restore(textField: self.propertyPhoneTextField, continueButton: self.continueButton, coreDataEntity: Company.self) { (company) -> String in
+            guard let company = company as? Company else { return "" }
+            guard let phoneNumber = company.phoneNumber else { return "" }
+            return phoneNumber
+        }
+        self.setupTextField()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -73,6 +95,14 @@ class SignUpCompanyPhoneViewController: BaseSignUpViewController, UITextFieldDel
                     addCompanyDaysEnabledViewController.customer = self?.customer
                     addCompanyDaysEnabledViewController.company = self?.company
                     addCompanyDaysEnabledViewController.userIsSigningUp = true // Indicates that the user is new and signing up and not an existing user adding a company
+                    
+                    // Get existing core data object and update it
+                    let filter = NSPredicate(format: "id == %@", "0")
+                    guard let coreDataCompanyObject = PersistenceService.fetchEntity(Company.self, filter: filter, sort: nil).first else { print("could not get coredata company object - Sign Up Company Phone View Controller"); return }
+                    coreDataCompanyObject.phoneNumber = phoneNumber
+                    
+                    // Save to context
+                    PersistenceService.saveContext()
                     
                     self?.navigationController?.pushViewController(addCompanyDaysEnabledViewController, animated: true)
                     

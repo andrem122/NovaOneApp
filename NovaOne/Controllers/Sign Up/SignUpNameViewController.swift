@@ -39,14 +39,6 @@ class SignUpNameViewController: BaseSignUpViewController, UITextFieldDelegate {
     }
     
     // MARK: Methods
-    func continueFrom(activity: NSUserActivity) {
-        // Restore the view controller to its previous state using the activity object plugged in from scene delegate method scene(_:willConnectTo:options:)
-        let restoreText = activity.userInfo?[AppState.UserActivityKeys.signup.rawValue] as? String
-        let continueButtonIsEnabled = activity.userInfo?[AppState.UserActivityKeys.signupButtonEnabled.rawValue] as? Bool
-        self.restoreText = restoreText
-        self.restoreContinueButtonState = continueButtonIsEnabled
-    }
-    
     func setup() {
         self.firstNameTextField.delegate = self
         self.lastNameTextField.delegate = self
