@@ -38,7 +38,7 @@ class UpdateEmailViewController: UpdateBaseViewController {
         if InputValidators.isValidEmail(email: updateValue) {
             // Disable button while doing HTTP request
             UIHelper.disable(button: self.updateButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
-            self.showSpinner(for: self.view, textForLabel: "Updating")
+            let spinnerView = self.showSpinner(for: self.view, textForLabel: "Updating")
             
             let httpRequest = HTTPRequests()
             let parameters: [String: String] = ["valueToCheckInDatabase": updateValue, "tableName": Defaults.DataBaseTableNames.authUser.rawValue, "columnName": "email"]
@@ -56,8 +56,6 @@ class UpdateEmailViewController: UpdateBaseViewController {
                     }
                     
                     let successDoneHandler = {
-                        [weak self] in
-                        
                         let predicate = NSPredicate(format: "userId == %@", String(objectId))
                         guard let updatedCustomer = PersistenceService.fetchEntity(Customer.self, filter: predicate, sort: nil).first else { return }
                         
@@ -67,9 +65,6 @@ class UpdateEmailViewController: UpdateBaseViewController {
                         
                         // Set new email in keychain
                         KeychainWrapper.standard.set(updateValue, forKey: Defaults.KeychainKeys.email.rawValue)
-                        
-                        self?.removeSpinner()
-                        
                     }
                     
                     self?.updateObject(for: Defaults.DataBaseTableNames.authUser.rawValue, at: ["email": updateValue], endpoint: "/updateEmail.php", objectId: Int(objectId), objectType: Customer.self, updateClosure: updateClosure, successSubtitle: "Email successfully updated.", successDoneHandler: successDoneHandler)
@@ -83,7 +78,7 @@ class UpdateEmailViewController: UpdateBaseViewController {
                 guard let updateButton = self?.updateButton else { return }
                 UIHelper.enable(button: updateButton, enabledColor: Defaults.novaOneColor, borderedButton: false)
                 
-                self?.removeSpinner()
+                self?.removeSpinner(spinnerView: spinnerView)
             }
         } else {
             // Email is not valid, so present pop up

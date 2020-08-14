@@ -46,7 +46,7 @@ class AddLeadPhoneCheckViewController: AddLeadBaseViewController {
             self.navigationController?.pushViewController(addLeadRenterBrandViewController, animated: true)
         } else {
             
-            self.showSpinner(for: self.view, textForLabel: "Adding Lead")
+            let spinnerView = self.showSpinner(for: self.view, textForLabel: "Adding Lead")
             // Get data for POST parameters
             guard
                 let name = self.lead?.name,
@@ -92,7 +92,7 @@ class AddLeadPhoneCheckViewController: AddLeadBaseViewController {
                         self?.present(popUpOk, animated: true, completion: nil)
                 }
                 
-                self?.removeSpinner()
+                self?.removeSpinner(spinnerView: spinnerView)
             }
             
         }

@@ -41,17 +41,12 @@ class UpdateAppointmentStatusViewController: UpdateBaseViewController, UIPickerV
         }
         
         let successDoneHandler = {
-            [weak self] in
-            
             let predicate = NSPredicate(format: "id == %@", String(objectId))
             guard let updatedAppointment = PersistenceService.fetchEntity(Appointment.self, filter: predicate, sort: nil).first else { return }
             
             detailViewController.appointment = updatedAppointment
             detailViewController.setupObjectDetailCellsAndTitle()
             detailViewController.objectDetailTableView.reloadData()
-            
-            self?.removeSpinner()
-            
         }
         
         self.updateObject(for: Defaults.DataBaseTableNames.appointmentsBase.rawValue, at: ["confirmed": self.selectedChoice], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Appointment.self, updateClosure: updateClosure, successSubtitle: "Appointment status has been successfully updated.", successDoneHandler: successDoneHandler)

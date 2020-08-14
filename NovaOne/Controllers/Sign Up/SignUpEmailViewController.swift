@@ -78,7 +78,7 @@ class SignUpEmailViewController: BaseSignUpViewController, UITextFieldDelegate {
         if InputValidators.isValidEmail(email: email) {
             // Disable button while doing HTTP request
             UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
-            self.showSpinner(for: self.view, textForLabel: "Validating Email")
+            let spinnerView = self.showSpinner(for: self.view, textForLabel: "Validating Email")
             
             let httpRequest = HTTPRequests()
             let parameters: [String: String] = ["valueToCheckInDatabase": email, "tableName": Defaults.DataBaseTableNames.authUser.rawValue, "columnName": "email"]
@@ -87,7 +87,7 @@ class SignUpEmailViewController: BaseSignUpViewController, UITextFieldDelegate {
                 case .success(let success):
                     
                     print(success.successReason)
-                    self?.customer = CustomerModel(id: 0, userId: 0, password: "", lastLogin: "", username: email, firstName: "", lastName: "", email: email, dateJoined: "", isPaying: false, wantsSms: false, wantsEmailNotifications: true, phoneNumber: "", customerType: "")
+                    self?.customer = CustomerModel(id: 0, userId: 0, password: "", lastLogin: "", username: email, firstName: "", lastName: "", email: email, dateJoined: "", isPaying: false, wantsSms: true, wantsEmailNotifications: true, phoneNumber: "", customerType: "")
                     
                     // Create core data customer object or get it if it already exists for state restoration
                     let count = PersistenceService.fetchCount(for: Defaults.CoreDataEntities.customer.rawValue)
@@ -97,8 +97,14 @@ class SignUpEmailViewController: BaseSignUpViewController, UITextFieldDelegate {
                         coreDataCustomerObject.addCustomer(customerType: "", dateJoined: Date(), email: email, firstName: "", id: 0, userId: 0, isPaying: false, lastName: "", phoneNumber: "", wantsSms: false, wantsEmailNotifications: false, password: "", username: email, lastLogin: Date(), companies: nil)
                     } else {
                         // Get existing core data object and update it
+                        // NOTE: Will not find core data object if user has already signed in and has a customer core data
+                        // object with an id greater than zero
                         let filter = NSPredicate(format: "id == %@", "0")
-                        guard let coreDataCustomerObject = PersistenceService.fetchEntity(Customer.self, filter: filter, sort: nil).first else { print("could not get coredata customer object - Sign Up Email View Controller"); return }
+                        guard let coreDataCustomerObject = PersistenceService.fetchEntity(Customer.self, filter: filter, sort: nil).first else {
+                            print("could not get coredata customer object - Sign Up Email View Controller")
+                            self?.removeSpinner(spinnerView: spinnerView)
+                            return
+                        }
                         coreDataCustomerObject.email = email
                     }
                     
@@ -117,7 +123,7 @@ class SignUpEmailViewController: BaseSignUpViewController, UITextFieldDelegate {
                 guard let button = self?.continueButton else { return }
                 UIHelper.enable(button: button, enabledColor: Defaults.novaOneColor, borderedButton: false)
                 
-                self?.removeSpinner()
+                self?.removeSpinner(spinnerView: spinnerView)
             }
         } else {
             // Email is not valid, so present pop up

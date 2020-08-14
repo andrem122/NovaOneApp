@@ -28,18 +28,18 @@ class UpdateAppointmentTimeViewController: UpdateBaseViewController {
         self.timeDatePicker.minuteInterval = 30
     }
     
-    func checkIfAppointmentTimeIsAvailable() {
+    func checkIfAppointmentTimeIsAvailable() -> UIView {
         // Checks if appointment time selected is available
         print("Checking appointment availability")
         self.dispatchGroup.enter() // Indicate that the network request has begun
         self.appointmentTimeIsAvailable = true // Reset the value of self.appointmentTimeIsAvailable because it may have been set to false before
-        self.showSpinner(for: self.view, textForLabel: "Updating")
+        let spinnerView = self.showSpinner(for: self.view, textForLabel: "Updating")
         
         guard
             let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
             let email = customer.email,
             let password = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue)
-        else { return }
+        else { return spinnerView }
         let customerUserId = customer.id
 
         let parameters: [String: String] = ["customerUserId": String(customerUserId),
@@ -74,7 +74,7 @@ class UpdateAppointmentTimeViewController: UpdateBaseViewController {
                             self?.present(popUpOkViewController, animated: true, completion: nil)
                             
                             self?.appointmentTimeIsAvailable = false
-                            self?.removeSpinner()
+                            self?.removeSpinner(spinnerView: spinnerView)
                             break // Break out of the loop and continue with the code below
                         }
                     }
@@ -93,6 +93,8 @@ class UpdateAppointmentTimeViewController: UpdateBaseViewController {
             
             self?.dispatchGroup.leave() // Indicate that the network request has ended
         }
+        
+        return spinnerView
     }
     
     func delete(appointment: Appointment) {
@@ -125,7 +127,7 @@ class UpdateAppointmentTimeViewController: UpdateBaseViewController {
         }
     }
     
-    func create(appointment: Appointment, for time: Date, detailViewController: AppointmentDetailViewController) {
+    func create(appointment: Appointment, for time: Date, detailViewController: AppointmentDetailViewController, spinnerView: UIView) {
         // Create a new appointment in the database based on customer type
         guard
             let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
@@ -180,7 +182,6 @@ class UpdateAppointmentTimeViewController: UpdateBaseViewController {
                     successViewController.subtitleText = "Appointment time has been successfully updated."
                     successViewController.titleLabelText = "Update Complete!"
                     successViewController.doneHandler = {
-                        [weak self] in
                         let predicate = NSPredicate(format: "id == %@", String(newAppointmentId))
                         guard let updatedAppointment = PersistenceService.fetchEntity(Appointment.self, filter: predicate, sort: nil).first else { return }
                         
@@ -188,22 +189,23 @@ class UpdateAppointmentTimeViewController: UpdateBaseViewController {
                         detailViewController.setupObjectDetailCellsAndTitle()
                         detailViewController.objectDetailTableView.reloadData()
                         
-                        self?.removeSpinner()
+                        self?.removeSpinner(spinnerView: spinnerView)
                     }
                     self?.present(successViewController, animated: true, completion: nil)
                     self?.navigationController?.popViewController(animated: true)
                 case .failure(let error):
-                    self?.removeSpinner()
                     guard let popUpOk = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
                     self?.present(popUpOk, animated: true, completion: nil)
             }
+            
+            self?.removeSpinner(spinnerView: spinnerView)
         }
     }
     
     // MARK: Actions
     @IBAction func updateButtonTapped(_ sender: Any) {
         // Check if appointment time is available before proceeding
-        self.checkIfAppointmentTimeIsAvailable()
+        let spinnerView = self.checkIfAppointmentTimeIsAvailable()
         
         self.dispatchGroup.notify(queue: .main) { // Only go forward after the network request has finished
             [weak self] in
@@ -219,7 +221,7 @@ class UpdateAppointmentTimeViewController: UpdateBaseViewController {
                 
                 self?.dispatchGroup.notify(queue: .main) {
                     // Step 3 completed
-                    self?.create(appointment: appointment, for: selectedDateTime, detailViewController: detailViewController)
+                    self?.create(appointment: appointment, for: selectedDateTime, detailViewController: detailViewController, spinnerView: spinnerView)
                 }
             }
         }

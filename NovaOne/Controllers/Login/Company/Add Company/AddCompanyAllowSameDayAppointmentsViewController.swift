@@ -11,7 +11,8 @@ import UIKit
 class AddCompanyAllowSameDayAppointmentsViewController: AddCompanyBaseViewController {
     
     // MARK: Properties
-
+    
+    // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -22,7 +23,11 @@ class AddCompanyAllowSameDayAppointmentsViewController: AddCompanyBaseViewContro
         else { return }
         
         addCompanyDaysEnabledViewController.company = self.company
+        addCompanyDaysEnabledViewController.customer = self.customer
         addCompanyDaysEnabledViewController.embeddedViewController = self.embeddedViewController
+        if self.userIsSigningUp == true {
+            addCompanyDaysEnabledViewController.userIsSigningUp = true
+        }
         
         self.navigationController?.pushViewController(addCompanyDaysEnabledViewController, animated: true)
     }

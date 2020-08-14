@@ -35,7 +35,7 @@ class SupportViewController: UIViewController {
     @IBAction func submitButtonTapped(_ sender: Any) {
         // Send email if there is text in the text view
         
-        self.showSpinner(for: self.view, textForLabel: "Sending message...")
+        let spinnerView = self.showSpinner(for: self.view, textForLabel: "Sending message...")
         let customerMessage = self.supportTextView.text != nil ? self.supportTextView.text! : ""
         if customerMessage.isEmpty {
             let popUpOkViewController = self.alertService.popUpOk(title: "No Message", body: "Please type in a message.")
@@ -68,7 +68,7 @@ class SupportViewController: UIViewController {
                         self?.present(popUpOkViewController, animated: true, completion: nil)
                 }
                 
-                self?.removeSpinner()
+                self?.removeSpinner(spinnerView: spinnerView)
             }
             
         }

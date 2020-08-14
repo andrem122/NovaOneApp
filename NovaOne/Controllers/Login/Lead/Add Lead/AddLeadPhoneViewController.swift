@@ -67,7 +67,7 @@ class AddLeadPhoneViewController: AddLeadBaseViewController, UITextFieldDelegate
             self.navigationController?.pushViewController(addLeadRenterBrandViewController, animated: true)
         } else {
             
-            self.showSpinner(for: self.view, textForLabel: "Adding Lead...")
+            let spinnerView = self.showSpinner(for: self.view, textForLabel: "Adding Lead...")
             
             // Get data for POST parameters
             guard
@@ -91,7 +91,7 @@ class AddLeadPhoneViewController: AddLeadBaseViewController, UITextFieldDelegate
                     case .success(let success):
                         // Redirect to success screen
                         
-                        self?.removeSpinner()
+                        self?.removeSpinner(spinnerView: spinnerView)
                         
                         let popupStoryboard = UIStoryboard(name: Defaults.StoryBoards.popups.rawValue, bundle: .main)
                         guard let successViewController = popupStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.success.rawValue) as? SuccessViewController else { return }
@@ -114,7 +114,7 @@ class AddLeadPhoneViewController: AddLeadBaseViewController, UITextFieldDelegate
                         }
                         self?.present(successViewController, animated: true, completion: nil)
                     case .failure(let error):
-                        self?.removeSpinner()
+                        self?.removeSpinner(spinnerView: spinnerView)
                         guard let popUpOk = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
                         self?.present(popUpOk, animated: true, completion: nil)
                 }

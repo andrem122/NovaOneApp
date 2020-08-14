@@ -40,7 +40,7 @@ class UpdateCompanyPhoneViewController: UpdateBaseViewController {
         } else {
             // Disable button while doing HTTP request
             UIHelper.disable(button: self.updateButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
-            self.showSpinner(for: self.view, textForLabel: "Updating")
+            let spinnerView = self.showSpinner(for: self.view, textForLabel: "Updating")
             
             let httpRequest = HTTPRequests()
             let parameters: [String: String] = ["valueToCheckInDatabase": "%2B1" + unformattedPhoneNumber, "tableName": Defaults.DataBaseTableNames.company.rawValue, "columnName": "phone_number"]
@@ -76,7 +76,7 @@ class UpdateCompanyPhoneViewController: UpdateBaseViewController {
                 guard let updateButton = self?.updateButton else { return }
                 UIHelper.enable(button: updateButton, enabledColor: Defaults.novaOneColor, borderedButton: false)
                 
-                self?.removeSpinner()
+                self?.removeSpinner(spinnerView: spinnerView)
             }
         }
     }

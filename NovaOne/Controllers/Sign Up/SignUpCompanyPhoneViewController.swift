@@ -78,7 +78,7 @@ class SignUpCompanyPhoneViewController: BaseSignUpViewController, UITextFieldDel
         } else {
             // Disable button while doing HTTP request
             UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
-            self.showSpinner(for: self.view, textForLabel: "Validating Phone Number")
+            let spinnerView = self.showSpinner(for: self.view, textForLabel: "Validating Phone Number")
             
             let httpRequest = HTTPRequests()
             let parameters: [String: String] = ["valueToCheckInDatabase": "%2B1" + unformattedPhoneNumber, "tableName": Defaults.DataBaseTableNames.company.rawValue, "columnName": "phone_number"]
@@ -88,13 +88,13 @@ class SignUpCompanyPhoneViewController: BaseSignUpViewController, UITextFieldDel
                     
                     let addCompanyStoryboard = UIStoryboard(name: Defaults.StoryBoards.addCompany.rawValue, bundle: .main)
                     guard
-                        let addCompanyDaysEnabledViewController = addCompanyStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addCompanyDaysEnabled.rawValue) as? AddCompanyDaysEnabledViewController
+                        let addCompanyAllowSameDayAppointmentsViewController = addCompanyStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addCompanyAllowSameDayAppointments.rawValue) as? AddCompanyAllowSameDayAppointmentsViewController
                     else { return }
                     
                     self?.company?.phoneNumber = unformattedPhoneNumber
-                    addCompanyDaysEnabledViewController.customer = self?.customer
-                    addCompanyDaysEnabledViewController.company = self?.company
-                    addCompanyDaysEnabledViewController.userIsSigningUp = true // Indicates that the user is new and signing up and not an existing user adding a company
+                    addCompanyAllowSameDayAppointmentsViewController.customer = self?.customer
+                    addCompanyAllowSameDayAppointmentsViewController.company = self?.company
+                    addCompanyAllowSameDayAppointmentsViewController.userIsSigningUp = true // Indicates that the user is new and signing up and not an existing user adding a company
                     
                     // Get existing core data object and update it
                     let filter = NSPredicate(format: "id == %@", "0")
@@ -104,7 +104,7 @@ class SignUpCompanyPhoneViewController: BaseSignUpViewController, UITextFieldDel
                     // Save to context
                     PersistenceService.saveContext()
                     
-                    self?.navigationController?.pushViewController(addCompanyDaysEnabledViewController, animated: true)
+                    self?.navigationController?.pushViewController(addCompanyAllowSameDayAppointmentsViewController, animated: true)
                     
                 case .failure(let error):
                     guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
@@ -114,7 +114,7 @@ class SignUpCompanyPhoneViewController: BaseSignUpViewController, UITextFieldDel
                 guard let button = self?.continueButton else { return }
                 UIHelper.enable(button: button, enabledColor: Defaults.novaOneColor, borderedButton: false)
                 
-                self?.removeSpinner()
+                self?.removeSpinner(spinnerView: spinnerView)
             }
         }
         

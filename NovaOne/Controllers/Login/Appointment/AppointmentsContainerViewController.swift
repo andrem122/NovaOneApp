@@ -78,7 +78,7 @@ class AppointmentsContainerViewController: UIViewController, NovaOneObjectContai
     func getData() {
         // Gets data from the database via an HTTP request and saves to CoreData
         
-        self.showSpinner(for: self.view, textForLabel: nil)
+        let spinnerView = self.showSpinner(for: self.view, textForLabel: nil)
         
         let httpRequest = HTTPRequests()
         guard
@@ -94,59 +94,59 @@ class AppointmentsContainerViewController: UIViewController, NovaOneObjectContai
         
         httpRequest.request(url: Defaults.Urls.api.rawValue + "/appointments.php",
                             dataModel: [AppointmentModel].self,
-                            parameters: parameters) {
-                                [weak self] (result) in
+                            parameters: parameters) { [weak self] (result) in
                                 
-                                switch result {
-                                    
-                                    case .success(let appointments):
-                                        // Save data in CoreData
-                                        self?.saveToCoreData(objects: appointments)
-                                        
-                                        // Show success screen
-                                        UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.SplitViewControllerIdentifiers.appointments.rawValue, containerView: self?.containerView ?? UIView(), objectType: UISplitViewController.self) {
-                                            [weak self] (viewController) in
-                                            
-                                            guard let splitViewController = viewController as? UISplitViewController else { return }
-                                            guard let objectsTableNavigationController = splitViewController.viewControllers.first as? UINavigationController else { return }
-                                            guard let objectsTableController = objectsTableNavigationController.viewControllers.first as? NovaOneTableView else { return }
-                                            objectsTableController.parentViewContainerController = self
-                                        }
-                                        
-                                    
-                                    case .failure(let error):
-                                        print(error.localizedDescription)
-                                        // No appointments were found or an error occurred so show/embed the empty
-                                        // view controller
-                                        UIHelper.showEmptyStateContainerViewController(for: self, containerView: self?.containerView ?? UIView(), title: "No Appointments", addObjectButtonTitle: "Add Appointment") {
-                                            (emptyViewController) in
-                                            
-                                            // Tell the empty state view controller what its parent view controller is
-                                            emptyViewController.parentViewContainerController = self
-                                            
-                                            // Pass the addObjectHandler function and button title to the empty view controller
-                                            emptyViewController.addObjectButtonHandler = {
-                                                [weak self] in
-                                                // Go to the add object screen
-                                                let addAppointmentStoryboard = UIStoryboard(name: Defaults.StoryBoards.addAppointment.rawValue, bundle: .main)
-                                                guard
-                                                    let addAppointmentNavigationController = addAppointmentStoryboard.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addAppointment.rawValue) as? UINavigationController
-                                                else { print("could not get add appointment navigation controller - AppointmentsContainerViewController"); return }
-                                                
-                                                guard
-                                                    let addAppointmentCompanyViewController = addAppointmentNavigationController.viewControllers.first as? AddAppointmentCompanyViewController
-                                                else { print("could not get add appointment company view controller - AppointmentsContainerViewController"); return }
-                                                
-                                                // Pass embedded view controller
-                                                addAppointmentCompanyViewController.embeddedViewController = emptyViewController
-                                                
-                                                self?.present(addAppointmentNavigationController, animated: true, completion: nil)
-                                            }
-                                        
-                                    }
-                                    
-                                }
-                                self?.removeSpinner()
+            switch result {
+                
+                case .success(let appointments):
+                    // Save data in CoreData
+                    self?.saveToCoreData(objects: appointments)
+                    
+                    // Show success screen
+                    UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.SplitViewControllerIdentifiers.appointments.rawValue, containerView: self?.containerView ?? UIView(), objectType: UISplitViewController.self) {
+                        [weak self] (viewController) in
+                        
+                        guard let splitViewController = viewController as? UISplitViewController else { return }
+                        guard let objectsTableNavigationController = splitViewController.viewControllers.first as? UINavigationController else { return }
+                        guard let objectsTableController = objectsTableNavigationController.viewControllers.first as? NovaOneTableView else { return }
+                        objectsTableController.parentViewContainerController = self
+                    }
+                    
+                
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    // No appointments were found or an error occurred so show/embed the empty
+                    // view controller
+                    UIHelper.showEmptyStateContainerViewController(for: self, containerView: self?.containerView ?? UIView(), title: "No Appointments", addObjectButtonTitle: "Add Appointment") {
+                        (emptyViewController) in
+                        
+                        // Tell the empty state view controller what its parent view controller is
+                        emptyViewController.parentViewContainerController = self
+                        
+                        // Pass the addObjectHandler function and button title to the empty view controller
+                        emptyViewController.addObjectButtonHandler = {
+                            [weak self] in
+                            // Go to the add object screen
+                            let addAppointmentStoryboard = UIStoryboard(name: Defaults.StoryBoards.addAppointment.rawValue, bundle: .main)
+                            guard
+                                let addAppointmentNavigationController = addAppointmentStoryboard.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addAppointment.rawValue) as? UINavigationController
+                            else { print("could not get add appointment navigation controller - AppointmentsContainerViewController"); return }
+                            
+                            guard
+                                let addAppointmentCompanyViewController = addAppointmentNavigationController.viewControllers.first as? AddAppointmentCompanyViewController
+                            else { print("could not get add appointment company view controller - AppointmentsContainerViewController"); return }
+                            
+                            // Pass embedded view controller
+                            addAppointmentCompanyViewController.embeddedViewController = emptyViewController
+                            
+                            self?.present(addAppointmentNavigationController, animated: true, completion: nil)
+                        }
+                    
+                }
+                
+            }
+            
+            self?.removeSpinner(spinnerView: spinnerView)
         }
         
     }

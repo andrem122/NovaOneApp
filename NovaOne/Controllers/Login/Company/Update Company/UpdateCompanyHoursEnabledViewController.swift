@@ -145,17 +145,12 @@ class UpdateCompanyHoursEnabledViewController: UpdateBaseViewController, UITable
             }
             
             let successDoneHandler = {
-                [weak self] in
-                
                 let predicate = NSPredicate(format: "id == %@", String(objectId))
                 guard let updatedCompany = PersistenceService.fetchEntity(Company.self, filter: predicate, sort: nil).first else { return }
                 
                 detailViewController.company = updatedCompany
                 detailViewController.setupCompanyCellsAndTitle()
                 detailViewController.objectDetailTableView.reloadData()
-                
-                self?.removeSpinner()
-                
             }
             
             self.updateObject(for: Defaults.DataBaseTableNames.company.rawValue, at: ["hours_of_the_day_enabled": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Company.self, updateClosure: updateClosure, successSubtitle: "Company showing hours have been successfully updated.", successDoneHandler: successDoneHandler)

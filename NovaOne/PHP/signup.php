@@ -16,6 +16,7 @@
     $company_address = $_POST['companyAddress'];
     $company_phone_number = $_POST['companyPhoneNumber'];
     $company_email = $_POST['companyEmail'];
+    $company_allow_same_day_appointments = $_POST['companyAllowSameDayAppointments'];
     $company_days_enabled = $_POST['companyDaysEnabled'];
     $company_hours_enabled = $_POST['companyHoursEnabled'];
     $company_city = $_POST['companyCity'];
@@ -49,6 +50,7 @@
                  !isset($company_address) ||
                  !isset($company_phone_number) ||
                  !isset($company_email) ||
+                 !isset($company_allow_same_day_appointments) ||
                  !isset($company_days_enabled) ||
                  !isset($company_hours_enabled) ||
                  !isset($company_city) ||
@@ -91,8 +93,8 @@
                           // add user data to customer_register_customer_user table
                           $query = "
                           INSERT INTO customer_register_customer_user
-                          (is_paying, wants_sms, phone_number, customer_type, user_id)
-                          VALUES ('f', 'f', :phone_number, :customer_type, :user_id);
+                          (is_paying, wants_sms, wants_email_notifications, phone_number, customer_type, user_id)
+                          VALUES ('f', 't', 't', :phone_number, :customer_type, :user_id);
                           ";
                           
                           $parameters = array(':phone_number' => $phone_number,
@@ -115,14 +117,15 @@
                                   // add user data to property_company table
                                   $query = "
                                   INSERT INTO property_company
-                                  (name, address, phone_number, email, created, days_of_the_week_enabled, hours_of_the_day_enabled, city, customer_user_id, state, zip)
-                                  VALUES (:company_name, :company_address, :company_phone_number, :company_email, NOW(), :company_days_enabled, :company_hours_enabled, :company_city, :customer_user_id, :company_state, :company_zip);
+                                  (name, address, phone_number, email, allow_same_day_appointments, created, days_of_the_week_enabled, hours_of_the_day_enabled, city, customer_user_id, state, zip)
+                                  VALUES (:company_name, :company_address, :company_phone_number, :company_email, :company_allow_same_day_appointments, NOW(), :company_days_enabled, :company_hours_enabled, :company_city, :customer_user_id, :company_state, :company_zip);
                                   ";
                                   
                                   $parameters = array(':company_name' => $company_name,
                                                       ':company_address' => $company_address,
                                                       ':company_phone_number' => $company_phone_number,
                                                       ':company_email' => $company_email,
+                                                      ':company_allow_same_day_appointments' => $company_allow_same_day_appointments,
                                                       ':company_days_enabled' => $company_days_enabled,
                                                       ':company_hours_enabled' => $company_hours_enabled,
                                                       ':company_city' => $company_city,

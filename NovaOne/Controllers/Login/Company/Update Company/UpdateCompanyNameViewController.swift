@@ -49,17 +49,12 @@ class UpdateCompanyNameViewController: UpdateBaseViewController {
             }
             
             let successDoneHandler = {
-                [weak self] in
-                
                 let predicate = NSPredicate(format: "id == %@", String(objectId))
                 guard let updatedCompany = PersistenceService.fetchEntity(Company.self, filter: predicate, sort: nil).first else { print("error getting updated company"); return }
                 
                 detailViewController.company = updatedCompany
                 detailViewController.setupCompanyCellsAndTitle()
                 detailViewController.objectDetailTableView.reloadData()
-                
-                self?.removeSpinner()
-                
             }
             
             self.updateObject(for: Defaults.DataBaseTableNames.company.rawValue, at: ["name": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Company.self, updateClosure: updateClosure, successSubtitle: "Company name has been successfully updated.", successDoneHandler: successDoneHandler)

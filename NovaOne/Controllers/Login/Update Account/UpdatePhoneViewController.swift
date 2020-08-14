@@ -40,7 +40,7 @@ class UpdatePhoneViewController: UpdateBaseViewController {
         } else {
             // Disable button while doing HTTP request
             UIHelper.disable(button: self.updateButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
-            self.showSpinner(for: self.view, textForLabel: "Updating")
+            let spinnerView = self.showSpinner(for: self.view, textForLabel: "Updating")
             
             let httpRequest = HTTPRequests()
             let parameters: [String: String] = ["valueToCheckInDatabase": "%2B1" + unformattedPhoneNumber, "tableName": Defaults.DataBaseTableNames.customer.rawValue, "columnName": "phone_number"]
@@ -59,17 +59,12 @@ class UpdatePhoneViewController: UpdateBaseViewController {
                     }
                     
                     let successDoneHandler = {
-                        [weak self] in
-                        
                         let predicate = NSPredicate(format: "userId == %@", String(userId))
                         guard let updatedCustomer = PersistenceService.fetchEntity(Customer.self, filter: predicate, sort: nil).first else { return }
                         
                         previousViewController.customer = updatedCustomer
                         previousViewController.setLabelValues()
                         previousViewController.tableView.reloadData()
-                        
-                        self?.removeSpinner()
-                        
                     }
                     
                     self?.updateObject(for: Defaults.DataBaseTableNames.customer.rawValue, at: ["phone_number": "%2B1" + unformattedPhoneNumber], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Customer.self, updateClosure: updateClosure, successSubtitle: "Phone number successfully updated.", successDoneHandler: successDoneHandler)
@@ -82,7 +77,7 @@ class UpdatePhoneViewController: UpdateBaseViewController {
                 guard let button = self?.updateButton else { return }
                 UIHelper.enable(button: button, enabledColor: Defaults.novaOneColor, borderedButton: false)
                 
-                self?.removeSpinner()
+                self?.removeSpinner(spinnerView: spinnerView)
             }
         }
     }

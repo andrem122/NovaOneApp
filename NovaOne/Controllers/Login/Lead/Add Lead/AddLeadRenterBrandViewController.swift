@@ -40,7 +40,7 @@ class AddLeadRenterBrandViewController: AddLeadBaseViewController, UIPickerViewD
     
     // MARK: Actions
     @IBAction func addLeadButtonTapped(_ sender: Any) {
-        self.showSpinner(for: self.view, textForLabel: "Adding Lead...")
+        let spinnerView = self.showSpinner(for: self.view, textForLabel: "Adding Lead...")
         
         // Get data for POST parameters
         guard
@@ -64,7 +64,7 @@ class AddLeadRenterBrandViewController: AddLeadBaseViewController, UIPickerViewD
                 case .success(let success):
                     // Redirect to success screen
                     
-                    self?.removeSpinner()
+                    self?.removeSpinner(spinnerView: spinnerView)
                     
                     let popupStoryboard = UIStoryboard(name: Defaults.StoryBoards.popups.rawValue, bundle: .main)
                     guard let successViewController = popupStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.success.rawValue) as? SuccessViewController else { return }
@@ -87,7 +87,7 @@ class AddLeadRenterBrandViewController: AddLeadBaseViewController, UIPickerViewD
                     }
                     self?.present(successViewController, animated: true, completion: nil)
                 case .failure(let error):
-                    self?.removeSpinner()
+                    self?.removeSpinner(spinnerView: spinnerView)
                     guard let popUpOk = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
                     self?.present(popUpOk, animated: true, completion: nil)
             }

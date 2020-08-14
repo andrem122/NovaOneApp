@@ -25,9 +25,9 @@ class UpdateBaseViewController: UIViewController, UITextFieldDelegate {
                                           updateClosure: @escaping (T) -> Void,
                                           successSubtitle: String,
                                           successDoneHandler: @escaping () -> Void) {
-        // Update the object's value in the database
         
-        self.showSpinner(for: self.view, textForLabel: "Updating")
+        // Update the object's value in the database
+        let spinnerView = self.showSpinner(for: self.view, textForLabel: "Updating")
         
         guard
             let customerEmail = self.customer?.email,
@@ -61,7 +61,10 @@ class UpdateBaseViewController: UIViewController, UITextFieldDelegate {
                     successViewController.subtitleText = successSubtitle
                     successViewController.doneHandler = successDoneHandler
                     
-                    self?.present(successViewController, animated: true, completion: nil)
+                    self?.present(successViewController, animated: true, completion: {
+                        [weak self] in
+                        self?.removeSpinner(spinnerView: spinnerView)
+                    })
                     
                     // Remove the update view controller
                     self?.navigationController?.popViewController(animated: true)
@@ -69,7 +72,7 @@ class UpdateBaseViewController: UIViewController, UITextFieldDelegate {
                 case .failure(let error):
                     guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
                     self?.present(popUpOkViewController, animated: true, completion: nil)
-                    self?.removeSpinner()
+                    self?.removeSpinner(spinnerView: spinnerView)
                 
             }
             

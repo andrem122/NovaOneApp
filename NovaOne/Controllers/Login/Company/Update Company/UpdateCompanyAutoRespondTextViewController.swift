@@ -50,17 +50,12 @@ class UpdateCompanyAutoRespondTextViewController: UpdateBaseViewController {
             }
             
             let successDoneHandler = {
-                [weak self] in
-                
                 let predicate = NSPredicate(format: "id == %@", String(objectId))
                 guard let updatedCompany = PersistenceService.fetchEntity(Company.self, filter: predicate, sort: nil).first else { return }
                 
                 detailViewController.company = updatedCompany
                 detailViewController.setupCompanyCellsAndTitle()
                 detailViewController.objectDetailTableView.reloadData()
-                
-                self?.removeSpinner()
-                
             }
             
             self.updateObject(for: Defaults.DataBaseTableNames.company.rawValue, at: ["auto_respond_text": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Company.self, updateClosure: updateClosure, successSubtitle: "Company auto respond text has been successfully updated.", successDoneHandler: successDoneHandler)

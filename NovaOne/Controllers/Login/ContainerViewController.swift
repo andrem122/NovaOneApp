@@ -11,6 +11,7 @@ import UIKit
 class ContainerViewController: UIViewController {
     
     // MARK: Properties
+    var alertService = AlertService()
     
     // MARK: Methods
     override func viewDidLoad() {

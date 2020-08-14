@@ -33,7 +33,7 @@ class AddAppointmentTimeViewController: AddAppointmentBaseViewController {
         
         self.dispatchGroup.enter() // Indicate that the network request has begun
         self.appointmentTimeIsAvailable = true // Reset the value of self.appointmentTimeIsAvailable because it may have been set to false before
-        self.showSpinner(for: self.view, textForLabel: "Checking Availability...")
+        let spinnerView = self.showSpinner(for: self.view, textForLabel: "Checking Availability...")
         
         guard
             let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
@@ -74,7 +74,7 @@ class AddAppointmentTimeViewController: AddAppointmentBaseViewController {
                             self?.present(popUpOkViewController, animated: true, completion: nil)
                             
                             self?.appointmentTimeIsAvailable = false
-                            self?.removeSpinner()
+                            self?.removeSpinner(spinnerView: spinnerView)
                             break // Break out of the loop and continue with the code below
                         }
                     }
@@ -91,7 +91,7 @@ class AddAppointmentTimeViewController: AddAppointmentBaseViewController {
                     
             }
             
-            self?.removeSpinner()
+            self?.removeSpinner(spinnerView: spinnerView)
             self?.dispatchGroup.leave() // Indicate that the network request has ended
         }
     }

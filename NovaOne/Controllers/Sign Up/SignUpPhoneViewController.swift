@@ -68,7 +68,7 @@ class SignUpPhoneViewController: BaseSignUpViewController, UITextFieldDelegate {
         } else {
             // Disable button while doing HTTP request
             UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
-            self.showSpinner(for: self.view, textForLabel: "Validating Phone Number")
+            let spinnerView = self.showSpinner(for: self.view, textForLabel: "Validating Phone Number")
             
             let httpRequest = HTTPRequests()
             let parameters: [String: String] = ["valueToCheckInDatabase": "%2B1" + unformattedPhoneNumber, "tableName": Defaults.DataBaseTableNames.customer.rawValue, "columnName": "phone_number"]
@@ -88,7 +88,7 @@ class SignUpPhoneViewController: BaseSignUpViewController, UITextFieldDelegate {
                         let filter = NSPredicate(format: "id == %@", "0")
                         guard let coreDataCustomerObject = PersistenceService.fetchEntity(Customer.self, filter: filter, sort: nil).first else {
                             print("could not get coredata customer object - Sign Up Phone View Controller")
-                            self?.removeSpinner()
+                            self?.removeSpinner(spinnerView: spinnerView)
                             return
                         }
                         coreDataCustomerObject.phoneNumber = phoneNumber
@@ -104,7 +104,7 @@ class SignUpPhoneViewController: BaseSignUpViewController, UITextFieldDelegate {
                 guard let button = self?.continueButton else { return }
                 UIHelper.enable(button: button, enabledColor: Defaults.novaOneColor, borderedButton: false)
                 
-                self?.removeSpinner()
+                self?.removeSpinner(spinnerView: spinnerView)
             }
         }
     }

@@ -34,6 +34,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 // Get storyboards
                 let mainStoryboard = UIStoryboard(name: Defaults.StoryBoards.main.rawValue, bundle: .main)
                 let signupStoryboard = UIStoryboard(name: Defaults.StoryBoards.signup.rawValue, bundle: .main)
+                let addCompanyStoryboard = UIStoryboard(name: Defaults.StoryBoards.addAppointment.rawValue, bundle: .main)
                 guard
                     let startViewController = mainStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.start.rawValue) as? StartViewController
                 else { return }
@@ -83,6 +84,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     let signupCompanyPhoneViewController = signupStoryboard.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.signUpCompanyPhone.rawValue) as? SignUpCompanyPhoneViewController
                 else { return }
                 
+                guard
+                    let addCompanyAllowSameDayAppointmentsViewController = addCompanyStoryboard.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.addCompanyAllowSameDayAppointments.rawValue) as? AddCompanyAllowSameDayAppointmentsViewController
+                else { return }
+            
+                guard
+                    let addCompanyDaysEnabledViewController = addCompanyStoryboard.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.addCompanyDaysEnabled.rawValue) as? AddCompanyDaysEnabledViewController
+                else { return }
+                
+                guard
+                    let addCompanyHoursEnabledViewController = addCompanyStoryboard.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.addCompanyHoursEnabled.rawValue) as? AddCompanyHoursEnabledViewController
+                else { return }
+                
                 // Setup sign up navigation controller stack
                 let signupNavigationController = UINavigationController(rootViewController: signupEmailViewController)
                 signupNavigationController.modalPresentationStyle = .fullScreen
@@ -95,7 +108,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     signupCompanyNameViewController,
                     signupCompanyAddressViewController,
                     signupCompanyEmailViewController,
-                    signupCompanyPhoneViewController]
+                    signupCompanyPhoneViewController,
+                    addCompanyAllowSameDayAppointmentsViewController,
+                    addCompanyDaysEnabledViewController,
+                    addCompanyHoursEnabledViewController]
                 
                 // Setup transparent navigation bar for sign up stack
                 signupEmailViewController.setupNavigationBar()
@@ -174,6 +190,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     
                     startViewController.present(signupNavigationController, animated: true, completion: nil)
                     signupNavigationController.popToViewController(signupCompanyPhoneViewController, animated: true)
+                    
+                }
+                
+                else if viewControllerIdentifier == Defaults.ViewControllerIdentifiers.addCompanyDaysEnabled.rawValue {
+                    
+                    addCompanyDaysEnabledViewController.continueFrom(activity: activity)
+                    
+                    startViewController.present(signupNavigationController, animated: true, completion: nil)
+                    signupNavigationController.popToViewController(addCompanyDaysEnabledViewController, animated: true)
                     
                 }
             }
@@ -274,6 +299,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             else if let signupCompanyPhoneViewController = signupNavigationController.topViewController as? SignUpCompanyPhoneViewController {
                 print("SignUpCompanyPhoneViewController stateRestorationActivity")
                 return signupCompanyPhoneViewController.continuationActivity
+            }
+            
+            // Add company days view controller
+            else if let addCompanyDaysEnabledViewController = signupNavigationController.topViewController as? AddCompanyDaysEnabledViewController {
+                print("AddCompanyDaysEnabledViewController stateRestorationActivity")
+                return addCompanyDaysEnabledViewController.continuationActivity
             }
             
         }

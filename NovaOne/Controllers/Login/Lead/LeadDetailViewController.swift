@@ -120,7 +120,7 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             guard let containerViewControllerAsUIViewController = objectsTableViewController.parentViewContainerController else { print("could not get containerViewController - lead detail view"); return }
             guard let containerViewControllerView = objectsTableViewController.parentViewContainerController?.view else { print("could not get containerViewControllerView - lead detail view"); return }
             
-            containerViewControllerAsUIViewController.showSpinner(for: containerViewControllerView, textForLabel: "Deleting")
+            let spinnerView = containerViewControllerAsUIViewController.showSpinner(for: containerViewControllerView, textForLabel: "Deleting")
             self?.performSegue(withIdentifier: Defaults.SegueIdentifiers.unwindToLeads.rawValue, sender: self)
             
             // Delete from CoreData
@@ -144,17 +144,16 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
                             
                             // Return to the objects view and refresh objects
                             objectsTableViewController.refreshDataOnPullDown()
-                            objectsTableViewController.parentViewContainerController?.removeSpinner()
+                            objectsTableViewController.parentViewContainerController?.removeSpinner(spinnerView: spinnerView)
                             
                         } else {
                             
-                            print("COUNT IS ZERO - lead detail view controller")
                             guard let containerViewController = objectsTableViewController.parentViewContainerController as? NovaOneObjectContainer else { print("could not get containerViewController - lead detail view controller"); return }
                             
                             UIHelper.showEmptyStateContainerViewController(for: containerViewController as? UIViewController, containerView: containerViewController.containerView ?? UIView(), title: "No Leads", addObjectButtonTitle: "Add Lead") {
                                 (emptyViewController) in
                                 
-                                objectsTableViewController.parentViewContainerController?.removeSpinner()
+                                objectsTableViewController.parentViewContainerController?.removeSpinner(spinnerView: spinnerView)
                                 // Tell the empty state view controller what its parent view controller is
                                 emptyViewController.parentViewContainerController = containerViewController as? UIViewController
                                 

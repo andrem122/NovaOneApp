@@ -34,7 +34,7 @@ class AddAppointmentGenderViewController: AddAppointmentBaseViewController, UIPi
     
     // MARK: Actions
     @IBAction func addAppointmentButtonTapped(_ sender: Any) {
-        self.showSpinner(for: self.view, textForLabel: "Adding Appointment")
+        let spinnerView = self.showSpinner(for: self.view, textForLabel: "Adding Appointment")
         
         guard
             let companyId = self.appointment?.companyId,
@@ -86,12 +86,12 @@ class AddAppointmentGenderViewController: AddAppointmentBaseViewController, UIPi
                     }
                     
                     self?.present(successViewController, animated: true, completion: nil)
-                    self?.removeSpinner()
                 case .failure(let error):
                     guard let popUpOk = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
                     self?.present(popUpOk, animated: true, completion: nil)
-                    self?.removeSpinner()
             }
+            
+            self?.removeSpinner(spinnerView: spinnerView)
             
         }
     }

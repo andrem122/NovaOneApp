@@ -83,56 +83,53 @@ extension UIViewController {
         return (self.traitCollection.horizontalSizeClass, self.traitCollection.verticalSizeClass)
     }
     
-    func showSpinner(for view: UIView, textForLabel: String?) {
+    func showSpinner(for view: UIView, textForLabel: String?) -> UIView {
         // Shows a spinner/loading icon for the current view
         
-        DispatchQueue.main.async {
-            // Create a view that has the same CGRect dimensions as the parent view
-            let spinnerView = UIView.init(frame: view.bounds)
-            view.addSubview(spinnerView)
-            spinnerView.backgroundColor = UIColor(named: Defaults.Colors.view.rawValue)
-            
-            // Create the spinner that goes in the center of the spinner view
-            let spinner = UIActivityIndicatorView(style: .medium)
-            spinnerView.addSubview(spinner)
-            spinner.startAnimating()
-            spinner.translatesAutoresizingMaskIntoConstraints = false
-            spinner.color = UIColor(named: Defaults.Colors.textField.rawValue)
+        // Create a view that has the same CGRect dimensions as the parent view
+        let spinnerView = UIView.init(frame: view.bounds)
+        view.addSubview(spinnerView)
+        spinnerView.backgroundColor = UIColor(named: Defaults.Colors.view.rawValue)
+        
+        // Create the spinner that goes in the center of the spinner view
+        let spinner = UIActivityIndicatorView(style: .medium)
+        spinnerView.addSubview(spinner)
+        spinner.startAnimating()
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        spinner.color = UIColor(named: Defaults.Colors.textField.rawValue)
+        
+        // Add constraints
+        var xConstraint = NSLayoutConstraint(item: spinner, attribute: .centerX, relatedBy: .equal, toItem: spinnerView, attribute: .centerX, multiplier: 1, constant: 0)
+        var yConstraint = NSLayoutConstraint(item: spinner, attribute: .centerY, relatedBy: .equal, toItem: spinnerView, attribute: .centerY, multiplier: 1, constant: 0)
+        NSLayoutConstraint.activate([xConstraint, yConstraint])
+        
+        // Create label to go underneath spinner
+        if textForLabel != nil {
+            let label = UILabel()
+            spinnerView.addSubview(label)
+            label.translatesAutoresizingMaskIntoConstraints = false
+            label.frame.size = CGSize(width: spinnerView.bounds.width, height: 30) // Set width and height so label is visible
             
             // Add constraints
-            var xConstraint = NSLayoutConstraint(item: spinner, attribute: .centerX, relatedBy: .equal, toItem: spinnerView, attribute: .centerX, multiplier: 1, constant: 0)
-            var yConstraint = NSLayoutConstraint(item: spinner, attribute: .centerY, relatedBy: .equal, toItem: spinnerView, attribute: .centerY, multiplier: 1, constant: 0)
+            xConstraint = NSLayoutConstraint(item: label, attribute: .centerX, relatedBy: .equal, toItem: spinnerView, attribute: .centerX, multiplier: 1, constant: 0)
+            yConstraint = NSLayoutConstraint(item: label, attribute: .centerY, relatedBy: .equal, toItem: spinnerView, attribute: .centerY, multiplier: 1, constant: 25)
             NSLayoutConstraint.activate([xConstraint, yConstraint])
             
-            // Create label to go underneath spinner
-            if textForLabel != nil {
-                let label = UILabel()
-                spinnerView.addSubview(label)
-                label.translatesAutoresizingMaskIntoConstraints = false
-                label.frame.size = CGSize(width: spinnerView.bounds.width, height: 30) // Set width and height so label is visible
-                
-                // Add constraints
-                xConstraint = NSLayoutConstraint(item: label, attribute: .centerX, relatedBy: .equal, toItem: spinnerView, attribute: .centerX, multiplier: 1, constant: 0)
-                yConstraint = NSLayoutConstraint(item: label, attribute: .centerY, relatedBy: .equal, toItem: spinnerView, attribute: .centerY, multiplier: 1, constant: 25)
-                NSLayoutConstraint.activate([xConstraint, yConstraint])
-                
-                guard let text = textForLabel else { return }
-                label.text = text
-                label.textColor = UIColor(named: Defaults.Colors.textField.rawValue)
-                label.textAlignment = .center
-                label.font.withSize(15)
-            }
-            
-            vSpinner = spinnerView
+            guard let text = textForLabel else { return UIView() }
+            label.text = text
+            label.textColor = UIColor(named: Defaults.Colors.textField.rawValue)
+            label.textAlignment = .center
+            label.font.withSize(15)
         }
+        
+        return spinnerView
         
     }
     
-    func removeSpinner() {
+    func removeSpinner(spinnerView: UIView) {
         // Removes the spinner from the view it is embedded in and deallocates it from memory
         DispatchQueue.main.async {
-            vSpinner?.removeFromSuperview()
-            vSpinner = nil
+            spinnerView.removeFromSuperview()
         }
     }
 }

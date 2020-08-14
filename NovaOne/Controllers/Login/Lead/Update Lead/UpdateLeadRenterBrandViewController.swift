@@ -52,17 +52,12 @@ class UpdateLeadRenterBrandViewController: UpdateBaseViewController, UIPickerVie
         }
         
         let successDoneHandler = {
-            [weak self] in
-            
             let predicate = NSPredicate(format: "id == %@", String(objectId))
             guard let updatedLead = PersistenceService.fetchEntity(Lead.self, filter: predicate, sort: nil).first else { return }
             
             detailViewController.lead = updatedLead
             detailViewController.setupObjectDetailCellsAndTitle()
             detailViewController.objectDetailTableView.reloadData()
-            
-            self?.removeSpinner()
-            
         }
         
         self.updateObject(for: Defaults.DataBaseTableNames.leads.rawValue, at: ["renter_brand": self.selectedChoice], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Lead.self, updateClosure: updateClosure, successSubtitle: "Renter brand has been successfully updated.", successDoneHandler: successDoneHandler)

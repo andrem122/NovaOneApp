@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -148,7 +148,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="nxp-TN-rre">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="nxp-TN-rre" userLabel="Update Password Label">
                                                     <rect key="frame" x="30" y="9.5" width="132.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" name="textColor"/>
@@ -179,12 +179,47 @@
                                             <segue destination="WPl-DD-qqF" kind="show" identifier="updatePasswordSegue" id="l7P-RS-Grq"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="40" id="JmJ-9C-zlA">
+                                        <rect key="frame" x="0.0" y="188" width="414" height="40"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JmJ-9C-zlA" id="O4O-pP-nPB">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Out" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="cWF-kL-jYo">
+                                                    <rect key="frame" x="30" y="9.5" width="65.5" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                                    <color key="textColor" name="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=regular">
+                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
+                                                    </variation>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bFn-t2-scg">
+                                                    <rect key="frame" x="389" y="10" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="bFn-t2-scg" secondAttribute="height" multiplier="1:1" id="0qr-4Y-dBR"/>
+                                                        <constraint firstAttribute="height" constant="20" id="i4q-qc-gWE"/>
+                                                    </constraints>
+                                                    <state key="normal" image="rightAngleBlue"/>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="bFn-t2-scg" secondAttribute="trailing" constant="5" id="2a7-WF-38L"/>
+                                                <constraint firstItem="bFn-t2-scg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="O4O-pP-nPB" secondAttribute="leading" id="Hz4-AG-Jhn"/>
+                                                <constraint firstItem="cWF-kL-jYo" firstAttribute="leading" secondItem="O4O-pP-nPB" secondAttribute="leading" constant="30" id="KG9-Ym-d3p"/>
+                                                <constraint firstItem="bFn-t2-scg" firstAttribute="centerY" secondItem="O4O-pP-nPB" secondAttribute="centerY" id="V4z-Ll-srT"/>
+                                                <constraint firstItem="cWF-kL-jYo" firstAttribute="centerY" secondItem="O4O-pP-nPB" secondAttribute="centerY" id="laV-gO-VOZ"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cWF-kL-jYo" secondAttribute="trailing" id="wBh-Go-t8t"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Contact" id="PUp-wZ-Kin">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="40" id="vIs-dh-xPD">
-                                        <rect key="frame" x="0.0" y="244" width="414" height="40"/>
+                                        <rect key="frame" x="0.0" y="284" width="414" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vIs-dh-xPD" id="pfs-8d-kLs">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
@@ -234,7 +269,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="40" id="rDl-vh-XRY">
-                                        <rect key="frame" x="0.0" y="284" width="414" height="40"/>
+                                        <rect key="frame" x="0.0" y="324" width="414" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rDl-vh-XRY" id="F2E-m7-QQB">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>

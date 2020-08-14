@@ -37,7 +37,6 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
         self.setupNavigationBar()
         self.setupSearch()
         self.setupTableView()
-        self.removeSpinner()
     }
     
     override func viewWillAppear(_ animated: Bool) {

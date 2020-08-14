@@ -128,7 +128,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    func navigateToLoginScreenAndSaveData(customer: CustomerModel) {
+    func navigateToLoginScreenAndSaveData(customer: CustomerModel, spinnerView: UIView) {
         // Navigate to login screen and save data to CoreData
         
         // Get non optionals from CustomerModel instance
@@ -154,13 +154,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         // Save to CoreData
         PersistenceService.saveContext()
         
+        // Save logged in status to UserDefaults
+        UserDefaults.standard.set(true, forKey: Defaults.UserDefaults.isLoggedIn.rawValue)
+        UserDefaults.standard.synchronize()
+        
         // Get container view controller
         guard let containerViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.container.rawValue) as? ContainerViewController else { print("could not get container view controller - home view controller"); return }
         
         // Present container view controller
         containerViewController.modalPresentationStyle = .fullScreen // Set presentaion style of view to full screen
         self.present(containerViewController, animated: true, completion: {
-            self.removeSpinner()
+            self.removeSpinner(spinnerView: spinnerView)
         })
     }
     
@@ -168,7 +172,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     func formDataLogin(email: String, password: String) {
         
         // Show spinner
-        self.showSpinner(for: self.view, textForLabel: nil)
+        let spinnerView = self.showSpinner(for: self.view, textForLabel: nil)
         
         let httpRequest = HTTPRequests()
         let parameters: [String: Any] = ["email": email, "password": password]
@@ -194,21 +198,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             KeychainWrapper.standard.set(email, forKey: Defaults.KeychainKeys.email.rawValue)
                             KeychainWrapper.standard.set(password, forKey: Defaults.KeychainKeys.password.rawValue)
                             
-                            self?.getCompanies(customer: customer) {
-                                self?.navigateToLoginScreenAndSaveData(customer: customer)
+                            self?.getCompanies(customer: customer, spinnerView: spinnerView) {
+                                self?.navigateToLoginScreenAndSaveData(customer: customer, spinnerView: spinnerView)
                             }
                             
                         }, cancelHandler: {
-                            self?.getCompanies(customer: customer) {
-                                self?.navigateToLoginScreenAndSaveData(customer: customer)
+                            self?.getCompanies(customer: customer, spinnerView: spinnerView) {
+                                self?.navigateToLoginScreenAndSaveData(customer: customer, spinnerView: spinnerView)
                             }
                         }) else { return }
 
                         self?.present(popUpActionViewController, animated: true, completion: nil)
                         
                     } else {
-                        self?.getCompanies(customer: customer) {
-                            self?.navigateToLoginScreenAndSaveData(customer: customer)
+                        self?.getCompanies(customer: customer, spinnerView: spinnerView) {
+                            self?.navigateToLoginScreenAndSaveData(customer: customer, spinnerView: spinnerView)
                         }
                     }
                    
@@ -217,7 +221,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     // Show error message with a pop up and enable continue button
                     
                     DispatchQueue.main.async {
-                        self?.removeSpinner()
+                        self?.removeSpinner(spinnerView: spinnerView)
                         // Set text for pop up ok view controller
                         let title = "Error"
                         let body = error.localizedDescription
@@ -235,7 +239,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    func getCompanies(customer: CustomerModel, success: @escaping () -> Void) {
+    func getCompanies(customer: CustomerModel, spinnerView: UIView, success: @escaping () -> Void) {
         // Gets company data belonging to the customer
         
         // Delete all old companies from Core Data
@@ -284,7 +288,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     success()
                 
                 case .failure(let error):
-                    self.removeSpinner()
+                    self.removeSpinner(spinnerView: spinnerView)
                     let popUpOkViewController = self.alertService.popUpOk(title: "Data Failure", body: "Failed to obtain company data.")
                     self.present(popUpOkViewController, animated: true, completion: nil)
                     print(error.localizedDescription)

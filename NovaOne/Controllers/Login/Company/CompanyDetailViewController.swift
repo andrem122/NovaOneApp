@@ -116,7 +116,7 @@ class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITabl
                 guard let containerViewControllerView = objectsTableViewController.parentViewContainerController?.view else { print("could not get containerViewControllerView - company detail view"); return }
                 
                 
-                containerViewControllerAsUIViewController.showSpinner(for: containerViewControllerView, textForLabel: "Deleting")
+                let spinnerView = containerViewControllerAsUIViewController.showSpinner(for: containerViewControllerView, textForLabel: "Deleting")
                 self?.performSegue(withIdentifier: Defaults.SegueIdentifiers.unwindToCompanies.rawValue, sender: self)
                 
                 // Delete from CoreData
@@ -175,8 +175,7 @@ class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITabl
                             containerViewControllerAsUIViewController.present(popUpOkViewController, animated: true, completion: nil)
                     }
                     
-                    print("REMOVING SPINNER")
-                    containerViewControllerAsUIViewController.removeSpinner()
+                    containerViewControllerAsUIViewController.removeSpinner(spinnerView: spinnerView)
                 }
             }, cancelHandler: {
                 print("Action canceled")

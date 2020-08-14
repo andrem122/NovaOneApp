@@ -46,17 +46,12 @@ class UpdateLeadEmailViewController: UpdateBaseViewController {
            }
            
            let successDoneHandler = {
-               [weak self] in
-               
                let predicate = NSPredicate(format: "id == %@", String(objectId))
                guard let updatedLead = PersistenceService.fetchEntity(Lead.self, filter: predicate, sort: nil).first else { return }
                
                detailViewController.lead = updatedLead
                detailViewController.setupObjectDetailCellsAndTitle()
                detailViewController.objectDetailTableView.reloadData()
-               
-               self?.removeSpinner()
-               
            }
            
             self.updateObject(for: Defaults.DataBaseTableNames.leads.rawValue, at: ["email": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Lead.self, updateClosure: updateClosure, successSubtitle: "Lead email has been successfully updated.", successDoneHandler: successDoneHandler)

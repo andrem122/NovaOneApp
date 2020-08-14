@@ -15,7 +15,6 @@ class AddCompanyHoursEnabledViewController: AddCompanyBaseViewController, UITabl
     @IBOutlet weak var addCompanyEnabledHoursTableView: UITableView!
     @IBOutlet weak var appointmentHoursButton: NovaOneButton!
     let coreDataCustomerEmail: String? = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first?.email
-    var userIsSigningUp: Bool = false // A Boolean that indicates whether or not the current user is new and signing up
     
     var hoursOfTheDayAM: [EnableOption] = [
         EnableOption(option: "12:00", selected: false, id: 0),
@@ -47,9 +46,6 @@ class AddCompanyHoursEnabledViewController: AddCompanyBaseViewController, UITabl
         EnableOption(option: "11:00", selected: false, id: 23),
     ]
     
-    // For sign up process
-    var customer: CustomerModel?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupTableView()
@@ -72,7 +68,7 @@ class AddCompanyHoursEnabledViewController: AddCompanyBaseViewController, UITabl
     func addCompany() {
         // Adds the company information to the database
         
-        self.showSpinner(for: self.view, textForLabel: "Adding Company...")
+        let spinnerView = self.showSpinner(for: self.view, textForLabel: "Adding Company...")
         // Unwrap needed POST data from object
         guard
             let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
@@ -93,7 +89,6 @@ class AddCompanyHoursEnabledViewController: AddCompanyBaseViewController, UITabl
         
         let parameters: [String: Any] = ["customerUserId": customerUserId, "email": customerEmail, "password": customerPassword, "companyName": companyName, "companyEmail": companyEmail, "companyAddress": address, "companyCity": city, "companyState": state, "companyZip": zip, "companyPhoneNumber": phoneNumber, "daysOfTheWeekEnabled": daysOfTheWeekenabled, "hoursOfTheDayEnabled": hoursOfTheDayEnabled, "allowSameDayAppointments": allowSameDayAppointments]
         
-        print(parameters)
         let httpRequest = HTTPRequests()
         httpRequest.request(url: Defaults.Urls.api.rawValue + "/addCompany.php", dataModel: SuccessResponse.self, parameters: parameters) {
             [weak self] (result) in
@@ -125,7 +120,7 @@ class AddCompanyHoursEnabledViewController: AddCompanyBaseViewController, UITabl
                     guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
                     self?.present(popUpOkViewController, animated: true, completion: nil)
             }
-            self?.removeSpinner()
+            self?.removeSpinner(spinnerView: spinnerView)
             
         }
     }
@@ -145,6 +140,7 @@ class AddCompanyHoursEnabledViewController: AddCompanyBaseViewController, UITabl
             let companyAddress = self.company?.address,
             let companyPhoneNumber = self.company?.phoneNumber,
             let companyEmail = self.company?.email,
+            let allowSameDayAppointments = self.company?.allowSameDayAppointments,
             let companyDaysEnabled = self.company?.daysOfTheWeekEnabled,
             let companyHoursEnabled = self.company?.hoursOfTheDayEnabled,
             let companyCity = self.company?.city,
@@ -152,7 +148,7 @@ class AddCompanyHoursEnabledViewController: AddCompanyBaseViewController, UITabl
             let companyZip = self.company?.zip
         else { return }
         
-        let parameters: [String: String] = ["email": email,
+        let parameters: [String: Any] = ["email": email,
                                             "password": password,
                                             "firstName": firstName,
                                             "lastName": lastName,
@@ -162,6 +158,7 @@ class AddCompanyHoursEnabledViewController: AddCompanyBaseViewController, UITabl
                                             "companyAddress": companyAddress,
                                             "companyPhoneNumber": companyPhoneNumber,
                                             "companyEmail": companyEmail,
+                                            "companyAllowSameDayAppointments": allowSameDayAppointments,
                                             "companyDaysEnabled": companyDaysEnabled,
                                             "companyHoursEnabled": companyHoursEnabled,
                                             "companyCity": companyCity,
@@ -169,16 +166,27 @@ class AddCompanyHoursEnabledViewController: AddCompanyBaseViewController, UITabl
                                             "companyZip": companyZip]
         
         let httpRequest = HTTPRequests()
+        print(parameters)
         httpRequest.request(url: Defaults.Urls.api.rawValue + "/signup.php", dataModel: SuccessResponse.self, parameters: parameters) {
             [weak self] (result) in
             
             switch result {
-                case .success(let successResponse):
-                    print(successResponse.successReason)
+                
+                case .success(_):
+                    
+                    // Delete all CoreData data from previous logins
+                    PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.customer.rawValue)
+                    PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.company.rawValue)
+                    PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.lead.rawValue)
+                    PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.appointment.rawValue)
+                    
+                    // Pass email and password to success function
                     success(email, password)
+                
                 case .failure(let error):
                     guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
                     self?.present(popUpOkViewController, animated: true, completion: nil)
+                
             }
             
         }
@@ -212,35 +220,12 @@ class AddCompanyHoursEnabledViewController: AddCompanyBaseViewController, UITabl
                             let username = customer.username
                             let lastLoginDate = customer.lastLoginDate
                             
-                            // If there are no customer CoreData objects, save the new customer object
-                            let customerCount = PersistenceService.fetchCount(for: Defaults.CoreDataEntities.customer.rawValue)
-                            if customerCount == 0 { // New users to the app logging in for first time
-                                print("New user to the app!")
-                                guard let coreDataCustomerObject = NSEntityDescription.insertNewObject(forEntityName: Defaults.CoreDataEntities.customer.rawValue, into: PersistenceService.context) as? Customer else { return }
-                                
-                                coreDataCustomerObject.addCustomer(customerType: customerType, dateJoined: dateJoinedDate, email: email, firstName: firstName, id: id, userId: userId, isPaying: isPaying, lastName: lastName, phoneNumber: phoneNumber, wantsSms: wantsSms, wantsEmailNotifications: wantsEmailNotifications, password: password, username: username, lastLogin: lastLoginDate, companies: nil)
-                                
-                                PersistenceService.saveContext()
-                                
-                            } else if (customerCount > 0) && (email != self?.coreDataCustomerEmail) {
-                                // If the email that was typed into the email text field matches the email attribute value
-                                // of the customer object we have stored in CoreData, do nothing. Otherwise,
-                                // delete ALL data from CoreData and update the customer object
-                                
-                                print("Existing user with new login information!")
-                                // Delete all CoreData data from previous logins
-                                PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.customer.rawValue)
-                                PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.company.rawValue)
-                                PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.lead.rawValue)
-                                
-                                // Create new customer object in CoreData for new login information
-                                guard let coreDataCustomerObject = NSEntityDescription.insertNewObject(forEntityName: Defaults.CoreDataEntities.customer.rawValue, into: PersistenceService.context) as? Customer else { return }
-                                
-                                coreDataCustomerObject.addCustomer(customerType: customerType, dateJoined: dateJoinedDate, email: email, firstName: firstName, id: id, userId: userId, isPaying: isPaying, lastName: lastName, phoneNumber: phoneNumber, wantsSms: wantsSms, wantsEmailNotifications: wantsEmailNotifications, password: password, username: username, lastLogin: lastLoginDate, companies: nil)
-                                
-                                PersistenceService.saveContext()
-                                
-                            }
+                            // Add to core data
+                            guard let coreDataCustomerObject = NSEntityDescription.insertNewObject(forEntityName: Defaults.CoreDataEntities.customer.rawValue, into: PersistenceService.context) as? Customer else { return }
+                            
+                            coreDataCustomerObject.addCustomer(customerType: customerType, dateJoined: dateJoinedDate, email: email, firstName: firstName, id: id, userId: userId, isPaying: isPaying, lastName: lastName, phoneNumber: phoneNumber, wantsSms: wantsSms, wantsEmailNotifications: wantsEmailNotifications, password: password, username: username, lastLogin: lastLoginDate, companies: nil)
+                            
+                            PersistenceService.saveContext()
                             
                             containerViewController.modalPresentationStyle = .fullScreen // Set presentaion style of view to full screen
                             self?.present(containerViewController, animated: true, completion: nil)
@@ -272,8 +257,7 @@ class AddCompanyHoursEnabledViewController: AddCompanyBaseViewController, UITabl
             
             if self.userIsSigningUp {
                 // Make POST request with customer data to API
-                self.showSpinner(for: view, textForLabel: "Signing Up...")
-                self.company?.hoursOfTheDayEnabled = selectedOptionsString
+                //self.showSpinner(for: view, textForLabel: "Signing Up")
                 
                 // Sign up user
                 self.signupUser {
@@ -281,19 +265,10 @@ class AddCompanyHoursEnabledViewController: AddCompanyBaseViewController, UITabl
                     
                     // Login user and navigate to container view controller
                     self?.loginUser(email: email, password: password) {
-                        [weak self] (containerViewController) in
-                        self?.removeSpinner()
+                        (containerViewController) in
+                        //containerViewController.removeSpinner(spinnerView: <#T##UIView#>)
                         
-                        // Add username and password to keychain if user wants to
-                        let title = "Add To Keychain"
-                        let body = "Would you like to securely add your username and password to Keychain for easier login?"
-                        guard let popUpActionViewController = self?.alertService.popUp(title: title, body: body, buttonTitle: "Yes", actionHandler: {
-                            KeychainWrapper.standard.set(email, forKey: Defaults.KeychainKeys.email.rawValue)
-                            KeychainWrapper.standard.set(password, forKey: Defaults.KeychainKeys.password.rawValue)
-                        }, cancelHandler: {
-                            print("Action canceled")
-                        }) else { return }
-                        containerViewController.present(popUpActionViewController, animated: true, completion: nil)
+                        
                         
                     }
                     

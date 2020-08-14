@@ -48,15 +48,27 @@ class LaunchScreenViewController: UIViewController {
         UIView.animate(withDuration: 2, animations: {
             self.novaOneLogoImage.frame = CGRect(x: self.splashView.frame.midX - 85, y: self.splashView.frame.midY - 300, width: 170, height: 170)
         }) { (success) in
-            self.navigateToStartScreen()
+            self.navigateToNextScreen()
         }
         
     }
     
-    func navigateToStartScreen() {
-        // Goes to the start screen view controller
-        
-        if let startViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.start.rawValue) as? StartViewController {
+    func isLoggedin() -> Bool {
+        // Checks whether or not the user is logged in
+        return UserDefaults.standard.bool(forKey: Defaults.UserDefaults.isLoggedIn.rawValue) // Returns false by default if no key is found
+    }
+    
+    func navigateToNextScreen() {
+        // Goes to the start screen or login screen view controller based on whether or not the user is logged in
+        if self.isLoggedin() == true {
+            // Get container view controller
+            guard let containerViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.container.rawValue) as? ContainerViewController else { return }
+            
+            // Present container view controller
+            containerViewController.modalPresentationStyle = .fullScreen // Set presentaion style of view to full screen
+            self.present(containerViewController, animated: true, completion: nil)
+        } else {
+            guard let startViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.start.rawValue) as? StartViewController else { return }
             self.present(startViewController, animated: true, completion: nil)
         }
         

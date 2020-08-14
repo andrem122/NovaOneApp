@@ -47,17 +47,12 @@ class UpdateAppointmentTestTypeViewController: UpdateBaseViewController, UIPicke
         }
         
         let successDoneHandler = {
-            [weak self] in
-            
             let predicate = NSPredicate(format: "id == %@", String(objectId))
             guard let updatedAppointment = PersistenceService.fetchEntity(Appointment.self, filter: predicate, sort: nil).first else { return }
             
             detailViewController.appointment = updatedAppointment
             detailViewController.setupObjectDetailCellsAndTitle()
             detailViewController.objectDetailTableView.reloadData()
-            
-            self?.removeSpinner()
-            
         }
         
         self.updateObject(for: Defaults.DataBaseTableNames.appointmentsMedical.rawValue, at: ["test_type": self.selectedChoice], endpoint: "/updateAppointmentMedicalAndRealEstate.php", objectId: Int(objectId), objectType: Appointment.self, updateClosure: updateClosure, successSubtitle: "Appointment test type has been successfully updated.", successDoneHandler: successDoneHandler)

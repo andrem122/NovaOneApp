@@ -76,7 +76,7 @@ class LeadsContainerViewController: UIViewController, NovaOneObjectContainer {
     func getData() {
         // Gets data from the database via an HTTP request and saves to CoreData
         
-        self.showSpinner(for: self.view, textForLabel: nil)
+        let spinnerView = self.showSpinner(for: self.view, textForLabel: nil)
         
         let httpRequest = HTTPRequests()
         guard
@@ -92,54 +92,53 @@ class LeadsContainerViewController: UIViewController, NovaOneObjectContainer {
         
         httpRequest.request(url: Defaults.Urls.api.rawValue + "/leads.php",
                             dataModel: [LeadModel].self,
-                            parameters: parameters) {
-                                [weak self] (result) in
+                            parameters: parameters) { [weak self] (result) in
                                 
-                                switch result {
-                                    
-                                    case .success(let leads):
-                                        // Save data in CoreData
-                                        self?.saveToCoreData(objects: leads)
-                                        
-                                        // Show success screen
-                                        UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.SplitViewControllerIdentifiers.leads.rawValue, containerView: self?.containerView ?? UIView(), objectType: UISplitViewController.self) {
-                                            [weak self] (viewController) in
-                                            
-                                            guard let splitViewController = viewController as? UISplitViewController else { return }
-                                            guard let objectsTableNavigationController = splitViewController.viewControllers.first as? UINavigationController else { return }
-                                            guard let objectsTableController = objectsTableNavigationController.viewControllers.first as? NovaOneTableView else { return }
-                                            objectsTableController.parentViewContainerController = self
-                                        }
-                                        
-                                    
-                                    case .failure(_):
-                                        // No leads were found or an error occurred so show/embed the empty
-                                        // view controller
-                                        UIHelper.showEmptyStateContainerViewController(for: self, containerView: self?.containerView ?? UIView(), title: "No Leads", addObjectButtonTitle: "Add Lead") {
-                                            [weak self] (emptyViewController) in
-                                            
-                                            // Tell the empty state view controller what its parent view controller is
-                                            emptyViewController.parentViewContainerController = self
-                                            
-                                            // Pass the addObjectHandler function and button title to the empty view controller
-                                            emptyViewController.addObjectButtonHandler = {
-                                                [weak self] in
-                                                // Go to the add object screen
-                                                let addLeadStoryboard = UIStoryboard(name: Defaults.StoryBoards.addLead.rawValue, bundle: .main)
-                                                guard
-                                                    let addLeadNavigationController = addLeadStoryboard.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addLead.rawValue) as? UINavigationController,
-                                                    let addLeadCompanyViewController = addLeadNavigationController.viewControllers.first as? AddLeadCompanyViewController
-                                                else { return }
-                                                
-                                                addLeadCompanyViewController.embeddedViewController = emptyViewController
-                                                
-                                                self?.present(addLeadNavigationController, animated: true, completion: nil)
-                                            }
-                                        
-                                    }
-                                    
-                                }
-                                self?.removeSpinner()
+            switch result {
+                
+                case .success(let leads):
+                    // Save data in CoreData
+                    self?.saveToCoreData(objects: leads)
+                    
+                    // Show success screen
+                    UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.SplitViewControllerIdentifiers.leads.rawValue, containerView: self?.containerView ?? UIView(), objectType: UISplitViewController.self) {
+                        [weak self] (viewController) in
+                        
+                        guard let splitViewController = viewController as? UISplitViewController else { return }
+                        guard let objectsTableNavigationController = splitViewController.viewControllers.first as? UINavigationController else { return }
+                        guard let objectsTableController = objectsTableNavigationController.viewControllers.first as? NovaOneTableView else { return }
+                        objectsTableController.parentViewContainerController = self
+                    }
+                    
+                
+                case .failure(_):
+                    // No leads were found or an error occurred so show/embed the empty
+                    // view controller
+                    UIHelper.showEmptyStateContainerViewController(for: self, containerView: self?.containerView ?? UIView(), title: "No Leads", addObjectButtonTitle: "Add Lead") {
+                        [weak self] (emptyViewController) in
+                        
+                        // Tell the empty state view controller what its parent view controller is
+                        emptyViewController.parentViewContainerController = self
+                        
+                        // Pass the addObjectHandler function and button title to the empty view controller
+                        emptyViewController.addObjectButtonHandler = {
+                            [weak self] in
+                            // Go to the add object screen
+                            let addLeadStoryboard = UIStoryboard(name: Defaults.StoryBoards.addLead.rawValue, bundle: .main)
+                            guard
+                                let addLeadNavigationController = addLeadStoryboard.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addLead.rawValue) as? UINavigationController,
+                                let addLeadCompanyViewController = addLeadNavigationController.viewControllers.first as? AddLeadCompanyViewController
+                            else { return }
+                            
+                            addLeadCompanyViewController.embeddedViewController = emptyViewController
+                            
+                            self?.present(addLeadNavigationController, animated: true, completion: nil)
+                        }
+                    
+                }
+                
+            }
+            self?.removeSpinner(spinnerView: spinnerView)
         }
         
     }

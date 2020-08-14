@@ -129,9 +129,8 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
             guard let objectsTableViewController = self?.previousViewController as? NovaOneTableView else { print("could not get objectsTableViewController - lead detail view"); return }
             guard let containerViewControllerAsUIViewController = objectsTableViewController.parentViewContainerController else { print("could not get containerViewController - lead detail view"); return }
             guard let containerViewControllerView = objectsTableViewController.parentViewContainerController?.view else { print("could not get containerViewControllerView - lead detail view"); return }
-            containerViewControllerAsUIViewController.showSpinner(for: containerViewControllerView, textForLabel: "Deleting")
             
-            containerViewControllerAsUIViewController.showSpinner(for: containerViewControllerView, textForLabel: "Deleting")
+            let spinnerView = containerViewControllerAsUIViewController.showSpinner(for: containerViewControllerView, textForLabel: "Deleting")
             self?.performSegue(withIdentifier: Defaults.SegueIdentifiers.unwindToAppointments.rawValue, sender: self)
             
             // Delete from CoreData
@@ -191,7 +190,7 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
                         containerViewControllerAsUIViewController.present(popUpOkViewController, animated: true, completion: nil)
                 }
                 
-                containerViewControllerAsUIViewController.removeSpinner()
+                containerViewControllerAsUIViewController.removeSpinner(spinnerView: spinnerView)
             }
         }, cancelHandler: {
             print("Action canceled")

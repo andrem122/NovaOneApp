@@ -57,8 +57,6 @@ class UpdatePasswordViewController: UpdateBaseViewController {
             }
             
             let successDoneHandler = {
-                [weak self] in
-                
                 let predicate = NSPredicate(format: "userId == %@", String(objectId))
                 guard let updatedCustomer = PersistenceService.fetchEntity(Customer.self, filter: predicate, sort: nil).first else { return }
                 
@@ -68,9 +66,6 @@ class UpdatePasswordViewController: UpdateBaseViewController {
                 
                 // Set new password in keychain
                 KeychainWrapper.standard.set(newPassword, forKey: Defaults.KeychainKeys.password.rawValue)
-                
-                self?.removeSpinner()
-                
             }
             
             self.updateObject(for: Defaults.DataBaseTableNames.authUser.rawValue, at: ["password": newPassword], endpoint: "/updatePassword.php", objectId: Int(objectId), objectType: Customer.self, updateClosure: updateClosure, successSubtitle: "Password has been successfully updated.", successDoneHandler: successDoneHandler)

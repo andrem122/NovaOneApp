@@ -49,7 +49,7 @@ class AddCompanyPhoneViewController: AddCompanyBaseViewController, UITextFieldDe
         } else {
             // Disable button while doing HTTP request
             UIHelper.disable(button: self.continueButton, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false)
-            self.showSpinner(for: self.view, textForLabel: "Validating Phone Number")
+            let spinnerView = self.showSpinner(for: self.view, textForLabel: "Validating Phone Number")
             
             let httpRequest = HTTPRequests()
             let parameters: [String: String] = ["valueToCheckInDatabase": "%2B1" + unformattedPhoneNumber, "tableName": Defaults.DataBaseTableNames.company.rawValue, "columnName": "phone_number"]
@@ -76,7 +76,7 @@ class AddCompanyPhoneViewController: AddCompanyBaseViewController, UITextFieldDe
                 guard let button = self?.continueButton else { return }
                 UIHelper.enable(button: button, enabledColor: Defaults.novaOneColor, borderedButton: false)
                 
-                self?.removeSpinner()
+                self?.removeSpinner(spinnerView: spinnerView)
             }
         }
     }

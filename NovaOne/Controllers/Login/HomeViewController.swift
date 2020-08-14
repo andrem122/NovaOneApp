@@ -281,7 +281,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
     func getWeeklyChartData(completion: (() -> Void)?) {
         // Gets chart data from the database
         
-        self.showSpinner(for: self.chartContainerView, textForLabel: nil)
+        let spinnerView = self.showSpinner(for: self.chartContainerView, textForLabel: nil)
         
         let httpRequest = HTTPRequests()
         let customer = self.customer
@@ -339,7 +339,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
             
             guard let unwrappedCompletion = completion else { return }
             unwrappedCompletion()
-            self?.removeSpinner()
+            self?.removeSpinner(spinnerView: spinnerView)
             
         }
     }
@@ -347,7 +347,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
     func getMonthlyChartData(completion: (() -> Void)?) {
         // Gets chart data from the database
         
-        self.showSpinner(for: self.chartContainerView, textForLabel: nil)
+        let spinnerView = self.showSpinner(for: self.chartContainerView, textForLabel: nil)
         
         let httpRequest = HTTPRequests()
         let customer = self.customer
@@ -415,7 +415,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
             
             guard let unwrappedCompletion = completion else { return }
             unwrappedCompletion()
-            self?.removeSpinner()
+            self?.removeSpinner(spinnerView: spinnerView)
             
         }
     }
