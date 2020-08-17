@@ -30,6 +30,7 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
         refreshControl.addTarget(self, action: #selector(self.refreshDataOnPullDown), for: .valueChanged)
         return refreshControl
     }()
+    let contactHelper = ContactHelper()
         
     // MARK: Methods
     override func viewDidLoad() {
@@ -368,7 +369,7 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
     }
 }
 
-extension LeadsTableViewController: UISearchResultsUpdating, SkeletonTableViewDataSource {
+extension LeadsTableViewController: UISearchResultsUpdating, SkeletonTableViewDataSource, NovaOneTableViewCellDelegate {
     
     // Shows how many rows our table view should show
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -396,7 +397,8 @@ extension LeadsTableViewController: UISearchResultsUpdating, SkeletonTableViewDa
             dateFormatter.dateFormat = "MMM d, yyyy | h:mm a"
             let dateContacted: String = dateFormatter.string(from: dateOfInquiry)
             
-            cell.setup(title: name, subTitleOne: companyName, subTitleTwo: contactedLead, subTitleThree: dateContacted)
+            cell.delegate = self
+            cell.setup(title: name, subTitleOne: companyName, subTitleTwo: contactedLead, subTitleThree: dateContacted, email: lead.email, phoneNumber: lead.phoneNumber)
             
         }
         
@@ -459,6 +461,14 @@ extension LeadsTableViewController: UISearchResultsUpdating, SkeletonTableViewDa
     
     func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
         return Defaults.TableViewCellIdentifiers.novaOne.rawValue
+    }
+    
+    func didTapEmailButton(email: String) {
+        self.contactHelper.sendEmail(email: email, present: self)
+    }
+    
+    func didTapCallButton(phoneNumber: String) {
+        self.contactHelper.call(phoneNumber: phoneNumber)
     }
     
 }

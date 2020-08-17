@@ -36,7 +36,7 @@ class UpdateLeadEmailViewController: UpdateBaseViewController {
         // If email is valid, proceed to the next view
         if InputValidators.isValidEmail(email: updateValue) {
            guard
-               let objectId = (self.updateObject as? Lead)?.id,
+               let objectId = self.updateCoreDataObjectId,
                let detailViewController = self.previousViewController as? LeadDetailViewController
             else { return }
            
@@ -54,7 +54,7 @@ class UpdateLeadEmailViewController: UpdateBaseViewController {
                detailViewController.objectDetailTableView.reloadData()
            }
            
-            self.updateObject(for: Defaults.DataBaseTableNames.leads.rawValue, at: ["email": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Lead.self, updateClosure: updateClosure, successSubtitle: "Lead email has been successfully updated.", successDoneHandler: successDoneHandler)
+            self.updateObject(for: Defaults.DataBaseTableNames.leads.rawValue, at: ["email": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Lead.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Lead email has been successfully updated.", successDoneHandler: successDoneHandler)
         } else {
             // Email is not valid, so present pop up
             let popUpOkViewController = self.alertService.popUpOk(title: "Invalid Email", body: "Please enter a valid email.")

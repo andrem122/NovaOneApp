@@ -48,10 +48,11 @@ class UpdatePhoneViewController: UpdateBaseViewController {
                 switch result {
                 case .success(_):
                         guard
-                            let objectId = (self?.updateObject as? Customer)?.id,
-                            let userId = (self?.updateObject as? Customer)?.userId,
+                            let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
                             let previousViewController = self?.previousViewController as? AccountTableViewController
                         else { return }
+                        
+                        let objectId = customer.id
                     
                     let updateClosure = {
                         (customer: Customer) in
@@ -59,15 +60,14 @@ class UpdatePhoneViewController: UpdateBaseViewController {
                     }
                     
                     let successDoneHandler = {
-                        let predicate = NSPredicate(format: "userId == %@", String(userId))
-                        guard let updatedCustomer = PersistenceService.fetchEntity(Customer.self, filter: predicate, sort: nil).first else { return }
+                        guard let updatedCustomer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first else { return }
                         
                         previousViewController.customer = updatedCustomer
                         previousViewController.setLabelValues()
                         previousViewController.tableView.reloadData()
                     }
                     
-                    self?.updateObject(for: Defaults.DataBaseTableNames.customer.rawValue, at: ["phone_number": "%2B1" + unformattedPhoneNumber], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Customer.self, updateClosure: updateClosure, successSubtitle: "Phone number successfully updated.", successDoneHandler: successDoneHandler)
+                        self?.updateObject(for: Defaults.DataBaseTableNames.customer.rawValue, at: ["phone_number": "%2B1" + unformattedPhoneNumber], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Customer.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Phone number successfully updated.", successDoneHandler: successDoneHandler)
                     
                 case .failure(let error):
                     guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }

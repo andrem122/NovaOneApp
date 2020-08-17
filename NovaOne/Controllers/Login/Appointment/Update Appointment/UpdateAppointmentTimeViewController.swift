@@ -102,6 +102,7 @@ class UpdateAppointmentTimeViewController: UpdateBaseViewController {
         self.dispatchGroup.enter()
         guard
             let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
+            let customerType = customer.customerType,
             let email = customer.email,
             let password = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue)
             else { return }
@@ -114,8 +115,9 @@ class UpdateAppointmentTimeViewController: UpdateBaseViewController {
                                          "objectId": appointment.id,
                                          "tableName": Defaults.DataBaseTableNames.appointmentsBase.rawValue]
         
+        let endpoint = customerType == Defaults.CustomerTypes.medicalWorker.rawValue ? "/deleteAppointmentMedical.php" : "/deleteAppointmentRealEstate.php"
         let httpRequest = HTTPRequests()
-        httpRequest.request(url: Defaults.Urls.api.rawValue + "/deleteAppointmentMedical.php", dataModel: SuccessResponse.self, parameters: parameters) { [weak self] (result) in
+        httpRequest.request(url: Defaults.Urls.api.rawValue + endpoint, dataModel: SuccessResponse.self, parameters: parameters) { [weak self] (result) in
             switch result {
                 case .success(_):
                     print("Appointment successfully deleted.")
@@ -213,9 +215,12 @@ class UpdateAppointmentTimeViewController: UpdateBaseViewController {
             if appointmentTimeIsAvailable {
                 guard
                     let selectedDateTime = self?.timeDatePicker.date,
-                    let appointment = self?.updateObject as? Appointment,
+                    let appointmentId = self?.updateCoreDataObjectId,
                     let detailViewController = self?.previousViewController as? AppointmentDetailViewController
                 else { return }
+                
+                let filter = NSPredicate(format: "id == %@", String(appointmentId))
+                guard let appointment = PersistenceService.fetchEntity(Appointment.self, filter: filter, sort: nil).first else { print("could not get appointment object - UpdateAppointmentTimeViewController"); return }
                 
                 self?.delete(appointment: appointment)
                 

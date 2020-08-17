@@ -31,7 +31,7 @@ class UpdateAppointmentStatusViewController: UpdateBaseViewController, UIPickerV
     // MARK: Actions
     @IBAction func updateButtonTapped(_ sender: Any) {
         guard
-            let objectId = (self.updateObject as? Appointment)?.id,
+            let objectId = self.updateCoreDataObjectId,
             let detailViewController = self.previousViewController as? AppointmentDetailViewController
         else { return }
         
@@ -49,7 +49,7 @@ class UpdateAppointmentStatusViewController: UpdateBaseViewController, UIPickerV
             detailViewController.objectDetailTableView.reloadData()
         }
         
-        self.updateObject(for: Defaults.DataBaseTableNames.appointmentsBase.rawValue, at: ["confirmed": self.selectedChoice], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Appointment.self, updateClosure: updateClosure, successSubtitle: "Appointment status has been successfully updated.", successDoneHandler: successDoneHandler)
+        self.updateObject(for: Defaults.DataBaseTableNames.appointmentsBase.rawValue, at: ["confirmed": self.selectedChoice], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Appointment.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Appointment status has been successfully updated.", successDoneHandler: successDoneHandler)
     }
     
 }

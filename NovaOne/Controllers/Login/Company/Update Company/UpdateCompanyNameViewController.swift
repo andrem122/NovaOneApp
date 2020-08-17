@@ -39,7 +39,7 @@ class UpdateCompanyNameViewController: UpdateBaseViewController {
             self.present(popUpOkViewController, animated: true, completion: nil)
         } else {
             guard
-                let objectId = (self.updateObject as? Company)?.id,
+                let objectId = self.updateCoreDataObjectId,
                 let detailViewController = self.previousViewController as? CompanyDetailViewController
             else { return }
             
@@ -57,7 +57,7 @@ class UpdateCompanyNameViewController: UpdateBaseViewController {
                 detailViewController.objectDetailTableView.reloadData()
             }
             
-            self.updateObject(for: Defaults.DataBaseTableNames.company.rawValue, at: ["name": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Company.self, updateClosure: updateClosure, successSubtitle: "Company name has been successfully updated.", successDoneHandler: successDoneHandler)
+            self.updateObject(for: Defaults.DataBaseTableNames.company.rawValue, at: ["name": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Company.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Company name has been successfully updated.", successDoneHandler: successDoneHandler)
         }
         
     }

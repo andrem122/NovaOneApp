@@ -134,7 +134,7 @@ class UpdateCompanyHoursEnabledViewController: UpdateBaseViewController, UITable
         if optionSelected {
             
             guard
-                let objectId = (self.updateObject as? Company)?.id,
+                let objectId = self.updateCoreDataObjectId,
                 let detailViewController = self.previousViewController as? CompanyDetailViewController
             else { return }
             let updateValue = EnableOptionHelper.getSelectedOptions(options: self.hoursOfTheDayAM + self.hoursOfTheDayPM)
@@ -153,7 +153,7 @@ class UpdateCompanyHoursEnabledViewController: UpdateBaseViewController, UITable
                 detailViewController.objectDetailTableView.reloadData()
             }
             
-            self.updateObject(for: Defaults.DataBaseTableNames.company.rawValue, at: ["hours_of_the_day_enabled": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Company.self, updateClosure: updateClosure, successSubtitle: "Company showing hours have been successfully updated.", successDoneHandler: successDoneHandler)
+            self.updateObject(for: Defaults.DataBaseTableNames.company.rawValue, at: ["hours_of_the_day_enabled": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Company.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Company showing hours have been successfully updated.", successDoneHandler: successDoneHandler)
             
         } else {
             let popUpOkViewController = self.alertService.popUpOk(title: "Select An Hour", body: "Please select at least one hour.")

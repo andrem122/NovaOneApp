@@ -33,7 +33,7 @@ class UpdateLeadNameViewController: UpdateBaseViewController {
             self.present(popUpOkViewController, animated: true, completion: nil)
         } else {
             guard
-                let objectId = (self.updateObject as? Lead)?.id,
+                let objectId = self.updateCoreDataObjectId,
                 let previousViewController = self.previousViewController as? LeadDetailViewController
             else { return }
             
@@ -51,7 +51,7 @@ class UpdateLeadNameViewController: UpdateBaseViewController {
                 previousViewController.objectDetailTableView.reloadData()
             }
             
-            self.updateObject(for: Defaults.DataBaseTableNames.leads.rawValue, at: ["name": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Lead.self, updateClosure: updateClosure, successSubtitle: "Name has been successfully updated.", successDoneHandler: successDoneHandler)
+            self.updateObject(for: Defaults.DataBaseTableNames.leads.rawValue, at: ["name": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Lead.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Name has been successfully updated.", successDoneHandler: successDoneHandler)
         }
     }
     

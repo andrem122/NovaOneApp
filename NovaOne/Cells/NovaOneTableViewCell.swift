@@ -9,14 +9,27 @@
 import Foundation
 import UIKit
 import MessageUI
+import CoreData
 
-class NovaOneTableViewCell: UITableViewCell, MFMailComposeViewControllerDelegate {
+protocol NovaOneTableViewCellDelegate {
+    func didTapEmailButton(email: String)
+    func didTapCallButton(phoneNumber: String)
+}
+
+class NovaOneTableViewCell: UITableViewCell {
 
     // MARK: Properties
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subTitleLabelOne: UILabel!
     @IBOutlet weak var subTitleLabelTwo: UILabel!
     @IBOutlet weak var subTitleLabelThree: UILabel!
+    var email: String?
+    var phoneNumber: String?
+    var delegate: NovaOneTableViewCellDelegate?
+    @IBOutlet weak var callButton: UIButton!
+    @IBOutlet weak var emailButton: UIButton!
+    @IBOutlet weak var appointmentEmailButton: UIButton!
+    @IBOutlet weak var appointmentCallButton: UIButton!
     
     // MARK: Methods
     
@@ -25,37 +38,50 @@ class NovaOneTableViewCell: UITableViewCell, MFMailComposeViewControllerDelegate
     func setup(title: String,
                    subTitleOne: String,
                    subTitleTwo: String,
-                   subTitleThree: String) {
+                   subTitleThree: String,
+                   email: String?,
+                   phoneNumber: String?) {
         
         // Set text for each UILabel
         self.titleLabel.text = title
         self.subTitleLabelOne.text = subTitleOne
         self.subTitleLabelTwo.text = subTitleTwo
         self.subTitleLabelThree.text = subTitleThree
+        self.email = email
+        self.phoneNumber = phoneNumber
         
-    }
-    
-    
-    // MARK: Actions
-    
-    // Email on tap of email button
-    @IBAction func emailButtonTapped(_ sender: Any, email: String) {
-        
-    }
-    
-    // Call phone number on tap of phone button
-    @IBAction func callButtonTapped(_ sender: Any, phoneNumber: String) {
-        
-        if let url = URL(string: "tel://\(phoneNumber)"), UIApplication.shared.canOpenURL(url) {
-            if #available(iOS 10, *) {
-                UIApplication.shared.open(url)
-            } else {
-                UIApplication.shared.openURL(url)
+        // Hide buttons based on whether or not there is an email or phone number
+        if (delegate as? LeadsTableViewController) != nil {
+            if email == nil {
+                self.emailButton.isHidden = true
+            }
+            
+            if phoneNumber == nil {
+                self.callButton.isHidden = true
+            }
+        } else if (delegate as? AppointmentsTableViewController) != nil {
+            if email == nil {
+                self.appointmentEmailButton.isHidden = true
+            }
+            
+            if let unwrappedPhoneNumber = phoneNumber {
+                if unwrappedPhoneNumber.isEmpty {
+                    self.appointmentCallButton.isHidden = true
+                }
             }
         }
         
     }
     
     
+    // MARK: Actions
+    @IBAction func emailButtonTapped(_ sender: Any) {
+        guard let email = self.email else { return }
+        self.delegate?.didTapEmailButton(email: email)
+    }
     
+    @IBAction func callButtonTapped(_ sender: Any) {
+        guard let phoneNumber = self.phoneNumber else { return }
+        self.delegate?.didTapCallButton(phoneNumber: phoneNumber)
+    }
 }

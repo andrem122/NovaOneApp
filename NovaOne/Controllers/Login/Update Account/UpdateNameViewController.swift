@@ -42,13 +42,16 @@ class UpdateNameViewController: UpdateBaseViewController {
         else { return }
         
         if firstName.isEmpty || lastName.isEmpty {
+            
             let popUpOkViewController = self.alertService.popUpOk(title: "Enter Name", body: "Please enter your first and last name.")
             self.present(popUpOkViewController, animated: true, completion: nil)
+            
         } else {
             guard
-                let objectId = (self.updateObject as? Customer)?.userId,
+                let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
                 let previousViewController = self.previousViewController as? AccountTableViewController
             else { return }
+            let objectId = customer.userId
             
             let updateClosure = {
                 (customer: Customer) in
@@ -65,7 +68,7 @@ class UpdateNameViewController: UpdateBaseViewController {
                 previousViewController.tableView.reloadData()
             }
             
-            self.updateObject(for: Defaults.DataBaseTableNames.authUser.rawValue, at: ["first_name": firstName, "last_name": lastName], endpoint: "/updateName.php", objectId: Int(objectId), objectType: Customer.self, updateClosure: updateClosure, successSubtitle: "Name has been successfully updated.", successDoneHandler: successDoneHandler)
+            self.updateObject(for: Defaults.DataBaseTableNames.authUser.rawValue, at: ["first_name": firstName, "last_name": lastName], endpoint: "/updateName.php", objectId: Int(objectId), objectType: Customer.self, updateClosure: updateClosure, filterFormat: "userId == %@", successSubtitle: "Name has been successfully updated.", successDoneHandler: successDoneHandler)
         }
     }
     

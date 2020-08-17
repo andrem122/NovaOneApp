@@ -37,7 +37,7 @@ class UpdateAppointmentTestTypeViewController: UpdateBaseViewController, UIPicke
     // MARK: Actions
     @IBAction func updateButtonTapped(_ sender: Any) {
         guard
-            let objectId = (self.updateObject as? Appointment)?.id,
+            let objectId = self.updateCoreDataObjectId,
             let detailViewController = self.previousViewController as? AppointmentDetailViewController
         else { return }
         
@@ -55,7 +55,7 @@ class UpdateAppointmentTestTypeViewController: UpdateBaseViewController, UIPicke
             detailViewController.objectDetailTableView.reloadData()
         }
         
-        self.updateObject(for: Defaults.DataBaseTableNames.appointmentsMedical.rawValue, at: ["test_type": self.selectedChoice], endpoint: "/updateAppointmentMedicalAndRealEstate.php", objectId: Int(objectId), objectType: Appointment.self, updateClosure: updateClosure, successSubtitle: "Appointment test type has been successfully updated.", successDoneHandler: successDoneHandler)
+        self.updateObject(for: Defaults.DataBaseTableNames.appointmentsMedical.rawValue, at: ["test_type": self.selectedChoice], endpoint: "/updateAppointmentMedicalAndRealEstate.php", objectId: Int(objectId), objectType: Appointment.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Appointment test type has been successfully updated.", successDoneHandler: successDoneHandler)
     }
     
 }

@@ -415,7 +415,7 @@ extension CompaniesTableViewController: UISearchResultsUpdating, SkeletonTableVi
             let createdTime: String = DateHelper.createString(from: createdTimeDate, format: "MMM d, yyyy | h:mm a")
             
             
-            cell.setup(title: title, subTitleOne: subTitleOne, subTitleTwo: zip, subTitleThree: createdTime)
+            cell.setup(title: title, subTitleOne: subTitleOne, subTitleTwo: zip, subTitleThree: createdTime, email: nil, phoneNumber: nil)
             
         }
         

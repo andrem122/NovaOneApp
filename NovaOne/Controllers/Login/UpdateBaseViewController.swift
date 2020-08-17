@@ -13,7 +13,7 @@ class UpdateBaseViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: Properties
     var previousViewController: UIViewController?
-    var updateObject: NSManagedObject?
+    var updateCoreDataObjectId: Int32? // Id of the core data object we want to update
     let alertService = AlertService()
     let customer: Customer? = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first
     
@@ -23,6 +23,7 @@ class UpdateBaseViewController: UIViewController, UITextFieldDelegate {
                                           objectId: Int,
                                           objectType: T.Type,
                                           updateClosure: @escaping (T) -> Void,
+                                          filterFormat: String,
                                           successSubtitle: String,
                                           successDoneHandler: @escaping () -> Void) {
         
@@ -48,8 +49,9 @@ class UpdateBaseViewController: UIViewController, UITextFieldDelegate {
             switch result {
                 case .success(_):
                     
-                    // Update core data object
-                    guard let updateObject = self?.updateObject as? T else { return }
+                    // Get core data object for updating
+                    let filter = NSPredicate(format: filterFormat, String(objectId))
+                    guard let updateObject = PersistenceService.fetchEntity(objectType, filter: filter, sort: nil).first else { return }
                     updateClosure(updateObject)
                     PersistenceService.saveContext()
                     

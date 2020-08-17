@@ -35,7 +35,7 @@ class UpdateAppointmentNameViewController: UpdateBaseViewController {
             self.present(popUpOkViewController, animated: true, completion: nil)
         } else {
             guard
-                let objectId = (self.updateObject as? Appointment)?.id,
+                let objectId = self.updateCoreDataObjectId,
                 let detailViewController = self.previousViewController as? AppointmentDetailViewController
             else { return }
             
@@ -53,7 +53,7 @@ class UpdateAppointmentNameViewController: UpdateBaseViewController {
                 detailViewController.objectDetailTableView.reloadData()
             }
             
-            self.updateObject(for: Defaults.DataBaseTableNames.appointmentsBase.rawValue, at: ["name": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Appointment.self, updateClosure: updateClosure, successSubtitle: "Appointment name has been successfully updated.", successDoneHandler: successDoneHandler)
+            self.updateObject(for: Defaults.DataBaseTableNames.appointmentsBase.rawValue, at: ["name": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Appointment.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Appointment name has been successfully updated.", successDoneHandler: successDoneHandler)
         }
     }
     

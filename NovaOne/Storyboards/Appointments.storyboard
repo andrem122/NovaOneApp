@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -95,36 +95,6 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j7F-yk-LVA" userLabel="Email Button">
-                                                    <rect key="frame" x="296" y="11.5" width="27" height="27"/>
-                                                    <state key="normal" image="emailBlue"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="NO"/>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="skeletonCornerRadius">
-                                                            <real key="value" value="5"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                    <connections>
-                                                        <action selector="emailButtonTapped:" destination="mks-rP-h9s" eventType="touchUpInside" id="Jgo-34-ZTf"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="plE-ZT-72k" userLabel="Call Button">
-                                                    <rect key="frame" x="343" y="14.5" width="21" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="ha3-c9-JAE"/>
-                                                        <constraint firstAttribute="width" constant="21" id="iWj-k8-aOc"/>
-                                                    </constraints>
-                                                    <state key="normal" image="callBlue"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="NO"/>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="skeletonCornerRadius">
-                                                            <real key="value" value="5"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                    <connections>
-                                                        <action selector="callButtonTapped:" destination="mks-rP-h9s" eventType="touchUpInside" id="dbi-Am-5il"/>
-                                                    </connections>
-                                                </button>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="GMs-e1-dsp">
                                                     <rect key="frame" x="8" y="49.5" width="137.5" height="36"/>
                                                     <subviews>
@@ -179,24 +149,44 @@
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="NO"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </button>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="NfC-aD-JaY" userLabel="Button Stack View">
+                                                    <rect key="frame" x="294" y="12.5" width="70" height="25"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XEN-CF-eK7" userLabel="Email Button">
+                                                            <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="XEN-CF-eK7" secondAttribute="height" multiplier="1:1" id="1LM-Yt-Y7i"/>
+                                                            </constraints>
+                                                            <state key="normal" image="emailBlue"/>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ga6-kK-6A7" userLabel="Call Button">
+                                                            <rect key="frame" x="45" y="0.0" width="25" height="25"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="Ga6-kK-6A7" secondAttribute="height" multiplier="1:1" id="Et1-Wb-NJh"/>
+                                                            </constraints>
+                                                            <state key="normal" image="callBlue"/>
+                                                        </button>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="EBp-vX-NV8"/>
+                                                    </constraints>
+                                                </stackView>
                                             </subviews>
                                             <color key="backgroundColor" name="viewForegroundColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="GMs-e1-dsp" secondAttribute="bottom" constant="19.329999999999998" id="3eT-Pg-Fb4"/>
-                                                <constraint firstItem="plE-ZT-72k" firstAttribute="centerY" secondItem="4uU-yg-Qn6" secondAttribute="centerY" id="6fY-mr-YLm"/>
                                                 <constraint firstItem="4uU-yg-Qn6" firstAttribute="leading" secondItem="PS4-tq-qY8" secondAttribute="leading" constant="8" id="Alu-LK-kYD"/>
                                                 <constraint firstItem="4uU-yg-Qn6" firstAttribute="top" secondItem="PS4-tq-qY8" secondAttribute="top" constant="15" id="FJi-Ar-Nab"/>
-                                                <constraint firstAttribute="trailing" secondItem="plE-ZT-72k" secondAttribute="trailing" constant="30" id="FWW-yN-gam"/>
                                                 <constraint firstItem="rCo-gj-xFI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="PS4-tq-qY8" secondAttribute="leading" id="PhH-TV-hAh"/>
-                                                <constraint firstItem="j7F-yk-LVA" firstAttribute="centerY" secondItem="plE-ZT-72k" secondAttribute="centerY" id="T4t-xy-b4d"/>
                                                 <constraint firstItem="rTo-Ow-ER6" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="PS4-tq-qY8" secondAttribute="leading" id="aUL-vV-FTZ"/>
                                                 <constraint firstItem="rCo-gj-xFI" firstAttribute="centerY" secondItem="PS4-tq-qY8" secondAttribute="centerY" id="dpi-oT-9cs"/>
+                                                <constraint firstItem="NfC-aD-JaY" firstAttribute="centerY" secondItem="4uU-yg-Qn6" secondAttribute="centerY" id="kwL-x1-hcg"/>
                                                 <constraint firstItem="GMs-e1-dsp" firstAttribute="leading" secondItem="PS4-tq-qY8" secondAttribute="leading" constant="8" id="nLm-8M-Hwt"/>
                                                 <constraint firstAttribute="bottom" secondItem="rTo-Ow-ER6" secondAttribute="bottom" constant="19" id="nbg-AW-Bd9"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4uU-yg-Qn6" secondAttribute="trailing" id="nuK-ph-owN"/>
-                                                <constraint firstItem="plE-ZT-72k" firstAttribute="leading" secondItem="j7F-yk-LVA" secondAttribute="trailing" constant="20" id="oG3-Kt-2Ga"/>
                                                 <constraint firstAttribute="trailing" secondItem="rTo-Ow-ER6" secondAttribute="trailing" constant="30" id="prp-iv-2Ud"/>
                                                 <constraint firstAttribute="trailing" secondItem="rCo-gj-xFI" secondAttribute="trailing" id="wgm-Ki-5zK"/>
+                                                <constraint firstItem="NfC-aD-JaY" firstAttribute="trailing" secondItem="rTo-Ow-ER6" secondAttribute="trailing" id="xJ1-zJ-dUP"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -233,6 +223,8 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <outlet property="appointmentCallButton" destination="Ga6-kK-6A7" id="XIY-C3-r1P"/>
+                                    <outlet property="appointmentEmailButton" destination="XEN-CF-eK7" id="dHR-Dy-a5s"/>
                                     <outlet property="subTitleLabelOne" destination="Lgz-dU-j7q" id="5bh-cy-gh6"/>
                                     <outlet property="subTitleLabelThree" destination="rTo-Ow-ER6" id="5wP-NJ-YBX"/>
                                     <outlet property="subTitleLabelTwo" destination="mEO-vX-pGi" id="nWX-t8-Uop"/>

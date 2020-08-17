@@ -51,7 +51,7 @@ class AccountTableViewController: UITableViewController {
         self.navigationItem.backBarButtonItem = backItem // This will show in the next view controller being pushed
         
         guard let updateViewController = segue.destination as? UpdateBaseViewController else { return }
-        updateViewController.updateObject = self.customer
+        updateViewController.updateCoreDataObjectId = self.customer?.id
         updateViewController.previousViewController = self
         
     }

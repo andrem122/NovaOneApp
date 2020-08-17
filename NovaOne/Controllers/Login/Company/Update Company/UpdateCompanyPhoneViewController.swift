@@ -48,7 +48,7 @@ class UpdateCompanyPhoneViewController: UpdateBaseViewController {
                 switch result {
                     case .success(_):
                         guard
-                            let objectId = (self?.updateObject as? Company)?.id,
+                            let objectId = self?.updateCoreDataObjectId,
                             let detailViewController = self?.previousViewController as? CompanyDetailViewController
                             else { return }
 
@@ -67,7 +67,7 @@ class UpdateCompanyPhoneViewController: UpdateBaseViewController {
 
                         }
 
-                        self?.updateObject(for: Defaults.DataBaseTableNames.company.rawValue, at: ["phone_number": "%2B1" + unformattedPhoneNumber], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Company.self, updateClosure: updateClosure, successSubtitle: "Company phone number has been successfully updated.", successDoneHandler: successDoneHandler)
+                        self?.updateObject(for: Defaults.DataBaseTableNames.company.rawValue, at: ["phone_number": "%2B1" + unformattedPhoneNumber], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Company.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Company phone number has been successfully updated.", successDoneHandler: successDoneHandler)
                     case .failure(let error):
                         guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
                         self?.present(popUpOkViewController, animated: true, completion: nil)

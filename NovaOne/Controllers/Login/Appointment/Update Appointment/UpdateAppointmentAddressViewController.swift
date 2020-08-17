@@ -93,7 +93,7 @@ class UpdateAppointmentAddressViewController: UpdateBaseViewController, AddAddre
             
         } else {
             guard
-                let objectId = (self.updateObject as? Appointment)?.id,
+                let objectId = self.updateCoreDataObjectId,
                 let detailViewController = self.previousViewController as? AppointmentDetailViewController
             else { print("error getting detail view controller"); return }
             
@@ -111,7 +111,7 @@ class UpdateAppointmentAddressViewController: UpdateBaseViewController, AddAddre
                 detailViewController.objectDetailTableView.reloadData()
             }
             
-            self.updateObject(for: Defaults.DataBaseTableNames.appointmentsMedical.rawValue, at: ["address": address], endpoint: "/updateAppointmentMedicalAndRealEstate.php", objectId: Int(objectId), objectType: Appointment.self, updateClosure: updateClosure, successSubtitle: "Appointment address has been successfully updated.", successDoneHandler: successDoneHandler)
+            self.updateObject(for: Defaults.DataBaseTableNames.appointmentsMedical.rawValue, at: ["address": address], endpoint: "/updateAppointmentMedicalAndRealEstate.php", objectId: Int(objectId), objectType: Appointment.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Appointment address has been successfully updated.", successDoneHandler: successDoneHandler)
             
             
         }

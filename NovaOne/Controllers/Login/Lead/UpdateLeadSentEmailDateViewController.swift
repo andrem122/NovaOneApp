@@ -22,7 +22,7 @@ class UpdateLeadSentEmailDateViewController: UpdateBaseViewController {
     @IBAction func updateButtonTapped(_ sender: Any) {
         let updateValue = DateHelper.createString(from: self.dateTimePicker.date, format: "yyyy-MM-dd HH:mm:ssZ")
         guard
-            let objectId = (self.updateObject as? Lead)?.id,
+            let objectId = self.updateCoreDataObjectId,
             let previousViewController = self.previousViewController as? LeadDetailViewController
         else { return }
         
@@ -40,7 +40,7 @@ class UpdateLeadSentEmailDateViewController: UpdateBaseViewController {
             previousViewController.objectDetailTableView.reloadData()
         }
         
-        self.updateObject(for: Defaults.DataBaseTableNames.leads.rawValue, at: ["sent_email_date": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Lead.self, updateClosure: updateClosure, successSubtitle: "Sent email date has been successfully updated.", successDoneHandler: successDoneHandler)
+        self.updateObject(for: Defaults.DataBaseTableNames.leads.rawValue, at: ["sent_email_date": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Lead.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Sent email date has been successfully updated.", successDoneHandler: successDoneHandler)
     }
     
 }

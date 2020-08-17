@@ -96,7 +96,7 @@ class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITabl
         } else {
             // Set text for pop up view controller
             let title = "Delete Company"
-            let body = "Are you sure you want to delete the company? This will delete all lead and appointment data with the company as well"
+            let body = "Are you sure you want to delete the company? This will delete all lead and appointment data with the company as well."
             let buttonTitle = "Delete"
             
             let popUpViewController = alertService.popUp(title: title, body: body, buttonTitle: buttonTitle, actionHandler: {
@@ -215,7 +215,7 @@ extension CompanyDetailViewController {
             case .address:
                 if let updateCompanyAddressViewController = updateCompanyStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateCompanyAddress.rawValue) as? UpdateCompanyAddressViewController {
                     
-                    updateCompanyAddressViewController.updateObject = self.company
+                    updateCompanyAddressViewController.updateCoreDataObjectId = self.company?.id
                     updateCompanyAddressViewController.previousViewController = self
                     
                     self.navigationController?.pushViewController(updateCompanyAddressViewController, animated: true)
@@ -225,7 +225,7 @@ extension CompanyDetailViewController {
                 case .phoneNumber:
                     if let updateCompanyPhoneViewController = updateCompanyStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateCompanyPhone.rawValue) as? UpdateCompanyPhoneViewController {
                         
-                        updateCompanyPhoneViewController.updateObject = self.company
+                        updateCompanyPhoneViewController.updateCoreDataObjectId = self.company?.id
                         updateCompanyPhoneViewController.previousViewController = self
                         
                         self.navigationController?.pushViewController(updateCompanyPhoneViewController, animated: true)
@@ -235,7 +235,7 @@ extension CompanyDetailViewController {
                 case .name:
                     if let updateCompanyNameViewController = updateCompanyStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateCompanyName.rawValue) as? UpdateCompanyNameViewController {
                         
-                        updateCompanyNameViewController.updateObject = self.company
+                        updateCompanyNameViewController.updateCoreDataObjectId = self.company?.id
                         updateCompanyNameViewController.previousViewController = self
                         
                         self.navigationController?.pushViewController(updateCompanyNameViewController, animated: true)
@@ -245,7 +245,7 @@ extension CompanyDetailViewController {
                 case .email:
                     if let updateCompanyEmailViewController = updateCompanyStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateCompanyEmail.rawValue) as? UpdateCompanyEmailViewController {
                         
-                        updateCompanyEmailViewController.updateObject = self.company
+                        updateCompanyEmailViewController.updateCoreDataObjectId = self.company?.id
                         updateCompanyEmailViewController.previousViewController = self
                         
                         self.navigationController?.pushViewController(updateCompanyEmailViewController, animated: true)
@@ -256,7 +256,7 @@ extension CompanyDetailViewController {
                     if let updateCompanyDaysEnabledViewController = updateCompanyStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateCompanyDaysEnabled.rawValue) as? UpdateCompanyDaysEnabledViewController {
                         
                         updateCompanyDaysEnabledViewController.company = company
-                        updateCompanyDaysEnabledViewController.updateObject = self.company
+                        updateCompanyDaysEnabledViewController.updateCoreDataObjectId = self.company?.id
                         updateCompanyDaysEnabledViewController.previousViewController = self
                         
                         self.navigationController?.pushViewController(updateCompanyDaysEnabledViewController, animated: true)
@@ -266,7 +266,7 @@ extension CompanyDetailViewController {
                 case .showingHours:
                     if let updateCompanyHoursEnabledViewController = updateCompanyStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateCompanyHoursEnabled.rawValue) as? UpdateCompanyHoursEnabledViewController {
                         
-                        updateCompanyHoursEnabledViewController.updateObject = self.company
+                        updateCompanyHoursEnabledViewController.updateCoreDataObjectId = self.company?.id
                         updateCompanyHoursEnabledViewController.previousViewController = self
                         updateCompanyHoursEnabledViewController.company = self.company
                         
@@ -300,7 +300,7 @@ extension CompanyDetailViewController {
                         guard let company = self.company else { return }
                         let autoRespondText = company.autoRespondText != nil ? company.autoRespondText! : "Update auto respond text..."
                         
-                        updateCompanyAutoRespondTextViewController.updateObject = self.company
+                        updateCompanyAutoRespondTextViewController.updateCoreDataObjectId = self.company?.id
                         updateCompanyAutoRespondTextViewController.previousViewController = self
                         updateCompanyAutoRespondTextViewController.autoRespondText = autoRespondText
                         

@@ -26,6 +26,10 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         self.setupTopView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     func setupTopView() {
         // Set up top view style
         self.topView.clipsToBounds = true
@@ -217,56 +221,56 @@ extension LeadDetailViewController {
             case .name:
                 guard let updateLeadNameViewController = updateLeadStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateLeadName.rawValue) as? UpdateLeadNameViewController else { return }
                 
-                updateLeadNameViewController.updateObject = self.lead
+                updateLeadNameViewController.updateCoreDataObjectId = self.lead?.id
                 updateLeadNameViewController.previousViewController = self
                 
                 self.navigationController?.pushViewController(updateLeadNameViewController, animated: true)
             case .email:
                 guard let updateLeadEmailViewController = updateLeadStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateLeadEmail.rawValue) as? UpdateLeadEmailViewController else { return }
                 
-                updateLeadEmailViewController.updateObject = self.lead
+                updateLeadEmailViewController.updateCoreDataObjectId = self.lead?.id
                 updateLeadEmailViewController.previousViewController = self
                 
                 self.navigationController?.pushViewController(updateLeadEmailViewController, animated: true)
             case .phoneNumber:
                 guard let updateLeadPhoneViewController = updateLeadStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateLeadPhone.rawValue) as? UpdateLeadPhoneViewController else { return }
                 
-                updateLeadPhoneViewController.updateObject = self.lead
+                updateLeadPhoneViewController.updateCoreDataObjectId = self.lead?.id
                 updateLeadPhoneViewController.previousViewController = self
                 
                 self.navigationController?.pushViewController(updateLeadPhoneViewController, animated: true)
             case .dateOfInquiry:
                 guard let updateLeadDateOfInquiryViewController = updateLeadStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateLeadDateOfInquiry.rawValue) as? UpdateLeadDateOfInquiryViewController else { return }
                 
-                updateLeadDateOfInquiryViewController.updateObject = self.lead
+                updateLeadDateOfInquiryViewController.updateCoreDataObjectId = self.lead?.id
                 updateLeadDateOfInquiryViewController.previousViewController = self
                 
                 self.navigationController?.pushViewController(updateLeadDateOfInquiryViewController, animated: true)
             case .sentTextDate:
                 guard let updateLeadSentTextDateViewController = updateLeadStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateLeadSentTextDate.rawValue) as? UpdateLeadSentTextDateViewController else { return }
                 
-                updateLeadSentTextDateViewController.updateObject = self.lead
+                updateLeadSentTextDateViewController.updateCoreDataObjectId = self.lead?.id
                 updateLeadSentTextDateViewController.previousViewController = self
                 
                 self.navigationController?.pushViewController(updateLeadSentTextDateViewController, animated: true)
             case .sentEmailDate:
                 guard let updateLeadSentEmailDateViewController = updateLeadStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateLeadSentEmailDate.rawValue) as? UpdateLeadSentEmailDateViewController else { return }
                 
-                updateLeadSentEmailDateViewController.updateObject = self.lead
+                updateLeadSentEmailDateViewController.updateCoreDataObjectId = self.lead?.id
                 updateLeadSentEmailDateViewController.previousViewController = self
                 
                 self.navigationController?.pushViewController(updateLeadSentEmailDateViewController, animated: true)
             case .companyName:
                 guard let updateLeadCompanyViewController = updateLeadStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateLeadCompany.rawValue) as? UpdateLeadCompanyViewController else { return }
                 
-                updateLeadCompanyViewController.updateObject = self.lead
+                updateLeadCompanyViewController.updateCoreDataObjectId = self.lead?.id
                 updateLeadCompanyViewController.previousViewController = self
                 
                 self.navigationController?.pushViewController(updateLeadCompanyViewController, animated: true)
             case .renterBrand:
                 guard let updateLeadRenterViewController = updateLeadStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateLeadRenterBrand.rawValue) as? UpdateLeadRenterBrandViewController else { return }
                 
-                updateLeadRenterViewController.updateObject = self.lead
+                updateLeadRenterViewController.updateCoreDataObjectId = self.lead?.id
                 updateLeadRenterViewController.previousViewController = self
                 
                 self.navigationController?.pushViewController(updateLeadRenterViewController, animated: true)

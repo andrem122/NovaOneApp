@@ -368,7 +368,7 @@ class AppointmentsTableViewController: UITableViewController, NovaOneTableView {
 
 }
 
-extension AppointmentsTableViewController: UISearchResultsUpdating, SkeletonTableViewDataSource {
+extension AppointmentsTableViewController: UISearchResultsUpdating, SkeletonTableViewDataSource, NovaOneTableViewCellDelegate {
     
     // Shows how many rows our table view should show
        override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -394,7 +394,8 @@ extension AppointmentsTableViewController: UISearchResultsUpdating, SkeletonTabl
             let dateCreated = DateHelper.createString(from: appointmentCreatedDate, format: format)
             let confirmed = appointment.confirmed ? "Confirmed" : "Not Confirmed"
             
-            cell.setup(title: name, subTitleOne: dateCreated, subTitleTwo: confirmed, subTitleThree: appointmentTime)
+            cell.delegate = self
+            cell.setup(title: name, subTitleOne: dateCreated, subTitleTwo: confirmed, subTitleThree: appointmentTime, email: appointment.email, phoneNumber: appointment.phoneNumber)
         }
     
        
@@ -457,5 +458,13 @@ extension AppointmentsTableViewController: UISearchResultsUpdating, SkeletonTabl
     
     func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
         return Defaults.TableViewCellIdentifiers.novaOne.rawValue
+    }
+    
+    func didTapEmailButton(email: String) {
+        print("EMAIL: \(email)")
+    }
+    
+    func didTapCallButton(phoneNumber: String) {
+        print("PHONE NUMBER: \(phoneNumber)")
     }
 }

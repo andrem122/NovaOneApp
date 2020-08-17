@@ -23,7 +23,7 @@ class UpdateLeadDateOfInquiryViewController: UpdateBaseViewController {
     @IBAction func updateButtonTapped(_ sender: Any) {
         let updateValue = DateHelper.createString(from: self.datePicker.date, format: "yyyy-MM-dd HH:mm:ssZ")
         guard
-            let objectId = (self.updateObject as? Lead)?.id,
+            let objectId = self.updateCoreDataObjectId,
             let previousViewController = self.previousViewController as? LeadDetailViewController
         else { return }
         
@@ -41,7 +41,7 @@ class UpdateLeadDateOfInquiryViewController: UpdateBaseViewController {
             previousViewController.objectDetailTableView.reloadData()
         }
         
-        self.updateObject(for: Defaults.DataBaseTableNames.leads.rawValue, at: ["date_of_inquiry": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Lead.self, updateClosure: updateClosure, successSubtitle: "Date of inquiry has been successfully updated.", successDoneHandler: successDoneHandler)
+        self.updateObject(for: Defaults.DataBaseTableNames.leads.rawValue, at: ["date_of_inquiry": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Lead.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Date of inquiry has been successfully updated.", successDoneHandler: successDoneHandler)
     }
     
 }

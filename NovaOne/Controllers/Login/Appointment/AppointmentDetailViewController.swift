@@ -27,6 +27,10 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
         self.setupNavigationBar()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     func setupNavigationBar() {
         // Set up the navigation bar
         UIHelper.setupNavigationBarStyle(for: self.navigationController)
@@ -232,7 +236,7 @@ extension AppointmentDetailViewController {
                 case .name:
                     if let updateAppointmentNameViewController = updateAppointmentStoryboard.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentName.rawValue) as? UpdateAppointmentNameViewController {
                         
-                        updateAppointmentNameViewController.updateObject = self.appointment
+                        updateAppointmentNameViewController.updateCoreDataObjectId = self.appointment?.id
                         updateAppointmentNameViewController.previousViewController = self
                         
                         self.navigationController?.pushViewController(updateAppointmentNameViewController, animated: true)
@@ -241,7 +245,7 @@ extension AppointmentDetailViewController {
                 case .email:
                         if let updateAppointmentEmailViewController = updateAppointmentStoryboard.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentEmail.rawValue) as? UpdateAppointmentEmailViewController {
                             
-                            updateAppointmentEmailViewController.updateObject = self.appointment
+                            updateAppointmentEmailViewController.updateCoreDataObjectId = self.appointment?.id
                             updateAppointmentEmailViewController.previousViewController = self
                             
                             self.navigationController?.pushViewController(updateAppointmentEmailViewController, animated: true)
@@ -251,7 +255,7 @@ extension AppointmentDetailViewController {
                 case .phoneNumber:
                         if let updateAppointmentPhoneViewController = updateAppointmentStoryboard.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentPhone.rawValue) as? UpdateAppointmentPhoneViewController {
                             
-                            updateAppointmentPhoneViewController.updateObject = self.appointment
+                            updateAppointmentPhoneViewController.updateCoreDataObjectId = self.appointment?.id
                             updateAppointmentPhoneViewController.previousViewController = self
                             
                             self.navigationController?.pushViewController(updateAppointmentPhoneViewController, animated: true)
@@ -261,7 +265,7 @@ extension AppointmentDetailViewController {
                 case .appointmentTime:
                         if let updateAppointmentTimeViewController = updateAppointmentStoryboard.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentTime.rawValue) as? UpdateAppointmentTimeViewController {
                             
-                            updateAppointmentTimeViewController.updateObject = self.appointment
+                            updateAppointmentTimeViewController.updateCoreDataObjectId = self.appointment?.id
                             updateAppointmentTimeViewController.previousViewController = self
                             
                             self.navigationController?.pushViewController(updateAppointmentTimeViewController, animated: true)
@@ -271,7 +275,7 @@ extension AppointmentDetailViewController {
                 case .confirmed:
                         if let updateAppointmentStatusViewController = updateAppointmentStoryboard.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentStatus.rawValue) as? UpdateAppointmentStatusViewController {
                             
-                            updateAppointmentStatusViewController.updateObject = self.appointment
+                            updateAppointmentStatusViewController.updateCoreDataObjectId = self.appointment?.id
                             updateAppointmentStatusViewController.previousViewController = self
                             
                             self.navigationController?.pushViewController(updateAppointmentStatusViewController, animated: true)
@@ -281,7 +285,7 @@ extension AppointmentDetailViewController {
                 case .dateOfBirth:
                         if let updateAppointmentDateOfBirthViewController = updateAppointmentStoryboard.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentDateOfBirth.rawValue) as? UpdateAppointmentDateOfBirthViewController {
                             
-                            updateAppointmentDateOfBirthViewController.updateObject = self.appointment
+                            updateAppointmentDateOfBirthViewController.updateCoreDataObjectId = self.appointment?.id
                             updateAppointmentDateOfBirthViewController.previousViewController = self
                             
                             self.navigationController?.pushViewController(updateAppointmentDateOfBirthViewController, animated: true)
@@ -291,7 +295,7 @@ extension AppointmentDetailViewController {
                 case .unitType:
                         if let updateAppointmentUnitTypeViewController = updateAppointmentStoryboard.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentUnitType.rawValue) as? UpdateAppointmentUnitTypeViewController {
                             
-                            updateAppointmentUnitTypeViewController.updateObject = self.appointment
+                            updateAppointmentUnitTypeViewController.updateCoreDataObjectId = self.appointment?.id
                             updateAppointmentUnitTypeViewController.previousViewController = self
                             
                             self.navigationController?.pushViewController(updateAppointmentUnitTypeViewController, animated: true)
@@ -301,7 +305,7 @@ extension AppointmentDetailViewController {
                 case .testType:
                         if let updateAppointmentTestTypeViewController = updateAppointmentStoryboard.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentTestType.rawValue) as? UpdateAppointmentTestTypeViewController {
                             
-                            updateAppointmentTestTypeViewController.updateObject = self.appointment
+                            updateAppointmentTestTypeViewController.updateCoreDataObjectId = self.appointment?.id
                             updateAppointmentTestTypeViewController.previousViewController = self
                             
                             self.navigationController?.pushViewController(updateAppointmentTestTypeViewController, animated: true)
@@ -311,7 +315,7 @@ extension AppointmentDetailViewController {
                 case .gender:
                         if let updateAppointmentGenderViewController = updateAppointmentStoryboard.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentGender.rawValue) as? UpdateAppointmentGenderViewController {
                             
-                            updateAppointmentGenderViewController.updateObject = self.appointment
+                            updateAppointmentGenderViewController.updateCoreDataObjectId = self.appointment?.id
                             updateAppointmentGenderViewController.previousViewController = self
                             
                             self.navigationController?.pushViewController(updateAppointmentGenderViewController, animated: true)
@@ -321,7 +325,7 @@ extension AppointmentDetailViewController {
                 case .address:
                         if let updateAppointmentAddressViewController = updateAppointmentStoryboard.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentAddress.rawValue) as? UpdateAppointmentAddressViewController {
                             
-                            updateAppointmentAddressViewController.updateObject = self.appointment
+                            updateAppointmentAddressViewController.updateCoreDataObjectId = self.appointment?.id
                             updateAppointmentAddressViewController.previousViewController = self
                             
                             self.navigationController?.pushViewController(updateAppointmentAddressViewController, animated: true)

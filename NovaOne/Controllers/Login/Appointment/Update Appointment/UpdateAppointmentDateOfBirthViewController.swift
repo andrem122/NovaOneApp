@@ -24,7 +24,7 @@ class UpdateAppointmentDateOfBirthViewController: UpdateBaseViewController {
         // Get the selected date from the picker
         let updateValue = DateHelper.createString(from: self.dateOfBirthPicker.date, format: "yyyy-MM-dd")
         guard
-            let objectId = (self.updateObject as? Appointment)?.id,
+            let objectId = self.updateCoreDataObjectId,
             let detailViewController = self.previousViewController as? AppointmentDetailViewController
         else { return }
         
@@ -42,7 +42,7 @@ class UpdateAppointmentDateOfBirthViewController: UpdateBaseViewController {
             detailViewController.objectDetailTableView.reloadData()
         }
         
-        self.updateObject(for: Defaults.DataBaseTableNames.appointmentsMedical.rawValue, at: ["date_of_birth": updateValue], endpoint: "/updateAppointmentMedicalAndRealEstate.php", objectId: Int(objectId), objectType: Appointment.self, updateClosure: updateClosure, successSubtitle: "Appointment date of birth has been successfully updated.", successDoneHandler: successDoneHandler)
+        self.updateObject(for: Defaults.DataBaseTableNames.appointmentsMedical.rawValue, at: ["date_of_birth": updateValue], endpoint: "/updateAppointmentMedicalAndRealEstate.php", objectId: Int(objectId), objectType: Appointment.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Appointment date of birth has been successfully updated.", successDoneHandler: successDoneHandler)
         
     }
     

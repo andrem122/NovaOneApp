@@ -40,7 +40,7 @@ class UpdateCompanyAutoRespondTextViewController: UpdateBaseViewController {
             self.present(popUpOkViewController, animated: true, completion: nil)
         } else {
             guard
-                let objectId = (self.updateObject as? Company)?.id,
+                let objectId = self.updateCoreDataObjectId,
                 let detailViewController = self.previousViewController as? CompanyDetailViewController
             else { return }
             
@@ -58,7 +58,7 @@ class UpdateCompanyAutoRespondTextViewController: UpdateBaseViewController {
                 detailViewController.objectDetailTableView.reloadData()
             }
             
-            self.updateObject(for: Defaults.DataBaseTableNames.company.rawValue, at: ["auto_respond_text": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Company.self, updateClosure: updateClosure, successSubtitle: "Company auto respond text has been successfully updated.", successDoneHandler: successDoneHandler)
+            self.updateObject(for: Defaults.DataBaseTableNames.company.rawValue, at: ["auto_respond_text": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Company.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Company auto respond text has been successfully updated.", successDoneHandler: successDoneHandler)
         }
         
     }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -89,18 +89,6 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B1P-bQ-fGT" userLabel="Email Button">
-                                                    <rect key="frame" x="296" y="11.5" width="27" height="27"/>
-                                                    <state key="normal" image="emailBlue"/>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sJf-Av-77o" userLabel="Call Button">
-                                                    <rect key="frame" x="343" y="14.5" width="21" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="9EK-Ex-mZi"/>
-                                                        <constraint firstAttribute="width" constant="21" id="YY7-1X-ACT"/>
-                                                    </constraints>
-                                                    <state key="normal" image="callBlue"/>
-                                                </button>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="fUy-Av-uAS">
                                                     <rect key="frame" x="8" y="49.5" width="137.5" height="36"/>
                                                     <subviews>
@@ -150,23 +138,49 @@
                                                     </constraints>
                                                     <state key="normal" image="rightAngleBlue"/>
                                                 </button>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="zeF-lM-KXg" userLabel="Button Stack View">
+                                                    <rect key="frame" x="294" y="12.5" width="70" height="25"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B1P-bQ-fGT" userLabel="Email Button">
+                                                            <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="B1P-bQ-fGT" secondAttribute="height" multiplier="1:1" id="jqf-Mk-4Dp"/>
+                                                            </constraints>
+                                                            <state key="normal" image="emailBlue"/>
+                                                            <connections>
+                                                                <action selector="emailButtonTapped:" destination="fZZ-Yn-r9J" eventType="touchUpInside" id="v6k-5M-ldB"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sJf-Av-77o" userLabel="Call Button">
+                                                            <rect key="frame" x="45" y="0.0" width="25" height="25"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="sJf-Av-77o" secondAttribute="height" multiplier="1:1" id="dm9-Tb-e60"/>
+                                                            </constraints>
+                                                            <state key="normal" image="callBlue"/>
+                                                            <connections>
+                                                                <action selector="callButtonTapped:" destination="fZZ-Yn-r9J" eventType="touchUpInside" id="5BC-DF-Be2"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="V4v-bK-EMn"/>
+                                                    </constraints>
+                                                </stackView>
                                             </subviews>
                                             <color key="backgroundColor" name="viewForegroundColor"/>
                                             <constraints>
                                                 <constraint firstItem="sey-lk-6d3" firstAttribute="top" secondItem="Fwe-Af-EfP" secondAttribute="top" constant="15" id="01w-nF-dQv"/>
+                                                <constraint firstItem="zeF-lM-KXg" firstAttribute="trailing" secondItem="I49-UB-iBd" secondAttribute="trailing" id="9fL-UG-5Jc"/>
                                                 <constraint firstAttribute="bottom" secondItem="fUy-Av-uAS" secondAttribute="bottom" constant="19.329999999999998" id="Bi3-Nl-p84"/>
                                                 <constraint firstItem="sey-lk-6d3" firstAttribute="leading" secondItem="Fwe-Af-EfP" secondAttribute="leading" constant="8" id="JRZ-Ng-bv7"/>
-                                                <constraint firstAttribute="trailing" secondItem="sJf-Av-77o" secondAttribute="trailing" constant="30" id="KNy-rw-cx7"/>
                                                 <constraint firstAttribute="bottom" secondItem="I49-UB-iBd" secondAttribute="bottom" constant="19" id="KZJ-BV-dcJ"/>
                                                 <constraint firstItem="fUy-Av-uAS" firstAttribute="leading" secondItem="Fwe-Af-EfP" secondAttribute="leading" constant="8" id="Lkb-AH-JCw"/>
                                                 <constraint firstItem="sQc-W8-hb2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Fwe-Af-EfP" secondAttribute="leading" id="PxV-GL-0Rl"/>
                                                 <constraint firstAttribute="trailing" secondItem="sQc-W8-hb2" secondAttribute="trailing" id="S2s-oX-Pmk"/>
                                                 <constraint firstAttribute="trailing" secondItem="I49-UB-iBd" secondAttribute="trailing" constant="30" id="Tyc-ap-SBg"/>
-                                                <constraint firstItem="sJf-Av-77o" firstAttribute="centerY" secondItem="sey-lk-6d3" secondAttribute="centerY" id="Vnd-oI-Giu"/>
-                                                <constraint firstItem="B1P-bQ-fGT" firstAttribute="centerY" secondItem="sJf-Av-77o" secondAttribute="centerY" id="b0k-d1-U40"/>
-                                                <constraint firstItem="sJf-Av-77o" firstAttribute="leading" secondItem="B1P-bQ-fGT" secondAttribute="trailing" constant="20" id="gSX-HK-3gh"/>
                                                 <constraint firstItem="I49-UB-iBd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Fwe-Af-EfP" secondAttribute="leading" id="irh-vN-Wws"/>
                                                 <constraint firstItem="sQc-W8-hb2" firstAttribute="centerY" secondItem="Fwe-Af-EfP" secondAttribute="centerY" id="kaC-s6-uts"/>
+                                                <constraint firstItem="zeF-lM-KXg" firstAttribute="centerY" secondItem="sey-lk-6d3" secondAttribute="centerY" id="kk7-NF-BQQ"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="sey-lk-6d3" secondAttribute="trailing" id="zwy-q9-rvp"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
@@ -201,6 +215,8 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <outlet property="callButton" destination="sJf-Av-77o" id="k3H-ta-RKe"/>
+                                    <outlet property="emailButton" destination="B1P-bQ-fGT" id="5FP-Ua-aG5"/>
                                     <outlet property="subTitleLabelOne" destination="Dch-mD-lLl" id="uyf-wP-cdu"/>
                                     <outlet property="subTitleLabelThree" destination="I49-UB-iBd" id="214-Yw-ThP"/>
                                     <outlet property="subTitleLabelTwo" destination="5Bd-8j-Y1d" id="4Hd-2F-ZbP"/>

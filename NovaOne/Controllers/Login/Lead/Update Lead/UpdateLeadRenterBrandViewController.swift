@@ -42,7 +42,7 @@ class UpdateLeadRenterBrandViewController: UpdateBaseViewController, UIPickerVie
    // MARK: Actions
     @IBAction func updateButtonTapped(_ sender: Any) {
         guard
-            let objectId = (self.updateObject as? Lead)?.id,
+            let objectId = self.updateCoreDataObjectId,
             let detailViewController = self.previousViewController as? LeadDetailViewController
         else { return }
         
@@ -60,7 +60,7 @@ class UpdateLeadRenterBrandViewController: UpdateBaseViewController, UIPickerVie
             detailViewController.objectDetailTableView.reloadData()
         }
         
-        self.updateObject(for: Defaults.DataBaseTableNames.leads.rawValue, at: ["renter_brand": self.selectedChoice], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Lead.self, updateClosure: updateClosure, successSubtitle: "Renter brand has been successfully updated.", successDoneHandler: successDoneHandler)
+        self.updateObject(for: Defaults.DataBaseTableNames.leads.rawValue, at: ["renter_brand": self.selectedChoice], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Lead.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Renter brand has been successfully updated.", successDoneHandler: successDoneHandler)
     }
     
 }

@@ -46,9 +46,10 @@ class UpdateEmailViewController: UpdateBaseViewController {
                 switch result {
                     case .success(_):
                         guard
-                            let objectId = (self?.updateObject as? Customer)?.userId,
+                            let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
                             let previousViewController = self?.previousViewController as? AccountTableViewController
                         else { return }
+                        let objectId = customer.userId
                     
                     let updateClosure = {
                         (customer: Customer) in
@@ -56,8 +57,7 @@ class UpdateEmailViewController: UpdateBaseViewController {
                     }
                     
                     let successDoneHandler = {
-                        let predicate = NSPredicate(format: "userId == %@", String(objectId))
-                        guard let updatedCustomer = PersistenceService.fetchEntity(Customer.self, filter: predicate, sort: nil).first else { return }
+                        guard let updatedCustomer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first else { return }
                         
                         previousViewController.customer = updatedCustomer
                         previousViewController.setLabelValues()
@@ -67,7 +67,7 @@ class UpdateEmailViewController: UpdateBaseViewController {
                         KeychainWrapper.standard.set(updateValue, forKey: Defaults.KeychainKeys.email.rawValue)
                     }
                     
-                    self?.updateObject(for: Defaults.DataBaseTableNames.authUser.rawValue, at: ["email": updateValue], endpoint: "/updateEmail.php", objectId: Int(objectId), objectType: Customer.self, updateClosure: updateClosure, successSubtitle: "Email successfully updated.", successDoneHandler: successDoneHandler)
+                        self?.updateObject(for: Defaults.DataBaseTableNames.authUser.rawValue, at: ["email": updateValue], endpoint: "/updateEmail.php", objectId: Int(objectId), objectType: Customer.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Email successfully updated.", successDoneHandler: successDoneHandler)
                         
                         
                     case .failure(let error):

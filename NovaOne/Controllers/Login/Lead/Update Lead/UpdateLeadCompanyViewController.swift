@@ -45,7 +45,7 @@ class UpdateLeadCompanyViewController: UpdateBaseViewController, UITableViewDele
         // Check if item was selected in table
         if EnableOptionHelper.optionIsSelected(options: self.options) == true {
             guard
-                let objectId = (self.updateObject as? Lead)?.id,
+                let objectId = self.updateCoreDataObjectId,
                 let previousViewController = self.previousViewController as? LeadDetailViewController
             else { return }
             
@@ -72,7 +72,7 @@ class UpdateLeadCompanyViewController: UpdateBaseViewController, UITableViewDele
                 previousViewController.objectDetailTableView.reloadData()
             }
             
-            self.updateObject(for: Defaults.DataBaseTableNames.leads.rawValue, at: ["company_id": updatedCompanyId], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Lead.self, updateClosure: updateClosure, successSubtitle: "Company has been successfully updated.", successDoneHandler: successDoneHandler)
+            self.updateObject(for: Defaults.DataBaseTableNames.leads.rawValue, at: ["company_id": updatedCompanyId], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Lead.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Company has been successfully updated.", successDoneHandler: successDoneHandler)
         } else {
             let popUpOkViewController = self.alertService.popUpOk(title: "Select A Company", body: "Please select a company.")
             self.present(popUpOkViewController, animated: true, completion: nil)
