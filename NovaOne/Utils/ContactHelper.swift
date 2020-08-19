@@ -28,10 +28,8 @@ class ContactHelper: UIViewController, MFMailComposeViewControllerDelegate {
     
     func call(phoneNumber: String) {
         // Calls the number
-        print("CALLING PHONE NUMBER \(phoneNumber)...")
         let unformattedPhoneNumber = phoneNumber.replacingOccurrences(of: "[\\(\\)\\s-]", with: "", options: .regularExpression, range: nil)
         if let url = URL(string: "tel://\(unformattedPhoneNumber)"), UIApplication.shared.canOpenURL(url) {
-            print("VALID URL")
             if #available(iOS 10, *) {
                 UIApplication.shared.open(url)
             } else {

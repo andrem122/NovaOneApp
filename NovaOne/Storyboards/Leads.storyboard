@@ -247,10 +247,10 @@
             </objects>
             <point key="canvasLocation" x="8936" y="889"/>
         </scene>
-        <!--Leads Table Navigation Controller-->
+        <!--Navigation Controller-->
         <scene sceneID="ZAI-Yx-PWO">
             <objects>
-                <navigationController storyboardIdentifier="leadsNavigationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Lx2-Hk-MfY" customClass="LeadsTableNavigationController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="leadsNavigationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Lx2-Hk-MfY" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="yYj-Hh-r9q"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="K79-BW-K2r">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>

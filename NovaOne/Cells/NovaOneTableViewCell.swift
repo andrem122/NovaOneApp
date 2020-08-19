@@ -28,8 +28,6 @@ class NovaOneTableViewCell: UITableViewCell {
     var delegate: NovaOneTableViewCellDelegate?
     @IBOutlet weak var callButton: UIButton!
     @IBOutlet weak var emailButton: UIButton!
-    @IBOutlet weak var appointmentEmailButton: UIButton!
-    @IBOutlet weak var appointmentCallButton: UIButton!
     
     // MARK: Methods
     
@@ -51,24 +49,18 @@ class NovaOneTableViewCell: UITableViewCell {
         self.phoneNumber = phoneNumber
         
         // Hide buttons based on whether or not there is an email or phone number
-        if (delegate as? LeadsTableViewController) != nil {
-            if email == nil {
-                self.emailButton.isHidden = true
-            }
-            
-            if phoneNumber == nil {
-                self.callButton.isHidden = true
-            }
-        } else if (delegate as? AppointmentsTableViewController) != nil {
-            if email == nil {
-                self.appointmentEmailButton.isHidden = true
-            }
-            
-            if let unwrappedPhoneNumber = phoneNumber {
-                if unwrappedPhoneNumber.isEmpty {
-                    self.appointmentCallButton.isHidden = true
-                }
-            }
+        let email = self.email == nil ? "" : self.email!
+        if email.isEmpty {
+            self.emailButton.isHidden = true
+        } else {
+            self.emailButton.isHidden = false
+        }
+        
+        let phoneNumber = self.phoneNumber == nil ? "" : self.phoneNumber!
+        if phoneNumber.isEmpty {
+            self.callButton.isHidden = true
+        } else {
+            self.callButton.isHidden = false
         }
         
     }

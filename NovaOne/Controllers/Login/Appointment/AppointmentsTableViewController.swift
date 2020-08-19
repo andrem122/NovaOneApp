@@ -24,6 +24,7 @@ class AppointmentsTableViewController: UITableViewController, NovaOneTableView {
     var searchController: UISearchController!
     var alertService = AlertService()
     var didSetFirstItem: Bool = false
+    let contactHelper = ContactHelper()
     lazy var refresher: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.tintColor = .lightGray
@@ -461,10 +462,10 @@ extension AppointmentsTableViewController: UISearchResultsUpdating, SkeletonTabl
     }
     
     func didTapEmailButton(email: String) {
-        print("EMAIL: \(email)")
+        self.contactHelper.sendEmail(email: email, present: self)
     }
     
     func didTapCallButton(phoneNumber: String) {
-        print("PHONE NUMBER: \(phoneNumber)")
+        self.contactHelper.call(phoneNumber: phoneNumber)
     }
 }
