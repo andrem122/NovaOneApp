@@ -40,7 +40,7 @@ class UpdateLeadSentTextDateViewController: UpdateBaseViewController {
             previousViewController.objectDetailTableView.reloadData()
         }
         
-        self.updateObject(for: Defaults.DataBaseTableNames.leads.rawValue, at: ["sent_text_date": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Lead.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Sent text date has been successfully updated.", successDoneHandler: successDoneHandler)
+        self.updateObject(for: Defaults.DataBaseTableNames.leads.rawValue, at: ["sent_text_date": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Lead.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Sent text date has been successfully updated.", successDoneHandler: successDoneHandler, completion: nil)
     }
     
 }

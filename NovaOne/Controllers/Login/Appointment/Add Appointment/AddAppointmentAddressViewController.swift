@@ -49,9 +49,20 @@ class AddAppointmentAddressViewController: AddAppointmentBaseViewController, Add
         //self.resultsViewController?.view.backgroundColor = UIColor(named: "googleSearchBackgroundColor")
         self.resultsViewController?.delegate = self
         
+        // Style for dark and light mode
+        guard
+            let textColor = UIColor(named: Defaults.Colors.text.rawValue),
+            let textFieldColor = UIColor(named: Defaults.Colors.textField.rawValue),
+            let tableCellBackgroundColor = UIColor(named: Defaults.Colors.viewForeground.rawValue)
+        else { return }
+        
+        self.resultsViewController?.primaryTextColor = textColor
+        self.resultsViewController?.secondaryTextColor = textFieldColor
+        self.resultsViewController?.tableCellSeparatorColor = textFieldColor
+        self.resultsViewController?.tableCellBackgroundColor = tableCellBackgroundColor
+        
         // Setup search controller
         self.searchController = UISearchController()
-        //self.searchController?.view.backgroundColor = UIColor(named: "googleSearchBackgroundColor")
         self.searchController?.searchResultsUpdater = self.resultsViewController
         
         // Add the search bar to the right of the nav bar,

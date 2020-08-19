@@ -15,28 +15,41 @@ class AccountTableViewController: UITableViewController {
     @IBOutlet weak var customerIdValueLabel: UILabel!
     @IBOutlet weak var emailAddressValueLabel: UILabel!
     @IBOutlet weak var phoneNumberValueLabel: UILabel!
-    var customer: Customer?
+    @IBOutlet weak var smsNotificationsActivityView: UIActivityIndicatorView!
+    @IBOutlet weak var emailNotificationsActivityView: UIActivityIndicatorView!
+    @IBOutlet weak var smsNotificationsSwitch: UISwitch!
+    @IBOutlet weak var emailNotificationsSwitch: UISwitch!
     var alertService = AlertService()
+    let updateBaseViewController = UpdateBaseViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first
         self.setLabelValues()
     }
     
     func setLabelValues() {
        // Set values for each label
         guard
-            let emailAddress = self.customer?.email,
-            let phoneNumber = self.customer?.phoneNumber,
-            let fullName = self.customer?.fullName,
-            let customerId = self.customer?.id
+            let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
+            let emailAddress = customer.email,
+            let phoneNumber = customer.phoneNumber
         else { return }
+        let fullName = customer.fullName
+        let customerId = customer.id
         
         self.nameValueLabel.text = fullName
         self.customerIdValueLabel.text = String(customerId)
         self.emailAddressValueLabel.text = emailAddress
         self.phoneNumberValueLabel.text = phoneNumber
+        
+        // Set switch values
+        let wantsSms = customer.wantsSms
+        let wantsEmailNotificatons = customer.wantsEmailNotifications
+        
+        print("WANTS SMS: \(wantsSms), WANTS EMAIL: \(wantsEmailNotificatons)")
+        
+        self.smsNotificationsSwitch.setOn(wantsSms, animated: false)
+        self.emailNotificationsSwitch.setOn(wantsEmailNotificatons, animated: false)
         
         // Setup navigation bar style
         UIHelper.setupNavigationBarStyle(for: self.navigationController)
@@ -51,7 +64,8 @@ class AccountTableViewController: UITableViewController {
         self.navigationItem.backBarButtonItem = backItem // This will show in the next view controller being pushed
         
         guard let updateViewController = segue.destination as? UpdateBaseViewController else { return }
-        updateViewController.updateCoreDataObjectId = self.customer?.id
+        guard let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first else { return }
+        updateViewController.updateCoreDataObjectId = customer.id
         updateViewController.previousViewController = self
         
     }
@@ -92,5 +106,58 @@ class AccountTableViewController: UITableViewController {
             self.present(popUpActionViewController, animated: true, completion: nil)
         }
     }
+    
+    // MARK: Actions
+    @IBAction func smsNotificationsSwitchChanged(_ sender: Any) {
+        
+        // Animate and show activity view
+        if self.smsNotificationsActivityView.isAnimating == false {
+            self.smsNotificationsActivityView.startAnimating()
+        } else {
+            self.smsNotificationsActivityView.stopAnimating()
+        }
+        
+        // Set the database boolean value
+        var switchFlag = "f"
+        if self.smsNotificationsSwitch.isOn {
+            switchFlag = "t"
+        } else {
+           switchFlag = "f"
+        }
+        
+        guard let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first else { return }
+        let objectId = customer.id
+        self.updateBaseViewController.updateObject(for: Defaults.DataBaseTableNames.customer.rawValue, at: ["wants_sms": switchFlag], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Customer.self, updateClosure: nil, filterFormat: "id == %@", successSubtitle: nil, successDoneHandler: nil) {
+            [weak self] in
+            self?.smsNotificationsActivityView.stopAnimating()
+        }
+    }
+    
+    @IBAction func emailNotificationsSwitchChanged(_ sender: Any) {
+        
+        // Animate and show activity view
+        if self.emailNotificationsActivityView.isAnimating == false {
+            self.emailNotificationsActivityView.startAnimating()
+        } else {
+            self.emailNotificationsActivityView.stopAnimating()
+        }
+        
+        // Set the database boolean value
+        var switchFlag = "f"
+        if self.emailNotificationsSwitch.isOn {
+            switchFlag = "t"
+        } else {
+           switchFlag = "f"
+        }
+        
+        guard let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first else { return }
+        let objectId = customer.id
+        self.updateBaseViewController.updateObject(for: Defaults.DataBaseTableNames.customer.rawValue, at: ["wants_email_notifications": switchFlag], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Customer.self, updateClosure: nil, filterFormat: "id == %@", successSubtitle: nil, successDoneHandler: nil) {
+            [weak self] in
+            self?.emailNotificationsActivityView.stopAnimating()
+        }
+        
+    }
+    
     
 }

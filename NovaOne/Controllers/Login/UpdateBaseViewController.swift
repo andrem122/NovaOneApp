@@ -15,25 +15,26 @@ class UpdateBaseViewController: UIViewController, UITextFieldDelegate {
     var previousViewController: UIViewController?
     var updateCoreDataObjectId: Int32? // Id of the core data object we want to update
     let alertService = AlertService()
-    let customer: Customer? = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first
     
     func updateObject<T: NSManagedObject>(for tableName: String,
                                           at columns: [String: Any],
                                           endpoint: String,
                                           objectId: Int,
                                           objectType: T.Type,
-                                          updateClosure: @escaping (T) -> Void,
+                                          updateClosure: ((T) -> Void)?,
                                           filterFormat: String,
-                                          successSubtitle: String,
-                                          successDoneHandler: @escaping () -> Void) {
+                                          successSubtitle: String?,
+                                          successDoneHandler: (() -> Void)?,
+                                          completion: (() -> Void)?) {
         
         // Update the object's value in the database
         let spinnerView = self.showSpinner(for: self.view, textForLabel: "Updating")
         
         guard
-            let customerEmail = self.customer?.email,
+            let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
+            let customerEmail = customer.email,
             let customerPassword = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue)
-        else { return }
+        else { print("could  not get customer email and password - UpdateBaseViewController"); return }
         
         // Convert dictionary to json string
         guard let jsonData = try? JSONSerialization.data(withJSONObject: columns) else { print("Unable to encode columns to JSON data object"); return }
@@ -49,27 +50,32 @@ class UpdateBaseViewController: UIViewController, UITextFieldDelegate {
             switch result {
                 case .success(_):
                     
-                    // Get core data object for updating
-                    let filter = NSPredicate(format: filterFormat, String(objectId))
-                    guard let updateObject = PersistenceService.fetchEntity(objectType, filter: filter, sort: nil).first else { return }
-                    updateClosure(updateObject)
-                    PersistenceService.saveContext()
+                    // Get core data object for updating if updateClosure is not nil
+                    if let unwrappedUpdateClosure = updateClosure {
+                        let filter = NSPredicate(format: filterFormat, String(objectId))
+                        guard let updateObject = PersistenceService.fetchEntity(objectType, filter: filter, sort: nil).first else { print("could not get update object - UpdateBaseViewController"); return }
+                        
+                        unwrappedUpdateClosure(updateObject)
+                        PersistenceService.saveContext()
+                    }
                     
-                    // Show success view controller
-                    let popupStoryboard = UIStoryboard(name: Defaults.StoryBoards.popups.rawValue, bundle: .main)
-                    guard let successViewController = popupStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.success.rawValue) as? SuccessViewController else { return }
-                    
-                    successViewController.titleLabelText = "Update Complete!"
-                    successViewController.subtitleText = successSubtitle
-                    successViewController.doneHandler = successDoneHandler
-                    
-                    self?.present(successViewController, animated: true, completion: {
-                        [weak self] in
-                        self?.removeSpinner(spinnerView: spinnerView)
-                    })
-                    
-                    // Remove the update view controller
-                    self?.navigationController?.popViewController(animated: true)
+                    // Show success view controller if success sub title is not nil
+                    if let subtitle = successSubtitle {
+                        let popupStoryboard = UIStoryboard(name: Defaults.StoryBoards.popups.rawValue, bundle: .main)
+                        guard let successViewController = popupStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.success.rawValue) as? SuccessViewController else { print("could not get success view controller - UpdateBaseViewController"); return }
+                        
+                        successViewController.titleLabelText = "Update Complete!"
+                        successViewController.subtitleText = subtitle
+                        successViewController.doneHandler = successDoneHandler
+                        
+                        self?.present(successViewController, animated: true, completion: {
+                            [weak self] in
+                            self?.removeSpinner(spinnerView: spinnerView)
+                        })
+                        
+                        // Remove the update view controller
+                        self?.navigationController?.popViewController(animated: true)
+                    }
                 
                 case .failure(let error):
                     guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
@@ -78,7 +84,12 @@ class UpdateBaseViewController: UIViewController, UITextFieldDelegate {
                 
             }
             
+            // Run completion function
+            guard let unwrappedCompletion = completion else { return }
+            unwrappedCompletion()
+            
         }
+        
     }
     
     func setupUpdateButton(button: UIButton) {

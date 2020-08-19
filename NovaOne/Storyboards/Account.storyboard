@@ -320,6 +320,84 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="Notifications" id="myh-Lz-3x3">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="40" id="aie-88-D7O">
+                                        <rect key="frame" x="0.0" y="420" width="414" height="40"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aie-88-D7O" id="Sxy-n4-fxy">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="SMS Notifications" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="XR3-dM-Xm5">
+                                                    <rect key="frame" x="30" y="9.5" width="134" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                                    <color key="textColor" name="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=regular">
+                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
+                                                    </variation>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jfM-Ar-JOn">
+                                                    <rect key="frame" x="360" y="4.5" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="smsNotificationsSwitchChanged:" destination="tGV-Bw-WqH" eventType="valueChanged" id="Qur-AZ-Fv8"/>
+                                                    </connections>
+                                                </switch>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="85q-JE-yba">
+                                                    <rect key="frame" x="332" y="10" width="20" height="20"/>
+                                                </activityIndicatorView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="XR3-dM-Xm5" firstAttribute="centerY" secondItem="Sxy-n4-fxy" secondAttribute="centerY" id="KcY-sk-ndo"/>
+                                                <constraint firstItem="85q-JE-yba" firstAttribute="centerY" secondItem="XR3-dM-Xm5" secondAttribute="centerY" id="PLm-NO-Qf5"/>
+                                                <constraint firstAttribute="trailing" secondItem="jfM-Ar-JOn" secondAttribute="trailing" constant="5" id="Y7N-7g-reK"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="XR3-dM-Xm5" secondAttribute="trailing" id="dAF-9o-ETI"/>
+                                                <constraint firstItem="XR3-dM-Xm5" firstAttribute="leading" secondItem="Sxy-n4-fxy" secondAttribute="leading" constant="30" id="dKE-Ba-AuV"/>
+                                                <constraint firstItem="jfM-Ar-JOn" firstAttribute="leading" secondItem="85q-JE-yba" secondAttribute="trailing" constant="8" id="pI0-R2-fUO"/>
+                                                <constraint firstItem="jfM-Ar-JOn" firstAttribute="centerY" secondItem="XR3-dM-Xm5" secondAttribute="centerY" id="rhP-LB-9M3"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="40" id="1k4-CD-Dae">
+                                        <rect key="frame" x="0.0" y="460" width="414" height="40"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1k4-CD-Dae" id="NIb-da-wqd">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Notifications" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="4uq-it-xNN">
+                                                    <rect key="frame" x="30" y="9.5" width="139" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                                    <color key="textColor" name="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=regular">
+                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
+                                                    </variation>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ntL-0i-XGV">
+                                                    <rect key="frame" x="360" y="4.5" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="emailNotificationsSwitchChanged:" destination="tGV-Bw-WqH" eventType="valueChanged" id="cZq-TZ-t2N"/>
+                                                    </connections>
+                                                </switch>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="uK6-0u-vV5">
+                                                    <rect key="frame" x="332" y="10" width="20" height="20"/>
+                                                </activityIndicatorView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4uq-it-xNN" secondAttribute="trailing" id="8Ci-0B-a2n"/>
+                                                <constraint firstItem="ntL-0i-XGV" firstAttribute="leading" secondItem="uK6-0u-vV5" secondAttribute="trailing" constant="8" id="9Ne-tm-4nt"/>
+                                                <constraint firstItem="4uq-it-xNN" firstAttribute="leading" secondItem="NIb-da-wqd" secondAttribute="leading" constant="30" id="Ah1-C5-DFE"/>
+                                                <constraint firstItem="ntL-0i-XGV" firstAttribute="centerY" secondItem="4uq-it-xNN" secondAttribute="centerY" id="JwW-gR-muX"/>
+                                                <constraint firstAttribute="trailing" secondItem="ntL-0i-XGV" secondAttribute="trailing" constant="5" id="SUk-7u-1Ln"/>
+                                                <constraint firstItem="4uq-it-xNN" firstAttribute="centerY" secondItem="NIb-da-wqd" secondAttribute="centerY" id="kIg-tI-QxU"/>
+                                                <constraint firstItem="uK6-0u-vV5" firstAttribute="centerY" secondItem="4uq-it-xNN" secondAttribute="centerY" id="uy0-Ik-54S"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="tGV-Bw-WqH" id="mDf-ox-5VO"/>
@@ -332,8 +410,12 @@
                     <connections>
                         <outlet property="customerIdValueLabel" destination="Zdt-f1-zvg" id="LQW-Oq-Cga"/>
                         <outlet property="emailAddressValueLabel" destination="YEy-Um-pYw" id="4re-cC-3ji"/>
+                        <outlet property="emailNotificationsActivityView" destination="uK6-0u-vV5" id="f9W-dq-vYt"/>
+                        <outlet property="emailNotificationsSwitch" destination="ntL-0i-XGV" id="1un-wF-JkQ"/>
                         <outlet property="nameValueLabel" destination="waM-9h-XE1" id="uGf-HO-DpI"/>
                         <outlet property="phoneNumberValueLabel" destination="7IP-w7-3n5" id="bgy-Eh-9Kz"/>
+                        <outlet property="smsNotificationsActivityView" destination="85q-JE-yba" id="Bvd-xZ-BdA"/>
+                        <outlet property="smsNotificationsSwitch" destination="jfM-Ar-JOn" id="hU9-m0-nOA"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IDT-yF-7Js" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

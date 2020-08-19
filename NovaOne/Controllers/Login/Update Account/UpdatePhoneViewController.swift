@@ -60,14 +60,11 @@ class UpdatePhoneViewController: UpdateBaseViewController {
                     }
                     
                     let successDoneHandler = {
-                        guard let updatedCustomer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first else { return }
-                        
-                        previousViewController.customer = updatedCustomer
                         previousViewController.setLabelValues()
                         previousViewController.tableView.reloadData()
                     }
                     
-                        self?.updateObject(for: Defaults.DataBaseTableNames.customer.rawValue, at: ["phone_number": "%2B1" + unformattedPhoneNumber], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Customer.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Phone number successfully updated.", successDoneHandler: successDoneHandler)
+                        self?.updateObject(for: Defaults.DataBaseTableNames.customer.rawValue, at: ["phone_number": "%2B1" + unformattedPhoneNumber], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Customer.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Phone number successfully updated.", successDoneHandler: successDoneHandler, completion: nil)
                     
                 case .failure(let error):
                     guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }

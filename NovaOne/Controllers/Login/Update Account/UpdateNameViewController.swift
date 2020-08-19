@@ -60,15 +60,11 @@ class UpdateNameViewController: UpdateBaseViewController {
             }
             
             let successDoneHandler = {
-                let predicate = NSPredicate(format: "userId == %@", String(objectId))
-                guard let updatedCustomer = PersistenceService.fetchEntity(Customer.self, filter: predicate, sort: nil).first else { return }
-                
-                previousViewController.customer = updatedCustomer
                 previousViewController.setLabelValues()
                 previousViewController.tableView.reloadData()
             }
             
-            self.updateObject(for: Defaults.DataBaseTableNames.authUser.rawValue, at: ["first_name": firstName, "last_name": lastName], endpoint: "/updateName.php", objectId: Int(objectId), objectType: Customer.self, updateClosure: updateClosure, filterFormat: "userId == %@", successSubtitle: "Name has been successfully updated.", successDoneHandler: successDoneHandler)
+            self.updateObject(for: Defaults.DataBaseTableNames.authUser.rawValue, at: ["first_name": firstName, "last_name": lastName], endpoint: "/updateName.php", objectId: Int(objectId), objectType: Customer.self, updateClosure: updateClosure, filterFormat: "userId == %@", successSubtitle: "Name has been successfully updated.", successDoneHandler: successDoneHandler, completion: nil)
         }
     }
     

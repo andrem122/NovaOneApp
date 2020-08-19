@@ -57,9 +57,6 @@ class UpdateEmailViewController: UpdateBaseViewController {
                     }
                     
                     let successDoneHandler = {
-                        guard let updatedCustomer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first else { return }
-                        
-                        previousViewController.customer = updatedCustomer
                         previousViewController.setLabelValues()
                         previousViewController.tableView.reloadData()
                         
@@ -67,7 +64,7 @@ class UpdateEmailViewController: UpdateBaseViewController {
                         KeychainWrapper.standard.set(updateValue, forKey: Defaults.KeychainKeys.email.rawValue)
                     }
                     
-                        self?.updateObject(for: Defaults.DataBaseTableNames.authUser.rawValue, at: ["email": updateValue], endpoint: "/updateEmail.php", objectId: Int(objectId), objectType: Customer.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Email successfully updated.", successDoneHandler: successDoneHandler)
+                        self?.updateObject(for: Defaults.DataBaseTableNames.authUser.rawValue, at: ["email": updateValue], endpoint: "/updateEmail.php", objectId: Int(objectId), objectType: Customer.self, updateClosure: updateClosure, filterFormat: "userId == %@", successSubtitle: "Email successfully updated.", successDoneHandler: successDoneHandler, completion: nil)
                         
                         
                     case .failure(let error):

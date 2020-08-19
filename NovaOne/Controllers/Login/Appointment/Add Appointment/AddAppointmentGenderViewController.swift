@@ -44,6 +44,8 @@ class AddAppointmentGenderViewController: AddAppointmentBaseViewController, UIPi
             let dateOfBirth = self.appointment?.dateOfBirth,
             let address = self.appointment?.address,
             let email = self.appointment?.email,
+            let zip = self.appointment?.zip,
+            let city = self.appointment?.city,
             let time = self.appointment?.time
         else { return }
         let url = Defaults.Urls.novaOneWebsite.rawValue + "/appointments/new?c=\(companyId)"
@@ -57,6 +59,8 @@ class AddAppointmentGenderViewController: AddAppointmentBaseViewController, UIPi
             "gender": self.genderType,
             "date_of_birth": dateOfBirth,
             "address": address,
+            "city": city,
+            "zip": zip,
             "email": email,
             "time": time]
         httpRequest.request(url: url, dataModel: SuccessResponse.self, parameters: parameters) {

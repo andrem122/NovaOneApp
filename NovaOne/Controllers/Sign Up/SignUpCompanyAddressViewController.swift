@@ -76,11 +76,21 @@ class SignUpCompanyAddressViewController: BaseSignUpViewController, AddAddress {
         
         // Setup results view controller
         self.resultsViewController = GMSAutocompleteResultsViewController()
-        //self.resultsViewController?.view.backgroundColor = UIColor(named: "googleSearchBackgroundColor")
         self.resultsViewController?.delegate = self
         
+        // Style for dark and light mode
+        guard
+            let textColor = UIColor(named: Defaults.Colors.text.rawValue),
+            let textFieldColor = UIColor(named: Defaults.Colors.textField.rawValue),
+            let tableCellBackgroundColor = UIColor(named: Defaults.Colors.viewForeground.rawValue)
+        else { return }
+        
+        self.resultsViewController?.primaryTextColor = textColor
+        self.resultsViewController?.secondaryTextColor = textFieldColor
+        self.resultsViewController?.tableCellSeparatorColor = textFieldColor
+        self.resultsViewController?.tableCellBackgroundColor = tableCellBackgroundColor
+        
         // Bias search results with a filter
-        print("setting up filter")
         self.resultsViewController?.autocompleteFilter = self.filter
         
         // Setup search controller

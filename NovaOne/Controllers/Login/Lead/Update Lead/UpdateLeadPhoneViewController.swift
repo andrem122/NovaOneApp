@@ -56,7 +56,7 @@ class UpdateLeadPhoneViewController: UpdateBaseViewController {
 
             }
 
-            self.updateObject(for: Defaults.DataBaseTableNames.leads.rawValue, at: ["phone_number": "%2B1" + unformattedPhoneNumber], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Lead.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Lead phone number has been successfully updated.", successDoneHandler: successDoneHandler)
+            self.updateObject(for: Defaults.DataBaseTableNames.leads.rawValue, at: ["phone_number": "%2B1" + unformattedPhoneNumber], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Lead.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Lead phone number has been successfully updated.", successDoneHandler: successDoneHandler, completion: nil)
         }
     }
     

@@ -58,9 +58,6 @@ class UpdatePasswordViewController: UpdateBaseViewController {
             }
             
             let successDoneHandler = {
-                guard let updatedCustomer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first else { return }
-                
-                previousViewController.customer = updatedCustomer
                 previousViewController.setLabelValues()
                 previousViewController.tableView.reloadData()
                 
@@ -68,7 +65,9 @@ class UpdatePasswordViewController: UpdateBaseViewController {
                 KeychainWrapper.standard.set(newPassword, forKey: Defaults.KeychainKeys.password.rawValue)
             }
             
-            self.updateObject(for: Defaults.DataBaseTableNames.authUser.rawValue, at: ["password": newPassword], endpoint: "/updatePassword.php", objectId: Int(objectId), objectType: Customer.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Password has been successfully updated.", successDoneHandler: successDoneHandler)
+            print("UPDATING PASSWORD")
+            print(objectId)
+            self.updateObject(for: Defaults.DataBaseTableNames.authUser.rawValue, at: ["password": newPassword], endpoint: "/updatePassword.php", objectId: Int(objectId), objectType: Customer.self, updateClosure: updateClosure, filterFormat: "userId == %@", successSubtitle: "Password has been successfully updated.", successDoneHandler: successDoneHandler, completion: nil)
         } else {
             let popUpOkViewController = self.alertService.popUpOk(title: "Incorrect Password", body: "Password entered does not match current password.")
             self.present(popUpOkViewController, animated: true, completion: nil)
