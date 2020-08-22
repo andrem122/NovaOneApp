@@ -65,10 +65,6 @@ class SignUpCompanyEmailViewController: BaseSignUpViewController, UITextFieldDel
         if InputValidators.isValidEmail(email: email) {
             guard let signUpCompanyPhoneViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.signUpCompanyPhone.rawValue) as? SignUpCompanyPhoneViewController else { return }
             
-            self.company?.email = email
-            signUpCompanyPhoneViewController.customer = self.customer
-            signUpCompanyPhoneViewController.company = self.company
-            
             // Get existing core data object and update it
             let filter = NSPredicate(format: "id == %@", "0")
             guard let coreDataCompanyObject = PersistenceService.fetchEntity(Company.self, filter: filter, sort: nil).first else { print("could not get coredata company object - Sign Up Company Email View Controller"); return }

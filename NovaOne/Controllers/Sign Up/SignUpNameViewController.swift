@@ -144,11 +144,6 @@ class SignUpNameViewController: BaseSignUpViewController, UITextFieldDelegate {
             guard
                 let signUpPhoneViewController = self.storyboard?.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.signUpPhone.rawValue) as? SignUpPhoneViewController
             else { return }
-
-            // Pass customer object
-            self.customer?.firstName = firstName
-            self.customer?.lastName = lastName
-            signUpPhoneViewController.customer = self.customer
             
             // Get existing core data object and update it
             let filter = NSPredicate(format: "id == %@", "0")

@@ -17,7 +17,10 @@ class HTTPRequests {
                                    completion: @escaping (Result<DataModel, Error>) -> Void) -> Void {
         
         // Create datatask to retrieve information from the internet
-        let session = URLSession.shared
+        let sessionConfig = URLSessionConfiguration.default
+        sessionConfig.timeoutIntervalForRequest = 10.0
+        sessionConfig.timeoutIntervalForResource = 10.0
+        let session = URLSession(configuration: sessionConfig)
         let task = session.dataTask(with: request) { (data, response, error) in
             
             

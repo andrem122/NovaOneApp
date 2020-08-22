@@ -44,8 +44,10 @@ class SignUpCustomerTypeViewController: BaseSignUpViewController, UIPickerViewDe
     @IBAction func continueButtonTapped(_ sender: Any) {
         guard let signUpCompanyNameViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.signUpCompanyName.rawValue) as? SignUpCompanyNameViewController else { return }
         
-        self.customer?.customerType = self.customerType
-        signUpCompanyNameViewController.customer = self.customer
+        let filter = NSPredicate(format: "id == %@", "0")
+        guard let coreDataCustomerObject = PersistenceService.fetchEntity(Customer.self, filter: filter, sort: nil).first else { return }
+        coreDataCustomerObject.customerType = self.customerType
+        PersistenceService.saveContext()
         
         self.navigationController?.pushViewController(signUpCompanyNameViewController, animated: true)
     }

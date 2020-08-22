@@ -139,18 +139,6 @@ class SignUpCompanyAddressViewController: BaseSignUpViewController, AddAddress {
         } else {
             guard let signUpCompanyEmailViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.signUpCompanyEmail.rawValue) as? SignUpCompanyEmailViewController else { return }
             
-            // Pass customer and company object to next view controller
-            signUpCompanyEmailViewController.customer = self.customer
-            signUpCompanyEmailViewController.company = self.company
-            
-            // Get existing core data object and update it
-            let filter = NSPredicate(format: "id == %@", "0")
-            guard let coreDataCompanyObject = PersistenceService.fetchEntity(Company.self, filter: filter, sort: nil).first else { print("could not get coredata company object - Sign Up Company Address View Controller"); return }
-            coreDataCompanyObject.address = address
-            
-            // Save to context
-            PersistenceService.saveContext()
-            
             self.navigationController?.pushViewController(signUpCompanyEmailViewController, animated: true)
         }
     }
@@ -191,20 +179,27 @@ extension SignUpCompanyAddressViewController {
             self?.mapView.isHidden = false
             
             // Get street address, city, state, and zip from the place the user selected
-            self?.company?.address = address
+            // Get existing core data object and update it
+            let filter = NSPredicate(format: "id == %@", "0")
+            guard let coreDataCompanyObject = PersistenceService.fetchEntity(Company.self, filter: filter, sort: nil).first else { print("could not get coredata company object - Sign Up Company Address View Controller"); return }
+            coreDataCompanyObject.address = address
+            
             for component in addressComponents {
                 
                 let componentType = component.types[0]
                 if componentType == Defaults.GooglePlaceAddressComponents.city.rawValue { // City
-                    self?.company?.city = component.name
+                    coreDataCompanyObject.city = component.name
                 } else if componentType == Defaults.GooglePlaceAddressComponents.state.rawValue { // State
                     guard let state = component.shortName else { return }
-                    self?.company?.state = state
+                    coreDataCompanyObject.state = state
                 } else if componentType == Defaults.GooglePlaceAddressComponents.zip.rawValue { // Zip code
-                    self?.company?.zip = component.name
+                    coreDataCompanyObject.zip = component.name
                 }
                 
             }
+            
+            // Save to context
+            PersistenceService.saveContext()
             
         }
     }

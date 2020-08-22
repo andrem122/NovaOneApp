@@ -20,7 +20,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         
         // If we have a NSUserActivity object from a previous opening of the app
-        if let activity = connectionOptions.userActivities.first ?? session.stateRestorationActivity {
+        let isLoggedIn = UserDefaults.standard.bool(forKey: Defaults.UserDefaults.isLoggedIn.rawValue)
+        if let activity = connectionOptions.userActivities.first ?? session.stateRestorationActivity, isLoggedIn == false {
             // Get the window object to show the view to restore
             guard let windowScene = (scene as? UIWindowScene) else { return }
             self.window = UIWindow(windowScene: windowScene)
@@ -34,7 +35,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 // Get storyboards
                 let mainStoryboard = UIStoryboard(name: Defaults.StoryBoards.main.rawValue, bundle: .main)
                 let signupStoryboard = UIStoryboard(name: Defaults.StoryBoards.signup.rawValue, bundle: .main)
-                let addCompanyStoryboard = UIStoryboard(name: Defaults.StoryBoards.addAppointment.rawValue, bundle: .main)
+                let addCompanyStoryboard = UIStoryboard(name: Defaults.StoryBoards.addCompany.rawValue, bundle: .main)
                 guard
                     let startViewController = mainStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.start.rawValue) as? StartViewController
                 else { return }
@@ -192,13 +193,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     signupNavigationController.popToViewController(signupCompanyPhoneViewController, animated: true)
                     
                 }
+                    
+                else if viewControllerIdentifier == Defaults.ViewControllerIdentifiers.addCompanyAllowSameDayAppointments.rawValue {
+                    
+                    startViewController.present(signupNavigationController, animated: true, completion: nil)
+                    signupNavigationController.popToViewController(addCompanyAllowSameDayAppointmentsViewController, animated: true)
+                    
+                }
                 
                 else if viewControllerIdentifier == Defaults.ViewControllerIdentifiers.addCompanyDaysEnabled.rawValue {
                     
-                    addCompanyDaysEnabledViewController.continueFrom(activity: activity)
-                    
                     startViewController.present(signupNavigationController, animated: true, completion: nil)
                     signupNavigationController.popToViewController(addCompanyDaysEnabledViewController, animated: true)
+                    
+                }
+                
+                else if viewControllerIdentifier == Defaults.ViewControllerIdentifiers.addCompanyHoursEnabled.rawValue {
+                    
+                    startViewController.present(signupNavigationController, animated: true, completion: nil)
+                    addCompanyHoursEnabledViewController.userIsSigningUp = true
+                    signupNavigationController.popToViewController(addCompanyHoursEnabledViewController, animated: true)
                     
                 }
             }
@@ -300,11 +314,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 print("SignUpCompanyPhoneViewController stateRestorationActivity")
                 return signupCompanyPhoneViewController.continuationActivity
             }
+                
+            // Add company allow same day appointments
+            else if let addCompanyAllowSameDayAppointmentsViewController = signupNavigationController.topViewController as? AddCompanyAllowSameDayAppointmentsViewController {
+                print("AddCompanyAllowSameDayAppointmentsViewController stateRestorationActivity")
+                return addCompanyAllowSameDayAppointmentsViewController.continuationActivity
+            }
             
             // Add company days view controller
             else if let addCompanyDaysEnabledViewController = signupNavigationController.topViewController as? AddCompanyDaysEnabledViewController {
                 print("AddCompanyDaysEnabledViewController stateRestorationActivity")
                 return addCompanyDaysEnabledViewController.continuationActivity
+            }
+            
+            // Add company hours view controller
+            else if let addCompanyHoursEnabledViewController = signupNavigationController.topViewController as? AddCompanyHoursEnabledViewController {
+                print("AddCompanyHoursEnabledViewController stateRestorationActivity")
+                return addCompanyHoursEnabledViewController.continuationActivity
             }
             
         }

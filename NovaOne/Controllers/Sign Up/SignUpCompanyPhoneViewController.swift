@@ -91,9 +91,6 @@ class SignUpCompanyPhoneViewController: BaseSignUpViewController, UITextFieldDel
                         let addCompanyAllowSameDayAppointmentsViewController = addCompanyStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addCompanyAllowSameDayAppointments.rawValue) as? AddCompanyAllowSameDayAppointmentsViewController
                     else { return }
                     
-                    self?.company?.phoneNumber = unformattedPhoneNumber
-                    addCompanyAllowSameDayAppointmentsViewController.customer = self?.customer
-                    addCompanyAllowSameDayAppointmentsViewController.company = self?.company
                     addCompanyAllowSameDayAppointmentsViewController.userIsSigningUp = true // Indicates that the user is new and signing up and not an existing user adding a company
                     
                     // Get existing core data object and update it

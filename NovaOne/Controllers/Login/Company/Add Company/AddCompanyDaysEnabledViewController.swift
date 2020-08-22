@@ -20,10 +20,7 @@ class AddCompanyDaysEnabledViewController: AddCompanyBaseViewController, UITable
         activity.isEligibleForHandoff = true
         activity.title = Defaults.ViewControllerIdentifiers.addCompanyDaysEnabled.rawValue
         
-        let selectedOptionsString = EnableOptionHelper.getSelectedOptions(options: self.daysOfTheWeek)
-        
-        let userInfo = [AppState.UserActivityKeys.signup.rawValue: selectedOptionsString as Any,
-                                       AppState.activityViewControllerIdentifierKey: Defaults.ViewControllerIdentifiers.addCompanyDaysEnabled.rawValue as Any]
+        let userInfo = [AppState.activityViewControllerIdentifierKey: Defaults.ViewControllerIdentifiers.addCompanyDaysEnabled.rawValue as Any]
         
         activity.addUserInfoEntries(from: userInfo)
         activity.becomeCurrent()
@@ -43,50 +40,6 @@ class AddCompanyDaysEnabledViewController: AddCompanyBaseViewController, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupTextFields()
-        self.restore()
-    }
-    
-    func continueFrom(activity: NSUserActivity) {
-        // Restore the view controller to its previous state using the activity object plugged in from scene delegate method scene(_:willConnectTo:options:)
-        let restoreText = activity.userInfo?[AppState.UserActivityKeys.signup.rawValue] as? String
-        self.restoreText = restoreText
-    }
-    
-    func restore() {
-        // Restore the previous state of the view controller
-        if self.restoreText != nil {
-            // Restore Logic
-            self.selectDays(from: self.restoreText!)
-        } else {
-            // Get data from coredata if it is available and fill in the field if no state restoration text exists
-            let filter = NSPredicate(format: "id == %@", "0")
-            guard let coreDataCompanyObject = PersistenceService.fetchEntity(Company.self, filter: filter, sort: nil).first else { print("could not get coredata company object - Add Company Days Enabled View Controller"); return }
-            
-            guard let daysOfTheWeekEnabledString = coreDataCompanyObject.daysOfTheWeekEnabled else { return }
-            self.selectDays(from: daysOfTheWeekEnabledString)
-            
-        }
-    }
-    
-    func selectDays(from: String) {
-        // Converts the week day string to a list of integers
-        // and sets the 'selected' attribute to true for each EnableOption item
-        
-        // Convert to array of strings
-        let daysOfTheWeekEnabled: [String] = from.components(separatedBy: ",")
-        
-        // Convert to array of integers
-        let daysOfTheWeekEnabledInt = daysOfTheWeekEnabled.map({
-            (weekDay: String) -> Int in
-            guard let weekDay: Int = Int(weekDay) else { return 0 }
-            return weekDay
-        })
-        
-        // Loop through daysOfTheWeekEnabledInt set the 'selected' attribute to true
-        // for each EnableOption item in daysOfTheWeek array
-        for weekday in daysOfTheWeekEnabledInt {
-            self.daysOfTheWeek[weekday].selected = true
-        }
     }
 
     
@@ -108,10 +61,17 @@ class AddCompanyDaysEnabledViewController: AddCompanyBaseViewController, UITable
             
             if userIsSigningUp == true {
                 addCompanyHoursEnabledViewController.userIsSigningUp = true
+                
+                // Save to Coredata
+                let filter = NSPredicate(format: "id == %@", "0")
+                guard let coreDataCompanyObject = PersistenceService.fetchEntity(Company.self, filter: filter, sort: nil).first else { print("could not get coredata company object - AddCompanyDaysEnabledViewController"); return }
+                coreDataCompanyObject.daysOfTheWeekEnabled = selectedOptionsString
+                
+                // Save to context
+                PersistenceService.saveContext()
             }
             
             addCompanyHoursEnabledViewController.company = self.company
-            addCompanyHoursEnabledViewController.customer = self.customer
             addCompanyHoursEnabledViewController.embeddedViewController = self.embeddedViewController
             
             self.navigationController?.pushViewController(addCompanyHoursEnabledViewController, animated: true)

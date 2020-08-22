@@ -80,6 +80,7 @@
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                 </variation>
                                                 <connections>
+                                                    <action selector="signupButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8A5-dr-UNx"/>
                                                     <segue destination="HMH-yH-nh1" kind="showDetail" id="AIk-o1-uTZ"/>
                                                 </connections>
                                             </button>

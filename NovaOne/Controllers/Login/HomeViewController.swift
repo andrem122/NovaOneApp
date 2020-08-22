@@ -334,6 +334,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
                     }
             
                 case .failure(let error):
+                    print("FAILED TO GET WEEKLY CHART DATA")
                     self?.showPopUpOk(error: error)
             }
             
@@ -408,6 +409,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
                     
                 case .failure(let error):
                     // Update chart data
+                    print("FAILED TO GET MONTHLY CHART DATA")
                     self?.barChart.data = nil
                     self?.barChart.notifyDataSetChanged()
                     self?.showPopUpOk(error: error)
@@ -455,6 +457,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
                     
                 case .failure(let error):
                     // Update chart data
+                    print("FAILED TO GET MONTH CHART DATA")
                     self?.lineChart.data = nil
                     self?.lineChart.notifyDataSetChanged()
                     self?.showPopUpOk(error: error)
@@ -479,6 +482,8 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         let customerUserId = customer.id
         
         let parameters: [String: Any] = ["email": email as Any, "password": password as Any, "customerUserId": customerUserId as Any]
+        print("GET OBJECT COUNTS PARAMETERS")
+        print(parameters)
         httpRequest.request(url: Defaults.Urls.api.rawValue + "/objectCounts.php", dataModel: [ObjectCountModel].self, parameters: parameters) {
             [weak self] (result) in
             
@@ -506,7 +511,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
                     // Run the success completion handler
                     success()
                 case .failure(let error):
-                    print(error.localizedDescription)
+                    print("FAILED TO GET OBJECT COUNTS")
                     self?.showPopUpOk(error: error)
             }
             

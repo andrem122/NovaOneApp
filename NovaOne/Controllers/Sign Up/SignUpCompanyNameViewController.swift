@@ -66,10 +66,6 @@ class SignUpCompanyNameViewController: BaseSignUpViewController, UITextFieldDele
             let companyName = self.propertyNameTextField.text
         else { return }
         
-        self.company = CompanyModel(id: 0, name: companyName, address: "", phoneNumber: "", autoRespondNumber: nil, autoRespondText: nil, email: "", created: "", allowSameDayAppointments: false, daysOfTheWeekEnabled: "", hoursOfTheDayEnabled: "", city: "", customerUserId: 0, state: "", zip: "")
-        signUpCompanyAddressViewController.company = self.company
-        signUpCompanyAddressViewController.customer = self.customer
-        
         // Create core data customer object or get it if it already exists for state restoration
         let count = PersistenceService.fetchCount(for: Defaults.CoreDataEntities.company.rawValue)
         if count == 0 {

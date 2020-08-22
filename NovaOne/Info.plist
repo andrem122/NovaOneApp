@@ -32,12 +32,11 @@
 	<key>NSUserActivityTypes</key>
 	<array>
 		<string>com.novaonesoftware.signup.views</string>
-		<string>com.novaonesoftware.leads.views</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
-		<true/>
+		<false/>
 		<key>UISceneConfigurations</key>
 		<dict>
 			<key>UIWindowSceneSessionRoleApplication</key>

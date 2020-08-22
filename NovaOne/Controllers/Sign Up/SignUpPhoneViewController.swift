@@ -81,9 +81,6 @@ class SignUpPhoneViewController: BaseSignUpViewController, UITextFieldDelegate {
                             let customerTypeViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.signUpCustomerType.rawValue) as? SignUpCustomerTypeViewController
                         else { return }
                         
-                        self?.customer?.phoneNumber = unformattedPhoneNumber
-                        customerTypeViewController.customer = self?.customer
-                        
                         // Get existing core data object and update it
                         let filter = NSPredicate(format: "id == %@", "0")
                         guard let coreDataCustomerObject = PersistenceService.fetchEntity(Customer.self, filter: filter, sort: nil).first else {

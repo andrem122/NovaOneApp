@@ -64,12 +64,7 @@ class SignUpEmailViewController: BaseSignUpViewController, UITextFieldDelegate {
     @IBAction func cancelButtonTapped(_ sender: Any) {
         // Dismiss this view controller on tap of the cancel button
         self.presentingViewController?.dismiss(animated: true, completion: nil)
-        
-        // Delete all customer/company data from coredata
-        PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.customer.rawValue)
-        PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.company.rawValue)
     }
-    
     
     @IBAction func continueButtonTapped(_ sender: Any) {
         guard let email = emailAddressTextField.text else { return }
@@ -85,9 +80,7 @@ class SignUpEmailViewController: BaseSignUpViewController, UITextFieldDelegate {
             httpRequest.request(url: Defaults.Urls.api.rawValue + "/inputCheck.php", dataModel: SuccessResponse.self, parameters: parameters) { [weak self] (result) in
                 switch result {
                 case .success(let success):
-                    
                     print(success.successReason)
-                    self?.customer = CustomerModel(id: 0, userId: 0, password: "", lastLogin: "", username: email, firstName: "", lastName: "", email: email, dateJoined: "", isPaying: false, wantsSms: true, wantsEmailNotifications: true, phoneNumber: "", customerType: "")
                     
                     // Create core data customer object or get it if it already exists for state restoration
                     let count = PersistenceService.fetchCount(for: Defaults.CoreDataEntities.customer.rawValue)
@@ -112,7 +105,6 @@ class SignUpEmailViewController: BaseSignUpViewController, UITextFieldDelegate {
                     PersistenceService.saveContext()
                     
                     guard let signUpPasswordViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.signUpPassword.rawValue) as? SignUpPasswordViewController else { return }
-                    signUpPasswordViewController.customer = self?.customer
                     self?.navigationController?.pushViewController(signUpPasswordViewController, animated: true)
                     
                 case .failure(let error):

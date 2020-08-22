@@ -74,8 +74,6 @@ class SignUpPasswordViewController: BaseSignUpViewController, UITextFieldDelegat
             self.present(popUpOkViewController, animated: true, completion: nil)
         } else {
             guard let signUpNameViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.signUpName.rawValue) as? SignUpNameViewController else { return }
-            self.customer?.password = password
-            signUpNameViewController.customer = self.customer
             
             // Get existing core data object and update it
             let filter = NSPredicate(format: "id == %@", "0")

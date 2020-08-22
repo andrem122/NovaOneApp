@@ -15,6 +15,18 @@ class AddCompanyHoursEnabledViewController: AddCompanyBaseViewController, UITabl
     @IBOutlet weak var addCompanyEnabledHoursTableView: UITableView!
     @IBOutlet weak var appointmentHoursButton: NovaOneButton!
     let coreDataCustomerEmail: String? = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first?.email
+    var continuationActivity: NSUserActivity {
+        let activity = NSUserActivity(activityType: AppState.UserActivities.signup.rawValue)
+        activity.persistentIdentifier = Defaults.ViewControllerIdentifiers.addCompanyHoursEnabled.rawValue
+        activity.isEligibleForHandoff = true
+        activity.title = Defaults.ViewControllerIdentifiers.addCompanyHoursEnabled.rawValue
+        
+        let userInfo = [AppState.activityViewControllerIdentifierKey: Defaults.ViewControllerIdentifiers.addCompanyHoursEnabled.rawValue as Any]
+        
+        activity.addUserInfoEntries(from: userInfo)
+        activity.becomeCurrent()
+        return activity
+    }
     
     var hoursOfTheDayAM: [EnableOption] = [
         EnableOption(option: "12:00", selected: false, id: 0),
@@ -50,6 +62,15 @@ class AddCompanyHoursEnabledViewController: AddCompanyBaseViewController, UITabl
         super.viewDidLoad()
         self.setupTableView()
         self.setButtonTitle()
+        self.createCompanyObjectForSignup()
+    }
+    
+    func createCompanyObjectForSignup() {
+        // Creates a company model object for sign up users
+        if userIsSigningUp == true {
+            // Create new company object for sign up process
+            self.company = CompanyModel(id: 0, name: "", address: "", phoneNumber: "", autoRespondNumber: "", autoRespondText: "", email: "", created: "", allowSameDayAppointments: false, daysOfTheWeekEnabled: "", hoursOfTheDayEnabled: "", city: "", customerUserId: 0, state: "", zip: "")
+        }
     }
     
     func setupTableView() {
@@ -84,7 +105,7 @@ class AddCompanyHoursEnabledViewController: AddCompanyBaseViewController, UITabl
             let phoneNumber = self.company?.phoneNumber,
             let daysOfTheWeekenabled = self.company?.daysOfTheWeekEnabled,
             let hoursOfTheDayEnabled = self.company?.hoursOfTheDayEnabled
-        else { return }
+            else { return }
         let customerUserId = String(customer.id)
         
         let parameters: [String: Any] = ["customerUserId": customerUserId, "email": customerEmail, "password": customerPassword, "companyName": companyName, "companyEmail": companyEmail, "companyAddress": address, "companyCity": city, "companyState": state, "companyZip": zip, "companyPhoneNumber": phoneNumber, "daysOfTheWeekEnabled": daysOfTheWeekenabled, "hoursOfTheDayEnabled": hoursOfTheDayEnabled, "allowSameDayAppointments": allowSameDayAppointments]
@@ -128,25 +149,35 @@ class AddCompanyHoursEnabledViewController: AddCompanyBaseViewController, UITabl
     func signupUser(success: @escaping (String, String) -> Void) {
         // Send a POST request to signup api
         
+        let filter = NSPredicate(format: "id == %@", "0")
+        guard let coreDataCompanyObject = PersistenceService.fetchEntity(Company.self, filter: filter, sort: nil).first else { print("could not get coredata company object - AddCompanyHoursEnabledViewController"); return }
+        guard let coreDataCustomerObject = PersistenceService.fetchEntity(Customer.self, filter: filter, sort: nil).first else { print("could not get coredata customer object - AddCompanyHoursEnabledViewController"); return }
+        
         // Unwrap needed POST data from objects
         guard
-            let email = self.customer?.email,
-            let password = self.customer?.password,
-            let firstName = self.customer?.firstName,
-            let lastName = self.customer?.lastName,
-            let phoneNumber = self.customer?.phoneNumber,
-            let customerType = self.customer?.customerType,
-            let companyName = self.company?.name,
-            let companyAddress = self.company?.address,
-            let companyPhoneNumber = self.company?.phoneNumber,
-            let companyEmail = self.company?.email,
-            let allowSameDayAppointments = self.company?.allowSameDayAppointments,
-            let companyDaysEnabled = self.company?.daysOfTheWeekEnabled,
+            let email = coreDataCustomerObject.email,
+            let password = coreDataCustomerObject.password,
+            let firstName = coreDataCustomerObject.firstName,
+            let lastName = coreDataCustomerObject.lastName,
+            let phoneNumber = coreDataCustomerObject.phoneNumber,
+            let customerType = coreDataCustomerObject.customerType,
+            let companyName = coreDataCompanyObject.name,
+            let companyDaysEnabled = coreDataCompanyObject.daysOfTheWeekEnabled,
             let companyHoursEnabled = self.company?.hoursOfTheDayEnabled,
-            let companyCity = self.company?.city,
-            let companyState = self.company?.state,
-            let companyZip = self.company?.zip
-        else { return }
+            let companyAddress = coreDataCompanyObject.address,
+            let companyPhoneNumber = coreDataCompanyObject.phoneNumber,
+            let companyEmail = coreDataCompanyObject.email,
+            let companyCity = coreDataCompanyObject.city,
+            let companyState = coreDataCompanyObject.state,
+            let companyZip = coreDataCompanyObject.zip
+        else {
+            print("could not get data to sign up user - AddCompanyHoursEnabledViewController")
+            return
+        }
+        
+        let allowSameDayAppointments = coreDataCompanyObject.allowSameDayAppointments
+        
+        
         
         let parameters: [String: Any] = ["email": email,
                                             "password": password,
@@ -173,6 +204,9 @@ class AddCompanyHoursEnabledViewController: AddCompanyBaseViewController, UITabl
             switch result {
                 
                 case .success(_):
+                    // Save to keychain
+                    KeychainWrapper.standard.set(email, forKey: Defaults.KeychainKeys.email.rawValue)
+                    KeychainWrapper.standard.set(password, forKey: Defaults.KeychainKeys.password.rawValue)
                     
                     // Delete all CoreData data from previous logins
                     PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.customer.rawValue)
@@ -227,6 +261,10 @@ class AddCompanyHoursEnabledViewController: AddCompanyBaseViewController, UITabl
                             
                             PersistenceService.saveContext()
                             
+                            // Update UserDefaults so that we know have the user in a logged in state
+                            UserDefaults.standard.set(true, forKey: Defaults.UserDefaults.isLoggedIn.rawValue)
+                            UserDefaults.standard.synchronize()
+                            
                             containerViewController.modalPresentationStyle = .fullScreen // Set presentaion style of view to full screen
                             self?.present(containerViewController, animated: true, completion: nil)
                             
@@ -257,7 +295,7 @@ class AddCompanyHoursEnabledViewController: AddCompanyBaseViewController, UITabl
             
             if self.userIsSigningUp {
                 // Make POST request with customer data to API
-                //self.showSpinner(for: view, textForLabel: "Signing Up")
+                let spinnerView = self.showSpinner(for: view, textForLabel: "Signing Up")
                 
                 // Sign up user
                 self.signupUser {
@@ -266,10 +304,7 @@ class AddCompanyHoursEnabledViewController: AddCompanyBaseViewController, UITabl
                     // Login user and navigate to container view controller
                     self?.loginUser(email: email, password: password) {
                         (containerViewController) in
-                        //containerViewController.removeSpinner(spinnerView: <#T##UIView#>)
-                        
-                        
-                        
+                        containerViewController.removeSpinner(spinnerView: spinnerView)
                     }
                     
                 }
