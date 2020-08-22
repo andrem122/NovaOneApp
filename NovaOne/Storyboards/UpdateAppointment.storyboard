@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Gender" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pJl-wX-Q5I">
-                                <rect key="frame" x="30" y="74" width="354" height="33.5"/>
+                                <rect key="frame" x="30" y="114" width="354" height="33.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
                                 <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -26,7 +26,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update the gender of the person with the appointment below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0eH-0X-e18">
-                                <rect key="frame" x="30" y="127.5" width="354" height="41"/>
+                                <rect key="frame" x="30" y="167.5" width="354" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -35,7 +35,7 @@
                                 </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lDY-Tp-GLe" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
-                                <rect key="frame" x="30" y="424.5" width="354" height="45"/>
+                                <rect key="frame" x="30" y="464.5" width="354" height="45"/>
                                 <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="1wQ-Dy-yL2"/>
@@ -58,8 +58,21 @@
                                 </connections>
                             </button>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PdJ-8f-skf" userLabel="Gender Picker">
-                                <rect key="frame" x="0.0" y="198.5" width="413" height="216"/>
+                                <rect key="frame" x="0.0" y="238.5" width="413" height="216"/>
                             </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xcw-xj-cN5">
+                                <rect key="frame" x="20" y="64" width="33.5" height="33.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="33.5" id="TXA-ut-Fbb"/>
+                                    <constraint firstAttribute="height" constant="33.5" id="ni0-Rv-18b"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="cancelButtonBlue"/>
+                                <connections>
+                                    <action selector="cancelButtonTapped:" destination="8Fv-SF-xIz" eventType="touchUpInside" id="17e-Dj-Y4X"/>
+                                    <action selector="cancelButtonTapped:" destination="Z6b-Vq-nOu" eventType="touchUpInside" id="EMN-Iv-YUu"/>
+                                    <action selector="cancelButtonTapped:" destination="bxO-DU-IMW" eventType="touchUpInside" id="k7a-f6-352"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -72,13 +85,15 @@
                             <constraint firstItem="0eH-0X-e18" firstAttribute="leading" secondItem="PV3-Y1-S7N" secondAttribute="leading" constant="30" id="6FZ-aE-nVh">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                             </constraint>
+                            <constraint firstItem="Xcw-xj-cN5" firstAttribute="top" secondItem="PV3-Y1-S7N" secondAttribute="top" constant="20" id="9UM-ry-nE3"/>
                             <constraint firstItem="lDY-Tp-GLe" firstAttribute="top" secondItem="PdJ-8f-skf" secondAttribute="bottom" constant="10" id="SMH-j8-lSi"/>
+                            <constraint firstItem="Xcw-xj-cN5" firstAttribute="leading" secondItem="PV3-Y1-S7N" secondAttribute="leading" constant="20" id="Tz2-x0-eV7"/>
                             <constraint firstItem="pJl-wX-Q5I" firstAttribute="leading" secondItem="PV3-Y1-S7N" secondAttribute="leading" constant="30" id="ZiG-AW-njl">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                             </constraint>
                             <constraint firstItem="PdJ-8f-skf" firstAttribute="leading" secondItem="PV3-Y1-S7N" secondAttribute="leading" id="ayO-e0-nDF"/>
                             <constraint firstItem="PdJ-8f-skf" firstAttribute="top" secondItem="0eH-0X-e18" secondAttribute="bottom" constant="30" id="b62-is-8a3"/>
-                            <constraint firstItem="pJl-wX-Q5I" firstAttribute="top" secondItem="PV3-Y1-S7N" secondAttribute="top" constant="30" id="gxW-WA-eAX"/>
+                            <constraint firstItem="pJl-wX-Q5I" firstAttribute="top" secondItem="PV3-Y1-S7N" secondAttribute="top" constant="70" id="gxW-WA-eAX"/>
                             <constraint firstItem="PV3-Y1-S7N" firstAttribute="trailing" secondItem="PdJ-8f-skf" secondAttribute="trailing" constant="1" id="qoS-UZ-tR9"/>
                             <constraint firstItem="lDY-Tp-GLe" firstAttribute="leading" secondItem="PV3-Y1-S7N" secondAttribute="leading" constant="30" id="r8h-m6-Hni">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
@@ -111,7 +126,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Phone Number" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HJ5-hu-0QN">
-                                <rect key="frame" x="30" y="74" width="354" height="33.5"/>
+                                <rect key="frame" x="30" y="114" width="354" height="33.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
                                 <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -120,7 +135,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update the phone number of the appointment." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ube-qq-1Bl">
-                                <rect key="frame" x="30" y="127.5" width="354" height="41"/>
+                                <rect key="frame" x="30" y="167.5" width="354" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -129,7 +144,7 @@
                                 </variation>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="V3P-yT-uF5">
-                                <rect key="frame" x="30" y="198.5" width="354" height="110"/>
+                                <rect key="frame" x="30" y="238.5" width="354" height="110"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone Number" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="a2P-Vy-eDH" customClass="NovaOneTextField" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="354" height="45"/>
@@ -182,6 +197,22 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sEd-Qa-TLB">
+                                <rect key="frame" x="20" y="64" width="33.5" height="33.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="33.5" id="IOs-54-mjw"/>
+                                    <constraint firstAttribute="height" constant="33.5" id="tgc-IO-H02"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="cancelButtonBlue"/>
+                                <connections>
+                                    <action selector="cancelButtonTapped:" destination="8Fv-SF-xIz" eventType="touchUpInside" id="4Zh-xd-8Wa"/>
+                                    <action selector="cancelButtonTapped:" destination="LF0-mZ-JRc" eventType="touchUpInside" id="GhS-Vi-r8e"/>
+                                    <action selector="cancelButtonTapped:" destination="wCm-p0-kiV" eventType="touchUpInside" id="MOq-Ct-tcq"/>
+                                    <action selector="cancelButtonTapped:" destination="bxO-DU-IMW" eventType="touchUpInside" id="TYe-JC-Hou"/>
+                                    <action selector="cancelButtonTapped:" destination="QN6-ie-ETa" eventType="touchUpInside" id="fwy-1P-YSS"/>
+                                    <action selector="cancelButtonTapped:" destination="Z6b-Vq-nOu" eventType="touchUpInside" id="nJg-L5-8ex"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -195,7 +226,8 @@
                             <constraint firstItem="VP0-6T-of5" firstAttribute="trailing" secondItem="V3P-yT-uF5" secondAttribute="trailing" constant="30" id="BL4-8T-Qjs">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                             </constraint>
-                            <constraint firstItem="HJ5-hu-0QN" firstAttribute="top" secondItem="VP0-6T-of5" secondAttribute="top" constant="30" id="EWS-4X-qPc"/>
+                            <constraint firstItem="HJ5-hu-0QN" firstAttribute="top" secondItem="VP0-6T-of5" secondAttribute="top" constant="70" id="EWS-4X-qPc"/>
+                            <constraint firstItem="sEd-Qa-TLB" firstAttribute="top" secondItem="VP0-6T-of5" secondAttribute="top" constant="20" id="F3Y-af-UbW"/>
                             <constraint firstItem="VP0-6T-of5" firstAttribute="trailing" secondItem="HJ5-hu-0QN" secondAttribute="trailing" constant="30" id="MGj-PF-lHF">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                             </constraint>
@@ -203,6 +235,7 @@
                             <constraint firstItem="ube-qq-1Bl" firstAttribute="leading" secondItem="VP0-6T-of5" secondAttribute="leading" constant="30" id="Wsw-6B-jkh">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                             </constraint>
+                            <constraint firstItem="sEd-Qa-TLB" firstAttribute="leading" secondItem="VP0-6T-of5" secondAttribute="leading" constant="20" id="ahw-Dr-I2B"/>
                             <constraint firstItem="V3P-yT-uF5" firstAttribute="leading" secondItem="VP0-6T-of5" secondAttribute="leading" constant="30" id="s3x-s4-5Ug">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                             </constraint>
@@ -230,7 +263,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Time" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FYy-9R-O12">
-                                <rect key="frame" x="30" y="74" width="354" height="33.5"/>
+                                <rect key="frame" x="30" y="114" width="354" height="33.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
                                 <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -239,7 +272,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update the time of the appointment below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYr-Q9-fz9">
-                                <rect key="frame" x="30" y="127.5" width="354" height="20.5"/>
+                                <rect key="frame" x="30" y="167.5" width="354" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -248,10 +281,10 @@
                                 </variation>
                             </label>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="t5C-lV-1MB">
-                                <rect key="frame" x="0.0" y="178" width="414" height="216"/>
+                                <rect key="frame" x="0.0" y="218" width="414" height="216"/>
                             </datePicker>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QJa-h0-2eh" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
-                                <rect key="frame" x="30" y="404" width="354" height="45"/>
+                                <rect key="frame" x="30" y="444" width="354" height="45"/>
                                 <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="AoG-rI-Hcv"/>
@@ -273,11 +306,26 @@
                                     <action selector="updateButtonTapped:" destination="Pyi-Zt-pCG" eventType="touchUpInside" id="JOE-5I-Qj4"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V25-eX-xHA">
+                                <rect key="frame" x="20" y="64" width="33.5" height="33.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33.5" id="HXQ-0O-zEm"/>
+                                    <constraint firstAttribute="width" constant="33.5" id="Nmk-bE-GYc"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="cancelButtonBlue"/>
+                                <connections>
+                                    <action selector="cancelButtonTapped:" destination="8Fv-SF-xIz" eventType="touchUpInside" id="WE4-rP-g7K"/>
+                                    <action selector="cancelButtonTapped:" destination="Pyi-Zt-pCG" eventType="touchUpInside" id="Zlb-tE-kCf"/>
+                                    <action selector="cancelButtonTapped:" destination="jxQ-jt-t72" eventType="touchUpInside" id="i5r-ob-59y"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="V25-eX-xHA" firstAttribute="leading" secondItem="Oh5-Pe-kmi" secondAttribute="leading" constant="20" id="7e1-yw-SWf"/>
+                            <constraint firstItem="V25-eX-xHA" firstAttribute="top" secondItem="Oh5-Pe-kmi" secondAttribute="top" constant="20" id="G40-dh-OJb"/>
                             <constraint firstItem="QJa-h0-2eh" firstAttribute="top" secondItem="t5C-lV-1MB" secondAttribute="bottom" constant="10" id="Jzl-9n-4aH"/>
-                            <constraint firstItem="FYy-9R-O12" firstAttribute="top" secondItem="Oh5-Pe-kmi" secondAttribute="top" constant="30" id="KdJ-GQ-sV7"/>
+                            <constraint firstItem="FYy-9R-O12" firstAttribute="top" secondItem="Oh5-Pe-kmi" secondAttribute="top" constant="70" id="KdJ-GQ-sV7"/>
                             <constraint firstItem="Oh5-Pe-kmi" firstAttribute="trailing" secondItem="FYy-9R-O12" secondAttribute="trailing" constant="30" id="L1l-uz-daz">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                             </constraint>
@@ -324,7 +372,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Status" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BIE-jk-hbe">
-                                <rect key="frame" x="30" y="74" width="354" height="33.5"/>
+                                <rect key="frame" x="30" y="114" width="354" height="33.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
                                 <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -333,7 +381,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose the status of the appointment below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="caZ-Dq-qGi">
-                                <rect key="frame" x="30" y="127.5" width="354" height="20.5"/>
+                                <rect key="frame" x="30" y="167.5" width="354" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -342,7 +390,7 @@
                                 </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v8I-vn-wq5" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
-                                <rect key="frame" x="30" y="404" width="354" height="45"/>
+                                <rect key="frame" x="30" y="444" width="354" height="45"/>
                                 <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="BHk-bf-b4g"/>
@@ -365,8 +413,20 @@
                                 </connections>
                             </button>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sOs-iA-W9k" userLabel="Status Type Picker">
-                                <rect key="frame" x="0.0" y="178" width="413" height="216"/>
+                                <rect key="frame" x="0.0" y="218" width="413" height="216"/>
                             </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v6c-fw-LlG">
+                                <rect key="frame" x="20" y="64" width="33.5" height="33.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33.5" id="adI-F6-RPl"/>
+                                    <constraint firstAttribute="width" constant="33.5" id="dDH-tl-wxL"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="cancelButtonBlue"/>
+                                <connections>
+                                    <action selector="cancelButtonTapped:" destination="8Fv-SF-xIz" eventType="touchUpInside" id="FkI-2T-OhD"/>
+                                    <action selector="cancelButtonTapped:" destination="bxO-DU-IMW" eventType="touchUpInside" id="gAW-yX-8JX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -382,7 +442,9 @@
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                             </constraint>
                             <constraint firstItem="bnn-Fx-kcR" firstAttribute="trailing" secondItem="sOs-iA-W9k" secondAttribute="trailing" constant="1" id="RP4-6G-SpS"/>
+                            <constraint firstItem="v6c-fw-LlG" firstAttribute="top" secondItem="bnn-Fx-kcR" secondAttribute="top" constant="20" id="cRb-jG-kR5"/>
                             <constraint firstItem="v8I-vn-wq5" firstAttribute="top" secondItem="sOs-iA-W9k" secondAttribute="bottom" constant="10" id="cq7-DT-Xpd"/>
+                            <constraint firstItem="v6c-fw-LlG" firstAttribute="leading" secondItem="bnn-Fx-kcR" secondAttribute="leading" constant="20" id="gPe-bN-BBC"/>
                             <constraint firstItem="sOs-iA-W9k" firstAttribute="top" secondItem="caZ-Dq-qGi" secondAttribute="bottom" constant="30" id="k9n-X8-1hr"/>
                             <constraint firstItem="bnn-Fx-kcR" firstAttribute="trailing" secondItem="BIE-jk-hbe" secondAttribute="trailing" constant="30" id="nce-N1-KzW">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
@@ -390,7 +452,7 @@
                             <constraint firstItem="BIE-jk-hbe" firstAttribute="leading" secondItem="bnn-Fx-kcR" secondAttribute="leading" constant="30" id="qpq-5W-2FE">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                             </constraint>
-                            <constraint firstItem="BIE-jk-hbe" firstAttribute="top" secondItem="bnn-Fx-kcR" secondAttribute="top" constant="30" id="ttB-dN-EP2"/>
+                            <constraint firstItem="BIE-jk-hbe" firstAttribute="top" secondItem="bnn-Fx-kcR" secondAttribute="top" constant="70" id="ttB-dN-EP2"/>
                             <constraint firstItem="bnn-Fx-kcR" firstAttribute="trailing" secondItem="caZ-Dq-qGi" secondAttribute="trailing" constant="30" id="tvA-Mo-LuX">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                             </constraint>
@@ -418,7 +480,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Email" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="snp-JO-XCk">
-                                <rect key="frame" x="30" y="74" width="354" height="33.5"/>
+                                <rect key="frame" x="30" y="114" width="354" height="33.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
                                 <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -427,7 +489,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update the email of the appointment." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khe-X8-Btd">
-                                <rect key="frame" x="30" y="127.5" width="354" height="20.5"/>
+                                <rect key="frame" x="30" y="167.5" width="354" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -436,7 +498,7 @@
                                 </variation>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="gI2-eQ-62e">
-                                <rect key="frame" x="30" y="178" width="354" height="110"/>
+                                <rect key="frame" x="30" y="218" width="354" height="110"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="2R2-LB-S5s" customClass="NovaOneTextField" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="354" height="45"/>
@@ -489,6 +551,18 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hLb-Pf-svP">
+                                <rect key="frame" x="20" y="64" width="33.5" height="33.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="33.5" id="9ik-aw-yQH"/>
+                                    <constraint firstAttribute="height" constant="33.5" id="SrP-og-ugo"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="cancelButtonBlue"/>
+                                <connections>
+                                    <action selector="cancelButtonTapped:" destination="tGH-a8-mR9" eventType="touchUpInside" id="Kxm-Q5-ce2"/>
+                                    <action selector="cancelButtonTapped:" destination="8Fv-SF-xIz" eventType="touchUpInside" id="Lw4-Tl-Foh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -496,7 +570,7 @@
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                             </constraint>
                             <constraint firstItem="khe-X8-Btd" firstAttribute="top" secondItem="snp-JO-XCk" secondAttribute="bottom" constant="20" id="7uY-CI-Kmv"/>
-                            <constraint firstItem="snp-JO-XCk" firstAttribute="top" secondItem="9wU-wN-hPh" secondAttribute="top" constant="30" id="93T-dJ-8WN"/>
+                            <constraint firstItem="snp-JO-XCk" firstAttribute="top" secondItem="9wU-wN-hPh" secondAttribute="top" constant="70" id="93T-dJ-8WN"/>
                             <constraint firstItem="khe-X8-Btd" firstAttribute="leading" secondItem="9wU-wN-hPh" secondAttribute="leading" constant="30" id="LNn-UV-lFh">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                             </constraint>
@@ -512,7 +586,9 @@
                             <constraint firstItem="9wU-wN-hPh" firstAttribute="trailing" secondItem="snp-JO-XCk" secondAttribute="trailing" constant="30" id="dwo-Ef-tVx">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                             </constraint>
+                            <constraint firstItem="hLb-Pf-svP" firstAttribute="leading" secondItem="9wU-wN-hPh" secondAttribute="leading" constant="20" id="jDE-EC-7eW"/>
                             <constraint firstItem="gI2-eQ-62e" firstAttribute="top" secondItem="khe-X8-Btd" secondAttribute="bottom" constant="30" id="kq9-nT-hZB"/>
+                            <constraint firstItem="hLb-Pf-svP" firstAttribute="top" secondItem="9wU-wN-hPh" secondAttribute="top" constant="20" id="pX4-4v-Qz4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9wU-wN-hPh"/>
                     </view>
@@ -537,7 +613,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Date Of Birth" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c8c-25-MAc">
-                                <rect key="frame" x="30" y="74" width="354" height="33.5"/>
+                                <rect key="frame" x="30" y="114" width="354" height="33.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
                                 <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -546,7 +622,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update the date of birth of the person with the appointment below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VD8-OZ-FAd">
-                                <rect key="frame" x="30" y="127.5" width="354" height="41"/>
+                                <rect key="frame" x="30" y="167.5" width="354" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -555,13 +631,13 @@
                                 </variation>
                             </label>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yEx-oy-Hjq">
-                                <rect key="frame" x="0.0" y="198.5" width="414" height="216"/>
+                                <rect key="frame" x="0.0" y="238.5" width="414" height="216"/>
                                 <date key="date" timeIntervalSinceReferenceDate="-978233777.91070998">
                                     <!--1970-01-01 20:23:42 +0000-->
                                 </date>
                             </datePicker>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sqq-Ki-Yds" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
-                                <rect key="frame" x="30" y="424.5" width="354" height="45"/>
+                                <rect key="frame" x="30" y="464.5" width="354" height="45"/>
                                 <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="4CE-CW-Ksk"/>
@@ -583,6 +659,20 @@
                                     <action selector="updateButtonTapped:" destination="LF0-mZ-JRc" eventType="touchUpInside" id="Fj7-mb-P87"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O2A-G4-ONd">
+                                <rect key="frame" x="20" y="64" width="33.5" height="33.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33.5" id="Gbw-5H-iFZ"/>
+                                    <constraint firstAttribute="width" constant="33.5" id="KpW-ik-2cJ"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="cancelButtonBlue"/>
+                                <connections>
+                                    <action selector="cancelButtonTapped:" destination="LF0-mZ-JRc" eventType="touchUpInside" id="9dE-LC-Hgy"/>
+                                    <action selector="cancelButtonTapped:" destination="Z6b-Vq-nOu" eventType="touchUpInside" id="QxM-DX-nNZ"/>
+                                    <action selector="cancelButtonTapped:" destination="8Fv-SF-xIz" eventType="touchUpInside" id="bpj-WS-gPf"/>
+                                    <action selector="cancelButtonTapped:" destination="bxO-DU-IMW" eventType="touchUpInside" id="yd4-FK-aaJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -590,11 +680,13 @@
                             <constraint firstItem="bdN-6y-ZBC" firstAttribute="trailing" secondItem="VD8-OZ-FAd" secondAttribute="trailing" constant="30" id="DET-bK-mBO">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                             </constraint>
+                            <constraint firstItem="O2A-G4-ONd" firstAttribute="leading" secondItem="bdN-6y-ZBC" secondAttribute="leading" constant="20" id="JDF-QD-Tzj"/>
                             <constraint firstItem="yEx-oy-Hjq" firstAttribute="leading" secondItem="bdN-6y-ZBC" secondAttribute="leading" id="JWe-zU-mDz"/>
                             <constraint firstItem="bdN-6y-ZBC" firstAttribute="trailing" secondItem="c8c-25-MAc" secondAttribute="trailing" constant="30" id="LDr-JP-Jqm">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                             </constraint>
                             <constraint firstItem="sqq-Ki-Yds" firstAttribute="top" secondItem="yEx-oy-Hjq" secondAttribute="bottom" constant="10" id="OQz-Ag-Mk5"/>
+                            <constraint firstItem="O2A-G4-ONd" firstAttribute="top" secondItem="bdN-6y-ZBC" secondAttribute="top" constant="20" id="R71-LU-xBN"/>
                             <constraint firstItem="sqq-Ki-Yds" firstAttribute="leading" secondItem="bdN-6y-ZBC" secondAttribute="leading" constant="30" id="Z5U-0B-8Yl">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                             </constraint>
@@ -602,7 +694,7 @@
                             <constraint firstItem="VD8-OZ-FAd" firstAttribute="leading" secondItem="bdN-6y-ZBC" secondAttribute="leading" constant="30" id="e2G-RV-HFJ">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                             </constraint>
-                            <constraint firstItem="c8c-25-MAc" firstAttribute="top" secondItem="bdN-6y-ZBC" secondAttribute="top" constant="30" id="qtf-Bk-wT3"/>
+                            <constraint firstItem="c8c-25-MAc" firstAttribute="top" secondItem="bdN-6y-ZBC" secondAttribute="top" constant="70" id="qtf-Bk-wT3"/>
                             <constraint firstItem="yEx-oy-Hjq" firstAttribute="top" secondItem="VD8-OZ-FAd" secondAttribute="bottom" constant="30" id="rWf-Z4-nIA"/>
                             <constraint firstItem="bdN-6y-ZBC" firstAttribute="trailing" secondItem="sqq-Ki-Yds" secondAttribute="trailing" constant="30" id="upB-vG-2cD">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
@@ -634,7 +726,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Test Type" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4YU-Lz-4cW">
-                                <rect key="frame" x="30" y="74" width="354" height="33.5"/>
+                                <rect key="frame" x="30" y="114" width="354" height="33.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
                                 <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -643,7 +735,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update the test type of the appointment below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i0Y-Hh-zlZ">
-                                <rect key="frame" x="30" y="127.5" width="354" height="41"/>
+                                <rect key="frame" x="30" y="167.5" width="354" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -652,7 +744,7 @@
                                 </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rhT-FV-PoS" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
-                                <rect key="frame" x="30" y="424.5" width="354" height="45"/>
+                                <rect key="frame" x="30" y="464.5" width="354" height="45"/>
                                 <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="Dx0-WF-9bZ"/>
@@ -675,16 +767,33 @@
                                 </connections>
                             </button>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SW0-AS-OIo" userLabel="Test Type Picker">
-                                <rect key="frame" x="0.0" y="198.5" width="413" height="216"/>
+                                <rect key="frame" x="0.0" y="238.5" width="413" height="216"/>
                             </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pfI-YE-Eig">
+                                <rect key="frame" x="20" y="64" width="33.5" height="33.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="33.5" id="4xS-41-Msa"/>
+                                    <constraint firstAttribute="height" constant="33.5" id="tP2-UG-hPM"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="cancelButtonBlue"/>
+                                <connections>
+                                    <action selector="cancelButtonTapped:" destination="QN6-ie-ETa" eventType="touchUpInside" id="5XB-ac-pqN"/>
+                                    <action selector="cancelButtonTapped:" destination="bxO-DU-IMW" eventType="touchUpInside" id="I6g-r7-UcR"/>
+                                    <action selector="cancelButtonTapped:" destination="Z6b-Vq-nOu" eventType="touchUpInside" id="OLg-bo-PK0"/>
+                                    <action selector="cancelButtonTapped:" destination="LF0-mZ-JRc" eventType="touchUpInside" id="ZxS-qc-X7e"/>
+                                    <action selector="cancelButtonTapped:" destination="8Fv-SF-xIz" eventType="touchUpInside" id="abm-ds-jgw"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="SW0-AS-OIo" firstAttribute="top" secondItem="i0Y-Hh-zlZ" secondAttribute="bottom" constant="30" id="Bhq-eQ-KRu"/>
+                            <constraint firstItem="pfI-YE-Eig" firstAttribute="leading" secondItem="etk-Vn-NGS" secondAttribute="leading" constant="20" id="Gkj-9t-AW6"/>
                             <constraint firstItem="etk-Vn-NGS" firstAttribute="trailing" secondItem="4YU-Lz-4cW" secondAttribute="trailing" constant="30" id="Hyd-aA-sN9">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                             </constraint>
                             <constraint firstItem="SW0-AS-OIo" firstAttribute="leading" secondItem="etk-Vn-NGS" secondAttribute="leading" id="dlv-Bg-QAw"/>
+                            <constraint firstItem="pfI-YE-Eig" firstAttribute="top" secondItem="etk-Vn-NGS" secondAttribute="top" constant="20" id="eH9-tl-T5X"/>
                             <constraint firstItem="etk-Vn-NGS" firstAttribute="trailing" secondItem="rhT-FV-PoS" secondAttribute="trailing" constant="30" id="htw-hJ-8ln">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                             </constraint>
@@ -699,7 +808,7 @@
                             <constraint firstItem="etk-Vn-NGS" firstAttribute="trailing" secondItem="i0Y-Hh-zlZ" secondAttribute="trailing" constant="30" id="rla-Ex-4jD">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                             </constraint>
-                            <constraint firstItem="4YU-Lz-4cW" firstAttribute="top" secondItem="etk-Vn-NGS" secondAttribute="top" constant="30" id="sHt-KP-nUs"/>
+                            <constraint firstItem="4YU-Lz-4cW" firstAttribute="top" secondItem="etk-Vn-NGS" secondAttribute="top" constant="70" id="sHt-KP-nUs"/>
                             <constraint firstItem="4YU-Lz-4cW" firstAttribute="leading" secondItem="etk-Vn-NGS" secondAttribute="leading" constant="30" id="wYq-4X-6Pa">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                             </constraint>
@@ -728,7 +837,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Address" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xqq-n1-OqZ">
-                                <rect key="frame" x="30" y="74" width="354" height="33.5"/>
+                                <rect key="frame" x="30" y="114" width="354" height="33.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
                                 <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -737,7 +846,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update the address of the person with the appointment below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hh3-3X-UeC">
-                                <rect key="frame" x="30" y="127.5" width="354" height="41"/>
+                                <rect key="frame" x="30" y="167.5" width="354" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -746,7 +855,7 @@
                                 </variation>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="yqR-18-4jg">
-                                <rect key="frame" x="30" y="198.5" width="354" height="110"/>
+                                <rect key="frame" x="30" y="238.5" width="354" height="110"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Address" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="0SH-bg-Fh1" customClass="NovaOneTextField" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="354" height="45"/>
@@ -800,8 +909,21 @@
                                 </subviews>
                             </stackView>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="2TZ-9p-xcf">
-                                <rect key="frame" x="0.0" y="316.5" width="414" height="545.5"/>
+                                <rect key="frame" x="0.0" y="356.5" width="414" height="505.5"/>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NhC-kq-3Ew">
+                                <rect key="frame" x="20" y="64" width="33.5" height="33.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="33.5" id="DM0-gw-ZpQ"/>
+                                    <constraint firstAttribute="height" constant="33.5" id="Ikp-X7-TdP"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="cancelButtonBlue"/>
+                                <connections>
+                                    <action selector="cancelButtonTapped:" destination="8Fv-SF-xIz" eventType="touchUpInside" id="0vS-fv-mhd"/>
+                                    <action selector="cancelButtonTapped:" destination="tGH-a8-mR9" eventType="touchUpInside" id="HA6-2f-VBR"/>
+                                    <action selector="cancelButtonTapped:" destination="yNJ-xT-syE" eventType="touchUpInside" id="rGJ-fD-iSG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -809,7 +931,8 @@
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                             </constraint>
                             <constraint firstItem="2TZ-9p-xcf" firstAttribute="trailing" secondItem="jF0-wK-LUB" secondAttribute="trailing" id="EvE-3Y-LsX"/>
-                            <constraint firstItem="xqq-n1-OqZ" firstAttribute="top" secondItem="jF0-wK-LUB" secondAttribute="top" constant="30" id="HGu-do-Kt7"/>
+                            <constraint firstItem="xqq-n1-OqZ" firstAttribute="top" secondItem="jF0-wK-LUB" secondAttribute="top" constant="70" id="HGu-do-Kt7"/>
+                            <constraint firstItem="NhC-kq-3Ew" firstAttribute="top" secondItem="jF0-wK-LUB" secondAttribute="top" constant="20" id="MdO-ue-6tW"/>
                             <constraint firstItem="yqR-18-4jg" firstAttribute="top" secondItem="Hh3-3X-UeC" secondAttribute="bottom" constant="30" id="NhX-qL-LGz"/>
                             <constraint firstItem="xqq-n1-OqZ" firstAttribute="leading" secondItem="jF0-wK-LUB" secondAttribute="leading" constant="30" id="NxO-kI-ebc">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
@@ -822,6 +945,7 @@
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                             </constraint>
                             <constraint firstItem="2TZ-9p-xcf" firstAttribute="top" secondItem="yqR-18-4jg" secondAttribute="bottom" constant="8" id="h76-20-0eS"/>
+                            <constraint firstItem="NhC-kq-3Ew" firstAttribute="leading" secondItem="jF0-wK-LUB" secondAttribute="leading" constant="20" id="hKA-yw-4hd"/>
                             <constraint firstItem="2TZ-9p-xcf" firstAttribute="bottom" secondItem="jF0-wK-LUB" secondAttribute="bottom" id="iLx-JT-01K"/>
                             <constraint firstItem="2TZ-9p-xcf" firstAttribute="leading" secondItem="jF0-wK-LUB" secondAttribute="leading" id="r1X-gu-EJE"/>
                             <constraint firstItem="Hh3-3X-UeC" firstAttribute="leading" secondItem="jF0-wK-LUB" secondAttribute="leading" constant="30" id="tdJ-1W-PDL">
@@ -855,7 +979,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Unit Type" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p4x-WW-WT7">
-                                <rect key="frame" x="30" y="74" width="354" height="33.5"/>
+                                <rect key="frame" x="30" y="114" width="354" height="33.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
                                 <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -864,7 +988,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose the unit type of the appointment below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhp-ZG-lTF">
-                                <rect key="frame" x="30" y="127.5" width="354" height="41"/>
+                                <rect key="frame" x="30" y="167.5" width="354" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -873,7 +997,7 @@
                                 </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MVO-sA-P0o" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
-                                <rect key="frame" x="30" y="424.5" width="354" height="45"/>
+                                <rect key="frame" x="30" y="464.5" width="354" height="45"/>
                                 <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="JiW-ud-DNm"/>
@@ -896,8 +1020,20 @@
                                 </connections>
                             </button>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OEA-EI-IVP" userLabel="Unit Type Picker">
-                                <rect key="frame" x="0.0" y="198.5" width="413" height="216"/>
+                                <rect key="frame" x="0.0" y="238.5" width="413" height="216"/>
                             </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FbV-5L-7Tl">
+                                <rect key="frame" x="20" y="64" width="33.5" height="33.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33.5" id="2gh-fY-0Uu"/>
+                                    <constraint firstAttribute="width" constant="33.5" id="n4S-Hr-Aud"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="cancelButtonBlue"/>
+                                <connections>
+                                    <action selector="cancelButtonTapped:" destination="jxQ-jt-t72" eventType="touchUpInside" id="0up-Bg-Gv4"/>
+                                    <action selector="cancelButtonTapped:" destination="8Fv-SF-xIz" eventType="touchUpInside" id="IxI-Uv-pe5"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -908,7 +1044,9 @@
                             <constraint firstItem="aRP-ao-66X" firstAttribute="trailing" secondItem="MVO-sA-P0o" secondAttribute="trailing" constant="30" id="EpE-0A-pm5">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                             </constraint>
+                            <constraint firstItem="FbV-5L-7Tl" firstAttribute="leading" secondItem="aRP-ao-66X" secondAttribute="leading" constant="20" id="Hq8-HE-sxA"/>
                             <constraint firstItem="MVO-sA-P0o" firstAttribute="top" secondItem="OEA-EI-IVP" secondAttribute="bottom" constant="10" id="Jcf-wI-mhb"/>
+                            <constraint firstItem="FbV-5L-7Tl" firstAttribute="top" secondItem="aRP-ao-66X" secondAttribute="top" constant="20" id="LoI-Kd-czy"/>
                             <constraint firstItem="OEA-EI-IVP" firstAttribute="leading" secondItem="aRP-ao-66X" secondAttribute="leading" id="cbQ-aY-KTL"/>
                             <constraint firstItem="p4x-WW-WT7" firstAttribute="leading" secondItem="aRP-ao-66X" secondAttribute="leading" constant="30" id="qNP-CA-KAo">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
@@ -916,7 +1054,7 @@
                             <constraint firstItem="aRP-ao-66X" firstAttribute="trailing" secondItem="uhp-ZG-lTF" secondAttribute="trailing" constant="30" id="tfQ-g7-5vW">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                             </constraint>
-                            <constraint firstItem="p4x-WW-WT7" firstAttribute="top" secondItem="aRP-ao-66X" secondAttribute="top" constant="30" id="usM-b2-MEh"/>
+                            <constraint firstItem="p4x-WW-WT7" firstAttribute="top" secondItem="aRP-ao-66X" secondAttribute="top" constant="70" id="usM-b2-MEh"/>
                             <constraint firstItem="OEA-EI-IVP" firstAttribute="top" secondItem="uhp-ZG-lTF" secondAttribute="bottom" constant="30" id="vto-qp-XVP"/>
                             <constraint firstItem="aRP-ao-66X" firstAttribute="trailing" secondItem="p4x-WW-WT7" secondAttribute="trailing" constant="30" id="wfl-gU-MMd">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
@@ -949,7 +1087,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7WV-YS-MsT">
-                                <rect key="frame" x="30" y="74" width="354" height="33.5"/>
+                                <rect key="frame" x="30" y="114" width="354" height="33.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
                                 <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -958,7 +1096,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update the name of the person with the appointment." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u9v-vA-KdP">
-                                <rect key="frame" x="30" y="127.5" width="354" height="41"/>
+                                <rect key="frame" x="30" y="167.5" width="354" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -967,7 +1105,7 @@
                                 </variation>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="cc2-y6-nIG">
-                                <rect key="frame" x="30" y="198.5" width="354" height="110"/>
+                                <rect key="frame" x="30" y="238.5" width="354" height="110"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="g2Y-cR-pAl" customClass="NovaOneTextField" customModule="NovaOne" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="354" height="45"/>
@@ -1020,6 +1158,17 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bez-sI-Zje">
+                                <rect key="frame" x="20" y="64" width="33.5" height="33.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="33.5" id="F8O-NV-l8v"/>
+                                    <constraint firstAttribute="height" constant="33.5" id="odb-eP-8nR"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="cancelButtonBlue"/>
+                                <connections>
+                                    <action selector="cancelButtonTapped:" destination="8Fv-SF-xIz" eventType="touchUpInside" id="Gf1-41-F8U"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -1029,14 +1178,16 @@
                             <constraint firstItem="cc2-y6-nIG" firstAttribute="leading" secondItem="Zzo-lS-EgU" secondAttribute="leading" constant="30" id="AqW-rk-b1g">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                             </constraint>
+                            <constraint firstItem="bez-sI-Zje" firstAttribute="leading" secondItem="Zzo-lS-EgU" secondAttribute="leading" constant="20" id="GT4-GY-dcH"/>
                             <constraint firstItem="u9v-vA-KdP" firstAttribute="leading" secondItem="Zzo-lS-EgU" secondAttribute="leading" constant="30" id="KTC-VX-coJ">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                             </constraint>
-                            <constraint firstItem="7WV-YS-MsT" firstAttribute="top" secondItem="Zzo-lS-EgU" secondAttribute="top" constant="30" id="Nus-j5-Yde"/>
+                            <constraint firstItem="7WV-YS-MsT" firstAttribute="top" secondItem="Zzo-lS-EgU" secondAttribute="top" constant="70" id="Nus-j5-Yde"/>
                             <constraint firstItem="u9v-vA-KdP" firstAttribute="top" secondItem="7WV-YS-MsT" secondAttribute="bottom" constant="20" id="Rrl-yT-xTj"/>
                             <constraint firstItem="Zzo-lS-EgU" firstAttribute="trailing" secondItem="7WV-YS-MsT" secondAttribute="trailing" constant="30" id="aCP-3H-TsZ">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                             </constraint>
+                            <constraint firstItem="bez-sI-Zje" firstAttribute="top" secondItem="Zzo-lS-EgU" secondAttribute="top" constant="20" id="brb-8D-hgt"/>
                             <constraint firstItem="Zzo-lS-EgU" firstAttribute="trailing" secondItem="u9v-vA-KdP" secondAttribute="trailing" constant="30" id="cEN-cD-lSk">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                             </constraint>
@@ -1057,7 +1208,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OoN-5F-CE6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4519" y="3969"/>
+            <point key="canvasLocation" x="4518.840579710145" y="3968.9732142857142"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yUF-7e-WHu">
@@ -1088,6 +1239,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="cancelButtonBlue" width="33.5" height="33.5"/>
         <namedColor name="textColor">
             <color red="0.2669999897480011" green="0.2669999897480011" blue="0.2669999897480011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

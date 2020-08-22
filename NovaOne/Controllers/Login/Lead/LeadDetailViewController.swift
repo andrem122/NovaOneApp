@@ -18,6 +18,7 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var objectDetailTableView: UITableView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var topView: NovaOneView!
+    var coreDataObjectId: Int32?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +29,21 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.getCoreDataObject()
+    }
+    
+    func getCoreDataObject() {
+        // Gets the coredata object by id
+        
+        // Get object from core data
+        guard let coreDataObjectId = self.coreDataObjectId else {
+            print("could not get core data object id - LeadDetailViewController")
+            return
+        }
+        let filter = NSPredicate(format: "id == %@", String(coreDataObjectId))
+        guard let coreDataLeadObject = PersistenceService.fetchEntity(Lead.self, filter: filter, sort: nil).first else { print("could not get coredata lead object - LeadDetailViewController"); return }
+        self.lead = coreDataLeadObject
+        self.setupObjectDetailCellsAndTitle()
     }
     
     func setupTopView() {
@@ -104,7 +120,7 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     // MARK: Actions
     @IBAction func deleteButtonTapped(_ sender: Any) {
         // Set text for pop up view controller
-        let title = "Delete Lead"
+        let title = "Delete?"
         let body = "Are you sure you want to delete the lead?"
         let buttonTitle = "Delete"
         
@@ -223,57 +239,65 @@ extension LeadDetailViewController {
                 
                 updateLeadNameViewController.updateCoreDataObjectId = self.lead?.id
                 updateLeadNameViewController.previousViewController = self
+                updateLeadNameViewController.modalPresentationStyle = .fullScreen
                 
-                self.navigationController?.pushViewController(updateLeadNameViewController, animated: true)
+                self.present(updateLeadNameViewController, animated: true)
             case .email:
                 guard let updateLeadEmailViewController = updateLeadStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateLeadEmail.rawValue) as? UpdateLeadEmailViewController else { return }
                 
                 updateLeadEmailViewController.updateCoreDataObjectId = self.lead?.id
                 updateLeadEmailViewController.previousViewController = self
+                updateLeadEmailViewController.modalPresentationStyle = .fullScreen
                 
-                self.navigationController?.pushViewController(updateLeadEmailViewController, animated: true)
+                self.present(updateLeadEmailViewController, animated: true)
             case .phoneNumber:
                 guard let updateLeadPhoneViewController = updateLeadStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateLeadPhone.rawValue) as? UpdateLeadPhoneViewController else { return }
                 
                 updateLeadPhoneViewController.updateCoreDataObjectId = self.lead?.id
                 updateLeadPhoneViewController.previousViewController = self
+                updateLeadPhoneViewController.modalPresentationStyle = .fullScreen
                 
-                self.navigationController?.pushViewController(updateLeadPhoneViewController, animated: true)
+                self.present(updateLeadPhoneViewController, animated: true)
             case .dateOfInquiry:
                 guard let updateLeadDateOfInquiryViewController = updateLeadStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateLeadDateOfInquiry.rawValue) as? UpdateLeadDateOfInquiryViewController else { return }
                 
                 updateLeadDateOfInquiryViewController.updateCoreDataObjectId = self.lead?.id
                 updateLeadDateOfInquiryViewController.previousViewController = self
+                updateLeadDateOfInquiryViewController.modalPresentationStyle = .fullScreen
                 
-                self.navigationController?.pushViewController(updateLeadDateOfInquiryViewController, animated: true)
+                self.present(updateLeadDateOfInquiryViewController, animated: true)
             case .sentTextDate:
                 guard let updateLeadSentTextDateViewController = updateLeadStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateLeadSentTextDate.rawValue) as? UpdateLeadSentTextDateViewController else { return }
                 
                 updateLeadSentTextDateViewController.updateCoreDataObjectId = self.lead?.id
                 updateLeadSentTextDateViewController.previousViewController = self
+                updateLeadSentTextDateViewController.modalPresentationStyle = .fullScreen
                 
-                self.navigationController?.pushViewController(updateLeadSentTextDateViewController, animated: true)
+                self.present(updateLeadSentTextDateViewController, animated: true)
             case .sentEmailDate:
                 guard let updateLeadSentEmailDateViewController = updateLeadStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateLeadSentEmailDate.rawValue) as? UpdateLeadSentEmailDateViewController else { return }
                 
                 updateLeadSentEmailDateViewController.updateCoreDataObjectId = self.lead?.id
                 updateLeadSentEmailDateViewController.previousViewController = self
+                updateLeadSentEmailDateViewController.modalPresentationStyle = .fullScreen
                 
-                self.navigationController?.pushViewController(updateLeadSentEmailDateViewController, animated: true)
+                self.present(updateLeadSentEmailDateViewController, animated: true)
             case .companyName:
                 guard let updateLeadCompanyViewController = updateLeadStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateLeadCompany.rawValue) as? UpdateLeadCompanyViewController else { return }
                 
                 updateLeadCompanyViewController.updateCoreDataObjectId = self.lead?.id
                 updateLeadCompanyViewController.previousViewController = self
+                updateLeadCompanyViewController.modalPresentationStyle = .fullScreen
                 
-                self.navigationController?.pushViewController(updateLeadCompanyViewController, animated: true)
+                self.present(updateLeadCompanyViewController, animated: true)
             case .renterBrand:
                 guard let updateLeadRenterViewController = updateLeadStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateLeadRenterBrand.rawValue) as? UpdateLeadRenterBrandViewController else { return }
                 
                 updateLeadRenterViewController.updateCoreDataObjectId = self.lead?.id
                 updateLeadRenterViewController.previousViewController = self
+                updateLeadRenterViewController.modalPresentationStyle = .fullScreen
                 
-                self.navigationController?.pushViewController(updateLeadRenterViewController, animated: true)
+                self.present(updateLeadRenterViewController, animated: true)
             default:
                 print("No cases matched")
         }

@@ -10,6 +10,7 @@ import Foundation
 import MessageUI
 
 class ContactHelper: UIViewController, MFMailComposeViewControllerDelegate {
+    // A helper class for contacting activities
     
     func sendEmail(email: String, present from: UIViewController) {
         // Opens an email sender for the person to send an email
@@ -17,7 +18,6 @@ class ContactHelper: UIViewController, MFMailComposeViewControllerDelegate {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
             mail.setToRecipients([email])
-            mail.setMessageBody("<p>You're so awesome!</p>", isHTML: true)
 
             from.present(mail, animated: true)
         } else {

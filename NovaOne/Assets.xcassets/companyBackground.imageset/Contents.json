@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "gpsMap.png",
+      "filename" : "companyBackground.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "gpsMap@2x.png",
+      "filename" : "companyBackground@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "gpsMap@3x.png",
+      "filename" : "companyBackground@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

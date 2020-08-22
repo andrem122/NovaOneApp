@@ -51,9 +51,9 @@ class UpdateCompanyEmailViewController: UpdateBaseViewController {
                let predicate = NSPredicate(format: "id == %@", String(objectId))
                guard let updatedCompany = PersistenceService.fetchEntity(Company.self, filter: predicate, sort: nil).first else { return }
                
-               detailViewController.company = updatedCompany
-               detailViewController.setupCompanyCellsAndTitle()
-               detailViewController.objectDetailTableView.reloadData()
+            detailViewController.coreDataObjectId = updatedCompany.id
+            detailViewController.setupObjectDetailCellsAndTitle()
+            detailViewController.objectDetailTableView.reloadData()
            }
            
             self.updateObject(for: Defaults.DataBaseTableNames.company.rawValue, at: ["email": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Company.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Company email has been successfully updated.", successDoneHandler: successDoneHandler, completion: nil)

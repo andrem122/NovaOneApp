@@ -12,6 +12,7 @@ import CoreData
 
 class CompaniesTableViewController: UITableViewController, NovaOneTableView {
     
+    
         // MARK: Properties
     var timer: Timer?
     var parentViewContainerController: UIViewController?
@@ -30,6 +31,7 @@ class CompaniesTableViewController: UITableViewController, NovaOneTableView {
         refreshControl.addTarget(self, action: #selector(self.refreshDataOnPullDown), for: .valueChanged)
         return refreshControl
     }()
+    var itemSelectedIndex: Int = 0
         
     // MARK: Methods
     override func viewDidLoad() {
@@ -70,21 +72,21 @@ class CompaniesTableViewController: UITableViewController, NovaOneTableView {
         // Show first object details in the detail view controller
         DispatchQueue.main.async {
             [weak self] in
-            if self?.didSetFirstItem == false {
-                guard
-                    let detailNavigationController = self?.storyboard?.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.companyDetail.rawValue) as? UINavigationController,
-                    let detailViewController = detailNavigationController.viewControllers.first as? CompanyDetailViewController,
-                    let company = self?.filteredObjects.first as? Company
-                else { return }
-                
-                detailViewController.company = company
-                detailViewController.previousViewController = self
-                detailViewController.navigationItem.leftBarButtonItem = self?.splitViewController?.displayModeButtonItem
-                detailViewController.navigationItem.leftItemsSupplementBackButton = true
-                
-                self?.splitViewController?.showDetailViewController(detailNavigationController, sender: nil)
-                self?.didSetFirstItem = true // Set to true so it does not run again in viewDidAppear
-            }
+            print("Setting item in table view for detail view - CompaniesTableViewController")
+            guard
+                let detailNavigationController = self?.storyboard?.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.companyDetail.rawValue) as? UINavigationController,
+                let detailViewController = detailNavigationController.viewControllers.first as? CompanyDetailViewController,
+                let itemSelectedIndex = self?.itemSelectedIndex,
+                let company = self?.filteredObjects[itemSelectedIndex] as? Company
+            else { return }
+            
+            detailViewController.coreDataObjectId = company.id
+            detailViewController.previousViewController = self
+            detailViewController.navigationItem.leftBarButtonItem = self?.splitViewController?.displayModeButtonItem
+            detailViewController.navigationItem.leftItemsSupplementBackButton = true
+            
+            self?.splitViewController?.showDetailViewController(detailNavigationController, sender: nil)
+            self?.didSetFirstItem = true // Set to true so it does not run again in viewDidAppear
         }
     }
     
@@ -357,7 +359,7 @@ class CompaniesTableViewController: UITableViewController, NovaOneTableView {
                 let company = self.filteredObjects[indexPath.row] as? Company
             else { return }
             
-            detailViewController.company = company
+            detailViewController.coreDataObjectId = company.id
             detailViewController.previousViewController = self
             
             detailViewController.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
@@ -424,6 +426,7 @@ extension CompaniesTableViewController: UISearchResultsUpdating, SkeletonTableVi
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true) // Deselect the row after it is tapped on
+        self.itemSelectedIndex = indexPath.row // Keep track of the selected item on the detail view controller
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

@@ -31,6 +31,7 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
         return refreshControl
     }()
     let contactHelper = ContactHelper()
+    var itemSelectedIndex: Int = 0
         
     // MARK: Methods
     override func viewDidLoad() {
@@ -71,21 +72,21 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
         // Show first object details in the detail view controller
         DispatchQueue.main.async {
             [weak self] in
-            if self?.didSetFirstItem == false {
-                guard
-                    let detailNavigationController = self?.storyboard?.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.leadDetail.rawValue) as? UINavigationController,
-                    let detailViewController = detailNavigationController.viewControllers.first as? LeadDetailViewController,
-                    let lead = self?.filteredObjects.first as? Lead
-                else { return }
-                
-                detailViewController.lead = lead
-                detailViewController.previousViewController = self
-                detailViewController.navigationItem.leftBarButtonItem = self?.splitViewController?.displayModeButtonItem
-                detailViewController.navigationItem.leftItemsSupplementBackButton = true
-                
-                self?.splitViewController?.showDetailViewController(detailNavigationController, sender: nil)
-                self?.didSetFirstItem = true // Set to true so it does not run again in viewDidAppear
-            }
+            print("Setting first item in table view for detail view - LeadsTableViewController")
+            guard
+                let detailNavigationController = self?.storyboard?.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.leadDetail.rawValue) as? UINavigationController,
+                let detailViewController = detailNavigationController.viewControllers.first as? LeadDetailViewController,
+                let itemSelectedIndex = self?.itemSelectedIndex,
+                let lead = self?.filteredObjects[itemSelectedIndex] as? Lead
+            else { return }
+            
+            detailViewController.coreDataObjectId = lead.id
+            detailViewController.previousViewController = self
+            detailViewController.navigationItem.leftBarButtonItem = self?.splitViewController?.displayModeButtonItem
+            detailViewController.navigationItem.leftItemsSupplementBackButton = true
+            
+            self?.splitViewController?.showDetailViewController(detailNavigationController, sender: nil)
+            self?.didSetFirstItem = true // Set to true so it does not run again in viewDidAppear
         }
     }
     
@@ -342,7 +343,7 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
                 let lead = self.filteredObjects[indexPath.row] as? Lead
             else { return }
             
-            detailViewController.lead = lead
+            detailViewController.coreDataObjectId = lead.id
             detailViewController.previousViewController = self
             
             detailViewController.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
@@ -407,6 +408,7 @@ extension LeadsTableViewController: UISearchResultsUpdating, SkeletonTableViewDa
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true) // Deselect the row after it is tapped on
+        self.itemSelectedIndex = indexPath.row
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

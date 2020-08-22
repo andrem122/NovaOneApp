@@ -118,7 +118,7 @@ class UpdateAppointmentAddressViewController: UpdateBaseViewController, AddAddre
                 let predicate = NSPredicate(format: "id == %@", String(objectId))
                 guard let updatedAppointment = PersistenceService.fetchEntity(Appointment.self, filter: predicate, sort: nil).first else { return }
                 
-                detailViewController.appointment = updatedAppointment
+                detailViewController.coreDataObjectId = updatedAppointment.id
                 detailViewController.setupObjectDetailCellsAndTitle()
                 detailViewController.objectDetailTableView.reloadData()
             }

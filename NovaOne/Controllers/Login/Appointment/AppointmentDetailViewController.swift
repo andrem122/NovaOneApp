@@ -18,6 +18,7 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
     var alertService: AlertService = AlertService()
     var previousViewController: UIViewController?
     var appointment: Appointment?
+    var coreDataObjectId: Int32?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +30,21 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.getCoreDataObject()
+    }
+    
+    func getCoreDataObject() {
+        // Gets the coredata object by id
+        
+        // Get object from core data
+        guard let coreDataObjectId = self.coreDataObjectId else {
+            print("could not get core data object id - AppointmentDetailViewController")
+            return
+        }
+        let filter = NSPredicate(format: "id == %@", String(coreDataObjectId))
+        guard let coreDataAppointmentObject = PersistenceService.fetchEntity(Appointment.self, filter: filter, sort: nil).first else { print("could not get coredata appointment object - AppointmentDetailViewController"); return }
+        self.appointment = coreDataAppointmentObject
+        self.setupObjectDetailCellsAndTitle()
     }
     
     func setupNavigationBar() {
@@ -114,7 +130,7 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
     // MARK: Actions
     @IBAction func deleteButtonTapped(_ sender: Any) {
         // Set text for pop up view controller
-        let title = "Delete Appointment"
+        let title = "Delete?"
         let body = "Are you sure you want to delete the appointment?"
         let buttonTitle = "Delete"
         
@@ -238,8 +254,9 @@ extension AppointmentDetailViewController {
                         
                         updateAppointmentNameViewController.updateCoreDataObjectId = self.appointment?.id
                         updateAppointmentNameViewController.previousViewController = self
+                        updateAppointmentNameViewController.modalPresentationStyle = .fullScreen
                         
-                        self.navigationController?.pushViewController(updateAppointmentNameViewController, animated: true)
+                        self.present(updateAppointmentNameViewController, animated: true, completion: nil)
                         
                     }
                 case .email:
@@ -247,8 +264,9 @@ extension AppointmentDetailViewController {
                             
                             updateAppointmentEmailViewController.updateCoreDataObjectId = self.appointment?.id
                             updateAppointmentEmailViewController.previousViewController = self
+                            updateAppointmentEmailViewController.modalPresentationStyle = .fullScreen
                             
-                            self.navigationController?.pushViewController(updateAppointmentEmailViewController, animated: true)
+                            self.present(updateAppointmentEmailViewController, animated: true, completion: nil)
                             
                         }
                     
@@ -257,8 +275,9 @@ extension AppointmentDetailViewController {
                             
                             updateAppointmentPhoneViewController.updateCoreDataObjectId = self.appointment?.id
                             updateAppointmentPhoneViewController.previousViewController = self
+                            updateAppointmentPhoneViewController.modalPresentationStyle = .fullScreen
                             
-                            self.navigationController?.pushViewController(updateAppointmentPhoneViewController, animated: true)
+                            self.present(updateAppointmentPhoneViewController, animated: true, completion: nil)
                             
                         }
                     
@@ -267,8 +286,9 @@ extension AppointmentDetailViewController {
                             
                             updateAppointmentTimeViewController.updateCoreDataObjectId = self.appointment?.id
                             updateAppointmentTimeViewController.previousViewController = self
+                            updateAppointmentTimeViewController.modalPresentationStyle = .fullScreen
                             
-                            self.navigationController?.pushViewController(updateAppointmentTimeViewController, animated: true)
+                            self.present(updateAppointmentTimeViewController, animated: true, completion: nil)
                             
                         }
                     
@@ -277,8 +297,9 @@ extension AppointmentDetailViewController {
                             
                             updateAppointmentStatusViewController.updateCoreDataObjectId = self.appointment?.id
                             updateAppointmentStatusViewController.previousViewController = self
+                            updateAppointmentStatusViewController.modalPresentationStyle = .fullScreen
                             
-                            self.navigationController?.pushViewController(updateAppointmentStatusViewController, animated: true)
+                            self.present(updateAppointmentStatusViewController, animated: true, completion: nil)
                             
                         }
                     
@@ -287,8 +308,9 @@ extension AppointmentDetailViewController {
                             
                             updateAppointmentDateOfBirthViewController.updateCoreDataObjectId = self.appointment?.id
                             updateAppointmentDateOfBirthViewController.previousViewController = self
+                            updateAppointmentDateOfBirthViewController.modalPresentationStyle = .fullScreen
                             
-                            self.navigationController?.pushViewController(updateAppointmentDateOfBirthViewController, animated: true)
+                            self.present(updateAppointmentDateOfBirthViewController, animated: true, completion: nil)
                             
                         }
                     
@@ -297,8 +319,9 @@ extension AppointmentDetailViewController {
                             
                             updateAppointmentUnitTypeViewController.updateCoreDataObjectId = self.appointment?.id
                             updateAppointmentUnitTypeViewController.previousViewController = self
+                            updateAppointmentUnitTypeViewController.modalPresentationStyle = .fullScreen
                             
-                            self.navigationController?.pushViewController(updateAppointmentUnitTypeViewController, animated: true)
+                            self.present(updateAppointmentUnitTypeViewController, animated: true, completion: nil)
                             
                         }
                     
@@ -307,8 +330,9 @@ extension AppointmentDetailViewController {
                             
                             updateAppointmentTestTypeViewController.updateCoreDataObjectId = self.appointment?.id
                             updateAppointmentTestTypeViewController.previousViewController = self
+                            updateAppointmentTestTypeViewController.modalPresentationStyle = .fullScreen
                             
-                            self.navigationController?.pushViewController(updateAppointmentTestTypeViewController, animated: true)
+                            self.present(updateAppointmentTestTypeViewController, animated: true, completion: nil)
                             
                         }
                     
@@ -317,8 +341,9 @@ extension AppointmentDetailViewController {
                             
                             updateAppointmentGenderViewController.updateCoreDataObjectId = self.appointment?.id
                             updateAppointmentGenderViewController.previousViewController = self
+                            updateAppointmentGenderViewController.modalPresentationStyle = .fullScreen
                             
-                            self.navigationController?.pushViewController(updateAppointmentGenderViewController, animated: true)
+                            self.present(updateAppointmentGenderViewController, animated: true, completion: nil)
                             
                         }
                     
@@ -327,8 +352,9 @@ extension AppointmentDetailViewController {
                             
                             updateAppointmentAddressViewController.updateCoreDataObjectId = self.appointment?.id
                             updateAppointmentAddressViewController.previousViewController = self
+                            updateAppointmentAddressViewController.modalPresentationStyle = .fullScreen
                             
-                            self.navigationController?.pushViewController(updateAppointmentAddressViewController, animated: true)
+                            self.present(updateAppointmentAddressViewController, animated: true, completion: nil)
                             
                         }
                     

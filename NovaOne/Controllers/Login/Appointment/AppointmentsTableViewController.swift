@@ -31,6 +31,7 @@ class AppointmentsTableViewController: UITableViewController, NovaOneTableView {
         refreshControl.addTarget(self, action: #selector(self.refreshDataOnPullDown), for: .valueChanged)
         return refreshControl
     }()
+    var itemSelectedIndex: Int = 0
         
     // MARK: Methods
     override func viewDidLoad() {
@@ -71,21 +72,21 @@ class AppointmentsTableViewController: UITableViewController, NovaOneTableView {
         // Show first object details in the detail view controller
         DispatchQueue.main.async {
             [weak self] in
-            if self?.didSetFirstItem == false {
-                guard
-                    let detailNavigationController = self?.storyboard?.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.appointmentDetail.rawValue) as? UINavigationController,
-                    let detailViewController = detailNavigationController.viewControllers.first as? AppointmentDetailViewController,
-                    let appointment = self?.filteredObjects.first as? Appointment
-                else { return }
-                
-                detailViewController.appointment = appointment
-                detailViewController.previousViewController = self
-                detailViewController.navigationItem.leftBarButtonItem = self?.splitViewController?.displayModeButtonItem
-                detailViewController.navigationItem.leftItemsSupplementBackButton = true
-                
-                self?.splitViewController?.showDetailViewController(detailNavigationController, sender: nil)
-                self?.didSetFirstItem = true // Set to true so it does not run again in viewDidAppear
-            }
+            print("Setting first item in table view for detail view - AppointmentsTableViewController")
+            guard
+                let detailNavigationController = self?.storyboard?.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.appointmentDetail.rawValue) as? UINavigationController,
+                let itemSelectedIndex = self?.itemSelectedIndex,
+                let detailViewController = detailNavigationController.viewControllers.first as? AppointmentDetailViewController,
+                let appointment = self?.filteredObjects[itemSelectedIndex] as? Appointment
+            else { return }
+            
+            detailViewController.coreDataObjectId = appointment.id
+            detailViewController.previousViewController = self
+            detailViewController.navigationItem.leftBarButtonItem = self?.splitViewController?.displayModeButtonItem
+            detailViewController.navigationItem.leftItemsSupplementBackButton = true
+            
+            self?.splitViewController?.showDetailViewController(detailNavigationController, sender: nil)
+            self?.didSetFirstItem = true // Set to true so it does not run again in viewDidAppear
         }
     }
     
@@ -343,7 +344,7 @@ class AppointmentsTableViewController: UITableViewController, NovaOneTableView {
                 let appointment = self.filteredObjects[indexPath.row] as? Appointment
             else { return }
             
-            detailViewController.appointment = appointment
+            detailViewController.coreDataObjectId = appointment.id
             detailViewController.previousViewController = self
             
             detailViewController.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
@@ -404,7 +405,8 @@ extension AppointmentsTableViewController: UISearchResultsUpdating, SkeletonTabl
     }
        
        override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-           tableView.deselectRow(at: indexPath, animated: true) // Deselect the row after it is tapped on
+        tableView.deselectRow(at: indexPath, animated: true) // Deselect the row after it is tapped on
+        self.itemSelectedIndex = indexPath.row
        }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

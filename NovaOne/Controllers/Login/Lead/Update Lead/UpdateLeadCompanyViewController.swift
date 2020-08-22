@@ -74,7 +74,7 @@ class UpdateLeadCompanyViewController: UpdateBaseViewController, UITableViewDele
             
             self.updateObject(for: Defaults.DataBaseTableNames.leads.rawValue, at: ["company_id": updatedCompanyId], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Lead.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Company has been successfully updated.", successDoneHandler: successDoneHandler, completion: nil)
         } else {
-            let popUpOkViewController = self.alertService.popUpOk(title: "Select A Company", body: "Please select a company.")
+            let popUpOkViewController = self.alertService.popUpOk(title: "Select Company", body: "Please select a company.")
             self.present(popUpOkViewController, animated: true, completion: nil)
         }
     }

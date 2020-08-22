@@ -15,4 +15,8 @@ protocol NovaOneObjectDetail {
     var objectDetailTableView: UITableView! { get }
     var alertService: AlertService { get set }
     var previousViewController: UIViewController? { get set }
+    var coreDataObjectId: Int32? { get set }
+    
+    // Methods
+    func getCoreDataObject()
 }

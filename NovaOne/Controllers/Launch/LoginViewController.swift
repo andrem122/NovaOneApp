@@ -9,6 +9,7 @@
 import UIKit
 import LocalAuthentication
 import CoreData
+import SafariServices
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
@@ -304,6 +305,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         // Remove the modal popup view on touch of the cancel 'x' button
         self.presentingViewController?.dismiss(animated: true, completion: nil)
         
+    }
+    
+    // Forgot username passoword tapped
+    @IBAction func forgotButtonTapped(_ sender: Any) {
+        // Open forgot password web page
+        guard let url = URL(string: Defaults.Urls.forgotPasswordOrEmail.rawValue) else { return }
+        let webViewController = SFSafariViewController(url: url)
+        self.present(webViewController, animated: true, completion: nil)
     }
     
     // Login button touched

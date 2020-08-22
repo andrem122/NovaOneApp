@@ -66,7 +66,7 @@ class AddAppointmentCompanyViewController: AddAppointmentBaseViewController, UIT
             
             self.navigationController?.pushViewController(addAppointmentNameViewController, animated: true)
         } else {
-            let popUpOkViewController = self.alertService.popUpOk(title: "Select A Company", body: "Please select a company.")
+            let popUpOkViewController = self.alertService.popUpOk(title: "Select Company", body: "Please select a company.")
             self.present(popUpOkViewController, animated: true, completion: nil)
         }
     }

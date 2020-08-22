@@ -97,8 +97,8 @@ class UpdateCompanyDaysEnabledViewController: UpdateBaseViewController, UITableV
                 let predicate = NSPredicate(format: "id == %@", String(objectId))
                 guard let updatedCompany = PersistenceService.fetchEntity(Company.self, filter: predicate, sort: nil).first else { print("error getting updated company"); return }
                 
-                detailViewController.company = updatedCompany
-                detailViewController.setupCompanyCellsAndTitle()
+                detailViewController.coreDataObjectId = updatedCompany.id
+                detailViewController.setupObjectDetailCellsAndTitle()
                 detailViewController.objectDetailTableView.reloadData()
             }
             

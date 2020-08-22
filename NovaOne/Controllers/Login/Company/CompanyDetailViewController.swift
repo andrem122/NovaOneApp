@@ -19,8 +19,28 @@ class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITabl
     var company: Company?
     var alertService = AlertService()
     var previousViewController: UIViewController?
+    var coreDataObjectId: Int32?
     
     // MARK: Methods
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.getCoreDataObject()
+    }
+    
+    func getCoreDataObject() {
+        // Gets the coredata object by id
+        
+        // Get object from core data
+        guard let coreDataObjectId = self.coreDataObjectId else {
+            print("could not get core data object id - CompanyDetailViewController")
+            return
+        }
+        let filter = NSPredicate(format: "id == %@", String(coreDataObjectId))
+        guard let coreDataCompanyObject = PersistenceService.fetchEntity(Company.self, filter: filter, sort: nil).first else { print("could not get coredata company object - CompanyDetailViewController"); return }
+        self.company = coreDataCompanyObject
+        self.setupObjectDetailCellsAndTitle()
+    }
+    
     func setupTableView() {
         self.objectDetailTableView.rowHeight = 44
         self.objectDetailTableView.delegate = self
@@ -34,10 +54,9 @@ class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITabl
         self.topView.layer.maskedCorners = [.layerMinXMaxYCorner]
     }
     
-    func setupCompanyCellsAndTitle() {
+    func setupObjectDetailCellsAndTitle() {
         // Sets up the cell properties for each company cell and title for the view
         // Title
-        print("Setting up company cells and title")
         guard
             let company = self.company,
             let name = company.name,
@@ -45,8 +64,6 @@ class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITabl
             let email = company.email,
             let address = company.shortenedAddress
         else { return }
-        
-        print("COMPANY ADDRESS: \(address)")
         
         self.titleLabel.text = name
         let autoRespondNumber = company.autoRespondNumber != nil ? company.autoRespondNumber! : "No Auto Respond"
@@ -82,7 +99,7 @@ class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITabl
         self.setupTableView()
         self.setupTopView()
         self.setupNavigationBackButton()
-        self.setupCompanyCellsAndTitle()
+        self.setupObjectDetailCellsAndTitle()
     }
     
     // MARK: Actions
@@ -95,7 +112,7 @@ class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITabl
             self.present(popUpOkViewController, animated: true, completion: nil)
         } else {
             // Set text for pop up view controller
-            let title = "Delete Company"
+            let title = "Delete?"
             let body = "Are you sure you want to delete the company? This will delete all lead and appointment data with the company as well."
             let buttonTitle = "Delete"
             
@@ -217,8 +234,9 @@ extension CompanyDetailViewController {
                     
                     updateCompanyAddressViewController.updateCoreDataObjectId = self.company?.id
                     updateCompanyAddressViewController.previousViewController = self
+                    updateCompanyAddressViewController.modalPresentationStyle = .fullScreen
                     
-                    self.navigationController?.pushViewController(updateCompanyAddressViewController, animated: true)
+                    self.present(updateCompanyAddressViewController, animated: true, completion: nil)
                     
                 }
                     
@@ -227,8 +245,9 @@ extension CompanyDetailViewController {
                         
                         updateCompanyPhoneViewController.updateCoreDataObjectId = self.company?.id
                         updateCompanyPhoneViewController.previousViewController = self
+                        updateCompanyPhoneViewController.modalPresentationStyle = .fullScreen
                         
-                        self.navigationController?.pushViewController(updateCompanyPhoneViewController, animated: true)
+                        self.present(updateCompanyPhoneViewController, animated: true, completion: nil)
                         
                     }
                     
@@ -237,8 +256,9 @@ extension CompanyDetailViewController {
                         
                         updateCompanyNameViewController.updateCoreDataObjectId = self.company?.id
                         updateCompanyNameViewController.previousViewController = self
+                        updateCompanyNameViewController.modalPresentationStyle = .fullScreen
                         
-                        self.navigationController?.pushViewController(updateCompanyNameViewController, animated: true)
+                        self.present(updateCompanyNameViewController, animated: true, completion: nil)
                         
                     }
                     
@@ -247,8 +267,9 @@ extension CompanyDetailViewController {
                         
                         updateCompanyEmailViewController.updateCoreDataObjectId = self.company?.id
                         updateCompanyEmailViewController.previousViewController = self
+                        updateCompanyEmailViewController.modalPresentationStyle = .fullScreen
                         
-                        self.navigationController?.pushViewController(updateCompanyEmailViewController, animated: true)
+                        self.present(updateCompanyEmailViewController, animated: true, completion: nil)
                         
                     }
                     
@@ -258,8 +279,9 @@ extension CompanyDetailViewController {
                         updateCompanyDaysEnabledViewController.company = company
                         updateCompanyDaysEnabledViewController.updateCoreDataObjectId = self.company?.id
                         updateCompanyDaysEnabledViewController.previousViewController = self
+                        updateCompanyDaysEnabledViewController.modalPresentationStyle = .fullScreen
                         
-                        self.navigationController?.pushViewController(updateCompanyDaysEnabledViewController, animated: true)
+                        self.present(updateCompanyDaysEnabledViewController, animated: true, completion: nil)
                         
                     }
                     
@@ -269,8 +291,9 @@ extension CompanyDetailViewController {
                         updateCompanyHoursEnabledViewController.updateCoreDataObjectId = self.company?.id
                         updateCompanyHoursEnabledViewController.previousViewController = self
                         updateCompanyHoursEnabledViewController.company = self.company
+                        updateCompanyHoursEnabledViewController.modalPresentationStyle = .fullScreen
                         
-                        self.navigationController?.pushViewController(updateCompanyHoursEnabledViewController, animated: true)
+                        self.present(updateCompanyHoursEnabledViewController, animated: true, completion: nil)
                         
                     }
                     
@@ -278,11 +301,12 @@ extension CompanyDetailViewController {
                     guard
                         let companyId = self.company?.id
                     else { return }
-                    UIPasteboard.general.string = Defaults.Urls.novaOneWebsite.rawValue + "/appointments/new?c=\(companyId)"
+                    let appointmentLink = Defaults.Urls.novaOneWebsite.rawValue + "/appointments/new?c=\(companyId)"
                     
-                    // Show popup confirming that text has been copied
-                    let popUpOkViewController = self.alertService.popUpOk(title: "Text Copied!", body: "Appointment link has been copied to clipboard successfully.")
-                    self.present(popUpOkViewController, animated: true, completion: nil)
+                    // Open appointment link web page
+                    guard let url = URL(string: appointmentLink) else { return }
+                    let webViewController = SFSafariViewController(url: url)
+                    self.present(webViewController, animated: true, completion: nil)
                     
                 case .autoRespondNumber:
                     guard
@@ -303,8 +327,9 @@ extension CompanyDetailViewController {
                         updateCompanyAutoRespondTextViewController.updateCoreDataObjectId = self.company?.id
                         updateCompanyAutoRespondTextViewController.previousViewController = self
                         updateCompanyAutoRespondTextViewController.autoRespondText = autoRespondText
+                        updateCompanyAutoRespondTextViewController.modalPresentationStyle = .fullScreen
                         
-                        self.navigationController?.pushViewController(updateCompanyAutoRespondTextViewController, animated: true)
+                        self.present(updateCompanyAutoRespondTextViewController, animated: true, completion: nil)
                         
                     }
                 

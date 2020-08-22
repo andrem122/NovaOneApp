@@ -16,6 +16,16 @@ class UpdateBaseViewController: UIViewController, UITextFieldDelegate {
     var updateCoreDataObjectId: Int32? // Id of the core data object we want to update
     let alertService = AlertService()
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        AppUtility.lockOrientation(.portrait, andRotateTo: .portrait) // Lock orientation to potrait
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        AppUtility.lockOrientation(.all)
+    }
+    
     func updateObject<T: NSManagedObject>(for tableName: String,
                                           at columns: [String: Any],
                                           endpoint: String,
@@ -61,6 +71,7 @@ class UpdateBaseViewController: UIViewController, UITextFieldDelegate {
                     
                     // Show success view controller if success sub title is not nil
                     if let subtitle = successSubtitle {
+                        
                         let popupStoryboard = UIStoryboard(name: Defaults.StoryBoards.popups.rawValue, bundle: .main)
                         guard let successViewController = popupStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.success.rawValue) as? SuccessViewController else { print("could not get success view controller - UpdateBaseViewController"); return }
                         
@@ -68,13 +79,35 @@ class UpdateBaseViewController: UIViewController, UITextFieldDelegate {
                         successViewController.subtitleText = subtitle
                         successViewController.doneHandler = successDoneHandler
                         
-                        self?.present(successViewController, animated: true, completion: {
-                            [weak self] in
-                            self?.removeSpinner(spinnerView: spinnerView)
-                        })
+                        guard let previousViewController = self?.previousViewController else { print("could not get previous view controller - UpdateBaseViewController"); return }
                         
-                        // Remove the update view controller
-                        self?.navigationController?.popViewController(animated: true)
+                        // Dismiss update view controller and present success view controller after
+                        if let objectDetailViewController = previousViewController as? NovaOneObjectDetail {
+                            // For detail view controllers
+                            guard let tableViewController = objectDetailViewController.previousViewController else { return }
+                            
+                            // Remove update view controller
+                            tableViewController.dismiss(animated: false, completion: {
+                                // Do not have to remove spinner view after dismissing update view because when the update
+                                // view is dismissed it removes the spinner view
+                                tableViewController.present(successViewController, animated: true, completion: nil)
+                                
+                                guard let sizeClass = self?.getSizeClass() else { return }
+                                if sizeClass == (.regular, .compact) || sizeClass == (.regular, .regular) || sizeClass == (.regular, .unspecified) {
+                                    guard let novaOneTableView = tableViewController as? NovaOneTableView else { return }
+                                    novaOneTableView.didSetFirstItem = false // Set equal to false so the table view controller will set the first item in the detail view again with fresh properties, so we don't get update errors
+                                    novaOneTableView.setFirstItemForDetailView()
+                                }
+                                
+                            })
+                        } else {
+                            // For updates coming from the account table view controller
+                            previousViewController.present(successViewController, animated: true, completion: {
+                                [weak self] in
+                                self?.navigationController?.popViewController(animated: true)
+                            })
+                        }
+                        
                     }
                 
                 case .failure(let error):
@@ -101,5 +134,10 @@ class UpdateBaseViewController: UIViewController, UITextFieldDelegate {
         // Setup the text field
         textField.delegate = self
     }
-
+    
+    // MARK: Actions
+    @IBAction func cancelButtonTapped(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 }

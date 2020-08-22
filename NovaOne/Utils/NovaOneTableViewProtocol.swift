@@ -24,6 +24,7 @@ protocol NovaOneTableView: class {
     var searchController: UISearchController! { get set }
     var alertService: AlertService { get set }
     var refresher: UIRefreshControl { get set }
+    var itemSelectedIndex: Int { get set } // The index of the item that is selected for view in the detail view controller
     
     // MARK: Methods
     

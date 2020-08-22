@@ -342,7 +342,7 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         </variation>
                                         <connections>
-                                            <segue destination="T1A-G4-xJU" kind="showDetail" id="jsC-1q-La9"/>
+                                            <action selector="forgotButtonTapped:" destination="00c-Xy-omL" eventType="touchUpInside" id="na9-Vi-v6V"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -425,123 +425,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jWD-Lq-b5c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-874" y="960"/>
-        </scene>
-        <!--Forgot Username/Password-->
-        <scene sceneID="FSi-6q-ErE">
-            <objects>
-                <viewController title="Password Reset" modalPresentationStyle="fullScreen" id="T1A-G4-xJU" userLabel="Forgot Username/Password" customClass="ForgotViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="chG-XM-5Dz">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kEj-0U-bzz">
-                                <rect key="frame" x="20" y="20" width="33.5" height="33.5"/>
-                                <state key="normal" image="cancelButtonBlue"/>
-                                <connections>
-                                    <action selector="cancelButtonTapped:" destination="T1A-G4-xJU" eventType="touchUpInside" id="kgs-AH-JO8"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forgot Password Or Username" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="22" translatesAutoresizingMaskIntoConstraints="NO" id="02B-SY-wcN">
-                                <rect key="frame" x="30" y="70" width="315" height="67"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="45"/>
-                                </variation>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l81-Bp-mqS">
-                                <rect key="frame" x="30" y="157" width="315" height="81.5"/>
-                                <string key="text">Please enter the email address associated with your account. We will send an email wth instructions on how to reset your password.</string>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
-                                </variation>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vey-fq-45S" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
-                                <rect key="frame" x="30" y="318.5" width="315" height="45"/>
-                                <color key="backgroundColor" red="0.32549019610000002" green="0.42352941179999998" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="icB-HJ-RT1"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                <state key="normal" title="Submit">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="20"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                </variation>
-                            </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="41c-I6-lDR" customClass="NovaOneTextField" customModule="NovaOne" customModuleProvider="target">
-                                <rect key="frame" x="30" y="258.5" width="315" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="mDz-6B-3oI"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="go" textContentType="email"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="20"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                </variation>
-                            </textField>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="vey-fq-45S" firstAttribute="leading" secondItem="0y7-wV-oWl" secondAttribute="leading" constant="30" id="5m6-9C-JPV">
-                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
-                            </constraint>
-                            <constraint firstItem="02B-SY-wcN" firstAttribute="leading" secondItem="0y7-wV-oWl" secondAttribute="leading" constant="30" id="AfH-tm-0We">
-                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
-                            </constraint>
-                            <constraint firstItem="0y7-wV-oWl" firstAttribute="trailing" secondItem="02B-SY-wcN" secondAttribute="trailing" constant="30" id="Eyo-ir-8HW">
-                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
-                            </constraint>
-                            <constraint firstItem="0y7-wV-oWl" firstAttribute="trailing" secondItem="vey-fq-45S" secondAttribute="trailing" constant="30" id="FIi-W6-gKD">
-                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
-                            </constraint>
-                            <constraint firstItem="vey-fq-45S" firstAttribute="top" secondItem="41c-I6-lDR" secondAttribute="bottom" constant="20" id="Imy-bf-xbZ"/>
-                            <constraint firstItem="0y7-wV-oWl" firstAttribute="trailing" secondItem="l81-Bp-mqS" secondAttribute="trailing" constant="30" id="OBG-aN-ik7">
-                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
-                            </constraint>
-                            <constraint firstItem="02B-SY-wcN" firstAttribute="top" secondItem="0y7-wV-oWl" secondAttribute="top" constant="70" id="Qx8-gK-dhe"/>
-                            <constraint firstItem="kEj-0U-bzz" firstAttribute="top" secondItem="0y7-wV-oWl" secondAttribute="top" constant="20" id="hmm-Tg-PQG"/>
-                            <constraint firstItem="l81-Bp-mqS" firstAttribute="leading" secondItem="0y7-wV-oWl" secondAttribute="leading" constant="30" id="jiJ-7U-3zC">
-                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
-                            </constraint>
-                            <constraint firstItem="0y7-wV-oWl" firstAttribute="trailing" secondItem="41c-I6-lDR" secondAttribute="trailing" constant="30" id="mRF-Fm-B5e">
-                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
-                            </constraint>
-                            <constraint firstItem="l81-Bp-mqS" firstAttribute="top" secondItem="02B-SY-wcN" secondAttribute="bottom" constant="20" id="oZT-Bl-JXt"/>
-                            <constraint firstItem="41c-I6-lDR" firstAttribute="leading" secondItem="0y7-wV-oWl" secondAttribute="leading" constant="30" id="s7S-lg-ZIw">
-                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
-                            </constraint>
-                            <constraint firstItem="kEj-0U-bzz" firstAttribute="leading" secondItem="0y7-wV-oWl" secondAttribute="leading" constant="20" id="tuk-Vt-6fa"/>
-                            <constraint firstItem="41c-I6-lDR" firstAttribute="top" secondItem="l81-Bp-mqS" secondAttribute="bottom" constant="20" id="z4C-t1-yi6"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="0y7-wV-oWl"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="8qD-6w-qHC"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1rx-eZ-EBF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-876.5625" y="1822.8515624999998"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="XDv-0W-rDi">
