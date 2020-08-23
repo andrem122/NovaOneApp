@@ -68,9 +68,6 @@ class StartViewController: UIViewController, UIScrollViewDelegate {
     
     // MARK: Actions
     @IBAction func signupButtonTapped(_ sender: Any) {
-//        // Delete all customer/company data from coredata
-//        PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.customer.rawValue)
-//        PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.company.rawValue)
     }
     
 

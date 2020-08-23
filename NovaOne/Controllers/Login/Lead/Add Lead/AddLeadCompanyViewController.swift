@@ -23,6 +23,12 @@ class AddLeadCompanyViewController: AddLeadBaseViewController, UITableViewDataSo
         self.setupNavigationBar()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Rotate the orientation of the screen to potrait and lock it
+        AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
+    }
+    
     func setupTableView() {
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -49,6 +55,9 @@ class AddLeadCompanyViewController: AddLeadBaseViewController, UITableViewDataSo
     // MARK: Actions
     @IBAction func cancelButtonTapped(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+        
+        // Allow all orientaions after cancel button is tapped
+        AppUtility.lockOrientation(.all)
     }
     
     @IBAction func continueButtonTapped(_ sender: Any) {

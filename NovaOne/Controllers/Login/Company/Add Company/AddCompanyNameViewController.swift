@@ -26,6 +26,9 @@ class AddCompanyNameViewController: AddCompanyBaseViewController, UITextFieldDel
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.companyNameTextField.becomeFirstResponder()
+        
+        // Rotate the orientation of the screen to potrait and lock it
+        AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
     }
     
     func setupTextField() {
@@ -42,6 +45,9 @@ class AddCompanyNameViewController: AddCompanyBaseViewController, UITextFieldDel
     // MARK: Actions
     @IBAction func cancelButtonTapped(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+        
+        // Allow all orientaions after cancel button is tapped
+        AppUtility.lockOrientation(.all)
     }
     
     

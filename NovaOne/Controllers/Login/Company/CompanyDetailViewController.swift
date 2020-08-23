@@ -67,6 +67,7 @@ class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITabl
         
         self.titleLabel.text = name
         let autoRespondNumber = company.autoRespondNumber != nil ? company.autoRespondNumber! : "No Auto Respond"
+        let allowSameDayAppointments = company.allowSameDayAppointments == true ? "Yes" : "No"
         
         // Cells
         let nameItem = ObjectDetailItem(titleValue: name, titleItem: .name)
@@ -74,6 +75,7 @@ class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITabl
         let phoneNumberItem = ObjectDetailItem(titleValue: phoneNumber, titleItem: .phoneNumber)
         let emailItem = ObjectDetailItem(titleValue: email, titleItem: .email)
         let appointmentLinkItem = ObjectDetailItem(titleValue: "", titleItem: .appointmentLink)
+        let allowSameDayAppointmentsItem = ObjectDetailItem(titleValue: allowSameDayAppointments, titleItem: .allowSameDayAppointments)
         let daysOfTheWeekItem = ObjectDetailItem(titleValue: "", titleItem: .showingDays)
         let hoursOfTheDayItem = ObjectDetailItem(titleValue: "", titleItem: .showingHours)
         let autoRespondNumberItem = ObjectDetailItem(titleValue: autoRespondNumber, titleItem: .autoRespondNumber)
@@ -84,6 +86,7 @@ class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITabl
                                   phoneNumberItem,
                                   emailItem,
                                   appointmentLinkItem,
+                                  allowSameDayAppointmentsItem,
                                   daysOfTheWeekItem,
                                   hoursOfTheDayItem,
                                   autoRespondNumberItem,
@@ -272,6 +275,17 @@ extension CompanyDetailViewController {
                         self.present(updateCompanyEmailViewController, animated: true, completion: nil)
                         
                     }
+            
+                case .allowSameDayAppointments:
+                   if let updateCompanyAllowSameDayAppointmentsViewController = updateCompanyStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateCompanyAllowSameDayAppointments.rawValue) as? UpdateCompanyAllowSameDayAppointmentsViewController {
+                       
+                       updateCompanyAllowSameDayAppointmentsViewController.updateCoreDataObjectId = self.company?.id
+                       updateCompanyAllowSameDayAppointmentsViewController.previousViewController = self
+                       updateCompanyAllowSameDayAppointmentsViewController.modalPresentationStyle = .fullScreen
+                       
+                       self.present(updateCompanyAllowSameDayAppointmentsViewController, animated: true, completion: nil)
+                       
+                   }
                     
                 case .showingDays:
                     if let updateCompanyDaysEnabledViewController = updateCompanyStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateCompanyDaysEnabled.rawValue) as? UpdateCompanyDaysEnabledViewController {

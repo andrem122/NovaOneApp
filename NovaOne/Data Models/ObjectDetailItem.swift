@@ -17,6 +17,7 @@ enum TitleItem: String {
     case appointmentLink = "Appointment Link"
     case showingDays = "Showing Days"
     case showingHours = "Showing Hours"
+    case allowSameDayAppointments = "Same Day Appointments"
     case autoRespondNumber = "Auto Respond Number"
     case autoRespondText = "Auto Respond Text"
     case appointmentTime = "Time"

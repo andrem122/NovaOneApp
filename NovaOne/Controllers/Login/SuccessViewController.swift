@@ -24,6 +24,13 @@ class SuccessViewController: UIViewController {
         self.setup()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // Reset to allow all orientations
+        AppUtility.lockOrientation(.all)
+    }
+    
     func setup() {
         // Sets up the text for the title and subtitle text
         self.titleLabel.text = titleLabelText

@@ -21,11 +21,6 @@ class UpdateBaseViewController: UIViewController, UITextFieldDelegate {
         AppUtility.lockOrientation(.portrait, andRotateTo: .portrait) // Lock orientation to potrait
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        AppUtility.lockOrientation(.all)
-    }
-    
     func updateObject<T: NSManagedObject>(for tableName: String,
                                           at columns: [String: Any],
                                           endpoint: String,
@@ -86,11 +81,11 @@ class UpdateBaseViewController: UIViewController, UITextFieldDelegate {
                             // For detail view controllers
                             guard let tableViewController = objectDetailViewController.previousViewController else { return }
                             
-                            // Remove update view controller
-                            tableViewController.dismiss(animated: false, completion: {
+                            // Remove update view controller and present success view controller
+                            (objectDetailViewController as? UIViewController)?.dismiss(animated: false, completion: {
                                 // Do not have to remove spinner view after dismissing update view because when the update
                                 // view is dismissed it removes the spinner view
-                                tableViewController.present(successViewController, animated: true, completion: nil)
+                                (objectDetailViewController as? UIViewController)?.present(successViewController, animated: true, completion: nil)
                                 
                                 guard let sizeClass = self?.getSizeClass() else { return }
                                 if sizeClass == (.regular, .compact) || sizeClass == (.regular, .regular) || sizeClass == (.regular, .unspecified) {

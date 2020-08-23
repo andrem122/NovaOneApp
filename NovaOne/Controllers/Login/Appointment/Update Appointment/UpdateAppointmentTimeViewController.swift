@@ -193,8 +193,26 @@ class UpdateAppointmentTimeViewController: UpdateBaseViewController {
                         
                         self?.removeSpinner(spinnerView: spinnerView)
                     }
-                    self?.present(successViewController, animated: true, completion: nil)
-                    self?.navigationController?.popViewController(animated: true)
+                    
+                    // Get detail view controller instance
+                    guard let objectDetailViewController = self?.previousViewController as? NovaOneObjectDetail else { print("could not get objectDetailViewController - UpdateAppointmentTimeViewController"); return }
+                    
+                    // Get table view controller
+                    guard let tableViewController = objectDetailViewController.previousViewController as? AppointmentsTableViewController else { print("could not get AppointmentsTableViewController - UpdateAppointmentTimeViewController"); return }
+                    
+                    // Remove update view controller and present success view controller
+                    (objectDetailViewController as? UIViewController)?.dismiss(animated: false, completion: {
+                        // Do not have to remove spinner view after dismissing update view because when the update
+                        // view is dismissed it removes the spinner view
+                        (objectDetailViewController as? UIViewController)?.present(successViewController, animated: true, completion: {
+                            guard let sizeClass = self?.getSizeClass() else { return }
+                            if sizeClass == (.regular, .compact) || sizeClass == (.regular, .regular) || sizeClass == (.regular, .unspecified) {
+                                tableViewController.didSetFirstItem = false // Set equal to false so the table view controller will set the first item in the detail view again with fresh properties, so we don't get update errors
+                                tableViewController.setFirstItemForDetailView()
+                            }
+                        })
+                        
+                    })
                 case .failure(let error):
                     guard let popUpOk = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
                     self?.present(popUpOk, animated: true, completion: nil)

@@ -284,7 +284,7 @@ extension AppointmentDetailViewController {
                 case .appointmentTime:
                         if let updateAppointmentTimeViewController = updateAppointmentStoryboard.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentTime.rawValue) as? UpdateAppointmentTimeViewController {
                             
-                            updateAppointmentTimeViewController.updateCoreDataObjectId = self.appointment?.id
+                            updateAppointmentTimeViewController.updateCoreDataObjectId = self.coreDataObjectId
                             updateAppointmentTimeViewController.previousViewController = self
                             updateAppointmentTimeViewController.modalPresentationStyle = .fullScreen
                             

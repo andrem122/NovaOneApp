@@ -18,6 +18,7 @@
 		6506CD4624886C8F00194C92 /* chartDataMonth.php in Resources */ = {isa = PBXBuildFile; fileRef = 6506CD4524886C8F00194C92 /* chartDataMonth.php */; };
 		65074FB12470622F008AC4B2 /* signup.php in Resources */ = {isa = PBXBuildFile; fileRef = 65074FB02470622F008AC4B2 /* signup.php */; };
 		65074FB3247083AD008AC4B2 /* SuccessResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65074FB2247083AD008AC4B2 /* SuccessResponse.swift */; };
+		650BDEE624F1EC6600598F31 /* UpdateCompanyAllowSameDayAppointmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650BDEE524F1EC6600598F31 /* UpdateCompanyAllowSameDayAppointmentsViewController.swift */; };
 		650E215524EA0F6D00AB55AB /* ContactHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650E215424EA0F6D00AB55AB /* ContactHelper.swift */; };
 		6516A8432452169F003B974A /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6516A8422452169F003B974A /* Customer.swift */; };
 		6516A845245255E7003B974A /* chartDataWeekly.php in Resources */ = {isa = PBXBuildFile; fileRef = 6516A844245255E7003B974A /* chartDataWeekly.php */; };
@@ -271,6 +272,7 @@
 		6506CD4524886C8F00194C92 /* chartDataMonth.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = chartDataMonth.php; sourceTree = "<group>"; };
 		65074FB02470622F008AC4B2 /* signup.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = signup.php; sourceTree = "<group>"; };
 		65074FB2247083AD008AC4B2 /* SuccessResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessResponse.swift; sourceTree = "<group>"; };
+		650BDEE524F1EC6600598F31 /* UpdateCompanyAllowSameDayAppointmentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCompanyAllowSameDayAppointmentsViewController.swift; sourceTree = "<group>"; };
 		650E215424EA0F6D00AB55AB /* ContactHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactHelper.swift; sourceTree = "<group>"; };
 		6516A8422452169F003B974A /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		6516A844245255E7003B974A /* chartDataWeekly.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = chartDataWeekly.php; sourceTree = "<group>"; };
@@ -567,6 +569,7 @@
 				6575F62B242EC3A400332729 /* UpdateCompanyDaysEnabledViewController.swift */,
 				6556D57B242FC91200E6B778 /* UpdateCompanyHoursEnabledViewController.swift */,
 				6584C6F6249D797E00FFD1D3 /* UpdateCompanyAutoRespondTextViewController.swift */,
+				650BDEE524F1EC6600598F31 /* UpdateCompanyAllowSameDayAppointmentsViewController.swift */,
 			);
 			path = "Update Company";
 			sourceTree = "<group>";
@@ -1349,6 +1352,7 @@
 				6591C39A23DA78F900535C46 /* AppDelegate.swift in Sources */,
 				65AF80F42442499B00167C8D /* UpdateAppointmentEmailViewController.swift in Sources */,
 				657D4926249414FE0055BFB8 /* Lead+CoreDataProperties.swift in Sources */,
+				650BDEE624F1EC6600598F31 /* UpdateCompanyAllowSameDayAppointmentsViewController.swift in Sources */,
 				6592E3D1240429CA009E4D8D /* SignUpNameViewController.swift in Sources */,
 				657C5F962413ECB200D52E27 /* DateHelper.swift in Sources */,
 				656A8F83244F5B140028ABAE /* ObjectCount.swift in Sources */,

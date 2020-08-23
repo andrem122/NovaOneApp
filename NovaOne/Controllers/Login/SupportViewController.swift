@@ -25,6 +25,16 @@ class SupportViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.supportTextView.becomeFirstResponder()
+        
+        // Rotate the orientation of the screen to potrait and lock it
+        AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // Allow all orientaions
+        AppUtility.lockOrientation(.all)
     }
     
     func setupTextView() {
