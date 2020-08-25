@@ -19,6 +19,8 @@ class UpdateAppointmentAddressViewController: UpdateBaseViewController, AddAddre
     var resultsViewController: GMSAutocompleteResultsViewController?
     var searchController: UISearchController?
     var address: String?
+    var city: String?
+    var zip: String?
     
     // MARK: Methods
     override func viewDidLoad() {
@@ -106,19 +108,23 @@ class UpdateAppointmentAddressViewController: UpdateBaseViewController, AddAddre
         } else {
             guard
                 let objectId = self.updateCoreDataObjectId,
-                let detailViewController = self.previousViewController as? AppointmentDetailViewController
+                let detailViewController = self.previousViewController as? AppointmentDetailViewController,
+                let city = self.city,
+                let zip = self.zip
             else { print("error getting detail view controller"); return }
             
             let updateClosure = {
                 (appointment: Appointment) in
                 appointment.address = address
+                appointment.city = city
+                appointment.zip = zip
             }
             
             let successDoneHandler = {
                 let predicate = NSPredicate(format: "id == %@", String(objectId))
                 guard let updatedAppointment = PersistenceService.fetchEntity(Appointment.self, filter: predicate, sort: nil).first else { return }
-                
-                detailViewController.coreDataObjectId = updatedAppointment.id
+                detailViewController.appointment = updatedAppointment
+                detailViewController.coreDataObjectId = objectId
                 detailViewController.setupObjectDetailCellsAndTitle()
                 detailViewController.objectDetailTableView.reloadData()
             }
@@ -141,6 +147,7 @@ extension UpdateAppointmentAddressViewController {
                 [weak self] in
                 
                 guard
+                    let addressComponents = place.addressComponents,
                     let address = place.formattedAddress,
                     let updateButton = self?.updateButton
                 else { return }
@@ -161,6 +168,16 @@ extension UpdateAppointmentAddressViewController {
                 
                 // Get street address from the place the user selected
                 self?.address = address
+                for component in addressComponents {
+                    
+                    let componentType = component.types[0]
+                    if componentType == Defaults.GooglePlaceAddressComponents.city.rawValue { // City
+                        self?.city = component.name
+                    } else if componentType == Defaults.GooglePlaceAddressComponents.zip.rawValue { // Zip code
+                        self?.zip = component.name
+                    }
+                    
+                }
             }
     }
     

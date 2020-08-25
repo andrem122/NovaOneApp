@@ -16,7 +16,11 @@ protocol NovaOneObjectDetail {
     var alertService: AlertService { get set }
     var previousViewController: UIViewController? { get set }
     var coreDataObjectId: Int32? { get set }
+    var loadingView: UIView! { get set }
+    var loadingViewSpinner: UIActivityIndicatorView! { get set }
     
     // Methods
+    func setupObjectDetailCellsAndTitle()
     func getCoreDataObject()
+    func hideLoadingView()
 }

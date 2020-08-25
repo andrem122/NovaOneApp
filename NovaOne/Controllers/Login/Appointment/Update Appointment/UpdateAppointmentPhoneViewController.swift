@@ -50,11 +50,10 @@ class UpdateAppointmentPhoneViewController: UpdateBaseViewController {
             let successDoneHandler = {
                 let predicate = NSPredicate(format: "id == %@", String(objectId))
                 guard let updatedAppointment = PersistenceService.fetchEntity(Appointment.self, filter: predicate, sort: nil).first else { return }
-
-                detailViewController.coreDataObjectId = updatedAppointment.id
+                detailViewController.appointment = updatedAppointment
+                detailViewController.coreDataObjectId = objectId
                 detailViewController.setupObjectDetailCellsAndTitle()
                 detailViewController.objectDetailTableView.reloadData()
-
             }
 
             self.updateObject(for: Defaults.DataBaseTableNames.appointmentsBase.rawValue, at: ["phone_number": "%2B1" + unformattedPhoneNumber], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Appointment.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Appointment phone number has been successfully updated.", successDoneHandler: successDoneHandler, completion: nil)

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="ipad12_9rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -13,20 +13,38 @@
             <objects>
                 <viewController storyboardIdentifier="emptyViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6h4-rM-fOO" userLabel="Empty" customClass="EmptyViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1re-eQ-YAy">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="W2R-7a-5M2">
-                                <rect key="frame" x="30" y="302.5" width="354" height="291"/>
+                                <rect key="frame" x="30" y="350" width="964" height="466"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty" translatesAutoresizingMaskIntoConstraints="NO" id="pKi-zF-uQ3">
-                                        <rect key="frame" x="73.5" y="0.0" width="207" height="207"/>
+                                        <rect key="frame" x="303" y="0.0" width="358" height="358"/>
                                         <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="BXO-6l-Gyq"/>
+                                            <constraint firstAttribute="height" constant="150" id="a1X-gV-12y"/>
                                             <constraint firstAttribute="width" secondItem="pKi-zF-uQ3" secondAttribute="height" multiplier="1:1" id="ujj-EK-MBz"/>
                                         </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="BXO-6l-Gyq"/>
+                                                <exclude reference="a1X-gV-12y"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="heightClass=compact-widthClass=compact">
+                                            <mask key="constraints">
+                                                <include reference="BXO-6l-Gyq"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="heightClass=compact-widthClass=regular">
+                                            <mask key="constraints">
+                                                <include reference="a1X-gV-12y"/>
+                                            </mask>
+                                        </variation>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nothing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HSm-kb-QqU" userLabel="Title Label">
-                                        <rect key="frame" x="130" y="222" width="94" height="33.5"/>
+                                        <rect key="frame" x="407.5" y="373" width="149.5" height="54"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
                                         <color key="textColor" name="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -35,7 +53,7 @@
                                         </variation>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There is nothing here my friend :)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EVD-9C-w4H" userLabel="Subtitle Label">
-                                        <rect key="frame" x="50" y="270.5" width="254" height="20.5"/>
+                                        <rect key="frame" x="339.5" y="442" width="285" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" name="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -44,12 +62,22 @@
                                         </variation>
                                     </label>
                                 </subviews>
+                                <variation key="heightClass=compact-widthClass=compact">
+                                    <mask key="subviews">
+                                        <include reference="pKi-zF-uQ3"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact-widthClass=regular">
+                                    <mask key="subviews">
+                                        <include reference="pKi-zF-uQ3"/>
+                                    </mask>
+                                </variation>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ycs-Ez-3W1" userLabel="Button Stack View">
-                                <rect key="frame" x="30" y="732" width="354" height="110"/>
+                                <rect key="frame" x="150" y="1216" width="724" height="110"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L07-8z-g0m" userLabel="Add Button" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="354" height="45"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="724" height="45"/>
                                         <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="CEf-7N-0rQ"/>
@@ -72,7 +100,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EXu-Np-aAf" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="65" width="354" height="45"/>
+                                        <rect key="frame" x="0.0" y="65" width="724" height="45"/>
                                         <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="eY1-4m-hKS"/>
@@ -99,19 +127,44 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="pKi-zF-uQ3" firstAttribute="width" secondItem="1re-eQ-YAy" secondAttribute="width" multiplier="0.78" id="5P5-Qf-PrT"/>
-                            <constraint firstItem="Ycs-Ez-3W1" firstAttribute="leading" secondItem="yoe-kN-rAb" secondAttribute="leading" constant="30" id="CBx-qP-nHe"/>
-                            <constraint firstItem="yoe-kN-rAb" firstAttribute="trailing" secondItem="Ycs-Ez-3W1" secondAttribute="trailing" constant="30" id="IVL-xs-oGs"/>
+                            <constraint firstItem="pKi-zF-uQ3" firstAttribute="width" secondItem="1re-eQ-YAy" secondAttribute="width" multiplier="0.35" id="5P5-Qf-PrT"/>
+                            <constraint firstItem="Ycs-Ez-3W1" firstAttribute="leading" secondItem="yoe-kN-rAb" secondAttribute="leading" constant="30" id="CBx-qP-nHe">
+                                <variation key="heightClass=compact-widthClass=compact" constant="80"/>
+                                <variation key="heightClass=compact-widthClass=regular" constant="80"/>
+                                <variation key="heightClass=regular-widthClass=regular" constant="150"/>
+                            </constraint>
+                            <constraint firstItem="yoe-kN-rAb" firstAttribute="trailing" secondItem="Ycs-Ez-3W1" secondAttribute="trailing" constant="30" id="IVL-xs-oGs">
+                                <variation key="heightClass=compact-widthClass=compact" constant="80"/>
+                                <variation key="heightClass=compact-widthClass=regular" constant="80"/>
+                                <variation key="heightClass=regular-widthClass=regular" constant="150"/>
+                            </constraint>
                             <constraint firstItem="yoe-kN-rAb" firstAttribute="trailing" secondItem="W2R-7a-5M2" secondAttribute="trailing" constant="30" id="WWa-05-O00"/>
                             <constraint firstItem="pKi-zF-uQ3" firstAttribute="width" secondItem="1re-eQ-YAy" secondAttribute="width" multiplier="0.5" id="bQZ-du-pWj"/>
-                            <constraint firstItem="W2R-7a-5M2" firstAttribute="centerY" secondItem="1re-eQ-YAy" secondAttribute="centerY" id="luJ-Q4-SOx"/>
+                            <constraint firstItem="W2R-7a-5M2" firstAttribute="centerY" secondItem="1re-eQ-YAy" secondAttribute="centerY" id="luJ-Q4-SOx">
+                                <variation key="heightClass=compact-widthClass=regular" constant="-80"/>
+                                <variation key="heightClass=regular-widthClass=regular" constant="-100"/>
+                            </constraint>
                             <constraint firstItem="W2R-7a-5M2" firstAttribute="leading" secondItem="yoe-kN-rAb" secondAttribute="leading" constant="30" id="m1i-Ab-UGC"/>
                             <constraint firstItem="yoe-kN-rAb" firstAttribute="bottom" secondItem="Ycs-Ez-3W1" secondAttribute="bottom" constant="20" id="nE4-FI-Dkn"/>
+                            <constraint firstItem="W2R-7a-5M2" firstAttribute="top" secondItem="yoe-kN-rAb" secondAttribute="top" id="nLz-Gh-fTR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="yoe-kN-rAb"/>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="5P5-Qf-PrT"/>
+                                <exclude reference="nLz-Gh-fTR"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact-widthClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="bQZ-du-pWj"/>
+                                <exclude reference="luJ-Q4-SOx"/>
+                                <include reference="nLz-Gh-fTR"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact-widthClass=regular">
+                            <mask key="constraints">
+                                <exclude reference="bQZ-du-pWj"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
@@ -136,20 +189,20 @@
             <objects>
                 <viewController storyboardIdentifier="successViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="GA6-DO-ZR4" userLabel="Success" customClass="SuccessViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="txU-gp-jBV">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="k3E-xG-IDk">
-                                <rect key="frame" x="30" y="302.5" width="354" height="291"/>
+                                <rect key="frame" x="30" y="460" width="964" height="446"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="success" translatesAutoresizingMaskIntoConstraints="NO" id="uR7-V6-XAh">
-                                        <rect key="frame" x="73.5" y="0.0" width="207" height="207"/>
+                                        <rect key="frame" x="313" y="0.0" width="338" height="338"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="uR7-V6-XAh" secondAttribute="height" multiplier="1:1" id="qHn-PS-7Po"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Success!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hN6-Fm-nQP" userLabel="Title Label">
-                                        <rect key="frame" x="123" y="222" width="108.5" height="33.5"/>
+                                        <rect key="frame" x="396" y="353" width="172" height="54"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
                                         <color key="textColor" name="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -158,7 +211,7 @@
                                         </variation>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task successfully completed." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="etA-oG-8oq" userLabel="Subtitle Label">
-                                        <rect key="frame" x="65" y="270.5" width="224.5" height="20.5"/>
+                                        <rect key="frame" x="355" y="422" width="254" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" name="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -169,7 +222,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L51-A9-uNN" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
-                                <rect key="frame" x="30" y="797" width="354" height="45"/>
+                                <rect key="frame" x="150" y="1281" width="724" height="45"/>
                                 <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="cZT-Up-Ohf"/>
@@ -196,21 +249,41 @@
                         <constraints>
                             <constraint firstItem="RJE-kD-aeE" firstAttribute="bottom" secondItem="L51-A9-uNN" secondAttribute="bottom" constant="20" id="1AQ-fh-WXf"/>
                             <constraint firstItem="RJE-kD-aeE" firstAttribute="trailing" secondItem="L51-A9-uNN" secondAttribute="trailing" constant="30" id="5ZD-Dj-dur">
-                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                                <variation key="heightClass=compact-widthClass=compact" constant="80"/>
+                                <variation key="heightClass=compact-widthClass=regular" constant="90"/>
+                                <variation key="heightClass=regular-widthClass=regular" constant="150"/>
                             </constraint>
                             <constraint firstItem="uR7-V6-XAh" firstAttribute="width" secondItem="txU-gp-jBV" secondAttribute="width" multiplier="0.5" id="LrT-ti-dIB"/>
-                            <constraint firstItem="k3E-xG-IDk" firstAttribute="centerY" secondItem="txU-gp-jBV" secondAttribute="centerY" id="VMT-Yn-P7f"/>
+                            <constraint firstItem="k3E-xG-IDk" firstAttribute="centerY" secondItem="txU-gp-jBV" secondAttribute="centerY" id="VMT-Yn-P7f">
+                                <variation key="heightClass=compact-widthClass=compact" constant="-40"/>
+                                <variation key="heightClass=compact-widthClass=regular" constant="-30"/>
+                            </constraint>
                             <constraint firstItem="k3E-xG-IDk" firstAttribute="leading" secondItem="RJE-kD-aeE" secondAttribute="leading" constant="30" id="dUy-G2-JQD"/>
                             <constraint firstItem="RJE-kD-aeE" firstAttribute="trailing" secondItem="k3E-xG-IDk" secondAttribute="trailing" constant="30" id="jFO-Qy-yeB"/>
-                            <constraint firstItem="uR7-V6-XAh" firstAttribute="width" secondItem="txU-gp-jBV" secondAttribute="width" multiplier="0.53125" id="nXe-27-zeS"/>
+                            <constraint firstItem="uR7-V6-XAh" firstAttribute="width" secondItem="txU-gp-jBV" secondAttribute="width" multiplier="0.2" id="jzP-mJ-qmt"/>
+                            <constraint firstItem="uR7-V6-XAh" firstAttribute="width" secondItem="txU-gp-jBV" secondAttribute="width" multiplier="0.33" id="nXe-27-zeS"/>
                             <constraint firstItem="L51-A9-uNN" firstAttribute="leading" secondItem="RJE-kD-aeE" secondAttribute="leading" constant="30" id="pLK-oB-GKh">
-                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                                <variation key="heightClass=compact-widthClass=compact" constant="80"/>
+                                <variation key="heightClass=compact-widthClass=regular" constant="90"/>
+                                <variation key="heightClass=regular-widthClass=regular" constant="150"/>
                             </constraint>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="RJE-kD-aeE"/>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="jzP-mJ-qmt"/>
                                 <exclude reference="nXe-27-zeS"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact-widthClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="LrT-ti-dIB"/>
+                                <include reference="jzP-mJ-qmt"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact-widthClass=regular">
+                            <mask key="constraints">
+                                <exclude reference="LrT-ti-dIB"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
@@ -234,14 +307,14 @@
             <objects>
                 <viewController storyboardIdentifier="popUpViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="overFullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="S9U-Hu-e9P" userLabel="Pop Up Action View Controller" customClass="PopUpActionViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uwX-UV-zZN">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="54c-81-Tu9" customClass="NovaOneView" customModule="NovaOne" customModuleProvider="target">
-                                <rect key="frame" x="69.5" y="318" width="275" height="260"/>
+                                <rect key="frame" x="374.5" y="530" width="275" height="306.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9zS-Pu-LJ5" userLabel="PopUp Title Label">
-                                        <rect key="frame" x="0.0" y="35" width="275" height="33.5"/>
+                                        <rect key="frame" x="0.0" y="35" width="275" height="42"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
                                         <color key="textColor" name="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -250,7 +323,7 @@
                                         </variation>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="H03-c1-YHg" userLabel="Button Stack View">
-                                        <rect key="frame" x="15" y="185" width="245" height="45"/>
+                                        <rect key="frame" x="15" y="231.5" width="245" height="45"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nrY-vT-KsN" userLabel="Cancel Button" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="115" height="45"/>
@@ -298,7 +371,7 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g8m-k1-Npb" userLabel="PopUp Body Label">
-                                        <rect key="frame" x="15" y="83.5" width="245" height="81.5"/>
+                                        <rect key="frame" x="15" y="92" width="245" height="119.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                         <color key="textColor" name="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -350,14 +423,14 @@
             <objects>
                 <viewController storyboardIdentifier="popUpOkViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="overFullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9n3-wp-yoa" userLabel="Pop Up Ok View Controller" customClass="PopUpOkViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3Bd-TC-9ZB">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1G9-48-Gbn" customClass="NovaOneView" customModule="NovaOne" customModuleProvider="target">
-                                <rect key="frame" x="69.5" y="318" width="275" height="260"/>
+                                <rect key="frame" x="374.5" y="549" width="275" height="268.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wp0-tY-K5B" userLabel="PopUp Title Label">
-                                        <rect key="frame" x="0.0" y="35" width="275" height="33.5"/>
+                                        <rect key="frame" x="0.0" y="35" width="275" height="42"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
                                         <color key="textColor" name="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -366,7 +439,7 @@
                                         </variation>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="RKP-J9-JOL" userLabel="Button Stack View">
-                                        <rect key="frame" x="15" y="185" width="245" height="45"/>
+                                        <rect key="frame" x="15" y="193.5" width="245" height="45"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s3C-f2-MTg" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="245" height="45"/>
@@ -393,7 +466,7 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cQg-Pa-OfX" userLabel="PopUp Body Label">
-                                        <rect key="frame" x="15" y="83.5" width="245" height="81.5"/>
+                                        <rect key="frame" x="15" y="92" width="245" height="81.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                         <color key="textColor" name="textColor"/>
                                         <nil key="highlightedColor"/>

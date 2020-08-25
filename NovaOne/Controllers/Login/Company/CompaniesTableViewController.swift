@@ -25,6 +25,7 @@ class CompaniesTableViewController: UITableViewController, NovaOneTableView {
     var searchController: UISearchController!
     var alertService = AlertService()
     var didSetFirstItem: Bool = false
+    var tableDidLoad: Bool = false
     lazy var refresher: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.tintColor = .lightGray
@@ -72,21 +73,27 @@ class CompaniesTableViewController: UITableViewController, NovaOneTableView {
         // Show first object details in the detail view controller
         DispatchQueue.main.async {
             [weak self] in
-            print("Setting item in table view for detail view - CompaniesTableViewController")
-            guard
-                let detailNavigationController = self?.storyboard?.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.companyDetail.rawValue) as? UINavigationController,
-                let detailViewController = detailNavigationController.viewControllers.first as? CompanyDetailViewController,
-                let itemSelectedIndex = self?.itemSelectedIndex,
-                let company = self?.filteredObjects[itemSelectedIndex] as? Company
-            else { return }
-            
-            detailViewController.coreDataObjectId = company.id
-            detailViewController.previousViewController = self
-            detailViewController.navigationItem.leftBarButtonItem = self?.splitViewController?.displayModeButtonItem
-            detailViewController.navigationItem.leftItemsSupplementBackButton = true
-            
-            self?.splitViewController?.showDetailViewController(detailNavigationController, sender: nil)
-            self?.didSetFirstItem = true // Set to true so it does not run again in viewDidAppear
+            guard let filteredObjectsIsEmpty = self?.filteredObjects.isEmpty else { return }
+            if filteredObjectsIsEmpty == false {
+                print("Setting item in table view for detail view - CompaniesTableViewController")
+                guard
+                    let detailNavigationController = self?.storyboard?.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.companyDetail.rawValue) as? UINavigationController,
+                    let detailViewController = detailNavigationController.viewControllers.first as? CompanyDetailViewController,
+                    let itemSelectedIndex = self?.itemSelectedIndex,
+                    let company = self?.filteredObjects[itemSelectedIndex] as? Company
+                else { return }
+                
+                // Show spinner if this is the FIRST time we are showing the table view and detail view controller
+                
+                
+                detailViewController.coreDataObjectId = company.id
+                detailViewController.previousViewController = self
+                detailViewController.navigationItem.leftBarButtonItem = self?.splitViewController?.displayModeButtonItem
+                detailViewController.navigationItem.leftItemsSupplementBackButton = true
+                
+                self?.splitViewController?.showDetailViewController(detailNavigationController, sender: nil)
+                self?.didSetFirstItem = true // Set to true so it does not run again in viewDidAppear
+            }
         }
     }
     

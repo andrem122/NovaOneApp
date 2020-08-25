@@ -263,8 +263,6 @@
 		456976310F83D351065F9977 /* libPods-NovaOne.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NovaOne.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6501B6A524D345D500ABFF00 /* Customer+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Customer+CoreDataProperties.swift"; path = "/Users/andre/Desktop/NovaOne/NovaOne/Core Data/Customer+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		6501B6A624D345D600ABFF00 /* Customer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Customer+CoreDataClass.swift"; path = "/Users/andre/Desktop/NovaOne/NovaOne/Core Data/Customer+CoreDataClass.swift"; sourceTree = "<absolute>"; };
-		6501B6A924D7621D00ABFF00 /* Appointment+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Appointment+CoreDataClass.swift"; path = "/Users/andre/Desktop/NovaOne/NovaOne/Core Data/Appointment+CoreDataClass.swift"; sourceTree = "<absolute>"; };
-		6501B6AA24D7621D00ABFF00 /* Appointment+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Appointment+CoreDataProperties.swift"; path = "/Users/andre/Desktop/NovaOne/NovaOne/Core Data/Appointment+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		650250C023E4991700B427D0 /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
 		650250C223E4A78E00B427D0 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		650547DC247990250036DF3E /* NovaOneTableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovaOneTableViewProtocol.swift; sourceTree = "<group>"; };
@@ -286,6 +284,8 @@
 		6519B46A24B6021A003AA1D6 /* UpdateLeadRenterBrandViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateLeadRenterBrandViewController.swift; sourceTree = "<group>"; };
 		65230462242FFD900025FE07 /* EnableOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnableOption.swift; sourceTree = "<group>"; };
 		652F8ED6245CF6C6008FAF38 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		652FD93A24F2F27A00718D53 /* Appointment+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Appointment+CoreDataProperties.swift"; path = "/Users/andre/Desktop/NovaOne/NovaOne/Core Data/Appointment+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		652FD93B24F2F27A00718D53 /* Appointment+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Appointment+CoreDataClass.swift"; path = "/Users/andre/Desktop/NovaOne/NovaOne/Core Data/Appointment+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		65316D522445F8A90072F78A /* libSkeletonView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libSkeletonView.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		65316D5424465E5D0072F78A /* moreLeads.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = moreLeads.php; sourceTree = "<group>"; };
 		6534326F2493BE0B00483505 /* addLead.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = addLead.php; sourceTree = "<group>"; };
@@ -946,8 +946,8 @@
 		65BCE1822429327100E5040E /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
-				6501B6A924D7621D00ABFF00 /* Appointment+CoreDataClass.swift */,
-				6501B6AA24D7621D00ABFF00 /* Appointment+CoreDataProperties.swift */,
+				652FD93B24F2F27A00718D53 /* Appointment+CoreDataClass.swift */,
+				652FD93A24F2F27A00718D53 /* Appointment+CoreDataProperties.swift */,
 				6501B6A624D345D600ABFF00 /* Customer+CoreDataClass.swift */,
 				6501B6A524D345D500ABFF00 /* Customer+CoreDataProperties.swift */,
 				65461A8524D1D0690028F202 /* Company+CoreDataClass.swift */,

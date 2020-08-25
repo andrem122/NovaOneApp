@@ -60,11 +60,10 @@ class UpdateCompanyPhoneViewController: UpdateBaseViewController {
                         let successDoneHandler = {
                             let predicate = NSPredicate(format: "id == %@", String(objectId))
                             guard let updatedCompany = PersistenceService.fetchEntity(Company.self, filter: predicate, sort: nil).first else { return }
-
-                            detailViewController.coreDataObjectId = updatedCompany.id
+                            detailViewController.company = updatedCompany
+                            detailViewController.coreDataObjectId = objectId
                             detailViewController.setupObjectDetailCellsAndTitle()
                             detailViewController.objectDetailTableView.reloadData()
-
                         }
 
                         self?.updateObject(for: Defaults.DataBaseTableNames.company.rawValue, at: ["phone_number": "%2B1" + unformattedPhoneNumber], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Company.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Company phone number has been successfully updated.", successDoneHandler: successDoneHandler, completion: nil)

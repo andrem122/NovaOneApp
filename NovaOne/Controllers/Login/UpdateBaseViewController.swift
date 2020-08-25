@@ -82,16 +82,20 @@ class UpdateBaseViewController: UIViewController, UITextFieldDelegate {
                             guard let tableViewController = objectDetailViewController.previousViewController else { return }
                             
                             // Remove update view controller and present success view controller
-                            (objectDetailViewController as? UIViewController)?.dismiss(animated: false, completion: {
+                            previousViewController.dismiss(animated: false, completion: {
+                                [weak self] in
                                 // Do not have to remove spinner view after dismissing update view because when the update
                                 // view is dismissed it removes the spinner view
-                                (objectDetailViewController as? UIViewController)?.present(successViewController, animated: true, completion: nil)
                                 
                                 guard let sizeClass = self?.getSizeClass() else { return }
+                                
                                 if sizeClass == (.regular, .compact) || sizeClass == (.regular, .regular) || sizeClass == (.regular, .unspecified) {
+                                    tableViewController.present(successViewController, animated: true, completion: nil)
                                     guard let novaOneTableView = tableViewController as? NovaOneTableView else { return }
                                     novaOneTableView.didSetFirstItem = false // Set equal to false so the table view controller will set the first item in the detail view again with fresh properties, so we don't get update errors
                                     novaOneTableView.setFirstItemForDetailView()
+                                } else {
+                                    previousViewController.present(successViewController, animated: true, completion: nil)
                                 }
                                 
                             })

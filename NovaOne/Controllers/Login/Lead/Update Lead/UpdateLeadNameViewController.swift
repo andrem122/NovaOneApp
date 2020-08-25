@@ -34,7 +34,7 @@ class UpdateLeadNameViewController: UpdateBaseViewController {
         } else {
             guard
                 let objectId = self.updateCoreDataObjectId,
-                let previousViewController = self.previousViewController as? LeadDetailViewController
+                let detailViewController = self.previousViewController as? LeadDetailViewController
             else { return }
             
             let updateClosure = {
@@ -45,10 +45,10 @@ class UpdateLeadNameViewController: UpdateBaseViewController {
             let successDoneHandler = {
                 let predicate = NSPredicate(format: "id == %@", String(objectId))
                 guard let updatedLead = PersistenceService.fetchEntity(Lead.self, filter: predicate, sort: nil).first else { return }
-                
-                previousViewController.lead = updatedLead
-                previousViewController.setupObjectDetailCellsAndTitle()
-                previousViewController.objectDetailTableView.reloadData()
+                detailViewController.lead = updatedLead
+                detailViewController.coreDataObjectId = objectId
+                detailViewController.setupObjectDetailCellsAndTitle()
+                detailViewController.objectDetailTableView.reloadData()
             }
             
             self.updateObject(for: Defaults.DataBaseTableNames.leads.rawValue, at: ["name": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Lead.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Name has been successfully updated.", successDoneHandler: successDoneHandler, completion: nil)

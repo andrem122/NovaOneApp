@@ -147,8 +147,8 @@ class UpdateCompanyHoursEnabledViewController: UpdateBaseViewController, UITable
             let successDoneHandler = {
                 let predicate = NSPredicate(format: "id == %@", String(objectId))
                 guard let updatedCompany = PersistenceService.fetchEntity(Company.self, filter: predicate, sort: nil).first else { return }
-                
-                detailViewController.coreDataObjectId = updatedCompany.id
+                detailViewController.company = updatedCompany
+                detailViewController.coreDataObjectId = objectId
                 detailViewController.setupObjectDetailCellsAndTitle()
                 detailViewController.objectDetailTableView.reloadData()
             }

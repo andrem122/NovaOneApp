@@ -137,6 +137,19 @@
                                     <action selector="deleteButtonTapped:" destination="S5z-YS-cG5" eventType="touchUpInside" id="Tir-CU-Imt"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GAM-0c-Dgc" userLabel="Loading View">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="AqP-LI-7ag">
+                                        <rect key="frame" x="197" y="377" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="AqP-LI-7ag" firstAttribute="centerY" secondItem="GAM-0c-Dgc" secondAttribute="centerY" id="6qf-j1-aae"/>
+                                    <constraint firstItem="AqP-LI-7ag" firstAttribute="centerX" secondItem="GAM-0c-Dgc" secondAttribute="centerX" id="9zs-qG-kVM"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -150,6 +163,9 @@
                             <constraint firstItem="39E-LM-H8x" firstAttribute="leading" secondItem="bSg-ak-zmH" secondAttribute="leading" id="Pxv-Yq-PuP"/>
                             <constraint firstItem="PZa-tV-K94" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fxX-Yl-SA9" secondAttribute="trailing" id="QzP-sM-nIx"/>
                             <constraint firstItem="fxX-Yl-SA9" firstAttribute="top" secondItem="39E-LM-H8x" secondAttribute="bottom" constant="18.329999999999998" id="XGf-ox-otj"/>
+                            <constraint firstItem="PZa-tV-K94" firstAttribute="bottom" secondItem="GAM-0c-Dgc" secondAttribute="bottom" id="agQ-4c-int"/>
+                            <constraint firstItem="GAM-0c-Dgc" firstAttribute="top" secondItem="PZa-tV-K94" secondAttribute="top" id="bNc-Zw-LbT"/>
+                            <constraint firstItem="PZa-tV-K94" firstAttribute="trailing" secondItem="GAM-0c-Dgc" secondAttribute="trailing" id="dOL-IP-uzR"/>
                             <constraint firstItem="PZa-tV-K94" firstAttribute="trailing" secondItem="Meg-ak-998" secondAttribute="trailing" id="h6P-gj-gbn"/>
                             <constraint firstItem="Meg-ak-998" firstAttribute="leading" secondItem="PZa-tV-K94" secondAttribute="leading" id="hhw-mV-VDS"/>
                             <constraint firstItem="fxX-Yl-SA9" firstAttribute="leading" secondItem="PZa-tV-K94" secondAttribute="leading" constant="30" id="l32-RX-4JH"/>
@@ -158,11 +174,14 @@
                             <constraint firstItem="PZa-tV-K94" firstAttribute="trailing" secondItem="lHL-r2-DJs" secondAttribute="trailing" constant="30" id="qBA-vH-rGj">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                             </constraint>
+                            <constraint firstItem="GAM-0c-Dgc" firstAttribute="leading" secondItem="PZa-tV-K94" secondAttribute="leading" id="r3q-AO-GmQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PZa-tV-K94"/>
                     </view>
                     <navigationItem key="navigationItem" id="vwG-n6-clL"/>
                     <connections>
+                        <outlet property="loadingView" destination="GAM-0c-Dgc" id="Npc-Nm-2cI"/>
+                        <outlet property="loadingViewSpinner" destination="AqP-LI-7ag" id="Lex-3E-zB3"/>
                         <outlet property="objectDetailTableView" destination="Meg-ak-998" id="9BS-WO-yan"/>
                         <outlet property="titleLabel" destination="fxX-Yl-SA9" id="k7X-XV-95a"/>
                         <outlet property="topView" destination="39E-LM-H8x" id="ieN-QG-olK"/>

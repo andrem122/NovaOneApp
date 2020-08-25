@@ -399,16 +399,31 @@
                                     <action selector="deleteButtonTapped:" destination="HI0-eL-hxu" eventType="touchUpInside" id="BMl-it-XAa"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O9I-Rw-scz" userLabel="Loading View">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Vcq-Iv-4YJ">
+                                        <rect key="frame" x="197" y="377" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" name="viewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="Vcq-Iv-4YJ" firstAttribute="centerY" secondItem="O9I-Rw-scz" secondAttribute="centerY" id="73e-6Q-L1E"/>
+                                    <constraint firstItem="Vcq-Iv-4YJ" firstAttribute="centerX" secondItem="O9I-Rw-scz" secondAttribute="centerX" id="DtV-Dj-bi2"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Dhr-mC-JNV" firstAttribute="top" secondItem="4tI-rC-SI1" secondAttribute="bottom" constant="15" id="6Nz-sT-f0B"/>
+                            <constraint firstItem="O9I-Rw-scz" firstAttribute="leading" secondItem="KRb-Po-lg3" secondAttribute="leading" id="9uE-B4-H0K"/>
                             <constraint firstItem="4tI-rC-SI1" firstAttribute="leading" secondItem="KRb-Po-lg3" secondAttribute="leading" id="Dga-Yv-Rzh"/>
                             <constraint firstItem="KRb-Po-lg3" firstAttribute="bottom" secondItem="Dhr-mC-JNV" secondAttribute="bottom" constant="20" id="Ede-Sk-8xZ"/>
                             <constraint firstItem="KLD-Df-pjV" firstAttribute="leading" secondItem="KRb-Po-lg3" secondAttribute="leading" constant="30" id="LnO-f7-NSh"/>
                             <constraint firstItem="4tI-rC-SI1" firstAttribute="top" secondItem="KLD-Df-pjV" secondAttribute="bottom" constant="8" id="NJO-hg-0pZ"/>
                             <constraint firstItem="KLD-Df-pjV" firstAttribute="top" secondItem="jAf-8E-HeQ" secondAttribute="bottom" constant="18.329999999999998" id="OQ8-at-d9P"/>
                             <constraint firstItem="jAf-8E-HeQ" firstAttribute="leading" secondItem="as1-74-vu0" secondAttribute="leading" id="P5I-lF-sTY"/>
+                            <constraint firstItem="KRb-Po-lg3" firstAttribute="bottom" secondItem="O9I-Rw-scz" secondAttribute="bottom" id="XoG-bc-x5w"/>
                             <constraint firstItem="Dhr-mC-JNV" firstAttribute="leading" secondItem="KRb-Po-lg3" secondAttribute="leading" constant="30" id="ap6-HJ-yPw">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                             </constraint>
@@ -419,7 +434,9 @@
                             </constraint>
                             <constraint firstItem="KRb-Po-lg3" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="KLD-Df-pjV" secondAttribute="trailing" id="iRX-dq-Nwd"/>
                             <constraint firstItem="jAf-8E-HeQ" firstAttribute="height" secondItem="as1-74-vu0" secondAttribute="height" multiplier="0.327009" id="keQ-3Z-aAH"/>
+                            <constraint firstItem="KRb-Po-lg3" firstAttribute="trailing" secondItem="O9I-Rw-scz" secondAttribute="trailing" id="s31-z7-dlp"/>
                             <constraint firstItem="KRb-Po-lg3" firstAttribute="trailing" secondItem="4tI-rC-SI1" secondAttribute="trailing" id="wrt-kM-jch"/>
+                            <constraint firstItem="O9I-Rw-scz" firstAttribute="top" secondItem="KRb-Po-lg3" secondAttribute="top" id="zcU-nv-eLM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="KRb-Po-lg3"/>
                     </view>
@@ -427,6 +444,8 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="a1k-xN-qWi"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="loadingView" destination="O9I-Rw-scz" id="HmM-1a-eSa"/>
+                        <outlet property="loadingViewSpinner" destination="Vcq-Iv-4YJ" id="Bc4-gs-H9N"/>
                         <outlet property="objectDetailTableView" destination="4tI-rC-SI1" id="GUs-ac-Y3Y"/>
                         <outlet property="titleLabel" destination="KLD-Df-pjV" id="7ev-S0-0ck"/>
                         <outlet property="topView" destination="jAf-8E-HeQ" id="1Dx-Rv-hha"/>

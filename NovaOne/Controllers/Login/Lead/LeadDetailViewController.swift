@@ -18,6 +18,8 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var objectDetailTableView: UITableView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var topView: NovaOneView!
+    @IBOutlet weak var loadingView: UIView!
+    @IBOutlet weak var loadingViewSpinner: UIActivityIndicatorView!
     var coreDataObjectId: Int32?
     
     override func viewDidLoad() {
@@ -25,6 +27,11 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         self.setupObjectDetailCellsAndTitle()
         self.setupTableView()
         self.setupTopView()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
+            [weak self] in
+            self?.hideLoadingView()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -32,18 +39,9 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         self.getCoreDataObject()
     }
     
-    func getCoreDataObject() {
-        // Gets the coredata object by id
-        
-        // Get object from core data
-        guard let coreDataObjectId = self.coreDataObjectId else {
-            print("could not get core data object id - LeadDetailViewController")
-            return
-        }
-        let filter = NSPredicate(format: "id == %@", String(coreDataObjectId))
-        guard let coreDataLeadObject = PersistenceService.fetchEntity(Lead.self, filter: filter, sort: nil).first else { print("could not get coredata lead object - LeadDetailViewController"); return }
-        self.lead = coreDataLeadObject
-        self.setupObjectDetailCellsAndTitle()
+    func hideLoadingView() {
+        self.loadingView.isHidden = true
+        self.loadingViewSpinner.stopAnimating()
     }
     
     func setupTopView() {
@@ -69,6 +67,20 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         return formattedDate
     }
     
+    func getCoreDataObject() {
+        // Gets the coredata object by id
+        
+        // Get object from core data
+        guard let coreDataObjectId = self.coreDataObjectId else {
+            print("could not get core data object id - LeadDetailViewController")
+            return
+        }
+        let filter = NSPredicate(format: "id == %@", String(coreDataObjectId))
+        guard let coreDataLeadObject = PersistenceService.fetchEntity(Lead.self, filter: filter, sort: nil).first else { print("could not get coredata lead object - LeadDetailViewController"); return }
+        self.lead = coreDataLeadObject
+        self.setupObjectDetailCellsAndTitle()
+    }
+    
     func setupObjectDetailCellsAndTitle() {
         // Set cell values for the table view
         
@@ -77,7 +89,7 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             let name = lead.name,
             let companyName = lead.companyName,
             let dateOfInquiryDate = lead.dateOfInquiry
-        else { return }
+            else { print("could not get lead info - LeadDetailViewController"); return }
         let format = "MMM d, yyyy | h:mm a"
         let sentTextDate = lead.sentTextDate != nil ? DateHelper.createString(from: lead.sentTextDate!, format: format) : "Not Texted"
         let sentEmailDate = lead.sentEmailDate != nil ? DateHelper.createString(from: lead.sentEmailDate!, format: format) : "Not Emailed"
@@ -131,7 +143,7 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
                 let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
                 let email = customer.email,
                 let password = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue),
-                let objectId = self?.lead?.id,
+                let objectId = self?.coreDataObjectId,
                 let lead = self?.lead
             else { return }
             
@@ -237,7 +249,7 @@ extension LeadDetailViewController {
             case .name:
                 guard let updateLeadNameViewController = updateLeadStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateLeadName.rawValue) as? UpdateLeadNameViewController else { return }
                 
-                updateLeadNameViewController.updateCoreDataObjectId = self.lead?.id
+                updateLeadNameViewController.updateCoreDataObjectId = self.coreDataObjectId
                 updateLeadNameViewController.previousViewController = self
                 updateLeadNameViewController.modalPresentationStyle = .fullScreen
                 
@@ -245,7 +257,7 @@ extension LeadDetailViewController {
             case .email:
                 guard let updateLeadEmailViewController = updateLeadStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateLeadEmail.rawValue) as? UpdateLeadEmailViewController else { return }
                 
-                updateLeadEmailViewController.updateCoreDataObjectId = self.lead?.id
+                updateLeadEmailViewController.updateCoreDataObjectId = self.coreDataObjectId
                 updateLeadEmailViewController.previousViewController = self
                 updateLeadEmailViewController.modalPresentationStyle = .fullScreen
                 
@@ -253,7 +265,7 @@ extension LeadDetailViewController {
             case .phoneNumber:
                 guard let updateLeadPhoneViewController = updateLeadStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateLeadPhone.rawValue) as? UpdateLeadPhoneViewController else { return }
                 
-                updateLeadPhoneViewController.updateCoreDataObjectId = self.lead?.id
+                updateLeadPhoneViewController.updateCoreDataObjectId = self.coreDataObjectId
                 updateLeadPhoneViewController.previousViewController = self
                 updateLeadPhoneViewController.modalPresentationStyle = .fullScreen
                 
@@ -261,7 +273,7 @@ extension LeadDetailViewController {
             case .dateOfInquiry:
                 guard let updateLeadDateOfInquiryViewController = updateLeadStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateLeadDateOfInquiry.rawValue) as? UpdateLeadDateOfInquiryViewController else { return }
                 
-                updateLeadDateOfInquiryViewController.updateCoreDataObjectId = self.lead?.id
+                updateLeadDateOfInquiryViewController.updateCoreDataObjectId = self.coreDataObjectId
                 updateLeadDateOfInquiryViewController.previousViewController = self
                 updateLeadDateOfInquiryViewController.modalPresentationStyle = .fullScreen
                 
@@ -269,7 +281,7 @@ extension LeadDetailViewController {
             case .sentTextDate:
                 guard let updateLeadSentTextDateViewController = updateLeadStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateLeadSentTextDate.rawValue) as? UpdateLeadSentTextDateViewController else { return }
                 
-                updateLeadSentTextDateViewController.updateCoreDataObjectId = self.lead?.id
+                updateLeadSentTextDateViewController.updateCoreDataObjectId = self.coreDataObjectId
                 updateLeadSentTextDateViewController.previousViewController = self
                 updateLeadSentTextDateViewController.modalPresentationStyle = .fullScreen
                 
@@ -277,7 +289,7 @@ extension LeadDetailViewController {
             case .sentEmailDate:
                 guard let updateLeadSentEmailDateViewController = updateLeadStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateLeadSentEmailDate.rawValue) as? UpdateLeadSentEmailDateViewController else { return }
                 
-                updateLeadSentEmailDateViewController.updateCoreDataObjectId = self.lead?.id
+                updateLeadSentEmailDateViewController.updateCoreDataObjectId = self.coreDataObjectId
                 updateLeadSentEmailDateViewController.previousViewController = self
                 updateLeadSentEmailDateViewController.modalPresentationStyle = .fullScreen
                 
@@ -285,7 +297,7 @@ extension LeadDetailViewController {
             case .companyName:
                 guard let updateLeadCompanyViewController = updateLeadStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateLeadCompany.rawValue) as? UpdateLeadCompanyViewController else { return }
                 
-                updateLeadCompanyViewController.updateCoreDataObjectId = self.lead?.id
+                updateLeadCompanyViewController.updateCoreDataObjectId = self.coreDataObjectId
                 updateLeadCompanyViewController.previousViewController = self
                 updateLeadCompanyViewController.modalPresentationStyle = .fullScreen
                 
@@ -293,7 +305,7 @@ extension LeadDetailViewController {
             case .renterBrand:
                 guard let updateLeadRenterViewController = updateLeadStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateLeadRenterBrand.rawValue) as? UpdateLeadRenterBrandViewController else { return }
                 
-                updateLeadRenterViewController.updateCoreDataObjectId = self.lead?.id
+                updateLeadRenterViewController.updateCoreDataObjectId = self.coreDataObjectId
                 updateLeadRenterViewController.previousViewController = self
                 updateLeadRenterViewController.modalPresentationStyle = .fullScreen
                 

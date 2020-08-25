@@ -72,21 +72,24 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
         // Show first object details in the detail view controller
         DispatchQueue.main.async {
             [weak self] in
-            print("Setting first item in table view for detail view - LeadsTableViewController")
-            guard
-                let detailNavigationController = self?.storyboard?.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.leadDetail.rawValue) as? UINavigationController,
-                let detailViewController = detailNavigationController.viewControllers.first as? LeadDetailViewController,
-                let itemSelectedIndex = self?.itemSelectedIndex,
-                let lead = self?.filteredObjects[itemSelectedIndex] as? Lead
-            else { return }
-            
-            detailViewController.coreDataObjectId = lead.id
-            detailViewController.previousViewController = self
-            detailViewController.navigationItem.leftBarButtonItem = self?.splitViewController?.displayModeButtonItem
-            detailViewController.navigationItem.leftItemsSupplementBackButton = true
-            
-            self?.splitViewController?.showDetailViewController(detailNavigationController, sender: nil)
-            self?.didSetFirstItem = true // Set to true so it does not run again in viewDidAppear
+            guard let filteredObjectsIsEmpty = self?.filteredObjects.isEmpty else { return }
+            if filteredObjectsIsEmpty == false {
+                print("Setting first item in table view for detail view - LeadsTableViewController")
+                guard
+                    let detailNavigationController = self?.storyboard?.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.leadDetail.rawValue) as? UINavigationController,
+                    let detailViewController = detailNavigationController.viewControllers.first as? LeadDetailViewController,
+                    let itemSelectedIndex = self?.itemSelectedIndex,
+                    let lead = self?.filteredObjects[itemSelectedIndex] as? Lead // Index out of range error after deleting lead
+                else { return }
+                
+                detailViewController.coreDataObjectId = lead.id
+                detailViewController.previousViewController = self
+                detailViewController.navigationItem.leftBarButtonItem = self?.splitViewController?.displayModeButtonItem
+                detailViewController.navigationItem.leftItemsSupplementBackButton = true
+                
+                self?.splitViewController?.showDetailViewController(detailNavigationController, sender: nil)
+                self?.didSetFirstItem = true // Set to true so it does not run again in viewDidAppear
+            }
         }
     }
     

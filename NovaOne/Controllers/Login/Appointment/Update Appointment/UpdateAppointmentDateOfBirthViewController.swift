@@ -36,8 +36,8 @@ class UpdateAppointmentDateOfBirthViewController: UpdateBaseViewController {
         let successDoneHandler = {
             let predicate = NSPredicate(format: "id == %@", String(objectId))
             guard let updatedAppointment = PersistenceService.fetchEntity(Appointment.self, filter: predicate, sort: nil).first else { return }
-            
-            detailViewController.coreDataObjectId = updatedAppointment.id
+            detailViewController.appointment = updatedAppointment
+            detailViewController.coreDataObjectId = objectId
             detailViewController.setupObjectDetailCellsAndTitle()
             detailViewController.objectDetailTableView.reloadData()
         }

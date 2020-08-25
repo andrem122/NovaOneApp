@@ -17,6 +17,7 @@
         <attribute name="time" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="timeZone" attributeType="String"/>
         <attribute name="unitType" optional="YES" attributeType="String"/>
+        <attribute name="zip" optional="YES" attributeType="String"/>
         <relationship name="company" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Company" inverseName="appointments" inverseEntity="Company"/>
     </entity>
     <entity name="Company" representedClassName="Company" syncable="YES">
@@ -74,7 +75,7 @@
         <relationship name="company" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Company" inverseName="leads" inverseEntity="Company"/>
     </entity>
     <elements>
-        <element name="Appointment" positionX="-54" positionY="135" width="128" height="298"/>
+        <element name="Appointment" positionX="-54" positionY="135" width="128" height="313"/>
         <element name="Company" positionX="-63" positionY="99" width="128" height="313"/>
         <element name="Customer" positionX="-63" positionY="-18" width="128" height="298"/>
         <element name="Lead" positionX="-54" positionY="135" width="128" height="238"/>

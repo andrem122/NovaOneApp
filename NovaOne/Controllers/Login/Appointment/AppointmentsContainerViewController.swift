@@ -66,6 +66,8 @@ class AppointmentsContainerViewController: UIViewController, NovaOneObjectContai
                     coreDataAppointment.time = appointment.timeDate
                     coreDataAppointment.timeZone = appointment.timeZone
                     coreDataAppointment.unitType = appointment.unitType
+                    coreDataAppointment.city = appointment.city
+                    coreDataAppointment.zip = appointment.zip
                     
                 }
             }

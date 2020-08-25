@@ -19,6 +19,8 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
     var previousViewController: UIViewController?
     var appointment: Appointment?
     var coreDataObjectId: Int32?
+    @IBOutlet weak var loadingView: UIView!
+    @IBOutlet weak var loadingViewSpinner: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,11 +28,22 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
         self.setupTableView()
         self.setupTopView()
         self.setupNavigationBar()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
+            [weak self] in
+            self?.hideLoadingView()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.getCoreDataObject()
+    }
+    
+    func hideLoadingView() {
+        // Hides loading view an activity indicator
+        self.loadingView.isHidden = true
+        self.loadingViewSpinner.stopAnimating()
     }
     
     func getCoreDataObject() {
@@ -69,6 +82,7 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
     func setupObjectDetailCellsAndTitle() {
         // Set cells up for the table view
         
+        // Get attributes from core data object
         guard
             let appointment = self.appointment,
             let name = appointment.name,
@@ -85,7 +99,10 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
         let appointmentTimeItem = ObjectDetailItem(titleValue: appointmentTime, titleItem: .appointmentTime)
         let appointmentConfirmedItem = ObjectDetailItem(titleValue: confirmedString, titleItem: .confirmed)
         
+        // Set title label of detail view controller
         self.titleLabel.text = appointment.name
+        
+        // Add to table cells array
         self.objectDetailItems = [
             nameItem,
             phoneNumberItem,
@@ -111,7 +128,9 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
                 let dateOfBirthDate = appointment.dateOfBirth,
                 let testType = appointment.testType,
                 let gender = appointment.gender,
-                let address = appointment.address
+                let shortenedAddress = appointment.address?.components(separatedBy: ",").first,
+                let city = appointment.city,
+                let zip = appointment.zip
             else { return }
             let dateOfBirth = DateHelper.createString(from: dateOfBirthDate, format: "MM/dd/yyyy")
             
@@ -119,9 +138,11 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
             let dateOfBirthItem = ObjectDetailItem(titleValue: dateOfBirth, titleItem: .dateOfBirth)
             let testTypeItem = ObjectDetailItem(titleValue: testType, titleItem: .testType)
             let genderItem = ObjectDetailItem(titleValue: gender, titleItem: .gender)
-            let addressItem = ObjectDetailItem(titleValue: address, titleItem: .address)
+            let addressItem = ObjectDetailItem(titleValue: shortenedAddress, titleItem: .address)
+            let cityItem = ObjectDetailItem(titleValue: city, titleItem: .city)
+            let zipItem = ObjectDetailItem(titleValue: zip, titleItem: .zip)
             
-            let items = [emailItem, dateOfBirthItem, testTypeItem, genderItem, addressItem]
+            let items = [emailItem, dateOfBirthItem, testTypeItem, genderItem, addressItem, cityItem, zipItem]
             self.objectDetailItems.append(contentsOf: items)
             
         }
@@ -252,7 +273,7 @@ extension AppointmentDetailViewController {
                 case .name:
                     if let updateAppointmentNameViewController = updateAppointmentStoryboard.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentName.rawValue) as? UpdateAppointmentNameViewController {
                         
-                        updateAppointmentNameViewController.updateCoreDataObjectId = self.appointment?.id
+                        updateAppointmentNameViewController.updateCoreDataObjectId = self.coreDataObjectId
                         updateAppointmentNameViewController.previousViewController = self
                         updateAppointmentNameViewController.modalPresentationStyle = .fullScreen
                         
@@ -262,7 +283,7 @@ extension AppointmentDetailViewController {
                 case .email:
                         if let updateAppointmentEmailViewController = updateAppointmentStoryboard.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentEmail.rawValue) as? UpdateAppointmentEmailViewController {
                             
-                            updateAppointmentEmailViewController.updateCoreDataObjectId = self.appointment?.id
+                            updateAppointmentEmailViewController.updateCoreDataObjectId = self.coreDataObjectId
                             updateAppointmentEmailViewController.previousViewController = self
                             updateAppointmentEmailViewController.modalPresentationStyle = .fullScreen
                             
@@ -273,7 +294,7 @@ extension AppointmentDetailViewController {
                 case .phoneNumber:
                         if let updateAppointmentPhoneViewController = updateAppointmentStoryboard.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentPhone.rawValue) as? UpdateAppointmentPhoneViewController {
                             
-                            updateAppointmentPhoneViewController.updateCoreDataObjectId = self.appointment?.id
+                            updateAppointmentPhoneViewController.updateCoreDataObjectId = self.coreDataObjectId
                             updateAppointmentPhoneViewController.previousViewController = self
                             updateAppointmentPhoneViewController.modalPresentationStyle = .fullScreen
                             
@@ -295,7 +316,7 @@ extension AppointmentDetailViewController {
                 case .confirmed:
                         if let updateAppointmentStatusViewController = updateAppointmentStoryboard.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentStatus.rawValue) as? UpdateAppointmentStatusViewController {
                             
-                            updateAppointmentStatusViewController.updateCoreDataObjectId = self.appointment?.id
+                            updateAppointmentStatusViewController.updateCoreDataObjectId = self.coreDataObjectId
                             updateAppointmentStatusViewController.previousViewController = self
                             updateAppointmentStatusViewController.modalPresentationStyle = .fullScreen
                             
@@ -306,7 +327,7 @@ extension AppointmentDetailViewController {
                 case .dateOfBirth:
                         if let updateAppointmentDateOfBirthViewController = updateAppointmentStoryboard.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentDateOfBirth.rawValue) as? UpdateAppointmentDateOfBirthViewController {
                             
-                            updateAppointmentDateOfBirthViewController.updateCoreDataObjectId = self.appointment?.id
+                            updateAppointmentDateOfBirthViewController.updateCoreDataObjectId = self.coreDataObjectId
                             updateAppointmentDateOfBirthViewController.previousViewController = self
                             updateAppointmentDateOfBirthViewController.modalPresentationStyle = .fullScreen
                             
@@ -317,7 +338,7 @@ extension AppointmentDetailViewController {
                 case .unitType:
                         if let updateAppointmentUnitTypeViewController = updateAppointmentStoryboard.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentUnitType.rawValue) as? UpdateAppointmentUnitTypeViewController {
                             
-                            updateAppointmentUnitTypeViewController.updateCoreDataObjectId = self.appointment?.id
+                            updateAppointmentUnitTypeViewController.updateCoreDataObjectId = self.coreDataObjectId
                             updateAppointmentUnitTypeViewController.previousViewController = self
                             updateAppointmentUnitTypeViewController.modalPresentationStyle = .fullScreen
                             
@@ -328,7 +349,7 @@ extension AppointmentDetailViewController {
                 case .testType:
                         if let updateAppointmentTestTypeViewController = updateAppointmentStoryboard.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentTestType.rawValue) as? UpdateAppointmentTestTypeViewController {
                             
-                            updateAppointmentTestTypeViewController.updateCoreDataObjectId = self.appointment?.id
+                            updateAppointmentTestTypeViewController.updateCoreDataObjectId = self.coreDataObjectId
                             updateAppointmentTestTypeViewController.previousViewController = self
                             updateAppointmentTestTypeViewController.modalPresentationStyle = .fullScreen
                             
@@ -339,7 +360,7 @@ extension AppointmentDetailViewController {
                 case .gender:
                         if let updateAppointmentGenderViewController = updateAppointmentStoryboard.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentGender.rawValue) as? UpdateAppointmentGenderViewController {
                             
-                            updateAppointmentGenderViewController.updateCoreDataObjectId = self.appointment?.id
+                            updateAppointmentGenderViewController.updateCoreDataObjectId = self.coreDataObjectId
                             updateAppointmentGenderViewController.previousViewController = self
                             updateAppointmentGenderViewController.modalPresentationStyle = .fullScreen
                             
@@ -350,13 +371,31 @@ extension AppointmentDetailViewController {
                 case .address:
                         if let updateAppointmentAddressViewController = updateAppointmentStoryboard.instantiateViewController(withIdentifier: Defaults.ViewControllerIdentifiers.updateAppointmentAddress.rawValue) as? UpdateAppointmentAddressViewController {
                             
-                            updateAppointmentAddressViewController.updateCoreDataObjectId = self.appointment?.id
+                            updateAppointmentAddressViewController.updateCoreDataObjectId = self.coreDataObjectId
                             updateAppointmentAddressViewController.previousViewController = self
                             updateAppointmentAddressViewController.modalPresentationStyle = .fullScreen
                             
                             self.present(updateAppointmentAddressViewController, animated: true, completion: nil)
                             
                         }
+            case .city:
+                guard
+                    let city = self.appointment?.city
+                else { return }
+                UIPasteboard.general.string = city
+                
+                // Show popup confirming that text has been copied
+                let popUpOkViewController = self.alertService.popUpOk(title: "Text Copied!", body: "City has been copied to clipboard successfully. Note: to update the city, update the address for this appointment.")
+                self.present(popUpOkViewController, animated: true, completion: nil)
+            case .zip:
+                guard
+                    let zip = self.appointment?.zip
+                else { return }
+                UIPasteboard.general.string = zip
+                
+                // Show popup confirming that text has been copied
+                let popUpOkViewController = self.alertService.popUpOk(title: "Text Copied!", body: "Zip has been copied to clipboard successfully. Note: to update the zip, update the address for this appointment.")
+                self.present(popUpOkViewController, animated: true, completion: nil)
                     
                     default:
                         print("No cases matched")

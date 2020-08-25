@@ -20,11 +20,31 @@ class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITabl
     var alertService = AlertService()
     var previousViewController: UIViewController?
     var coreDataObjectId: Int32?
+    @IBOutlet weak var loadingViewSpinner: UIActivityIndicatorView!
+    @IBOutlet weak var loadingView: UIView!
     
     // MARK: Methods
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.setupTableView()
+        self.setupTopView()
+        self.setupNavigationBackButton()
+        self.setupObjectDetailCellsAndTitle()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
+            [weak self] in
+            self?.hideLoadingView()
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.getCoreDataObject()
+    }
+    
+    func hideLoadingView() {
+        self.loadingView.isHidden = true
+        self.loadingViewSpinner.stopAnimating()
     }
     
     func getCoreDataObject() {
@@ -95,14 +115,6 @@ class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITabl
     
     func setupNavigationBackButton() {
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.setupTableView()
-        self.setupTopView()
-        self.setupNavigationBackButton()
-        self.setupObjectDetailCellsAndTitle()
     }
     
     // MARK: Actions
@@ -235,7 +247,7 @@ extension CompanyDetailViewController {
             case .address:
                 if let updateCompanyAddressViewController = updateCompanyStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateCompanyAddress.rawValue) as? UpdateCompanyAddressViewController {
                     
-                    updateCompanyAddressViewController.updateCoreDataObjectId = self.company?.id
+                    updateCompanyAddressViewController.updateCoreDataObjectId = self.coreDataObjectId
                     updateCompanyAddressViewController.previousViewController = self
                     updateCompanyAddressViewController.modalPresentationStyle = .fullScreen
                     
@@ -246,7 +258,7 @@ extension CompanyDetailViewController {
                 case .phoneNumber:
                     if let updateCompanyPhoneViewController = updateCompanyStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateCompanyPhone.rawValue) as? UpdateCompanyPhoneViewController {
                         
-                        updateCompanyPhoneViewController.updateCoreDataObjectId = self.company?.id
+                        updateCompanyPhoneViewController.updateCoreDataObjectId = self.coreDataObjectId
                         updateCompanyPhoneViewController.previousViewController = self
                         updateCompanyPhoneViewController.modalPresentationStyle = .fullScreen
                         
@@ -257,7 +269,7 @@ extension CompanyDetailViewController {
                 case .name:
                     if let updateCompanyNameViewController = updateCompanyStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateCompanyName.rawValue) as? UpdateCompanyNameViewController {
                         
-                        updateCompanyNameViewController.updateCoreDataObjectId = self.company?.id
+                        updateCompanyNameViewController.updateCoreDataObjectId = self.coreDataObjectId
                         updateCompanyNameViewController.previousViewController = self
                         updateCompanyNameViewController.modalPresentationStyle = .fullScreen
                         
@@ -268,7 +280,7 @@ extension CompanyDetailViewController {
                 case .email:
                     if let updateCompanyEmailViewController = updateCompanyStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateCompanyEmail.rawValue) as? UpdateCompanyEmailViewController {
                         
-                        updateCompanyEmailViewController.updateCoreDataObjectId = self.company?.id
+                        updateCompanyEmailViewController.updateCoreDataObjectId = self.coreDataObjectId
                         updateCompanyEmailViewController.previousViewController = self
                         updateCompanyEmailViewController.modalPresentationStyle = .fullScreen
                         
@@ -279,7 +291,7 @@ extension CompanyDetailViewController {
                 case .allowSameDayAppointments:
                    if let updateCompanyAllowSameDayAppointmentsViewController = updateCompanyStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateCompanyAllowSameDayAppointments.rawValue) as? UpdateCompanyAllowSameDayAppointmentsViewController {
                        
-                       updateCompanyAllowSameDayAppointmentsViewController.updateCoreDataObjectId = self.company?.id
+                       updateCompanyAllowSameDayAppointmentsViewController.updateCoreDataObjectId = self.coreDataObjectId
                        updateCompanyAllowSameDayAppointmentsViewController.previousViewController = self
                        updateCompanyAllowSameDayAppointmentsViewController.modalPresentationStyle = .fullScreen
                        
@@ -291,7 +303,7 @@ extension CompanyDetailViewController {
                     if let updateCompanyDaysEnabledViewController = updateCompanyStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateCompanyDaysEnabled.rawValue) as? UpdateCompanyDaysEnabledViewController {
                         
                         updateCompanyDaysEnabledViewController.company = company
-                        updateCompanyDaysEnabledViewController.updateCoreDataObjectId = self.company?.id
+                        updateCompanyDaysEnabledViewController.updateCoreDataObjectId = self.coreDataObjectId
                         updateCompanyDaysEnabledViewController.previousViewController = self
                         updateCompanyDaysEnabledViewController.modalPresentationStyle = .fullScreen
                         
@@ -302,7 +314,7 @@ extension CompanyDetailViewController {
                 case .showingHours:
                     if let updateCompanyHoursEnabledViewController = updateCompanyStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.updateCompanyHoursEnabled.rawValue) as? UpdateCompanyHoursEnabledViewController {
                         
-                        updateCompanyHoursEnabledViewController.updateCoreDataObjectId = self.company?.id
+                        updateCompanyHoursEnabledViewController.updateCoreDataObjectId = self.coreDataObjectId
                         updateCompanyHoursEnabledViewController.previousViewController = self
                         updateCompanyHoursEnabledViewController.company = self.company
                         updateCompanyHoursEnabledViewController.modalPresentationStyle = .fullScreen
@@ -313,7 +325,7 @@ extension CompanyDetailViewController {
                     
                 case .appointmentLink:
                     guard
-                        let companyId = self.company?.id
+                        let companyId = self.coreDataObjectId
                     else { return }
                     let appointmentLink = Defaults.Urls.novaOneWebsite.rawValue + "/appointments/new?c=\(companyId)"
                     
@@ -338,7 +350,7 @@ extension CompanyDetailViewController {
                         guard let company = self.company else { return }
                         let autoRespondText = company.autoRespondText != nil ? company.autoRespondText! : "Update auto respond text..."
                         
-                        updateCompanyAutoRespondTextViewController.updateCoreDataObjectId = self.company?.id
+                        updateCompanyAutoRespondTextViewController.updateCoreDataObjectId = self.coreDataObjectId
                         updateCompanyAutoRespondTextViewController.previousViewController = self
                         updateCompanyAutoRespondTextViewController.autoRespondText = autoRespondText
                         updateCompanyAutoRespondTextViewController.modalPresentationStyle = .fullScreen

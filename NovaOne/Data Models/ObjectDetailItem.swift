@@ -32,6 +32,8 @@ enum TitleItem: String {
     case renterBrand = "Renter Brand"
     case sentTextDate = "Sent Text Date"
     case sentEmailDate = "Sent Email Date"
+    case city = "City"
+    case zip = "Zip"
 }
 
 class ObjectDetailItem: NSObject {

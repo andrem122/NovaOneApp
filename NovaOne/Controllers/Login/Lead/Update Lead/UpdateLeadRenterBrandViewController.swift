@@ -54,8 +54,8 @@ class UpdateLeadRenterBrandViewController: UpdateBaseViewController, UIPickerVie
         let successDoneHandler = {
             let predicate = NSPredicate(format: "id == %@", String(objectId))
             guard let updatedLead = PersistenceService.fetchEntity(Lead.self, filter: predicate, sort: nil).first else { return }
-            
-            detailViewController.coreDataObjectId = updatedLead.id
+            detailViewController.lead = updatedLead
+            detailViewController.coreDataObjectId = objectId
             detailViewController.setupObjectDetailCellsAndTitle()
             detailViewController.objectDetailTableView.reloadData()
         }

@@ -223,11 +223,25 @@
                                     <action selector="deleteButtonTapped:" destination="FU6-a7-uzH" eventType="touchUpInside" id="ZF6-Xj-vw8"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WfR-Fd-cwq" userLabel="Loading View">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="0BM-BM-7Rv">
+                                        <rect key="frame" x="197" y="377" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" name="viewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="0BM-BM-7Rv" firstAttribute="centerY" secondItem="WfR-Fd-cwq" secondAttribute="centerY" id="83x-bN-Vg1"/>
+                                    <constraint firstItem="0BM-BM-7Rv" firstAttribute="centerX" secondItem="WfR-Fd-cwq" secondAttribute="centerX" id="euc-e9-6G7"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="a1A-P5-hbv" firstAttribute="leading" secondItem="lDz-Dh-6uY" secondAttribute="leading" id="0OQ-zz-wBd"/>
                             <constraint firstAttribute="trailing" secondItem="UkD-3k-JhN" secondAttribute="trailing" id="DKC-SR-5w7"/>
+                            <constraint firstItem="WfR-Fd-cwq" firstAttribute="top" secondItem="lDz-Dh-6uY" secondAttribute="top" id="DSK-zI-NQu"/>
                             <constraint firstItem="lDz-Dh-6uY" firstAttribute="trailing" secondItem="sTA-0c-p8n" secondAttribute="trailing" constant="30" id="Du1-A0-T5f">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                             </constraint>
@@ -238,8 +252,11 @@
                             <constraint firstItem="lDz-Dh-6uY" firstAttribute="trailing" secondItem="a1A-P5-hbv" secondAttribute="trailing" id="dhw-Aw-ZAh"/>
                             <constraint firstItem="UkD-3k-JhN" firstAttribute="height" secondItem="49C-rv-ae7" secondAttribute="height" multiplier="0.327009" id="gbu-SH-FmH"/>
                             <constraint firstItem="UkD-3k-JhN" firstAttribute="leading" secondItem="49C-rv-ae7" secondAttribute="leading" id="jCP-tZ-WhW"/>
+                            <constraint firstItem="WfR-Fd-cwq" firstAttribute="leading" secondItem="lDz-Dh-6uY" secondAttribute="leading" id="jeC-my-xlF"/>
                             <constraint firstItem="Zbl-6A-Vnm" firstAttribute="leading" secondItem="lDz-Dh-6uY" secondAttribute="leading" constant="30" id="nkf-p7-AfL"/>
                             <constraint firstItem="lDz-Dh-6uY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Zbl-6A-Vnm" secondAttribute="trailing" id="qTH-mh-0tP"/>
+                            <constraint firstItem="WfR-Fd-cwq" firstAttribute="bottom" secondItem="lDz-Dh-6uY" secondAttribute="bottom" id="vAe-BM-v1V"/>
+                            <constraint firstItem="lDz-Dh-6uY" firstAttribute="trailing" secondItem="WfR-Fd-cwq" secondAttribute="trailing" id="vmw-K6-iIB"/>
                             <constraint firstItem="lDz-Dh-6uY" firstAttribute="bottom" secondItem="sTA-0c-p8n" secondAttribute="bottom" constant="20" id="vqm-dN-VpS"/>
                             <constraint firstItem="sTA-0c-p8n" firstAttribute="leading" secondItem="lDz-Dh-6uY" secondAttribute="leading" constant="30" id="wla-WG-inL">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
@@ -251,6 +268,8 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="y9V-0o-9B8"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="loadingView" destination="WfR-Fd-cwq" id="fk7-qA-3yT"/>
+                        <outlet property="loadingViewSpinner" destination="0BM-BM-7Rv" id="rIl-Qu-9zf"/>
                         <outlet property="objectDetailTableView" destination="a1A-P5-hbv" id="92f-LB-oLG"/>
                         <outlet property="titleLabel" destination="Zbl-6A-Vnm" id="rqf-dl-0kJ"/>
                         <outlet property="topView" destination="UkD-3k-JhN" id="p0g-lr-uVs"/>

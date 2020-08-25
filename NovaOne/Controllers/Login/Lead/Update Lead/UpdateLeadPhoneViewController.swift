@@ -49,11 +49,10 @@ class UpdateLeadPhoneViewController: UpdateBaseViewController {
             let successDoneHandler = {
                 let predicate = NSPredicate(format: "id == %@", String(objectId))
                 guard let updatedLead = PersistenceService.fetchEntity(Lead.self, filter: predicate, sort: nil).first else { return }
-
-                detailViewController.coreDataObjectId = updatedLead.id
+                detailViewController.lead = updatedLead
+                detailViewController.coreDataObjectId = objectId
                 detailViewController.setupObjectDetailCellsAndTitle()
                 detailViewController.objectDetailTableView.reloadData()
-
             }
 
             self.updateObject(for: Defaults.DataBaseTableNames.leads.rawValue, at: ["phone_number": "%2B1" + unformattedPhoneNumber], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Lead.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Lead phone number has been successfully updated.", successDoneHandler: successDoneHandler, completion: nil)

@@ -76,7 +76,6 @@ extension UIView {
     }
 }
 
-var vSpinner: UIView? // Global variable, must set to nil when done using to avoid memory leak
 extension UIViewController {
     func getSizeClass() -> (UIUserInterfaceSizeClass, UIUserInterfaceSizeClass) {
         // Returns the horizontal and vertical size class in a tuple

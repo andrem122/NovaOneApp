@@ -72,21 +72,24 @@ class AppointmentsTableViewController: UITableViewController, NovaOneTableView {
         // Show first object details in the detail view controller
         DispatchQueue.main.async {
             [weak self] in
-            print("Setting first item in table view for detail view - AppointmentsTableViewController")
-            guard
-                let detailNavigationController = self?.storyboard?.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.appointmentDetail.rawValue) as? UINavigationController,
-                let itemSelectedIndex = self?.itemSelectedIndex,
-                let detailViewController = detailNavigationController.viewControllers.first as? AppointmentDetailViewController,
-                let appointment = self?.filteredObjects[itemSelectedIndex] as? Appointment
-            else { return }
-            
-            detailViewController.coreDataObjectId = appointment.id
-            detailViewController.previousViewController = self
-            detailViewController.navigationItem.leftBarButtonItem = self?.splitViewController?.displayModeButtonItem
-            detailViewController.navigationItem.leftItemsSupplementBackButton = true
-            
-            self?.splitViewController?.showDetailViewController(detailNavigationController, sender: nil)
-            self?.didSetFirstItem = true // Set to true so it does not run again in viewDidAppear
+            guard let filteredObjectsIsEmpty = self?.filteredObjects.isEmpty else { return }
+            if filteredObjectsIsEmpty == false {
+                print("Setting first item in table view for detail view - AppointmentsTableViewController")
+                guard
+                    let detailNavigationController = self?.storyboard?.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.appointmentDetail.rawValue) as? UINavigationController,
+                    let itemSelectedIndex = self?.itemSelectedIndex,
+                    let detailViewController = detailNavigationController.viewControllers.first as? AppointmentDetailViewController,
+                    let appointment = self?.filteredObjects[itemSelectedIndex] as? Appointment
+                else { return }
+                
+                detailViewController.coreDataObjectId = appointment.id
+                detailViewController.previousViewController = self
+                detailViewController.navigationItem.leftBarButtonItem = self?.splitViewController?.displayModeButtonItem
+                detailViewController.navigationItem.leftItemsSupplementBackButton = true
+                
+                self?.splitViewController?.showDetailViewController(detailNavigationController, sender: nil)
+                self?.didSetFirstItem = true // Set to true so it does not run again in viewDidAppear
+            }
         }
     }
     
@@ -178,6 +181,8 @@ class AppointmentsTableViewController: UITableViewController, NovaOneTableView {
                     coreDataAppointment.time = appointment.timeDate
                     coreDataAppointment.timeZone = appointment.timeZone
                     coreDataAppointment.unitType = appointment.unitType
+                    coreDataAppointment.city = appointment.city
+                    coreDataAppointment.zip = appointment.zip
                     
                 }
             }

@@ -161,6 +161,8 @@ class UpdateAppointmentTimeViewController: UpdateBaseViewController {
             parameters["test_type"] = testType
             parameters["gender"] = gender
             parameters["date_of_birth"] = dateOfBirthString
+            parameters["city"] = appointment.city
+            parameters["zip"] = appointment.zip
             parameters["address"] = address
             parameters["email"] = email
         }
@@ -184,35 +186,39 @@ class UpdateAppointmentTimeViewController: UpdateBaseViewController {
                     successViewController.subtitleText = "Appointment time has been successfully updated."
                     successViewController.titleLabelText = "Update Complete!"
                     successViewController.doneHandler = {
-                        let predicate = NSPredicate(format: "id == %@", String(newAppointmentId))
-                        guard let updatedAppointment = PersistenceService.fetchEntity(Appointment.self, filter: predicate, sort: nil).first else { return }
-                        
-                        detailViewController.coreDataObjectId = updatedAppointment.id
+                        detailViewController.coreDataObjectId = newAppointmentId
                         detailViewController.setupObjectDetailCellsAndTitle()
                         detailViewController.objectDetailTableView.reloadData()
                         
                         self?.removeSpinner(spinnerView: spinnerView)
                     }
                     
-                    // Get detail view controller instance
-                    guard let objectDetailViewController = self?.previousViewController as? NovaOneObjectDetail else { print("could not get objectDetailViewController - UpdateAppointmentTimeViewController"); return }
+                    guard let previousViewController = self?.previousViewController else { print("could not get previous view controller - UpdateBaseViewController"); return }
                     
-                    // Get table view controller
-                    guard let tableViewController = objectDetailViewController.previousViewController as? AppointmentsTableViewController else { print("could not get AppointmentsTableViewController - UpdateAppointmentTimeViewController"); return }
-                    
-                    // Remove update view controller and present success view controller
-                    (objectDetailViewController as? UIViewController)?.dismiss(animated: false, completion: {
-                        // Do not have to remove spinner view after dismissing update view because when the update
-                        // view is dismissed it removes the spinner view
-                        (objectDetailViewController as? UIViewController)?.present(successViewController, animated: true, completion: {
-                            guard let sizeClass = self?.getSizeClass() else { return }
-                            if sizeClass == (.regular, .compact) || sizeClass == (.regular, .regular) || sizeClass == (.regular, .unspecified) {
-                                tableViewController.didSetFirstItem = false // Set equal to false so the table view controller will set the first item in the detail view again with fresh properties, so we don't get update errors
-                                tableViewController.setFirstItemForDetailView()
-                            }
-                        })
+                    // Dismiss update view controller and present success view controller after
+                    if let objectDetailViewController = previousViewController as? NovaOneObjectDetail {
+                        // For detail view controllers
+                        guard let tableViewController = objectDetailViewController.previousViewController else { return }
                         
-                    })
+                        // Remove update view controller and present success view controller
+                        previousViewController.dismiss(animated: false, completion: {
+                            [weak self] in
+                            // Do not have to remove spinner view after dismissing update view because when the update
+                            // view is dismissed it removes the spinner view
+                            
+                            guard let sizeClass = self?.getSizeClass() else { return }
+                            
+                            if sizeClass == (.regular, .compact) || sizeClass == (.regular, .regular) || sizeClass == (.regular, .unspecified) {
+                                tableViewController.present(successViewController, animated: true, completion: nil)
+                                guard let novaOneTableView = tableViewController as? NovaOneTableView else { return }
+                                novaOneTableView.didSetFirstItem = false // Set equal to false so the table view controller will set the first item in the detail view again with fresh properties, so we don't get update errors
+                                novaOneTableView.setFirstItemForDetailView()
+                            } else {
+                                previousViewController.present(successViewController, animated: true, completion: nil)
+                            }
+                            
+                        })
+                    }
                 case .failure(let error):
                     guard let popUpOk = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
                     self?.present(popUpOk, animated: true, completion: nil)

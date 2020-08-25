@@ -28,9 +28,9 @@ class UpdateCompanyAllowSameDayAppointmentsViewController: UpdateBaseViewControl
         
         let successDoneHandler = {
             let predicate = NSPredicate(format: "id == %@", String(objectId))
-            guard let updatedCompany = PersistenceService.fetchEntity(Company.self, filter: predicate, sort: nil).first else { print("error getting updated company"); return }
-            
-            detailViewController.coreDataObjectId = updatedCompany.id
+            guard let updatedCompany = PersistenceService.fetchEntity(Company.self, filter: predicate, sort: nil).first else { return }
+            detailViewController.company = updatedCompany
+            detailViewController.coreDataObjectId = objectId
             detailViewController.setupObjectDetailCellsAndTitle()
             detailViewController.objectDetailTableView.reloadData()
         }

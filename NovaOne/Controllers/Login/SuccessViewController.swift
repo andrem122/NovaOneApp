@@ -24,10 +24,8 @@ class SuccessViewController: UIViewController {
         self.setup()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        // Reset to allow all orientations
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         AppUtility.lockOrientation(.all)
     }
     
