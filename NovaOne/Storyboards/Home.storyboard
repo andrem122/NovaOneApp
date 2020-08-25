@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina4_7" orientation="landscape" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -13,14 +13,14 @@
             <objects>
                 <viewController storyboardIdentifier="homeViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IkL-Lu-9O6" userLabel="Home View Scene" customClass="HomeViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dcc-mZ-THk">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JOy-Cr-frl" userLabel="Top View">
-                                <rect key="frame" x="0.0" y="44" width="414" height="179"/>
+                                <rect key="frame" x="0.0" y="0.0" width="333.5" height="75"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello Andre, it's Monday, and you have 4 leads." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="O8T-Hx-Xeb" userLabel="Greeting Label">
-                                        <rect key="frame" x="15" y="15" width="386" height="156"/>
+                                        <rect key="frame" x="8" y="15" width="312.5" height="52"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                         <color key="textColor" name="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -50,7 +50,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wz8-Gy-qwd" userLabel="Border 2 View" customClass="NovaOneView" customModule="NovaOne" customModuleProvider="target">
-                                <rect key="frame" x="15" y="224" width="384" height="2.5"/>
+                                <rect key="frame" x="8" y="76" width="310.5" height="2.5"/>
                                 <color key="backgroundColor" red="0.86659032110000001" green="0.86671549079999999" blue="0.86656308169999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2.5" id="46u-Og-cxK"/>
@@ -62,7 +62,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Soh-O5-bFS" userLabel="Border 1 View" customClass="NovaOneView" customModule="NovaOne" customModuleProvider="target">
-                                <rect key="frame" x="15" y="223" width="279" height="5"/>
+                                <rect key="frame" x="8" y="75" width="233.5" height="5"/>
                                 <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="5" id="oU3-gR-Kse"/>
@@ -80,7 +80,7 @@
                                 <rect key="frame" x="15" y="217.5" width="738" height="298"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y5c-au-FPh" userLabel="Border Above Graph View" customClass="NovaOneView" customModule="NovaOne" customModuleProvider="target">
-                                <rect key="frame" x="15" y="499.5" width="384" height="3.5"/>
+                                <rect key="frame" x="15" y="373.5" width="345" height="3.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="3.5" id="Aqb-Jt-Y0x"/>
@@ -98,11 +98,11 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qnf-Ni-96m" userLabel="Chart Container View">
-                                <rect key="frame" x="0.0" y="544" width="414" height="269"/>
+                                <rect key="frame" x="333.5" y="46" width="333.5" height="297"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="JaZ-G2-KKf">
-                                <rect key="frame" x="282" y="508" width="117" height="32"/>
+                                <rect key="frame" x="542" y="10" width="117" height="32"/>
                                 <color key="backgroundColor" red="0.32493522759999999" green="0.46187436580000002" blue="0.83199411629999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="31" id="ALg-QZ-U3v">
@@ -133,7 +133,7 @@
                                 </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Leads Per Week" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="NjQ-h1-NfZ">
-                                <rect key="frame" x="15" y="513.5" width="123" height="20.5"/>
+                                <rect key="frame" x="333.5" y="13.5" width="146.5" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -142,20 +142,20 @@
                                 </variation>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="aRI-41-JrA" userLabel="Leads Stack View">
-                                <rect key="frame" x="15" y="419.5" width="129" height="70"/>
+                                <rect key="frame" x="8" y="205.5" width="154.5" height="61"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="CBE-np-wig">
-                                        <rect key="frame" x="0.0" y="0.0" width="129" height="44.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="154.5" height="35.5"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="252" verticalHuggingPriority="252" image="person" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="l0h-EL-YFn">
-                                                <rect key="frame" x="0.0" y="1.5" width="30" height="42"/>
+                                                <rect key="frame" x="0.0" y="1.5" width="30" height="33"/>
                                                 <color key="tintColor" red="0.32549019610000002" green="0.42352941179999998" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="30" id="5FF-9N-Loc"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="749" text="10,932" textAlignment="natural" lineBreakMode="tailTruncation" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="khO-a6-o7N" userLabel="Number Of Leads">
-                                                <rect key="frame" x="38" y="0.0" width="91" height="44.5"/>
+                                                <rect key="frame" x="38" y="0.0" width="116.5" height="35.5"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
                                                 <color key="textColor" name="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -178,7 +178,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="600" verticalHuggingPriority="251" text="Leads" lineBreakMode="tailTruncation" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="23J-qh-t3U">
-                                        <rect key="frame" x="0.0" y="49.5" width="129" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="40.5" width="154.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" name="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -196,20 +196,20 @@
                                 <variation key="heightClass=regular-widthClass=regular" spacing="10"/>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="wkW-aQ-VTr" userLabel="Appointments Stack View">
-                                <rect key="frame" x="270" y="419.5" width="129" height="70"/>
+                                <rect key="frame" x="8" y="274.5" width="154.5" height="60.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nRg-vT-h1K">
-                                        <rect key="frame" x="0.0" y="0.0" width="129" height="44.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="154.5" height="35"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendar" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="wj5-OX-xG2">
-                                                <rect key="frame" x="0.0" y="1" width="30" height="42"/>
+                                                <rect key="frame" x="0.0" y="1" width="30" height="32.5"/>
                                                 <color key="tintColor" red="0.32549019610000002" green="0.42352941179999998" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="30" id="lNy-g8-8L1"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="19,932" textAlignment="natural" lineBreakMode="tailTruncation" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="2kC-3D-YEV" userLabel="Number Of Appointments">
-                                                <rect key="frame" x="38" y="0.0" width="91" height="44.5"/>
+                                                <rect key="frame" x="38" y="0.0" width="116.5" height="35"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
                                                 <color key="textColor" name="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -232,7 +232,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Appointments" lineBreakMode="tailTruncation" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="Hff-3s-U7I">
-                                        <rect key="frame" x="0.0" y="49.5" width="129" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="40" width="154.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" name="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -247,10 +247,10 @@
                                 <variation key="heightClass=regular-widthClass=regular" spacing="10"/>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="hZ4-IT-LCj" userLabel="Companies Stack View">
-                                <rect key="frame" x="15" y="342" width="384" height="64.5"/>
+                                <rect key="frame" x="8" y="149" width="333.5" height="48.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="1" textAlignment="natural" lineBreakMode="tailTruncation" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="583-IF-1zN" userLabel="Number Of Companies">
-                                        <rect key="frame" x="0.0" y="0.0" width="15.5" height="36"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="11" height="20"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
                                         <color key="textColor" name="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -268,7 +268,7 @@
                                         </variation>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Companies Tracked" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="Ddt-AZ-O3H">
-                                        <rect key="frame" x="0.0" y="44" width="151.5" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="28" width="151.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" name="textColor"/>
                                         <nil key="highlightedColor"/>

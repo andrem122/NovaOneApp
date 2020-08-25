@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -13,11 +13,11 @@
             <objects>
                 <viewController storyboardIdentifier="updateCompanyAutoRespondTextViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2Cp-nq-VYE" userLabel="Update Company Auto Respond Text" customClass="UpdateCompanyAutoRespondTextViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SGP-Nn-yjF">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j2y-jT-2da" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
-                                <rect key="frame" x="30" y="504" width="354" height="45"/>
+                                <rect key="frame" x="30" y="380" width="315" height="45"/>
                                 <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="XQg-ko-UHU"/>
@@ -40,7 +40,7 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Update Auto respond text here..." translatesAutoresizingMaskIntoConstraints="NO" id="fzf-2a-BhQ" userLabel="Text View" customClass="NovaOneTextView" customModule="NovaOne" customModuleProvider="target">
-                                <rect key="frame" x="30" y="177.5" width="354" height="313.5"/>
+                                <rect key="frame" x="30" y="133.5" width="315" height="233.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="textColor" name="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -61,7 +61,7 @@
                                 </variation>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Auto Respond Text" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dlw-Gd-KNm" userLabel="Title">
-                                <rect key="frame" x="30" y="114" width="354" height="33.5"/>
+                                <rect key="frame" x="30" y="70" width="315" height="33.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
                                 <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -70,7 +70,7 @@
                                 </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lRd-Vx-unt">
-                                <rect key="frame" x="20" y="64" width="33.5" height="33.5"/>
+                                <rect key="frame" x="20" y="20" width="33.5" height="33.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="33.5" id="ECv-fU-HGq"/>
                                     <constraint firstAttribute="width" constant="33.5" id="Qf5-IE-ckB"/>
@@ -125,11 +125,11 @@
             <objects>
                 <viewController storyboardIdentifier="updateCompanyAddressViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="agb-NK-vq1" userLabel="Update Company Address" customClass="UpdateCompanyAddressViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RDF-pB-Lod">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Company Address" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YDq-Jj-8ui">
-                                <rect key="frame" x="30" y="114" width="354" height="33.5"/>
+                                <rect key="frame" x="30" y="70" width="315" height="33.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
                                 <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -138,7 +138,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in your new company address below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Srw-iu-ySn">
-                                <rect key="frame" x="30" y="167.5" width="354" height="20.5"/>
+                                <rect key="frame" x="30" y="123.5" width="315" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -147,10 +147,10 @@
                                 </variation>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="1lH-hv-Uem">
-                                <rect key="frame" x="30" y="218" width="354" height="110"/>
+                                <rect key="frame" x="30" y="194.5" width="315" height="110"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New Address" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="DKQ-3Z-l4M" customClass="NovaOneTextField" customModule="NovaOne" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="354" height="45"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="315" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="dxE-Bh-ITh"/>
                                         </constraints>
@@ -175,7 +175,7 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ez-MC-VbF" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="65" width="354" height="45"/>
+                                        <rect key="frame" x="0.0" y="65" width="315" height="45"/>
                                         <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="ZrP-zp-A8e"/>
@@ -200,10 +200,10 @@
                                 </subviews>
                             </stackView>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="CVb-ff-Xb5">
-                                <rect key="frame" x="0.0" y="336" width="414" height="526"/>
+                                <rect key="frame" x="0.0" y="312.5" width="375" height="354.5"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4zQ-Sa-Mgs">
-                                <rect key="frame" x="20" y="64" width="33.5" height="33.5"/>
+                                <rect key="frame" x="20" y="20" width="33.5" height="33.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="33.5" id="Tch-2H-b5h"/>
                                     <constraint firstAttribute="width" constant="33.5" id="aQb-rc-RaM"/>
@@ -267,11 +267,11 @@
             <objects>
                 <viewController storyboardIdentifier="updateCompanyPhoneViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JsG-U3-vnl" userLabel="Update Company Phone" customClass="UpdateCompanyPhoneViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Z4e-jE-28v">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Company Phone" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yrj-Me-Zap" userLabel="Title">
-                                <rect key="frame" x="30" y="114" width="354" height="33.5"/>
+                                <rect key="frame" x="30" y="70" width="315" height="33.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
                                 <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -280,7 +280,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in your new company phone below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J3P-tU-FrN" userLabel="Subtitle">
-                                <rect key="frame" x="30" y="167.5" width="354" height="20.5"/>
+                                <rect key="frame" x="30" y="123.5" width="315" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -289,10 +289,10 @@
                                 </variation>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="8b6-y0-Ney">
-                                <rect key="frame" x="30" y="218" width="354" height="110"/>
+                                <rect key="frame" x="30" y="174" width="315" height="110"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New Phone Number" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="GYG-zV-nIq" customClass="NovaOneTextField" customModule="NovaOne" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="354" height="45"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="315" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="e99-M5-voL"/>
                                         </constraints>
@@ -318,7 +318,7 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HQS-4n-aFx" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="65" width="354" height="45"/>
+                                        <rect key="frame" x="0.0" y="65" width="315" height="45"/>
                                         <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="oQu-tq-JDj"/>
@@ -343,7 +343,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B4l-ro-8Vx">
-                                <rect key="frame" x="20" y="64" width="33.5" height="33.5"/>
+                                <rect key="frame" x="20" y="20" width="33.5" height="33.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="33.5" id="Q14-ES-Pzf"/>
                                     <constraint firstAttribute="width" constant="33.5" id="zwx-mE-7m7"/>
@@ -397,11 +397,11 @@
             <objects>
                 <viewController storyboardIdentifier="updateCompanyEmailViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Fdr-c1-kus" userLabel="Update Company Email" customClass="UpdateCompanyEmailViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6o7-nj-rfU">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Company Email" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4D-l9-41O" userLabel="Title">
-                                <rect key="frame" x="30" y="114" width="354" height="33.5"/>
+                                <rect key="frame" x="30" y="70" width="315" height="33.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
                                 <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -410,7 +410,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in your new company email below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yg3-do-Bex" userLabel="Subtitle">
-                                <rect key="frame" x="30" y="167.5" width="354" height="20.5"/>
+                                <rect key="frame" x="30" y="123.5" width="315" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -419,10 +419,10 @@
                                 </variation>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="DOB-0H-5a8">
-                                <rect key="frame" x="30" y="218" width="354" height="110"/>
+                                <rect key="frame" x="30" y="174" width="315" height="110"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New Email" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="TDn-vP-sgW" customClass="NovaOneTextField" customModule="NovaOne" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="354" height="45"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="315" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="7pF-QV-Ufq"/>
                                         </constraints>
@@ -448,7 +448,7 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fSf-io-BBb" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="65" width="354" height="45"/>
+                                        <rect key="frame" x="0.0" y="65" width="315" height="45"/>
                                         <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="H8n-vQ-Iji"/>
@@ -473,7 +473,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ojd-je-33I">
-                                <rect key="frame" x="20" y="64" width="33.5" height="33.5"/>
+                                <rect key="frame" x="20" y="20" width="33.5" height="33.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="33.5" id="BLg-tK-QL2"/>
                                     <constraint firstAttribute="height" constant="33.5" id="PYV-OG-geB"/>
@@ -528,11 +528,11 @@
             <objects>
                 <viewController storyboardIdentifier="updateCompanyDaysEnabledViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="MZD-Dy-Oi0" userLabel="Update Company Days Enabled" customClass="UpdateCompanyDaysEnabledViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rQt-ZL-OGM">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="48q-N6-29n" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
-                                <rect key="frame" x="30" y="797" width="354" height="45"/>
+                                <rect key="frame" x="30" y="602" width="315" height="45"/>
                                 <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="iLy-L9-qkE"/>
@@ -555,14 +555,14 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KpS-SE-Aed">
-                                <rect key="frame" x="0.0" y="114" width="414" height="648"/>
+                                <rect key="frame" x="0.0" y="70" width="375" height="497"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="enableOptionTableViewCell" id="NTm-tb-Dbt" customClass="EnableOptionTableViewCell" customModule="NovaOne" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NTm-tb-Dbt" id="iTj-KV-n8W">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sunday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p8q-31-mhI" userLabel="Option Label">
@@ -575,7 +575,7 @@
                                                     </variation>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tick" translatesAutoresizingMaskIntoConstraints="NO" id="BIb-xR-SWN">
-                                                    <rect key="frame" x="368" y="9" width="26" height="26"/>
+                                                    <rect key="frame" x="329" y="9" width="26" height="26"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="26" id="Qq3-cm-tHv"/>
                                                         <constraint firstAttribute="height" constant="26" id="RvJ-ZU-KgR"/>
@@ -600,7 +600,7 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A1f-dg-TAQ">
-                                <rect key="frame" x="20" y="64" width="33.5" height="33.5"/>
+                                <rect key="frame" x="20" y="20" width="33.5" height="33.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="33.5" id="Pvb-yQ-xm0"/>
                                     <constraint firstAttribute="width" constant="33.5" id="spx-Dh-5zF"/>
@@ -646,11 +646,11 @@
             <objects>
                 <viewController storyboardIdentifier="updateCompanyNameViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="mh2-zT-IrH" userLabel="Update Company Email" customClass="UpdateCompanyNameViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Yh3-vB-Alm">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Company Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dd2-SP-iIl" userLabel="Title">
-                                <rect key="frame" x="30" y="114" width="354" height="33.5"/>
+                                <rect key="frame" x="30" y="70" width="315" height="33.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
                                 <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -659,7 +659,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type in your new company name below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yjn-sc-Wnu" userLabel="Subtitle">
-                                <rect key="frame" x="30" y="167.5" width="354" height="20.5"/>
+                                <rect key="frame" x="30" y="123.5" width="315" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -668,10 +668,10 @@
                                 </variation>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="inX-OZ-Qsh">
-                                <rect key="frame" x="30" y="218" width="354" height="110"/>
+                                <rect key="frame" x="30" y="174" width="315" height="110"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New Name" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="nVg-sg-361" customClass="NovaOneTextField" customModule="NovaOne" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="354" height="45"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="315" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="scJ-Rn-cVt"/>
                                         </constraints>
@@ -697,7 +697,7 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RjJ-GT-GJn" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="65" width="354" height="45"/>
+                                        <rect key="frame" x="0.0" y="65" width="315" height="45"/>
                                         <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="ffF-gV-8hs"/>
@@ -722,7 +722,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L7f-0l-ApS">
-                                <rect key="frame" x="20" y="64" width="33.5" height="33.5"/>
+                                <rect key="frame" x="20" y="20" width="33.5" height="33.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="33.5" id="7hh-54-onL"/>
                                     <constraint firstAttribute="width" constant="33.5" id="K8u-D6-s4M"/>
@@ -779,11 +779,11 @@
             <objects>
                 <viewController storyboardIdentifier="updateCompanyHoursEnabledViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yfj-rV-tWp" userLabel="Update Company Hours Enabled" customClass="UpdateCompanyHoursEnabledViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lnD-xg-7mL">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Kp-58-Fdz" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
-                                <rect key="frame" x="30" y="797" width="354" height="45"/>
+                                <rect key="frame" x="30" y="602" width="315" height="45"/>
                                 <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="35w-h1-bzM"/>
@@ -806,14 +806,14 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jIE-1J-192">
-                                <rect key="frame" x="0.0" y="114" width="414" height="648"/>
+                                <rect key="frame" x="0.0" y="70" width="375" height="497"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="enableOptionTableViewCell" id="bRp-lu-LsD" customClass="EnableOptionTableViewCell" customModule="NovaOne" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bRp-lu-LsD" id="TFp-kl-2uA">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SKy-xw-bWY" userLabel="Option Label">
@@ -826,7 +826,7 @@
                                                     </variation>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tick" translatesAutoresizingMaskIntoConstraints="NO" id="fcF-5x-0Zd">
-                                                    <rect key="frame" x="368" y="9" width="26" height="26"/>
+                                                    <rect key="frame" x="329" y="9" width="26" height="26"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="26" id="GMQ-2w-rAy"/>
                                                         <constraint firstAttribute="height" constant="26" id="PcY-hG-eVQ"/>
@@ -852,7 +852,7 @@
                                 <sections/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5eQ-Y0-Ll4">
-                                <rect key="frame" x="20" y="64" width="33.5" height="33.5"/>
+                                <rect key="frame" x="20" y="20" width="33.5" height="33.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="33.5" id="728-as-CvA"/>
                                     <constraint firstAttribute="width" constant="33.5" id="8PF-Sz-77e"/>
@@ -897,11 +897,11 @@
             <objects>
                 <viewController storyboardIdentifier="updateCompanyAllowSameDayAppointmentsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="RTW-Vf-skT" userLabel="Update Company Allow Same Day Appointments View Controller" customClass="UpdateCompanyAllowSameDayAppointmentsViewController" customModule="NovaOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cmj-bR-kf9">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Same Day Appointments" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J07-F7-cmb">
-                                <rect key="frame" x="30" y="114" width="354" height="33.5"/>
+                                <rect key="frame" x="30" y="70" width="315" height="33.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
                                 <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -910,7 +910,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Allow same day appointments for this company?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vPI-Nk-1Lr">
-                                <rect key="frame" x="30" y="167.5" width="354" height="41"/>
+                                <rect key="frame" x="30" y="123.5" width="315" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -919,10 +919,10 @@
                                 </variation>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="YLx-XB-sTd">
-                                <rect key="frame" x="30" y="238.5" width="354" height="45"/>
+                                <rect key="frame" x="30" y="194.5" width="315" height="45"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fgh-zT-l0Y" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="172" height="45"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="152.5" height="45"/>
                                         <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="gfJ-G2-KZL"/>
@@ -945,7 +945,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YaO-k8-WVm" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
-                                        <rect key="frame" x="182" y="0.0" width="172" height="45"/>
+                                        <rect key="frame" x="162.5" y="0.0" width="152.5" height="45"/>
                                         <color key="backgroundColor" red="0.55332022910000001" green="0.75976693630000003" blue="0.97779995200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="cPM-RS-RHx"/>
@@ -970,7 +970,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y5O-lE-LWE">
-                                <rect key="frame" x="20" y="64" width="33.5" height="33.5"/>
+                                <rect key="frame" x="20" y="20" width="33.5" height="33.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="33.5" id="Oow-52-UuG"/>
                                     <constraint firstAttribute="height" constant="33.5" id="aMY-vM-9hs"/>
