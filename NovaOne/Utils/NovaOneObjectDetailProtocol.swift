@@ -21,6 +21,6 @@ protocol NovaOneObjectDetail {
     
     // Methods
     func setupObjectDetailCellsAndTitle()
-    func getCoreDataObject()
+    //func getCoreDataObject()
     func hideLoadingView()
 }

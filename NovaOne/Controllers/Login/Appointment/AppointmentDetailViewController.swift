@@ -17,10 +17,38 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
     @IBOutlet weak var topView: NovaOneView!
     var alertService: AlertService = AlertService()
     var previousViewController: UIViewController?
-    var appointment: Appointment?
     var coreDataObjectId: Int32?
     @IBOutlet weak var loadingView: UIView!
     @IBOutlet weak var loadingViewSpinner: UIActivityIndicatorView!
+    weak var cachedAppointment: Appointment?
+    var appointment: Appointment? {
+        get {
+            objc_sync_enter(self)
+            defer {
+                objc_sync_exit(self)
+            }
+            
+            guard nil == self.cachedAppointment else {
+                return self.cachedAppointment!
+            }
+            
+            // If cachedCustomer is nil, then get the customer object throught managed context object
+            guard let coreDataObjectId = self.coreDataObjectId else { print("could not get core data object id - AppointmentDetailViewController"); return nil }
+            let filter = NSPredicate(format: "id == %@", String(coreDataObjectId))
+            guard let appointment = PersistenceService.fetchEntity(Appointment.self, filter: filter, sort: nil).first else {
+                print("Appointment object does not exist - AppointmentDetailViewController")
+                return nil
+            }
+            
+            self.cachedAppointment = appointment
+            return self.cachedAppointment!
+            
+        }
+        
+        set {
+            self.cachedAppointment = newValue
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,29 +63,10 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.getCoreDataObject()
-    }
-    
     func hideLoadingView() {
         // Hides loading view an activity indicator
         self.loadingView.isHidden = true
         self.loadingViewSpinner.stopAnimating()
-    }
-    
-    func getCoreDataObject() {
-        // Gets the coredata object by id
-        
-        // Get object from core data
-        guard let coreDataObjectId = self.coreDataObjectId else {
-            print("could not get core data object id - AppointmentDetailViewController")
-            return
-        }
-        let filter = NSPredicate(format: "id == %@", String(coreDataObjectId))
-        guard let coreDataAppointmentObject = PersistenceService.fetchEntity(Appointment.self, filter: filter, sort: nil).first else { print("could not get coredata appointment object - AppointmentDetailViewController"); return }
-        self.appointment = coreDataAppointmentObject
-        self.setupObjectDetailCellsAndTitle()
     }
     
     func setupNavigationBar() {

@@ -16,12 +16,40 @@ class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var objectDetailTableView: UITableView!
     @IBOutlet weak var topView: NovaOneView!
-    var company: Company?
     var alertService = AlertService()
     var previousViewController: UIViewController?
     var coreDataObjectId: Int32?
     @IBOutlet weak var loadingViewSpinner: UIActivityIndicatorView!
     @IBOutlet weak var loadingView: UIView!
+    weak var cachedCompany: Company?
+    var company: Company? {
+        get {
+            objc_sync_enter(self)
+            defer {
+                objc_sync_exit(self)
+            }
+            
+            guard nil == self.cachedCompany else {
+                return self.cachedCompany!
+            }
+            
+            // If cachedCustomer is nil, then get the customer object throught managed context object
+            guard let coreDataObjectId = self.coreDataObjectId else { print("could not get core data object id - CompanyDetailViewController"); return nil }
+            let filter = NSPredicate(format: "id == %@", String(coreDataObjectId))
+            guard let company = PersistenceService.fetchEntity(Company.self, filter: filter, sort: nil).first else {
+                print("Company object does not exist -CompanyDetailViewController")
+                return nil
+            }
+            
+            self.cachedCompany = company
+            return self.cachedCompany!
+            
+        }
+        
+        set {
+            self.cachedCompany = newValue
+        }
+    }
     
     // MARK: Methods
     override func viewDidLoad() {
@@ -37,28 +65,9 @@ class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITabl
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.getCoreDataObject()
-    }
-    
     func hideLoadingView() {
         self.loadingView.isHidden = true
         self.loadingViewSpinner.stopAnimating()
-    }
-    
-    func getCoreDataObject() {
-        // Gets the coredata object by id
-        
-        // Get object from core data
-        guard let coreDataObjectId = self.coreDataObjectId else {
-            print("could not get core data object id - CompanyDetailViewController")
-            return
-        }
-        let filter = NSPredicate(format: "id == %@", String(coreDataObjectId))
-        guard let coreDataCompanyObject = PersistenceService.fetchEntity(Company.self, filter: filter, sort: nil).first else { print("could not get coredata company object - CompanyDetailViewController"); return }
-        self.company = coreDataCompanyObject
-        self.setupObjectDetailCellsAndTitle()
     }
     
     func setupTableView() {

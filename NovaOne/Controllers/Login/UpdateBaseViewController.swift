@@ -137,6 +137,9 @@ class UpdateBaseViewController: UIViewController, UITextFieldDelegate {
     // MARK: Actions
     @IBAction func cancelButtonTapped(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+        
+        // Reset orientation
+        AppUtility.lockOrientation(.all)
     }
     
 }

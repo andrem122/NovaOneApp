@@ -46,8 +46,7 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
         self.getCoreData()
         
         // Set the first item if the size class is of the following
-        let sizeClass = self.getSizeClass()
-        if sizeClass == (.regular, .compact) || sizeClass == (.regular, .regular) || sizeClass == (.regular, .unspecified) {
+        if self.splitViewController?.isCollapsed == false {
             self.setFirstItemForDetailView()
         }
         
@@ -62,8 +61,7 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         // Set the detail view when device is rotated if it has not been set already
-        let sizeClass = self.getSizeClass()
-        if self.didSetFirstItem == false && sizeClass == (.compact, .regular) {
+        if self.didSetFirstItem == false && self.splitViewController?.isCollapsed == false {
             self.setFirstItemForDetailView()
         }
     }

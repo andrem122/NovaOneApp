@@ -12,7 +12,6 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     // MARK: Properties
     var objectDetailItems: [ObjectDetailItem] = []
-    var lead: Lead?
     var alertService: AlertService = AlertService()
     var previousViewController: UIViewController?
     @IBOutlet weak var objectDetailTableView: UITableView!
@@ -21,6 +20,35 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var loadingView: UIView!
     @IBOutlet weak var loadingViewSpinner: UIActivityIndicatorView!
     var coreDataObjectId: Int32?
+    weak var cachedLead: Lead?
+    var lead: Lead? {
+        get {
+            objc_sync_enter(self)
+            defer {
+                objc_sync_exit(self)
+            }
+            
+            guard nil == self.cachedLead else {
+                return self.cachedLead!
+            }
+            
+            // If cachedCustomer is nil, then get the customer object throught managed context object
+            guard let coreDataObjectId = self.coreDataObjectId else { print("could not get core data object id - LeadDetailViewController"); return nil }
+            let filter = NSPredicate(format: "id == %@", String(coreDataObjectId))
+            guard let lead = PersistenceService.fetchEntity(Lead.self, filter: filter, sort: nil).first else {
+                print("Lead object does not exist - LeadDetailViewController")
+                return nil
+            }
+            
+            self.cachedLead = lead
+            return self.cachedLead!
+            
+        }
+        
+        set {
+            self.cachedLead = newValue
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,11 +60,6 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             [weak self] in
             self?.hideLoadingView()
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.getCoreDataObject()
     }
     
     func hideLoadingView() {
@@ -65,20 +88,6 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         dateFormatter.dateFormat = "MMM d, yyyy | h:mm a"
         let formattedDate: String = dateFormatter.string(from: date)
         return formattedDate
-    }
-    
-    func getCoreDataObject() {
-        // Gets the coredata object by id
-        
-        // Get object from core data
-        guard let coreDataObjectId = self.coreDataObjectId else {
-            print("could not get core data object id - LeadDetailViewController")
-            return
-        }
-        let filter = NSPredicate(format: "id == %@", String(coreDataObjectId))
-        guard let coreDataLeadObject = PersistenceService.fetchEntity(Lead.self, filter: filter, sort: nil).first else { print("could not get coredata lead object - LeadDetailViewController"); return }
-        self.lead = coreDataLeadObject
-        self.setupObjectDetailCellsAndTitle()
     }
     
     func setupObjectDetailCellsAndTitle() {
