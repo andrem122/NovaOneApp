@@ -346,6 +346,7 @@
                                                 </switch>
                                                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="85q-JE-yba">
                                                     <rect key="frame" x="332" y="10" width="20" height="20"/>
+                                                    <color key="color" name="textFieldColor"/>
                                                 </activityIndicatorView>
                                             </subviews>
                                             <constraints>
@@ -383,6 +384,7 @@
                                                 </switch>
                                                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="uK6-0u-vV5">
                                                     <rect key="frame" x="332" y="10" width="20" height="20"/>
+                                                    <color key="color" name="textFieldColor"/>
                                                 </activityIndicatorView>
                                             </subviews>
                                             <constraints>
@@ -501,6 +503,9 @@
         <image name="rightAngleBlue" width="42.5" height="42.5"/>
         <namedColor name="textColor">
             <color red="0.2669999897480011" green="0.2669999897480011" blue="0.2669999897480011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="textFieldColor">
+            <color red="0.66699999570846558" green="0.66699999570846558" blue="0.66699999570846558" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="viewBackgroundColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

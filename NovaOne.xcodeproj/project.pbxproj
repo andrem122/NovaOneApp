@@ -40,6 +40,7 @@
 		6528135F23E79D63005A1B1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6591C39923DA78F900535C46 /* AppDelegate.swift */; };
 		6528136023E79D63005A1B1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6591C39923DA78F900535C46 /* AppDelegate.swift */; };
 		652F8ED7245CF6C6008FAF38 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652F8ED6245CF6C6008FAF38 /* Extensions.swift */; };
+		652FD93F24F5E27000718D53 /* updateAppointmentMedicalAddress.php in Resources */ = {isa = PBXBuildFile; fileRef = 652FD93E24F5E27000718D53 /* updateAppointmentMedicalAddress.php */; };
 		65316D532445F8A90072F78A /* libSkeletonView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65316D522445F8A90072F78A /* libSkeletonView.a */; };
 		65316D5524465E5D0072F78A /* moreLeads.php in Resources */ = {isa = PBXBuildFile; fileRef = 65316D5424465E5D0072F78A /* moreLeads.php */; };
 		653432702493BE0B00483505 /* addLead.php in Resources */ = {isa = PBXBuildFile; fileRef = 6534326F2493BE0B00483505 /* addLead.php */; };
@@ -286,6 +287,7 @@
 		652F8ED6245CF6C6008FAF38 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		652FD93A24F2F27A00718D53 /* Appointment+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Appointment+CoreDataProperties.swift"; path = "/Users/andre/Desktop/NovaOne/NovaOne/Core Data/Appointment+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		652FD93B24F2F27A00718D53 /* Appointment+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Appointment+CoreDataClass.swift"; path = "/Users/andre/Desktop/NovaOne/NovaOne/Core Data/Appointment+CoreDataClass.swift"; sourceTree = "<absolute>"; };
+		652FD93E24F5E27000718D53 /* updateAppointmentMedicalAddress.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = updateAppointmentMedicalAddress.php; sourceTree = "<group>"; };
 		65316D522445F8A90072F78A /* libSkeletonView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libSkeletonView.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		65316D5424465E5D0072F78A /* moreLeads.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = moreLeads.php; sourceTree = "<group>"; };
 		6534326F2493BE0B00483505 /* addLead.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = addLead.php; sourceTree = "<group>"; };
@@ -922,6 +924,7 @@
 				65898E2A24AF833300613515 /* deleteAppointmentMedical.php */,
 				6547416C24CA058C00575228 /* deleteAppointmentRealEstate.php */,
 				65461A8224D1C3030028F202 /* deleteCompany.php */,
+				652FD93E24F5E27000718D53 /* updateAppointmentMedicalAddress.php */,
 			);
 			path = PHP;
 			sourceTree = "<group>";
@@ -1101,6 +1104,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				652FD93F24F5E27000718D53 /* updateAppointmentMedicalAddress.php in Resources */,
 				65793B9324854D8B0093D5A7 /* refreshCompanies.php in Resources */,
 				65B3536324A2439500F15D23 /* updateCompanyAddress.php in Resources */,
 				65A7423724B76D270092DF0C /* UpdateLead.storyboard in Resources */,

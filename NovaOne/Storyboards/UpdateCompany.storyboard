@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j2y-jT-2da" customClass="NovaOneButton" customModule="NovaOne" customModuleProvider="target">
-                                <rect key="frame" x="30" y="380" width="315" height="45"/>
+                                <rect key="frame" x="30" y="326.5" width="315" height="45"/>
                                 <color key="backgroundColor" red="0.32488250730000001" green="0.42301833630000002" blue="0.85734111069999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="XQg-ko-UHU"/>
@@ -40,7 +40,7 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Update Auto respond text here..." translatesAutoresizingMaskIntoConstraints="NO" id="fzf-2a-BhQ" userLabel="Text View" customClass="NovaOneTextView" customModule="NovaOne" customModuleProvider="target">
-                                <rect key="frame" x="30" y="133.5" width="315" height="233.5"/>
+                                <rect key="frame" x="30" y="133.5" width="315" height="180"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="textColor" name="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -106,9 +106,21 @@
                             <constraint firstItem="2Vk-We-9BQ" firstAttribute="trailing" secondItem="j2y-jT-2da" secondAttribute="trailing" constant="30" id="ocH-Ot-mFY">
                                 <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                             </constraint>
+                            <constraint firstItem="fzf-2a-BhQ" firstAttribute="height" secondItem="SGP-Nn-yjF" secondAttribute="height" multiplier="0.27" id="tDS-0W-tjf"/>
                             <constraint firstItem="fzf-2a-BhQ" firstAttribute="top" secondItem="Dlw-Gd-KNm" secondAttribute="bottom" constant="30" id="xgQ-Dq-QdT"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2Vk-We-9BQ"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="tDS-0W-tjf"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="R6y-aH-efD"/>
+                                <include reference="tDS-0W-tjf"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="Dgh-mU-I63"/>
                     <connections>
