@@ -41,16 +41,22 @@ class AddAppointmentPhoneViewController: AddAppointmentBaseViewController, UITex
     }
     
     @IBAction func continueButtonTapped(_ sender: Any) {
-        guard let addAppointmentTimeViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addAppointmentTime.rawValue) as? AddAppointmentTimeViewController else { return }
-        
         guard let phoneNumber = self.appointmentPhoneTextField.text else { return }
         let unformattedPhoneNumber = phoneNumber.replacingOccurrences(of: "[\\(\\)\\s-]", with: "", options: .regularExpression, range: nil)
         
-        self.appointment?.phoneNumber = "%2B1" + unformattedPhoneNumber
-        addAppointmentTimeViewController.appointment = self.appointment
-        addAppointmentTimeViewController.embeddedViewController = self.embeddedViewController
-        
-        self.navigationController?.pushViewController(addAppointmentTimeViewController, animated: true)
+        // Check of phone number is valid before proceeding
+        if !unformattedPhoneNumber.isNumeric {
+            let popUpOkViewController = self.alertService.popUpOk(title: "Invalid Number", body: "Please enter only numbers.")
+            self.present(popUpOkViewController, animated: true, completion: nil)
+        } else {
+            guard let addAppointmentTimeViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addAppointmentTime.rawValue) as? AddAppointmentTimeViewController else { return }
+            
+            self.appointment?.phoneNumber = "%2B1" + unformattedPhoneNumber
+            addAppointmentTimeViewController.appointment = self.appointment
+            addAppointmentTimeViewController.embeddedViewController = self.embeddedViewController
+            
+            self.navigationController?.pushViewController(addAppointmentTimeViewController, animated: true)
+        }
     }
 }
 

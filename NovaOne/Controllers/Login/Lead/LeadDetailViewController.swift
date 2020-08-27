@@ -165,9 +165,8 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             self?.performSegue(withIdentifier: Defaults.SegueIdentifiers.unwindToLeads.rawValue, sender: self)
             
             // Delete from CoreData
-            let context = PersistenceService.privateChildManagedObjectContext()
-            context.delete(lead)
-            PersistenceService.saveContext(context: context)
+            PersistenceService.context.delete(lead)
+            PersistenceService.saveContext(context: nil)
             
             // Delete from NovaOne database
             let parameters: [String: Any] = ["email": email,
