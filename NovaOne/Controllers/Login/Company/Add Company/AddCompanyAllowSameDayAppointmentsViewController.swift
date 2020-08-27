@@ -38,7 +38,7 @@ class AddCompanyAllowSameDayAppointmentsViewController: AddCompanyBaseViewContro
         coreDataCompanyObject.allowSameDayAppointments = allowSameDayAppointments
         
         // Save to context
-        PersistenceService.saveContext()
+        PersistenceService.saveContext(context: nil)
     }
     
     func goToAddCompanyDaysEnabled() -> Void {

@@ -99,7 +99,7 @@ class SignUpCompanyPhoneViewController: BaseSignUpViewController, UITextFieldDel
                     coreDataCompanyObject.phoneNumber = phoneNumber
                     
                     // Save to context
-                    PersistenceService.saveContext()
+                    PersistenceService.saveContext(context: nil)
                     
                     self?.navigationController?.pushViewController(addCompanyAllowSameDayAppointmentsViewController, animated: true)
                     

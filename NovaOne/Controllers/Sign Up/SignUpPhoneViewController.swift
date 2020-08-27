@@ -89,7 +89,7 @@ class SignUpPhoneViewController: BaseSignUpViewController, UITextFieldDelegate {
                             return
                         }
                         coreDataCustomerObject.phoneNumber = phoneNumber
-                        PersistenceService.saveContext()
+                        PersistenceService.saveContext(context: nil)
                         
                         self?.navigationController?.pushViewController(customerTypeViewController, animated: true)
                         

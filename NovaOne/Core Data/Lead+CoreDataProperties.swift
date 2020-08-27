@@ -2,7 +2,7 @@
 //  Lead+CoreDataProperties.swift
 //  
 //
-//  Created by Andre Mashraghi on 6/12/20.
+//  Created by Andre Mashraghi on 8/27/20.
 //
 //
 
@@ -28,7 +28,6 @@ extension Lead {
     @NSManaged public var renterBrand: String?
     @NSManaged public var sentEmailDate: Date?
     @NSManaged public var sentTextDate: Date?
-    @NSManaged public var company: Company?
     
     func addLead(id: Int32,
                  name: String,
@@ -56,7 +55,6 @@ extension Lead {
         self.filledOutForm = filledOutForm
         self.madeAppointment = madeAppointment
         self.companyName = companyName
-        self.company = company
         
     }
 

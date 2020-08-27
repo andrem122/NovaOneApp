@@ -151,7 +151,7 @@ class SignUpNameViewController: BaseSignUpViewController, UITextFieldDelegate {
             coreDataCustomerObject.firstName = firstName
             coreDataCustomerObject.lastName = lastName
             
-            PersistenceService.saveContext()
+            PersistenceService.saveContext(context: nil)
             
             // Navigate to next view controller
             self.navigationController?.pushViewController(signUpPhoneViewController, animated: true)

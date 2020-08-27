@@ -61,7 +61,7 @@ class UpdateBaseViewController: UIViewController, UITextFieldDelegate {
                         guard let updateObject = PersistenceService.fetchEntity(objectType, filter: filter, sort: nil).first else { print("could not get update object - UpdateBaseViewController"); return }
                         
                         unwrappedUpdateClosure(updateObject)
-                        PersistenceService.saveContext()
+                        PersistenceService.saveContext(context: nil)
                     }
                     
                     // Show success view controller if success sub title is not nil

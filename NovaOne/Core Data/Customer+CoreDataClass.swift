@@ -2,7 +2,7 @@
 //  Customer+CoreDataClass.swift
 //  
 //
-//  Created by Andre Mashraghi on 7/30/20.
+//  Created by Andre Mashraghi on 8/27/20.
 //
 //
 

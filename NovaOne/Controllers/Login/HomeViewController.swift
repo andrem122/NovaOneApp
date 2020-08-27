@@ -25,6 +25,9 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
     @IBOutlet weak var leadsStackView: UIStackView!
     @IBOutlet weak var companiesStackView: UIStackView!
     @IBOutlet weak var appointmentsStackView: UIStackView!
+    var leadCount: Int = 0
+    var appointmentCount: Int = 0
+    var companyCount: Int = 0
     let alertService = AlertService()
     var barChart = BarChartView()
     var lineChart = LineChartView()
@@ -496,17 +499,15 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
                                 // Set customer (NOT customer variable created above) attributes with self.customer instead
                                 // of customer varaible above because then we will get a context error saying that we are
                                 // changing an object that has been removed from its context
-                                self?.customer.leadCount = Int32(objectCount.count)
+                                self?.leadCount = objectCount.count
                             case "appointmentCount":
-                                self?.customer.appointmentCount = Int32(objectCount.count)
+                                self?.appointmentCount = objectCount.count
                             case "companyCount":
-                                self?.customer.companyCount = Int32(objectCount.count)
+                                self?.companyCount = objectCount.count
                             default:
                                 print("No cases matched")
                         }
                     }
-                    
-                    PersistenceService.saveContext()
                     
                     // Run the success completion handler
                     success()

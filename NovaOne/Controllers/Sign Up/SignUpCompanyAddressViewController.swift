@@ -199,7 +199,7 @@ extension SignUpCompanyAddressViewController {
             }
             
             // Save to context
-            PersistenceService.saveContext()
+            PersistenceService.saveContext(context: nil)
             
         }
     }

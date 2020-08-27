@@ -80,7 +80,7 @@ class SignUpPasswordViewController: BaseSignUpViewController, UITextFieldDelegat
             guard let coreDataCustomerObject = PersistenceService.fetchEntity(Customer.self, filter: filter, sort: nil).first else { print("could not get coredata customer object - Sign Up Password View Controller"); return }
             coreDataCustomerObject.password = password
             
-            PersistenceService.saveContext()
+            PersistenceService.saveContext(context: nil)
             
             self.navigationController?.pushViewController(signUpNameViewController, animated: true)
         }

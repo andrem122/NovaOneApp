@@ -148,12 +148,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let password = customer.password
         let lastLoginDate = customer.lastLoginDate
         
-        guard let coreDataCustomerObject = NSEntityDescription.insertNewObject(forEntityName: Defaults.CoreDataEntities.customer.rawValue, into: PersistenceService.context) as? Customer else { return }
+        let context = PersistenceService.privateChildManagedObjectContext()
+        guard let coreDataCustomerObject = NSEntityDescription.insertNewObject(forEntityName: Defaults.CoreDataEntities.customer.rawValue, into: context) as? Customer else { return }
         
         coreDataCustomerObject.addCustomer(customerType: customerType, dateJoined: dateJoinedDate, email: email, firstName: firstName, id: id, userId: userId, isPaying: isPaying, lastName: lastName, phoneNumber: phoneNumber, wantsSms: wantsSms, wantsEmailNotifications: wantsEmailNotifications, password: password, username: username, lastLogin: lastLoginDate, companies: nil)
         
         // Save to CoreData
-        PersistenceService.saveContext()
+        PersistenceService.saveContext(context: context)
         
         // Save logged in status to UserDefaults
         UserDefaults.standard.set(true, forKey: Defaults.UserDefaults.isLoggedIn.rawValue)
@@ -260,12 +261,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             
             switch result {
                 case .success(let companies):
+                    let context = PersistenceService.privateChildManagedObjectContext()
                     for company in companies {
-                        
                         // Save to CoreData
-                        guard let entity = NSEntityDescription.entity(forEntityName: Defaults.CoreDataEntities.company.rawValue, in: PersistenceService.context) else { return }
+                        guard let entity = NSEntityDescription.entity(forEntityName: Defaults.CoreDataEntities.company.rawValue, in: context) else { return }
                         
-                        if let coreDataCompany = NSManagedObject(entity: entity, insertInto: PersistenceService.context) as? Company {
+                        if let coreDataCompany = NSManagedObject(entity: entity, insertInto: context) as? Company {
                             coreDataCompany.address = company.address
                             coreDataCompany.city = company.city
                             coreDataCompany.state = company.state
@@ -284,8 +285,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         }
                         
                     }
-                
-                    PersistenceService.saveContext()
+                    
+                    PersistenceService.saveContext(context: context)
                     success()
                 
                 case .failure(let error):

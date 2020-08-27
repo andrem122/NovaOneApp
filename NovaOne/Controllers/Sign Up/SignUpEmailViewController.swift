@@ -102,7 +102,7 @@ class SignUpEmailViewController: BaseSignUpViewController, UITextFieldDelegate {
                     }
                     
                     // Save to CoreData for state restoration
-                    PersistenceService.saveContext()
+                    PersistenceService.saveContext(context: nil)
                     
                     guard let signUpPasswordViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.signUpPassword.rawValue) as? SignUpPasswordViewController else { return }
                     self?.navigationController?.pushViewController(signUpPasswordViewController, animated: true)

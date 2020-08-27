@@ -69,18 +69,20 @@ class SignUpCompanyNameViewController: BaseSignUpViewController, UITextFieldDele
         // Create core data customer object or get it if it already exists for state restoration
         let count = PersistenceService.fetchCount(for: Defaults.CoreDataEntities.company.rawValue)
         if count == 0 {
-            guard let coreDataCompanyObject = NSEntityDescription.insertNewObject(forEntityName: Defaults.CoreDataEntities.company.rawValue, into: PersistenceService.context) as? Company else { return }
+            let context = PersistenceService.privateChildManagedObjectContext()
+            guard let coreDataCompanyObject = NSEntityDescription.insertNewObject(forEntityName: Defaults.CoreDataEntities.company.rawValue, into: context) as? Company else { return }
             
             coreDataCompanyObject.addCompany(address: "", created: Date(), daysOfTheWeekEnabled: "", email: "", hoursOfTheDayEnabled: "", id: 0, name: companyName, phoneNumber: "", shortenedAddress: "", city: "", customerUserId: 0, state: "", zip: "", autoRespondNumber: "", autoRespondText: "", customer: Customer(), allowSameDayAppointments: false)
+            PersistenceService.saveContext(context: context)
         } else {
             // Get existing core data object and update it
             let filter = NSPredicate(format: "id == %@", "0")
             guard let coreDataCompanyObject = PersistenceService.fetchEntity(Company.self, filter: filter, sort: nil).first else { print("could not get coredata company object - Sign Up Company Name View Controller"); return }
             coreDataCompanyObject.name = companyName
+            
+            // Save to CoreData for state restoration
+            PersistenceService.saveContext(context: nil)
         }
-        
-        // Save to CoreData for state restoration
-        PersistenceService.saveContext()
         
         self.navigationController?.pushViewController(signUpCompanyAddressViewController, animated: true)
     }

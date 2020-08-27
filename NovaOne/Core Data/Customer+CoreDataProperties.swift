@@ -2,7 +2,7 @@
 //  Customer+CoreDataProperties.swift
 //  
 //
-//  Created by Andre Mashraghi on 7/30/20.
+//  Created by Andre Mashraghi on 8/27/20.
 //
 //
 
@@ -16,6 +16,8 @@ extension Customer {
         return NSFetchRequest<Customer>(entityName: "Customer")
     }
 
+    @NSManaged public var appointmentCount: Int32
+    @NSManaged public var companyCount: Int32
     @NSManaged public var customerType: String?
     @NSManaged public var dateJoined: Date?
     @NSManaged public var email: String?
@@ -24,15 +26,13 @@ extension Customer {
     @NSManaged public var isPaying: Bool
     @NSManaged public var lastLogin: Date?
     @NSManaged public var lastName: String?
+    @NSManaged public var leadCount: Int32
     @NSManaged public var password: String?
     @NSManaged public var phoneNumber: String?
     @NSManaged public var userId: Int32
     @NSManaged public var username: String?
-    @NSManaged public var wantsSms: Bool
     @NSManaged public var wantsEmailNotifications: Bool
-    @NSManaged public var leadCount: Int32
-    @NSManaged public var appointmentCount: Int32
-    @NSManaged public var companyCount: Int32
+    @NSManaged public var wantsSms: Bool
     var fullName: String {
         guard
             let firstName = self.firstName,
@@ -77,6 +77,5 @@ extension Customer {
         self.lastLogin = lastLogin
         
     }
-
 
 }

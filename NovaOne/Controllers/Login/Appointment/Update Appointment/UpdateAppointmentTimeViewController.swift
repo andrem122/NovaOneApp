@@ -179,7 +179,7 @@ class UpdateAppointmentTimeViewController: UpdateBaseViewController {
                     let newAppointmentId = appointment.id + 1
                     appointment.time = time
                     appointment.id = newAppointmentId
-                    PersistenceService.saveContext()
+                    PersistenceService.saveContext(context: nil)
                     
                     let popupStoryboard = UIStoryboard(name: Defaults.StoryBoards.popups.rawValue, bundle: .main)
                     guard let successViewController = popupStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.success.rawValue) as? SuccessViewController else { return }

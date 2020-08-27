@@ -45,11 +45,12 @@ class AppointmentsContainerViewController: UIViewController, NovaOneObjectContai
     func saveToCoreData(objects: [Decodable]) {
         // Saves appointments data to CoreData and sends them to appointments view for display
         
-        guard let entity = NSEntityDescription.entity(forEntityName: Defaults.CoreDataEntities.appointment.rawValue, in: PersistenceService.context) else { return }
+        let context = PersistenceService.privateChildManagedObjectContext()
+        guard let entity = NSEntityDescription.entity(forEntityName: Defaults.CoreDataEntities.appointment.rawValue, in: context) else { return }
             
             guard let appointments = objects as? [AppointmentModel] else { return }
             for appointment in appointments {
-                if let coreDataAppointment = NSManagedObject(entity: entity, insertInto: PersistenceService.context) as? Appointment {
+                if let coreDataAppointment = NSManagedObject(entity: entity, insertInto: context) as? Appointment {
                     
                     coreDataAppointment.address = appointment.address
                     coreDataAppointment.companyId = Int32(appointment.companyId)
@@ -73,7 +74,7 @@ class AppointmentsContainerViewController: UIViewController, NovaOneObjectContai
             }
         
         // Save objects to CoreData once they have been inserted into the context container
-        PersistenceService.saveContext()
+        PersistenceService.saveContext(context: context)
         
     }
     

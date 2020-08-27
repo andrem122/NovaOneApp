@@ -255,11 +255,12 @@ class AddCompanyHoursEnabledViewController: AddCompanyBaseViewController, UITabl
                             let lastLoginDate = customer.lastLoginDate
                             
                             // Add to core data
-                            guard let coreDataCustomerObject = NSEntityDescription.insertNewObject(forEntityName: Defaults.CoreDataEntities.customer.rawValue, into: PersistenceService.context) as? Customer else { return }
+                            let context = PersistenceService.privateChildManagedObjectContext()
+                            guard let coreDataCustomerObject = NSEntityDescription.insertNewObject(forEntityName: Defaults.CoreDataEntities.customer.rawValue, into: context) as? Customer else { return }
                             
                             coreDataCustomerObject.addCustomer(customerType: customerType, dateJoined: dateJoinedDate, email: email, firstName: firstName, id: id, userId: userId, isPaying: isPaying, lastName: lastName, phoneNumber: phoneNumber, wantsSms: wantsSms, wantsEmailNotifications: wantsEmailNotifications, password: password, username: username, lastLogin: lastLoginDate, companies: nil)
                             
-                            PersistenceService.saveContext()
+                            PersistenceService.saveContext(context: context)
                             
                             // Update UserDefaults so that we know have the user in a logged in state
                             UserDefaults.standard.set(true, forKey: Defaults.UserDefaults.isLoggedIn.rawValue)

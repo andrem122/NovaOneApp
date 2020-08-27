@@ -14,9 +14,27 @@ class PersistenceService {
     private init() {} // Do not allow initilization of the PersistenceService class
     
     // Context is basically a container for all the data you want to save at any given moment
-    static var context: NSManagedObjectContext {
-        return self.persistentContainer.viewContext
-    }
+    public private(set) static var context: NSManagedObjectContext = {
+        // Initialize Managed Object Context
+        print("CREATING NEW CONTEXT")
+        let managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+
+        // Configure Managed Object Context
+        managedObjectContext.parent = PersistenceService.privateManagedObjectContext
+
+        return managedObjectContext
+    }()
+    
+    private static var privateManagedObjectContext: NSManagedObjectContext = {
+        // Initialize Managed Object Context
+        print("CREATING NEW PRIVATE CONTEXT")
+        let managedObjectContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+
+        // Configure Managed Object Context
+        managedObjectContext.persistentStoreCoordinator = PersistenceService.persistentContainer.persistentStoreCoordinator
+
+        return managedObjectContext
+    }()
     
     static var persistentContainerQueue: OperationQueue {
         let containerQueue = OperationQueue()
@@ -54,25 +72,56 @@ class PersistenceService {
     }()
 
     // MARK: - Core Data Saving support
-    static func saveContext() {
-        // Create or update object into CoreData
-        persistentContainerQueue.addOperation() {
-            let context = self.context
-            if context.hasChanges {
-                context.performAndWait {
-                    do {
+    static public func saveContext(context: NSManagedObjectContext?) {
+        
+        if let context = context {
+            context.performAndWait {
+                do {
+                    if context.hasChanges {
                         try context.save()
-                        print("Object saved to CoreData successfully!")
-                    } catch {
-                        // Replace this implementation with code to handle the error appropriately.
-                        // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                        let nserror = error as NSError
-                        print("Unresolved error \(nserror), \(nserror.userInfo)")
                     }
-                    context.reset() // Reset the context to clean up the cache and low the memory footprint.
+                } catch {
+                    print("Unable to Save Changes of Managed Object Context")
+                    print("\(error), \(error.localizedDescription)")
                 }
             }
         }
+        
+        self.context.performAndWait {
+            do {
+                if self.context.hasChanges {
+                    try self.context.save()
+                } else {
+                    print("NO CHANGES TO MAIN CONTEXT")
+                }
+            } catch {
+                print("Unable to Save Changes of Main Managed Object Context")
+                print("\(error), \(error.localizedDescription)")
+            }
+        }
+
+        self.privateManagedObjectContext.perform {
+            do {
+                if self.privateManagedObjectContext.hasChanges {
+                    try self.privateManagedObjectContext.save()
+                } else {
+                    print("NO CHANGES TO PRIVATE CONTEXT")
+                }
+            } catch {
+                print("Unable to Save Changes of Private Managed Object Context")
+                print("\(error), \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    static public func privateChildManagedObjectContext() -> NSManagedObjectContext {
+        // Initialize Managed Object Context
+        let managedObjectContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+
+        // Configure Managed Object Context
+        managedObjectContext.parent = self.context
+
+        return managedObjectContext
     }
     
     // MARK: - Core Data Fetching
@@ -130,7 +179,7 @@ class PersistenceService {
         let request = NSBatchDeleteRequest(fetchRequest: fetch)
         do {
             try self.context.execute(request)
-            self.saveContext()
+            self.saveContext(context: nil)
         } catch {
             print("Failed to delete all data for \(entityName): \(error)")
         }

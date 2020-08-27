@@ -71,7 +71,7 @@ class SignUpCompanyEmailViewController: BaseSignUpViewController, UITextFieldDel
             coreDataCompanyObject.email = email
             
             // Save to context
-            PersistenceService.saveContext()
+            PersistenceService.saveContext(context: nil)
             
             self.navigationController?.pushViewController(signUpCompanyPhoneViewController, animated: true)
         } else {

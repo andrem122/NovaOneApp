@@ -68,7 +68,7 @@ class AddCompanyDaysEnabledViewController: AddCompanyBaseViewController, UITable
                 coreDataCompanyObject.daysOfTheWeekEnabled = selectedOptionsString
                 
                 // Save to context
-                PersistenceService.saveContext()
+                PersistenceService.saveContext(context: nil)
             }
             
             addCompanyHoursEnabledViewController.company = self.company

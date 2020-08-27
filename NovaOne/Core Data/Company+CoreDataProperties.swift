@@ -2,7 +2,7 @@
 //  Company+CoreDataProperties.swift
 //  
 //
-//  Created by Andre Mashraghi on 7/29/20.
+//  Created by Andre Mashraghi on 8/27/20.
 //
 //
 
@@ -17,6 +17,7 @@ extension Company {
     }
 
     @NSManaged public var address: String?
+    @NSManaged public var allowSameDayAppointments: Bool
     @NSManaged public var autoRespondNumber: String?
     @NSManaged public var autoRespondText: String?
     @NSManaged public var city: String?
@@ -31,9 +32,6 @@ extension Company {
     @NSManaged public var shortenedAddress: String?
     @NSManaged public var state: String?
     @NSManaged public var zip: String?
-    @NSManaged public var allowSameDayAppointments: Bool
-    @NSManaged public var appointments: NSSet?
-    @NSManaged public var leads: NSSet?
     
     // MARK: Methods
     func addCompany(address: String,
@@ -72,38 +70,5 @@ extension Company {
         self.autoRespondNumber = autoRespondNumber
     }
 
-}
-
-// MARK: Generated accessors for appointments
-extension Company {
-
-    @objc(addAppointmentsObject:)
-    @NSManaged public func addToAppointments(_ value: Appointment)
-
-    @objc(removeAppointmentsObject:)
-    @NSManaged public func removeFromAppointments(_ value: Appointment)
-
-    @objc(addAppointments:)
-    @NSManaged public func addToAppointments(_ values: NSSet)
-
-    @objc(removeAppointments:)
-    @NSManaged public func removeFromAppointments(_ values: NSSet)
-
-}
-
-// MARK: Generated accessors for leads
-extension Company {
-
-    @objc(addLeadsObject:)
-    @NSManaged public func addToLeads(_ value: Lead)
-
-    @objc(removeLeadsObject:)
-    @NSManaged public func removeFromLeads(_ value: Lead)
-
-    @objc(addLeads:)
-    @NSManaged public func addToLeads(_ values: NSSet)
-
-    @objc(removeLeads:)
-    @NSManaged public func removeFromLeads(_ values: NSSet)
 
 }

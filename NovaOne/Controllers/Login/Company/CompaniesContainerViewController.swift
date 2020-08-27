@@ -44,11 +44,12 @@ class CompaniesContainerViewController: UIViewController, NovaOneObjectContainer
     
     func saveToCoreData(objects: [Decodable]) {
         // Saves objects data to CoreData
-        guard let entity = NSEntityDescription.entity(forEntityName: Defaults.CoreDataEntities.company.rawValue, in: PersistenceService.context) else { return }
+        let context = PersistenceService.privateChildManagedObjectContext()
+        guard let entity = NSEntityDescription.entity(forEntityName: Defaults.CoreDataEntities.company.rawValue, in: context) else { return }
         
         guard let companies = objects as? [CompanyModel] else { return }
         for company in companies {
-            if let coreDataCompany = NSManagedObject(entity: entity, insertInto: PersistenceService.context) as? Company {
+            if let coreDataCompany = NSManagedObject(entity: entity, insertInto: context) as? Company {
                 
                 coreDataCompany.address = company.address
                 coreDataCompany.city = company.city
@@ -67,26 +68,11 @@ class CompaniesContainerViewController: UIViewController, NovaOneObjectContainer
                 coreDataCompany.state = company.state
                 coreDataCompany.zip = company.zip
                 
-                // Add appointments to company object
-                if PersistenceService.fetchCount(for: Defaults.CoreDataEntities.appointment.rawValue) > 0 {
-                    let predicate = NSPredicate(format: "companyId == %@", String(company.id))
-                    let appointments = NSSet(array: PersistenceService.fetchEntity(Appointment.self, filter: predicate, sort: nil))
-                    coreDataCompany.addToAppointments(appointments)
-                }
-                
-                // Add leads
-                if PersistenceService.fetchCount(for: Defaults.CoreDataEntities.lead.rawValue) > 0 {
-                    let predicate = NSPredicate(format: "companyId == %@", String(company.id))
-                    let leads = NSSet(array: PersistenceService.fetchEntity(Lead.self, filter: predicate, sort: nil))
-                    coreDataCompany.addToLeads(leads)
-                }
-                
-                
             }
         }
         
         // Save objects to CoreData once they have been inserted into the context container
-        PersistenceService.saveContext()
+        PersistenceService.saveContext(context: context)
     }
     
     func getData() {

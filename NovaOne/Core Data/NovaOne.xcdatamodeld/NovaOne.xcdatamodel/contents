@@ -18,7 +18,6 @@
         <attribute name="timeZone" attributeType="String"/>
         <attribute name="unitType" optional="YES" attributeType="String"/>
         <attribute name="zip" optional="YES" attributeType="String"/>
-        <relationship name="company" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Company" inverseName="appointments" inverseEntity="Company"/>
     </entity>
     <entity name="Company" representedClassName="Company" syncable="YES">
         <attribute name="address" attributeType="String"/>
@@ -37,8 +36,6 @@
         <attribute name="shortenedAddress" attributeType="String"/>
         <attribute name="state" attributeType="String"/>
         <attribute name="zip" attributeType="String"/>
-        <relationship name="appointments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Appointment" inverseName="company" inverseEntity="Appointment"/>
-        <relationship name="leads" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Lead" inverseName="company" inverseEntity="Lead"/>
     </entity>
     <entity name="Customer" representedClassName="Customer" syncable="YES">
         <attribute name="appointmentCount" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
@@ -72,12 +69,11 @@
         <attribute name="renterBrand" optional="YES" attributeType="String"/>
         <attribute name="sentEmailDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="sentTextDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <relationship name="company" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Company" inverseName="leads" inverseEntity="Company"/>
     </entity>
     <elements>
-        <element name="Appointment" positionX="-54" positionY="135" width="128" height="313"/>
-        <element name="Company" positionX="-63" positionY="99" width="128" height="313"/>
+        <element name="Appointment" positionX="-54" positionY="135" width="128" height="298"/>
+        <element name="Company" positionX="-63" positionY="99" width="128" height="283"/>
         <element name="Customer" positionX="-63" positionY="-18" width="128" height="298"/>
-        <element name="Lead" positionX="-54" positionY="135" width="128" height="238"/>
+        <element name="Lead" positionX="-54" positionY="135" width="128" height="223"/>
     </elements>
 </model>

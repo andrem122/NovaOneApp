@@ -161,8 +161,9 @@ class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITabl
                 self?.performSegue(withIdentifier: Defaults.SegueIdentifiers.unwindToCompanies.rawValue, sender: self)
                 
                 // Delete from CoreData
-                PersistenceService.context.delete(company)
-                PersistenceService.saveContext()
+                let context = PersistenceService.privateChildManagedObjectContext()
+                context.delete(company)
+                PersistenceService.saveContext(context: context)
                 
                 // Delete from NovaOne database
                 let parameters: [String: Any] = ["email": email,

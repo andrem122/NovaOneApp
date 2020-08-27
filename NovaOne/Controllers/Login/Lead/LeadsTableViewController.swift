@@ -158,11 +158,12 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
     
     func saveObjectsToCoreData(objects: [Decodable]) {
         // Saves leads data to CoreData
-        guard let entity = NSEntityDescription.entity(forEntityName: Defaults.CoreDataEntities.lead.rawValue, in: PersistenceService.context) else { return }
+        let context = PersistenceService.privateChildManagedObjectContext()
+        guard let entity = NSEntityDescription.entity(forEntityName: Defaults.CoreDataEntities.lead.rawValue, in: context) else { return }
             
             guard let leads = objects as? [LeadModel] else { return }
             for lead in leads {
-                if let coreDataLead = NSManagedObject(entity: entity, insertInto: PersistenceService.context) as? Lead {
+                if let coreDataLead = NSManagedObject(entity: entity, insertInto: context) as? Lead {
                     
                     guard let id = lead.id else { return }
                     coreDataLead.id = Int32(id)
@@ -182,7 +183,7 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
             }
         
             // Save objects to CoreData once they have been inserted into the context container
-            PersistenceService.saveContext()
+            PersistenceService.saveContext(context: context)
     }
     
     func getData(endpoint: String, append: Bool, lastObjectId: Int32?, completion: (() -> Void)?) {

@@ -47,7 +47,7 @@ class SignUpCustomerTypeViewController: BaseSignUpViewController, UIPickerViewDe
         let filter = NSPredicate(format: "id == %@", "0")
         guard let coreDataCustomerObject = PersistenceService.fetchEntity(Customer.self, filter: filter, sort: nil).first else { return }
         coreDataCustomerObject.customerType = self.customerType
-        PersistenceService.saveContext()
+        PersistenceService.saveContext(context: nil)
         
         self.navigationController?.pushViewController(signUpCompanyNameViewController, animated: true)
     }
