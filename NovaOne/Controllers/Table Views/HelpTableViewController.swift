@@ -23,13 +23,13 @@ class HelpTableViewController: UITableViewController {
             switch indexPath.row {
                 case 0: // Terms
                     
-                    guard let url = URL(string: Defaults.Urls.novaOneWebsite.rawValue) else { return }
+                    guard let url = URL(string: Defaults.Urls.novaOneWebsite.rawValue + "/terms-and-conditions") else { return }
                     let webViewController = SFSafariViewController(url: url)
                     self.present(webViewController, animated: true, completion: nil)
                     
                 case 1: // Privacy
                     
-                    guard let url = URL(string: Defaults.Urls.novaOneWebsite.rawValue) else { return }
+                    guard let url = URL(string: Defaults.Urls.novaOneWebsite.rawValue + "/privacy-policy") else { return }
                     let webViewController = SFSafariViewController(url: url)
                     self.present(webViewController, animated: true, completion: nil)
                     

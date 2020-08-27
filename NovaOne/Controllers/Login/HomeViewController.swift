@@ -253,8 +253,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         let customer = self.customer
         
         guard let firstName = customer.firstName else { return }
-        let leadCount = customer.leadCount
-        let greetingString = "Hello \(firstName), it's \(weekDay), and you have \(leadCount) leads."
+        let greetingString = "Hello \(firstName), it's \(weekDay), and you have \(self.leadCount) leads."
         self.greetingLabel.text = greetingString
         
     }
@@ -268,11 +267,9 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
     func setupNumberLabels() {
         // Setup labels
         
-        let customer = self.customer
-        
-        self.numberOfLeadsLabel.text = String(customer.leadCount)
-        self.numberOfAppointmentsLabel.text = String(customer.appointmentCount)
-        self.numberOfCompaniesLabel.text = String(customer.companyCount)
+        self.numberOfLeadsLabel.text = String(self.leadCount)
+        self.numberOfAppointmentsLabel.text = String(self.appointmentCount)
+        self.numberOfCompaniesLabel.text = String(self.companyCount)
         
         // Add gesture recognizers, so that when the labels are tapped, something happens
         self.addGestureRecognizer(to: self.leadsStackView, selector: #selector(HomeViewController.numberOfLeadsLabelTapped))
