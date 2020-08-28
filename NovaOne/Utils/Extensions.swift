@@ -148,6 +148,14 @@ extension String {
         // Removes any leading and trailing white space for strings
         return self.trimmingCharacters(in: CharacterSet.whitespaces)
     }
+    
+    func addingPercentEncodingForRFC3986() -> String? {
+        // Percent encodes strings
+        let unreserved = "-._~/?"
+        let allowed = NSMutableCharacterSet.alphanumeric()
+        allowed.addCharacters(in: unreserved)
+        return addingPercentEncoding(withAllowedCharacters: allowed as CharacterSet)
+    }
 }
 
 extension MKMapView {

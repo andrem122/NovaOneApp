@@ -90,7 +90,7 @@
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="For more information, please see our privacy policy." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Pvc-aj-0aH" userLabel="Privacy policy text view">
                                 <rect key="frame" x="30" y="303" width="315" height="70"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" name="viewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="ufh-nV-gXS"/>
                                 </constraints>

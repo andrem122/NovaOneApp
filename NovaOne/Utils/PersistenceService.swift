@@ -65,7 +65,7 @@ class PersistenceService {
                  * The store could not be migrated to the current model version.
                  Check the error message to determine what the actual problem was.
                  */
-                fatalError("Unresolved error \(error), \(error.userInfo)")
+                print("Unresolved error \(error), \(error.userInfo)")
             }
         })
         return container
@@ -149,8 +149,10 @@ class PersistenceService {
             let customer = try self.context.fetch(fetchRequest).first // Returns CoreData objects in an array, so get the first one
             return customer
         } catch {
-            fatalError("Failed to fetch Customer CoreData object: \(error)")
+            print("Failed to fetch Customer CoreData object: \(error)")
         }
+        
+        return nil
     }
     
     static func fetchCount(for entityName: String) -> Int {
@@ -163,7 +165,7 @@ class PersistenceService {
         do {
             entitiesCount = try self.context.count(for: fetchRequest)
         } catch {
-            fatalError("Failed to fetch count for CoreData entity: \(error)")
+            print("Failed to fetch count for CoreData entity: \(error)")
         }
         
         return entitiesCount

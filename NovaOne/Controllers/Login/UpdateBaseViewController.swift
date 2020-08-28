@@ -41,8 +41,23 @@ class UpdateBaseViewController: UIViewController, UITextFieldDelegate {
             let customerPassword = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue)
         else { print("could  not get customer email and password - UpdateBaseViewController"); return }
         
+        // Percent encode the values in the dictionary if it is of type String
+        var mutableColumns = columns // columns is a let constant so we have to assign it to a mutable dictionary in a variable, so we can change the contents of the dictionary
+        for (columnName, columnValue) in mutableColumns {
+            // If we can typecast the columnValue into a string, then percent encode it
+            if let columnValueAsString = columnValue as? String {
+                guard let percentEncodedString = columnValueAsString.addingPercentEncodingForRFC3986() else {
+                    print("could not percent encode string - UpdateBaseViewController")
+                    return
+                }
+                
+                // Replace string value in dictionary with percent encoded string
+                mutableColumns[columnName] = percentEncodedString
+            }
+        }
+        
         // Convert dictionary to json string
-        guard let jsonData = try? JSONSerialization.data(withJSONObject: columns) else { print("Unable to encode columns to JSON data object"); return }
+        guard let jsonData = try? JSONSerialization.data(withJSONObject: mutableColumns) else { print("Unable to encode columns to JSON data object"); return }
         guard let jsonString = String(data: jsonData, encoding: .utf8) else { print("unable to get string from json data"); return }
         
         let parameters: [String: Any] = ["email": customerEmail, "password": customerPassword, "tableName": tableName, "columns": jsonString as Any, "objectId": objectId]

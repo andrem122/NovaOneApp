@@ -409,14 +409,12 @@
                             <mask key="constraints">
                                 <exclude reference="Uu1-TQ-WXd"/>
                                 <exclude reference="m7X-9o-rgs"/>
-                                <exclude reference="Gb4-oD-SpT"/>
-                                <exclude reference="ozW-SY-4cN"/>
-                                <exclude reference="WNv-W5-T9Z"/>
-                                <exclude reference="dNq-Qg-ycc"/>
-                                <exclude reference="wJz-Gg-sB3"/>
                                 <exclude reference="ANg-Nh-aqw"/>
                                 <exclude reference="Ldl-KT-Ijv"/>
                                 <exclude reference="mki-Rd-W3K"/>
+                                <exclude reference="WNv-W5-T9Z"/>
+                                <exclude reference="dNq-Qg-ycc"/>
+                                <exclude reference="wJz-Gg-sB3"/>
                                 <exclude reference="Rlk-k5-6Hd"/>
                                 <exclude reference="zwk-at-UiM"/>
                                 <exclude reference="TDI-GJ-KRU"/>
@@ -429,14 +427,14 @@
                                 <exclude reference="Hxz-Z3-40J"/>
                                 <exclude reference="Ocw-W5-4AH"/>
                                 <exclude reference="foC-GP-8M1"/>
-                                <exclude reference="2bR-rH-Dj7"/>
-                                <exclude reference="DdY-tV-bw4"/>
-                                <exclude reference="UxQ-pN-ris"/>
-                                <exclude reference="sXa-HH-VXg"/>
                                 <exclude reference="616-jn-s43"/>
                                 <exclude reference="8Pc-zX-KAr"/>
                                 <exclude reference="o9i-oc-bHs"/>
                                 <exclude reference="z2s-my-NNz"/>
+                                <exclude reference="2bR-rH-Dj7"/>
+                                <exclude reference="DdY-tV-bw4"/>
+                                <exclude reference="UxQ-pN-ris"/>
+                                <exclude reference="sXa-HH-VXg"/>
                                 <exclude reference="78c-c4-4qD"/>
                                 <exclude reference="ESg-qZ-JCr"/>
                                 <exclude reference="a8R-cG-hYD"/>
@@ -450,6 +448,8 @@
                                 <exclude reference="iy0-Jm-Jw9"/>
                                 <exclude reference="HvC-yU-hKt"/>
                                 <exclude reference="Ltv-Di-a2G"/>
+                                <exclude reference="Gb4-oD-SpT"/>
+                                <exclude reference="ozW-SY-4cN"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=compact">
@@ -457,11 +457,11 @@
                                 <exclude reference="y5c-au-FPh"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="Ldl-KT-Ijv"/>
+                                <exclude reference="ya8-wH-cms"/>
                                 <exclude reference="9bu-En-vnq"/>
                                 <include reference="WNv-W5-T9Z"/>
                                 <exclude reference="a7s-Bc-Cc7"/>
-                                <include reference="Ldl-KT-Ijv"/>
-                                <exclude reference="ya8-wH-cms"/>
                                 <exclude reference="mlu-3I-NPX"/>
                                 <include reference="zwk-at-UiM"/>
                                 <exclude reference="lXP-e3-wiY"/>
@@ -472,15 +472,15 @@
                                 <include reference="Hxz-Z3-40J"/>
                                 <exclude reference="Xuz-jy-tX9"/>
                                 <include reference="foC-GP-8M1"/>
-                                <exclude reference="1Vz-bq-95m"/>
-                                <include reference="2bR-rH-Dj7"/>
-                                <include reference="DdY-tV-bw4"/>
-                                <include reference="UxQ-pN-ris"/>
                                 <include reference="LA2-Nu-Jgz"/>
                                 <include reference="616-jn-s43"/>
                                 <exclude reference="H27-Ja-MyT"/>
                                 <include reference="o9i-oc-bHs"/>
                                 <include reference="z2s-my-NNz"/>
+                                <exclude reference="1Vz-bq-95m"/>
+                                <include reference="2bR-rH-Dj7"/>
+                                <include reference="DdY-tV-bw4"/>
+                                <include reference="UxQ-pN-ris"/>
                                 <exclude reference="7AC-OH-uhD"/>
                                 <include reference="ESg-qZ-JCr"/>
                                 <include reference="g0A-T5-IFQ"/>
@@ -497,11 +497,11 @@
                                 <exclude reference="y5c-au-FPh"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="mki-Rd-W3K"/>
+                                <exclude reference="ya8-wH-cms"/>
                                 <exclude reference="9bu-En-vnq"/>
                                 <exclude reference="a7s-Bc-Cc7"/>
                                 <include reference="wJz-Gg-sB3"/>
-                                <include reference="mki-Rd-W3K"/>
-                                <exclude reference="ya8-wH-cms"/>
                                 <include reference="Rlk-k5-6Hd"/>
                                 <exclude reference="mlu-3I-NPX"/>
                                 <exclude reference="lXP-e3-wiY"/>
@@ -511,11 +511,11 @@
                                 <exclude reference="DOR-xz-8bI"/>
                                 <include reference="Ocw-W5-4AH"/>
                                 <exclude reference="Xuz-jy-tX9"/>
+                                <include reference="8Pc-zX-KAr"/>
+                                <exclude reference="H27-Ja-MyT"/>
                                 <exclude reference="1Vz-bq-95m"/>
                                 <include reference="DdY-tV-bw4"/>
                                 <include reference="sXa-HH-VXg"/>
-                                <include reference="8Pc-zX-KAr"/>
-                                <exclude reference="H27-Ja-MyT"/>
                                 <include reference="78c-c4-4qD"/>
                                 <exclude reference="7AC-OH-uhD"/>
                                 <include reference="a8R-cG-hYD"/>
@@ -538,12 +538,10 @@
                             <mask key="constraints">
                                 <include reference="Uu1-TQ-WXd"/>
                                 <include reference="m7X-9o-rgs"/>
-                                <include reference="Gb4-oD-SpT"/>
-                                <include reference="ozW-SY-4cN"/>
-                                <exclude reference="9bu-En-vnq"/>
-                                <include reference="dNq-Qg-ycc"/>
                                 <include reference="ANg-Nh-aqw"/>
                                 <exclude reference="D4Z-cH-ba5"/>
+                                <exclude reference="9bu-En-vnq"/>
+                                <include reference="dNq-Qg-ycc"/>
                                 <include reference="Bvw-Of-pHt"/>
                                 <include reference="heD-KT-pa6"/>
                                 <exclude reference="tMl-lJ-tkR"/>
@@ -552,6 +550,8 @@
                                 <include reference="4vZ-7d-Law"/>
                                 <exclude reference="656-q3-1Ul"/>
                                 <exclude reference="Ec9-0I-9aA"/>
+                                <include reference="Gb4-oD-SpT"/>
+                                <include reference="ozW-SY-4cN"/>
                             </mask>
                         </variation>
                     </view>
@@ -723,8 +723,8 @@
     </scenes>
     <resources>
         <image name="account" width="42.666667938232422" height="42.666667938232422"/>
-        <image name="calendar" catalog="system" width="128" height="106"/>
         <image name="calendar" width="42.5" height="42.5"/>
+        <image name="calendar" catalog="system" width="128" height="106"/>
         <image name="clipboard" width="42.666667938232422" height="42.666667938232422"/>
         <image name="house" catalog="system" width="128" height="110"/>
         <image name="list.dash" catalog="system" width="128" height="85"/>

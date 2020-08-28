@@ -45,8 +45,8 @@ class SignUpEmailViewController: BaseSignUpViewController, UITextFieldDelegate, 
         self.privacyPolicyTextView.delegate = self
         self.privacyPolicyTextView.isEditable = false
         
-        let privacyPolicyString = "For more information, please see our privacy policy"
-        let range = NSRange(location: 37, length: 14) // String starts at index 37 and is 14 characters long, which are the words "privacy policy"
+        let privacyPolicyString = "For more information, please see our privacy policy."
+        let range = NSRange(location: 37, length: 15) // String starts at index 37 and is 14 characters long, which are the words "privacy policy"
         let attributedString = NSMutableAttributedString(string: privacyPolicyString)
         attributedString.addAttribute(.link, value: Defaults.Urls.novaOneWebsite.rawValue + "/privacy-policy", range: range)
         

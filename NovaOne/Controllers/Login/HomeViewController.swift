@@ -49,7 +49,8 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
             
             // If cachedCustomer is nil, then get the customer object throught managed context object
             guard let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first else {
-                fatalError("Customer object does not exist")
+                print("Customer object does not exist")
+                return Customer()
             }
             self.cachedCustomer = customer
             return self.cachedCustomer!
@@ -383,7 +384,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
                         dateFormatter.dateFormat = "MMM"
                         let monthFromDate = dateFormatter.string(from: date) // Returns shorthand of month Ex: 'Apr'
                         
-                        dateFormatter.dateFormat = "yyyy"
+                        dateFormatter.dateFormat = "yy"
                         let yearFromDate = dateFormatter.string(from: date) // Returns year as yyyy Ex: '2020'
                         
                         let dateString = "\(monthFromDate)\n\(yearFromDate)" // Returns with month then year Ex: 'Apr 2020'
