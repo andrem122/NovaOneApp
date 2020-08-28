@@ -384,10 +384,13 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
                         dateFormatter.dateFormat = "MMM"
                         let monthFromDate = dateFormatter.string(from: date) // Returns shorthand of month Ex: 'Apr'
                         
-                        dateFormatter.dateFormat = "yy"
+                        dateFormatter.dateFormat = "yyyy"
                         let yearFromDate = dateFormatter.string(from: date) // Returns year as yyyy Ex: '2020'
                         
-                        let dateString = "\(monthFromDate)\n\(yearFromDate)" // Returns with month then year Ex: 'Apr 2020'
+                        dateFormatter.dateFormat = "yy"
+                        let yearFromDateTwoDigitFormat = dateFormatter.string(from: date) // Returns year as yy Ex: '20'
+                        
+                        let dateString = "\(monthFromDate)\n\(yearFromDateTwoDigitFormat)" // Returns with month then year Ex: 'Apr 20'
                         
                         for data in chartData {
                             

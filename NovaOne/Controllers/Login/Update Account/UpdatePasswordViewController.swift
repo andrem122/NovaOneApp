@@ -26,6 +26,11 @@ class UpdatePasswordViewController: UpdateBaseViewController {
         self.currentPasswordTextField.becomeFirstResponder()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        AppUtility.lockOrientation(.all)
+    }
+    
     func setupTextFields() {
         // Setup the text fields
         self.currentPasswordTextField.delegate = self

@@ -46,8 +46,6 @@ class AccountTableViewController: UITableViewController {
         let wantsSms = customer.wantsSms
         let wantsEmailNotificatons = customer.wantsEmailNotifications
         
-        print("WANTS SMS: \(wantsSms), WANTS EMAIL: \(wantsEmailNotificatons)")
-        
         self.smsNotificationsSwitch.setOn(wantsSms, animated: false)
         self.emailNotificationsSwitch.setOn(wantsEmailNotificatons, animated: false)
         

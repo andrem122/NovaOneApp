@@ -51,7 +51,7 @@ class AddAppointmentPhoneViewController: AddAppointmentBaseViewController, UITex
         } else {
             guard let addAppointmentTimeViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addAppointmentTime.rawValue) as? AddAppointmentTimeViewController else { return }
             
-            self.appointment?.phoneNumber = "%2B1" + unformattedPhoneNumber
+            self.appointment?.phoneNumber = "+1" + unformattedPhoneNumber
             addAppointmentTimeViewController.appointment = self.appointment
             addAppointmentTimeViewController.embeddedViewController = self.embeddedViewController
             

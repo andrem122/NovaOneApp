@@ -26,6 +26,11 @@ class UpdateNameViewController: UpdateBaseViewController {
         self.firstNameTextField.becomeFirstResponder()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        AppUtility.lockOrientation(.all)
+    }
+    
     func setupTextFields() {
         // Setup text fields
         self.firstNameTextField.delegate = self

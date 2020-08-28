@@ -25,6 +25,11 @@ class UpdateEmailViewController: UpdateBaseViewController {
         self.emailTextField.becomeFirstResponder()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        AppUtility.lockOrientation(.all)
+    }
+    
     // MARK: Actions
     @IBAction func emailTextFieldChanged(_ sender: Any) {
         UIHelper.toggle(button: self.updateButton, textField: self.emailTextField, enabledColor: Defaults.novaOneColor, disabledColor: Defaults.novaOneColorDisabledColor, borderedButton: false, closure: nil)

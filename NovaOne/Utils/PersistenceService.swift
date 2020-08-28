@@ -16,7 +16,6 @@ class PersistenceService {
     // Context is basically a container for all the data you want to save at any given moment
     public private(set) static var context: NSManagedObjectContext = {
         // Initialize Managed Object Context
-        print("CREATING NEW CONTEXT")
         let managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
 
         // Configure Managed Object Context
@@ -27,7 +26,6 @@ class PersistenceService {
     
     private static var privateManagedObjectContext: NSManagedObjectContext = {
         // Initialize Managed Object Context
-        print("CREATING NEW PRIVATE CONTEXT")
         let managedObjectContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
 
         // Configure Managed Object Context

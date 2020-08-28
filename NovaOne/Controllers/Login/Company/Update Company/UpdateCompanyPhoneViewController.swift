@@ -43,7 +43,7 @@ class UpdateCompanyPhoneViewController: UpdateBaseViewController {
             let spinnerView = self.showSpinner(for: self.view, textForLabel: "Updating")
             
             let httpRequest = HTTPRequests()
-            let parameters: [String: String] = ["valueToCheckInDatabase": "%2B1" + unformattedPhoneNumber, "tableName": Defaults.DataBaseTableNames.company.rawValue, "columnName": "phone_number"]
+            let parameters: [String: String] = ["valueToCheckInDatabase": "+1" + unformattedPhoneNumber, "tableName": Defaults.DataBaseTableNames.company.rawValue, "columnName": "phone_number"]
             httpRequest.request(url: Defaults.Urls.api.rawValue + "/inputCheck.php", dataModel: SuccessResponse.self, parameters: parameters) { [weak self] (result) in
                 switch result {
                     case .success(_):
@@ -66,7 +66,7 @@ class UpdateCompanyPhoneViewController: UpdateBaseViewController {
                             detailViewController.objectDetailTableView.reloadData()
                         }
 
-                        self?.updateObject(for: Defaults.DataBaseTableNames.company.rawValue, at: ["phone_number": "%2B1" + unformattedPhoneNumber], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Company.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Company phone number has been successfully updated.", successDoneHandler: successDoneHandler, completion: nil)
+                        self?.updateObject(for: Defaults.DataBaseTableNames.company.rawValue, at: ["phone_number": "+1" + unformattedPhoneNumber], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Company.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Company phone number has been successfully updated.", successDoneHandler: successDoneHandler, completion: nil)
                     case .failure(let error):
                         guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
                         self?.present(popUpOkViewController, animated: true, completion: nil)

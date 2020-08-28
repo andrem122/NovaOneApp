@@ -56,7 +56,7 @@ class UpdateAppointmentPhoneViewController: UpdateBaseViewController {
                 detailViewController.objectDetailTableView.reloadData()
             }
 
-            self.updateObject(for: Defaults.DataBaseTableNames.appointmentsBase.rawValue, at: ["phone_number": "%2B1" + unformattedPhoneNumber], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Appointment.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Appointment phone number has been successfully updated.", successDoneHandler: successDoneHandler, completion: nil)
+            self.updateObject(for: Defaults.DataBaseTableNames.appointmentsBase.rawValue, at: ["phone_number": "+1" + unformattedPhoneNumber], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Appointment.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Appointment phone number has been successfully updated.", successDoneHandler: successDoneHandler, completion: nil)
         }
     }
     

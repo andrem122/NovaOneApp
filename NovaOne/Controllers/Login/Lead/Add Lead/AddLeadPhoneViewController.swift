@@ -60,7 +60,7 @@ class AddLeadPhoneViewController: AddLeadBaseViewController, UITextFieldDelegate
             guard let phoneNumber = self.phoneNumberTextField.text else { return }
             let unformattedPhoneNumber = phoneNumber.replacingOccurrences(of: "[\\(\\)\\s-]", with: "", options: .regularExpression, range: nil)
             
-            self.lead?.phoneNumber = "%2B1" + unformattedPhoneNumber
+            self.lead?.phoneNumber = "+1" + unformattedPhoneNumber
             addLeadRenterBrandViewController.lead = self.lead
             addLeadRenterBrandViewController.embeddedViewController = self.embeddedViewController
             
@@ -88,7 +88,7 @@ class AddLeadPhoneViewController: AddLeadBaseViewController, UITextFieldDelegate
                     else { return }
                 let dateOfInquiry = DateHelper.createString(from: Date(), format: "yyyy-MM-dd HH:mm:ssZ")
                 
-                let parameters: [String: String] = ["customerUserId": String(customerUserId), "email": customerEmail, "password": customerPassword, "leadName": name, "leadPhoneNumber": "%2B1" + unformattedPhoneNumber, "leadEmail": email, "leadRenterBrand": renterBrand, "dateOfInquiry": dateOfInquiry, "leadCompanyId": String(companyId)]
+                let parameters: [String: String] = ["customerUserId": String(customerUserId), "email": customerEmail, "password": customerPassword, "leadName": name, "leadPhoneNumber": "+1" + unformattedPhoneNumber, "leadEmail": email, "leadRenterBrand": renterBrand, "dateOfInquiry": dateOfInquiry, "leadCompanyId": String(companyId)]
                 
                 let httpRequest = HTTPRequests()
                 httpRequest.request(url: Defaults.Urls.api.rawValue + "/addLead.php", dataModel: SuccessResponse.self, parameters: parameters) { [weak self] (result) in

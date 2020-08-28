@@ -25,6 +25,11 @@ class UpdatePhoneViewController: UpdateBaseViewController {
         self.phoneNumberTextField.becomeFirstResponder()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        AppUtility.lockOrientation(.all)
+    }
+    
     // MARK: Actions
     @IBAction func phoneNumberTextFieldChanged(_ sender: Any) {
     }
@@ -43,7 +48,7 @@ class UpdatePhoneViewController: UpdateBaseViewController {
             let spinnerView = self.showSpinner(for: self.view, textForLabel: "Updating")
             
             let httpRequest = HTTPRequests()
-            let parameters: [String: String] = ["valueToCheckInDatabase": "%2B1" + unformattedPhoneNumber, "tableName": Defaults.DataBaseTableNames.customer.rawValue, "columnName": "phone_number"]
+            let parameters: [String: String] = ["valueToCheckInDatabase": "+1" + unformattedPhoneNumber, "tableName": Defaults.DataBaseTableNames.customer.rawValue, "columnName": "phone_number"]
             httpRequest.request(url: Defaults.Urls.api.rawValue + "/inputCheck.php", dataModel: SuccessResponse.self, parameters: parameters) { [weak self] (result) in
                 switch result {
                 case .success(_):
@@ -64,7 +69,7 @@ class UpdatePhoneViewController: UpdateBaseViewController {
                         previousViewController.tableView.reloadData()
                     }
                     
-                        self?.updateObject(for: Defaults.DataBaseTableNames.customer.rawValue, at: ["phone_number": "%2B1" + unformattedPhoneNumber], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Customer.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Phone number successfully updated.", successDoneHandler: successDoneHandler, completion: nil)
+                        self?.updateObject(for: Defaults.DataBaseTableNames.customer.rawValue, at: ["phone_number": "+1" + unformattedPhoneNumber], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Customer.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Phone number successfully updated.", successDoneHandler: successDoneHandler, completion: nil)
                     
                 case .failure(let error):
                     guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
