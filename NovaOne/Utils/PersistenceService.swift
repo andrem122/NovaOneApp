@@ -91,8 +91,6 @@ class PersistenceService {
             do {
                 if self.context.hasChanges {
                     try self.context.save()
-                } else {
-                    print("NO CHANGES TO MAIN CONTEXT")
                 }
             } catch {
                 print("Unable to Save Changes of Main Managed Object Context")
@@ -104,9 +102,7 @@ class PersistenceService {
             do {
                 if self.privateManagedObjectContext.hasChanges {
                     try self.privateManagedObjectContext.save()
-                } else {
-                    print("NO CHANGES TO PRIVATE CONTEXT")
-                }
+                } 
             } catch {
                 print("Unable to Save Changes of Private Managed Object Context")
                 print("\(error), \(error.localizedDescription)")

@@ -9,11 +9,12 @@
 import UIKit
 import CoreData
 
-class SignUpEmailViewController: BaseSignUpViewController, UITextFieldDelegate {
+class SignUpEmailViewController: BaseSignUpViewController, UITextFieldDelegate, UITextViewDelegate {
     
     // MARK: Properties
     @IBOutlet weak var emailAddressTextField: NovaOneTextField!
     @IBOutlet weak var continueButton: NovaOneButton!
+    @IBOutlet weak var privacyPolicyTextView: UITextView!
     
     // For state restortation
     var continuationActivity: NSUserActivity {
@@ -39,6 +40,30 @@ class SignUpEmailViewController: BaseSignUpViewController, UITextFieldDelegate {
         self.emailAddressTextField.delegate = self
     }
     
+    func setupPrivacyPolicyTextView() {
+        // Sets up the privacy policy text view
+        self.privacyPolicyTextView.delegate = self
+        self.privacyPolicyTextView.isEditable = false
+        
+        let privacyPolicyString = "For more information, please see our privacy policy"
+        let range = NSRange(location: 37, length: 14) // String starts at index 37 and is 14 characters long, which are the words "privacy policy"
+        let attributedString = NSMutableAttributedString(string: privacyPolicyString)
+        attributedString.addAttribute(.link, value: Defaults.Urls.novaOneWebsite.rawValue + "/privacy-policy", range: range)
+        
+        let colorAttribute = [NSAttributedString.Key.foregroundColor: UIColor.red]
+        attributedString.addAttributes(colorAttribute, range: range)
+        
+        var fontSizeAttribute = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .regular)]
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            fontSizeAttribute = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: .regular)]
+        }
+        attributedString.addAttributes(fontSizeAttribute, range: NSRange(location: 0, length: privacyPolicyString.count))
+        
+        self.privacyPolicyTextView.attributedText = attributedString
+        self.privacyPolicyTextView.textAlignment = .center
+        self.privacyPolicyTextView.textColor = UIColor(named: Defaults.Colors.text.rawValue)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.restore(textField: self.emailAddressTextField, continueButton: self.continueButton, coreDataEntity: Customer.self) { (customer) -> String in
@@ -47,6 +72,7 @@ class SignUpEmailViewController: BaseSignUpViewController, UITextFieldDelegate {
             return email
         }
         self.setupTextField()
+        self.setupPrivacyPolicyTextView()
         self.setupNavigationBar()
     }
     
@@ -136,5 +162,10 @@ extension SignUpEmailViewController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.continueButton.sendActions(for: .touchUpInside)
         return true
+    }
+    
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        UIApplication.shared.open(URL, options: [:], completionHandler: nil)
+        return false
     }
 }
