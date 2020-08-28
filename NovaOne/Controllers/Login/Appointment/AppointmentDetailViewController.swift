@@ -196,15 +196,16 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
             let httpRequest = HTTPRequests()
             let endpoint = customer.customerType == "MW" ? "/deleteAppointmentMedical.php" : "/deleteAppointmentRealEstate.php"
             httpRequest.request(url: Defaults.Urls.api.rawValue + endpoint, dataModel: SuccessResponse.self, parameters: parameters) {(result) in
-            
+                
+                let setFirstItem = UIDevice.current.userInterfaceIdiom == .pad ? true : false
                 switch result {
                     case .success(_):
                         // If no more objects exist, go to empty view controller else go to table view controller and reload data
                         let count = PersistenceService.fetchCount(for: Defaults.CoreDataEntities.appointment.rawValue)
                         if count > 0 {
-                            
                             // Return to the objects view and refresh objects
-                            objectsTableViewController.refreshDataOnPullDown()
+                            objectsTableViewController.spinnerView = spinnerView // Pass spinner view to table view so we can remove it AFTER the data loads
+                            objectsTableViewController.refreshDataOnPullDown(setFirstItem: setFirstItem)
                             
                         } else {
                             
@@ -240,7 +241,11 @@ class AppointmentDetailViewController: UIViewController, UITableViewDelegate, UI
                         containerViewControllerAsUIViewController.present(popUpOkViewController, animated: true, completion: nil)
                 }
                 
-                containerViewControllerAsUIViewController.removeSpinner(spinnerView: spinnerView)
+                // Remove the spinner here if not on iPad devices
+                if setFirstItem == false {
+                    containerViewControllerAsUIViewController.removeSpinner(spinnerView: spinnerView)
+                }
+                
             }
         }, cancelHandler: {
             print("Action canceled")

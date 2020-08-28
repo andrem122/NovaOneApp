@@ -85,7 +85,7 @@ class AddAppointmentGenderViewController: AddAppointmentBaseViewController, UIPi
                         } else {
                             print("appointments view controller")
                             guard let appointmentsTableViewController = self?.embeddedViewController as? AppointmentsTableViewController else { return }
-                            appointmentsTableViewController.refreshDataOnPullDown()
+                            appointmentsTableViewController.refreshDataOnPullDown(setFirstItem: false)
                         }
                     }
                     

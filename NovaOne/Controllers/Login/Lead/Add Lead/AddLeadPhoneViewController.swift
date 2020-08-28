@@ -52,28 +52,28 @@ class AddLeadPhoneViewController: AddLeadBaseViewController, UITextFieldDelegate
         
         // Go to renter brand view IF the customer is of type property manager or 'PM'
         // else make a POST request
-        guard let customerType = self.customer?.customerType else { return }
+        guard let phoneNumber = self.phoneNumberTextField.text else { return }
+        let unformattedPhoneNumber = phoneNumber.replacingOccurrences(of: "[\\(\\)\\s-]", with: "", options: .regularExpression, range: nil)
         
-        if customerType == Defaults.CustomerTypes.propertyManager.rawValue {
-            guard let addLeadRenterBrandViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addLeadRenterBrand.rawValue) as? AddLeadRenterBrandViewController else { return }
-            
-            guard let phoneNumber = self.phoneNumberTextField.text else { return }
-            let unformattedPhoneNumber = phoneNumber.replacingOccurrences(of: "[\\(\\)\\s-]", with: "", options: .regularExpression, range: nil)
-            
-            self.lead?.phoneNumber = "+1" + unformattedPhoneNumber
-            addLeadRenterBrandViewController.lead = self.lead
-            addLeadRenterBrandViewController.embeddedViewController = self.embeddedViewController
-            
-            self.navigationController?.pushViewController(addLeadRenterBrandViewController, animated: true)
+        if !unformattedPhoneNumber.isNumeric {
+            let popUpOkViewController = self.alertService.popUpOk(title: "Invalid Number", body: "Please enter only numbers.")
+            self.present(popUpOkViewController, animated: true, completion: nil)
         } else {
+            guard let customerType = self.customer?.customerType else { return }
             
-            guard let phoneNumber = self.phoneNumberTextField.text else { return }
-            let unformattedPhoneNumber = phoneNumber.replacingOccurrences(of: "[\\(\\)\\s-]", with: "", options: .regularExpression, range: nil)
-            
-            if !unformattedPhoneNumber.isNumeric {
-                let popUpOkViewController = self.alertService.popUpOk(title: "Invalid Number", body: "Please enter only numbers.")
-                self.present(popUpOkViewController, animated: true, completion: nil)
+            if customerType == Defaults.CustomerTypes.propertyManager.rawValue {
+                guard let addLeadRenterBrandViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addLeadRenterBrand.rawValue) as? AddLeadRenterBrandViewController else { return }
+                
+                guard let phoneNumber = self.phoneNumberTextField.text else { return }
+                let unformattedPhoneNumber = phoneNumber.replacingOccurrences(of: "[\\(\\)\\s-]", with: "", options: .regularExpression, range: nil)
+                
+                self.lead?.phoneNumber = "+1" + unformattedPhoneNumber
+                addLeadRenterBrandViewController.lead = self.lead
+                addLeadRenterBrandViewController.embeddedViewController = self.embeddedViewController
+                
+                self.navigationController?.pushViewController(addLeadRenterBrandViewController, animated: true)
             } else {
+                // For medical users
                 let spinnerView = self.showSpinner(for: self.view, textForLabel: "Adding Lead...")
                 
                 // Get data for POST parameters
@@ -114,7 +114,7 @@ class AddLeadPhoneViewController: AddLeadBaseViewController, UITextFieldDelegate
                                 } else {
                                     print("leads view controller")
                                     guard let leadsTableViewController = self?.embeddedViewController as? LeadsTableViewController else { return }
-                                    leadsTableViewController.refreshDataOnPullDown()
+                                    leadsTableViewController.refreshDataOnPullDown(setFirstItem: false)
                                 }
                             }
                             self?.present(successViewController, animated: true, completion: nil)

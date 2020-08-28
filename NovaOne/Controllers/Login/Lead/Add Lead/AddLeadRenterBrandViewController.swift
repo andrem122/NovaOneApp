@@ -82,7 +82,7 @@ class AddLeadRenterBrandViewController: AddLeadBaseViewController, UIPickerViewD
                         } else {
                             print("leads view controller")
                             guard let leadsTableViewController = self?.embeddedViewController as? LeadsTableViewController else { return }
-                            leadsTableViewController.refreshDataOnPullDown()
+                            leadsTableViewController.refreshDataOnPullDown(setFirstItem: false)
                         }
                     }
                     self?.present(successViewController, animated: true, completion: nil)

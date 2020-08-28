@@ -61,7 +61,7 @@ class AddAppointmentUnitTypeViewController: AddAppointmentBaseViewController, UI
                         [weak self] in
                         // Return to the appointments view and refresh appointments
                         self?.presentingViewController?.dismiss(animated: true, completion: nil)
-                        (self?.embeddedViewController as? AppointmentsTableViewController)?.refreshDataOnPullDown()
+                        (self?.embeddedViewController as? AppointmentsTableViewController)?.refreshDataOnPullDown(setFirstItem: false)
                     }
                     self?.present(successViewController, animated: true, completion: nil)
                 case .failure(let error):

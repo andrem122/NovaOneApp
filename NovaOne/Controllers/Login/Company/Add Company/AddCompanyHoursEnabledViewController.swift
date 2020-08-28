@@ -132,7 +132,7 @@ class AddCompanyHoursEnabledViewController: AddCompanyBaseViewController, UITabl
                             emptyViewController.refreshButton.sendActions(for: .touchUpInside)
                         } else {
                             guard let companiesTableViewController = self?.embeddedViewController as? CompaniesTableViewController else { print("Could not get companies table view controller");return }
-                            companiesTableViewController.refreshDataOnPullDown()
+                            companiesTableViewController.refreshDataOnPullDown(setFirstItem: false)
                         }
                     }
                     self?.present(successViewController, animated: true, completion: nil)

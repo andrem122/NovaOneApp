@@ -83,7 +83,7 @@ class AddLeadPhoneCheckViewController: AddLeadBaseViewController {
                                 emptyViewController.refreshButton.sendActions(for: .touchUpInside)
                             } else {
                                 guard let leadsTableViewController = self?.embeddedViewController as? LeadsTableViewController else { return }
-                                leadsTableViewController.refreshDataOnPullDown()
+                                leadsTableViewController.refreshDataOnPullDown(setFirstItem: false)
                             }
                         }
                         self?.present(successViewController, animated: true, completion: nil)

@@ -32,6 +32,7 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
     }()
     let contactHelper = ContactHelper()
     var itemSelectedIndex: Int = 0
+    var spinnerView: UIView?
         
     // MARK: Methods
     override func viewDidLoad() {
@@ -310,7 +311,7 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
         
     }
     
-    @objc func refreshDataOnPullDown() {
+    @objc func refreshDataOnPullDown(setFirstItem: Bool) {
         // Refresh data of the table view if the user is not scrolling
         
         if self.searchController.isActive == false && self.appendingDataToTable == false && self.tableIsRefreshing == false && self.filteredObjects.count > 0 {
@@ -326,6 +327,20 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
                 [weak self] in
                 self?.tableIsRefreshing = false
                 self?.getCoreData()
+                
+                // Set the first item if needed after the data refresh
+                if setFirstItem == true {
+                    self?.setFirstItemForDetailView()
+                    
+                    // Remove spinner view
+                    DispatchQueue.main.async {
+                        guard let spinnerView = self?.spinnerView else {
+                            print("could not get spinner view - LeadsTableViewController")
+                            return
+                        }
+                        self?.removeSpinner(spinnerView: spinnerView)
+                    }
+                }
             }
             
         } else {
