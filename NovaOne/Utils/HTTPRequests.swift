@@ -107,6 +107,20 @@ class HTTPRequests {
         mutatedParamaters["PHPAuthenticationUsername"] = Defaults.PHPAuthenticationUsername
         mutatedParamaters["PHPAuthenticationPassword"] = Defaults.PHPAuthenticationPassword
         
+        // Percent encode the values in the dictionary if it is of type String
+        for (key, value) in mutatedParamaters {
+            // If we can typecast the paramater value into a string, then percent encode it
+            if let valueAsString = value as? String {
+                guard let percentEncodedString = valueAsString.addingPercentEncodingForRFC3986() else {
+                    print("could not percent encode string - UpdateBaseViewController")
+                    return
+                }
+                
+                // Replace string value in dictionary with percent encoded string
+                mutatedParamaters[key] = percentEncodedString
+            }
+        }
+        
         // Convert url string to URL type
         guard let url: URL = URL(string: url) else {
             completion(.failure(NetworkingError.badUrl))
