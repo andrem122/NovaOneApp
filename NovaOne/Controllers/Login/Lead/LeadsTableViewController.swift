@@ -418,6 +418,11 @@ extension LeadsTableViewController: UISearchResultsUpdating, SkeletonTableViewDa
             cell.delegate = self
             cell.setup(title: name, subTitleOne: companyName, subTitleTwo: contactedLead, subTitleThree: dateContacted, email: lead.email, phoneNumber: lead.phoneNumber)
             
+            // Remove the skeleton view if needed
+            if cell.isSkeletonActive {
+                cell.hideSkeleton()
+            }
+            
         }
         
         return cell
