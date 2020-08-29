@@ -159,14 +159,51 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             // Remove the detail view controller from view
             guard let objectsTableViewController = self?.previousViewController as? NovaOneTableView else { print("could not get objectsTableViewController - lead detail view"); return }
             guard let containerViewControllerAsUIViewController = objectsTableViewController.parentViewContainerController else { print("could not get containerViewController - lead detail view"); return }
-            guard let containerViewControllerView = objectsTableViewController.parentViewContainerController?.view else { print("could not get containerViewControllerView - lead detail view"); return }
             
-            let spinnerView = containerViewControllerAsUIViewController.showSpinner(for: containerViewControllerView, textForLabel: "Deleting")
             self?.performSegue(withIdentifier: Defaults.SegueIdentifiers.unwindToLeads.rawValue, sender: self)
             
             // Delete from CoreData
             PersistenceService.context.delete(lead)
             PersistenceService.saveContext(context: nil)
+            
+            // If no more objects exist, go to empty view controller
+           let count = PersistenceService.fetchCount(for: Defaults.CoreDataEntities.lead.rawValue)
+           if count == 0 {
+            
+               guard let containerViewController = objectsTableViewController.parentViewContainerController as? NovaOneObjectContainer else { print("could not get containerViewController - lead detail view controller"); return }
+               
+               UIHelper.showEmptyStateContainerViewController(for: containerViewController as? UIViewController, containerView: containerViewController.containerView ?? UIView(), title: "No Leads", addObjectButtonTitle: "Add Lead") {
+                   (emptyViewController) in
+                   
+                   // Tell the empty state view controller what its parent view controller is
+                   emptyViewController.parentViewContainerController = containerViewController as? UIViewController
+                   
+                   // Pass the addObjectHandler function and button title to the empty view controller
+                   emptyViewController.addObjectButtonHandler = {
+                       // Go to the add object screen
+                       let addLeadStoryboard = UIStoryboard(name: Defaults.StoryBoards.addLead.rawValue, bundle: .main)
+                       guard
+                           let addLeadNavigationController = addLeadStoryboard.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addLead.rawValue) as? UINavigationController,
+                           let addLeadCompanyViewController = addLeadNavigationController.viewControllers.first as? AddLeadCompanyViewController
+                       else { return }
+                       
+                       addLeadCompanyViewController.embeddedViewController = emptyViewController
+                       
+                       // Do NOT present from self (leadDetailViewController in this case) because we are dismissing it and it will no longer be available, so we can't call any methods on a nil object
+                       (containerViewController as? UIViewController)?.present(addLeadNavigationController, animated: true, completion: nil)
+                   }
+                   
+               }
+               
+           } else {
+                // Refresh coredata for the objects table view and set first item
+                objectsTableViewController.getCoreData()
+                
+                // Only set the first item for split views with both the detail and master view on the same screen
+                if self?.splitViewController?.isCollapsed == false {
+                    objectsTableViewController.setFirstItemForDetailView()
+                }
+            }
             
             // Delete from NovaOne database
             let parameters: [String: Any] = ["email": email,
@@ -178,54 +215,14 @@ class LeadDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             let httpRequest = HTTPRequests()
             httpRequest.request(url: Defaults.Urls.api.rawValue + "/deleteObject.php", dataModel: SuccessResponse.self, parameters: parameters) {(result) in
                 
-                let setFirstItem = UIDevice.current.userInterfaceIdiom == .pad ? true : false
                 switch result {
-                    case .success(_):
-                        // If no more objects exist, go to empty view controller else go to table view controller and reload data
-                        let count = PersistenceService.fetchCount(for: Defaults.CoreDataEntities.lead.rawValue)
-                        if count > 0 {
-                            // Return to the objects view and refresh objects
-                            objectsTableViewController.spinnerView = spinnerView // Pass spinner view to table view so we can remove it AFTER the data loads
-                            objectsTableViewController.refreshDataOnPullDown(setFirstItem: setFirstItem)
-                            
-                        } else {
-                            
-                            guard let containerViewController = objectsTableViewController.parentViewContainerController as? NovaOneObjectContainer else { print("could not get containerViewController - lead detail view controller"); return }
-                            
-                            UIHelper.showEmptyStateContainerViewController(for: containerViewController as? UIViewController, containerView: containerViewController.containerView ?? UIView(), title: "No Leads", addObjectButtonTitle: "Add Lead") {
-                                (emptyViewController) in
-                                
-                                objectsTableViewController.parentViewContainerController?.removeSpinner(spinnerView: spinnerView)
-                                // Tell the empty state view controller what its parent view controller is
-                                emptyViewController.parentViewContainerController = containerViewController as? UIViewController
-                                
-                                // Pass the addObjectHandler function and button title to the empty view controller
-                                emptyViewController.addObjectButtonHandler = {
-                                    // Go to the add object screen
-                                    let addLeadStoryboard = UIStoryboard(name: Defaults.StoryBoards.addLead.rawValue, bundle: .main)
-                                    guard
-                                        let addLeadNavigationController = addLeadStoryboard.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addLead.rawValue) as? UINavigationController,
-                                        let addLeadCompanyViewController = addLeadNavigationController.viewControllers.first as? AddLeadCompanyViewController
-                                    else { return }
-                                    
-                                    addLeadCompanyViewController.embeddedViewController = emptyViewController
-                                    
-                                    // Do NOT present from self (leadDetailViewController in this case) because we are dismissing it and it will no longer be available, so we can't call any methods on a nil object
-                                    (containerViewController as? UIViewController)?.present(addLeadNavigationController, animated: true, completion: nil)
-                                }
-                                
-                            }
-                            
-                        }
+                    case .success(let successResponse):
+                        print(successResponse.successReason)
+                    
                     case .failure(let error):
                         guard let containerViewController = containerViewControllerAsUIViewController as? NovaOneObjectContainer else { return }
                         let popUpOkViewController = containerViewController.alertService.popUpOk(title: "Error", body: error.localizedDescription)
                         containerViewControllerAsUIViewController.present(popUpOkViewController, animated: true, completion: nil)
-                }
-                
-                // Remove the spinner here if not on iPad devices
-                if setFirstItem == false {
-                    containerViewControllerAsUIViewController.removeSpinner(spinnerView: spinnerView)
                 }
             }
         }, cancelHandler: {

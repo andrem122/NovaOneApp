@@ -129,7 +129,7 @@ class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITabl
     // MARK: Actions
     @IBAction func deleteButtonTapped(_ sender: Any) {
         // User must have at least one company and cannot delete the last one
-        let count = PersistenceService.fetchCount(for: Defaults.CoreDataEntities.company.rawValue)
+        var count = PersistenceService.fetchCount(for: Defaults.CoreDataEntities.company.rawValue)
         if count == 1 {
             // Popup a ok view controller telling the user they cannot delete the last company
             let popUpOkViewController = self.alertService.popUpOk(title: "Cannot Delete", body: "You must have at least one company to operate on NovaOne.")
@@ -154,15 +154,49 @@ class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITabl
                 // Remove the detail view controller from view
                 guard let objectsTableViewController = self?.previousViewController as? NovaOneTableView else { print("could not get objectsTableViewController - company detail view"); return }
                 guard let containerViewControllerAsUIViewController = objectsTableViewController.parentViewContainerController else { print("could not get containerViewController - company detail view"); return }
-                guard let containerViewControllerView = objectsTableViewController.parentViewContainerController?.view else { print("could not get containerViewControllerView - company detail view"); return }
                 
-                
-                let spinnerView = containerViewControllerAsUIViewController.showSpinner(for: containerViewControllerView, textForLabel: "Deleting")
                 self?.performSegue(withIdentifier: Defaults.SegueIdentifiers.unwindToCompanies.rawValue, sender: self)
                 
                 // Delete from CoreData
                 PersistenceService.context.delete(company)
                 PersistenceService.saveContext(context: nil)
+                
+                // If no more objects exist, go to empty view controller
+                count = PersistenceService.fetchCount(for: Defaults.CoreDataEntities.company.rawValue)
+                if count == 0 {
+                    // No more objects to show so go to the empty view controller screen
+                    guard let containerViewController = containerViewControllerAsUIViewController as? NovaOneObjectContainer else { return }
+                    
+                    UIHelper.showEmptyStateContainerViewController(for: containerViewController as? UIViewController, containerView: containerViewController.containerView ?? UIView(), title: "No Companies", addObjectButtonTitle: "Add Company") {
+                        (emptyViewController) in
+                        
+                        // Tell the empty state view controller what its parent view controller is
+                        emptyViewController.parentViewContainerController = containerViewController as? UIViewController
+                        
+                        // Pass the addObjectHandler function and button title to the empty view controller
+                        emptyViewController.addObjectButtonHandler = {
+                            // Go to the add object screen
+                            let addCompanyStoryboard = UIStoryboard(name: Defaults.StoryBoards.addCompany.rawValue, bundle: .main)
+                            guard
+                                let addCompanyNavigationController = addCompanyStoryboard.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addCompany.rawValue) as? UINavigationController,
+                                let addCompanyCompanyViewController = addCompanyNavigationController.viewControllers.first as? AddCompanyNameViewController
+                            else { return }
+                            
+                            addCompanyCompanyViewController.embeddedViewController = emptyViewController
+                            
+                            (containerViewController as? UIViewController)?.present(addCompanyNavigationController, animated: true, completion: nil)
+                        }
+                        
+                    }
+                } else {
+                    // Refresh coredata for the objects table view and set first item
+                    objectsTableViewController.getCoreData()
+                    
+                    // Only set the first item for split views with both the detail and master view on the same screen
+                    if self?.splitViewController?.isCollapsed == false {
+                        objectsTableViewController.setFirstItemForDetailView()
+                    }
+                }
                 
                 // Delete from NovaOne database
                 let parameters: [String: Any] = ["email": email,
@@ -173,54 +207,14 @@ class CompanyDetailViewController: UIViewController, UITableViewDelegate, UITabl
                 let httpRequest = HTTPRequests()
                 httpRequest.request(url: Defaults.Urls.api.rawValue + "/deleteCompany.php", dataModel: SuccessResponse.self, parameters: parameters) {(result) in
                     
-                    let setFirstItem = UIDevice.current.userInterfaceIdiom == .pad ? true : false
                     switch result {
-                        case .success(_):
-                            // If no more objects exist, go to empty view controller else go to table view controller and reload data
-                            let count = PersistenceService.fetchCount(for: Defaults.CoreDataEntities.company.rawValue)
-                            if count > 0 {
-                                
-                                // Return to the objects view and refresh objects
-                                objectsTableViewController.spinnerView = spinnerView // Pass spinner view to table view so we can remove it AFTER the data loads
-                                objectsTableViewController.refreshDataOnPullDown(setFirstItem: setFirstItem)
-                                
-                            } else {
-                                
-                                // No more objects to show so go to the empty view controller screen
-                                guard let containerViewController = containerViewControllerAsUIViewController as? NovaOneObjectContainer else { return }
-                                
-                                UIHelper.showEmptyStateContainerViewController(for: containerViewController as? UIViewController, containerView: containerViewController.containerView ?? UIView(), title: "No Companies", addObjectButtonTitle: "Add Company") {
-                                    (emptyViewController) in
-                                    
-                                    // Tell the empty state view controller what its parent view controller is
-                                    emptyViewController.parentViewContainerController = containerViewController as? UIViewController
-                                    
-                                    // Pass the addObjectHandler function and button title to the empty view controller
-                                    emptyViewController.addObjectButtonHandler = {
-                                        // Go to the add object screen
-                                        let addCompanyStoryboard = UIStoryboard(name: Defaults.StoryBoards.addCompany.rawValue, bundle: .main)
-                                        guard
-                                            let addCompanyNavigationController = addCompanyStoryboard.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addCompany.rawValue) as? UINavigationController,
-                                            let addCompanyCompanyViewController = addCompanyNavigationController.viewControllers.first as? AddCompanyNameViewController
-                                        else { return }
-                                        
-                                        addCompanyCompanyViewController.embeddedViewController = emptyViewController
-                                        
-                                        (containerViewController as? UIViewController)?.present(addCompanyNavigationController, animated: true, completion: nil)
-                                    }
-                                    
-                                }
-                                
-                            }
+                        case .success(let successResponse):
+                            print(successResponse.successReason)
+                            
                         case .failure(let error):
                             guard let containerViewController = containerViewControllerAsUIViewController as? NovaOneObjectContainer else { return }
                             let popUpOkViewController = containerViewController.alertService.popUpOk(title: "Error", body: error.localizedDescription)
                             containerViewControllerAsUIViewController.present(popUpOkViewController, animated: true, completion: nil)
-                    }
-                    
-                    // Remove the spinner here if not on iPad devices
-                    if setFirstItem == false {
-                        containerViewControllerAsUIViewController.removeSpinner(spinnerView: spinnerView)
                     }
                 }
             }, cancelHandler: {
