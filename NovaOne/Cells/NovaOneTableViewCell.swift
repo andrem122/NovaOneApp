@@ -40,6 +40,11 @@ class NovaOneTableViewCell: UITableViewCell {
                    email: String?,
                    phoneNumber: String?) {
         
+        // Hide skeleton view first to avoid the cell properties not being set
+        if self.isSkeletonActive {
+            self.hideSkeleton()
+        }
+        
         // Set text for each UILabel
         self.titleLabel.text = title
         self.subTitleLabelOne.text = subTitleOne

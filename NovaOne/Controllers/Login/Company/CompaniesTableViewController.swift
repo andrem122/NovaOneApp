@@ -424,11 +424,6 @@ extension CompaniesTableViewController: UISearchResultsUpdating, SkeletonTableVi
             
             cell.setup(title: title, subTitleOne: subTitleOne, subTitleTwo: zip, subTitleThree: createdTime, email: nil, phoneNumber: nil)
             
-            // Remove the skeleton view if needed
-            if cell.isSkeletonActive {
-                cell.hideSkeleton()
-            }
-            
         }
         
         return cell

@@ -416,11 +416,6 @@ extension AppointmentsTableViewController: UISearchResultsUpdating, SkeletonTabl
             
             cell.delegate = self
             cell.setup(title: name, subTitleOne: dateCreated, subTitleTwo: confirmed, subTitleThree: appointmentTime, email: appointment.email, phoneNumber: appointment.phoneNumber)
-            
-            // Remove the skeleton view if needed
-            if cell.isSkeletonActive {
-                cell.hideSkeleton()
-            }
         }
     
        

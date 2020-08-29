@@ -112,7 +112,6 @@ class AddLeadPhoneViewController: AddLeadBaseViewController, UITextFieldDelegate
                                 if let emptyViewController = self?.embeddedViewController as? EmptyViewController {
                                     emptyViewController.refreshButton.sendActions(for: .touchUpInside)
                                 } else {
-                                    print("leads view controller")
                                     guard let leadsTableViewController = self?.embeddedViewController as? LeadsTableViewController else { return }
                                     leadsTableViewController.refreshDataOnPullDown(setFirstItem: false)
                                 }
