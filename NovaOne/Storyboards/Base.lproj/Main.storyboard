@@ -123,7 +123,7 @@
                         <constraints>
                             <constraint firstItem="Var-FQ-vSO" firstAttribute="leading" secondItem="Lv5-fh-LjL" secondAttribute="trailing" id="0K6-xV-lM7"/>
                             <constraint firstItem="Var-FQ-vSO" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="1Fd-gR-kJm"/>
-                            <constraint firstItem="Lv5-fh-LjL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="233-CP-Sbd"/>
+                            <constraint firstItem="Lv5-fh-LjL" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="233-CP-Sbd"/>
                             <constraint firstItem="Lv5-fh-LjL" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.59" id="26u-eP-qF4"/>
                             <constraint firstItem="Lv5-fh-LjL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="8Mw-7z-rPi"/>
                             <constraint firstItem="Var-FQ-vSO" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="Ck3-7r-39F"/>

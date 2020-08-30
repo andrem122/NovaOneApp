@@ -30,8 +30,8 @@ enum TitleItem: String {
     case companyName = "Company"
     case dateOfInquiry = "Date Of Inquiry"
     case renterBrand = "Renter Brand"
-    case sentTextDate = "Sent Text Date"
-    case sentEmailDate = "Sent Email Date"
+    case sentTextDate = "Sent Text On"
+    case sentEmailDate = "Sent Email On"
     case city = "City"
     case zip = "Zip"
 }
