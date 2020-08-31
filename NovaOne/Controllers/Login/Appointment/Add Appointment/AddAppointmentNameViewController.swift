@@ -28,14 +28,18 @@ class AddAppointmentNameViewController: AddAppointmentBaseViewController, UIText
     
     // MARK: Actions
     @IBAction func continueButtonTapped(_ sender: Any) {
-        guard let addPhoneViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addAppointmentPhone.rawValue) as? AddAppointmentPhoneViewController else { return }
-        
         guard let name = self.appointmentNameTextField.text else { return }
-        self.appointment?.name = name
-        addPhoneViewController.appointment = self.appointment
-        addPhoneViewController.embeddedViewController = self.embeddedViewController
-        
-        self.navigationController?.pushViewController(addPhoneViewController, animated: true)
+        if name.isEmpty {
+            let popUpOkViewController = self.alertService.popUpOk(title: "Name Required", body: "Please type in a name.")
+            self.present(popUpOkViewController, animated: true, completion: nil)
+        } else {
+            guard let addPhoneViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addAppointmentPhone.rawValue) as? AddAppointmentPhoneViewController else { return }
+            self.appointment?.name = name
+            addPhoneViewController.appointment = self.appointment
+            addPhoneViewController.embeddedViewController = self.embeddedViewController
+            
+            self.navigationController?.pushViewController(addPhoneViewController, animated: true)
+        }
     }
     
     

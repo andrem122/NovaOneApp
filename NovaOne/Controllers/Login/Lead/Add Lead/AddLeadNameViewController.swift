@@ -39,15 +39,20 @@ class AddLeadNameViewController: AddLeadBaseViewController, UITextFieldDelegate 
     }
     
     @IBAction func continueButtonTapped(_ sender: Any) {
-        // Go to addLeadEmailCheckViewController
-        guard let addLeadEmailCheckViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addLeadEmailCheck.rawValue) as? AddLeadEmailCheckViewController else { return }
         
         guard let name = self.nameTextField.text else { return }
-        self.lead?.name = name
-        addLeadEmailCheckViewController.lead = self.lead
-        addLeadEmailCheckViewController.embeddedViewController = self.embeddedViewController
-        
-        self.navigationController?.pushViewController(addLeadEmailCheckViewController, animated: true)
+        if name.isEmpty {
+            let popUpOkViewController = self.alertService.popUpOk(title: "Name Required", body: "Please type in a name.")
+            self.present(popUpOkViewController, animated: true, completion: nil)
+        } else {
+            // Go to addLeadEmailCheckViewController
+            guard let addLeadEmailCheckViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addLeadEmailCheck.rawValue) as? AddLeadEmailCheckViewController else { return }
+            self.lead?.name = name
+            addLeadEmailCheckViewController.lead = self.lead
+            addLeadEmailCheckViewController.embeddedViewController = self.embeddedViewController
+            
+            self.navigationController?.pushViewController(addLeadEmailCheckViewController, animated: true)
+        }
     }
     
 }
