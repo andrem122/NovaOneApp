@@ -9,6 +9,7 @@ target 'NovaOne' do
   pod 'SkeletonView'
   pod 'Charts'
   pod 'GooglePlaces'
+  pod 'PhoneNumberKit', '~> 3.1'
   
   target 'NovaOneTests' do
     inherit! :search_paths

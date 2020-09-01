@@ -5,11 +5,18 @@ PODS:
   - GoogleMaps/Base (3.8.0)
   - GooglePlaces (3.8.0):
     - GoogleMaps/Base (= 3.8.0)
+  - PhoneNumberKit (3.2.0):
+    - PhoneNumberKit/PhoneNumberKitCore (= 3.2.0)
+    - PhoneNumberKit/UIKit (= 3.2.0)
+  - PhoneNumberKit/PhoneNumberKitCore (3.2.0)
+  - PhoneNumberKit/UIKit (3.2.0):
+    - PhoneNumberKit/PhoneNumberKitCore
   - SkeletonView (1.8.7)
 
 DEPENDENCIES:
   - Charts
   - GooglePlaces
+  - PhoneNumberKit (~> 3.1)
   - SkeletonView
 
 SPEC REPOS:
@@ -17,14 +24,16 @@ SPEC REPOS:
     - Charts
     - GoogleMaps
     - GooglePlaces
+    - PhoneNumberKit
     - SkeletonView
 
 SPEC CHECKSUMS:
   Charts: 40a08591df1f8ad5c223ddedfb1a06da92f24f7c
   GoogleMaps: 7c8d66d70e4e8c300f43a7219d8fdaad7b325a9a
   GooglePlaces: d5f70c3e9e427964fdeca1301a665d276ccd8754
+  PhoneNumberKit: df411d46177d1492da84e10b6c093846dd861452
   SkeletonView: ba5370f41280b2f0a76918bb143c1294232bb4f4
 
-PODFILE CHECKSUM: 5c9d92e7ce23aede001d525166c745b42d38297e
+PODFILE CHECKSUM: 2b31ac7e4b53b5697ce4adc5ea4f77128750d8b1
 
 COCOAPODS: 1.9.1

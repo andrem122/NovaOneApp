@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import PhoneNumberKit
 
 class UpdateAppointmentPhoneViewController: UpdateBaseViewController {
 
     // MARK: Properties
     @IBOutlet weak var updateButton: NovaOneButton!
     @IBOutlet weak var phoneNumberTextField: NovaOneTextField!
+    var phoneNumberKit: PhoneNumberKit?
     
     // MARK: Methods
     override func viewDidLoad() {
@@ -24,16 +26,36 @@ class UpdateAppointmentPhoneViewController: UpdateBaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.phoneNumberTextField.becomeFirstResponder()
+        self.phoneNumberKit = PhoneNumberKit()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.phoneNumberKit = nil
     }
     
     // MARK: Actions
     @IBAction func updateButtonTapped(_ sender: Any) {
         // Parameter values
-        guard let phoneNumber = self.phoneNumberTextField.text else { return }
-        let unformattedPhoneNumber = phoneNumber.replacingOccurrences(of: "[\\(\\)\\s-]", with: "", options: .regularExpression, range: nil)
+        guard
+            let phoneNumberText = self.phoneNumberTextField.text,
+            let phoneNumberKit = self.phoneNumberKit
+        else { return }
+        let unformattedPhoneNumber = phoneNumberText.replacingOccurrences(of: "[\\(\\)\\s-]", with: "", options: .regularExpression, range: nil)
         
-        if !InputValidators.isValidPhoneNumber(value: phoneNumber) {
-            let popUpOkViewController = self.alertService.popUpOk(title: "Invalid Number", body: "Please enter a valid phone number")
+        var phoneNumberIsValid = false
+        do {
+            let _ = try phoneNumberKit.parse(phoneNumberText, withRegion: "US")
+            phoneNumberIsValid = true
+        }
+        catch {
+            phoneNumberIsValid = false
+            print("Generic parser error - UpdateAppointmentPhoneViewController")
+        }
+
+        
+        if phoneNumberIsValid == false {
+            let popUpOkViewController = self.alertService.popUpOk(title: "Invalid Number", body: "Please enter a valid phone number.")
             self.present(popUpOkViewController, animated: true, completion: nil)
         } else {
             // Disable button while doing HTTP request

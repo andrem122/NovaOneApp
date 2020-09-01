@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import PhoneNumberKit
 
 class AddAppointmentPhoneViewController: AddAppointmentBaseViewController, UITextFieldDelegate {
     
     // MARK: Properties
     @IBOutlet weak var appointmentPhoneTextField: NovaOneTextField!
     @IBOutlet weak var continueButton: NovaOneButton!
+    var phoneNumberKit: PhoneNumberKit?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +25,12 @@ class AddAppointmentPhoneViewController: AddAppointmentBaseViewController, UITex
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.appointmentPhoneTextField.becomeFirstResponder()
+        self.phoneNumberKit = PhoneNumberKit()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.phoneNumberKit = nil
     }
     
     func setupTextField() {
@@ -41,12 +49,25 @@ class AddAppointmentPhoneViewController: AddAppointmentBaseViewController, UITex
     }
     
     @IBAction func continueButtonTapped(_ sender: Any) {
-        guard let phoneNumber = self.appointmentPhoneTextField.text else { return }
-        let unformattedPhoneNumber = phoneNumber.replacingOccurrences(of: "[\\(\\)\\s-]", with: "", options: .regularExpression, range: nil)
+        guard
+            let phoneNumberText = self.appointmentPhoneTextField.text,
+        let phoneNumberKit = self.phoneNumberKit
+        else { return }
+        let unformattedPhoneNumber = phoneNumberText.replacingOccurrences(of: "[\\(\\)\\s-]", with: "", options: .regularExpression, range: nil)
+        
+        var phoneNumberIsValid = false
+        do {
+            let _ = try phoneNumberKit.parse(phoneNumberText, withRegion: "US")
+            phoneNumberIsValid = true
+        }
+        catch {
+            phoneNumberIsValid = false
+            print("Generic parser error - AddAppointmentPhoneViewController")
+        }
         
         // Check of phone number is valid before proceeding
-        if !unformattedPhoneNumber.isNumeric {
-            let popUpOkViewController = self.alertService.popUpOk(title: "Invalid Number", body: "Please enter only numbers.")
+        if phoneNumberIsValid == false {
+            let popUpOkViewController = self.alertService.popUpOk(title: "Invalid Number", body: "Please enter a valid phone number.")
             self.present(popUpOkViewController, animated: true, completion: nil)
         } else {
             guard let addAppointmentTimeViewController = self.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addAppointmentTime.rawValue) as? AddAppointmentTimeViewController else { return }
