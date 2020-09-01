@@ -105,13 +105,15 @@ class SignUpEmailViewController: BaseSignUpViewController, UITextFieldDelegate, 
             let parameters: [String: String] = ["valueToCheckInDatabase": email, "tableName": Defaults.DataBaseTableNames.authUser.rawValue, "columnName": "email"]
             httpRequest.request(url: Defaults.Urls.api.rawValue + "/inputCheck.php", dataModel: SuccessResponse.self, parameters: parameters) { [weak self] (result) in
                 switch result {
-                case .success(let success):
-                    print(success.successReason)
-                    
+                case .success(_):
                     // Create core data customer object or get it if it already exists for state restoration
                     let count = PersistenceService.fetchCount(for: Defaults.CoreDataEntities.customer.rawValue)
                     if count == 0 {
-                        guard let coreDataCustomerObject = NSEntityDescription.insertNewObject(forEntityName: Defaults.CoreDataEntities.customer.rawValue, into: PersistenceService.context) as? Customer else { return }
+                        guard let coreDataCustomerObject = NSEntityDescription.insertNewObject(forEntityName: Defaults.CoreDataEntities.customer.rawValue, into: PersistenceService.context) as? Customer else {
+                            print("could not get core data customer object - SignUpEmailViewController")
+                            self?.removeSpinner(spinnerView: spinnerView)
+                            return
+                        }
                         
                         coreDataCustomerObject.addCustomer(customerType: "", dateJoined: Date(), email: email, firstName: "", id: 0, userId: 0, isPaying: false, lastName: "", phoneNumber: "", wantsSms: false, wantsEmailNotifications: false, password: "", username: email, lastLogin: Date(), companies: nil)
                     } else {
@@ -130,7 +132,11 @@ class SignUpEmailViewController: BaseSignUpViewController, UITextFieldDelegate, 
                     // Save to CoreData for state restoration
                     PersistenceService.saveContext(context: nil)
                     
-                    guard let signUpPasswordViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.signUpPassword.rawValue) as? SignUpPasswordViewController else { return }
+                    guard let signUpPasswordViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.signUpPassword.rawValue) as? SignUpPasswordViewController else {
+                        print("could not get SignUpPasswordViewController - Sign Up Email View Controller")
+                        self?.removeSpinner(spinnerView: spinnerView)
+                        return
+                    }
                     self?.navigationController?.pushViewController(signUpPasswordViewController, animated: true)
                     
                 case .failure(let error):

@@ -85,7 +85,10 @@ class CompaniesContainerViewController: UIViewController, NovaOneObjectContainer
             let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
             let email = customer.email,
             let password = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue)
-        else { return }
+        else {
+            self.removeSpinner(spinnerView: spinnerView)
+            return
+        }
         let customerUserId = customer.id
         
         let parameters: [String: Any] = ["customerUserId": customerUserId as Any,
@@ -108,7 +111,11 @@ class CompaniesContainerViewController: UIViewController, NovaOneObjectContainer
                         
                         guard let splitViewController = viewController as? UISplitViewController else { return }
                         guard let objectsTableNavigationController = splitViewController.viewControllers.first as? UINavigationController else { return }
-                        guard let objectsTableController = objectsTableNavigationController.viewControllers.first as? NovaOneTableView else { return }
+                        guard let objectsTableController = objectsTableNavigationController.viewControllers.first as? NovaOneTableView
+                        else {
+                            self?.removeSpinner(spinnerView: spinnerView)
+                            return
+                        }
                         objectsTableController.parentViewContainerController = self
                     }
                     
@@ -129,11 +136,19 @@ class CompaniesContainerViewController: UIViewController, NovaOneObjectContainer
                             let addCompanyStoryboard = UIStoryboard(name: Defaults.StoryBoards.addCompany.rawValue, bundle: .main)
                             guard
                                 let addCompanyNavigationController = addCompanyStoryboard.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addCompany.rawValue) as? UINavigationController
-                            else { print("could not get add company navigation controller - CompaniesContainerViewController"); return }
+                            else {
+                                print("could not get add company navigation controller - CompaniesContainerViewController")
+                                self?.removeSpinner(spinnerView: spinnerView)
+                                return
+                            }
                             
                             guard
                                 let addCompanyNameViewController = addCompanyNavigationController.viewControllers.first as? AddCompanyNameViewController
-                            else { print("could not get addCompanyNameViewController view controller - CompaniesContainerViewController"); return }
+                            else {
+                                print("could not get addCompanyNameViewController view controller - CompaniesContainerViewController")
+                                self?.removeSpinner(spinnerView: spinnerView)
+                                return
+                            }
                             
                             // Pass embedded view controller
                             addCompanyNameViewController.embeddedViewController = emptyViewController

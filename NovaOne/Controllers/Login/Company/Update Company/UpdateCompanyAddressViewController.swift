@@ -133,7 +133,7 @@ class UpdateCompanyAddressViewController: UpdateBaseViewController, AddAddress {
                 detailViewController.objectDetailTableView.reloadData()
             }
             
-            self.updateObject(for: Defaults.DataBaseTableNames.company.rawValue, at: ["address": address, "city": city, "state": state, "zip": zip], endpoint: "/updateCompanyAddress.php", objectId: Int(objectId), objectType: Company.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Company address has been successfully updated.", successDoneHandler: successDoneHandler, completion: nil)
+            self.updateObject(for: Defaults.DataBaseTableNames.company.rawValue, at: ["address": address, "city": city, "state": state, "zip": zip], endpoint: "/updateCompanyAddress.php", objectId: Int(objectId), objectType: Company.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Company address has been successfully updated.", currentAuthenticationEmail: nil, successDoneHandler: successDoneHandler, completion: nil)
             
             
         }

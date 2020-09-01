@@ -55,8 +55,8 @@ class AddLeadPhoneViewController: AddLeadBaseViewController, UITextFieldDelegate
         guard let phoneNumber = self.phoneNumberTextField.text else { return }
         let unformattedPhoneNumber = phoneNumber.replacingOccurrences(of: "[\\(\\)\\s-]", with: "", options: .regularExpression, range: nil)
         
-        if !unformattedPhoneNumber.isNumeric {
-            let popUpOkViewController = self.alertService.popUpOk(title: "Invalid Number", body: "Please enter only numbers.")
+        if !InputValidators.isValidPhoneNumber(value: phoneNumber) {
+            let popUpOkViewController = self.alertService.popUpOk(title: "Invalid Number", body: "Please enter a valid phone number.")
             self.present(popUpOkViewController, animated: true, completion: nil)
         } else {
             guard let customerType = self.customer?.customerType else { return }
@@ -85,7 +85,10 @@ class AddLeadPhoneViewController: AddLeadBaseViewController, UITextFieldDelegate
                     let customerEmail = self.customer?.email,
                     let customerPassword = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue),
                     let customerUserId = self.customer?.id
-                    else { return }
+                else {
+                    self.removeSpinner(spinnerView: spinnerView)
+                    return
+                }
                 let dateOfInquiry = DateHelper.createString(from: Date(), format: "yyyy-MM-dd HH:mm:ssZ")
                 
                 let parameters: [String: String] = ["customerUserId": String(customerUserId), "email": customerEmail, "password": customerPassword, "leadName": name, "leadPhoneNumber": "+1" + unformattedPhoneNumber, "leadEmail": email, "leadRenterBrand": renterBrand, "dateOfInquiry": dateOfInquiry, "leadCompanyId": String(companyId)]

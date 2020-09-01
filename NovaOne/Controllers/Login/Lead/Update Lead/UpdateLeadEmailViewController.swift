@@ -54,7 +54,7 @@ class UpdateLeadEmailViewController: UpdateBaseViewController {
                detailViewController.objectDetailTableView.reloadData()
            }
            
-            self.updateObject(for: Defaults.DataBaseTableNames.leads.rawValue, at: ["email": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Lead.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Lead email has been successfully updated.", successDoneHandler: successDoneHandler, completion: nil)
+            self.updateObject(for: Defaults.DataBaseTableNames.leads.rawValue, at: ["email": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Lead.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Lead email has been successfully updated.", currentAuthenticationEmail: nil, successDoneHandler: successDoneHandler, completion: nil)
         } else {
             // Email is not valid, so present pop up
             let popUpOkViewController = self.alertService.popUpOk(title: "Invalid Email", body: "Please enter a valid email.")

@@ -15,4 +15,15 @@ struct InputValidators {
         let emailTest = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
         return emailTest.evaluate(with: email)
     }
+    
+    static func isValidPhoneNumber(value: String) -> Bool {
+        // Checks if phone number is valid
+        let range = NSRange(location: 0, length: value.count)
+        let regex = try! NSRegularExpression(pattern: "(\\([0-9]{3}\\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}")
+        if regex.firstMatch(in: value, options: [], range: range) != nil {
+            return true
+        } else {
+            return false
+        }
+    }
 }

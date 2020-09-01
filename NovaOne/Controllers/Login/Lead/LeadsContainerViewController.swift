@@ -84,7 +84,10 @@ class LeadsContainerViewController: UIViewController, NovaOneObjectContainer {
             let customer = PersistenceService.fetchCustomerEntity(),
             let email = customer.email,
             let password = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue)
-        else { return }
+        else {
+            self.removeSpinner(spinnerView: spinnerView)
+            return
+        }
         let customerUserId = customer.id
         
         let parameters: [String: Any] = ["customerUserId": customerUserId as Any,
@@ -105,9 +108,18 @@ class LeadsContainerViewController: UIViewController, NovaOneObjectContainer {
                     UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.SplitViewControllerIdentifiers.leads.rawValue, containerView: self?.containerView ?? UIView(), objectType: UISplitViewController.self) {
                         [weak self] (viewController) in
                         
-                        guard let splitViewController = viewController as? UISplitViewController else { return }
-                        guard let objectsTableNavigationController = splitViewController.viewControllers.first as? UINavigationController else { return }
-                        guard let objectsTableController = objectsTableNavigationController.viewControllers.first as? NovaOneTableView else { return }
+                        guard let splitViewController = viewController as? UISplitViewController else {
+                            self?.removeSpinner(spinnerView: spinnerView)
+                            return
+                        }
+                        guard let objectsTableNavigationController = splitViewController.viewControllers.first as? UINavigationController else {
+                            self?.removeSpinner(spinnerView: spinnerView)
+                            return
+                        }
+                        guard let objectsTableController = objectsTableNavigationController.viewControllers.first as? NovaOneTableView else {
+                            self?.removeSpinner(spinnerView: spinnerView)
+                            return
+                        }
                         objectsTableController.parentViewContainerController = self
                     }
                     
@@ -129,7 +141,10 @@ class LeadsContainerViewController: UIViewController, NovaOneObjectContainer {
                             guard
                                 let addLeadNavigationController = addLeadStoryboard.instantiateViewController(identifier: Defaults.NavigationControllerIdentifiers.addLead.rawValue) as? UINavigationController,
                                 let addLeadCompanyViewController = addLeadNavigationController.viewControllers.first as? AddLeadCompanyViewController
-                            else { return }
+                            else {
+                                self?.removeSpinner(spinnerView: spinnerView)
+                                return
+                            }
                             
                             addLeadCompanyViewController.embeddedViewController = emptyViewController
                             

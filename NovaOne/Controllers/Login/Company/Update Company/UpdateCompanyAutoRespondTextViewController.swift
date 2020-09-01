@@ -58,7 +58,7 @@ class UpdateCompanyAutoRespondTextViewController: UpdateBaseViewController {
                 detailViewController.objectDetailTableView.reloadData()
             }
             
-            self.updateObject(for: Defaults.DataBaseTableNames.company.rawValue, at: ["auto_respond_text": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Company.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Company auto respond text has been successfully updated.", successDoneHandler: successDoneHandler, completion: nil)
+            self.updateObject(for: Defaults.DataBaseTableNames.company.rawValue, at: ["auto_respond_text": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Company.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Company auto respond text has been successfully updated.", currentAuthenticationEmail: nil, successDoneHandler: successDoneHandler, completion: nil)
         }
         
     }

@@ -108,10 +108,9 @@ class SignUpCompanyPhoneViewController: BaseSignUpViewController, UITextFieldDel
                     self?.present(popUpOkViewController, animated: true, completion: nil)
                 }
                 
+                self?.removeSpinner(spinnerView: spinnerView)
                 guard let button = self?.continueButton else { return }
                 UIHelper.enable(button: button, enabledColor: Defaults.novaOneColor, borderedButton: false)
-                
-                self?.removeSpinner(spinnerView: spinnerView)
             }
         }
         

@@ -40,7 +40,11 @@ class AddAppointmentUnitTypeViewController: AddAppointmentBaseViewController, UI
             let phoneNumber = self.appointment?.phoneNumber,
             let unitType = self.appointment?.unitType,
             let time = self.appointment?.time
-        else { return }
+        else {
+            print("could not get data needed to make appoitment - AddAppointmentUnitTypeViewController")
+            self.removeSpinner(spinnerView: spinnerView)
+            return
+        }
         let url = Defaults.Urls.novaOneWebsite.rawValue + "/appointments/new?c=\(companyId)"
         
         // Make HTTP request to create an appointment
@@ -54,14 +58,22 @@ class AddAppointmentUnitTypeViewController: AddAppointmentBaseViewController, UI
                     // Redirect to success screen
                     
                     let popupStoryboard = UIStoryboard(name: Defaults.StoryBoards.popups.rawValue, bundle: .main)
-                    guard let successViewController = popupStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.success.rawValue) as? SuccessViewController else { return }
+                    guard let successViewController = popupStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.success.rawValue) as? SuccessViewController else {
+                        self?.removeSpinner(spinnerView: spinnerView)
+                        return
+                    }
                     successViewController.subtitleText = success.successReason
                     successViewController.titleLabelText = "Appointment Created!"
                     successViewController.doneHandler = {
                         [weak self] in
                         // Return to the appointments view and refresh appointments
                         self?.presentingViewController?.dismiss(animated: true, completion: nil)
-                        (self?.embeddedViewController as? AppointmentsTableViewController)?.refreshDataOnPullDown(setFirstItem: false)
+                        if let emptyViewController = self?.embeddedViewController as? EmptyViewController {
+                            emptyViewController.refreshButton.sendActions(for: .touchUpInside)
+                        } else {
+                            guard let appointmentsTableViewController = self?.embeddedViewController as? AppointmentsTableViewController else { return }
+                            appointmentsTableViewController.refreshDataOnPullDown(setFirstItem: false)
+                        }
                     }
                     self?.present(successViewController, animated: true, completion: nil)
                 case .failure(let error):

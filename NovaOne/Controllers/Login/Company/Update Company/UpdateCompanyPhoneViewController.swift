@@ -50,7 +50,10 @@ class UpdateCompanyPhoneViewController: UpdateBaseViewController {
                         guard
                             let objectId = self?.updateCoreDataObjectId,
                             let detailViewController = self?.previousViewController as? CompanyDetailViewController
-                            else { return }
+                        else {
+                            self?.removeSpinner(spinnerView: spinnerView)
+                            return
+                        }
 
                         let updateClosure = {
                             (company: Company) in
@@ -66,7 +69,7 @@ class UpdateCompanyPhoneViewController: UpdateBaseViewController {
                             detailViewController.objectDetailTableView.reloadData()
                         }
 
-                        self?.updateObject(for: Defaults.DataBaseTableNames.company.rawValue, at: ["phone_number": "+1" + unformattedPhoneNumber], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Company.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Company phone number has been successfully updated.", successDoneHandler: successDoneHandler, completion: nil)
+                        self?.updateObject(for: Defaults.DataBaseTableNames.company.rawValue, at: ["phone_number": "+1" + unformattedPhoneNumber], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Company.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Company phone number has been successfully updated.", currentAuthenticationEmail: nil, successDoneHandler: successDoneHandler, completion: nil)
                     case .failure(let error):
                         guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
                         self?.present(popUpOkViewController, animated: true, completion: nil)

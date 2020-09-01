@@ -147,19 +147,25 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1800 Nebaska Avenue" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jRF-jy-HWf" userLabel="Cell Title Value">
-                                                    <rect key="frame" x="139.5" y="39.5" width="170.5" height="21"/>
+                                                    <rect key="frame" x="157.5" y="41" width="152.5" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" name="textColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    </variation>
                                                     <variation key="heightClass=regular-widthClass=regular">
                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Street" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MFj-dB-lEE" userLabel="Cell Title">
-                                                    <rect key="frame" x="30" y="40.5" width="47" height="19"/>
+                                                    <rect key="frame" x="30" y="41" width="44.5" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                    </variation>
                                                     <variation key="heightClass=regular-widthClass=regular">
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                     </variation>
@@ -179,7 +185,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="MRd-lS-I3p" secondAttribute="trailing" constant="30" id="5DW-s6-dlh"/>
                                                 <constraint firstItem="MFj-dB-lEE" firstAttribute="centerY" secondItem="JsH-pB-ftu" secondAttribute="centerY" id="A9c-h1-z7I"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="MFj-dB-lEE" secondAttribute="trailing" id="QuE-xj-aAC"/>
-                                                <constraint firstItem="jRF-jy-HWf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="MFj-dB-lEE" secondAttribute="trailing" constant="20" id="UtL-3w-Zm8"/>
+                                                <constraint firstItem="jRF-jy-HWf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="MFj-dB-lEE" secondAttribute="trailing" constant="10" id="UtL-3w-Zm8"/>
                                                 <constraint firstItem="MRd-lS-I3p" firstAttribute="centerY" secondItem="JsH-pB-ftu" secondAttribute="centerY" id="iDX-SR-J3f"/>
                                                 <constraint firstItem="MRd-lS-I3p" firstAttribute="leading" secondItem="jRF-jy-HWf" secondAttribute="trailing" constant="5" id="mCx-2d-9pZ"/>
                                             </constraints>

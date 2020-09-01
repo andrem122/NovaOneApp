@@ -29,88 +29,90 @@ class UpdateBaseViewController: UIViewController, UITextFieldDelegate {
                                           updateClosure: ((T) -> Void)?,
                                           filterFormat: String,
                                           successSubtitle: String?,
+                                          currentAuthenticationEmail: String?,
                                           successDoneHandler: (() -> Void)?,
                                           completion: (() -> Void)?) {
         
-        // Update the object's value in the database
-        let spinnerView = self.showSpinner(for: self.view, textForLabel: "Updating")
+        // Get core data object for updating if updateClosure is not nil
+        if let unwrappedUpdateClosure = updateClosure {
+            let filter = NSPredicate(format: filterFormat, String(objectId))
+            guard let updateObject = PersistenceService.fetchEntity(objectType, filter: filter, sort: nil).first else { print("could not get update object - UpdateBaseViewController"); return }
+            
+            unwrappedUpdateClosure(updateObject)
+            PersistenceService.saveContext(context: nil)
+        }
         
+        // Show success view controller if success sub title is not nil
+        if let subtitle = successSubtitle {
+            
+            let popupStoryboard = UIStoryboard(name: Defaults.StoryBoards.popups.rawValue, bundle: .main)
+            guard let successViewController = popupStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.success.rawValue) as? SuccessViewController else { print("could not get success view controller - UpdateBaseViewController"); return }
+            
+            successViewController.titleLabelText = "Update Complete!"
+            successViewController.subtitleText = subtitle
+            successViewController.doneHandler = successDoneHandler
+            
+            guard let previousViewController = self.previousViewController else { print("could not get previous view controller - UpdateBaseViewController"); return }
+            
+            // Dismiss update view controller and present success view controller after
+            if let objectDetailViewController = previousViewController as? NovaOneObjectDetail {
+                // For detail view controllers
+                guard let tableViewController = objectDetailViewController.previousViewController else { return }
+                
+                // Remove update view controller and present success view controller
+                previousViewController.dismiss(animated: false, completion: {
+                    [weak self] in
+                    // Do not have to remove spinner view after dismissing update view because when the update
+                    // view is dismissed it removes the spinner view
+                    
+                    guard let sizeClass = self?.getSizeClass() else { return }
+                    
+                    if sizeClass == (.regular, .compact) || sizeClass == (.regular, .regular) || sizeClass == (.regular, .unspecified) {
+                        guard let novaOneTableView = tableViewController as? NovaOneTableView else { return }
+                        novaOneTableView.didSetFirstItem = false // Set equal to false so the table view controller will set the first item in the detail view again with fresh properties, so we don't get update errors
+                        novaOneTableView.setFirstItemForDetailView()
+                    } else {
+                        previousViewController.present(successViewController, animated: true, completion: nil)
+                    }
+                    
+                })
+            } else {
+                // For updates coming from the account table view controller
+                self.present(successViewController, animated: true, completion: {
+                    previousViewController.navigationController?.popViewController(animated: true)
+                })
+            }
+            
+        }
+        
+        // Update the object's value in the database
         guard
             let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
-            let customerEmail = customer.email,
+            let coreDataEmail = customer.email,
             let customerPassword = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue)
         else { print("could  not get customer email and password - UpdateBaseViewController"); return }
+        
+        // Get email from core data if we are NOT updating the user's email else
+        // use the email string in the parameter 'currentAuthenticationEmail'
+        let customerEmail = currentAuthenticationEmail != nil ? currentAuthenticationEmail! : coreDataEmail
         
         // Convert dictionary to json string
         guard let jsonData = try? JSONSerialization.data(withJSONObject: columns) else { print("Unable to encode columns to JSON data object"); return }
         guard let jsonString = String(data: jsonData, encoding: .utf8) else { print("unable to get string from json data"); return }
         
         let parameters: [String: Any] = ["email": customerEmail, "password": customerPassword, "tableName": tableName, "columns": jsonString as Any, "objectId": objectId]
-        print(parameters)
+        print("Update Parameters: \(parameters)")
         
         let httpRequest = HTTPRequests()
         httpRequest.request(url: Defaults.Urls.api.rawValue + endpoint, dataModel: SuccessResponse.self, parameters: parameters) {
             [weak self] (result) in
             
             switch result {
-                case .success(_):
-                    
-                    // Get core data object for updating if updateClosure is not nil
-                    if let unwrappedUpdateClosure = updateClosure {
-                        let filter = NSPredicate(format: filterFormat, String(objectId))
-                        guard let updateObject = PersistenceService.fetchEntity(objectType, filter: filter, sort: nil).first else { print("could not get update object - UpdateBaseViewController"); return }
-                        
-                        unwrappedUpdateClosure(updateObject)
-                        PersistenceService.saveContext(context: nil)
-                    }
-                    
-                    // Show success view controller if success sub title is not nil
-                    if let subtitle = successSubtitle {
-                        
-                        let popupStoryboard = UIStoryboard(name: Defaults.StoryBoards.popups.rawValue, bundle: .main)
-                        guard let successViewController = popupStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.success.rawValue) as? SuccessViewController else { print("could not get success view controller - UpdateBaseViewController"); return }
-                        
-                        successViewController.titleLabelText = "Update Complete!"
-                        successViewController.subtitleText = subtitle
-                        successViewController.doneHandler = successDoneHandler
-                        
-                        guard let previousViewController = self?.previousViewController else { print("could not get previous view controller - UpdateBaseViewController"); return }
-                        
-                        // Dismiss update view controller and present success view controller after
-                        if let objectDetailViewController = previousViewController as? NovaOneObjectDetail {
-                            // For detail view controllers
-                            guard let tableViewController = objectDetailViewController.previousViewController else { return }
-                            
-                            // Remove update view controller and present success view controller
-                            previousViewController.dismiss(animated: false, completion: {
-                                [weak self] in
-                                // Do not have to remove spinner view after dismissing update view because when the update
-                                // view is dismissed it removes the spinner view
-                                
-                                guard let sizeClass = self?.getSizeClass() else { return }
-                                
-                                if sizeClass == (.regular, .compact) || sizeClass == (.regular, .regular) || sizeClass == (.regular, .unspecified) {
-                                    guard let novaOneTableView = tableViewController as? NovaOneTableView else { return }
-                                    novaOneTableView.didSetFirstItem = false // Set equal to false so the table view controller will set the first item in the detail view again with fresh properties, so we don't get update errors
-                                    novaOneTableView.setFirstItemForDetailView()
-                                } else {
-                                    previousViewController.present(successViewController, animated: true, completion: nil)
-                                }
-                                
-                            })
-                        } else {
-                            // For updates coming from the account table view controller
-                            self?.present(successViewController, animated: true, completion: {
-                                previousViewController.navigationController?.popViewController(animated: true)
-                            })
-                        }
-                        
-                    }
-                
+                case .success(let success):
+                    print("Object successfully updated in database: \(success.successReason)")
                 case .failure(let error):
                     guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
                     self?.present(popUpOkViewController, animated: true, completion: nil)
-                    self?.removeSpinner(spinnerView: spinnerView)
                 
             }
             

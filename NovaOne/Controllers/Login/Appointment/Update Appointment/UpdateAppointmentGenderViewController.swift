@@ -55,7 +55,7 @@ class UpdateAppointmentGenderViewController: UpdateBaseViewController, UIPickerV
             detailViewController.objectDetailTableView.reloadData()
         }
         
-        self.updateObject(for: Defaults.DataBaseTableNames.appointmentsMedical.rawValue, at: ["gender": self.selectedChoice], endpoint: "/updateAppointmentMedicalAndRealEstate.php", objectId: Int(objectId), objectType: Appointment.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Appointment gender has been successfully updated.", successDoneHandler: successDoneHandler, completion: nil)
+        self.updateObject(for: Defaults.DataBaseTableNames.appointmentsMedical.rawValue, at: ["gender": self.selectedChoice], endpoint: "/updateAppointmentMedicalAndRealEstate.php", objectId: Int(objectId), objectType: Appointment.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Appointment gender has been successfully updated.", currentAuthenticationEmail: nil, successDoneHandler: successDoneHandler, completion: nil)
     }
     
 }

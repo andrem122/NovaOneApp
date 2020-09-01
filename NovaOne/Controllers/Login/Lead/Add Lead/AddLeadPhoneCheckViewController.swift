@@ -57,7 +57,10 @@ class AddLeadPhoneCheckViewController: AddLeadBaseViewController {
                 let customerEmail = self.customer?.email,
                 let customerPassword = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue),
                 let customerUserId = self.customer?.id
-            else { return }
+            else {
+                self.removeSpinner(spinnerView: spinnerView)
+                return
+            }
             let dateOfInquiry = DateHelper.createString(from: Date(), format: "yyyy-MM-dd HH:mm:ssZ")
             
             let parameters: [String: String] = ["customerUserId": String(customerUserId), "email": customerEmail, "password": customerPassword, "leadName": name, "leadPhoneNumber": phoneNumber, "leadEmail": email, "leadRenterBrand": renterBrand, "dateOfInquiry": dateOfInquiry, "leadCompanyId": String(companyId)]
@@ -67,7 +70,7 @@ class AddLeadPhoneCheckViewController: AddLeadBaseViewController {
                 switch result {
                     case .success(let success):
                         // Redirect to success screen
-                        
+                        self?.removeSpinner(spinnerView: spinnerView)
                         let popupStoryboard = UIStoryboard(name: Defaults.StoryBoards.popups.rawValue, bundle: .main)
                         guard let successViewController = popupStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.success.rawValue) as? SuccessViewController else { return }
                         successViewController.subtitleText = success.successReason

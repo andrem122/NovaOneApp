@@ -44,15 +44,22 @@ class SupportViewController: UIViewController {
     // MARK: Actions
     @IBAction func submitButtonTapped(_ sender: Any) {
         // Send email if there is text in the text view
-        
-        let spinnerView = self.showSpinner(for: self.view, textForLabel: "Sending message...")
         let customerMessage = self.supportTextView.text != nil ? self.supportTextView.text! : ""
         if customerMessage.isEmpty {
             let popUpOkViewController = self.alertService.popUpOk(title: "No Message", body: "Please type in a message.")
             self.present(popUpOkViewController, animated: true, completion: nil)
         } else {
             
-            // Make POST request to support.php
+            // Go to success view controller
+            let popupStoryboard = UIStoryboard(name: Defaults.StoryBoards.popups.rawValue, bundle: .main)
+            guard let successViewController = popupStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.success.rawValue) as? SuccessViewController else { return }
+            successViewController.titleLabelText = "Message Sent!"
+            successViewController.subtitleText = "Your message was successfully sent to support. We will get back to you shortly."
+            
+            self.present(successViewController, animated: true, completion: nil)
+            self.navigationController?.popViewController(animated: true)
+            
+            // Make POST request to support.php on background thread
             guard
                 let email = self.customer?.email,
                 let password = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue)
@@ -63,22 +70,12 @@ class SupportViewController: UIViewController {
             httpRequest.request(url: Defaults.Urls.api.rawValue + "/support.php", dataModel: SuccessResponse.self, parameters: parameters) {
                 [weak self] (result) in
                 switch result {
-                    case .success(_):
-                        // Go to success view controller
-                        
-                        let popupStoryboard = UIStoryboard(name: Defaults.StoryBoards.popups.rawValue, bundle: .main)
-                        guard let successViewController = popupStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.success.rawValue) as? SuccessViewController else { return }
-                        successViewController.titleLabelText = "Message Sent!"
-                        successViewController.subtitleText = "Your message was successfully sent to support. We will get back to you shortly."
-                        
-                        self?.present(successViewController, animated: true, completion: nil)
-                        self?.navigationController?.popViewController(animated: true)
+                    case .success(let success):
+                        print(success.successReason)
                     case .failure(let error):
                         guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
                         self?.present(popUpOkViewController, animated: true, completion: nil)
                 }
-                
-                self?.removeSpinner(spinnerView: spinnerView)
             }
             
         }

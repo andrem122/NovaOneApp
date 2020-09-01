@@ -55,31 +55,34 @@ class UpdatePhoneViewController: UpdateBaseViewController {
                         guard
                             let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
                             let previousViewController = self?.previousViewController as? AccountTableViewController
-                        else { return }
+                        else {
+                            self?.removeSpinner(spinnerView: spinnerView)
+                            return
+                        }
                         
                         let objectId = customer.id
                     
-                    let updateClosure = {
-                        (customer: Customer) in
-                        customer.phoneNumber = "+1" + unformattedPhoneNumber
-                    }
+                        let updateClosure = {
+                            (customer: Customer) in
+                            customer.phoneNumber = "+1" + unformattedPhoneNumber
+                        }
+                        
+                        let successDoneHandler = {
+                            previousViewController.setLabelValues()
+                            previousViewController.tableView.reloadData()
+                        }
                     
-                    let successDoneHandler = {
-                        previousViewController.setLabelValues()
-                        previousViewController.tableView.reloadData()
-                    }
-                    
-                        self?.updateObject(for: Defaults.DataBaseTableNames.customer.rawValue, at: ["phone_number": "+1" + unformattedPhoneNumber], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Customer.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Phone number successfully updated.", successDoneHandler: successDoneHandler, completion: nil)
+                        self?.updateObject(for: Defaults.DataBaseTableNames.customer.rawValue, at: ["phone_number": "+1" + unformattedPhoneNumber], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Customer.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Phone number successfully updated.", currentAuthenticationEmail: nil, successDoneHandler: successDoneHandler, completion: nil)
                     
                 case .failure(let error):
                     guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
                     self?.present(popUpOkViewController, animated: true, completion: nil)
                 }
                 
+                self?.removeSpinner(spinnerView: spinnerView)
+                
                 guard let button = self?.updateButton else { return }
                 UIHelper.enable(button: button, enabledColor: Defaults.novaOneColor, borderedButton: false)
-                
-                self?.removeSpinner(spinnerView: spinnerView)
             }
         }
     }

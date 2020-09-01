@@ -39,7 +39,10 @@ class UpdateAppointmentTimeViewController: UpdateBaseViewController {
             let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
             let email = customer.email,
             let password = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue)
-        else { return spinnerView }
+        else {
+            self.removeSpinner(spinnerView: spinnerView)
+            return spinnerView
+        }
         let customerUserId = customer.id
 
         let parameters: [String: String] = ["customerUserId": String(customerUserId),
@@ -64,13 +67,17 @@ class UpdateAppointmentTimeViewController: UpdateBaseViewController {
                             let selectedDateTime = self?.timeDatePicker.date,
                             let thirtyMinutesAfterApppointmentTime = Calendar.current.date(byAdding: .minute, value: 30, to: appointmentDateTime)
                         else {
+                            self?.removeSpinner(spinnerView: spinnerView)
                             self?.appointmentTimeIsAvailable = false
                             return
                         }
                         
                         let fallsBetween = (appointmentDateTime..<thirtyMinutesAfterApppointmentTime).contains(selectedDateTime) // Include the start (lower bounds of the range) date and time but NOT the end (upper bound of the range) date and time in the range
                         if fallsBetween {
-                            guard let popUpOkViewController = self?.alertService.popUpOk(title: "Time Unavailable", body: "An appointment has already been made for this time. Please select a different time.") else { return }
+                            guard let popUpOkViewController = self?.alertService.popUpOk(title: "Time Unavailable", body: "An appointment has already been made for this time. Please select a different time.") else {
+                                self?.removeSpinner(spinnerView: spinnerView)
+                                return
+                            }
                             self?.present(popUpOkViewController, animated: true, completion: nil)
                             
                             self?.appointmentTimeIsAvailable = false
@@ -97,7 +104,7 @@ class UpdateAppointmentTimeViewController: UpdateBaseViewController {
         return spinnerView
     }
     
-    func delete(appointment: Appointment) {
+    func delete(appointment: Appointment, spinnerView: UIView) {
         // Deletes the old appointment from the database
         self.dispatchGroup.enter()
         guard
@@ -105,7 +112,10 @@ class UpdateAppointmentTimeViewController: UpdateBaseViewController {
             let customerType = customer.customerType,
             let email = customer.email,
             let password = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue)
-            else { return }
+        else {
+            self.removeSpinner(spinnerView: spinnerView)
+            return
+        }
         let customerUserId = customer.id
 
         let parameters: [String: Any] = ["customerUserId": String(customerUserId),
@@ -135,7 +145,10 @@ class UpdateAppointmentTimeViewController: UpdateBaseViewController {
             let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
             let name = appointment.name,
             let phoneNumber = appointment.phoneNumber
-        else { return }
+        else {
+            self.removeSpinner(spinnerView: spinnerView)
+            return
+        }
         let updatedAppointmentTime = DateHelper.createString(from: time, format: "MM/dd/yyyy h:mm a")
         let companyId = appointment.companyId
         let url = Defaults.Urls.novaOneWebsite.rawValue + "/appointments/new?c=\(companyId)"
@@ -144,7 +157,10 @@ class UpdateAppointmentTimeViewController: UpdateBaseViewController {
         // Add necessary parameters based on the customer
         if customer.customerType == Defaults.CustomerTypes.propertyManager.rawValue {
             // Property managers
-            guard let unitType = appointment.unitType else { return }
+            guard let unitType = appointment.unitType else {
+                self.removeSpinner(spinnerView: spinnerView)
+                return
+            }
             parameters["unit_type"] = unitType
             
         } else {
@@ -155,7 +171,10 @@ class UpdateAppointmentTimeViewController: UpdateBaseViewController {
                 let dateOfBirth = appointment.dateOfBirth,
                 let address = appointment.address,
                 let email = appointment.email
-            else { return }
+            else {
+                self.removeSpinner(spinnerView: spinnerView)
+                return
+            }
             let dateOfBirthString = DateHelper.createString(from: dateOfBirth, format: "MM/dd/yyyy")
             
             parameters["test_type"] = testType
@@ -182,7 +201,10 @@ class UpdateAppointmentTimeViewController: UpdateBaseViewController {
                     PersistenceService.saveContext(context: nil)
                     
                     let popupStoryboard = UIStoryboard(name: Defaults.StoryBoards.popups.rawValue, bundle: .main)
-                    guard let successViewController = popupStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.success.rawValue) as? SuccessViewController else { return }
+                    guard let successViewController = popupStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.success.rawValue) as? SuccessViewController else {
+                        self?.removeSpinner(spinnerView: spinnerView)
+                        return
+                    }
                     successViewController.subtitleText = "Appointment time has been successfully updated."
                     successViewController.titleLabelText = "Update Complete!"
                     successViewController.doneHandler = {
@@ -193,12 +215,19 @@ class UpdateAppointmentTimeViewController: UpdateBaseViewController {
                         self?.removeSpinner(spinnerView: spinnerView)
                     }
                     
-                    guard let previousViewController = self?.previousViewController else { print("could not get previous view controller - UpdateBaseViewController"); return }
+                    guard let previousViewController = self?.previousViewController else {
+                        print("could not get previous view controller - UpdateBaseViewController")
+                        self?.removeSpinner(spinnerView: spinnerView)
+                        return
+                    }
                     
                     // Dismiss update view controller and present success view controller after
                     if let objectDetailViewController = previousViewController as? NovaOneObjectDetail {
                         // For detail view controllers
-                        guard let tableViewController = objectDetailViewController.previousViewController else { return }
+                        guard let tableViewController = objectDetailViewController.previousViewController else {
+                            self?.removeSpinner(spinnerView: spinnerView)
+                            return
+                        }
                         
                         // Remove update view controller and present success view controller
                         previousViewController.dismiss(animated: false, completion: {
@@ -206,10 +235,16 @@ class UpdateAppointmentTimeViewController: UpdateBaseViewController {
                             // Do not have to remove spinner view after dismissing update view because when the update
                             // view is dismissed it removes the spinner view
                             
-                            guard let sizeClass = self?.getSizeClass() else { return }
+                            guard let sizeClass = self?.getSizeClass() else {
+                                self?.removeSpinner(spinnerView: spinnerView)
+                                return
+                            }
                             
                             if sizeClass == (.regular, .compact) || sizeClass == (.regular, .regular) || sizeClass == (.regular, .unspecified) {
-                                guard let novaOneTableView = tableViewController as? NovaOneTableView else { return }
+                                guard let novaOneTableView = tableViewController as? NovaOneTableView else {
+                                    self?.removeSpinner(spinnerView: spinnerView)
+                                    return
+                                }
                                 novaOneTableView.didSetFirstItem = false // Set equal to false so the table view controller will set the first item in the detail view again with fresh properties, so we don't get update errors
                                 novaOneTableView.setFirstItemForDetailView()
                             } else {
@@ -240,12 +275,19 @@ class UpdateAppointmentTimeViewController: UpdateBaseViewController {
                     let selectedDateTime = self?.timeDatePicker.date,
                     let appointmentId = self?.updateCoreDataObjectId,
                     let detailViewController = self?.previousViewController as? AppointmentDetailViewController
-                else { return }
+                else {
+                    self?.removeSpinner(spinnerView: spinnerView)
+                    return
+                }
                 
                 let filter = NSPredicate(format: "id == %@", String(appointmentId))
-                guard let appointment = PersistenceService.fetchEntity(Appointment.self, filter: filter, sort: nil).first else { print("could not get appointment object - UpdateAppointmentTimeViewController"); return }
+                guard let appointment = PersistenceService.fetchEntity(Appointment.self, filter: filter, sort: nil).first else {
+                    self?.removeSpinner(spinnerView: spinnerView)
+                    print("could not get appointment object - UpdateAppointmentTimeViewController")
+                    return
+                }
                 
-                self?.delete(appointment: appointment)
+                self?.delete(appointment: appointment, spinnerView: spinnerView)
                 
                 self?.dispatchGroup.notify(queue: .main) {
                     // Step 3 completed

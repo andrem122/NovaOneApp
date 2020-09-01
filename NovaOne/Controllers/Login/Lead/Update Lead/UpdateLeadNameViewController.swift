@@ -51,7 +51,7 @@ class UpdateLeadNameViewController: UpdateBaseViewController {
                 detailViewController.objectDetailTableView.reloadData()
             }
             
-            self.updateObject(for: Defaults.DataBaseTableNames.leads.rawValue, at: ["name": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Lead.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Name has been successfully updated.", successDoneHandler: successDoneHandler, completion: nil)
+            self.updateObject(for: Defaults.DataBaseTableNames.leads.rawValue, at: ["name": updateValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Lead.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Name has been successfully updated.", currentAuthenticationEmail: nil, successDoneHandler: successDoneHandler, completion: nil)
         }
     }
     

@@ -74,12 +74,14 @@ class SignUpPhoneViewController: BaseSignUpViewController, UITextFieldDelegate {
             let parameters: [String: String] = ["valueToCheckInDatabase": "+1" + unformattedPhoneNumber, "tableName": Defaults.DataBaseTableNames.customer.rawValue, "columnName": "phone_number"]
             httpRequest.request(url: Defaults.Urls.api.rawValue + "/inputCheck.php", dataModel: SuccessResponse.self, parameters: parameters) { [weak self] (result) in
                 switch result {
-                    case .success(let success):
-                        
-                        print(success.successReason)
+                    case .success(_):
                         guard
                             let customerTypeViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.signUpCustomerType.rawValue) as? SignUpCustomerTypeViewController
-                        else { return }
+                        else {
+                            print("could not get customerTypeViewController - Sign Up Phone View Controller")
+                            self?.removeSpinner(spinnerView: spinnerView)
+                            return
+                        }
                         
                         // Get existing core data object and update it
                         let filter = NSPredicate(format: "id == %@", "0")
@@ -98,10 +100,9 @@ class SignUpPhoneViewController: BaseSignUpViewController, UITextFieldDelegate {
                         self?.present(popUpOkViewController, animated: true, completion: nil)
                 }
                 
+                self?.removeSpinner(spinnerView: spinnerView)
                 guard let button = self?.continueButton else { return }
                 UIHelper.enable(button: button, enabledColor: Defaults.novaOneColor, borderedButton: false)
-                
-                self?.removeSpinner(spinnerView: spinnerView)
             }
         }
     }

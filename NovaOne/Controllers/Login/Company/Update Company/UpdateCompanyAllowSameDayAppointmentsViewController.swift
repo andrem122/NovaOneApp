@@ -37,7 +37,7 @@ class UpdateCompanyAllowSameDayAppointmentsViewController: UpdateBaseViewControl
         
         let allowSameDayAppointmentsDatabaseValue = allowSameDayAppointments == true ? "t" : "f"
         
-        self.updateObject(for: Defaults.DataBaseTableNames.company.rawValue, at: ["allow_same_day_appointments": allowSameDayAppointmentsDatabaseValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Company.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Company same day appointments has been successfully updated.", successDoneHandler: successDoneHandler, completion: nil)
+        self.updateObject(for: Defaults.DataBaseTableNames.company.rawValue, at: ["allow_same_day_appointments": allowSameDayAppointmentsDatabaseValue], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Company.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Company same day appointments has been successfully updated.", currentAuthenticationEmail: nil, successDoneHandler: successDoneHandler, completion: nil)
     }
     
     // MARK: Actions

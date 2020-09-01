@@ -125,7 +125,7 @@ class AccountTableViewController: UITableViewController {
         
         guard let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first else { return }
         let objectId = customer.id
-        self.updateBaseViewController.updateObject(for: Defaults.DataBaseTableNames.customer.rawValue, at: ["wants_sms": switchFlag], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Customer.self, updateClosure: nil, filterFormat: "id == %@", successSubtitle: nil, successDoneHandler: nil) {
+        self.updateBaseViewController.updateObject(for: Defaults.DataBaseTableNames.customer.rawValue, at: ["wants_sms": switchFlag], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Customer.self, updateClosure: nil, filterFormat: "id == %@", successSubtitle: nil, currentAuthenticationEmail: nil, successDoneHandler: nil) {
             [weak self] in
             self?.smsNotificationsActivityView.stopAnimating()
         }
@@ -150,7 +150,7 @@ class AccountTableViewController: UITableViewController {
         
         guard let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first else { return }
         let objectId = customer.id
-        self.updateBaseViewController.updateObject(for: Defaults.DataBaseTableNames.customer.rawValue, at: ["wants_email_notifications": switchFlag], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Customer.self, updateClosure: nil, filterFormat: "id == %@", successSubtitle: nil, successDoneHandler: nil) {
+        self.updateBaseViewController.updateObject(for: Defaults.DataBaseTableNames.customer.rawValue, at: ["wants_email_notifications": switchFlag], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Customer.self, updateClosure: nil, filterFormat: "id == %@", successSubtitle: nil, currentAuthenticationEmail: nil, successDoneHandler: nil) {
             [weak self] in
             self?.emailNotificationsActivityView.stopAnimating()
         }

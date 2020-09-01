@@ -105,7 +105,10 @@ class AddCompanyHoursEnabledViewController: AddCompanyBaseViewController, UITabl
             let phoneNumber = self.company?.phoneNumber,
             let daysOfTheWeekenabled = self.company?.daysOfTheWeekEnabled,
             let hoursOfTheDayEnabled = self.company?.hoursOfTheDayEnabled
-            else { return }
+            else {
+                self.removeSpinner(spinnerView: spinnerView)
+                return
+            }
         let customerUserId = String(customer.id)
         
         let parameters: [String: Any] = ["customerUserId": customerUserId, "email": customerEmail, "password": customerPassword, "companyName": companyName, "companyEmail": companyEmail, "companyAddress": address, "companyCity": city, "companyState": state, "companyZip": zip, "companyPhoneNumber": phoneNumber, "daysOfTheWeekEnabled": daysOfTheWeekenabled, "hoursOfTheDayEnabled": hoursOfTheDayEnabled, "allowSameDayAppointments": allowSameDayAppointments]
@@ -118,7 +121,11 @@ class AddCompanyHoursEnabledViewController: AddCompanyBaseViewController, UITabl
                 case .success(_):
                     // Navigate to success screen once the company has been sucessfully added
                     let popupStoryboard = UIStoryboard(name: Defaults.StoryBoards.popups.rawValue, bundle: .main)
-                    guard let successViewController = popupStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.success.rawValue) as? SuccessViewController else { return }
+                    guard let successViewController = popupStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.success.rawValue) as? SuccessViewController
+                    else {
+                        self?.removeSpinner(spinnerView: spinnerView)
+                        return
+                    }
                     successViewController.subtitleText = "Company successfully added."
                     successViewController.titleLabelText = "Company Added!"
                     successViewController.doneHandler = {
@@ -138,7 +145,10 @@ class AddCompanyHoursEnabledViewController: AddCompanyBaseViewController, UITabl
                     self?.present(successViewController, animated: true, completion: nil)
 
                 case .failure(let error):
-                    guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
+                    guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else {
+                        self?.removeSpinner(spinnerView: spinnerView)
+                        return
+                    }
                     self?.present(popUpOkViewController, animated: true, completion: nil)
             }
             self?.removeSpinner(spinnerView: spinnerView)
@@ -146,12 +156,20 @@ class AddCompanyHoursEnabledViewController: AddCompanyBaseViewController, UITabl
         }
     }
     
-    func signupUser(success: @escaping (String, String) -> Void) {
+    func signupUser(spinnerView: UIView, success: @escaping (String, String) -> Void) {
         // Send a POST request to signup api
         
         let filter = NSPredicate(format: "id == %@", "0")
-        guard let coreDataCompanyObject = PersistenceService.fetchEntity(Company.self, filter: filter, sort: nil).first else { print("could not get coredata company object - AddCompanyHoursEnabledViewController"); return }
-        guard let coreDataCustomerObject = PersistenceService.fetchEntity(Customer.self, filter: filter, sort: nil).first else { print("could not get coredata customer object - AddCompanyHoursEnabledViewController"); return }
+        guard let coreDataCompanyObject = PersistenceService.fetchEntity(Company.self, filter: filter, sort: nil).first else {
+            print("could not get coredata company object - AddCompanyHoursEnabledViewController")
+            self.removeSpinner(spinnerView: spinnerView)
+            return
+        }
+        guard let coreDataCustomerObject = PersistenceService.fetchEntity(Customer.self, filter: filter, sort: nil).first else {
+            print("could not get coredata customer object - AddCompanyHoursEnabledViewController")
+            self.removeSpinner(spinnerView: spinnerView)
+            return
+        }
         
         // Unwrap needed POST data from objects
         guard
@@ -172,6 +190,7 @@ class AddCompanyHoursEnabledViewController: AddCompanyBaseViewController, UITabl
             let companyZip = coreDataCompanyObject.zip
         else {
             print("could not get data to sign up user - AddCompanyHoursEnabledViewController")
+            self.removeSpinner(spinnerView: spinnerView)
             return
         }
         
@@ -218,7 +237,10 @@ class AddCompanyHoursEnabledViewController: AddCompanyBaseViewController, UITabl
                     success(email, password)
                 
                 case .failure(let error):
-                    guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
+                    guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else {
+                        self?.removeSpinner(spinnerView: spinnerView)
+                        return
+                    }
                     self?.present(popUpOkViewController, animated: true, completion: nil)
                 
             }
@@ -251,7 +273,10 @@ class AddCompanyHoursEnabledViewController: AddCompanyBaseViewController, UITabl
                         
                         // Add to core data
                         let context = PersistenceService.privateChildManagedObjectContext()
-                        guard let coreDataCustomerObject = NSEntityDescription.insertNewObject(forEntityName: Defaults.CoreDataEntities.customer.rawValue, into: context) as? Customer else { return }
+                        guard let coreDataCustomerObject = NSEntityDescription.insertNewObject(forEntityName: Defaults.CoreDataEntities.customer.rawValue, into: context) as? Customer else {
+                            self?.removeSpinner(spinnerView: spinnerView)
+                            return
+                        }
                         
                         coreDataCustomerObject.addCustomer(customerType: customerType, dateJoined: dateJoinedDate, email: email, firstName: firstName, id: id, userId: userId, isPaying: isPaying, lastName: lastName, phoneNumber: phoneNumber, wantsSms: wantsSms, wantsEmailNotifications: wantsEmailNotifications, password: password, username: username, lastLogin: lastLoginDate, companies: nil)
                         
@@ -282,19 +307,26 @@ class AddCompanyHoursEnabledViewController: AddCompanyBaseViewController, UITabl
         guard
             let password = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue),
             let email = customer.email
-        else { print("could not get password from keychain - AddCompanyHoursEnabledViewController"); return }
+        else {
+            print("could not get password from keychain - AddCompanyHoursEnabledViewController")
+            self.removeSpinner(spinnerView: spinnerView)
+            return
+        }
         let customerUserId = customer.id
         
         let parameters: [String: Any] = ["email": email as Any, "password": password as Any, "customerUserId": customerUserId as Any]
         httpRequest.request(url: Defaults.Urls.api.rawValue + "/companies.php", dataModel: [CompanyModel].self, parameters: parameters) {
-            (result) in
+            [weak self] (result) in
             
             switch result {
                 case .success(let companies):
                     let context = PersistenceService.privateChildManagedObjectContext()
                     for company in companies {
                         // Save to CoreData
-                        guard let entity = NSEntityDescription.entity(forEntityName: Defaults.CoreDataEntities.company.rawValue, in: context) else { return }
+                        guard let entity = NSEntityDescription.entity(forEntityName: Defaults.CoreDataEntities.company.rawValue, in: context) else {
+                            self?.removeSpinner(spinnerView: spinnerView)
+                            return
+                        }
                         
                         if let coreDataCompany = NSManagedObject(entity: entity, insertInto: context) as? Company {
                             coreDataCompany.address = company.address
@@ -320,15 +352,19 @@ class AddCompanyHoursEnabledViewController: AddCompanyBaseViewController, UITabl
                     success()
                 
                 case .failure(let error):
-                    self.removeSpinner(spinnerView: spinnerView)
                     // Set text for pop up ok view controller
                     let title = "Error"
                     let body = error.localizedDescription
                     
                     // Show popup view controller
-                    let popUpOkViewController = self.alertService.popUpOk(title: title, body: body)
-                    self.present(popUpOkViewController, animated: true, completion: nil)
+                    guard let popUpOkViewController = self?.alertService.popUpOk(title: title, body: body) else {
+                        self?.removeSpinner(spinnerView: spinnerView)
+                        return
+                    }
+                    self?.present(popUpOkViewController, animated: true, completion: nil)
             }
+            
+            self?.removeSpinner(spinnerView: spinnerView)
             
         }
     }
@@ -348,7 +384,7 @@ class AddCompanyHoursEnabledViewController: AddCompanyBaseViewController, UITabl
                 let spinnerView = self.showSpinner(for: view, textForLabel: "Signing Up")
                 
                 // Sign up user
-                self.signupUser {
+                self.signupUser(spinnerView: spinnerView) {
                     [weak self] (email, password) in
                     
                     self?.getCustomerData(email: email, password: password, spinnerView: spinnerView, success: {

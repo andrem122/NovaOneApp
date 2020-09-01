@@ -47,7 +47,10 @@ class AddAppointmentGenderViewController: AddAppointmentBaseViewController, UIPi
             let zip = self.appointment?.zip,
             let city = self.appointment?.city,
             let time = self.appointment?.time
-        else { return }
+        else {
+            self.removeSpinner(spinnerView: spinnerView)
+            return
+        }
         let url = Defaults.Urls.novaOneWebsite.rawValue + "/appointments/new?c=\(companyId)"
         
         // Make HTTP request to create an appointment
@@ -70,7 +73,10 @@ class AddAppointmentGenderViewController: AddAppointmentBaseViewController, UIPi
                 case .success(let success):
                     // Redirect to success screen
                     let popupStoryboard = UIStoryboard(name: Defaults.StoryBoards.popups.rawValue, bundle: .main)
-                    guard let successViewController = popupStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.success.rawValue) as? SuccessViewController else { return }
+                    guard let successViewController = popupStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.success.rawValue) as? SuccessViewController else {
+                        self?.removeSpinner(spinnerView: spinnerView)
+                        return
+                    }
                     successViewController.subtitleText = success.successReason
                     successViewController.titleLabelText = "Appointment Created!"
                     successViewController.doneHandler = {

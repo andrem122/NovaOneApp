@@ -28,7 +28,7 @@ enum TitleItem: String {
     case gender = "Gender"
     case contacted = "Contacted"
     case companyName = "Company"
-    case dateOfInquiry = "Date Of Inquiry"
+    case dateOfInquiry = "Lead Date"
     case renterBrand = "Renter Brand"
     case sentTextDate = "Sent Text On"
     case sentEmailDate = "Sent Email On"

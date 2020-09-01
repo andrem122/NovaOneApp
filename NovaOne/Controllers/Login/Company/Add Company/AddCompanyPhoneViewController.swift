@@ -55,12 +55,13 @@ class AddCompanyPhoneViewController: AddCompanyBaseViewController, UITextFieldDe
             let parameters: [String: String] = ["valueToCheckInDatabase": "+1" + unformattedPhoneNumber, "tableName": Defaults.DataBaseTableNames.company.rawValue, "columnName": "phone_number"]
             httpRequest.request(url: Defaults.Urls.api.rawValue + "/inputCheck.php", dataModel: SuccessResponse.self, parameters: parameters) { [weak self] (result) in
                 switch result {
-                    case .success(let success):
-                        
-                        print(success.successReason)
+                    case .success(_):
                         guard
                             let addCompanyAllowSameDayAppointmentsViewController = self?.storyboard?.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.addCompanyAllowSameDayAppointments.rawValue) as? AddCompanyAllowSameDayAppointmentsViewController
-                        else { return }
+                        else {
+                            self?.removeSpinner(spinnerView: spinnerView)
+                            return
+                        }
                         
                         self?.company?.phoneNumber = "+1" + unformattedPhoneNumber
                         addCompanyAllowSameDayAppointmentsViewController.company = self?.company
@@ -69,14 +70,17 @@ class AddCompanyPhoneViewController: AddCompanyBaseViewController, UITextFieldDe
                         self?.navigationController?.pushViewController(addCompanyAllowSameDayAppointmentsViewController, animated: true)
                         
                     case .failure(let error):
-                        guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
+                        guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else {
+                            self?.removeSpinner(spinnerView: spinnerView)
+                            return
+                        }
                         self?.present(popUpOkViewController, animated: true, completion: nil)
                 }
                 
+                self?.removeSpinner(spinnerView: spinnerView)
+                
                 guard let button = self?.continueButton else { return }
                 UIHelper.enable(button: button, enabledColor: Defaults.novaOneColor, borderedButton: false)
-                
-                self?.removeSpinner(spinnerView: spinnerView)
             }
         }
     }

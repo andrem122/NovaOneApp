@@ -51,12 +51,14 @@ class AddLeadRenterBrandViewController: AddLeadBaseViewController, UIPickerViewD
             let customerEmail = self.customer?.email,
             let customerPassword = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue),
             let customerUserId = self.customer?.id
-            else { return }
+        else {
+            self.removeSpinner(spinnerView: spinnerView)
+            return
+        }
         let dateOfInquiry = DateHelper.createString(from: Date(), format: "yyyy-MM-dd HH:mm:ssZ")
         let renterBrand = self.selectedRenterBrand
         
         let parameters: [String: String] = ["customerUserId": String(customerUserId), "email": customerEmail, "password": customerPassword, "leadName": name, "leadPhoneNumber": phoneNumber, "leadEmail": email, "leadRenterBrand": renterBrand, "dateOfInquiry": dateOfInquiry, "leadCompanyId": String(companyId)]
-        print(parameters)
         
         let httpRequest = HTTPRequests()
         httpRequest.request(url: Defaults.Urls.api.rawValue + "/addLead.php", dataModel: SuccessResponse.self, parameters: parameters) { [weak self] (result) in

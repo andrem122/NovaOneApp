@@ -32,8 +32,8 @@ class UpdateAppointmentPhoneViewController: UpdateBaseViewController {
         guard let phoneNumber = self.phoneNumberTextField.text else { return }
         let unformattedPhoneNumber = phoneNumber.replacingOccurrences(of: "[\\(\\)\\s-]", with: "", options: .regularExpression, range: nil)
         
-        if !unformattedPhoneNumber.isNumeric {
-            let popUpOkViewController = self.alertService.popUpOk(title: "Invalid Number", body: "Please enter only numbers.")
+        if !InputValidators.isValidPhoneNumber(value: phoneNumber) {
+            let popUpOkViewController = self.alertService.popUpOk(title: "Invalid Number", body: "Please enter a valid phone number")
             self.present(popUpOkViewController, animated: true, completion: nil)
         } else {
             // Disable button while doing HTTP request
@@ -56,7 +56,7 @@ class UpdateAppointmentPhoneViewController: UpdateBaseViewController {
                 detailViewController.objectDetailTableView.reloadData()
             }
 
-            self.updateObject(for: Defaults.DataBaseTableNames.appointmentsBase.rawValue, at: ["phone_number": "+1" + unformattedPhoneNumber], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Appointment.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Appointment phone number has been successfully updated.", successDoneHandler: successDoneHandler, completion: nil)
+            self.updateObject(for: Defaults.DataBaseTableNames.appointmentsBase.rawValue, at: ["phone_number": "+1" + unformattedPhoneNumber], endpoint: "/updateObject.php", objectId: Int(objectId), objectType: Appointment.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Appointment phone number has been successfully updated.", currentAuthenticationEmail: nil, successDoneHandler: successDoneHandler, completion: nil)
         }
     }
     

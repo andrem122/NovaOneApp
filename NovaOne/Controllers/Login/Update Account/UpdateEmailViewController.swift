@@ -52,24 +52,29 @@ class UpdateEmailViewController: UpdateBaseViewController {
                     case .success(_):
                         guard
                             let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
+                            let currentAuthenticationEmail = customer.email,
                             let previousViewController = self?.previousViewController as? AccountTableViewController
-                        else { return }
+                        else {
+                            self?.removeSpinner(spinnerView: spinnerView)
+                            return
+                        }
+                        
                         let objectId = customer.userId
                     
-                    let updateClosure = {
-                        (customer: Customer) in
-                        customer.email = updateValue
-                    }
-                    
-                    let successDoneHandler = {
-                        previousViewController.setLabelValues()
-                        previousViewController.tableView.reloadData()
+                        let updateClosure = {
+                            (customer: Customer) in
+                            customer.email = updateValue
+                        }
                         
-                        // Set new email in keychain
-                        KeychainWrapper.standard.set(updateValue, forKey: Defaults.KeychainKeys.email.rawValue)
-                    }
-                    
-                        self?.updateObject(for: Defaults.DataBaseTableNames.authUser.rawValue, at: ["email": updateValue], endpoint: "/updateEmail.php", objectId: Int(objectId), objectType: Customer.self, updateClosure: updateClosure, filterFormat: "userId == %@", successSubtitle: "Email successfully updated.", successDoneHandler: successDoneHandler, completion: nil)
+                        let successDoneHandler = {
+                            previousViewController.setLabelValues()
+                            previousViewController.tableView.reloadData()
+                            
+                            // Set new email in keychain
+                            KeychainWrapper.standard.set(updateValue, forKey: Defaults.KeychainKeys.email.rawValue)
+                        }
+                        
+                        self?.updateObject(for: Defaults.DataBaseTableNames.authUser.rawValue, at: ["email": updateValue], endpoint: "/updateEmail.php", objectId: Int(objectId), objectType: Customer.self, updateClosure: updateClosure, filterFormat: "userId == %@", successSubtitle: "Email successfully updated.", currentAuthenticationEmail: currentAuthenticationEmail, successDoneHandler: successDoneHandler, completion: nil)
                         
                         
                     case .failure(let error):
@@ -77,10 +82,9 @@ class UpdateEmailViewController: UpdateBaseViewController {
                         self?.present(popUpOkViewController, animated: true, completion: nil)
                 }
                 
+                self?.removeSpinner(spinnerView: spinnerView)
                 guard let updateButton = self?.updateButton else { return }
                 UIHelper.enable(button: updateButton, enabledColor: Defaults.novaOneColor, borderedButton: false)
-                
-                self?.removeSpinner(spinnerView: spinnerView)
             }
         } else {
             // Email is not valid, so present pop up

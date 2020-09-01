@@ -269,7 +269,11 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         guard
             let email = customer.email,
             let password = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue)
-        else { return }
+        else {
+            print("could not get email and password - HomeViewController")
+            self.removeSpinner(spinnerView: spinnerView)
+            return
+        }
         let customerUserId = customer.id
         
         let parameters: [String: Any] = ["email": email as Any, "password": password as Any, "customerUserId": customerUserId as Any]
@@ -282,7 +286,10 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
                     self?.barChartEntries.removeAll()
                     self?.barChartXLabels.removeAll()
                     
-                    guard let startDate = (chartData.map {$0.dateDate}).min() else { return }
+                    guard let startDate = (chartData.map {$0.dateDate}).min() else {
+                        self?.removeSpinner(spinnerView: spinnerView)
+                        return
+                    }
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "E\nd"
                     let calendar = Calendar.current
@@ -294,7 +301,10 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
                         var count = 0.0 // Set count to zero for the day as default
                         
                         dateComponent.day = number // Add n number of days to the start date
-                        guard var date = calendar.date(byAdding: dateComponent, to: startDate) else { return }
+                        guard var date = calendar.date(byAdding: dateComponent, to: startDate) else {
+                            self?.removeSpinner(spinnerView: spinnerView)
+                            return
+                        }
                         
                         for data in chartData {
                             let dateComponentsFromData = calendar.dateComponents([.year, .month, .day], from: data.dateDate)
@@ -336,7 +346,10 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         guard
             let email = customer.email,
             let password = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue)
-        else { return }
+        else {
+            self.removeSpinner(spinnerView: spinnerView)
+            return
+        }
         let customerUserId = customer.id
         
         let parameters: [String: Any] = ["email": email as Any, "password": password as Any, "customerUserId": customerUserId as Any]
@@ -353,13 +366,19 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
                     let calendar = Calendar.current
                     
                     let currentDate = Date()
-                    guard let startDate = calendar.date(byAdding: .year, value: -1, to: currentDate) else { return } // Get date from one year ago as starting point and add 1 month during each loop
+                    guard let startDate = calendar.date(byAdding: .year, value: -1, to: currentDate) else {
+                        self?.removeSpinner(spinnerView: spinnerView)
+                        return
+                    } // Get date from one year ago as starting point and add 1 month during each loop
                     
                     // Bind data to a variables
                     for number in 0..<12 { // We want 12 months of data points to represent a year of data
                         
                         var count = 0.0 // Set count to zero for the month as default
-                        guard let date = calendar.date(byAdding: .month, value: number, to: startDate) else { return }
+                        guard let date = calendar.date(byAdding: .month, value: number, to: startDate) else {
+                            self?.removeSpinner(spinnerView: spinnerView)
+                            return
+                        }
                         
                         dateFormatter.dateFormat = "MMM"
                         let monthFromDate = dateFormatter.string(from: date) // Returns shorthand of month Ex: 'Apr'
@@ -415,7 +434,10 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         guard
             let email = customer.email,
             let password = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue)
-        else { return }
+        else {
+            self.removeSpinner(spinnerView: spinnerView)
+            return
+        }
         let customerUserId = customer.id
         
         let parameters: [String: Any] = ["email": email as Any, "password": password as Any, "customerUserId": customerUserId as Any]
@@ -463,7 +485,10 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         guard
             let password = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue),
             let email = customer.email
-        else { return }
+        else {
+            self.view.hideSkeleton()
+            return
+        }
         let customerUserId = customer.id
         
         let parameters: [String: Any] = ["email": email as Any, "password": password as Any, "customerUserId": customerUserId as Any]
@@ -495,6 +520,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
                     success()
                 case .failure(let error):
                     print("FAILED TO GET OBJECT COUNTS")
+                    self?.view.hideSkeleton()
                     self?.showPopUpOk(error: error)
             }
             

@@ -129,7 +129,7 @@ class UpdateAppointmentAddressViewController: UpdateBaseViewController, AddAddre
                 detailViewController.objectDetailTableView.reloadData()
             }
             
-            self.updateObject(for: Defaults.DataBaseTableNames.appointmentsMedical.rawValue, at: ["address": address, "city": city, "zip": zip], endpoint: "/updateAppointmentMedicalAddress.php", objectId: Int(objectId), objectType: Appointment.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Appointment address has been successfully updated.", successDoneHandler: successDoneHandler, completion: nil)
+            self.updateObject(for: Defaults.DataBaseTableNames.appointmentsMedical.rawValue, at: ["address": address, "city": city, "zip": zip], endpoint: "/updateAppointmentMedicalAddress.php", objectId: Int(objectId), objectType: Appointment.self, updateClosure: updateClosure, filterFormat: "id == %@", successSubtitle: "Appointment address has been successfully updated.", currentAuthenticationEmail: nil, successDoneHandler: successDoneHandler, completion: nil)
             
             
         }

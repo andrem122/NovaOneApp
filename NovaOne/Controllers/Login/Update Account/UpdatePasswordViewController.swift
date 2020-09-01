@@ -70,11 +70,10 @@ class UpdatePasswordViewController: UpdateBaseViewController {
                 KeychainWrapper.standard.set(newPassword, forKey: Defaults.KeychainKeys.password.rawValue)
             }
             
-            print("UPDATING PASSWORD")
             print(objectId)
-            self.updateObject(for: Defaults.DataBaseTableNames.authUser.rawValue, at: ["password": newPassword], endpoint: "/updatePassword.php", objectId: Int(objectId), objectType: Customer.self, updateClosure: updateClosure, filterFormat: "userId == %@", successSubtitle: "Password has been successfully updated.", successDoneHandler: successDoneHandler, completion: nil)
+            self.updateObject(for: Defaults.DataBaseTableNames.authUser.rawValue, at: ["password": newPassword], endpoint: "/updatePassword.php", objectId: Int(objectId), objectType: Customer.self, updateClosure: updateClosure, filterFormat: "userId == %@", successSubtitle: "Password has been successfully updated.", currentAuthenticationEmail: nil, successDoneHandler: successDoneHandler, completion: nil)
         } else {
-            let popUpOkViewController = self.alertService.popUpOk(title: "Incorrect Password", body: "Password entered does not match current password.")
+            let popUpOkViewController = self.alertService.popUpOk(title: "Wrong Password", body: "Password entered does not match your current password.")
             self.present(popUpOkViewController, animated: true, completion: nil)
         }
         
