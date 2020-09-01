@@ -193,7 +193,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     
                     if keychainEmail.isEmpty || keychainPassword.isEmpty || email != keychainEmail || password != keychainPassword {
                         let title = "Add To Keychain"
-                        let body = "Would you like to add your email and password to Keychain for easier sign in?"
+                        let body = "Would you like to add your email to Keychain for easier sign in?"
                         guard let popUpActionViewController = self?.alertService.popUp(title: title, body: body, buttonTitle: "Yes", actionHandler: {
                             
                             // Save to keychain
@@ -205,6 +205,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             }
                             
                         }, cancelHandler: {
+                            // Must encrypt password. Cannot save in coreData
+                            KeychainWrapper.standard.set(password, forKey: Defaults.KeychainKeys.password.rawValue)
                             self?.getCompanies(customer: customer, spinnerView: spinnerView) {
                                 self?.navigateToLoginScreenAndSaveData(customer: customer, spinnerView: spinnerView)
                             }
@@ -228,11 +230,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         let title = "Error"
                         let body = error.localizedDescription
                         
-                        guard let popUpOkViewController = self?.alertService.popUpOk(title: title, body: body) else { return }
+                        guard
+                            let popUpOkViewController = self?.alertService.popUpOk(title: title, body: body),
+                            let loginButton = self?.loginButton
+                        else { return }
                         self?.present(popUpOkViewController, animated: true, completion: nil)
                         
-                        self?.loginButton.isEnabled = true
-                        self?.loginButton.backgroundColor = Defaults.novaOneColor
+                        UIHelper.enable(button: loginButton, enabledColor: Defaults.novaOneColor, borderedButton: nil)
                     }
                 
             }
@@ -251,7 +255,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let httpRequest = HTTPRequests()
         guard
             let password = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue)
-        else { return }
+            else { print("could not get password from keychain - HomeViewController"); return }
         let email = customer.email
         let customerUserId = customer.id
         
@@ -291,9 +295,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 
                 case .failure(let error):
                     self.removeSpinner(spinnerView: spinnerView)
-                    let popUpOkViewController = self.alertService.popUpOk(title: "Data Failure", body: "Failed to obtain company data.")
+                    // Set text for pop up ok view controller
+                    let title = "Error"
+                    let body = error.localizedDescription
+                    
+                    // Show popup view controller
+                    let popUpOkViewController = self.alertService.popUpOk(title: title, body: body)
                     self.present(popUpOkViewController, animated: true, completion: nil)
-                    print(error.localizedDescription)
+                    
+                    // Enable continue button
+                    UIHelper.enable(button: self.loginButton, enabledColor: Defaults.novaOneColor, borderedButton: nil)
             }
             
         }

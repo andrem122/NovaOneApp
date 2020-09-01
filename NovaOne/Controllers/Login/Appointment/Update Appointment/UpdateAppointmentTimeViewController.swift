@@ -209,7 +209,6 @@ class UpdateAppointmentTimeViewController: UpdateBaseViewController {
                             guard let sizeClass = self?.getSizeClass() else { return }
                             
                             if sizeClass == (.regular, .compact) || sizeClass == (.regular, .regular) || sizeClass == (.regular, .unspecified) {
-                                tableViewController.present(successViewController, animated: true, completion: nil)
                                 guard let novaOneTableView = tableViewController as? NovaOneTableView else { return }
                                 novaOneTableView.didSetFirstItem = false // Set equal to false so the table view controller will set the first item in the detail view again with fresh properties, so we don't get update errors
                                 novaOneTableView.setFirstItemForDetailView()

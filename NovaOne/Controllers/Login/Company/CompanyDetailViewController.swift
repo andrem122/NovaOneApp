@@ -345,7 +345,12 @@ extension CompanyDetailViewController {
                 case .autoRespondNumber:
                     guard
                         let autoRespondNumber = self.company?.autoRespondNumber
-                    else { return }
+                    else {
+                        let body = "Auto respond is not enabled. Please call (561) 907-6630 to enable this feature."
+                        let popupOkViewController = self.alertService.popUpOk(title: "Enable Feature", body: body)
+                        self.present(popupOkViewController, animated: true, completion: nil)
+                        return
+                    }
                     UIPasteboard.general.string = autoRespondNumber
                     
                     // Show popup confirming that text has been copied

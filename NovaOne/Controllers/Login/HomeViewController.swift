@@ -88,26 +88,6 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
         }
     }
     
-    func createSpinnerForIpadChart() -> UIView {
-        // Shows a spinner for the ipad chart because we cant have two spinners at a time in one view
-        let spinnerView = UIView.init(frame: self.ipadChartContainerView.bounds)
-        self.ipadChartContainerView.addSubview(spinnerView)
-        spinnerView.backgroundColor = UIColor(named: Defaults.Colors.view.rawValue)
-        
-        // Create the spinner that goes in the center of the spinner view
-        let spinner = UIActivityIndicatorView(style: .medium)
-        spinnerView.addSubview(spinner)
-        spinner.startAnimating()
-        spinner.translatesAutoresizingMaskIntoConstraints = false
-        spinner.color = UIColor(named: Defaults.Colors.textField.rawValue)
-        
-        // Add constraints
-        let xConstraint = NSLayoutConstraint(item: spinner, attribute: .centerX, relatedBy: .equal, toItem: spinnerView, attribute: .centerX, multiplier: 1, constant: 0)
-        let yConstraint = NSLayoutConstraint(item: spinner, attribute: .centerY, relatedBy: .equal, toItem: spinnerView, attribute: .centerY, multiplier: 1, constant: 0)
-        NSLayoutConstraint.activate([xConstraint, yConstraint])
-        return spinnerView
-    }
-    
     func setupLineChart() {
         // Add charts view to chart container views
         self.ipadChartContainerView.addSubview(self.lineChart)
@@ -339,9 +319,9 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
                     self?.showPopUpOk(error: error)
             }
             
+            self?.removeSpinner(spinnerView: spinnerView)
             guard let unwrappedCompletion = completion else { return }
             unwrappedCompletion()
-            self?.removeSpinner(spinnerView: spinnerView)
             
         }
     }
@@ -419,9 +399,9 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
                     self?.showPopUpOk(error: error)
             }
             
+            self?.removeSpinner(spinnerView: spinnerView)
             guard let unwrappedCompletion = completion else { return }
             unwrappedCompletion()
-            self?.removeSpinner(spinnerView: spinnerView)
             
         }
     }
@@ -429,7 +409,7 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
     func getMonthChartData(completion: (() -> Void)?) {
         // Gets chart data from the database
         
-        let spinnerView = createSpinnerForIpadChart()
+        let spinnerView = self.showSpinner(for: self.ipadChartContainerView, textForLabel: nil)
         let httpRequest = HTTPRequests()
         let customer = self.customer
         guard
@@ -467,9 +447,10 @@ class HomeViewController: BaseLoginViewController, ChartViewDelegate {
                     self?.showPopUpOk(error: error)
             }
             
+            self?.removeSpinner(spinnerView: spinnerView)
+            
             guard let unwrappedCompletion = completion else { return }
             unwrappedCompletion()
-            spinnerView.removeFromSuperview()
             
         }
     }

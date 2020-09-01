@@ -113,8 +113,7 @@ class CompaniesContainerViewController: UIViewController, NovaOneObjectContainer
                     }
                     
                 
-                case .failure(let error):
-                    print(error.localizedDescription)
+                case .failure(_):
                     // No objects were found or an error occurred so show/embed the empty
                     // view controller
                     UIHelper.showEmptyStateContainerViewController(for: self, containerView: self?.containerView ?? UIView(), title: "No Companies", addObjectButtonTitle: "Add Company") {

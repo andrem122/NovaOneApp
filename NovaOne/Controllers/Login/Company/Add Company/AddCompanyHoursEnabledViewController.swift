@@ -226,7 +226,7 @@ class AddCompanyHoursEnabledViewController: AddCompanyBaseViewController, UITabl
         }
     }
     
-        func loginUser(email: String, password: String, success: ((ContainerViewController) -> Void)?) {
+    func getCustomerData(email: String, password: String, spinnerView: UIView, success: @escaping () -> Void) {
         
             let httpRequest = HTTPRequests()
             let parameters: [String: Any] = ["email": email, "password": password]
@@ -234,47 +234,38 @@ class AddCompanyHoursEnabledViewController: AddCompanyBaseViewController, UITabl
                 
                 switch result {
                     case .success(let customer):
+                        // Get non optionals from CustomerModel instance
+                        let dateJoinedDate = customer.dateJoinedDate
+                        let id = Int32(customer.id)
+                        let userId = Int32(customer.userId)
+                        let customerType = customer.customerType
+                        let email = customer.email
+                        let firstName = customer.firstName
+                        let isPaying = customer.isPaying
+                        let lastName = customer.lastName
+                        let phoneNumber = customer.phoneNumber
+                        let wantsSms = customer.wantsSms
+                        let wantsEmailNotifications = customer.wantsEmailNotifications
+                        let username = customer.username
+                        let lastLoginDate = customer.lastLoginDate
                         
-                        // Go to container view controller
-                        let mainStoryboard = UIStoryboard(name: Defaults.StoryBoards.main.rawValue, bundle: .main)
-                        if let containerViewController = mainStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.container.rawValue) as? ContainerViewController  {
-                            
-                            // Get non optionals from CustomerModel instance
-                            let dateJoinedDate = customer.dateJoinedDate
-                            let id = Int32(customer.id)
-                            let userId = Int32(customer.userId)
-                            let customerType = customer.customerType
-                            let email = customer.email
-                            let firstName = customer.firstName
-                            let isPaying = customer.isPaying
-                            let lastName = customer.lastName
-                            let phoneNumber = customer.phoneNumber
-                            let wantsSms = customer.wantsSms
-                            let wantsEmailNotifications = customer.wantsEmailNotifications
-                            let username = customer.username
-                            let lastLoginDate = customer.lastLoginDate
-                            
-                            // Add to core data
-                            let context = PersistenceService.privateChildManagedObjectContext()
-                            guard let coreDataCustomerObject = NSEntityDescription.insertNewObject(forEntityName: Defaults.CoreDataEntities.customer.rawValue, into: context) as? Customer else { return }
-                            
-                            coreDataCustomerObject.addCustomer(customerType: customerType, dateJoined: dateJoinedDate, email: email, firstName: firstName, id: id, userId: userId, isPaying: isPaying, lastName: lastName, phoneNumber: phoneNumber, wantsSms: wantsSms, wantsEmailNotifications: wantsEmailNotifications, password: password, username: username, lastLogin: lastLoginDate, companies: nil)
-                            
-                            PersistenceService.saveContext(context: context)
-                            
-                            // Update UserDefaults so that we know have the user in a logged in state
-                            UserDefaults.standard.set(true, forKey: Defaults.UserDefaults.isLoggedIn.rawValue)
-                            UserDefaults.standard.synchronize()
-                            
-                            containerViewController.modalPresentationStyle = .fullScreen // Set presentaion style of view to full screen
-                            self?.present(containerViewController, animated: true, completion: nil)
-                            
-                            guard let unwrappedSuccess = success else { return }
-                            unwrappedSuccess(containerViewController)
-                        }
+                        // Add to core data
+                        let context = PersistenceService.privateChildManagedObjectContext()
+                        guard let coreDataCustomerObject = NSEntityDescription.insertNewObject(forEntityName: Defaults.CoreDataEntities.customer.rawValue, into: context) as? Customer else { return }
+                        
+                        coreDataCustomerObject.addCustomer(customerType: customerType, dateJoined: dateJoinedDate, email: email, firstName: firstName, id: id, userId: userId, isPaying: isPaying, lastName: lastName, phoneNumber: phoneNumber, wantsSms: wantsSms, wantsEmailNotifications: wantsEmailNotifications, password: password, username: username, lastLogin: lastLoginDate, companies: nil)
+                        
+                        PersistenceService.saveContext(context: context)
+                        
+                        // Update UserDefaults so that we know have the user in a logged in state
+                        UserDefaults.standard.set(true, forKey: Defaults.UserDefaults.isLoggedIn.rawValue)
+                        UserDefaults.standard.synchronize()
+                    
+                        success()
                     
                     case .failure(let error):
                         // Set text for pop up ok view controller
+                        self?.removeSpinner(spinnerView: spinnerView)
                         guard let popUpOkViewController = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
                         self?.present(popUpOkViewController, animated: true, completion: nil)
                     
@@ -282,6 +273,64 @@ class AddCompanyHoursEnabledViewController: AddCompanyBaseViewController, UITabl
                 
             }
         
+    }
+    
+    func getCompanies(customer: Customer, spinnerView: UIView, success: @escaping () -> Void) {
+        // Gets company data belonging to the customer
+        
+        let httpRequest = HTTPRequests()
+        guard
+            let password = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue),
+            let email = customer.email
+        else { print("could not get password from keychain - AddCompanyHoursEnabledViewController"); return }
+        let customerUserId = customer.id
+        
+        let parameters: [String: Any] = ["email": email as Any, "password": password as Any, "customerUserId": customerUserId as Any]
+        httpRequest.request(url: Defaults.Urls.api.rawValue + "/companies.php", dataModel: [CompanyModel].self, parameters: parameters) {
+            (result) in
+            
+            switch result {
+                case .success(let companies):
+                    let context = PersistenceService.privateChildManagedObjectContext()
+                    for company in companies {
+                        // Save to CoreData
+                        guard let entity = NSEntityDescription.entity(forEntityName: Defaults.CoreDataEntities.company.rawValue, in: context) else { return }
+                        
+                        if let coreDataCompany = NSManagedObject(entity: entity, insertInto: context) as? Company {
+                            coreDataCompany.address = company.address
+                            coreDataCompany.city = company.city
+                            coreDataCompany.state = company.state
+                            coreDataCompany.zip = company.zip
+                            coreDataCompany.allowSameDayAppointments = company.allowSameDayAppointments
+                            coreDataCompany.created = company.createdDate
+                            coreDataCompany.autoRespondNumber = company.autoRespondNumber
+                            coreDataCompany.autoRespondText = company.autoRespondText
+                            coreDataCompany.daysOfTheWeekEnabled = company.daysOfTheWeekEnabled
+                            coreDataCompany.email = company.email
+                            coreDataCompany.hoursOfTheDayEnabled = company.hoursOfTheDayEnabled
+                            coreDataCompany.id = Int32(company.id)
+                            coreDataCompany.name = company.name
+                            coreDataCompany.phoneNumber = company.phoneNumber
+                            coreDataCompany.shortenedAddress = company.shortenedAddress
+                        }
+                        
+                    }
+                    
+                    PersistenceService.saveContext(context: context)
+                    success()
+                
+                case .failure(let error):
+                    self.removeSpinner(spinnerView: spinnerView)
+                    // Set text for pop up ok view controller
+                    let title = "Error"
+                    let body = error.localizedDescription
+                    
+                    // Show popup view controller
+                    let popUpOkViewController = self.alertService.popUpOk(title: title, body: body)
+                    self.present(popUpOkViewController, animated: true, completion: nil)
+            }
+            
+        }
     }
     
     // MARK: Actions
@@ -302,11 +351,16 @@ class AddCompanyHoursEnabledViewController: AddCompanyBaseViewController, UITabl
                 self.signupUser {
                     [weak self] (email, password) in
                     
-                    // Login user and navigate to container view controller
-                    self?.loginUser(email: email, password: password) {
-                        (containerViewController) in
-                        containerViewController.removeSpinner(spinnerView: spinnerView)
-                    }
+                    self?.getCustomerData(email: email, password: password, spinnerView: spinnerView, success: {
+                        guard let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first else { print("could not get customer object - AddCompanyHoursEnabledViewController"); return }
+                        self?.getCompanies(customer: customer, spinnerView: spinnerView, success: {
+                            // Go to container view controller
+                            let mainStoryboard = UIStoryboard(name: Defaults.StoryBoards.main.rawValue, bundle: .main)
+                            guard let containerViewController = mainStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.container.rawValue) as? ContainerViewController else { return }
+                            containerViewController.modalPresentationStyle = .fullScreen
+                            self?.present(containerViewController, animated: true, completion: nil)
+                        })
+                    })
                     
                 }
             } else {
