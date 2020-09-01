@@ -65,9 +65,15 @@ class UpdateBaseViewController: UIViewController, UITextFieldDelegate {
                     // Do not have to remove spinner view after dismissing update view because when the update
                     // view is dismissed it removes the spinner view
                     
+                    guard let isCollapsed = tableViewController.splitViewController?.isCollapsed else { print("could not get split view controller is collapsed porperty - UpdateBaseViewController"); return }
                     guard let sizeClass = self?.getSizeClass() else { return }
                     
-                    if sizeClass == (.regular, .compact) || sizeClass == (.regular, .regular) || sizeClass == (.regular, .unspecified) {
+                    if isCollapsed == false && sizeClass == (.compact, .regular) {
+                        // For iPhones that click an update cell in the detail view controller
+                        // and are rotated for the update view controller
+                        // and are in the size class that has split views enabled
+                        self?.presentingViewController?.dismiss(animated: true, completion: nil)
+                    } else if isCollapsed == false {
                         guard let novaOneTableView = tableViewController as? NovaOneTableView else { return }
                         novaOneTableView.didSetFirstItem = false // Set equal to false so the table view controller will set the first item in the detail view again with fresh properties, so we don't get update errors
                         novaOneTableView.setFirstItemForDetailView()
