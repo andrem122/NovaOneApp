@@ -215,19 +215,12 @@ class UpdateAppointmentTimeViewController: UpdateBaseViewController {
                         self?.removeSpinner(spinnerView: spinnerView)
                     }
                     
-                    guard let previousViewController = self?.previousViewController else {
-                        print("could not get previous view controller - UpdateBaseViewController")
-                        self?.removeSpinner(spinnerView: spinnerView)
-                        return
-                    }
+                    guard let previousViewController = self?.previousViewController else { print("could not get previous view controller - UpdateBaseViewController"); return }
                     
                     // Dismiss update view controller and present success view controller after
                     if let objectDetailViewController = previousViewController as? NovaOneObjectDetail {
                         // For detail view controllers
-                        guard let tableViewController = objectDetailViewController.previousViewController else {
-                            self?.removeSpinner(spinnerView: spinnerView)
-                            return
-                        }
+                        guard let tableViewController = objectDetailViewController.previousViewController else { return }
                         
                         // Remove update view controller and present success view controller
                         previousViewController.dismiss(animated: false, completion: {
@@ -235,16 +228,16 @@ class UpdateAppointmentTimeViewController: UpdateBaseViewController {
                             // Do not have to remove spinner view after dismissing update view because when the update
                             // view is dismissed it removes the spinner view
                             
-                            guard let sizeClass = self?.getSizeClass() else {
-                                self?.removeSpinner(spinnerView: spinnerView)
-                                return
-                            }
+                            guard let isCollapsed = tableViewController.splitViewController?.isCollapsed else { print("could not get split view controller is collapsed porperty - UpdateBaseViewController"); return }
+                            guard let sizeClass = self?.getSizeClass() else { return }
                             
-                            if sizeClass == (.regular, .compact) || sizeClass == (.regular, .regular) || sizeClass == (.regular, .unspecified) {
-                                guard let novaOneTableView = tableViewController as? NovaOneTableView else {
-                                    self?.removeSpinner(spinnerView: spinnerView)
-                                    return
-                                }
+                            if isCollapsed == false && sizeClass == (.compact, .regular) {
+                                // For iPhones that click an update cell in the detail view controller
+                                // and are rotated for the update view controller
+                                // and are in the size class that has split views enabled
+                                self?.presentingViewController?.dismiss(animated: true, completion: nil)
+                            } else if isCollapsed == false {
+                                guard let novaOneTableView = tableViewController as? NovaOneTableView else { return }
                                 novaOneTableView.didSetFirstItem = false // Set equal to false so the table view controller will set the first item in the detail view again with fresh properties, so we don't get update errors
                                 novaOneTableView.setFirstItemForDetailView()
                             } else {
@@ -252,8 +245,12 @@ class UpdateAppointmentTimeViewController: UpdateBaseViewController {
                             }
                             
                         })
-                    }
-                case .failure(let error):
+                    } else {
+                        // For updates coming from the account table view controller
+                        self?.present(successViewController, animated: true, completion: {
+                            previousViewController.navigationController?.popViewController(animated: true)
+                        })
+                    }                case .failure(let error):
                     guard let popUpOk = self?.alertService.popUpOk(title: "Error", body: error.localizedDescription) else { return }
                     self?.present(popUpOk, animated: true, completion: nil)
             }
