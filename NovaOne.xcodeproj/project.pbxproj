@@ -11,6 +11,8 @@
 		647BC11BF09BB0FFD1A21419 /* libPods-NovaOne.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 456976310F83D351065F9977 /* libPods-NovaOne.a */; };
 		650250C123E4991700B427D0 /* AlertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650250C023E4991700B427D0 /* AlertService.swift */; };
 		650250C323E4A78E00B427D0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650250C223E4A78E00B427D0 /* HomeViewController.swift */; };
+		65036949250569AF00321E3C /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65036948250569AF00321E3C /* Reachability.swift */; };
+		6503694B2507C46D00321E3C /* addDeviceToken.php in Resources */ = {isa = PBXBuildFile; fileRef = 6503694A2507C46D00321E3C /* addDeviceToken.php */; };
 		650547DD247990250036DF3E /* NovaOneTableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650547DC247990250036DF3E /* NovaOneTableViewProtocol.swift */; };
 		6506CD442488572500194C92 /* ChartDataMonth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6506CD432488572500194C92 /* ChartDataMonth.swift */; };
 		6506CD4624886C8F00194C92 /* chartDataMonth.php in Resources */ = {isa = PBXBuildFile; fileRef = 6506CD4524886C8F00194C92 /* chartDataMonth.php */; };
@@ -264,6 +266,8 @@
 		456976310F83D351065F9977 /* libPods-NovaOne.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NovaOne.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		650250C023E4991700B427D0 /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
 		650250C223E4A78E00B427D0 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		65036948250569AF00321E3C /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		6503694A2507C46D00321E3C /* addDeviceToken.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = addDeviceToken.php; sourceTree = "<group>"; };
 		650547DC247990250036DF3E /* NovaOneTableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovaOneTableViewProtocol.swift; sourceTree = "<group>"; };
 		6506CD432488572500194C92 /* ChartDataMonth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartDataMonth.swift; sourceTree = "<group>"; };
 		6506CD4524886C8F00194C92 /* chartDataMonth.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = chartDataMonth.php; sourceTree = "<group>"; };
@@ -362,6 +366,7 @@
 		65866FE524AD021C0029847E /* deleteObject.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = deleteObject.php; sourceTree = "<group>"; };
 		65898E2A24AF833300613515 /* deleteAppointmentMedical.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = deleteAppointmentMedical.php; sourceTree = "<group>"; };
 		658AF5FB240DA66800577446 /* SignUpCompanyAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompanyAddressViewController.swift; sourceTree = "<group>"; };
+		658DD221250307D000CE3E58 /* NovaOne.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NovaOne.entitlements; sourceTree = "<group>"; };
 		658EC6C523F4870D0042827E /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
 		658EC6C723F4B1310042827E /* NovaOneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovaOneView.swift; sourceTree = "<group>"; };
 		6591C39623DA78F900535C46 /* NovaOne.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NovaOne.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -680,6 +685,7 @@
 				65EEF8EC247AFADA004B64C1 /* NovaOneObjectContainerProtocol.swift */,
 				657FF25E249164B3007C6E2F /* AddAddressProtocol.swift */,
 				650E215424EA0F6D00AB55AB /* ContactHelper.swift */,
+				65036948250569AF00321E3C /* Reachability.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -757,6 +763,7 @@
 		6591C39823DA78F900535C46 /* NovaOne */ = {
 			isa = PBXGroup;
 			children = (
+				658DD221250307D000CE3E58 /* NovaOne.entitlements */,
 				65FE6FAD24B68B920055AF70 /* Storyboards */,
 				65BCE1822429327100E5040E /* Core Data */,
 				658EC6C423F484F50042827E /* Cells */,
@@ -925,6 +932,7 @@
 				6547416C24CA058C00575228 /* deleteAppointmentRealEstate.php */,
 				65461A8224D1C3030028F202 /* deleteCompany.php */,
 				652FD93E24F5E27000718D53 /* updateAppointmentMedicalAddress.php */,
+				6503694A2507C46D00321E3C /* addDeviceToken.php */,
 			);
 			path = PHP;
 			sourceTree = "<group>";
@@ -1126,6 +1134,7 @@
 				6583195323F2209C001D378D /* settings.php in Resources */,
 				653432702493BE0B00483505 /* addLead.php in Resources */,
 				6583195623F2209C001D378D /* django_password.php in Resources */,
+				6503694B2507C46D00321E3C /* addDeviceToken.php in Resources */,
 				65A7423D24B770330092DF0C /* UpdateAccount.storyboard in Resources */,
 				65A7424B24B773370092DF0C /* Home.storyboard in Resources */,
 				653D2184244523C5009DA68E /* credentials.php in Resources */,
@@ -1411,6 +1420,7 @@
 				6519B45F24B600B4003AA1D6 /* UpdateLeadNameViewController.swift in Sources */,
 				650547DD247990250036DF3E /* NovaOneTableViewProtocol.swift in Sources */,
 				65AD1BBD24576059007C4444 /* BaseLoginViewController.swift in Sources */,
+				65036949250569AF00321E3C /* Reachability.swift in Sources */,
 				657535EB24035B7E009E3580 /* SignUpEmailViewController.swift in Sources */,
 				659C1A8A240AB5B3003C91C1 /* AccountTableViewController.swift in Sources */,
 				65D169AF245F598C006219C8 /* SliderLauncher.swift in Sources */,
@@ -1618,6 +1628,7 @@
 			baseConfigurationReference = C165A958EC1B46D1F527F2E2 /* Pods-NovaOne.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = NovaOne/NovaOne.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 3CDSLHGVXH;
@@ -1642,6 +1653,7 @@
 			baseConfigurationReference = 2EF2A837445AC1495E85164F /* Pods-NovaOne.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = NovaOne/NovaOne.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 3CDSLHGVXH;

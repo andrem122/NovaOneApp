@@ -19,9 +19,53 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         
-        // If we have a NSUserActivity object from a previous opening of the app
+        // Get user logged in state
         let isLoggedIn = UserDefaults.standard.bool(forKey: Defaults.UserDefaults.isLoggedIn.rawValue)
+        
+        // Handle when the user clicks on the notification
+        if let notificationResponse = connectionOptions.notificationResponse {
+            let content = notificationResponse.notification.request.content.userInfo
+            guard
+                let aps = content["aps"] as? [String: AnyObject],
+                let alert = aps["alert"] as? [String: AnyObject],
+                let selectIndex = alert["selectIndex"] as? Int // The index to select on the tab bar controller when the user opens the app
+            else {
+                // handle any error here
+                return
+            }
+            
+            // Get the window object to show the view to restore
+            guard let windowScene = (scene as? UIWindowScene) else { return }
+            self.window = UIWindow(windowScene: windowScene)
+            
+            // Get storyboards
+            let mainStoryboard = UIStoryboard(name: Defaults.StoryBoards.main.rawValue, bundle: .main)
+            
+            // Get view controller and present
+            guard
+                let startViewController = mainStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.start.rawValue) as? StartViewController
+                else { print("could not get start view controller - SceneDelegate"); return }
+            
+            // If user is logged in, show the container view controller on a specific tab
+            if isLoggedIn == true {
+                guard let containerViewController = mainStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.container.rawValue) as? ContainerViewController else { print("could not get container view controller - SceneDelegate"); return }
+                
+                // Set root controller for the window
+                self.window?.rootViewController = startViewController
+                
+                // Make the window the key window and visible to the user after setting it up above
+                self.window?.makeKeyAndVisible()
+                containerViewController.modalPresentationStyle = .fullScreen
+
+                startViewController.present(containerViewController, animated: true, completion: nil)
+            } else {
+                // User is NOT logged in, so ask them to sign in and then proceed to the comtainer view controller
+            }
+        }
+        
+        // If we have a NSUserActivity object from a previous opening of the app
         if let activity = connectionOptions.userActivities.first ?? session.stateRestorationActivity, isLoggedIn == false {
+            
             // Get the window object to show the view to restore
             guard let windowScene = (scene as? UIWindowScene) else { return }
             self.window = UIWindow(windowScene: windowScene)

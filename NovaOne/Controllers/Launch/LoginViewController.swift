@@ -166,7 +166,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         // Present container view controller
         containerViewController.modalPresentationStyle = .fullScreen // Set presentaion style of view to full screen
         self.present(containerViewController, animated: true, completion: {
-            self.removeSpinner(spinnerView: spinnerView)
+            [weak self] in
+            self?.removeSpinner(spinnerView: spinnerView)
+            
+            // Ask the user to register for push notifications after successful login
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.registerForPushNotifications()
         })
     }
     

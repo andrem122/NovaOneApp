@@ -193,3 +193,7 @@ extension MKMapView {
         }
     }
 }
+
+extension Notification.Name {
+  static let newLeadFetched = Notification.Name("com.novaonesoftware.NovaOne.newLeadsFetched")
+}

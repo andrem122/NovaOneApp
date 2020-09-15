@@ -107,7 +107,7 @@ class UpdateBaseViewController: UIViewController, UITextFieldDelegate {
         guard let jsonString = String(data: jsonData, encoding: .utf8) else { print("unable to get string from json data"); return }
         
         let parameters: [String: Any] = ["email": customerEmail, "password": customerPassword, "tableName": tableName, "columns": jsonString as Any, "objectId": objectId]
-        print("Update Parameters: \(parameters)")
+        //print("Update Parameters: \(parameters)")
         
         let httpRequest = HTTPRequests()
         httpRequest.request(url: Defaults.Urls.api.rawValue + endpoint, dataModel: SuccessResponse.self, parameters: parameters) {

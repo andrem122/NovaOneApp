@@ -11,17 +11,19 @@ import Foundation
 
 // Send HTTP requests to given url
 class HTTPRequests {
-    
+    static let session: URLSession = {
+        let sessionConfig = URLSessionConfiguration.default
+        sessionConfig.timeoutIntervalForRequest = 10.0
+        sessionConfig.timeoutIntervalForResource = 10.0
+        let session = URLSession(configuration: sessionConfig)
+        return session
+    }()
     func handleResponse<DataModel: Decodable>(for request: URLRequest,
                                               dataModel: DataModel.Type,
                                    completion: @escaping (Result<DataModel, Error>) -> Void) -> Void {
         
         // Create datatask to retrieve information from the internet
-        let sessionConfig = URLSessionConfiguration.default
-        sessionConfig.timeoutIntervalForRequest = 10.0
-        sessionConfig.timeoutIntervalForResource = 10.0
-        let session = URLSession(configuration: sessionConfig)
-        let task = session.dataTask(with: request) { (data, response, error) in
+        let task = HTTPRequests.session.dataTask(with: request) { (data, response, error) in
             
             
             DispatchQueue.main.async { // Run on main thread instead of background thread
