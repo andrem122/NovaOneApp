@@ -51,6 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 }
 
 extension AppDelegate {
+    
     // MARK: Push Notifications
     func registerForPushNotifications() {
         // Ask the user to enable push notifications
@@ -167,11 +168,16 @@ extension AppDelegate {
         // Called when user recieves a remote notification and the app is in the background or foreground
         guard
             let aps = userInfo["aps"] as? [String: AnyObject],
-            let selectIndex = userInfo["selectIndex"] as? Int
+            let selectIndex = userInfo["selectIndex"] as? Int,
+            let badgeValue = aps["badge"] as? Int
         else {
             print("could not get aps dictionary - AppDelegate")
             return
         }
+        
+        // Post notification to HomeTabBarController to update the user interface
+        let notificationInfo: [String: Int] = ["badgeValue": badgeValue, "selectIndex": selectIndex]
+        NotificationCenter.default.post(name: Notification.Name(rawValue: Defaults.NotificationObservers.newData.rawValue), object: nil, userInfo: notificationInfo)
 
         // Check if this is a silent notification
         // If it is, then update the data in core data by doing a network request and saving to core data

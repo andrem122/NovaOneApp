@@ -11,6 +11,7 @@ import Foundation
 
 // Send HTTP requests to given url
 class HTTPRequests {
+    
     static let session: URLSession = {
         let sessionConfig = URLSessionConfiguration.default
         sessionConfig.timeoutIntervalForRequest = 10.0
@@ -18,6 +19,7 @@ class HTTPRequests {
         let session = URLSession(configuration: sessionConfig)
         return session
     }()
+    
     func handleResponse<DataModel: Decodable>(for request: URLRequest,
                                               dataModel: DataModel.Type,
                                    completion: @escaping (Result<DataModel, Error>) -> Void) -> Void {
@@ -47,7 +49,7 @@ class HTTPRequests {
                     print(String(data: unwrappedData, encoding: .utf8)!)
                     do {
                         
-                        // Convert to JSON swift objectmto see if the data response from the server is valid JSON
+                        // Convert to JSON swift object to see if the data response from the server is valid JSON
                         // catch the error in thr catch block if the data can not e converted to a JSON object
                         // in swift
                         let json = try JSONSerialization.jsonObject(with: unwrappedData, options: [])
@@ -129,6 +131,7 @@ class HTTPRequests {
             return
         }
         
+        // Create the URLRequest object for URLSession dataTask method
         var request: URLRequest = URLRequest(url: url)
         var components: URLComponents = URLComponents()
         var queryItems: [URLQueryItem] = []
