@@ -101,6 +101,12 @@ extension AppDelegate {
         parameters: parameters) { (result) in
             switch result {
                 case .success(let objects):
+                    // Delete all old data if request for objects is successful to prevent duplicate objects in Core Data
+                    if objects is [LeadModel] {
+                        PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.lead.rawValue)
+                    } else if objects is [AppointmentModel] {
+                        PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.appointment.rawValue)
+                    }
                     success(objects)
                 case .failure(let error):
                     print("Unable to update objects from push notification: \(error.localizedDescription)")
@@ -161,8 +167,12 @@ extension AppDelegate {
         // If push notification registration fails
         print("Failed to register for remote notifications: \(error)")
     }
+
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        print("userNotificationCenter(_:didReceive:withCompletionHandler:)")
+        // Notification arrives when app is in background and notification tapped, then this delegate method is run
+        
         let userInfo = response.notification.request.content.userInfo
         
         // Called when user recieves a remote notification and the app is in the background or foreground
@@ -172,6 +182,7 @@ extension AppDelegate {
             let badgeValue = aps["badge"] as? Int
         else {
             print("could not get aps dictionary - AppDelegate")
+            completionHandler()
             return
         }
         
@@ -193,6 +204,7 @@ extension AppDelegate {
                     let lastObjectId = PersistenceService.fetchEntity(Appointment.self, filter: nil, sort: [sort]).last?.id
                 else {
                     print("could not get last object id - AppDelegate")
+                    completionHandler()
                     return
                 }
 
@@ -236,6 +248,7 @@ extension AppDelegate {
                         let lastObjectId = PersistenceService.fetchEntity(Lead.self, filter: nil, sort: [sort]).last?.id
                     else {
                         print("could not get last object id - AppDelegate")
+                        completionHandler()
                         return
                     }
 
@@ -280,7 +293,133 @@ extension AppDelegate {
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        print("userNotificationCenter(_:willPresent:withCompletionHandler:)")
         // Notification arrives while app is running in foreground
+        let userInfo = notification.request.content.userInfo
+        
+        // Called when user recieves a remote notification and the app is in the background or foreground
+        guard
+            let aps = userInfo["aps"] as? [String: AnyObject],
+            let selectIndex = userInfo["selectIndex"] as? Int,
+            let badgeValue = aps["badge"] as? Int
+        else {
+            print("could not get aps dictionary - AppDelegate")
+            completionHandler([])
+            return
+        }
+        
+        // Post notification to HomeTabBarController to update the user interface
+        let notificationInfo: [String: Int] = ["badgeValue": badgeValue, "selectIndex": selectIndex]
+        NotificationCenter.default.post(name: Notification.Name(rawValue: Defaults.NotificationObservers.newData.rawValue), object: nil, userInfo: notificationInfo)
+
+        // Check if this is a silent notification
+        // If it is, then update the data in core data by doing a network request and saving to core data
+        if aps["content-available"] as? Int == 1 {
+            // Silent notification, so update data
+
+            let sort = NSSortDescriptor(key: "id", ascending: false) // Sort with highest id as the first object in the array
+            let context = PersistenceService.privateChildManagedObjectContext()
+
+            if selectIndex == 1 {
+                
+                // New appointments
+                let endpoint = "/refreshAppointments.php"
+                guard
+                    let lastObjectId = PersistenceService.fetchEntity(Appointment.self, filter: nil, sort: [sort]).last?.id
+                else {
+                    print("could not get last object id - AppDelegate")
+                    completionHandler([])
+                    return
+                }
+
+                self.pushNotificationDataRefresh(endpoint: endpoint, lastObjectId: lastObjectId, objectType: [AppointmentModel].self, success: {
+                        (appointments) in
+                        // Save to core data
+                    guard let entity = NSEntityDescription.entity(forEntityName: Defaults.CoreDataEntities.appointment.rawValue, in: context) else { return }
+
+                            for appointment in appointments {
+                                if let coreDataAppointment = NSManagedObject(entity: entity, insertInto: context) as? Appointment {
+
+                                    coreDataAppointment.address = appointment.address
+                                    coreDataAppointment.companyId = Int32(appointment.companyId)
+                                    coreDataAppointment.confirmed = appointment.confirmed
+                                    coreDataAppointment.created = appointment.createdDate
+                                    coreDataAppointment.dateOfBirth = appointment.dateOfBirthDate
+                                    coreDataAppointment.email = appointment.email
+                                    coreDataAppointment.gender = appointment.gender
+                                    guard let id = appointment.id else { return }
+                                    coreDataAppointment.id = Int32(id)
+                                    coreDataAppointment.name = appointment.name
+                                    coreDataAppointment.phoneNumber = appointment.phoneNumber
+                                    coreDataAppointment.testType = appointment.testType
+                                    coreDataAppointment.time = appointment.timeDate
+                                    coreDataAppointment.timeZone = appointment.timeZone
+                                    coreDataAppointment.unitType = appointment.unitType
+                                    coreDataAppointment.city = appointment.city
+                                    coreDataAppointment.zip = appointment.zip
+
+                                }
+                            }
+                    
+                            // Save objects to CoreData once they have been inserted into the context container
+                            PersistenceService.saveContext(context: context)
+
+                })
+
+            } else if selectIndex == 2 {
+                // New leads
+                    let endpoint = "/refreshLeads.php"
+                    guard
+                        let lastObjectId = PersistenceService.fetchEntity(Lead.self, filter: nil, sort: [sort]).last?.id
+                    else {
+                        print("could not get last object id - AppDelegate")
+                        completionHandler([])
+                        return
+                    }
+
+                    self.pushNotificationDataRefresh(endpoint: endpoint, lastObjectId: lastObjectId, objectType: [LeadModel].self, success: {
+                        (leads) in
+                        // Save to core data
+                        guard let entity = NSEntityDescription.entity(forEntityName: Defaults.CoreDataEntities.lead.rawValue, in: context) else { return }
+
+                            for lead in leads {
+                                if let coreDataLead = NSManagedObject(entity: entity, insertInto: context) as? Lead {
+
+                                    guard let id = lead.id else { return }
+                                    coreDataLead.id = Int32(id)
+                                    coreDataLead.name = lead.name
+                                    coreDataLead.phoneNumber = lead.phoneNumber
+                                    coreDataLead.email = lead.email
+                                    coreDataLead.dateOfInquiry = lead.dateOfInquiryDate
+                                    coreDataLead.renterBrand = lead.renterBrand
+                                    coreDataLead.companyId = Int32(lead.companyId)
+                                    coreDataLead.sentTextDate = lead.sentTextDateDate
+                                    coreDataLead.sentEmailDate = lead.sentEmailDateDate
+                                    coreDataLead.filledOutForm = lead.filledOutForm
+                                    coreDataLead.madeAppointment = lead.madeAppointment
+                                    coreDataLead.companyName = lead.companyName
+
+                                }
+                            }
+                        
+                            // Save objects to CoreData once they have been inserted into the context container
+                            PersistenceService.saveContext(context: context)
+                        
+                    })
+
+            }
+
+        } else {
+            // Not a silent notification
+            print("Not a silent notification")
+        }
+        
+        if #available(iOS 14.0, *) {
+            completionHandler([.banner, .sound, .badge])
+        } else {
+            // Fallback on earlier versions
+            completionHandler([.alert, .sound, .badge])
+        }
         
     }
 

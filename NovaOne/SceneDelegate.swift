@@ -48,7 +48,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
             // If user is logged in, show the container view controller on a specific tab
             if isLoggedIn == true {
-                guard let containerViewController = mainStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.container.rawValue) as? ContainerViewController else { print("could not get container view controller - SceneDelegate"); return }
+                guard let containerViewController = mainStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.container.rawValue) as? ContainerViewController else { print("could not get container view controller - SceneDelegate")
+                    return
+                }
+                
+                containerViewController.homeTabBarSelectIndex = selectIndex
                 
                 // Set root controller for the window
                 self.window?.rootViewController = startViewController

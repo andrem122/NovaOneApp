@@ -17,12 +17,14 @@ class HomeTabBarController: UITabBarController, UITableViewDelegate {
         let launcher = MenuLauncher(homeTabBarController: self)
         return launcher
     }()
+    var selectIndex: Int?
     
     // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
         self.addNotificationObservers()
+        self.selectIndexForTabBar()
     }
     
     override func viewDidLayoutSubviews() {
@@ -32,6 +34,16 @@ class HomeTabBarController: UITabBarController, UITableViewDelegate {
     // MARK: Actions
     @IBAction func menuButtonTapped(_ sender: Any) {
         menuLauncher.toggleMenu(completion: nil)
+    }
+    
+    func selectIndexForTabBar() {
+        // Selects the index for the tab bar controller
+        guard let selectIndex = self.selectIndex else {
+            print("could not get selectIndex - HomeTabBarController")
+            return
+        }
+        
+        self.selectedIndex = selectIndex
     }
     
     func addNotificationObservers() {

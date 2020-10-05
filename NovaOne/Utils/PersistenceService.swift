@@ -78,10 +78,9 @@ class PersistenceService {
                     print("1st Context")
                     if context.hasChanges {
                         try context.save()
-                        print("1st context saved successfully")
                     }
                 } catch {
-                    print("Unable to Save Changes of Managed Object Context")
+                    print("Unable to save changes of private child object context - PersistenceService")
                     print("\(error), \(error.localizedDescription)")
                 }
             }
@@ -91,10 +90,9 @@ class PersistenceService {
             do {
                 if self.context.hasChanges {
                     try self.context.save()
-                    print("Main context saved successfully")
                 }
             } catch {
-                print("Unable to Save Changes of Main Managed Object Context")
+                print("Unable to save changes of main object context - PersistenceService")
                 print("\(error), \(error.localizedDescription)")
             }
         }
@@ -106,7 +104,7 @@ class PersistenceService {
                     print("Private context saved successfully")
                 } 
             } catch {
-                print("Unable to Save Changes of Private Managed Object Context")
+                print("Unable to save changes of private object context - PersistenceService")
                 print("\(error), \(error.localizedDescription)")
             }
         }

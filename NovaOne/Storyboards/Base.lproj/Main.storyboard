@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1DO-qz-DTw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1DO-qz-DTw">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -409,7 +409,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HHc-JS-ti3" userLabel="View Container View">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <connections>
-                                    <segue destination="dnP-vU-H2q" kind="embed" id="myR-2q-qs1"/>
+                                    <segue destination="dnP-vU-H2q" kind="embed" identifier="globalMenuNavigationController" id="myR-2q-qs1"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -422,6 +422,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ypg-wP-m1l"/>
                     </view>
+                    <connections>
+                        <outlet property="containerView" destination="HHc-JS-ti3" id="6cT-9d-Pbh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jWD-Lq-b5c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
