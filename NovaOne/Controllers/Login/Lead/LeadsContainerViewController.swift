@@ -24,8 +24,7 @@ class LeadsContainerViewController: UIViewController, NovaOneObjectContainer {
     func showCoreDataOrRequestData() {
         // Gets CoreData and passes it to table view OR makes a request for data if no CoreData exists or there is a badge value
         let objectCount: Int = PersistenceService.fetchCount(for: Defaults.CoreDataEntities.lead.rawValue)
-        let badgeValue = self.tabBarController?.tabBar.items?[2].badgeValue
-        if objectCount > 0 && badgeValue == nil {
+        if objectCount > 0 {
             // No new data
             // Get CoreData objects and pass to the next view
             UIHelper.showSuccessContainer(for: self, successContainerViewIdentifier: Defaults.SplitViewControllerIdentifiers.leads.rawValue, containerView: self.containerView, objectType: UISplitViewController.self ) {

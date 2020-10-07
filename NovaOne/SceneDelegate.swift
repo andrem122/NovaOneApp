@@ -23,14 +23,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let isLoggedIn = UserDefaults.standard.bool(forKey: Defaults.UserDefaults.isLoggedIn.rawValue)
         
         // Handle when the user clicks on the notification
-        if let notificationResponse = connectionOptions.notificationResponse {
+        if let notificationResponse = connectionOptions.notificationResponse, isLoggedIn == true {
+            
+            
             let content = notificationResponse.notification.request.content.userInfo
             guard
-                let aps = content["aps"] as? [String: AnyObject],
-                let alert = aps["alert"] as? [String: AnyObject],
-                let selectIndex = alert["selectIndex"] as? Int // The index to select on the tab bar controller when the user opens the app
+                let selectIndex = content["selectIndex"] as? Int // The index to select on the tab bar controller when the user opens the app
             else {
-                // handle any error here
                 return
             }
             
@@ -44,27 +43,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             // Get view controller and present
             guard
                 let startViewController = mainStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.start.rawValue) as? StartViewController
-                else { print("could not get start view controller - SceneDelegate"); return }
+            else {
+                print("could not get startViewController - SceneDelegate")
+                return
+            }
             
             // If user is logged in, show the container view controller on a specific tab
-            if isLoggedIn == true {
-                guard let containerViewController = mainStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.container.rawValue) as? ContainerViewController else { print("could not get container view controller - SceneDelegate")
-                    return
-                }
-                
-                containerViewController.homeTabBarSelectIndex = selectIndex
-                
-                // Set root controller for the window
-                self.window?.rootViewController = startViewController
-                
-                // Make the window the key window and visible to the user after setting it up above
-                self.window?.makeKeyAndVisible()
-                containerViewController.modalPresentationStyle = .fullScreen
-
-                startViewController.present(containerViewController, animated: true, completion: nil)
-            } else {
-                // User is NOT logged in, so ask them to sign in and then proceed to the comtainer view controller
+            guard let containerViewController = mainStoryboard.instantiateViewController(identifier: Defaults.ViewControllerIdentifiers.container.rawValue) as? ContainerViewController else { print("could not get container view controller - SceneDelegate")
+                return
             }
+            
+            containerViewController.homeTabBarSelectIndex = selectIndex
+            
+            // Set root controller for the window
+            self.window?.rootViewController = startViewController
+            
+            // Make the window the key window and visible to the user after setting it up above
+            self.window?.makeKeyAndVisible()
+            containerViewController.modalPresentationStyle = .fullScreen
+
+            startViewController.present(containerViewController, animated: true, completion: nil)
+            
         }
         
         // If we have a NSUserActivity object from a previous opening of the app

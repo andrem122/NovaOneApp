@@ -40,10 +40,12 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
         self.setupNavigationBar()
         self.setupSearch()
         self.setupTableView()
+        self.addNotificationObservers()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         self.getCoreData()
         
         // Set the first item if the size class is of the following
@@ -65,6 +67,16 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
         if self.didSetFirstItem == false && self.splitViewController?.isCollapsed == false {
             self.setFirstItemForDetailView()
         }
+    }
+    
+    func addNotificationObservers() {
+        // Adds notification observers
+        NotificationCenter.default.addObserver(self, selector: #selector(self.refreshCoreData), name: Notification.Name(Defaults.NotificationObservers.newData.rawValue), object: nil)
+    }
+    
+    @objc func refreshCoreData() {
+        // Refreshes core data for the view when the network request for data has completed
+        self.getCoreData()
     }
     
     func setFirstItemForDetailView() {
@@ -384,6 +396,10 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
     
     @IBAction func unwindToLeadsTableController(unwindSegue: UIStoryboardSegue) {
         
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 

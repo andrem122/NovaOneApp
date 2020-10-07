@@ -306,6 +306,9 @@ extension AppDelegate {
             print("Not a silent notification")
         }
         
+        // Post notification to refresh core data on leads view
+        NotificationCenter.default.post(name: Notification.Name(rawValue: Defaults.NotificationObservers.newData.rawValue), object: nil, userInfo: nil)
+        
         // Run completion handlers
         didReceiveCompletionHandler()
         if #available(iOS 14.0, *) {
@@ -318,7 +321,6 @@ extension AppDelegate {
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        print("userNotificationCenter(_:didReceive:withCompletionHandler:)")
         // Handles notification when the app is in background and the notification is tapped
         let userInfo = response.notification.request.content.userInfo
         let willPresentCompletionHandler = {
