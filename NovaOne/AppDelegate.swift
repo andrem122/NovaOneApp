@@ -11,12 +11,17 @@ import UIKit
 import CoreData
 import GooglePlaces
 
+protocol NovaOneAppDelegate {
+    func didHandleRemoteNotification(badgeValue: Int, selectIndex: Int)
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     /// Set orientations you want to be allowed in this property by default
     var orientationLock = UIInterfaceOrientationMask.all
     var window: UIWindow?
+    static var delegate: NovaOneAppDelegate?
 
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
             return self.orientationLock
@@ -198,13 +203,10 @@ extension AppDelegate {
             didReceiveRemoteNotificationCompletionHandler(.failed)
             return
         }
-        
-        // Post notification to HomeTabBarController to update the user interface
-        let notificationInfo: [String: Int] = ["badgeValue": badgeValue, "selectIndex": selectIndex]
-        NotificationCenter.default.post(name: Notification.Name(rawValue: Defaults.NotificationObservers.newData.rawValue), object: nil, userInfo: notificationInfo)
 
         // Check if this is a silent notification
         // If it is, then update the data in core data by doing a network request and saving to core data
+        var newBadgeValue = 0 // The new badge value to set for the tab bar item
         if aps["content-available"] as? Int == 1 {
             // Silent notification, so update data
 
@@ -212,6 +214,21 @@ extension AppDelegate {
             let context = PersistenceService.privateChildManagedObjectContext()
 
             if selectIndex == 1 {
+                // Notification for appointments
+                
+                // Save the number of new objects to user defaults
+                // Get the existing count
+                var numberOfNewAppointments = UserDefaults.standard.integer(forKey: Defaults.UserDefaults.newAppointmentCount.rawValue)
+                
+                // Add to the existing count
+                numberOfNewAppointments += badgeValue
+                newBadgeValue = numberOfNewAppointments
+                print("NEW BADGE VALUE APPOINTMENTS: \(newBadgeValue)")
+                
+                // Save new count
+                UserDefaults.standard.set(numberOfNewAppointments, forKey: Defaults.UserDefaults.newAppointmentCount.rawValue)
+                UserDefaults.standard.synchronize()
+                
                 let endpoint = "/refreshAppointments.php"
                 guard
                     let lastObjectId = PersistenceService.fetchEntity(Appointment.self, filter: nil, sort: [sort]).last?.id
@@ -224,8 +241,8 @@ extension AppDelegate {
                 }
 
                 self.getDataForRefresh(endpoint: endpoint, lastObjectId: lastObjectId, objectType: [AppointmentModel].self, success: {
-                        (appointments) in
-                        // Save to core data
+                    (appointments) in
+                    // Save to core data
                     guard let entity = NSEntityDescription.entity(forEntityName: Defaults.CoreDataEntities.appointment.rawValue, in: context) else { return }
 
                             for appointment in appointments {
@@ -252,52 +269,76 @@ extension AppDelegate {
                                 }
                             }
                     
-                            // Save objects to CoreData once they have been inserted into the context container
-                            PersistenceService.saveContext(context: context)
+                    // Save objects to CoreData once they have been inserted into the context container
+                    PersistenceService.saveContext(context: context)
+                    
+                    // Alert table view controller that there is new data in core data so it can refresh the table
+                    // for the user to see the new data
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: Defaults.NotificationObservers.newAppointments.rawValue), object: nil, userInfo: nil)
 
                 }, requestCount: 0)
 
             } else if selectIndex == 2 {
-                    let endpoint = "/refreshLeads.php"
-                    guard
-                        let lastObjectId = PersistenceService.fetchEntity(Lead.self, filter: nil, sort: [sort]).last?.id
-                    else {
-                        print("could not get last object id - AppDelegate")
-                        didReceiveCompletionHandler()
-                        willPresentCompletionHandler([])
-                        didReceiveRemoteNotificationCompletionHandler(.failed)
-                        return
-                    }
+                // Notification for leads
+                
+                // Save the number of new objects to user defaults
+                // Get the existing count
+                var numberOfNewLeads = UserDefaults.standard.integer(forKey: Defaults.UserDefaults.newLeadCount.rawValue)
+                print("PREVIOUS NUMBER OF LEADS: \(numberOfNewLeads)")
+                
+                // Add to the existing count
+                numberOfNewLeads += badgeValue
+                newBadgeValue = numberOfNewLeads
+                print("NEW NUMBER OF LEADS: \(numberOfNewLeads)")
+                
+                // Set and save new count
+                UserDefaults.standard.set(numberOfNewLeads, forKey: Defaults.UserDefaults.newLeadCount.rawValue)
+                UserDefaults.standard.synchronize()
+                
+                let endpoint = "/refreshLeads.php"
+                guard
+                    let lastObjectId = PersistenceService.fetchEntity(Lead.self, filter: nil, sort: [sort]).last?.id
+                else {
+                    print("could not get last object id - AppDelegate")
+                    didReceiveCompletionHandler()
+                    willPresentCompletionHandler([])
+                    didReceiveRemoteNotificationCompletionHandler(.failed)
+                    return
+                }
 
-                    self.getDataForRefresh(endpoint: endpoint, lastObjectId: lastObjectId, objectType: [LeadModel].self, success: {
-                        (leads) in
-                        // Save to core data
-                        guard let entity = NSEntityDescription.entity(forEntityName: Defaults.CoreDataEntities.lead.rawValue, in: context) else { return }
+                self.getDataForRefresh(endpoint: endpoint, lastObjectId: lastObjectId, objectType: [LeadModel].self, success: {
+                    (leads) in
+                    // Save to core data
+                    guard let entity = NSEntityDescription.entity(forEntityName: Defaults.CoreDataEntities.lead.rawValue, in: context) else { return }
 
-                            for lead in leads {
-                                if let coreDataLead = NSManagedObject(entity: entity, insertInto: context) as? Lead {
+                        for lead in leads {
+                            if let coreDataLead = NSManagedObject(entity: entity, insertInto: context) as? Lead {
 
-                                    guard let id = lead.id else { return }
-                                    coreDataLead.id = Int32(id)
-                                    coreDataLead.name = lead.name
-                                    coreDataLead.phoneNumber = lead.phoneNumber
-                                    coreDataLead.email = lead.email
-                                    coreDataLead.dateOfInquiry = lead.dateOfInquiryDate
-                                    coreDataLead.renterBrand = lead.renterBrand
-                                    coreDataLead.companyId = Int32(lead.companyId)
-                                    coreDataLead.sentTextDate = lead.sentTextDateDate
-                                    coreDataLead.sentEmailDate = lead.sentEmailDateDate
-                                    coreDataLead.filledOutForm = lead.filledOutForm
-                                    coreDataLead.madeAppointment = lead.madeAppointment
-                                    coreDataLead.companyName = lead.companyName
+                                guard let id = lead.id else { return }
+                                coreDataLead.id = Int32(id)
+                                coreDataLead.name = lead.name
+                                coreDataLead.phoneNumber = lead.phoneNumber
+                                coreDataLead.email = lead.email
+                                coreDataLead.dateOfInquiry = lead.dateOfInquiryDate
+                                coreDataLead.renterBrand = lead.renterBrand
+                                coreDataLead.companyId = Int32(lead.companyId)
+                                coreDataLead.sentTextDate = lead.sentTextDateDate
+                                coreDataLead.sentEmailDate = lead.sentEmailDateDate
+                                coreDataLead.filledOutForm = lead.filledOutForm
+                                coreDataLead.madeAppointment = lead.madeAppointment
+                                coreDataLead.companyName = lead.companyName
 
-                                }
                             }
-                        
-                            // Save objects to CoreData once they have been inserted into the context container
-                            PersistenceService.saveContext(context: context)
-                        
-                    }, requestCount: 0)
+                        }
+                    
+                    // Save objects to CoreData once they have been inserted into the context container
+                    PersistenceService.saveContext(context: context)
+                    
+                    // Alert table view controller that there is new data in core data so it can refresh the table
+                    // for the user to see the new data
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: Defaults.NotificationObservers.newLeads.rawValue), object: nil, userInfo: nil)
+                    
+                }, requestCount: 0)
 
             }
 
@@ -306,8 +347,8 @@ extension AppDelegate {
             print("Not a silent notification")
         }
         
-        // Post notification to refresh core data on leads view
-        NotificationCenter.default.post(name: Notification.Name(rawValue: Defaults.NotificationObservers.newData.rawValue), object: nil, userInfo: nil)
+        // Communicate with delegate view after handling remote notification
+        AppDelegate.delegate?.didHandleRemoteNotification(badgeValue: newBadgeValue, selectIndex: selectIndex)
         
         // Run completion handlers
         didReceiveCompletionHandler()
@@ -333,20 +374,9 @@ extension AppDelegate {
 
     }
     
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        // Handles notification while app is running in foreground
-        let userInfo = notification.request.content.userInfo
-        
-        let didReceiveCompletionHandler = {}
-        let didReceiveRemoteNotificationCompletionHandler = {
-            (result: UIBackgroundFetchResult) -> Void in
-        }
-        self.handlePushNotification(userInfo: userInfo, didReceiveCompletionHandler: didReceiveCompletionHandler, willPresentCompletionHandler: completionHandler, didReceiveRemoteNotificationCompletionHandler: didReceiveRemoteNotificationCompletionHandler)
-        
-    }
-    
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         // Notification arrives when app is in the background, and the user does NOT tap on the notification
+        // Also handles notifications when app is in the foreground
         let didReceiveCompletionHandler = {}
         let willPresentCompletionHandler = {
             (options: UNNotificationPresentationOptions) -> Void in

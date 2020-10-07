@@ -37,6 +37,7 @@ class AppointmentsTableViewController: UITableViewController, NovaOneTableView {
     // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.addNotificationObservers()
         self.setupNavigationBar()
         self.setupSearch()
         self.setupTableView()
@@ -130,6 +131,17 @@ class AppointmentsTableViewController: UITableViewController, NovaOneTableView {
         // Setup the navigation bar
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
+    }
+    
+    func addNotificationObservers() {
+        // Adds notification observers
+        NotificationCenter.default.addObserver(self, selector: #selector(self.refreshFromNotification), name: Notification.Name(Defaults.NotificationObservers.newAppointments.rawValue), object: nil)
+    }
+    
+    @objc func refreshFromNotification() {
+        // Refreshes core data for the view when the network request for data has completed
+        // and updates the UI if needed
+        self.getCoreData()
     }
     
     func getCoreData() {

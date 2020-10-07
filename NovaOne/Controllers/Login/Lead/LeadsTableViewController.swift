@@ -37,10 +37,10 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
     // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.addNotificationObservers()
         self.setupNavigationBar()
         self.setupSearch()
         self.setupTableView()
-        self.addNotificationObservers()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,7 +71,7 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
     
     func addNotificationObservers() {
         // Adds notification observers
-        NotificationCenter.default.addObserver(self, selector: #selector(self.refreshCoreData), name: Notification.Name(Defaults.NotificationObservers.newData.rawValue), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.refreshCoreData), name: Notification.Name(Defaults.NotificationObservers.newLeads.rawValue), object: nil)
     }
     
     @objc func refreshCoreData() {

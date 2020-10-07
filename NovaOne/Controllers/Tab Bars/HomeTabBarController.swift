@@ -23,7 +23,7 @@ class HomeTabBarController: UITabBarController, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
-        self.addNotificationObservers()
+        AppDelegate.delegate = self
         self.selectIndexForTabBar()
     }
     
@@ -44,24 +44,6 @@ class HomeTabBarController: UITabBarController, UITableViewDelegate {
         }
         
         self.selectedIndex = selectIndex
-    }
-    
-    func addNotificationObservers() {
-        // Adds notification observers
-        NotificationCenter.default.addObserver(self, selector: #selector(self.updateBadgeCount(notification:)), name: Notification.Name(Defaults.NotificationObservers.newData.rawValue), object: nil)
-    }
-    
-    @objc func updateBadgeCount(notification: Notification) {
-        // Updates the badge count on the ui tab bar icons
-        guard
-            let userInfo = notification.userInfo,
-            let badgeValue = userInfo["badgeValue"] as? Int,
-            let selectIndex = userInfo["selectIndex"] as? Int else {
-            print("could not get badge value - HomeTabBarController")
-            return
-        }
-        
-        self.tabBar.items?[selectIndex].badgeValue = String(badgeValue)
     }
     
     func showViewForMenuOptionSelected(menuOption: MenuOption) {
@@ -87,15 +69,32 @@ class HomeTabBarController: UITabBarController, UITableViewDelegate {
         }
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
 }
 
 extension HomeTabBarController {
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         // If the tab bar item has a badge value and is selected, remove the badge value
         item.badgeValue = nil
+        // Reset the badge value count to zero for the screen you are on
+        if self.selectedIndex == 1 {
+            // Appointments table view
+            UserDefaults.standard.set(0, forKey: Defaults.UserDefaults.newAppointmentCount.rawValue)
+            UserDefaults.standard.synchronize()
+        } else if self.selectedIndex == 2 {
+            // Leads table view
+            UserDefaults.standard.set(0, forKey: Defaults.UserDefaults.newLeadCount.rawValue)
+            UserDefaults.standard.synchronize()
+        }
+        
+    }
+}
+
+extension HomeTabBarController: NovaOneAppDelegate {
+    func didHandleRemoteNotification(badgeValue: Int, selectIndex: Int) {
+        // Set the badgeValue for the appropriate tab bar icon after handling the remote notification in AppDelegate if
+        // the user is NOT on the current screen for the index in the tab bar controller
+        if self.selectedIndex != selectIndex {
+            self.tabBar.items?[selectIndex].badgeValue = String(badgeValue)
+        }
     }
 }
