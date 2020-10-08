@@ -12,7 +12,7 @@ import CoreData
 import GooglePlaces
 
 protocol NovaOneAppDelegate {
-    func didHandleRemoteNotification(badgeValue: Int, selectIndex: Int)
+    func didReceiveRemoteNotification(badgeValue: Int, selectIndex: Int)
 }
 
 @UIApplicationMain
@@ -223,11 +223,14 @@ extension AppDelegate {
                 // Add to the existing count
                 numberOfNewAppointments += badgeValue
                 newBadgeValue = numberOfNewAppointments
-                print("NEW BADGE VALUE APPOINTMENTS: \(newBadgeValue)")
                 
-                // Save new count
+                // Set and save new count
                 UserDefaults.standard.set(numberOfNewAppointments, forKey: Defaults.UserDefaults.newAppointmentCount.rawValue)
                 UserDefaults.standard.synchronize()
+                
+                // Communicate with delegate view the new count after getting information from the notification payload
+                // so it can update the badge value property for the tab bar controller item
+                AppDelegate.delegate?.didReceiveRemoteNotification(badgeValue: newBadgeValue, selectIndex: selectIndex)
                 
                 let endpoint = "/refreshAppointments.php"
                 guard
@@ -284,16 +287,18 @@ extension AppDelegate {
                 // Save the number of new objects to user defaults
                 // Get the existing count
                 var numberOfNewLeads = UserDefaults.standard.integer(forKey: Defaults.UserDefaults.newLeadCount.rawValue)
-                print("PREVIOUS NUMBER OF LEADS: \(numberOfNewLeads)")
                 
                 // Add to the existing count
                 numberOfNewLeads += badgeValue
                 newBadgeValue = numberOfNewLeads
-                print("NEW NUMBER OF LEADS: \(numberOfNewLeads)")
                 
                 // Set and save new count
                 UserDefaults.standard.set(numberOfNewLeads, forKey: Defaults.UserDefaults.newLeadCount.rawValue)
                 UserDefaults.standard.synchronize()
+                
+                // Communicate with delegate view the new count after getting information from the notification payload
+                // so it can update the badge value property for the tab bar controller item
+                AppDelegate.delegate?.didReceiveRemoteNotification(badgeValue: newBadgeValue, selectIndex: selectIndex)
                 
                 let endpoint = "/refreshLeads.php"
                 guard
@@ -347,9 +352,6 @@ extension AppDelegate {
             print("Not a silent notification")
         }
         
-        // Communicate with delegate view after handling remote notification
-        AppDelegate.delegate?.didHandleRemoteNotification(badgeValue: newBadgeValue, selectIndex: selectIndex)
-        
         // Run completion handlers
         didReceiveCompletionHandler()
         if #available(iOS 14.0, *) {
@@ -374,14 +376,28 @@ extension AppDelegate {
 
     }
     
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        // Handles notification while app is running in foreground
+        let userInfo = notification.request.content.userInfo
+        
+        let didReceiveCompletionHandler = {}
+        let didReceiveRemoteNotificationCompletionHandler = {
+            (result: UIBackgroundFetchResult) -> Void in
+        }
+        self.handlePushNotification(userInfo: userInfo, didReceiveCompletionHandler: didReceiveCompletionHandler, willPresentCompletionHandler: completionHandler, didReceiveRemoteNotificationCompletionHandler: didReceiveRemoteNotificationCompletionHandler)
+        
+    }
+    
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         // Notification arrives when app is in the background, and the user does NOT tap on the notification
         // Also handles notifications when app is in the foreground
-        let didReceiveCompletionHandler = {}
-        let willPresentCompletionHandler = {
-            (options: UNNotificationPresentationOptions) -> Void in
+        if UIApplication.shared.applicationState != .active {
+            let didReceiveCompletionHandler = {}
+            let willPresentCompletionHandler = {
+                (options: UNNotificationPresentationOptions) -> Void in
+            }
+            self.handlePushNotification(userInfo: userInfo, didReceiveCompletionHandler: didReceiveCompletionHandler, willPresentCompletionHandler: willPresentCompletionHandler, didReceiveRemoteNotificationCompletionHandler: completionHandler)
         }
-        self.handlePushNotification(userInfo: userInfo, didReceiveCompletionHandler: didReceiveCompletionHandler, willPresentCompletionHandler: willPresentCompletionHandler, didReceiveRemoteNotificationCompletionHandler: completionHandler)
         
     }
 }

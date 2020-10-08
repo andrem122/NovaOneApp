@@ -22,9 +22,19 @@ class HomeTabBarController: UITabBarController, UITableViewDelegate {
     // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setBadgeValues()
         self.navigationController?.navigationBar.isHidden = true
         AppDelegate.delegate = self
         self.selectIndexForTabBar()
+    }
+    
+    func setBadgeValues() {
+        // Set the badge values for each tab bar item when the view loads
+        let newLeadCount = UserDefaults.standard.integer(forKey: Defaults.UserDefaults.newLeadCount.rawValue)
+        let newAppointmentCount = UserDefaults.standard.integer(forKey: Defaults.UserDefaults.newAppointmentCount.rawValue)
+        
+        self.tabBar.items?[1].badgeValue = String(newAppointmentCount)
+        self.tabBar.items?[2].badgeValue = String(newLeadCount)
     }
     
     override func viewDidLayoutSubviews() {
@@ -90,8 +100,8 @@ extension HomeTabBarController {
 }
 
 extension HomeTabBarController: NovaOneAppDelegate {
-    func didHandleRemoteNotification(badgeValue: Int, selectIndex: Int) {
-        // Set the badgeValue for the appropriate tab bar icon after handling the remote notification in AppDelegate if
+    func didReceiveRemoteNotification(badgeValue: Int, selectIndex: Int) {
+        // Set the badgeValue for the appropriate tab bar icon after receiveing the remote notification in AppDelegate if
         // the user is NOT on the current screen for the index in the tab bar controller
         if self.selectedIndex != selectIndex {
             self.tabBar.items?[selectIndex].badgeValue = String(badgeValue)
