@@ -195,6 +195,8 @@ extension AppDelegate {
         guard
             let aps = userInfo["aps"] as? [String: AnyObject],
             let selectIndex = userInfo["selectIndex"] as? Int,
+            let newLeadCount = userInfo["newLeadCount"] as? Int,
+            let newAppointmentCount = userInfo["newAppointmentCount"] as? Int,
             let badgeValue = aps["badge"] as? Int
         else {
             print("could not get aps dictionary - AppDelegate")
@@ -206,7 +208,6 @@ extension AppDelegate {
 
         // Check if this is a silent notification
         // If it is, then update the data in core data by doing a network request and saving to core data
-        var newBadgeValue = 0 // The new badge value to set for the tab bar item
         if aps["content-available"] as? Int == 1 {
             // Silent notification, so update data
 
@@ -216,21 +217,9 @@ extension AppDelegate {
             if selectIndex == 1 {
                 // Notification for appointments
                 
-                // Save the number of new objects to user defaults
-                // Get the existing count
-                var numberOfNewAppointments = UserDefaults.standard.integer(forKey: Defaults.UserDefaults.newAppointmentCount.rawValue)
-                
-                // Add to the existing count
-                numberOfNewAppointments += badgeValue
-                newBadgeValue = numberOfNewAppointments
-                
-                // Set and save new count
-                UserDefaults.standard.set(numberOfNewAppointments, forKey: Defaults.UserDefaults.newAppointmentCount.rawValue)
-                UserDefaults.standard.synchronize()
-                
                 // Communicate with delegate view the new count after getting information from the notification payload
                 // so it can update the badge value property for the tab bar controller item
-                AppDelegate.delegate?.didReceiveRemoteNotification(badgeValue: newBadgeValue, selectIndex: selectIndex)
+                AppDelegate.delegate?.didReceiveRemoteNotification(badgeValue: newAppointmentCount, selectIndex: selectIndex)
                 
                 let endpoint = "/refreshAppointments.php"
                 guard
@@ -284,21 +273,9 @@ extension AppDelegate {
             } else if selectIndex == 2 {
                 // Notification for leads
                 
-                // Save the number of new objects to user defaults
-                // Get the existing count
-                var numberOfNewLeads = UserDefaults.standard.integer(forKey: Defaults.UserDefaults.newLeadCount.rawValue)
-                
-                // Add to the existing count
-                numberOfNewLeads += badgeValue
-                newBadgeValue = numberOfNewLeads
-                
-                // Set and save new count
-                UserDefaults.standard.set(numberOfNewLeads, forKey: Defaults.UserDefaults.newLeadCount.rawValue)
-                UserDefaults.standard.synchronize()
-                
                 // Communicate with delegate view the new count after getting information from the notification payload
                 // so it can update the badge value property for the tab bar controller item
-                AppDelegate.delegate?.didReceiveRemoteNotification(badgeValue: newBadgeValue, selectIndex: selectIndex)
+                AppDelegate.delegate?.didReceiveRemoteNotification(badgeValue: newLeadCount, selectIndex: selectIndex)
                 
                 let endpoint = "/refreshLeads.php"
                 guard
@@ -397,6 +374,8 @@ extension AppDelegate {
                 (options: UNNotificationPresentationOptions) -> Void in
             }
             self.handlePushNotification(userInfo: userInfo, didReceiveCompletionHandler: didReceiveCompletionHandler, willPresentCompletionHandler: willPresentCompletionHandler, didReceiveRemoteNotificationCompletionHandler: completionHandler)
+        } else {
+            completionHandler(.noData)
         }
         
     }

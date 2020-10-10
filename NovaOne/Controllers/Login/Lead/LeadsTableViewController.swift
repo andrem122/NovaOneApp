@@ -71,10 +71,10 @@ class LeadsTableViewController: UITableViewController, NovaOneTableView {
     
     func addNotificationObservers() {
         // Adds notification observers
-        NotificationCenter.default.addObserver(self, selector: #selector(self.refreshCoreData), name: Notification.Name(Defaults.NotificationObservers.newLeads.rawValue), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.refreshFromNotification), name: Notification.Name(Defaults.NotificationObservers.newLeads.rawValue), object: nil)
     }
     
-    @objc func refreshCoreData() {
+    @objc func refreshFromNotification() {
         // Refreshes core data for the view when the network request for data has completed
         self.getCoreData()
     }

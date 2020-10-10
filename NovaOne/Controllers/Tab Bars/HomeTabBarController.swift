@@ -22,19 +22,66 @@ class HomeTabBarController: UITabBarController, UITableViewDelegate {
     // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setBadgeValues()
         self.navigationController?.navigationBar.isHidden = true
         AppDelegate.delegate = self
         self.selectIndexForTabBar()
+        self.addObservers()
     }
     
-    func setBadgeValues() {
-        // Set the badge values for each tab bar item when the view loads
-        let newLeadCount = UserDefaults.standard.integer(forKey: Defaults.UserDefaults.newLeadCount.rawValue)
-        let newAppointmentCount = UserDefaults.standard.integer(forKey: Defaults.UserDefaults.newAppointmentCount.rawValue)
+    func addObservers() {
+        // Set the badge values for each tab bar item when the application becomes active from the background or launch
+        NotificationCenter.default.addObserver(
+            self,
+            selector:#selector(self.setBadgeValues),
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil
+        )
+    }
+    
+    @objc func setBadgeValues() {
+        // Sets badge values for tab bar items
         
-        self.tabBar.items?[1].badgeValue = String(newAppointmentCount)
-        self.tabBar.items?[2].badgeValue = String(newLeadCount)
+        // Make POST request to obtain notification counts from the database
+        let httpRequest = HTTPRequests()
+        guard
+            let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
+            let customerEmail = customer.email,
+            let password = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue)
+        else {
+            print("could not get customer object - HomeTabBarController")
+            return
+        }
+        
+        let parameters: [String: Any] = ["customerUserId": customer.id, "email": customerEmail, "password": password]
+        httpRequest.request(url: Defaults.Urls.api.rawValue + "/notificationCounts.php", dataModel: [CustomerUserPushNotificationTokens].self, parameters: parameters) { [weak self] (result) in
+            switch result {
+            
+                case .success(let customerUserPushNotificationToken):
+                    guard
+                        let newLeadCount = customerUserPushNotificationToken.first?.newLeadCount,
+                        let newAppointmentCount = customerUserPushNotificationToken.first?.newAppointmentCount
+                    else {
+                        print("could not unwrap notification counts from customerUserPushNotificationToken object - HomeTabBarController")
+                        return
+                    }
+                    
+                    // Set badge values for each tab bar icon and for application
+                    if newLeadCount > 0 {
+                        // Leads
+                        self?.tabBar.items?[2].badgeValue = String(newLeadCount)
+                    }
+                    
+                    if newAppointmentCount > 0 {
+                        // Appointments
+                        self?.tabBar.items?[1].badgeValue = String(newAppointmentCount)
+                    }
+                    
+                    
+                case .failure(let error):
+                    print("Failed to get notification counts: \(error.localizedDescription)")
+                    
+            }
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -47,13 +94,26 @@ class HomeTabBarController: UITabBarController, UITableViewDelegate {
     }
     
     func selectIndexForTabBar() {
-        // Selects the index for the tab bar controller
+        // Selects the index for the tab bar controller when coming from a notification
         guard let selectIndex = self.selectIndex else {
             print("could not get selectIndex - HomeTabBarController")
             return
         }
         
         self.selectedIndex = selectIndex
+        
+        guard
+            let tabBarItem = self.tabBar.items?[selectIndex],
+            let notificationCountString = tabBarItem.badgeValue,
+            let notificationCountInt = Int(notificationCountString)
+        else { return }
+        
+        // Reset notification counts after ending up on a tab item from a notification
+        tabBarItem.badgeValue = nil
+        self.resetNotificationCount(for: selectIndex)
+        
+        // Subtract from the application badge number
+        UIApplication.shared.applicationIconBadgeNumber -= notificationCountInt
     }
     
     func showViewForMenuOptionSelected(menuOption: MenuOption) {
@@ -83,19 +143,20 @@ class HomeTabBarController: UITabBarController, UITableViewDelegate {
 
 extension HomeTabBarController {
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        // If the tab bar item has a badge value and is selected, remove the badge value
-        item.badgeValue = nil
-        // Reset the badge value count to zero for the screen you are on
-        if self.selectedIndex == 1 {
-            // Appointments table view
-            UserDefaults.standard.set(0, forKey: Defaults.UserDefaults.newAppointmentCount.rawValue)
-            UserDefaults.standard.synchronize()
-        } else if self.selectedIndex == 2 {
-            // Leads table view
-            UserDefaults.standard.set(0, forKey: Defaults.UserDefaults.newLeadCount.rawValue)
-            UserDefaults.standard.synchronize()
+        // If the tab bar item has a badge value and is selected, remove the badge value from the
+        // tab bar item and make a POST request to the server to set the badge value to zero
+        // for the index associated with the object count (either lead or appointment objects for now)
+        if item.badgeValue != nil {
+            // Subtract the tab bar item number from the application badge number update the database value as well
+            guard let notificationCount = Int(item.badgeValue!) else { return }
+            
+            UIApplication.shared.applicationIconBadgeNumber -= notificationCount
+            self.resetNotificationCount(for: 0) // Update application_badge_count in database
+            
+            item.badgeValue = nil
+            guard let itemIndex = self.tabBar.items?.firstIndex(of: item) else { return }
+            self.resetNotificationCount(for: itemIndex)
         }
-        
     }
 }
 
@@ -103,7 +164,7 @@ extension HomeTabBarController: NovaOneAppDelegate {
     func didReceiveRemoteNotification(badgeValue: Int, selectIndex: Int) {
         // Set the badgeValue for the appropriate tab bar icon after receiveing the remote notification in AppDelegate if
         // the user is NOT on the current screen for the index in the tab bar controller
-        if self.selectedIndex != selectIndex {
+        if self.selectedIndex != selectIndex && badgeValue > 0 {
             self.tabBar.items?[selectIndex].badgeValue = String(badgeValue)
         }
     }

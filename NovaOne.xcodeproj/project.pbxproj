@@ -197,6 +197,9 @@
 		65B3536524A2545A00F15D23 /* support.php in Resources */ = {isa = PBXBuildFile; fileRef = 65B3536424A2545A00F15D23 /* support.php */; };
 		65B3536B24A3CA8100F15D23 /* updateName.php in Resources */ = {isa = PBXBuildFile; fileRef = 65B3536A24A3CA8100F15D23 /* updateName.php */; };
 		65B3536D24A3D01C00F15D23 /* updatePassword.php in Resources */ = {isa = PBXBuildFile; fileRef = 65B3536C24A3D01C00F15D23 /* updatePassword.php */; };
+		65B7CD6A2530A7830073BBC1 /* notificationCounts.php in Resources */ = {isa = PBXBuildFile; fileRef = 65B7CD692530A7830073BBC1 /* notificationCounts.php */; };
+		65B7CD6E2530AC190073BBC1 /* CustomerUserPushNotificationTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B7CD6D2530AC190073BBC1 /* CustomerUserPushNotificationTokens.swift */; };
+		65B7CD742530D5D90073BBC1 /* resetNotificationCounts.php in Resources */ = {isa = PBXBuildFile; fileRef = 65B7CD732530D5D90073BBC1 /* resetNotificationCounts.php */; };
 		65B99787245C932900F55381 /* MenuLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B99786245C932900F55381 /* MenuLauncher.swift */; };
 		65BA98B72430FD3500CFAA9F /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BA98B62430FD3500CFAA9F /* EmptyViewController.swift */; };
 		65BA98B92431224C00CFAA9F /* AppointmentsContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BA98B82431224C00CFAA9F /* AppointmentsContainerViewController.swift */; };
@@ -451,6 +454,9 @@
 		65B3536424A2545A00F15D23 /* support.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = support.php; sourceTree = "<group>"; };
 		65B3536A24A3CA8100F15D23 /* updateName.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = updateName.php; sourceTree = "<group>"; };
 		65B3536C24A3D01C00F15D23 /* updatePassword.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = updatePassword.php; sourceTree = "<group>"; };
+		65B7CD692530A7830073BBC1 /* notificationCounts.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = notificationCounts.php; sourceTree = "<group>"; };
+		65B7CD6D2530AC190073BBC1 /* CustomerUserPushNotificationTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerUserPushNotificationTokens.swift; sourceTree = "<group>"; };
+		65B7CD732530D5D90073BBC1 /* resetNotificationCounts.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = resetNotificationCounts.php; sourceTree = "<group>"; };
 		65B99786245C932900F55381 /* MenuLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuLauncher.swift; sourceTree = "<group>"; };
 		65BA98B62430FD3500CFAA9F /* EmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewController.swift; sourceTree = "<group>"; };
 		65BA98B82431224C00CFAA9F /* AppointmentsContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentsContainerViewController.swift; sourceTree = "<group>"; };
@@ -722,6 +728,7 @@
 				65D311A22475F8A100F290F8 /* ObjectDetailItem.swift */,
 				6506CD432488572500194C92 /* ChartDataMonth.swift */,
 				65BFB62324DB05C60036FCBF /* AppState.swift */,
+				65B7CD6D2530AC190073BBC1 /* CustomerUserPushNotificationTokens.swift */,
 			);
 			path = "Data Models";
 			sourceTree = "<group>";
@@ -933,6 +940,8 @@
 				65461A8224D1C3030028F202 /* deleteCompany.php */,
 				652FD93E24F5E27000718D53 /* updateAppointmentMedicalAddress.php */,
 				6503694A2507C46D00321E3C /* addDeviceToken.php */,
+				65B7CD692530A7830073BBC1 /* notificationCounts.php */,
+				65B7CD732530D5D90073BBC1 /* resetNotificationCounts.php */,
 			);
 			path = PHP;
 			sourceTree = "<group>";
@@ -1132,6 +1141,7 @@
 				65CF919524ABFD7900093008 /* updateAppointmentMedicalAndRealEstate.php in Resources */,
 				659D487923F375F0007AC005 /* appointments.php in Resources */,
 				6583195323F2209C001D378D /* settings.php in Resources */,
+				65B7CD742530D5D90073BBC1 /* resetNotificationCounts.php in Resources */,
 				653432702493BE0B00483505 /* addLead.php in Resources */,
 				6583195623F2209C001D378D /* django_password.php in Resources */,
 				6503694B2507C46D00321E3C /* addDeviceToken.php in Resources */,
@@ -1167,6 +1177,7 @@
 				65FE6FAF24B68C040055AF70 /* Signup.storyboard in Resources */,
 				65B3536D24A3D01C00F15D23 /* updatePassword.php in Resources */,
 				65B3536B24A3CA8100F15D23 /* updateName.php in Resources */,
+				65B7CD6A2530A7830073BBC1 /* notificationCounts.php in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1316,6 +1327,7 @@
 				65668E79241814C900774548 /* UpdateCompanyPhoneViewController.swift in Sources */,
 				65AA3E7D2432C2DB005C2319 /* AddAppointmentPhoneViewController.swift in Sources */,
 				65FAC249247C4B4900E40EBA /* CompaniesTableViewController.swift in Sources */,
+				65B7CD6E2530AC190073BBC1 /* CustomerUserPushNotificationTokens.swift in Sources */,
 				65802592240F4A8B00A74DCD /* SignUpCompanyEmailViewController.swift in Sources */,
 				65AA3E812432CAA6005C2319 /* AddAppointmentUnitTypeViewController.swift in Sources */,
 				656760522443837500EF4388 /* AddAppointmentCompanyViewController.swift in Sources */,

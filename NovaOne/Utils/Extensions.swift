@@ -131,6 +131,49 @@ extension UIViewController {
             spinnerView.removeFromSuperview()
         }
     }
+    
+    func resetNotificationCount(for index: Int) {
+        // Make HTTP requst to server to notification counts to zero
+        // in the server database
+        var updateColumn = ""
+        switch index {
+            case 0:
+                updateColumn = "application_badge_count"
+            case 1:
+                updateColumn = "new_appointment_count"
+            case 2:
+                updateColumn = "new_lead_count"
+            default:
+                updateColumn = ""
+        }
+        
+        let httpRequest = HTTPRequests()
+        guard
+            let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
+            let customerEmail = customer.email,
+            let password = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue)
+        else {
+            print("could not get customer object - HomeTabBarController")
+            return
+        }
+        
+        let parameters: [String: Any] = [
+            "customerUserId": customer.id,
+            "email": customerEmail,
+            "password": password,
+            "updateColumn": updateColumn,
+        ]
+        
+        httpRequest.request(url: Defaults.Urls.api.rawValue + "/resetNotificationCounts.php", dataModel: SuccessResponse.self, parameters: parameters) { (result) in
+            switch result {
+                case .success(let successResponse):
+                    print("Notification counts successfully reset in database: \(successResponse.successReason)")
+                case .failure(let error):
+                    print("Failed to reset notification counts: \(error.localizedDescription)")
+            }
+        }
+        
+    }
 }
 
 extension String {
