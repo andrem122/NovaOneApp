@@ -174,6 +174,38 @@ extension UIViewController {
         }
         
     }
+    
+    func updateApplicationBadgeCount(subtract count: Int) {
+        // Make HTTP requst to server to notification counts to zero
+        // in the server database
+        
+        let httpRequest = HTTPRequests()
+        guard
+            let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
+            let customerEmail = customer.email,
+            let password = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue)
+        else {
+            print("could not get customer object - HomeTabBarController")
+            return
+        }
+        
+        let parameters: [String: Any] = [
+            "customerUserId": customer.id,
+            "email": customerEmail,
+            "password": password,
+            "subtractFromBadgeCount": count,
+        ]
+        
+        httpRequest.request(url: Defaults.Urls.api.rawValue + "/updateApplicationBadgeCount.php", dataModel: SuccessResponse.self, parameters: parameters) { (result) in
+            switch result {
+                case .success(let successResponse):
+                    print("Application badge count successfully updated in database: \(successResponse.successReason)")
+                case .failure(let error):
+                    print("Failed to update application badge count: \(error.localizedDescription)")
+            }
+        }
+        
+    }
 }
 
 extension String {

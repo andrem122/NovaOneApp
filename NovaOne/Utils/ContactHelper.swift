@@ -18,12 +18,19 @@ class ContactHelper: UIViewController, MFMailComposeViewControllerDelegate {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
             mail.setToRecipients([email])
+            mail.mailComposeDelegate = self
 
             from.present(mail, animated: true)
         } else {
-            // show failure alert
-            print("mail fail")
+            // Show failure alert
+            print("Mail services are not available")
+            return
         }
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        // Handle the dissmisal of the mail view controller
+        controller.dismiss(animated: true, completion: nil)
     }
     
     func call(phoneNumber: String) {

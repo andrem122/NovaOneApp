@@ -204,6 +204,7 @@
 		65BA98B72430FD3500CFAA9F /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BA98B62430FD3500CFAA9F /* EmptyViewController.swift */; };
 		65BA98B92431224C00CFAA9F /* AppointmentsContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BA98B82431224C00CFAA9F /* AppointmentsContainerViewController.swift */; };
 		65BA98BB243166C700CFAA9F /* LeadsContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BA98BA243166C700CFAA9F /* LeadsContainerViewController.swift */; };
+		65BE1EA72531F0DB0016CB23 /* updateApplicationBadgeCount.php in Resources */ = {isa = PBXBuildFile; fileRef = 65BE1EA62531F0DB0016CB23 /* updateApplicationBadgeCount.php */; };
 		65BFB62424DB05C60036FCBF /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BFB62324DB05C60036FCBF /* AppState.swift */; };
 		65C14C332434DAA500848606 /* PopUpOkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C14C322434DAA500848606 /* PopUpOkViewController.swift */; };
 		65C230E224718F430099DA1A /* inputCheck.php in Resources */ = {isa = PBXBuildFile; fileRef = 65C230E124718F430099DA1A /* inputCheck.php */; };
@@ -461,6 +462,7 @@
 		65BA98B62430FD3500CFAA9F /* EmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewController.swift; sourceTree = "<group>"; };
 		65BA98B82431224C00CFAA9F /* AppointmentsContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentsContainerViewController.swift; sourceTree = "<group>"; };
 		65BA98BA243166C700CFAA9F /* LeadsContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadsContainerViewController.swift; sourceTree = "<group>"; };
+		65BE1EA62531F0DB0016CB23 /* updateApplicationBadgeCount.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = updateApplicationBadgeCount.php; sourceTree = "<group>"; };
 		65BFB62324DB05C60036FCBF /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		65C14C322434DAA500848606 /* PopUpOkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpOkViewController.swift; sourceTree = "<group>"; };
 		65C230E124718F430099DA1A /* inputCheck.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = inputCheck.php; sourceTree = "<group>"; };
@@ -942,6 +944,7 @@
 				6503694A2507C46D00321E3C /* addDeviceToken.php */,
 				65B7CD692530A7830073BBC1 /* notificationCounts.php */,
 				65B7CD732530D5D90073BBC1 /* resetNotificationCounts.php */,
+				65BE1EA62531F0DB0016CB23 /* updateApplicationBadgeCount.php */,
 			);
 			path = PHP;
 			sourceTree = "<group>";
@@ -1145,6 +1148,7 @@
 				653432702493BE0B00483505 /* addLead.php in Resources */,
 				6583195623F2209C001D378D /* django_password.php in Resources */,
 				6503694B2507C46D00321E3C /* addDeviceToken.php in Resources */,
+				65BE1EA72531F0DB0016CB23 /* updateApplicationBadgeCount.php in Resources */,
 				65A7423D24B770330092DF0C /* UpdateAccount.storyboard in Resources */,
 				65A7424B24B773370092DF0C /* Home.storyboard in Resources */,
 				653D2184244523C5009DA68E /* credentials.php in Resources */,

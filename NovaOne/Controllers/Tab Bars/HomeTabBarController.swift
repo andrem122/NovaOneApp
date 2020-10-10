@@ -112,8 +112,9 @@ class HomeTabBarController: UITabBarController, UITableViewDelegate {
         tabBarItem.badgeValue = nil
         self.resetNotificationCount(for: selectIndex)
         
-        // Subtract from the application badge number
+        // Subtract from the application badge number and update database application badge number
         UIApplication.shared.applicationIconBadgeNumber -= notificationCountInt
+        self.updateApplicationBadgeCount(subtract: notificationCountInt)
     }
     
     func showViewForMenuOptionSelected(menuOption: MenuOption) {
@@ -151,7 +152,7 @@ extension HomeTabBarController {
             guard let notificationCount = Int(item.badgeValue!) else { return }
             
             UIApplication.shared.applicationIconBadgeNumber -= notificationCount
-            self.resetNotificationCount(for: 0) // Update application_badge_count in database
+            self.updateApplicationBadgeCount(subtract: notificationCount)
             
             item.badgeValue = nil
             guard let itemIndex = self.tabBar.items?.firstIndex(of: item) else { return }
