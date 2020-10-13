@@ -170,8 +170,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             self?.removeSpinner(spinnerView: spinnerView)
             
             // Ask the user to register for push notifications after successful login
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            appDelegate.registerForPushNotifications()
+            let title = "Notifications"
+            let body = "Do you want to enable push notifications?"
+            let buttonTitle = "Yes"
+            guard let popupActionViewController = self?.alertService.popUp(title: title, body: body, buttonTitle: buttonTitle, actionHandler: {
+                // Prompt user to register for push notifications
+                AppDelegate.registerForPushNotifications()
+            }, cancelHandler: {
+                print("Action canceled for push notifications permission - LoginViewController")
+            }) else { return }
+            
+            containerViewController.present(popupActionViewController, animated: true, completion: nil)
         })
     }
     

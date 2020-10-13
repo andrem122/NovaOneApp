@@ -179,6 +179,8 @@ extension UIViewController {
         // Make HTTP requst to server to notification counts to zero
         // in the server database
         
+        UIApplication.shared.applicationIconBadgeNumber -= count
+        
         let httpRequest = HTTPRequests()
         guard
             let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,

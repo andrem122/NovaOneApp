@@ -12,7 +12,8 @@ class ContainerViewController: UIViewController {
     
     // MARK: Properties
     var alertService = AlertService()
-    var homeTabBarSelectIndex: Int?
+    var homeTabBarSelectIndex: Int? // The selectIndex is passed to the tab bar controller when the app is LAUNCHED from a notification
+    var homeTabBarNotificationCount: Int? // The notfication count is passed to the tab bar controller when the app is LAUNCHED from a notification
     @IBOutlet weak var containerView: UIView!
     
     // MARK: Methods
@@ -32,7 +33,13 @@ class ContainerViewController: UIViewController {
                 return
             }
             
+            guard let notificationCount = self.homeTabBarNotificationCount else {
+                print("could not get selectIndex - ContainerViewController")
+                return
+            }
+            
             homeTabBarController.selectIndex = selectIndex
+            homeTabBarController.notificationCount = notificationCount
         }
     }
 

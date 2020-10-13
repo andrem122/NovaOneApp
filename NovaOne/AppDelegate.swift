@@ -58,19 +58,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 extension AppDelegate {
     
     // MARK: Register Push Notifications
-    func registerForPushNotifications() {
+    static func registerForPushNotifications() {
         // Ask the user to enable push notifications
-        UNUserNotificationCenter.current()
-            .requestAuthorization(options: [.alert, .sound, .badge]) { [weak self] (granted, error) in
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
                 print("Permission granted: \(granted)")
                 
                 guard granted else { return } // If granted is true, proceed with the below code else do not
-                self?.getNotificationSettings()
+                AppDelegate.getNotificationSettings()
         }
     }
     
-    func getNotificationSettings() {
-        UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+    static func getNotificationSettings() {
+        let center = UNUserNotificationCenter.current()
+        center.getNotificationSettings { (settings) in
             print("Notification settings: \(settings)")
             
             guard settings.authorizationStatus == .authorized else { return } // User has authorized permissions for push notifications so proceed with below code
@@ -81,7 +82,7 @@ extension AppDelegate {
         }
     }
     
-    func sendDeviceTokenToServer(deviceToken: String) {
+    static func sendDeviceTokenToServer(deviceToken: String, requestCount: Int) {
         // Sends the device token for push notifications to the NovaOne server
         // Make http request to NovaOne server with token
         let httpRequest = HTTPRequests()
@@ -103,7 +104,16 @@ extension AppDelegate {
                 case .success(let successResponse):
                     print("Successfully added device token to database: \(successResponse.successReason)")
                 case .failure(_):
-                    print("Unable to enable push notifications. Please connect to the internet.")
+                    if requestCount < 3 {
+                        // Try the request again if it fails
+                        print("Unable to send device token to database. Trying again...")
+                        
+                        // Increase request count by one
+                        let newRequestCount = requestCount + 1
+                        
+                        // Try request again
+                        self.sendDeviceTokenToServer(deviceToken: deviceToken, requestCount: newRequestCount)
+                    }
             }
         }
     }
@@ -118,14 +128,19 @@ extension AppDelegate {
         
         if isLoggedIn == true {
             
-            let oldDeviceToken = UserDefaults.standard.string(forKey: Defaults.UserDefaults.deviceToken.rawValue)
+            guard
+                let oldDeviceToken = UserDefaults.standard.string(forKey: Defaults.UserDefaults.deviceToken.rawValue)
+            else {
+                print("Could not get old device token - AppDelegate")
+                return
+            }
             
             // Check if old token matches new token before sending to server
             if oldDeviceToken != newDeviceToken {
                 // Save new token to user defaults
                 UserDefaults.standard.set(newDeviceToken, forKey: Defaults.UserDefaults.deviceToken.rawValue)
                 UserDefaults.standard.synchronize()
-                self.sendDeviceTokenToServer(deviceToken: newDeviceToken)
+                AppDelegate.sendDeviceTokenToServer(deviceToken: newDeviceToken, requestCount: 0)
             }
         }
     }
@@ -205,6 +220,8 @@ extension AppDelegate {
             didReceiveRemoteNotificationCompletionHandler(.failed)
             return
         }
+        
+        UIApplication.shared.applicationIconBadgeNumber = badgeValue
 
         // Check if this is a silent notification
         // If it is, then update the data in core data by doing a network request and saving to core data

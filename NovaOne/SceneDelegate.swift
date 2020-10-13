@@ -28,10 +28,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
             let content = notificationResponse.notification.request.content.userInfo
             guard
-                let selectIndex = content["selectIndex"] as? Int // The index to select on the tab bar controller when the user opens the app
+                let selectIndex = content["selectIndex"] as? Int, // The index to select on the tab bar controller when the user opens the app
+                let newLeadCount = content["newLeadCount"] as? Int,
+                let newAppointmentCount = content["newAppointmentCount"] as? Int
             else {
                 return
             }
+            
+            // If we get a new appointment (indicated by selectIndex), then notification count is equal to new appointment count
+            // else it will be equal to newLeadCount
+            let notificationCount = selectIndex == 1 ? newAppointmentCount : newLeadCount
             
             // Get the window object to show the view to restore
             guard let windowScene = (scene as? UIWindowScene) else { return }
@@ -54,6 +60,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             }
             
             containerViewController.homeTabBarSelectIndex = selectIndex
+            containerViewController.homeTabBarNotificationCount = notificationCount
             
             // Set root controller for the window
             self.window?.rootViewController = startViewController

@@ -17,14 +17,21 @@ class AccountTableViewController: UITableViewController {
     @IBOutlet weak var phoneNumberValueLabel: UILabel!
     @IBOutlet weak var smsNotificationsActivityView: UIActivityIndicatorView!
     @IBOutlet weak var emailNotificationsActivityView: UIActivityIndicatorView!
+    @IBOutlet weak var pushNotificationsActivityView: UIActivityIndicatorView!
     @IBOutlet weak var smsNotificationsSwitch: UISwitch!
     @IBOutlet weak var emailNotificationsSwitch: UISwitch!
+    @IBOutlet weak var pushNotificationsSwitch: UISwitch!
     var alertService = AlertService()
     let updateBaseViewController = UpdateBaseViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setLabelValues()
+        self.addObservers()
+    }
+    
+    func addObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.setNotificationSwitch), name: UIApplication.didBecomeActiveNotification, object: nil)
     }
     
     func setLabelValues() {
@@ -48,9 +55,32 @@ class AccountTableViewController: UITableViewController {
         
         self.smsNotificationsSwitch.setOn(wantsSms, animated: false)
         self.emailNotificationsSwitch.setOn(wantsEmailNotificatons, animated: false)
+        self.setNotificationSwitch()
         
         // Setup navigation bar style
         UIHelper.setupNavigationBarStyle(for: self.navigationController)
+    }
+    
+    @objc func setNotificationSwitch() {
+        // Sets the value of the notification switch based on whether or not
+        // notifications are enabled in the user's settings
+        let center = UNUserNotificationCenter.current()
+        center.getNotificationSettings { [weak self] (settings) in
+            let isAuthorized = settings.authorizationStatus == .authorized
+            
+            DispatchQueue.main.async {
+                [weak self] in
+                
+                if isAuthorized && !UIApplication.shared.isRegisteredForRemoteNotifications {
+                    AppDelegate.registerForPushNotifications()
+                    self?.pushNotificationsSwitch.setOn(true, animated: false)
+                } else if isAuthorized && UIApplication.shared.isRegisteredForRemoteNotifications {
+                    self?.pushNotificationsSwitch.setOn(true, animated: false)
+                } else {
+                    self?.pushNotificationsSwitch.setOn(false, animated: false)
+                }
+            }
+        }
     }
     
     // MARK: Navigation
@@ -85,6 +115,9 @@ class AccountTableViewController: UITableViewController {
                 PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.company.rawValue)
                 PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.lead.rawValue)
                 PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.appointment.rawValue)
+                
+                // Unregister from push notifications
+                UIApplication.shared.unregisterForRemoteNotifications()
                 
                 // Update UserDefaults
                 UserDefaults.standard.set(false, forKey: Defaults.UserDefaults.isLoggedIn.rawValue)
@@ -157,5 +190,67 @@ class AccountTableViewController: UITableViewController {
         
     }
     
+    @IBAction func pushNotificationsSwitchChanged(_ sender: Any) {
+        // Animate and show activity view
+        if self.pushNotificationsActivityView.isAnimating == false {
+            self.pushNotificationsActivityView.startAnimating()
+        } else {
+            self.pushNotificationsActivityView.stopAnimating()
+        }
+        
+        let center = UNUserNotificationCenter.current()
+        center.getNotificationSettings { [weak self] (settings) in
+            let isAuthorized = settings.authorizationStatus == .authorized
+            let wasDenied = settings.authorizationStatus == .denied
+            var popupActionViewController: UIViewController?
+            
+            if wasDenied || isAuthorized {
+                // User wants to change push notification settings
+                // OR the user denied push notifications before
+                // Enable or disable push notifications by directing the user to the settings page
+                let title = "Go To Settings?"
+                let body = "You will now be redirected to settings to enable or disable push notifications for NovaOne."
+                let buttonTitle = "Settings"
+                
+                DispatchQueue.main.async {
+                    [weak self] in
+                    popupActionViewController = self?.alertService.popUp(title: title, body: body, buttonTitle: buttonTitle) {
+                        // Take the user to the settings page if they have enabled push notifications in the settings before
+                        UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
+                    } cancelHandler: {
+                        print("Action canceled for settings redirect - AccountTableViewController")
+                    }
+                }
+            } else {
+                // User has never allowed push notifications for NovaOne
+                // Showing the official apple notification popup for the first time
+                let title = "Notifications"
+                let body = "Do you want to enable push notifications?"
+                let buttonTitle = "Yes"
+                DispatchQueue.main.async {
+                    [weak self] in
+                    popupActionViewController = self?.alertService.popUp(title: title, body: body, buttonTitle: buttonTitle, actionHandler: {
+                        // Prompt user to register for push notifications with the official prompt
+                        AppDelegate.registerForPushNotifications()
+                    }, cancelHandler: {
+                        print("action canceled for push notifications permission - LoginViewController")
+                    })
+                }
+            }
+            
+            DispatchQueue.main.async {
+                [weak self] in
+                self?.present(popupActionViewController!, animated: true, completion: {
+                    [weak self] in
+                    self?.pushNotificationsActivityView.stopAnimating()
+                    self?.setNotificationSwitch()
+                })
+            }
+        }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     
 }

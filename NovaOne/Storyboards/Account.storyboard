@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -75,7 +76,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customer Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="hIW-p1-Uzp">
-                                                    <rect key="frame" x="30" y="9.5" width="140" height="21"/>
+                                                    <rect key="frame" x="30" y="9.5" width="139" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" name="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -149,7 +150,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="nxp-TN-rre" userLabel="Update Password Label">
-                                                    <rect key="frame" x="30" y="9.5" width="132.5" height="21"/>
+                                                    <rect key="frame" x="30" y="9.5" width="132" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" name="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -187,7 +188,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Out" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="cWF-kL-jYo">
-                                                    <rect key="frame" x="30" y="9.5" width="65.5" height="21"/>
+                                                    <rect key="frame" x="30" y="9.5" width="65" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" name="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -226,7 +227,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mail@gmail.com" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="YEy-Um-pYw">
-                                                    <rect key="frame" x="259.5" y="9.5" width="123.5" height="21"/>
+                                                    <rect key="frame" x="260" y="9.5" width="123" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" name="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -243,7 +244,7 @@
                                                     <state key="normal" title="Button" image="rightAngleBlue"/>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Email Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="4Mj-f5-XtM">
-                                                    <rect key="frame" x="30" y="9.5" width="106.5" height="21"/>
+                                                    <rect key="frame" x="30" y="9.5" width="106" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" name="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -285,7 +286,7 @@
                                                     </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="561-246-5571" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="7IP-w7-3n5">
-                                                    <rect key="frame" x="273.5" y="9.5" width="109.5" height="21"/>
+                                                    <rect key="frame" x="274" y="9.5" width="109" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" name="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -398,6 +399,44 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="40" id="YpM-Gv-TA8">
+                                        <rect key="frame" x="0.0" y="500" width="414" height="40"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YpM-Gv-TA8" id="NGw-yW-dd6">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Push Notifications" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="etd-C7-NZf">
+                                                    <rect key="frame" x="30" y="9.5" width="136" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                                    <color key="textColor" name="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=regular">
+                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
+                                                    </variation>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fpc-g1-xK1">
+                                                    <rect key="frame" x="360" y="4.5" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="pushNotificationsSwitchChanged:" destination="tGV-Bw-WqH" eventType="valueChanged" id="4cj-yc-ajy"/>
+                                                    </connections>
+                                                </switch>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="xqq-wz-DKs">
+                                                    <rect key="frame" x="332" y="10" width="20" height="20"/>
+                                                    <color key="color" name="textFieldColor"/>
+                                                </activityIndicatorView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="fpc-g1-xK1" secondAttribute="trailing" constant="5" id="A0t-7h-1xG"/>
+                                                <constraint firstItem="etd-C7-NZf" firstAttribute="leading" secondItem="NGw-yW-dd6" secondAttribute="leading" constant="30" id="Bm5-b9-Ej5"/>
+                                                <constraint firstItem="fpc-g1-xK1" firstAttribute="centerY" secondItem="etd-C7-NZf" secondAttribute="centerY" id="LRe-NF-HLe"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="etd-C7-NZf" secondAttribute="trailing" id="kp9-5c-n2d"/>
+                                                <constraint firstItem="xqq-wz-DKs" firstAttribute="centerY" secondItem="etd-C7-NZf" secondAttribute="centerY" id="tBo-pB-9CM"/>
+                                                <constraint firstItem="fpc-g1-xK1" firstAttribute="leading" secondItem="xqq-wz-DKs" secondAttribute="trailing" constant="8" id="vX5-KA-wGH"/>
+                                                <constraint firstItem="etd-C7-NZf" firstAttribute="centerY" secondItem="NGw-yW-dd6" secondAttribute="centerY" id="wdO-Lx-v7j"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -416,6 +455,8 @@
                         <outlet property="emailNotificationsSwitch" destination="ntL-0i-XGV" id="1un-wF-JkQ"/>
                         <outlet property="nameValueLabel" destination="waM-9h-XE1" id="uGf-HO-DpI"/>
                         <outlet property="phoneNumberValueLabel" destination="7IP-w7-3n5" id="bgy-Eh-9Kz"/>
+                        <outlet property="pushNotificationsActivityView" destination="xqq-wz-DKs" id="05V-Ab-wTb"/>
+                        <outlet property="pushNotificationsSwitch" destination="fpc-g1-xK1" id="uOE-Oc-RCb"/>
                         <outlet property="smsNotificationsActivityView" destination="85q-JE-yba" id="Bvd-xZ-BdA"/>
                         <outlet property="smsNotificationsSwitch" destination="jfM-Ar-JOn" id="hU9-m0-nOA"/>
                     </connections>

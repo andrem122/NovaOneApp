@@ -20,7 +20,7 @@
     $type = $columns['type'];
     $customer_user_id = $columns['customerUserId'];
 
-    $query = "INSERT INTO customer_register_customer_user_push_notification_tokens (device_token, created, type, customer_user_id) VALUES (:device_token, NOW(), :type, :customer_user_id);";
+    $query = "INSERT INTO customer_register_customer_user_push_notification_tokens (device_token, created, type, customer_user_id, new_lead_count, new_appointment_count, application_badge_count) VALUES (:device_token, NOW(), :type, :customer_user_id, 0, 0, 0);";
     
     // query the database and echo results
     $parameters = array(':device_token' => $device_token, ':type' => $type, ':customer_user_id' => $customer_user_id);

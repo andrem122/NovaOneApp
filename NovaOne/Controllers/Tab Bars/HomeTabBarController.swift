@@ -17,7 +17,8 @@ class HomeTabBarController: UITabBarController, UITableViewDelegate {
         let launcher = MenuLauncher(homeTabBarController: self)
         return launcher
     }()
-    var selectIndex: Int?
+    var selectIndex: Int? // The index to select that comes in when the app is launched from a notification
+    var notificationCount: Int? // The count that comes in when the app is launched from a notification
     
     // MARK: Methods
     override func viewDidLoad() {
@@ -26,6 +27,7 @@ class HomeTabBarController: UITabBarController, UITableViewDelegate {
         AppDelegate.delegate = self
         self.selectIndexForTabBar()
         self.addObservers()
+        self.setBadgeValues()
     }
     
     func addObservers() {
@@ -59,22 +61,26 @@ class HomeTabBarController: UITabBarController, UITableViewDelegate {
                 case .success(let customerUserPushNotificationToken):
                     guard
                         let newLeadCount = customerUserPushNotificationToken.first?.newLeadCount,
-                        let newAppointmentCount = customerUserPushNotificationToken.first?.newAppointmentCount
+                        let newAppointmentCount = customerUserPushNotificationToken.first?.newAppointmentCount,
+                        let applicationBadgeCount = customerUserPushNotificationToken.first?.applicationBadgeCount
                     else {
                         print("could not unwrap notification counts from customerUserPushNotificationToken object - HomeTabBarController")
                         return
                     }
                     
                     // Set badge values for each tab bar icon and for application
-                    if newLeadCount > 0 {
+                    // If we are not coming from application launch and count is greater than zero
+                    if newLeadCount > 0 && self?.selectIndex == nil {
                         // Leads
                         self?.tabBar.items?[2].badgeValue = String(newLeadCount)
                     }
                     
-                    if newAppointmentCount > 0 {
+                    if newAppointmentCount > 0 && self?.selectIndex == nil {
                         // Appointments
                         self?.tabBar.items?[1].badgeValue = String(newAppointmentCount)
                     }
+                    
+                    UIApplication.shared.applicationIconBadgeNumber = applicationBadgeCount
                     
                     
                 case .failure(let error):
@@ -103,9 +109,11 @@ class HomeTabBarController: UITabBarController, UITableViewDelegate {
         self.selectedIndex = selectIndex
         
         guard
-            let tabBarItem = self.tabBar.items?[selectIndex],
-            let notificationCountString = tabBarItem.badgeValue,
-            let notificationCountInt = Int(notificationCountString)
+            let tabBarItem = self.tabBar.items?[selectIndex]
+        else { return }
+        
+        guard
+            let notificationCount = self.notificationCount
         else { return }
         
         // Reset notification counts after ending up on a tab item from a notification
@@ -113,8 +121,9 @@ class HomeTabBarController: UITabBarController, UITableViewDelegate {
         self.resetNotificationCount(for: selectIndex)
         
         // Subtract from the application badge number and update database application badge number
-        UIApplication.shared.applicationIconBadgeNumber -= notificationCountInt
-        self.updateApplicationBadgeCount(subtract: notificationCountInt)
+        if UIApplication.shared.applicationIconBadgeNumber > 0 {
+            self.updateApplicationBadgeCount(subtract: notificationCount)
+        }
     }
     
     func showViewForMenuOptionSelected(menuOption: MenuOption) {
@@ -140,6 +149,10 @@ class HomeTabBarController: UITabBarController, UITableViewDelegate {
         }
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
 }
 
 extension HomeTabBarController {
@@ -148,13 +161,28 @@ extension HomeTabBarController {
         // tab bar item and make a POST request to the server to set the badge value to zero
         // for the index associated with the object count (either lead or appointment objects for now)
         if item.badgeValue != nil {
-            // Subtract the tab bar item number from the application badge number update the database value as well
-            guard let notificationCount = Int(item.badgeValue!) else { return }
             
-            UIApplication.shared.applicationIconBadgeNumber -= notificationCount
-            self.updateApplicationBadgeCount(subtract: notificationCount)
+            // Update badge value in database and in application
+            guard
+                let notificationCountStr = item.badgeValue
+            else {
+                print("could not get item badge value - HomeTabBarController")
+                return
+            }
+            
+            guard
+                let notificationCount = Int(notificationCountStr)
+            else {
+                print("could not get item badge value as Int type - HomeTabBarController")
+                return
+            }
             
             item.badgeValue = nil
+            
+            if UIApplication.shared.applicationIconBadgeNumber > 0 {
+                self.updateApplicationBadgeCount(subtract: notificationCount)
+            }
+            
             guard let itemIndex = self.tabBar.items?.firstIndex(of: item) else { return }
             self.resetNotificationCount(for: itemIndex)
         }
@@ -167,6 +195,14 @@ extension HomeTabBarController: NovaOneAppDelegate {
         // the user is NOT on the current screen for the index in the tab bar controller
         if self.selectedIndex != selectIndex && badgeValue > 0 {
             self.tabBar.items?[selectIndex].badgeValue = String(badgeValue)
+        } else {
+            // If you are on the tab item that receives the notification
+            
+            // Update application badge number
+            self.updateApplicationBadgeCount(subtract: badgeValue)
+            
+            // Reset notification count in database
+            self.resetNotificationCount(for: selectIndex)
         }
     }
 }
