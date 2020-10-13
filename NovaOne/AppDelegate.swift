@@ -128,12 +128,7 @@ extension AppDelegate {
         
         if isLoggedIn == true {
             
-            guard
-                let oldDeviceToken = UserDefaults.standard.string(forKey: Defaults.UserDefaults.deviceToken.rawValue)
-            else {
-                print("Could not get old device token - AppDelegate")
-                return
-            }
+            let oldDeviceToken = UserDefaults.standard.string(forKey: Defaults.UserDefaults.deviceToken.rawValue)
             
             // Check if old token matches new token before sending to server
             if oldDeviceToken != newDeviceToken {
