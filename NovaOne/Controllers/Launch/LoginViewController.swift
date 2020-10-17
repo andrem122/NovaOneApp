@@ -169,18 +169,37 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             [weak self] in
             self?.removeSpinner(spinnerView: spinnerView)
             
-            // Ask the user to register for push notifications after successful login
-            let title = "Notifications"
-            let body = "Do you want to enable push notifications?"
-            let buttonTitle = "Yes"
-            guard let popupActionViewController = self?.alertService.popUp(title: title, body: body, buttonTitle: buttonTitle, actionHandler: {
-                // Prompt user to register for push notifications
-                AppDelegate.registerForPushNotifications()
-            }, cancelHandler: {
-                print("Action canceled for push notifications permission - LoginViewController")
-            }) else { return }
-            
-            containerViewController.present(popupActionViewController, animated: true, completion: nil)
+            // Ask the user to register for push notifications after successful login IF
+            // they have not already pressed 'Allow' on the push notification prompt
+            let deviceToken = UserDefaults.standard.string(forKey: Defaults.UserDefaults.deviceToken.rawValue)
+            let center = UNUserNotificationCenter.current()
+            center.getNotificationSettings { [weak self] (settings) in
+                let isAuthorized = settings.authorizationStatus == .authorized
+                
+                if !isAuthorized && deviceToken == nil {
+                    // If not authorized, go to settings to allow user to enable push notifications
+                    // if they have previously turned it off in settings
+                    let title = "Notifications"
+                    let body = "Do you want to enable push notifications?"
+                    let buttonTitle = "Yes"
+                    
+                    DispatchQueue.main.async {
+                        [weak self] in
+                        guard let popupActionViewController = self?.alertService.popUp(title: title, body: body, buttonTitle: buttonTitle, actionHandler: {
+                            // Prompt user to register for push notifications
+                            AppDelegate.registerForPushNotifications()
+                        }, cancelHandler: {
+                            print("Action canceled for push notifications - LoginViewController")
+                        }) else { return }
+                        
+                        containerViewController.present(popupActionViewController, animated: true, completion: nil)
+                    }
+                } else if isAuthorized && deviceToken == nil {
+                    // User has authorized push notifications and device token is nil
+                    AppDelegate.registerForPushNotifications()
+                }
+                
+            }
         })
     }
     

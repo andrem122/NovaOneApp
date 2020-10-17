@@ -30,7 +30,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         GMSPlacesClient.provideAPIKey(Defaults.googlePlacesApiKey)
         
-        UNUserNotificationCenter.current().delegate = self // Set the delegate for User Notification Center
+        let center = UNUserNotificationCenter.current()
+        center.delegate = self // Set the delegate for User Notification Center
+        
+        // If user is logged in, has enabled push notifications, and device token is nil, send token to server
+        let isLoggedIn = UserDefaults.standard.bool(forKey: Defaults.UserDefaults.isLoggedIn.rawValue)
+        if isLoggedIn == true {
+            
+            let deviceToken = UserDefaults.standard.string(forKey: Defaults.UserDefaults.deviceToken.rawValue)
+            center.getNotificationSettings { (settings) in
+                let isAuthorized = settings.authorizationStatus == .authorized
+                if isAuthorized && deviceToken == nil {
+                    AppDelegate.registerForPushNotifications()
+                }
+            }
+        }
         
         return true
     }
@@ -103,6 +117,9 @@ extension AppDelegate {
             switch result {
                 case .success(let successResponse):
                     print("Successfully added device token to database: \(successResponse.successReason)")
+                    // Save new token to user defaults
+                    UserDefaults.standard.set(deviceToken, forKey: Defaults.UserDefaults.deviceToken.rawValue)
+                    UserDefaults.standard.synchronize()
                 case .failure(_):
                     if requestCount < 3 {
                         // Try the request again if it fails
@@ -132,9 +149,6 @@ extension AppDelegate {
             
             // Check if old token matches new token before sending to server
             if oldDeviceToken != newDeviceToken {
-                // Save new token to user defaults
-                UserDefaults.standard.set(newDeviceToken, forKey: Defaults.UserDefaults.deviceToken.rawValue)
-                UserDefaults.standard.synchronize()
                 AppDelegate.sendDeviceTokenToServer(deviceToken: newDeviceToken, requestCount: 0)
             }
         }
@@ -152,7 +166,6 @@ extension AppDelegate {
     
     func getDataForRefresh<T: Decodable>(endpoint: String, lastObjectId: Int32, objectType: T.Type, success: @escaping (T) -> Void, requestCount: Int) {
         // Gets the data needed to refresh when a push notification arrives
-        print("REFRESHING DATA FROM PUSH NOTIFICATION")
         
         // Get data through HTTP request
         let httpRequest = HTTPRequests()

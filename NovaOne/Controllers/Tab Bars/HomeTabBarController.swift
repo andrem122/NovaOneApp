@@ -48,13 +48,14 @@ class HomeTabBarController: UITabBarController, UITableViewDelegate {
         guard
             let customer = PersistenceService.fetchEntity(Customer.self, filter: nil, sort: nil).first,
             let customerEmail = customer.email,
-            let password = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue)
+            let password = KeychainWrapper.standard.string(forKey: Defaults.KeychainKeys.password.rawValue),
+            let deviceToken = UserDefaults.standard.string(forKey: Defaults.UserDefaults.deviceToken.rawValue)
         else {
             print("could not get customer object - HomeTabBarController")
             return
         }
         
-        let parameters: [String: Any] = ["customerUserId": customer.id, "email": customerEmail, "password": password]
+        let parameters: [String: Any] = ["customerUserId": customer.id, "email": customerEmail, "password": password, "deviceToken": deviceToken]
         httpRequest.request(url: Defaults.Urls.api.rawValue + "/notificationCounts.php", dataModel: [CustomerUserPushNotificationTokens].self, parameters: parameters) { [weak self] (result) in
             switch result {
             

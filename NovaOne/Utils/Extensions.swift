@@ -208,6 +208,33 @@ extension UIViewController {
         }
         
     }
+    
+    func unregisterForPushNotifications() {
+        // Unregisters the user from push notifications and sets device token to nil in UserDefaults
+        UIApplication.shared.unregisterForRemoteNotifications()
+        UserDefaults.standard.set(nil, forKey: Defaults.UserDefaults.deviceToken.rawValue)
+        UserDefaults.standard.synchronize()
+    }
+    
+    func showSettingsPopup(completion: (() -> Void)?) {
+        // Show the popup for settings
+        let title = "Go To Settings?"
+        let body = "You will now be redirected to settings to enable or disable push notifications for NovaOne."
+        let buttonTitle = "Settings"
+        let alertService = AlertService()
+        
+        DispatchQueue.main.async {
+            [weak self] in
+            let popupActionViewController = alertService.popUp(title: title, body: body, buttonTitle: buttonTitle, actionHandler: {
+                // Take the user to the settings page if they have enabled push notifications in the settings before
+                UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
+            }, cancelHandler: {
+                print("Action canceled for settings redirect - AccountTableViewController")
+            })
+            
+            self?.present(popupActionViewController, animated: true, completion: completion)
+        }
+    }
 }
 
 extension String {

@@ -11,6 +11,7 @@
     
     // POST data
     $customer_user_id = $_POST['customerUserId'];
+    $device_token = $_POST['deviceToken'];
     
     // get and return json data if user is verified
     $user_is_verified = verify_user($email, $password, $php_authentication_username_f, $php_authentication_password_f, $request_method);
@@ -27,11 +28,12 @@
         new_lead_count as \"newLeadCount\"
     
         FROM customer_register_customer_user_push_notification_tokens
-        WHERE customer_user_id = :customer_user_id;
+        WHERE customer_user_id = :customer_user_id
+        AND device_token = :device_token;
     ";
     
     // query the database and echo results
-    $parameters = array(':customer_user_id' => $customer_user_id);
+    $parameters = array(':customer_user_id' => $customer_user_id, ':device_token' => $device_token);
     echo query_db_login($query, $user_is_verified, $parameters, false, NULL);
     
 ?>

@@ -21,6 +21,7 @@ class AccountTableViewController: UITableViewController {
     @IBOutlet weak var smsNotificationsSwitch: UISwitch!
     @IBOutlet weak var emailNotificationsSwitch: UISwitch!
     @IBOutlet weak var pushNotificationsSwitch: UISwitch!
+    var hasEnabledPushNotificationsFromAccountView: Bool = false // A Boolean indicating whether or not the user has enabled push notifications with the official prompt from Apple from the account screen
     var alertService = AlertService()
     let updateBaseViewController = UpdateBaseViewController()
     
@@ -28,6 +29,7 @@ class AccountTableViewController: UITableViewController {
         super.viewDidLoad()
         self.setLabelValues()
         self.addObservers()
+        self.setNotificationSwitch()
     }
     
     func addObservers() {
@@ -55,15 +57,42 @@ class AccountTableViewController: UITableViewController {
         
         self.smsNotificationsSwitch.setOn(wantsSms, animated: false)
         self.emailNotificationsSwitch.setOn(wantsEmailNotificatons, animated: false)
-        self.setNotificationSwitch()
         
         // Setup navigation bar style
         UIHelper.setupNavigationBarStyle(for: self.navigationController)
     }
     
+    func showPushNotificationPopup() {
+        // Shows the push notification popup
+        let title = "Notifications"
+        let body = "Do you want to enable push notifications?"
+        let buttonTitle = "Yes"
+        DispatchQueue.main.async {
+            [weak self] in
+            guard let popupActionViewController = self?.alertService.popUp(title: title, body: body, buttonTitle: buttonTitle, actionHandler: {
+                self?.hasEnabledPushNotificationsFromAccountView = true // Set to true to prevent code from sending device token twice to server
+                // Prompt user to register for push notifications with the official prompt
+                AppDelegate.registerForPushNotifications()
+            }, cancelHandler: {
+                print("action canceled for push notifications permission - AccountTableViewController")
+            }) else {
+                return
+            }
+            
+            self?.present(popupActionViewController, animated: true, completion: {
+                [weak self] in
+                self?.pushNotificationsActivityView.stopAnimating()
+                self?.setNotificationSwitch()
+            })
+        }
+    }
+    
     @objc func setNotificationSwitch() {
         // Sets the value of the notification switch based on whether or not
         // notifications are enabled in the user's settings
+        
+        // If device token is nil, it means the user has never allowed push notifications OR has logged out
+        let deviceToken = UserDefaults.standard.string(forKey: Defaults.UserDefaults.deviceToken.rawValue)
         let center = UNUserNotificationCenter.current()
         center.getNotificationSettings { [weak self] (settings) in
             let isAuthorized = settings.authorizationStatus == .authorized
@@ -71,14 +100,28 @@ class AccountTableViewController: UITableViewController {
             DispatchQueue.main.async {
                 [weak self] in
                 
-                if isAuthorized && !UIApplication.shared.isRegisteredForRemoteNotifications {
-                    AppDelegate.registerForPushNotifications()
-                    self?.pushNotificationsSwitch.setOn(true, animated: false)
-                } else if isAuthorized && UIApplication.shared.isRegisteredForRemoteNotifications {
+                if isAuthorized && deviceToken != nil {
                     self?.pushNotificationsSwitch.setOn(true, animated: false)
                 } else {
+                    // Denied, not determined, or no token on server
+                    if (isAuthorized && self?.hasEnabledPushNotificationsFromAccountView == false) || (isAuthorized && deviceToken == nil && self?.hasEnabledPushNotificationsFromAccountView == false) {
+                        // IF push notifications authorized when coming back into the app
+                        // AND user is not enabling push notifications for the first time with the official prompt
+                        // OR push notifications authorized from settings and device token was not sent to server
+                        // THEN send device token to server
+                        AppDelegate.registerForPushNotifications()
+                        self?.pushNotificationsSwitch.setOn(true, animated: false)
+                        return
+                    } else if isAuthorized && self?.hasEnabledPushNotificationsFromAccountView == true {
+                        // IF application is becoming active from the official push notification prompt being dissmissed after
+                        // user has enabled push notifications
+                        self?.pushNotificationsSwitch.setOn(true, animated: false)
+                        return
+                    }
+                    
                     self?.pushNotificationsSwitch.setOn(false, animated: false)
                 }
+                
             }
         }
     }
@@ -117,7 +160,7 @@ class AccountTableViewController: UITableViewController {
                 PersistenceService.deleteAllData(for: Defaults.CoreDataEntities.appointment.rawValue)
                 
                 // Unregister from push notifications
-                UIApplication.shared.unregisterForRemoteNotifications()
+                self?.unregisterForPushNotifications()
                 
                 // Update UserDefaults
                 UserDefaults.standard.set(false, forKey: Defaults.UserDefaults.isLoggedIn.rawValue)
@@ -199,52 +242,22 @@ class AccountTableViewController: UITableViewController {
         }
         
         let center = UNUserNotificationCenter.current()
+        let deviceToken = UserDefaults.standard.string(forKey: Defaults.UserDefaults.deviceToken.rawValue)
         center.getNotificationSettings { [weak self] (settings) in
             let isAuthorized = settings.authorizationStatus == .authorized
             let wasDenied = settings.authorizationStatus == .denied
-            var popupActionViewController: UIViewController?
             
-            if wasDenied || isAuthorized {
-                // User wants to change push notification settings
-                // OR the user denied push notifications before
-                // Enable or disable push notifications by directing the user to the settings page
-                let title = "Go To Settings?"
-                let body = "You will now be redirected to settings to enable or disable push notifications for NovaOne."
-                let buttonTitle = "Settings"
-                
-                DispatchQueue.main.async {
+            if isAuthorized && deviceToken != nil || !isAuthorized && deviceToken != nil || wasDenied {
+                // User has denied push notifications from the offcial prompt
+                self?.showSettingsPopup {
                     [weak self] in
-                    popupActionViewController = self?.alertService.popUp(title: title, body: body, buttonTitle: buttonTitle) {
-                        // Take the user to the settings page if they have enabled push notifications in the settings before
-                        UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
-                    } cancelHandler: {
-                        print("Action canceled for settings redirect - AccountTableViewController")
-                    }
+                    self?.pushNotificationsActivityView.stopAnimating()
+                    self?.setNotificationSwitch()
                 }
             } else {
                 // User has never allowed push notifications for NovaOne
                 // Showing the official apple notification popup for the first time
-                let title = "Notifications"
-                let body = "Do you want to enable push notifications?"
-                let buttonTitle = "Yes"
-                DispatchQueue.main.async {
-                    [weak self] in
-                    popupActionViewController = self?.alertService.popUp(title: title, body: body, buttonTitle: buttonTitle, actionHandler: {
-                        // Prompt user to register for push notifications with the official prompt
-                        AppDelegate.registerForPushNotifications()
-                    }, cancelHandler: {
-                        print("action canceled for push notifications permission - LoginViewController")
-                    })
-                }
-            }
-            
-            DispatchQueue.main.async {
-                [weak self] in
-                self?.present(popupActionViewController!, animated: true, completion: {
-                    [weak self] in
-                    self?.pushNotificationsActivityView.stopAnimating()
-                    self?.setNotificationSwitch()
-                })
+                self?.showPushNotificationPopup()
             }
         }
     }
